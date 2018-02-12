@@ -5,7 +5,14 @@ def test_isAcronym():
     # Single digits are not acronyms
     assert Functions.isAcronym("A", 3) == False
     
-    # Acronyms should be shorter than the maximum length
+    # Lower-case are not acronyms
+    assert Functions.isAcronym("ecg", 3) == False
+    assert Functions.isAcronym("Ecg", 3) == False
+    
+    # Double upper-case are acronyms
+    assert Functions.isAcronym("AK", 2) == True
+    
+    # Acronyms should be shorter or equal to the maximum length
     assert Functions.isAcronym("EKG", 2) == False
     assert Functions.isAcronym("EKG", 3) == True
     
