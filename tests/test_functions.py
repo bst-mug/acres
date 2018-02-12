@@ -41,3 +41,15 @@ def test_isAcronym():
     
     # Acronyms can contain numbers
     assert Functions.isAcronym("5FU", 7) == True
+    
+    
+def test_simplifyGermanString():
+    assert Functions.simplifyGermanString("LEBER") == "leber"
+    
+    assert Functions.simplifyGermanString("ekg") == "ecg"
+    assert Functions.simplifyGermanString("heißen") == "heissen"
+    assert Functions.simplifyGermanString("Elektrokardiogramm") == "electrocardiogramm"
+    
+    # XXX Is it expected?
+    assert Functions.simplifyGermanString("herz") == "herc"
+    
