@@ -53,3 +53,13 @@ def test_simplifyGermanString():
     # XXX Is it expected?
     assert Functions.simplifyGermanString("herz") == "herc"
     
+    
+def test_randomSubList():
+    # We output the input list if the length requested is larger or equal to the input length 
+    assert Functions.randomSubList(["a", "b"], 2) == ["a", "b"]
+    assert Functions.randomSubList(["a", "b"], 3) == ["a", "b"]
+    
+    # TODO use Random.seed() so that the output is deterministic
+    assert Functions.randomSubList(["a", "b"], 1) in [["a"], ["b"]]
+    
+    
