@@ -1,6 +1,14 @@
 from .context import Functions
     
     
+def test_extractAcroDef():
+    maxLength = 7;
+    
+    assert Functions.extractAcroDef("EKG (Elektrokardiogramm)", maxLength) == ('EKG', 'Elektrokardiogramm')
+    assert Functions.extractAcroDef("Elektrokardiogramm (EKG)", maxLength) == ('EKG', 'Elektrokardiogramm')
+    assert Functions.extractAcroDef("Elektrokardiogramm", maxLength) == None
+
+    
 def test_isAcronym():
     # Single digits are not acronyms
     assert Functions.isAcronym("A", 3) == False
