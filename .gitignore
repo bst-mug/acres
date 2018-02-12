@@ -99,3 +99,10 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# Eclipse stuff
+.project
+.pydevproject
+
+# macOS stuff
+.DS_Store
