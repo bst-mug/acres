@@ -1,6 +1,17 @@
 from .context import Functions
     
     
+def test_splitNgram():    
+    # Return empty if there's no acronym
+    assert Functions.splitNgram("a b c") == []
+    
+    assert Functions.splitNgram("a AK b") == [('a', 'AK', 'b')]
+    
+    assert Functions.splitNgram("l ACR1 b ACR2 c") == [('l', 'ACR1', 'b ACR2 c'), ('l ACR1 b', 'ACR2', 'c')]
+    
+    assert Functions.splitNgram("ACR") == [('', 'ACR', '')]
+    
+    
 def test_extractAcroDef():
     maxLength = 7;
     
