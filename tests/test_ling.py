@@ -1,4 +1,4 @@
-from acres import ling
+from .context import ling
 
 
 def test_WordNgramStat():
