@@ -13,7 +13,7 @@ from random import randint
 ############################################
 def HelloWorld:
     #This is a Hello World function
-    print("Hellooooo Woooooorld")
+    print("Helliiii Wiiiirld")
 
 
 ############################################
