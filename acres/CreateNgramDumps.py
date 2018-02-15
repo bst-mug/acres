@@ -114,20 +114,22 @@ def CreateNgramstatDump(nGramStatFile, ngramstat, minFreq):
 
 ngramstat = {}
 # Create pickle dump for min freq 3 (improve performance)
-CreateNgramstatDump(NGRAMSTAT, ngramstat, 3)
+#CreateNgramstatDump(NGRAMSTAT, ngramstat, 3)
 
 
 
 
 # Load dumps
+def load_dumps():
+    print("Begin Read Dump")
+    ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
+    print("-")
+    index = pickle.load(open("pickle//index.p", "rb"))
+    print("-")
+    normalisedTokens = pickle.load(open("pickle//tokens.p", "rb"))
+    print("End Read Dump")
 
-print("Begin Read Dump")
-ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
-print("-")
-index = pickle.load(open("pickle//index.p", "rb"))
-print("-")
-normalisedTokens = pickle.load(open("pickle//tokens.p", "rb"))
-print("End Read Dump")
+#load_dumps()
 
 
 

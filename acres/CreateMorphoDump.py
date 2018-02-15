@@ -5,29 +5,31 @@
 # created rather quick & dirty, only for scoring acronym resolutions
 
 import pickle
+from acres.Functions import import_conf
 
 sMorph = set()
 
-MORPH_ENG = "C:\\Users\\schulz\\Nextcloud\\Terminology\\Morpho\\morphosaurus\\params\\english\\lex_en.xml"
-MORPH_GER = "C:\\Users\\schulz\\Nextcloud\\Terminology\\Morpho\\morphosaurus\\params\\german\\lex_de.xml"
+MORPH_ENG = import_conf("MORPH_ENG")
+MORPH_GER = import_conf("MORPH_GER")
 
+def create_morpho_dump():
+    with open(MORPH_GER) as f:
+        for row in f:
+            if "<str>" in row:
+                row = row.strip()[5:-6]
+                row = row.replace("z", "c").replace("k", "c")
+                #print(row)
+                sMorph.add(row)
 
-with open(MORPH_GER) as f:
-    for row in f:
-        if "<str>" in row:
-            row = row.strip()[5:-6]
-            row = row.replace("z", "c").replace("k", "c")
-            #print(row)
-            sMorph.add(row)
+    with open(MORPH_ENG) as f:
+        for row in f:
+            if "<str>" in row:
+                row = row.strip()[5:-6]
+                row = row.replace("z", "c").replace("k", "c")
+                #print(row)
+                sMorph.add(row)
 
-with open(MORPH_ENG) as f:
-    for row in f:
-        if "<str>" in row:
-            row = row.strip()[5:-6]
-            row = row.replace("z", "c").replace("k", "c")
-            #print(row)
-            sMorph.add(row)
-
-pickle.dump(sMorph, open("pickle//morphemes.p", "wb"))
+    pickle.dump(sMorph, open("pickle//morphemes.p", "wb"))
  
 
+#create_morpho_dump()
