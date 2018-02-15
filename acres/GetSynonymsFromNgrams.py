@@ -4,11 +4,11 @@
 
 from math import *
 import re
-import Functions
-import Filters
+from acres import Functions
+from acres import Filters
 import pickle
 import collections
-import ling
+from acres import ling
 
 Test = False
 

@@ -5,11 +5,11 @@
 
 
 #from math import *
-import Functions
+from acres import Functions
 import re
 import pickle
 
-Probe = True
+Probe = False
 
 def GetAcronymScore(acro, full, sMorph):
     # Scoring is higher the better the full form is properly split into morphemes

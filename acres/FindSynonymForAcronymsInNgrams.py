@@ -2,14 +2,14 @@
 # using a n-gram frequency list from related corpus
 # Stefan Schulz 03 Dec 2017
 
-import GetSynonymsFromNgrams
-import GetAcronymsFromWeb
+from acres import GetSynonymsFromNgrams
+from acres import GetAcronymsFromWeb
 import pickle
 import re
-import RateAcronymResolutions
-import Functions
+from acres import RateAcronymResolutions
+from acres import Functions
 import math
-import paths
+from acres import paths
 import time
 import random
 p = paths.subdirs(__file__)

@@ -1,3 +1,4 @@
+html2text
 pytest
 pytest-cov
 python-coveralls

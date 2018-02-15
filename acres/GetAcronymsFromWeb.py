@@ -2,13 +2,13 @@
 # using a n-gram frequency list from the Web
 # Stefan Schulz 17 July 2017
 
-import RateAcronymResolutions
+from acres import RateAcronymResolutions
 from math import *
 
-import Functions
+from acres import Functions
 import requests
 import html2text
-import ling
+from acres import ling
 
 PROXIES = True
 

@@ -12,6 +12,7 @@ def FindExpansionsOfAcronyms(TokenStat):
      Acronyms = []  
      NonAcronyms = []  
 
+     # FIXME NameError: name 'dump' is not defined
      lines = dump.ToList(TokenStat)
      for line in lines:
           phrase = line.split("\t")[1]
@@ -61,5 +62,6 @@ def FindExpansionsOfAcronyms(TokenStat):
 
 
           
-                    
-FindExpansionsOfAcronyms("corpus_cardio_ngramstat.txt") 
+
+# TODO michel 20180215 move to unit tests
+#FindExpansionsOfAcronyms("corpus_cardio_ngramstat.txt")

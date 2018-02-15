@@ -13,7 +13,7 @@ import configparser
 
 def import_conf(key):
     config = configparser.ConfigParser()
-    config.read("../config.ini")
+    config.read("config.ini")
     print(config.sections())
     return config['DEFAULT'][key]
 
