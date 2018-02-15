@@ -9,10 +9,8 @@ import re
 from acres import RateAcronymResolutions
 from acres import Functions
 import math
-from acres import paths
 import time
 import random
-p = paths.subdirs(__file__)
  
  
 NEWLINE = "¶"
