@@ -1,6 +1,6 @@
 ## Python 3
 ## Module with functions for
-## Corpus analyssis
+## Corpus analysis
 
 # This function compares and acronym
 # with a potential full form and
@@ -125,7 +125,7 @@ def CheckAcroVsFull(acro, full):
     return result
 
 ## Probes
-print(isAcronym("5FU", 7))
+print("hello")
 #print(CheckAcroVsFull("KHK", "koronare Herzkrankheit"))
 #print(extractAcroDef("EKG (Elektrokardiogramm)", 7))
 #print(extractAcroDef("Elektrokardiogramm", 7))
