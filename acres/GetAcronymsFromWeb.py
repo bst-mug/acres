@@ -10,23 +10,25 @@ import requests
 import html2text
 from acres import ling
 
-PROXIES = True
+from acres.Functions import import_proxy
 
-pwd = input("Enter your Kags Proxy pwd")
-if PROXIES == True:
-    http_proxy = "KA02\SchulzS:" + pwd + "@proxy-static.kages.at:8080"
-    https_proxy = http_proxy 
+proxy_config = import_proxy()
+
+if proxy_config["UseProxy"] == "yes":
+    http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + "@" + proxy_config["ProxyDomain"] + ":" + \
+                 proxy_config["ProxyPort"]
+    https_proxy = http_proxy
     ftp_proxy = http_proxy
     proxy_dict = {
-            "http" : http_proxy,
-            "https" : https_proxy,
-            "ftp" : ftp_proxy}
+        "http": http_proxy,
+        "https": https_proxy,
+        "ftp": ftp_proxy}
 
 
 NEWLINE = "¶"
 NUMERIC = "Ð"
 VERBOSE = False
-PROBE = True
+PROBE = False
 
 def ngramsWebDump(url, minNumTokens, maxNumTokens):
 # produces an n gram statistics from a Web Query, parsing the first return page
@@ -34,7 +36,7 @@ def ngramsWebDump(url, minNumTokens, maxNumTokens):
 # should be used carefully, with delay
 
     try:
-        if PROXIES == True:
+        if proxy_config["UseProxy"] == "yes":
             response = requests.get(url, timeout = 1, proxies=proxy_dict)
         else:
             response = requests.get(url, timeout = 1)

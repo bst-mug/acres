@@ -18,6 +18,12 @@ def import_conf(key):
     return config['DEFAULT'][key]
 
 
+def import_proxy():
+    config = configparser.ConfigParser()
+    config.read("config.ini")
+    return config["proxy"]
+
+
 def splitNgram(ngram):
 # Splits a token ngram with acronym(s) into all combinations of
 # left - acro - token
