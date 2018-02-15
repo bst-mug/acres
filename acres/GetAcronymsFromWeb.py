@@ -12,6 +12,7 @@ import ling
 
 PROXIES = True
 
+pwd = input("Enter your Kags Proxy pwd")
 if PROXIES == True:
     http_proxy = "KA02\SchulzS:" + pwd + "@proxy-static.kages.at:8080"
     https_proxy = http_proxy 
