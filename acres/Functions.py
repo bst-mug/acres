@@ -10,6 +10,14 @@
 import time
 from random import randint
 
+############################################
+def HelloWorld:
+    #This is a Hello World function
+    print("Hellooooo Woooooorld")
+
+
+############################################
+
 def splitNgram(ngram):
 # Splits a token ngram with acronym(s) into all combinations of
 # left - acro - token
