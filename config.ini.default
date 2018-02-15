@@ -4,6 +4,6 @@ NGRAMFILE = "path_to_ngram_file"
 [proxy]
 UseProxy = no
 ProxyUser = "DOMAIN\username"
-ProxyPass = "sassecret"
+ProxyPass = "secret"
 ProxyDomain = "example.com"
 ProxyPort = 8080
