@@ -5,7 +5,7 @@ python:
 before_script:
   - mv config.ini.default config.ini
 script:
-  - py.test --cov=acres && pylint -E
+  - py.test --cov=acres && pylint -E acres
 after_success:
   - coveralls
 notifications:
