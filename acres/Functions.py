@@ -32,6 +32,9 @@ def splitNgram(ngram):
         return out
 
 
+def test():
+    print("This is a test")
+
 def extractAcroDef(strProbe, maxLength):
     # identifies potential acronym / definition pairs and 
     # extract acronym and definition candidates
