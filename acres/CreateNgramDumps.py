@@ -7,9 +7,17 @@
 
 import pickle
 import collections
+import Functions
 
-NGRAMSTAT = "..\\..\\stat\corpus_cardio_training_cleaned_1_to_7gram_stat.txt"
+
+
+
+NGRAMSTAT = Functions.import_conf("NGRAMFILE")
+##"..\\..\\stat\corpus_cardio_training_cleaned_1_to_7gram_stat.txt"
 # ngram statistics representing a specific document genre and domain
+
+print(NGRAMSTAT)
+
 
 
 def CreateNormalisedTokenDump():
@@ -108,7 +116,7 @@ ngramstat = {}
 # Create pickle dump for min freq 3 (improve performance)
 CreateNgramstatDump(NGRAMSTAT, ngramstat, 3)
 
-1/0
+
 
 
 # Load dumps
@@ -121,5 +129,5 @@ print("-")
 normalisedTokens = pickle.load(open("pickle//tokens.p", "rb"))
 print("End Read Dump")
 
-1 / 0
+
 

@@ -7,16 +7,16 @@
 # returns a list of segmentations
 # Stefan Schulz, 18 Mar 2017
 
-import time
+
 from random import randint
+import configparser
 
-############################################
-def HelloWorld:
-    #This is a Hello World function
-    print("Helliiiii Wiiiirld")
+def import_conf(key):
+    config = configparser.ConfigParser()
+    config.read("../config.ini")
+    print(config.sections())
+    return config['DEFAULT'][key]
 
-
-############################################
 
 def splitNgram(ngram):
 # Splits a token ngram with acronym(s) into all combinations of
@@ -100,7 +100,7 @@ def randomSubList(inList, maxNum):
 
 def CheckAcroVsFull(acro, full):
     import re
-    dia = Functions.diacritics()
+    dia = diacritics()
     aLeft = acro[0:-1]
     aRight = acro [-1]
     bina = []
@@ -127,7 +127,7 @@ def CheckAcroVsFull(acro, full):
         for ex in lExp:
             out = out + acro[z] + "." + ex + ")("
             z = z + 1
-        regs.append(out[0:-3] + "[A-Za-z" + DIACRITICS + "0-9 ]*$)")
+        regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
         #List of all regular expressions
         #print(regs)
         #print(fl)
@@ -138,7 +138,7 @@ def CheckAcroVsFull(acro, full):
     return result
 
 ## Probes
-print("hello")
+print(import_conf("NGRAMFILE"))
 #print(CheckAcroVsFull("KHK", "koronare Herzkrankheit"))
 #print(extractAcroDef("EKG (Elektrokardiogramm)", 7))
 #print(extractAcroDef("Elektrokardiogramm", 7))
