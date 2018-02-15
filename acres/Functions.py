@@ -67,6 +67,7 @@ def isAcronym(strProbe, maxLength):
     return ret
 
 def simplifyGermanString(strInGerman):
+    # TODO ... explain why
     # decapitalises, substitutes umlauts,
     # sharp s and converts k and z to c
     strInGerman = strInGerman.lower()
@@ -75,6 +76,7 @@ def simplifyGermanString(strInGerman):
     return(strInGerman.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue"))
 
 def diacritics():
+    # # TODO ... explain why
     # returns a string of diacritic characters
     return ("µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ")
  
