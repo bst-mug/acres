@@ -107,5 +107,15 @@ ENV/
 .project
 .pydevproject
 
+# PyCharm stuff
+.idea
+
 # macOS stuff
 .DS_Store
+
+# Project-specific stuff
+config.ini
+data
+models
+out
+
