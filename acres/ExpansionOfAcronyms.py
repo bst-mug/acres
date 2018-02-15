@@ -13,7 +13,8 @@ def FindExpansionsOfAcronyms(TokenStat):
      NonAcronyms = []  
 
      # FIXME NameError: name 'dump' is not defined
-     lines = dump.ToList(TokenStat)
+     #lines = dump.ToList(TokenStat)
+     lines = []
      for line in lines:
           phrase = line.split("\t")[1]
           count =  line.split("\t")[0]

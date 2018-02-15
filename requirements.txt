@@ -1,4 +1,5 @@
 html2text
+pylint
 pytest
 pytest-cov
 python-coveralls
