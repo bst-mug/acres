@@ -1,7 +1,9 @@
 language: python
 python:
   - "3.6"
+before_script:
+  - mv config.ini.default config.ini
 script:
-  - pytest --cov=acres # or py.test for Python versions 3.5 and below
+  - py.test --cov=acres
 after_success:
   - coveralls
