@@ -3,13 +3,13 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from acres import create_acro_dump
-from acres import CreateMorphoDump
-from acres import CreateNgramDumps
-from acres import ExpansionOfAcronyms
-from acres import Filters
-from acres import FindSynonymForAcronymsInNgrams
-from acres import Functions
-from acres import GetAcronymsFromWeb
-from acres import GetSynonymsFromNgrams
+from acres import create_morpho_dump
+from acres import create_ngram_dumps
+from acres import expansion_acronyms
+from acres import filters
+from acres import find_synonym_for_acronyms_in_ngrams
+from acres import functions
+from acres import get_acronyms_from_web
+from acres import get_synonyms_from_ngrams
 from acres import ling
-from acres import RateAcronymResolutions
+from acres import rate_acronym_resolutions

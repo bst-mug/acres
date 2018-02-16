@@ -1,4 +1,4 @@
-from .context import RateAcronymResolutions
+from .context import rate_acronym_resolutions
 
 
 def test_GetAcronymScore():
