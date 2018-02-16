@@ -1,8 +1,9 @@
-# Create file dumps for large ngram resources
-# for better performance
 # Stefan Schulz 21 August 2017
+"""
+Create file dumps for large ngram resources for better performance.
 
-# XXX all pickle dumps should be created in this module . 
+XXX all pickle dumps should be created in this module.
+"""
 
 
 import pickle
@@ -21,13 +22,19 @@ print(NGRAMSTAT)
 
 
 def CreateNormalisedTokenDump():
-    # creates a set of all tokens in the ngram table, taking into account all possible variants
-    # typical for clinical German
-    # XXX Check whether it's used !!
-    # INCOMLETE RULESET FOR TRANSFORMING 8 bit to 7 bit
-    # including normalizing K-C-Z (only relevant for Medical German)
-    # XXX Soundex ?
-    # XXX similar function elsewhere?
+    """
+    Creates a set of all tokens in the ngram table, taking into account all possible variants typical for clinical
+    German.
+
+    XXX Check whether it's used !!
+    INCOMLETE RULESET FOR TRANSFORMING 8 bit to 7 bit
+    including normalizing K-C-Z (only relevant for Medical German)
+    XXX Soundex ?
+    XXX similar function elsewhere?
+
+    :return:
+    """
+
     allTokens = set() 
     allTokenVariants = set()
     with open(NGRAMSTAT) as f:
@@ -50,8 +57,15 @@ def CreateNormalisedTokenDump():
  
 
 def CreateNgramstatDump(nGramStatFile, ngramstat, minFreq):
-    # creates dump of ngram and ngram variants
-    # create dump of word indices for increasing performance
+    """
+    Creates dump of ngram and ngram variants.
+    Create dump of word indices for increasing performance.
+
+    :param nGramStatFile:
+    :param ngramstat:
+    :param minFreq:
+    :return:
+    """
     with open(nGramStatFile) as f:
         ID = 1
         for row in f:
@@ -119,8 +133,12 @@ ngramstat = {}
 
 
 
-# Load dumps
 def load_dumps():
+    """
+    Load dumps.
+
+    :return:
+    """
     print("Begin Read Dump")
     ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
     print("-")

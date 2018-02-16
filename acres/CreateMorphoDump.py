@@ -1,8 +1,4 @@
-# Creates and dumps set of plausible English and German morphemes 
-# from morphosaurus dictionary
 # Stefan Schulz 12 Nov 2017
-
-# created rather quick & dirty, only for scoring acronym resolutions
 
 import pickle
 from acres.Functions import import_conf
@@ -13,6 +9,12 @@ MORPH_ENG = import_conf("MORPH_ENG")
 MORPH_GER = import_conf("MORPH_GER")
 
 def create_morpho_dump():
+    """
+    Creates and dumps set of plausible English and German morphemes from morphosaurus dictionary.
+    created rather quick & dirty, only for scoring acronym resolutions
+
+    :return:
+    """
     with open(MORPH_GER) as f:
         for row in f:
             if "<str>" in row:

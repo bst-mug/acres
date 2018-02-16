@@ -1,6 +1,7 @@
-# Finds synonyms  
-# using a n-gram frequency list from related corpus
 # Stefan Schulz 21 August 2017
+"""
+Finds synonyms using a n-gram frequency list from related corpus
+"""
 
 from math import *
 import re
@@ -12,19 +13,35 @@ from acres import ling
 
 Test = False
 
-def findEmbeddings(strLeft,      # string left of unknown ("*" if to be retrieved ; "" if empty")
-                   strMiddle,   # input nonlex form (with or without context words) for which synonym is sought
-                   strRight,     # string right uf unknown ("*" if to be retrieved ; "" if empty")
-                   ngramstat,    # ngram model
-                   index,        # word index to ngram model
-                   minWinSize,   # minimum window size
-                   minfreq,      # minimum ngram frequency
-                   maxcount,     # maximum count in list
+def findEmbeddings(strLeft,
+                   strMiddle,
+                   strRight,
+                   ngramstat,
+                   index,
+                   minWinSize,
+                   minfreq,
+                   maxcount,
                    minNumTokens,
                    maxNumTokens,
                    verbose):
-    # input strMiddle, together with a series of filter parameters
-    # three cases of embeddings: 1. bilateral, 2.left, 3.right
+    """
+    Input strMiddle, together with a series of filter parameters
+    Three cases of embeddings: 1. bilateral, 2.left, 3.right
+
+    :param strLeft: string left of unknown ("*" if to be retrieved ; "" if empty")
+    :param strMiddle: input nonlex form (with or without context words) for which synonym is sought
+    :param strRight: string right uf unknown ("*" if to be retrieved ; "" if empty")
+    :param ngramstat: ngram model
+    :param index: word index to ngram model
+    :param minWinSize: minimum window size
+    :param minfreq: minimum ngram frequency
+    :param maxcount: maximum count in list
+    :param minNumTokens:
+    :param maxNumTokens:
+    :param verbose:
+    :return:
+    """
+
     MAXLIST = 100
     DIGIT = "Ð"
     outL = []

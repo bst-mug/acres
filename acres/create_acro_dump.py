@@ -1,11 +1,14 @@
-# Creates and dumps set of acronyms
-# from ngram statistics
 # Stefan Schulz 12 Nov 2017
 
 import pickle
 from acres import Functions
 
 def create_acro_dump():
+    """
+    Creates and dumps set of acronyms from ngram statistics.
+
+    :return:
+    """
     x = pickle.load(open("pickle//acronymNgrams.p", "rb"))
     for i in x:
         print(i)

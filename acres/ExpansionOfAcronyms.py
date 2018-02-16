@@ -5,9 +5,15 @@ import re
  
 
 def FindExpansionsOfAcronyms(TokenStat):
-# Identifies acronyms and looks for possible expansions
-# takes the most frequent one
-# uses ngrams with the second token being an acronym
+     """
+     Identifies acronyms and looks for possible expansions.
+     Takes the most frequent one.
+     Uses ngrams with the second token being an acronym.
+
+     :param TokenStat: some description
+     :return:
+     """
+
      d = {}
      Acronyms = []  
      NonAcronyms = []  

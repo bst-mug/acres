@@ -1,5 +1,3 @@
-# Finds synonyms  
-# using a n-gram frequency list from related corpus
 # Stefan Schulz 03 Dec 2017
 
 from acres import GetSynonymsFromNgrams
@@ -20,6 +18,11 @@ div = 1 # for sampling, if no sampling div = 1. Sampling is used for testing
 
 
 def find_synonyms():
+    """
+    Finds synonyms using a n-gram frequency list from related corpus.
+
+    :return:
+    """
     # load data
 
     ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))

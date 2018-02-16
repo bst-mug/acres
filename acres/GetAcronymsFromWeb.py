@@ -1,6 +1,7 @@
-# Finds synonyms  
-# using a n-gram frequency list from the Web
 # Stefan Schulz 17 July 2017
+"""
+Finds synonyms using a n-gram frequency list from the Web
+"""
 
 from acres import RateAcronymResolutions
 from math import *
@@ -31,9 +32,16 @@ VERBOSE = False
 PROBE = False
 
 def ngramsWebDump(url, minNumTokens, maxNumTokens):
-# produces an n gram statistics from a Web Query, parsing the first return page
-# Stefan Schulz 20170718
-# should be used carefully, with delay
+    """
+    Produces an n gram statistics from a Web Query, parsing the first return page
+
+    Should be used carefully, with delay.
+
+    :param url:
+    :param minNumTokens:
+    :param maxNumTokens:
+    :return:
+    """
 
     try:
         if proxy_config["UseProxy"] == "yes":

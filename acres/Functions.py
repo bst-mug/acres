@@ -1,17 +1,22 @@
-## Python 3
-## Module with functions for
-## Corpus analysis
 
-# This function compares and acronym
-# with a potential full form and
-# returns a list of segmentations
 # Stefan Schulz, 18 Mar 2017
+"""
+Module with functions for corpus analysis.
+
+TODO move to proper function
+This function compares and acronym with a potential full form and returns a list of segmentations.
+"""
 
 
 from random import randint
 import configparser
 
 def import_conf(key):
+    """
+
+    :param key:
+    :return:
+    """
     config = configparser.ConfigParser()
     config.read("config.ini")
     print(config.sections())
@@ -19,14 +24,22 @@ def import_conf(key):
 
 
 def import_proxy():
+    """
+
+    :return:
+    """
     config = configparser.ConfigParser()
     config.read("config.ini")
     return config["proxy"]
 
 
 def splitNgram(ngram):
-# Splits a token ngram with acronym(s) into all combinations of
-# left - acro - token
+        """
+        Splits a token ngram with acronym(s) into all combinations of left - acro - token.
+
+        :param ngram:
+        :return:
+        """
         out = []
         lTokens = ngram.split(" ")
         c = 0
@@ -42,8 +55,13 @@ def test():
     print("This is a test")
 
 def extractAcroDef(strProbe, maxLength):
-    # identifies potential acronym / definition pairs and 
-    # extract acronym and definition candidates
+    """
+    Identifies potential acronym / definition pairs and extract acronym and definition candidates.
+
+    :param strProbe:
+    :param maxLength:
+    :return:
+    """
     strProbe = strProbe.strip()
     if len(strProbe) > 1:
         if strProbe[-1] == ")" and strProbe.count("(") == 1:
@@ -57,9 +75,15 @@ def extractAcroDef(strProbe, maxLength):
         
 
 def isAcronym(strProbe, maxLength):
-    # identifies Acronyms, restricted by absolute length
-    # depends on "Ð" as a placeholder for digits
-    # XXX look for "authoritative" definitions for acronyms
+    """
+    Identifies Acronyms, restricted by absolute length depends on "Ð" as a placeholder for digits.
+
+    XXX look for "authoritative" definitions for acronyms
+
+    :param strProbe:
+    :param maxLength:
+    :return:
+    """
     ret = False
     s = strProbe.replace("Ð", "0")
     l = 0
@@ -73,22 +97,36 @@ def isAcronym(strProbe, maxLength):
     return ret
 
 def simplifyGermanString(strInGerman):
-    # TODO ... explain why
-    # decapitalises, substitutes umlauts,
-    # sharp s and converts k and z to c
+    """
+    Decapitalises, substitutes umlauts, sharp s and converts k and z to c
+
+    TODO ... explain why
+
+    :param strInGerman:
+    :return:
+    """
     strInGerman = strInGerman.lower()
     strInGerman = strInGerman.replace("k", "c").replace("z", "c").replace("ß", "ss")
     strIngerman = strInGerman.replace("é", "e").replace("à", "a")
     return(strInGerman.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue"))
 
 def diacritics():
-    # # TODO ... explain why
-    # returns a string of diacritic characters
+    """
+    TODO ... explain why
+
+    :return: A string of diacritic characters
+    """
     return ("µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ")
  
 
 def randomSubList(inList, maxNum):
-    # Generates random sublist
+    """
+    Generates random sublist.
+
+    :param inList:
+    :param maxNum:
+    :return:
+    """
     outList = []
     length = len(inList)
     if length <= maxNum: return inList

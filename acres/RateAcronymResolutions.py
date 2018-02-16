@@ -1,6 +1,3 @@
-# Scores Acronym / resolution pairs according to a series of
-# well-formedness criteria
-# using a n-gram frequency list from related corpus
 # Stefan Schulz 11 Nov 2017
 
 
@@ -12,13 +9,23 @@ import pickle
 Probe = False
 
 def GetAcronymScore(acro, full, sMorph):
-    # Scoring is higher the better the full form is properly split into morphemes
-    # Requires identification and removal of Affixes (infixes, suffixes, like "Gastr-o", "Schmerz-en")
+    """
+    Scores Acronym / resolution pairs according to a series of well-formedness criteria using a n-gram frequency list
+    from related corpus.
+
+    Scoring is higher the better the full form is properly split into morphemes.
+    Requires identification and removal of Affixes (infixes, suffixes, like "Gastr-o", "Schmerz-en").
+
+    :param acro:
+    :param full:
+    :param sMorph:
+    :return:
+    """
     score = 1   # standard score
     pen = 1     # penalization factor
     acro = acro.strip()
     full = full.strip()
-    # !!! Dependent on German medical language
+    # XXX Dependent on German medical language
     lAffixDeOne = ["a", "e", "i", "n", "o", "s",]
     lAffixDeTwo = ["ae", "en", "er", "em", "es", "is", "um", "us"]
     # full form contains an acronym definition pattern (normally only yielded from Web scraping)

@@ -1,5 +1,3 @@
-# Scores candidate acronym resolutions
-# using a n-gram frequency list from related corpus
 # Stefan Schulz 28 May 2017
 
  
@@ -9,6 +7,16 @@ import pickle
 
 
 def bestAcronymResolution(shortForm, candidates, tokenlist, shortformtype, context):
+    """
+    Scores candidate acronym resolutions using a n-gram frequency list from related corpus.
+
+    :param shortForm:
+    :param candidates:
+    :param tokenlist:
+    :param shortformtype:
+    :param context:
+    :return:
+    """
     if shortformtype == "AA":
         regexAcro = ""
         out = []
