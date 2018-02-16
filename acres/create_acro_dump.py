@@ -1,7 +1,9 @@
 # Stefan Schulz 12 Nov 2017
 
 import pickle
+
 from acres import functions
+
 
 def create_acro_dump():
     """
@@ -13,8 +15,7 @@ def create_acro_dump():
     for i in x:
         print(i)
 
-    1 /0
-
+    1 / 0
 
     a = []
     b = []
@@ -35,13 +36,9 @@ def create_acro_dump():
                     b.append(ngram)
                     break
 
-
     # List of acronyms
     pickle.dump(a, open("pickle//acronyms.p", "wb"))
     # List of ngrams, containing acronyms
     pickle.dump(b, open("pickle//acronymNgrams.p", "wb"))
 
-
 # create_acro_dump()
-
-

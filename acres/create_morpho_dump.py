@@ -1,12 +1,14 @@
 # Stefan Schulz 12 Nov 2017
 
 import pickle
+
 from acres.functions import import_conf
 
 sMorph = set()
 
 MORPH_ENG = import_conf("MORPH_ENG")
 MORPH_GER = import_conf("MORPH_GER")
+
 
 def create_morpho_dump():
     """
@@ -20,7 +22,7 @@ def create_morpho_dump():
             if "<str>" in row:
                 row = row.strip()[5:-6]
                 row = row.replace("z", "c").replace("k", "c")
-                #print(row)
+                # print(row)
                 sMorph.add(row)
 
     with open(MORPH_ENG) as f:
@@ -28,10 +30,9 @@ def create_morpho_dump():
             if "<str>" in row:
                 row = row.strip()[5:-6]
                 row = row.replace("z", "c").replace("k", "c")
-                #print(row)
+                # print(row)
                 sMorph.add(row)
 
     pickle.dump(sMorph, open("pickle//morphemes.p", "wb"))
- 
 
-#create_morpho_dump()
+# create_morpho_dump()

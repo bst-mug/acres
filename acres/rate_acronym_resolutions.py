@@ -1,12 +1,14 @@
 # Stefan Schulz 11 Nov 2017
 
 
-#from math import *
-from acres import functions
-import re
 import pickle
+import re
+
+# from math import *
+from acres import functions
 
 Probe = False
+
 
 def GetAcronymScore(acro, full, sMorph):
     """
@@ -21,12 +23,12 @@ def GetAcronymScore(acro, full, sMorph):
     :param sMorph:
     :return:
     """
-    score = 1   # standard score
-    pen = 1     # penalization factor
+    score = 1  # standard score
+    pen = 1  # penalization factor
     acro = acro.strip()
     full = full.strip()
     # XXX Dependent on German medical language
-    lAffixDeOne = ["a", "e", "i", "n", "o", "s",]
+    lAffixDeOne = ["a", "e", "i", "n", "o", "s", ]
     lAffixDeTwo = ["ae", "en", "er", "em", "es", "is", "um", "us"]
     # full form contains an acronym definition pattern (normally only yielded from Web scraping)
     ret = functions.extractAcroDef(full, 7)
@@ -39,10 +41,10 @@ def GetAcronymScore(acro, full, sMorph):
     # length restriction for full form
     if len(full) < 3: return 0
     # acronym must not occur within full form
-    if acro in full: return 0 # Check A
+    if acro in full: return 0  # Check A
     # for each acronym in full form, penalisation
     # TODO: check if artefact
-    for t in acro.split(" "):   # FIXME should be full.split??
+    for t in acro.split(" "):  # FIXME should be full.split??
         if functions.isAcronym(t, 7): pen = pen / 4
     # Plural form of acronym reduced to singular ("s", often not found in non English full forms)
     # e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)
@@ -67,24 +69,24 @@ def GetAcronymScore(acro, full, sMorph):
     # "EKG" = "Enttwicklung" should not match
     # "Hepatitis A" -> "HEPA" should match
     lastWord = fullL.split(" ")[-1]
-    if len(lastWord) == 1 and acroL[-1] != lastWord: return 0 
+    if len(lastWord) == 1 and acroL[-1] != lastWord: return 0
     if not acroL[-1] in lastWord[0:-1]: return 0
     # for each word in full higher than length of acronym, penalisation factor (square)
     if len(acroL) < fullL.count(" ") + 1:
-        pen = 1 / ((fullL.count(" ") + 1 - len(acroL))  * 2)    # TODO does not use previous penalization factor
-        #print("Penalization = " + str(pen))
+        pen = 1 / ((fullL.count(" ") + 1 - len(acroL)) * 2)  # TODO does not use previous penalization factor
+        # print("Penalization = " + str(pen))
     # Extract upper case sequence from full form
     expUpp = ""
     if full.count(" ") > 0:
         lTok = full.split(" ")
         for tok in lTok:
             if tok > " ":
-                if tok[0].isupper():expUpp = expUpp + tok[0] + ".*"
-    expUpp = expUpp.upper() # FIXME not needed?
+                if tok[0].isupper(): expUpp = expUpp + tok[0] + ".*"
+    expUpp = expUpp.upper()  # FIXME not needed?
     # if upper case word initial is not represented in the acronym, then
     # penalisation
     if re.search(expUpp, acro) == None:
-        pen = pen * 0.25 # FIXME: check whether right
+        pen = pen * 0.25  # FIXME: check whether right
     dia = functions.diacritics()
     bina = []
     splits = []
@@ -93,20 +95,20 @@ def GetAcronymScore(acro, full, sMorph):
     # tokenization, preserving hyphen or chars in acro
     for c in fullL:
         if c.isalnum() or c in " -" or c in acroL:
-           fl = fl + c
+            fl = fl + c
         else:
-           fl = fl + " "
+            fl = fl + " "
     fl = fl.strip()
     # list of binary combinations of alternative regex patterns
     # (greedy vs. non-greedy)
-    regs = [] # list of alternative regular expressions
+    regs = []  # list of alternative regular expressions
     # XXX: state machines instead of Regex
     # XXX: debug what happens with "TRINS" - "Trikuspidalinsuffizienz"
     # XXX: correct segmentation: 't', 'ricuspidal', 'i', 'n', 'suffizienz'
     # XXX: obvious morpheme-based scoring does not work well
     # XXX with this unorthodox building patterns
-    for i in range(0, (2**(len(acroL) -1))):
-        strBin = str(bin(i))[2:].zfill(len(acroL) -1)
+    for i in range(0, (2 ** (len(acroL) - 1))):
+        strBin = str(bin(i))[2:].zfill(len(acroL) - 1)
         if Probe: print(strBin)
         bina.append(strBin.replace("0", "*|").replace("1", "*?|"))
     for expr in bina:
@@ -130,7 +132,7 @@ def GetAcronymScore(acro, full, sMorph):
             fragment = functions.simplifyGermanString(fragment).strip()
             # C, K, and Z no longer distinguished
             # XXX Soundex as an alternative ??
-            if Probe: print ("FR: " + fragment)
+            if Probe: print("FR: " + fragment)
             # Check whether fragments are in german / english morpheme list
             # From Morphosaurus
             if fragment in sMorph or len(fragment) == 1:
@@ -149,17 +151,12 @@ def GetAcronymScore(acro, full, sMorph):
             score = s / len(split)
             if score == 0: score = 0.01
             score = score * pen
-    return(score)
-        
+    return (score)
+
+
 # PROBE
 if Probe == True:
     a = "TRINS"
     f = "Tricuspidalinsuffizienz"
     m = pickle.load(open("pickle//morphemes.p", "rb"))
-    print(GetAcronymScore(a,f,m))
-
-  
-
-
- 
- 
+    print(GetAcronymScore(a, f, m))

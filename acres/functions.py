@@ -1,4 +1,3 @@
-
 # Stefan Schulz, 18 Mar 2017
 """
 Module with functions for corpus analysis.
@@ -7,9 +6,9 @@ TODO move to proper function
 This function compares and acronym with a potential full form and returns a list of segmentations.
 """
 
-
-from random import randint
 import configparser
+from random import randint
+
 
 def import_conf(key):
     """
@@ -34,25 +33,26 @@ def import_proxy():
 
 
 def splitNgram(ngram):
-        """
-        Splits a token ngram with acronym(s) into all combinations of left - acro - token.
+    """
+    Splits a token ngram with acronym(s) into all combinations of left - acro - token.
 
-        :param ngram:
-        :return:
-        """
-        out = []
-        lTokens = ngram.split(" ")
-        c = 0
-        for t in lTokens:
-            if isAcronym(t, 7):
-                tr = (" ".join(lTokens[0:c]), lTokens[c], " ".join(lTokens[c + 1:]))
-                out.append(tr)
-            c = c + 1
-        return out
+    :param ngram:
+    :return:
+    """
+    out = []
+    lTokens = ngram.split(" ")
+    c = 0
+    for t in lTokens:
+        if isAcronym(t, 7):
+            tr = (" ".join(lTokens[0:c]), lTokens[c], " ".join(lTokens[c + 1:]))
+            out.append(tr)
+        c = c + 1
+    return out
 
 
 def test():
     print("This is a test")
+
 
 def extractAcroDef(strProbe, maxLength):
     """
@@ -68,11 +68,10 @@ def extractAcroDef(strProbe, maxLength):
             left = strProbe.split("(")[0].strip()
             right = strProbe.split("(")[1][0:-1].strip()
             if isAcronym(left, maxLength) and not isAcronym(right, maxLength):
-                return(left, right)
+                return (left, right)
             if isAcronym(right, maxLength) and not isAcronym(left, maxLength):
-                return(right, left)
-            
-        
+                return (right, left)
+
 
 def isAcronym(strProbe, maxLength):
     """
@@ -88,13 +87,14 @@ def isAcronym(strProbe, maxLength):
     s = strProbe.replace("Ð", "0")
     l = 0
     u = 0
-    if len(s) <= maxLength:  
+    if len(s) <= maxLength:
         for c in s:
             if c.isupper() == True: u = u + 1
             if c.islower() == True: l = l + 1
     if u > 1 and u > l: ret = True
-            
+
     return ret
+
 
 def simplifyGermanString(strInGerman):
     """
@@ -108,7 +108,8 @@ def simplifyGermanString(strInGerman):
     strInGerman = strInGerman.lower()
     strInGerman = strInGerman.replace("k", "c").replace("z", "c").replace("ß", "ss")
     strIngerman = strInGerman.replace("é", "e").replace("à", "a")
-    return(strInGerman.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue"))
+    return (strInGerman.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue"))
+
 
 def diacritics():
     """
@@ -117,7 +118,7 @@ def diacritics():
     :return: A string of diacritic characters
     """
     return ("µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ")
- 
+
 
 def randomSubList(inList, maxNum):
     """
@@ -146,23 +147,23 @@ def CheckAcroVsFull(acro, full):
     import re
     dia = diacritics()
     aLeft = acro[0:-1]
-    aRight = acro [-1]
+    aRight = acro[-1]
     bina = []
     result = []
     fl = ""
     # remove punctuation chars from full
     for c in full:
         if c.isalpha() or c.isnumeric() or c == " ":
-           fl = fl + c
+            fl = fl + c
         else:
-           fl = fl + " "
+            fl = fl + " "
     fl = fl.strip()
     # list of binary combinations of
     # alternative regex patterns
     # (greedy vs. non-greedy)
-    regs = [] # list of alternative regular expressions
-    for i in range(0, (2**(len(acro) -1))):
-        strBin = str(bin(i))[2:].zfill(len(acro) -1)
+    regs = []  # list of alternative regular expressions
+    for i in range(0, (2 ** (len(acro) - 1))):
+        strBin = str(bin(i))[2:].zfill(len(acro) - 1)
         bina.append(strBin.replace("0", "*|").replace("1", "*?|"))
     for expr in bina:
         lExp = expr.split("|")
@@ -172,18 +173,19 @@ def CheckAcroVsFull(acro, full):
             out = out + acro[z] + "." + ex + ")("
             z = z + 1
         regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
-        #List of all regular expressions
-        #print(regs)
-        #print(fl)
+        # List of all regular expressions
+        # print(regs)
+        # print(fl)
 
     for reg in regs:
         if re.search(reg, fl, re.IGNORECASE) != None:
             result.append(re.findall(reg, fl, re.IGNORECASE)[0])
     return result
 
+
 ## Probes
 print(import_conf("NGRAMFILE"))
-#print(CheckAcroVsFull("KHK", "koronare Herzkrankheit"))
-#print(extractAcroDef("EKG (Elektrokardiogramm)", 7))
-#print(extractAcroDef("Elektrokardiogramm", 7))
-#print(extractAcroDef("Elektrokardiogramm (EKG)", 7))
+# print(CheckAcroVsFull("KHK", "koronare Herzkrankheit"))
+# print(extractAcroDef("EKG (Elektrokardiogramm)", 7))
+# print(extractAcroDef("Elektrokardiogramm", 7))
+# print(extractAcroDef("Elektrokardiogramm (EKG)", 7))
