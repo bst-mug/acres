@@ -38,7 +38,7 @@ def GetAcronymScore(acro, full, sMorph):
     if ret != None:
         if ret[0] == acro:
             full = ret[1]
-            score = 100  # return???  
+            score = 100  # return???
     # acronym must have at least two characters
     if len(acro) < 2: return 0
     # length restriction for full form
@@ -55,7 +55,7 @@ def GetAcronymScore(acro, full, sMorph):
     # We assume that plurals and genitives of acronyms are always marked with lower case "s"
     if (acro[-1] == "s" or acro[-1] == "x" or acro[-1] == "X") and acro[-2:-1].isupper():
         acro = acro[0:-1]
-    # relative length, cf. 
+    # relative length, cf.
     # SCHWARTZ, Ariel S.; HEARST, Marti A. A simple algorithm for identifying abbreviation
     # definitions in biomedical text. In: Biocomputing 2003. 2002. S. 451-462.
     if full.count(" ") + 1 > len(acro) * 2: return 0

@@ -58,7 +58,7 @@ def findEmbeddings(strLeft,
     # Empty	            "^"                                   "$"
     # Specified ("abc")	    "^abc\ "	      "abc"            "\ abc$"
     # Arbitrary, nonempty   "^.*\ "                            "\ .*$"
-    # Build regular expression for matching ngram  
+    # Build regular expression for matching ngram
 
     if strLeft == "*":
         strLeftEsc = "^.*\ "
@@ -85,7 +85,7 @@ def findEmbeddings(strLeft,
 
     logger.debug("press key!")
 
-    # set of selected ngrams for filtering 
+    # set of selected ngrams for filtering
     if strLeft == "" and strRight == "":
         logger.debug("No filter. Return empty list")
         return []
@@ -103,7 +103,7 @@ def findEmbeddings(strLeft,
 
         logger.debug("press key!")
 
-    for row in sorted(selRows, reverse=True):  # iteration through all matching ngrams  
+    for row in sorted(selRows, reverse=True):  # iteration through all matching ngrams
         logger.debug(row)
         # input("press key!)
         ngram = row.split("\t")[1]

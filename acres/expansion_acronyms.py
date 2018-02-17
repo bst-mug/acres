@@ -12,7 +12,7 @@ def FindExpansionsOfAcronyms(lstNGramStat):
     TODO: check for what it is needed, complete it
     :param nGramStat: A list in which ngrams extracted
     from a corpus are counted in decreasing frequency
-    
+
     :return:
     """
 
