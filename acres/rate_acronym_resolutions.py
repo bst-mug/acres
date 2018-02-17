@@ -90,6 +90,8 @@ def GetAcronymScore(acro, full, sMorph):
     # penalisation
     if re.search(expUpp, acro) == None:
         pen = pen * 0.25  # FIXME: check whether right
+
+    # FIXME duplicate code at functions.CheckAcroVsFull()
     dia = functions.diacritics()
     bina = []
     splits = []
@@ -126,6 +128,8 @@ def GetAcronymScore(acro, full, sMorph):
         # print(reg)
         if re.search(reg, fl, re.IGNORECASE) != None:
             splits.append(re.findall(reg, fl, re.IGNORECASE)[0])
+    # END of duplicate code
+
     score = 0
     logger.debug(splits)
     for split in splits:
