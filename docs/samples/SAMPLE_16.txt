@@ -1,0 +1,241 @@
+----------
+ARTZTBRIEF
+----------
+
+
+* Anamnese und klinische Symptomatik:
+
+Frau <-LN_21251-> wurde am 09.07.2014 von der Onkologie zur TAVI bei
+hochgradiger AST und Angina pectoris-Symptomatik (retrosternaler Druck
+und Dyspnoe seit Ende Mai) übernommen. Bei der Übernahme ist sie
+kardiorespiratorisch stabil und beschwerdefrei.
+
+* Physikalischer Status
+
+81 jähr.Pat., normaler AZ, adipöser EZ.
+Caput, Collum unauff.
+Cor: HT rhythmisch, normocard, Systolikum über allen 0stien.
+Pulmo: VA bds., keine RG's.
+Abdomen: BD weich, kein DS, normale DG's, keine Resistenzen palp.
+Extr.: diskrete Ödeme bds., FP tastbar.
+
+* Laboruntersuchungen
+
+In Kopie beiliegend.
+
+* Beurteilung u. durchgef. Therapie
+
+Die stationäre Aufnahme der Pat. erfolgte aufgrund einer hochgradiger
+Aortenstenose. Die geplante TAVI musste vorerst aufgrund ansteigender
+Entzündungsparameter um 1 Wo. verschoben werden. Als Ursache für die
+Infektion zeigte sich ein Spritzenabszess nach Lovenoxgabe (DD:
+verstärkte Lokalreaktion auf Lovenox). Weiters wurde die
+Thromboseprophylaxe von Lovenox auf Fragmin umgestellt. Unter
+Dalacintherapie zeigten sich die Entzündungswerte deutlich regredient.
+
+Nach Durchführung der notwendigen Voruntersuchungen konnte schließlich
+am 22.07.2014 komplikationslos eine 26 mm CoreValve
+Aortenklappenprothese implantiert werden. Postinterventionell wurde die
+Pat an unserer Intensivstation beobachtet, sie zeigte sich stets
+beschwerdefrei. Im weiteren Verlauf entwickelte die Pat. wiederum
+subfebrile Temperaturen, aufgrund von neuerlich erhöhten
+Entzündungsparametern wurde die laufende Antibiose von Dalacin auf
+Tazonam umgestellt. Der Harnstreifentest zeigte sich unauffällig, im
+Thorax Röntgen zeigten sich keine umschriebenen Infiltrate. Im Bereich
+des Spritzenabszesses zeigte sich keine neuerliche Lokalreaktion, keine
+Rötung, kein Hiweis für eine Infektion. Unter der Antibiose mit Tazonam
+zeigte sich die Pat. rasch afebril und die Entzündungswerte rückläufig.
+
+Im Kontroll-USKG zeigte sich eine höhergradiger konzentrische
+Hypertrophie (konzentrisch) des linken Ventrikels mit normaler
+systolischer Funktion, eine diastolische Ventrikelfunktiosstörung Grad
+2, eine normale Rechtsventrikelfunktion sowie St.p. PAVR am 22.07.2014
+mit Bioprothese in Aortenposition mit minimale paravalvuläre
+Insuffizienz.
+
+Der weitere stat. Aufenhalt gestaltete sich komplikationslos und Frau
+<-LN_21251-> konnte schließlich am 01.08.2014 kardiorespiratorisch stabil in
+altersentsprechendem AZ und mit blander Leistenpunktionsstelle wieder
+nach Hause entlassen werden.
+
+* Procedere & Empfehlungen:
+
+- wir empfehlen körperliche Schonung sowie Vermeiden von Heben schwerer
+Lasten und Beugen in der Hüfte für 2 Wochen
+
+- intensiv. kardiovaskuläres Risikofaktorenmanagement im Sinne einer
+antihypertensiven und lipidsenkenden Therapie
+
+- Kontrolle in unserer Vitienambulanz am 26.09.2014 um 11.00 Uhr
+
+- Antibiose mit Ospexin 1000 mg 3x1 für 3 Wochen (bis 22.08.2014)
+
+- regelm. RR Kontrollen beim HA
+
+- 1x jährl. internist. Kontrolle beim niedergel. FA
+
+- bei Beschwerden jederzeitige Wiedervorstellung über die EBA möglich
+
+
+---------
+DIAGNOSEN
+---------
+
+I35.0 Hochgr. Aortenklappenstenose
+ Z. n. TAVI am 22.07.2014
+I11.9 Hypertensive Herzkrankheit
+I20.9 Angina pectoris
+ zAVK
+N18.3 NINS III mit renaler Anämie (+/- Eisenmangel)
+G25.8 Restless-legs-Syndrom
+ ACE Hemmer Unverträglichkeit
+ Unasyn - Unverträglichkeit (Rötung im Gesicht)
+
+-----------------
+RELEVANTE BEFUNDE
+-----------------
+
+* Thorax-Rö.
+
+Der Herzschatten linksseitig verbreitert mit Zeichen der pulmonalvenösen
+Drucksteigerung sowie interstitiellen Stauungszeichen mit positiven
+Kerley-B-Linien. Keine umschriebenen alveolären Infiltrate. Keine
+pleuralen Ergüsse. Degenerative Achsenskelettveränderungen.
+
+* Thorax-Rö.
+
+Der Herzschatten mäßig vergrößert mit Zeichen der geringen
+pulmonalvenösen Stauung. Die Hili in erster Linie vaskulär verbreitert
+(DD: lymphadenopathisch). Verbreiterung des Pulmonalsegmentes. Deutliche
+Aortensklerose.
+Kein Nachweis eines umschriebenen pneumonischen Infiltrats. Verstärkte
+peribronchovasculäre Lungengerüstzeichnung wie bei chronischer
+Bronchitis/COPD. Keine größeren Pleuraergüsse. Verdacht auf
+Bronchiektasen in beiden Unterfeldern.
+
+* EKG
+
+76/min, SR, Linkstyp, RS-Umschlag in V 4, Endstrecken, neg. T in V 4 - V
+6.
+
+* Dermatolog. Befund
+
+Im Bereich der Lovenoxinjektionstelle schmerzhafter, kleiner, ca. 3 cm
+im DM haltender Knoten.
+Diagnose: verstärkte Lokalreaktion auf Lovenox.
+Therapievorschlag: empf. Umstellung von Lovenox auf Fragmin.
+Vibroforte Gel 2x tägl. für 7 Tage.
+
+* USKG
+
+Befund (gute Untersuchungsqualität)
+1) Normal großer linker Ventrikel mit mittelgradiger Hypertrophie
+(überwiegend des Septums) und normaler systolischer Funktion;
+2) Keine regionalen Wandbewegungsstörungen;
+3) Rechter Ventrikel normal groß; normale Rechtsventrikelfunktion;
+4) Linker Vorhof normal groß; rechter Vorhof normal groß;
+5) Aortenklappe stark verkalkt, höhergradige Aortenstenose mit einem
+mittleren Gradienten von 35 mmHg (max. inst. Gradient 77 mmHg);
+Aortenklappenöffnungsfläche ca. 0,8 cm2 (0,4 cm2/mr KOF); leichte
+Aorteninsuffizienz;
+6) Leichte Mitralringverkalkung; leichte Mitralinsuffizienz;
+7) Trikuspidalklappe unauffällig; physiologische
+Trikuspidalinsuffizienz; Pulmonalisdruck mangels adäquaten
+Trikuspidalinsuffizienzsignals nicht bestimmbar;
+8) Pulmonalklappe unauffällig;
+9) Kein Perikarderguss;
+
+* Herzkatheter
+
+UNTERSUCHUNGEN:
+Linksherzkatheter, Aortographie der Aorta ascendens, Aortographie der
+Aorta abdominalis, Anlage eines temporären Schrittmachers (keine
+Notfallsmaßnahme), Perkutaner Aortenklappenersatz, Analgosedierung des
+Patienten
+
+INDIKATION(EN):
+Aortenklappenstenose, KHK, NINS, elektive TF AVI
+
+DIAGNOSEN:
+Hochgradige AST mit einer AÖF von 0.8 cm²., KHK I
+
+THERAPIE:
+Pass. SMI, Implantation einer 26 mm CoreValve Aortenklappenprothese,
+kein leak
+
+PROZEDERE:
+Curocef 1,5g abends und am nächsten Morgen.
+Plavix für 6 Monat(e)
+Thrombo ASS lebenslänglich
+Regelmäßige kardiologische Kontroll Untersuchungen
+
+* TEE
+
+Befund (gute Untersuchungsqualität)
+1) Linker Vorhof einschließlich Herzohr frei von Thromben;
+2) Im Farbdoppler kein Hinweis für ein offenes Foramen ovale oder ASD;
+3) Mittelgradig ausgeprägte atheromatöse Veränderungen der Aorta
+ascendens;
+4) Aortenklappenvermessung vor TAVI: AV ann: 21 mm; Sinus valsalvae: 31
+mm, ST-Übergang: 24 mm, Aorta ascendens: 27 mm
+
+* USKG
+
+Befund (sehr gute Untersuchungsqualität)
+1) Nomral großer linker Ventrikel mit höhergradiger Hypertrophie
+(konzentrisch) und normaler systolischer Funktion; keine regionalen
+Wandbewegungsstörungen; diastolische Ventrikelfunktiosstörung Grad 2
+(pseudonormales Muster) - Füllungsdruck vermutlich gering erhöht;
+2) Rechter Ventrikel normal groß; normale Rechtsventrikelfunktion;
+3) Linker Vorhof leicht vergrößert; rechter Vorhof normal groß;
+4) St.p. PAVR am 22.7.2014 mit Bioprothese in Aortenposition mit einem
+mittleren Gradienten von 4 mmHg (max. inst. Gradient 8 mmHg; HF 75 bpm);
+normale Prothesenfunktion kann angenommen werden; minimale paravalvuläre
+Insuffizienz;
+5) Leichte Mitralringverkalkung; leichte Mitralinsuffizienz;
+6) Trikuspidalklappe unauffällig; physiologische
+Trikuspidalinsuffizienz;
+7) Systolischer Pulmonalisdruck ca. 34 mmHg;
+8) Kein Perikarderguss;
+9) MRD links lat 13, med 11, rechts 21, S, Sr, LAV, LAVI
+Kontrolle in der Vitienambulanz am 26.9.2014 11:00
+
+* FCDS der Leiste
+
+Rechts: AFC/ AFS: Punktionsstelle bland, kein Hinweis für Aneurysma
+spurium oder AV-Fistel
+Links: AFC/ AFS: Hämatom iB der Punktionsstelle , kein Hinweis für
+Aneurysma spurium oder AV-Fistel
+
+* Thorax Röntgen
+
+Untersuchung: Thorax zwei Ebenen (183121215)
+Im Vergleich zur Voruntersuchung vom 12.07.2014 ergibt sich keine
+signifikante Befunddynamik. Der Herzschatten grenzwertig groß mit
+Aortenelongation und Aortensklerose. Die Hili beidseits in erster Linie
+gering vaskulär akzentuiert. Zeichen der Kranalisation des
+Lungenkreislaufs. Verstärkte bronchovaskuläre Lungengerüstzeichnung.
+Keine umschriebenen Infiltrate fassbar. Der Recessus allseits frei.
+Klappentragender Aortenstent. Degenerative Achsenskelettveränderungen
+mit verminderten Knochenmineralsalzgehalt der einsehbaren BWS-
+Abschnitte.
+
+
+----------
+MEDIKATION
+----------
+
+Thrombo ASS 100 mg 0-1-0 lebenslänglich
+Plavix 75 mg 0-1-0 für 6 Monate (bis 22.01.2015)
+Blopress 16 mg 1-0-1
+Pravastatin 40 mg 0-0-1
+Thyrex 75 µg 1-0-0
+Venoruton 500 mg 1-0-0
+Neurobion forte 1-0-0
+Requip 1 mg 1-0-1
+Pantoloc 40 mg 1-0-0
+Oleovit D3 Tropfen 2 gtt alle zwei Tage
+Magnosolv 1x1
+Lasix 40 mg 1-0-0
+Norvasc 5 mg 1-0-0
+Ospexin 1000 mg 1-1-1 für 3 Wochen (bis 22.08.2014)
