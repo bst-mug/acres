@@ -5,10 +5,13 @@ Finds synonyms using a n-gram frequency list from related corpus
 
 import pickle
 import re
+import logging
 
 from acres import functions
 
-Test = False
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
 
 def findEmbeddings(strLeft,
@@ -39,6 +42,8 @@ def findEmbeddings(strLeft,
     :param verbose:
     :return:
     """
+    if verbose:
+        logger.setLevel(logging.DEBUG)
 
     MAXLIST = 100
     DIGIT = "Ð"
@@ -70,19 +75,19 @@ def findEmbeddings(strLeft,
         strRightEsc = "\ " + re.escape(strRight.strip()) + "$"
     regexEmbed = strLeftEsc + strMiddleEsc + strRightEsc
 
-    if verbose: print('Unknown expression: "' + strMiddleEsc + '"')
-    if verbose: print('Left context: "' + strLeftEsc + '"')
-    if verbose: print('Right context: "' + strRightEsc + '"')
-    if verbose: print("Minimum n-gram frequency " + str(minfreq))
-    if verbose: print("Maximum count of iterations " + str(maxcount))
-    if verbose: print("N-gram cardinality between " + str(minNumTokens) + " and " + str(maxNumTokens))
-    if verbose: print("Regular expression: " + regexEmbed)
+    logger.debug('Unknown expression: "' + strMiddleEsc + '"')
+    logger.debug('Left context: "' + strLeftEsc + '"')
+    logger.debug('Right context: "' + strRightEsc + '"')
+    logger.debug("Minimum n-gram frequency " + str(minfreq))
+    logger.debug("Maximum count of iterations " + str(maxcount))
+    logger.debug("N-gram cardinality between " + str(minNumTokens) + " and " + str(maxNumTokens))
+    logger.debug("Regular expression: " + regexEmbed)
 
-    if verbose: input("press key!")
+    logger.debug("press key!")
 
     # set of selected ngrams for filtering 
     if strLeft == "" and strRight == "":
-        if verbose: print("No filter. Return empty list")
+        logger.debug("No filter. Return empty list")
         return []
     else:
         # Generate list of words for limiting the search space via word index
@@ -94,12 +99,12 @@ def findEmbeddings(strLeft,
         for r in nGramSelectionS:
             selRows.append(ngramstat[r])
 
-    if verbose: print("Number of matching ngrams by word index: " + str(len(selRows)))
+        logger.debug("Number of matching ngrams by word index: " + str(len(selRows)))
 
-    if verbose: input("press key!")
+        logger.debug("press key!")
 
     for row in sorted(selRows, reverse=True):  # iteration through all matching ngrams  
-        if verbose: print(row)
+        logger.debug(row)
         # input("press key!)
         ngram = row.split("\t")[1]
         ngramCard = ngram.count(" ") + 1  # cardinality of the nGram
@@ -112,28 +117,28 @@ def findEmbeddings(strLeft,
                 m = re.search(regexEmbed, ngram, re.IGNORECASE)
                 if m != None and not row in allBeds:
                     allBeds.append(row)
-                    if verbose: print(row)
+                    logger.debug(row)
                     count += 1
                     if count >= maxcount:
-                        if verbose: print("List cut at " + str(count))
+                        logger.debug("List cut at " + str(count))
                         break
 
-    if verbose: input("press key!")
+        logger.debug("press key!")
 
     selBeds = functions.randomSubList(allBeds, count)
     # print(selBeds)
     # random selection of hits, to avoid explosion
-    if verbose: print("Embeddings:")
-    if verbose:
+    logger.debug("Embeddings:")
+    if logger.getEffectiveLevel() == logging.DEBUG:
         for item in allBeds: print(item)
 
     # print(len(selBeds), selBeds)
-    if verbose: print("Generated list of " + str(count) + " matching n-grams")
-    if verbose: input("strike key")
+        logger.debug("Generated list of " + str(count) + " matching n-grams")
+        logger.debug("strike key")
 
     if count > 0:
         iMaxNum = (maxcount // count) + 3
-        if verbose: print("Per matching n-gram " + str(iMaxNum) + " surroundings")
+        logger.debug("Per matching n-gram " + str(iMaxNum) + " surroundings")
 
         # print("----------------------------------------------")
         for row in selBeds:  # iterate through extract
@@ -144,10 +149,10 @@ def findEmbeddings(strLeft,
             regexBed = regexBed.replace(strMiddleEsc, "(.*)")
             surroundingsL = bed.replace(strMiddle + " ", "").split(" ")
             for w in surroundingsL:
-                if verbose: print("Surrounding strMiddle: " + w)
+                logger.debug("Surrounding strMiddle: " + w)
                 newSets.append(index[w])
             ngramsWithSurroundings = list(set.intersection(*newSets))
-            if verbose: print("Size of list that includes surrounding elements: " + str(len(ngramsWithSurroundings)))
+            logger.debug("Size of list that includes surrounding elements: " + str(len(ngramsWithSurroundings)))
             ngramsWithSurroundings.sort(reverse=True)
             # Surrounding list sorted
             c = 0
@@ -169,16 +174,16 @@ def findEmbeddings(strLeft,
                         outL.append(freq + "\t" + out)
 
         outL.sort(reverse=True)
-    if verbose:
-        for item in outL: print(item)
+    if logger.getEffectiveLevel() == logging.DEBUG:
+        for item in outL: logger.debug(item)
     return outL
 
 
-if Test == True:
+if logger.getEffectiveLevel() == logging.DEBUG:
     normalisedTokens = pickle.load(open("pickle//tokens.p", "rb"))
     ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
     index = pickle.load(open("pickle//index.p", "rb"))
-    print("Dumps loaded")
+    logger.debug("Dumps loaded")
     # li = findEmbeddings("", "morph.", "", ngramstat, index, 10, 3, 1000, 1, 7)
     # li = findEmbeddings("Mitralklappe", "morph.", "*", ngramstat, index, 10, 3, 1000, 1, 7)
     # li = findEmbeddings("", "morph.", "", ngramstat, index, 18, 3, 1000, 1, 1)
@@ -204,4 +209,4 @@ if Test == True:
 
     # print(findEmbeddings("gutem", "AZ", "nach Hause", ngramstat, index, 10, 3, 100, 3, 7, False))
 
-    print(findEmbeddings("*", "PDU", "*", ngramstat, index, 10, 3, 50, 1, 5, False))
+    logger.debug(findEmbeddings("*", "PDU", "*", ngramstat, index, 10, 3, 50, 1, 5, False))

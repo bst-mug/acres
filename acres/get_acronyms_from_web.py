@@ -5,15 +5,18 @@ Finds synonyms using a n-gram frequency list from the Web
 
 import html2text
 import requests
+import logging
 
 from acres import functions
 from acres import rate_acronym_resolutions
 from acres.functions import import_proxy
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
+
 NEWLINE = "¶"
 NUMERIC = "Ð"
-VERBOSE = False
-PROBE = False
 
 
 def ngramsWebDump(url, minNumTokens, maxNumTokens):
@@ -44,7 +47,7 @@ def ngramsWebDump(url, minNumTokens, maxNumTokens):
             response = requests.get(url, timeout=1)
     except requests.exceptions.RequestException as e:
         pass
-        print("failure")
+        logger.critical("failure")
         return []
     outL = []
     txt = html2text.html2text(response.text)
@@ -67,10 +70,9 @@ def ngramsWebDump(url, minNumTokens, maxNumTokens):
     return outL
 
 
-if PROBE == True:
+if logger.getEffectiveLevel() == logging.DEBUG:
     acro = "AV"
     q = "AV Blocks"
-    # PROBE    
     import pickle
 
     m = pickle.load(open("pickle//morphemes.p", "rb"))
@@ -88,4 +90,4 @@ if PROBE == True:
         cnt = line.split("\t")[0]
         s = rate_acronym_resolutions.GetAcronymScore(acro, full, m)
         if s > 0.01:
-            print(str(s * int(cnt)) + "\t" + line)
+            logger.debug(str(s * int(cnt)) + "\t" + line)
