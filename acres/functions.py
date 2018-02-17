@@ -399,3 +399,5 @@ def find_acro_expansions(lstNGramStat):
 
 # TODO michel 20180215 move to unit tests
 # FindExpansionsOfAcronyms("corpus_cardio_ngramstat.txt")
+
+print("Hello")

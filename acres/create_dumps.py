@@ -167,6 +167,7 @@ def create_acro_dump():
     # List of ngrams, containing acronyms
     pickle.dump(b, open("pickle//acronymNgrams.p", "wb"))
 
+
 def create_morpho_dump():
     """
     Creates and dumps set of plausible English and German morphemes from morphosaurus dictionary.
@@ -196,10 +197,10 @@ def create_morpho_dump():
 
     pickle.dump(sMorph, open("pickle//morphemes.p", "wb"))
 
-def create_corpus_char_stat_dump(doc_path = "CORPUSPATH", ngramlength = 8, digit_placeholder = "Ð", break_marker = "¶"):
+
+def create_corpus_char_stat_dump(corpus_path, ngramlength = 8, digit_placeholder = "Ð", break_marker = "¶"):
     counter = 0
     dict_char_ngrams = {}
-    corpus_path = functions.import_conf(doc_path)
     files = os.listdir(corpus_path)
     for file in files:
         str_doc = ""
@@ -220,10 +221,10 @@ def create_corpus_char_stat_dump(doc_path = "CORPUSPATH", ngramlength = 8, digit
             except Exception:
                 pass
             single_document.close()
-    pickle.dump(dict_char_ngrams, open("character_ngrams.p", "wb"))
+    pickle.dump(dict_char_ngrams, open("models/pickle/character_ngrams.p", "wb"))
 
 
-
+# create_corpus_char_stat_dump("data/samples")
 
 
 
