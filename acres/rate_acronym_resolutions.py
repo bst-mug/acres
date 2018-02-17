@@ -38,7 +38,7 @@ def GetAcronymScore(acro, full, sMorph):
     if ret != None:
         if ret[0] == acro:
             full = ret[1]
-            score = 100  # return???  
+            score = 100  # return???
     # acronym must have at least two characters
     if len(acro) < 2: return 0
     # length restriction for full form
@@ -55,7 +55,7 @@ def GetAcronymScore(acro, full, sMorph):
     # We assume that plurals and genitives of acronyms are always marked with lower case "s"
     if (acro[-1] == "s" or acro[-1] == "x" or acro[-1] == "X") and acro[-2:-1].isupper():
         acro = acro[0:-1]
-    # relative length, cf. 
+    # relative length, cf.
     # SCHWARTZ, Ariel S.; HEARST, Marti A. A simple algorithm for identifying abbreviation
     # definitions in biomedical text. In: Biocomputing 2003. 2002. S. 451-462.
     if full.count(" ") + 1 > len(acro) * 2: return 0
@@ -90,6 +90,8 @@ def GetAcronymScore(acro, full, sMorph):
     # penalisation
     if re.search(expUpp, acro) == None:
         pen = pen * 0.25  # FIXME: check whether right
+
+    # FIXME duplicate code at functions.CheckAcroVsFull()
     dia = functions.diacritics()
     bina = []
     splits = []
@@ -126,6 +128,8 @@ def GetAcronymScore(acro, full, sMorph):
         # print(reg)
         if re.search(reg, fl, re.IGNORECASE) != None:
             splits.append(re.findall(reg, fl, re.IGNORECASE)[0])
+    # END of duplicate code
+
     score = 0
     logger.debug(splits)
     for split in splits:

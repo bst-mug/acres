@@ -46,8 +46,7 @@ def ngramsWebDump(url, minNumTokens, maxNumTokens):
         else:
             response = requests.get(url, timeout=1)
     except requests.exceptions.RequestException as e:
-        pass
-        logger.critical("failure")
+        logger.critical(e)
         return []
     outL = []
     txt = html2text.html2text(response.text)

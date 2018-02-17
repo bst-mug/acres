@@ -171,10 +171,10 @@ def create_ngram_statistics(InputString, nMin, nMax):
         line = line.replace('\r', '')
         line = line.replace('\n', '')
         line = line.strip()
-        input = line.split(" ")
+        cleaned_line = line.split(" ")
         for n in range(nMin, nMax + 1):
-            for i in range(len(input) - n + 1):
-                g = ' '.join(input[i:i + n])
+            for i in range(len(cleaned_line) - n + 1):
+                g = ' '.join(cleaned_line[i:i + n])
                 output.setdefault(g, 0)
                 output[g] += 1
     #    Example for formatted output, sorted, reverse order
@@ -263,7 +263,7 @@ def simplify_german_string(strInGerman):
     """
     strInGerman = strInGerman.lower()
     strInGerman = strInGerman.replace("k", "c").replace("z", "c").replace("ß", "ss")
-    strIngerman = strInGerman.replace("é", "e").replace("à", "a")
+    strInGerman = strInGerman.replace("é", "e").replace("à", "a")
     return (strInGerman.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue"))
 
 
@@ -302,8 +302,6 @@ def random_sub_list(inList, maxNum):
 def check_acro_vs_expansion(acro, full):
     import re
     dia = diacritics()
-    aLeft = acro[0:-1]
-    aRight = acro[-1]
     bina = []
     result = []
     fl = ""

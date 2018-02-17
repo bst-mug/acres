@@ -45,7 +45,7 @@ def findEmbeddings(strLeft,
     if verbose:
         logger.setLevel(logging.DEBUG)
 
-    MAXLIST = 100
+    # MAXLIST = 100
     DIGIT = "Ð"
     outL = []
     allBeds = []
@@ -58,7 +58,7 @@ def findEmbeddings(strLeft,
     # Empty	            "^"                                   "$"
     # Specified ("abc")	    "^abc\ "	      "abc"            "\ abc$"
     # Arbitrary, nonempty   "^.*\ "                            "\ .*$"
-    # Build regular expression for matching ngram  
+    # Build regular expression for matching ngram
 
     if strLeft == "*":
         strLeftEsc = "^.*\ "
@@ -75,17 +75,17 @@ def findEmbeddings(strLeft,
         strRightEsc = "\ " + re.escape(strRight.strip()) + "$"
     regexEmbed = strLeftEsc + strMiddleEsc + strRightEsc
 
-    logger.debug('Unknown expression: "' + strMiddleEsc + '"')
-    logger.debug('Left context: "' + strLeftEsc + '"')
-    logger.debug('Right context: "' + strRightEsc + '"')
-    logger.debug("Minimum n-gram frequency " + str(minfreq))
-    logger.debug("Maximum count of iterations " + str(maxcount))
-    logger.debug("N-gram cardinality between " + str(minNumTokens) + " and " + str(maxNumTokens))
-    logger.debug("Regular expression: " + regexEmbed)
+    logger.debug("Unknown expression: '%s'", strMiddleEsc)
+    logger.debug("Left context: '%s'", strLeftEsc)
+    logger.debug("Right context: '%s'", strRightEsc)
+    logger.debug("Minimum n-gram frequency: %d", minfreq)
+    logger.debug("Maximum count of iterations: %d", maxcount)
+    logger.debug("N-gram cardinality between %d and %d", minNumTokens, maxNumTokens)
+    logger.debug("Regular expression: %s", regexEmbed)
 
     logger.debug("press key!")
 
-    # set of selected ngrams for filtering 
+    # set of selected ngrams for filtering
     if strLeft == "" and strRight == "":
         logger.debug("No filter. Return empty list")
         return []
@@ -99,11 +99,11 @@ def findEmbeddings(strLeft,
         for r in nGramSelectionS:
             selRows.append(ngramstat[r])
 
-        logger.debug("Number of matching ngrams by word index: " + str(len(selRows)))
+        logger.debug("Number of matching ngrams by word index: %d", len(selRows))
 
         logger.debug("press key!")
 
-    for row in sorted(selRows, reverse=True):  # iteration through all matching ngrams  
+    for row in sorted(selRows, reverse=True):  # iteration through all matching ngrams
         logger.debug(row)
         # input("press key!)
         ngram = row.split("\t")[1]
@@ -120,7 +120,7 @@ def findEmbeddings(strLeft,
                     logger.debug(row)
                     count += 1
                     if count >= maxcount:
-                        logger.debug("List cut at " + str(count))
+                        logger.debug("List cut at %d", count)
                         break
 
         logger.debug("press key!")
@@ -133,12 +133,12 @@ def findEmbeddings(strLeft,
         for item in allBeds: print(item)
 
     # print(len(selBeds), selBeds)
-        logger.debug("Generated list of " + str(count) + " matching n-grams")
+        logger.debug("Generated list of %d matching n-grams", count)
         logger.debug("strike key")
 
     if count > 0:
         iMaxNum = (maxcount // count) + 3
-        logger.debug("Per matching n-gram " + str(iMaxNum) + " surroundings")
+        logger.debug("Per matching n-gram %d surroundings", iMaxNum)
 
         # print("----------------------------------------------")
         for row in selBeds:  # iterate through extract
@@ -149,10 +149,10 @@ def findEmbeddings(strLeft,
             regexBed = regexBed.replace(strMiddleEsc, "(.*)")
             surroundingsL = bed.replace(strMiddle + " ", "").split(" ")
             for w in surroundingsL:
-                logger.debug("Surrounding strMiddle: " + w)
+                logger.debug("Surrounding strMiddle: %s", w)
                 newSets.append(index[w])
             ngramsWithSurroundings = list(set.intersection(*newSets))
-            logger.debug("Size of list that includes surrounding elements: " + str(len(ngramsWithSurroundings)))
+            logger.debug("Size of list that includes surrounding elements: %d", len(ngramsWithSurroundings))
             ngramsWithSurroundings.sort(reverse=True)
             # Surrounding list sorted
             c = 0
