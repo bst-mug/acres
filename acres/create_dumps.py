@@ -73,12 +73,12 @@ def CreateNgramstatDump(nGramStatFile, ngramstat, minFreq):
                         ## !!! GERMAN-DEPENDENT !!!
                         # Variant 1: hyphen may be omitted (non-standard German)
                         # "Belastungs-Dyspnoe" -->  "Belastungs Dyspnoe"
-                        ngramstat[ID] = freq + "\t" + ngram.replace("-", " ");
+                        ngramstat[ID] = freq + "\t" + ngram.replace("-", " ")
                         ID += 1
                         # Variant 2: words may be fused (should also be decapitalised
                         # but this is not relevant due to case-insensitive matching)
                         # "Belastungs-Dyspnoe" -->  "BelastungsDyspnoe"
-                        ngramstat[ID] = freq + "\t" + ngram.replace("-", "");
+                        ngramstat[ID] = freq + "\t" + ngram.replace("-", "")
                         ID += 1
                     if row[-1] in ".:;,-?!/":
                         # Variant 3: removal of trailing punctuation
@@ -86,26 +86,26 @@ def CreateNgramstatDump(nGramStatFile, ngramstat, minFreq):
                         # E.g. "Colonoskopie."
                         # TO DO: investigate solutions to solve it before creating ngrams
                         # !!! FIX ME: sum up frequencies
-                        ngramstat[ID] = freq + "\t" + ngram[:-1];
+                        ngramstat[ID] = freq + "\t" + ngram[:-1]
                         ID += 1
                     if "/" in row:
                         # Variant 4: insertion of spaces around "/", because
                         # "/" is often used as a token separator with shallow meaning
                         # "/"
-                        ngramstat[ID] = freq + "\t" + ngram.replace("/", " / ");
+                        ngramstat[ID] = freq + "\t" + ngram.replace("/", " / ")
                         ID += 1
                     if ", " in row:
                         # Variant 5: insertion of space before comma, to make the
                         # preceding token accessible
-                        ngramstat[ID] = freq + "\t" + ngram.replace(", ", " , ");
+                        ngramstat[ID] = freq + "\t" + ngram.replace(", ", " , ")
                         ID += 1
                     if "; " in row:
                         # the same with semicolon
-                        ngramstat[ID] = freq + "\t" + ngram.replace("; ", " ; ");
+                        ngramstat[ID] = freq + "\t" + ngram.replace("; ", " ; ")
                         ID += 1
                     if ": " in row:
                         # the same with colon
-                        ngramstat[ID] = freq + "\t" + ngram.replace(": ", " : ");
+                        ngramstat[ID] = freq + "\t" + ngram.replace(": ", " : ")
                         ID += 1
 
     index = collections.defaultdict(set)

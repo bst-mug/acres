@@ -13,7 +13,7 @@ def test_splitNgram():
 
 
 def test_extractAcroDef():
-    maxLength = 7;
+    maxLength = 7
 
     assert functions.extractAcroDef("EKG (Elektrokardiogramm)", maxLength) == ('EKG', 'Elektrokardiogramm')
     assert functions.extractAcroDef("Elektrokardiogramm (EKG)", maxLength) == ('EKG', 'Elektrokardiogramm')
