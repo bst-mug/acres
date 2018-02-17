@@ -7,12 +7,14 @@ This function compares and acronym with a potential full form and returns a list
 """
 
 import configparser
+import logging
 import re
 from random import randint
-import logging
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+
 # logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
 
@@ -46,11 +48,11 @@ def split_ngram(ngram):
     :return:
     """
     out = []
-    lTokens = ngram.split(" ")
+    lst_tokens = ngram.split(" ")
     c = 0
-    for t in lTokens:
+    for t in lst_tokens:
         if is_acronym(t, 7, "Ð"):
-            tr = (" ".join(lTokens[0:c]), lTokens[c], " ".join(lTokens[c + 1:]))
+            tr = (" ".join(lst_tokens[0:c]), lst_tokens[c], " ".join(lst_tokens[c + 1:]))
             out.append(tr)
         c = c + 1
     return out
@@ -70,14 +72,14 @@ def extract_acronym_definition(str_probe, max_length):
             left = str_probe.split("(")[0].strip()
             right = str_probe.split("(")[1][0:-1].strip()
             if is_acronym(left, max_length, "Ð") and not is_acronym(right, max_length, "Ð"):
-                return (left, right)
+                return left, right
             if is_acronym(right, max_length, "Ð") and not is_acronym(left, max_length, "Ð"):
-                return (right, left)
+                return right, left
 
 
 def fix_line_endings(long_text, char_ngram_dict, line_break_marker="¶", char_ngram_length=8,
                      line_break_marker_position=3):
-    '''
+    """
     addresses the problem that many texts come with
            artificial line breaks. These breaks are removed if
            distributional data show that an unbroken continuation of
@@ -88,27 +90,23 @@ def fix_line_endings(long_text, char_ngram_dict, line_break_marker="¶", char_ng
     :param char_ngram_length:
     :param line_break_marker_position:
     :return:
-    '''
-
-
-
+    """
 
     out = ""
     long_text = long_text.strip().replace("\n", line_break_marker)
-    l = len(long_text)
     i = 0
-    while i + char_ngram_length < l:
+    while i + char_ngram_length < len(long_text):
         c = long_text[i]
         ngr = long_text[i:i + char_ngram_length]
         if ngr[line_break_marker_position] == line_break_marker:  # line break marker at nth position
             ngr_clean = clear_digits(ngr, "°")
-            ngrCleanSpace = ngr_clean.replace(line_break_marker, " ")
+            ngr_clean_space = ngr_clean.replace(line_break_marker, " ")
             if ngr_clean in char_ngram_dict:
                 n_breaks = char_ngram_dict[ngr_clean]
             else:
                 n_breaks = 0
-            if ngrCleanSpace in char_ngram_dict:
-                n_spaces = char_ngram_dict[ngrCleanSpace]
+            if ngr_clean_space in char_ngram_dict:
+                n_spaces = char_ngram_dict[ngr_clean_space]
             else:
                 n_spaces = 0
             # TODO: implement logging
@@ -125,17 +123,17 @@ def fix_line_endings(long_text, char_ngram_dict, line_break_marker="¶", char_ng
                 """
                 out = out + ngr.replace(line_break_marker, " ")
                 i = i + char_ngram_length
-                if i >= l:
+                if i >= len(long_text):
                     break
             else:
                 out = out + c
                 i = i + 1
-                if i == l:
+                if i == len(long_text):
                     break
         else:
             out = out + c
             i = i + 1
-            if i == l:
+            if i == len(long_text):
                 break
 
     out = out + long_text[0 - char_ngram_length:] + line_break_marker
@@ -240,32 +238,35 @@ def substitute_k_and_f_by_context(str_in, language="de"):
         if str_in[2].isupper():
             return str_in
         str_in = transliterate_to_seven_bit(str_in)
-        return str_in.replace("CAE", "ZAE").replace("COE", "ZOE").replace("CA", "KA").replace("CA", "KA").replace("CO",
-                                                                                                                 "KO").replace(
-            "CU", "KU").replace("CE", "ZE").replace("CI", "ZI").replace("CY", "ZY").replace("F", "PH")
+        return str_in.replace("CAE", "ZAE").replace("COE", "ZOE"). \
+            replace("CA", "KA").replace("CA", "KA").replace("CO", "KO"). \
+            replace("CU", "KU").replace("CE", "ZE").replace("CI", "ZI"). \
+            replace("CY", "ZY").replace("F", "PH")
 
 
-def is_acronym(strProbe, maxLength=7, digit_placeholder="Ð"):
+def is_acronym(str_probe, max_length=7, digit_placeholder="Ð"):
     """
     Identifies Acronyms, restricted by absolute length
     "Ð" as default placeholder for digits. (e.g. "Ð")
     XXX look for "authoritative" definitions for acronyms
-    :param strProbe:
-    :param maxLength:
+    :param str_probe:
+    :param max_length:
     :param digit_placeholder:
     :return:
     """
     if len(digit_placeholder) > 1:
         print("Digit placeholders must be empty or a single character")
     ret = False
-    s = strProbe.replace(digit_placeholder, "0")
-    l = 0
-    u = 0
-    if len(s) <= maxLength:
+    s = str_probe.replace(digit_placeholder, "0")
+    lower = 0
+    upper = 0
+    if len(s) <= max_length:
         for c in s:
-            if c.isupper() == True: u = u + 1
-            if c.islower() == True: l = l + 1
-    if u > 1 and u > l:
+            if c.isupper():
+                upper = upper + 1
+            if c.islower():
+                lower = lower + 1
+    if upper > 1 and upper > lower:
         ret = True
     return ret
 
@@ -294,27 +295,28 @@ def diacritics():
     return "µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ"
 
 
-def random_sub_list(inList, maxNum):
+def random_sub_list(in_list, max_num):
     """
     Generates random sublist.
 
-    :param inList:
-    :param maxNum:
+    :param in_list:
+    :param max_num:
     :return:
     """
-    outList = []
-    length = len(inList)
-    if length <= maxNum: return inList
+    lst_out = []
+    length = len(in_list)
+    if length <= max_num:
+        return in_list
     c = 0
     rnumbers = []
-    while (c < maxNum):
+    while c < max_num:
         rnumber = (randint(0, length - 1))
-        if not rnumber in rnumbers:
+        if rnumber not in rnumbers:
             rnumbers.append(rnumber)
             c = len(rnumbers)
     for rnumber in rnumbers:
-        outList.append(inList[rnumber])
-    return outList
+        lst_out.append(in_list[rnumber])
+    return lst_out
 
 
 def check_acro_vs_expansion(acro, full):
@@ -335,13 +337,13 @@ def check_acro_vs_expansion(acro, full):
     # (greedy vs. non-greedy)
     regs = []  # list of alternative regular expressions
     for i in range(0, (2 ** (len(acro) - 1))):
-        strBin = str(bin(i))[2:].zfill(len(acro) - 1)
-        bina.append(strBin.replace("0", "*|").replace("1", "*?|"))
+        str_bin = str(bin(i))[2:].zfill(len(acro) - 1)
+        bina.append(str_bin.replace("0", "*|").replace("1", "*?|"))
     for expr in bina:
-        lExp = expr.split("|")
+        lst_exp = expr.split("|")
         z = 0
         out = "^("
-        for ex in lExp:
+        for ex in lst_exp:
             out = out + acro[z] + "." + ex + ")("
             z = z + 1
         regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
@@ -350,12 +352,12 @@ def check_acro_vs_expansion(acro, full):
         # print(fl)
 
     for reg in regs:
-        if re.search(reg, fl, re.IGNORECASE) != None:
+        if re.search(reg, fl, re.IGNORECASE) is not None:
             result.append(re.findall(reg, fl, re.IGNORECASE)[0])
     return result
 
 
-## Probes
+# Probes
 # print(import_conf("NGRAMFILE"))
 # print(CheckAcroVsFull("KHK", "koronare Herzkrankheit"))
 # print(extractAcroDef("EKG (Elektrokardiogramm)", 7))
@@ -374,29 +376,32 @@ def find_acro_expansions(lst_n_gram_stat):
 
     :return:
     """
-
-    dictCountPerNgram = {}
-    lstAcro = [];
-    lstNonAcro = []
+    letter = ""
+    dict_count_per_ngram = {}
+    lst_acro = []
+    lst_non_acro = []
+    is_acro = False
+    # TODO: check initialization
     for line in lst_n_gram_stat:
         ngram = line.split("\t")[1]
         count = line.split("\t")[0]
-        dictCountPerNgram[ngram] = count
+        dict_count_per_ngram[ngram] = count
         if " " in ngram:  # has at least 2 tokens
-            OtherTokens = " ".join(ngram.split(" ")[1:])
-            if len(OtherTokens) > 2:
-                if is_acronym(OtherTokens[1], 7):
-                    lstAcro.append(ngram)
+            other_tokens = " ".join(ngram.split(" ")[1:])
+            if len(other_tokens) > 2:
+                if is_acronym(other_tokens[1], 7):
+                    lst_acro.append(ngram)
                 else:
                     for word in ngram.split(" "):
-                        acro = False
+                        is_acro = False
                         if len(word) > 1:
                             if word[1].isupper() or not word.isalpha():
-                                acro = True
+                                is_acro = True
                                 break
-                    if acro == False: lstNonAcro.append(ngram)
+                    if not is_acro:
+                        lst_non_acro.append(ngram)
 
-    for tk in lstAcro:
+    for tk in lst_acro:
         counter = 0
         end = " ".join(tk.split(" ")[1:])
         regex = "^"
@@ -404,13 +409,13 @@ def find_acro_expansions(lst_n_gram_stat):
             # regex = regex + letter.upper() + ".*\s" # space required
             regex = regex + letter.upper() + ".*"  # no space required
 
-        for t in lstNonAcro:
-            endN = " ".join(t.split(" ")[1:])
-            lastN = " ".join(t.split(" ")[-1])
+        for t in lst_non_acro:
+            end_n = " ".join(t.split(" ")[1:])
+            last_n = " ".join(t.split(" ")[-1])
             if t.split(" ")[0] == tk.split(" ")[0] and not t.split(" ")[1].upper() == tk.split(" ")[1].upper():
-                if re.search(regex, endN.upper()):
-                    if letter.upper() in lastN.upper():
-                        print(tk + dictCountPerNgram[tk] + "     " + t + dictCountPerNgram[t])
+                if re.search(regex, end_n.upper()):
+                    if letter.upper() in last_n.upper():
+                        print(tk + dict_count_per_ngram[tk] + "     " + t + dict_count_per_ngram[t])
                         counter += 1
                         if counter > 4:
                             break
