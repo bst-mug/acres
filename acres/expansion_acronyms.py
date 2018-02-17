@@ -3,12 +3,13 @@ import re
 from acres import functions
 
 
-def FindExpansionsOfAcronyms(nGramStat):
+def FindExpansionsOfAcronyms(lstNGramStat):
     """
     Identifies acronyms and looks for possible expansions.
     Takes the most frequent one.
     Uses ngrams with the second token being an acronym.
 
+    TODO: check for what it is needed, complete it
     :param nGramStat: A list in which ngrams extracted
     from a corpus are counted in decreasing frequency
     
@@ -16,10 +17,8 @@ def FindExpansionsOfAcronyms(nGramStat):
     """
 
     dictCountPerNgram = {}
-    lstAcro = []
-    lstNonAcro = []
-    lstLines = []
-    for line in lstLines:
+    lstAcro = [] ;  lstNonAcro = []
+    for line in lstNGramStat:
         ngram = line.split("\t")[1]
         count = line.split("\t")[0]
         dictCountPerNgram[ngram] = count
@@ -35,27 +34,25 @@ def FindExpansionsOfAcronyms(nGramStat):
                             if word[1].isupper() or not word.isalpha():
                                 acro = True
                                 break
-                    if acro == False:
-                        lstNonAcro.append(ngram)
+                    if acro == False: lstNonAcro.append(ngram)
 
     for tk in lstAcro:
-        print(tk)
-        z = 0
+        counter = 0
         end = " ".join(tk.split(" ")[1:])
-        reg = "^"
+        regex = "^"
         for letter in end:
-            # reg = reg + letter.upper() + ".*\s" # space required
-            reg = reg + letter.upper() + ".*"  # no space required
+            # regex = regex + letter.upper() + ".*\s" # space required
+            regex = regex + letter.upper() + ".*"  # no space required
 
         for t in lstNonAcro:
             endN = " ".join(t.split(" ")[1:])
             lastN = " ".join(t.split(" ")[-1])
             if t.split(" ")[0] == tk.split(" ")[0] and not t.split(" ")[1].upper() == tk.split(" ")[1].upper():
-                if re.search(reg, endN.upper()):
+                if re.search(regex, endN.upper()):
                     if letter.upper() in lastN.upper():
                         print(tk + dictCountPerNgram[tk] + "     " + t + dictCountPerNgram[t])
-                        z = z + 1
-                        if z > 4:
+                        counter += 1
+                        if counter > 4:
                             break
 
 # TODO michel 20180215 move to unit tests
