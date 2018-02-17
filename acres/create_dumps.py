@@ -247,8 +247,9 @@ def create_corpus_ngramstat_dump(Fixlines = True, digit_placeholder = "Ð", brea
     for file in files:
         with open(corpus_path + "\\" + file, 'r', encoding="UTF-8") as single_document:
             document_content = single_document.read()
-            if Fixlines:
-                document_content = functions.fix_line_endings(document_content, d, "break_marker")
+            # FIXME Undefined variable 'd' (undefined-variable)
+            # if Fixlines:
+            #     document_content = functions.fix_line_endings(document_content, d, "break_marker")
             if len(digit_placeholder) == 1:
                 document_content = functions.clear_digits(document_content, digit_placeholder)
             document_content = document_content.replace("  ", " ").replace("  ", " ")
