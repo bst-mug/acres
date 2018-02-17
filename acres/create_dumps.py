@@ -193,8 +193,9 @@ def create_morpho_dump():
 
     :return:
     """
-    MORPH_ENG = import_conf("MORPH_ENG")
-    MORPH_GER = import_conf("MORPH_GER")
+    MORPH_ENG = functions.import_conf("MORPH_ENG")
+    MORPH_GER = functions.import_conf("MORPH_GER")
+    sMorph = set()
 
     with open(MORPH_GER) as f:
         for row in f:
