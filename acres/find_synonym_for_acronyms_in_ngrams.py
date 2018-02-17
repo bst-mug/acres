@@ -50,7 +50,7 @@ def find_synonyms():
 
             if VERBOSE: print("-----------------------")
             if VERBOSE: print(ngram)
-            splits = functions.splitNgram(ngram.strip())
+            splits = functions.split_ngram(ngram.strip())
             for s in splits:
                 leftString = s[0].strip()
                 acronym = s[1].strip()

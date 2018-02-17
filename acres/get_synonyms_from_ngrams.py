@@ -120,7 +120,7 @@ def findEmbeddings(strLeft,
 
     if verbose: input("press key!")
 
-    selBeds = functions.randomSubList(allBeds, count)
+    selBeds = functions.random_sub_list(allBeds, count)
     # print(selBeds)
     # random selection of hits, to avoid explosion
     if verbose: print("Embeddings:")

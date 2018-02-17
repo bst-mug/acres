@@ -167,14 +167,14 @@ def create_acro_dump():
         row = (m[n])
         ngram = row.split("\t")[1]
         if ngram.isalnum() and not "Ð" in ngram:
-            if functions.isAcronym(ngram, 7):
+            if functions.is_acronym(ngram, 7):
                 # plausible max length for German medical language
                 if not ngram in a: a.append(ngram)
 
         if " " in ngram:
             tokens = ngram.split(" ")
             for token in tokens:
-                if functions.isAcronym(token, 7):
+                if functions.is_acronym(token, 7):
                     b.append(ngram)
                     break
 

@@ -9,7 +9,6 @@ This function compares and acronym with a potential full form and returns a list
 import configparser
 from random import randint
 
-
 def import_conf(key):
     """
 
@@ -21,7 +20,6 @@ def import_conf(key):
     print(config.sections())
     return config['DEFAULT'][key]
 
-
 def import_proxy():
     """
 
@@ -31,8 +29,7 @@ def import_proxy():
     config.read("config.ini")
     return config["proxy"]
 
-
-def splitNgram(ngram):
+def split_ngram(ngram):
     """
     Splits a token ngram with acronym(s) into all combinations of left - acro - token.
 
@@ -43,14 +40,13 @@ def splitNgram(ngram):
     lTokens = ngram.split(" ")
     c = 0
     for t in lTokens:
-        if isAcronym(t, 7, "Ð"):
+        if is_acronym(t, 7, "Ð"):
             tr = (" ".join(lTokens[0:c]), lTokens[c], " ".join(lTokens[c + 1:]))
             out.append(tr)
         c = c + 1
     return out
 
-
-def extractAcroDef(strProbe, maxLength):
+def extract_acronym_definition(strProbe, maxLength):
     """
     Identifies potential acronym / definition pairs and extract acronym and definition candidates.
 
@@ -63,9 +59,9 @@ def extractAcroDef(strProbe, maxLength):
         if strProbe[-1] == ")" and strProbe.count("(") == 1:
             left = strProbe.split("(")[0].strip()
             right = strProbe.split("(")[1][0:-1].strip()
-            if isAcronym(left, maxLength, "Ð") and not isAcronym(right, maxLength, "Ð"):
+            if is_acronym(left, maxLength, "Ð") and not is_acronym(right, maxLength, "Ð"):
                 return (left, right)
-            if isAcronym(right, maxLength, "Ð") and not isAcronym(left, maxLength, "Ð"):
+            if is_acronym(right, maxLength, "Ð") and not is_acronym(left, maxLength, "Ð"):
                 return (right, left)
 
 
@@ -146,7 +142,7 @@ def substitute_k_and_f_by_context(strIn, language ="DE"):
 
 
 
-def isAcronym(strProbe, maxLength = 7, digitPlaceholder="Ð"):
+def is_acronym(strProbe, maxLength = 7, digitPlaceholder="Ð"):
     """
     Identifies Acronyms, restricted by absolute length
     "Ð" as default placeholder for digits. (e.g. "Ð")
@@ -169,7 +165,7 @@ def isAcronym(strProbe, maxLength = 7, digitPlaceholder="Ð"):
     return ret
 
 
-def simplifyGermanString(strInGerman):
+def simplify_german_string(strInGerman):
     """
     Decapitalises, substitutes umlauts, sharp s and converts k and z to c
 
@@ -193,7 +189,7 @@ def diacritics():
     return ("µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ")
 
 
-def randomSubList(inList, maxNum):
+def random_sub_list(inList, maxNum):
     """
     Generates random sublist.
 
@@ -216,7 +212,7 @@ def randomSubList(inList, maxNum):
     return outList
 
 
-def CheckAcroVsFull(acro, full):
+def check_acro_vs_expansion(acro, full):
     import re
     dia = diacritics()
     aLeft = acro[0:-1]
@@ -263,6 +259,58 @@ def CheckAcroVsFull(acro, full):
 # print(extractAcroDef("Elektrokardiogramm", 7))
 # print(extractAcroDef("Elektrokardiogramm (EKG)", 7))
 
-print(isAcronym("5-FU", 7))
-print(isAcronym("5-FU"))
-print(isAcronym("5-FU", 7, "we"))
+def find_acro_expansions(lstNGramStat):
+    """
+    Identifies acronyms and looks for possible expansions.
+    Takes the most frequent one.
+    Uses ngrams with the second token being an acronym.
+
+    TODO: check for what it is needed, complete it
+    :param nGramStat: A list in which ngrams extracted
+    from a corpus are counted in decreasing frequency
+
+    :return:
+    """
+
+    dictCountPerNgram = {}
+    lstAcro = [];
+    lstNonAcro = []
+    for line in lstNGramStat:
+        ngram = line.split("\t")[1]
+        count = line.split("\t")[0]
+        dictCountPerNgram[ngram] = count
+        if " " in ngram:  # has at least 2 tokens
+            OtherTokens = " ".join(ngram.split(" ")[1:])
+            if len(OtherTokens) > 2:
+                if functions.isAcronym(OtherTokens[1], 7):
+                    lstAcro.append(ngram)
+                else:
+                    for word in ngram.split(" "):
+                        acro = False
+                        if len(word) > 1:
+                            if word[1].isupper() or not word.isalpha():
+                                acro = True
+                                break
+                    if acro == False: lstNonAcro.append(ngram)
+
+    for tk in lstAcro:
+        counter = 0
+        end = " ".join(tk.split(" ")[1:])
+        regex = "^"
+        for letter in end:
+            # regex = regex + letter.upper() + ".*\s" # space required
+            regex = regex + letter.upper() + ".*"  # no space required
+
+        for t in lstNonAcro:
+            endN = " ".join(t.split(" ")[1:])
+            lastN = " ".join(t.split(" ")[-1])
+            if t.split(" ")[0] == tk.split(" ")[0] and not t.split(" ")[1].upper() == tk.split(" ")[1].upper():
+                if re.search(regex, endN.upper()):
+                    if letter.upper() in lastN.upper():
+                        print(tk + dictCountPerNgram[tk] + "     " + t + dictCountPerNgram[t])
+                        counter += 1
+                        if counter > 4:
+                            break
+
+# TODO michel 20180215 move to unit tests
+# FindExpansionsOfAcronyms("corpus_cardio_ngramstat.txt")
