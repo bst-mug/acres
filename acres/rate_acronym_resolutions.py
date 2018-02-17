@@ -3,11 +3,14 @@
 
 import pickle
 import re
+import logging
 
 # from math import *
 from acres import functions
 
-Probe = False
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
 
 def GetAcronymScore(acro, full, sMorph):
@@ -109,7 +112,7 @@ def GetAcronymScore(acro, full, sMorph):
     # XXX with this unorthodox building patterns
     for i in range(0, (2 ** (len(acroL) - 1))):
         strBin = str(bin(i))[2:].zfill(len(acroL) - 1)
-        if Probe: print(strBin)
+        logger.debug(strBin)
         bina.append(strBin.replace("0", "*|").replace("1", "*?|"))
     for expr in bina:
         lExp = expr.split("|")
@@ -124,7 +127,7 @@ def GetAcronymScore(acro, full, sMorph):
         if re.search(reg, fl, re.IGNORECASE) != None:
             splits.append(re.findall(reg, fl, re.IGNORECASE)[0])
     score = 0
-    if Probe: print(splits)
+    logger.debug(splits)
     for split in splits:
         s = 0
         for fragment in split:
@@ -134,7 +137,7 @@ def GetAcronymScore(acro, full, sMorph):
             fragment = functions.simplify_german_string(fragment).strip()
             # C, K, and Z no longer distinguished
             # XXX Soundex as an alternative ??
-            if Probe: print("FR: " + fragment)
+            logger.debug("FR: " + fragment)
             # Check whether fragments are in german / english morpheme list
             # From Morphosaurus
             if fragment in sMorph or len(fragment) == 1:
@@ -142,12 +145,12 @@ def GetAcronymScore(acro, full, sMorph):
             else:
                 if (len(fragment) > 2) and (fragment[-1] in lAffixDeOne) and (fragment[0:-1] in sMorph):
                     # stripping one character suffix or infix
-                    if Probe: print(fragment[0:-1])
+                    logger.debug(fragment[0:-1])
                     s = s + 1
                 else:
                     if (len(fragment)) > 3 and (fragment[-2:] in lAffixDeTwo) and (fragment[0:-2] in sMorph):
                         # stripping two character suffix
-                        if Probe: print(fragment[0:-2])
+                        logger.debug(fragment[0:-2])
                         s = s + 1
         if s / len(split) > score:
             score = s / len(split)
@@ -156,9 +159,8 @@ def GetAcronymScore(acro, full, sMorph):
     return (score)
 
 
-# PROBE
-if Probe == True:
+if logger.getEffectiveLevel() == logging.DEBUG:
     a = "TRINS"
     f = "Tricuspidalinsuffizienz"
     m = pickle.load(open("pickle//morphemes.p", "rb"))
-    print(GetAcronymScore(a, f, m))
+    logger.debug(GetAcronymScore(a, f, m))

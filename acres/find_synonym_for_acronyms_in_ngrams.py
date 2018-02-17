@@ -5,11 +5,16 @@ import pickle
 import random
 import re
 import time
+import logging
 
 from acres import functions
 from acres import get_acronyms_from_web
 from acres import get_synonyms_from_ngrams
 from acres import rate_acronym_resolutions
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
 NEWLINE = "¶"
 NUMERIC = "Ð"
@@ -34,7 +39,7 @@ def find_synonyms():
     dLogCorpus = {}  # dictionary from which the logfile is generated
     dLogWeb = {}  # dictionary from which the logfile is generated
 
-    if VERBOSE: print("Dumps loaded")
+    logger.debug("Dumps loaded")
 
     # "Logs" are files with short form expansions
     # logCorpus: expansions based on ngram model
@@ -48,9 +53,9 @@ def find_synonyms():
         if not ngram.isupper() and not NEWLINE in ngram and count % div == 0:  # and ngram.count(" ") < 3:
             # ngrams with newlines substitutes ("¶") seemed to be useless for this purpose
 
-            if VERBOSE: print("-----------------------")
-            if VERBOSE: print(ngram)
-            splits = functions.split_ngram(ngram.strip())
+            logger.debug("-----------------------")
+            logger.debug(ngram)
+            splits = functions.split_gram(ngram.strip())
             for s in splits:
                 leftString = s[0].strip()
                 acronym = s[1].strip()
@@ -81,7 +86,7 @@ def find_synonyms():
                     s = s.replace(" ", "+")
                     strURL = "http://www.bing.de/search?cc=de&q=%22" + s + "%22"
                     time.sleep(random.randint(0, 2000) / 1000)
-                    print(".")
+                    logger.info(".")
                     liWeb = get_acronyms_from_web.ngramsWebDump(strURL, 1, 10)
 
                 # Prepare parameters for corpus model
