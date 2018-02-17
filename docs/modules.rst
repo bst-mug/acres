@@ -1,5 +1,5 @@
-acres
-=====
+Module documentation
+====================
 
 .. toctree::
    :maxdepth: 4
