@@ -184,7 +184,7 @@ def CheckAcroVsFull(acro, full):
 
 
 ## Probes
-print(import_conf("NGRAMFILE"))
+# print(import_conf("NGRAMFILE"))
 # print(CheckAcroVsFull("KHK", "koronare Herzkrankheit"))
 # print(extractAcroDef("EKG (Elektrokardiogramm)", 7))
 # print(extractAcroDef("Elektrokardiogramm", 7))

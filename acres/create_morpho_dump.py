@@ -6,9 +6,6 @@ from acres.functions import import_conf
 
 sMorph = set()
 
-MORPH_ENG = import_conf("MORPH_ENG")
-MORPH_GER = import_conf("MORPH_GER")
-
 
 def create_morpho_dump():
     """
@@ -17,6 +14,9 @@ def create_morpho_dump():
 
     :return:
     """
+    MORPH_ENG = import_conf("MORPH_ENG")
+    MORPH_GER = import_conf("MORPH_GER")
+
     with open(MORPH_GER) as f:
         for row in f:
             if "<str>" in row:

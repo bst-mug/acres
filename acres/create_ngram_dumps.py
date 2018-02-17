@@ -10,12 +10,6 @@ import pickle
 
 from acres import functions
 
-NGRAMSTAT = functions.import_conf("NGRAMFILE")
-##"..\\..\\stat\corpus_cardio_training_cleaned_1_to_7gram_stat.txt"
-# ngram statistics representing a specific document genre and domain
-
-print(NGRAMSTAT)
-
 
 def CreateNormalisedTokenDump():
     """
@@ -30,6 +24,10 @@ def CreateNormalisedTokenDump():
 
     :return:
     """
+    NGRAMSTAT = functions.import_conf("NGRAMFILE")
+    ##"..\\..\\stat\corpus_cardio_training_cleaned_1_to_7gram_stat.txt"
+    # ngram statistics representing a specific document genre and domain
+    print(NGRAMSTAT)
 
     allTokens = set()
     allTokenVariants = set()
