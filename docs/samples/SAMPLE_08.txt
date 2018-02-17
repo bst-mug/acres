@@ -1,0 +1,247 @@
+----------
+ARTZTBRIEF
+----------
+
+
+* Anamnese und klin. Symptomatik
+
+Frau <-LN_23132-> wird am 9.6.2012 über die EBA der nephrolog. Abtlg. stationär
+aufgenommen, aufgrund von seit 10 Tagen bestehender zunehmender Schwäche
+sowie Leistungsminderung sowie Übelkeit mit zum Teil galligem Erbrechen.
+Fieber, Bauchschmerzen oder Durchfall bzw.AP oder Dyspnoe werden nicht
+angegeben. Die Patientin war nun heute zur Kontrolle der
+Nierenfunktionsparameter bei bekannter NINS, diese zeigten sich nun
+deutl. erhöht. Die Patientin war bereits im Mai 2012 an der kardiol.
+Abtlg. 2x in stat.Betreuung (NSTEMI, fieberhafter Infekt). Eine
+bestehende hochgrad. Aortenstenose ist bekannt und wurde bereits in der
+interdiszipl. kardiol./herzchirurg. Klappenkonferenz besprochen und die
+TAVI demnach empfohlen.
+
+* Physikalischer Status
+
+75 jähr. Patientin, etwas reduz.AZ und adipöser EZ.
+Cor: Ht rh, nc, Systolikum mit p.max. über dem 2.ICR rechts parasternal
+Pulmo: VA bds., keine RGs
+Extremitäten: mässige Beinödeme bds.
+
+* Laboruntersuchungen
+
+In Kopie beiliegend.
+
+* Beurteilung u. durchgef. Therapie
+
+Die Patient wird am 9.6.2012 an der nephrolog. Abteilung bei oben
+genannter Beschwerden und deutl. erhöhter Nierenrententionsparameter
+stationär aufgenommen.
+Ein laborchemisch festgestellter Harnwegsinfekt wird antibiotisch mit
+Avelox behandelt.
+Frau <-LN_23132-> kann schließlich am 14.6.2012 auf unsere Abteilung übernommen
+werden.
+
+Die TAVI vorerst für den 19.6.2012 terminisiert. Aufgrund
+persistierender Übelkeit/Erbrechen sowie hinzukommender Hämatohäzie und
+Melena wird präoperativ eine Gastroskopie durchgeführt. Diese zeigt eine
+operationswürdige Hiatushernie mit Ulcerationen. Eine hochdosierte PPI
+Therapie wird eingeleitet.
+
+Am 27.6.2012 wird schließlich die TAVI durchgeführt und die Patientin
+postinterventionell für 6 Tage intensiv medizinisch überwacht. An der
+Punktionsstelle einmalig eine leichte Nachblutung mit der Notwendigkeit
+einer manuellen Kompression. Bei deutl. Anstieg der
+Nierenretentionswerten genaue Flüßigkeitsbilanz sowie Steigerung der
+Diurese mit Lasix parenteral, bei zusätzl. steigenden
+Entzündungsparamtern empirische antibiot. Therapie mit Tavanic.
+Desweiteren postoperativ Auftreten eines AVB III, der vorerst durch den
+passageren Schrittmacher gestützt wird, daher Implantation am 1.7.2012
+eines DDD Schrittmachers.
+
+Frau <-LN_23132-> kann schließlich am 2.7.2012 auf die Normalstation verlegt
+werden. In der Schrittmacherfunktionskontrolle läßt sich eine erhöhte
+Reizschwelle feststellen, diese jedoch akzeptabel. Die Wundkontrolle
+bland.
+Auf Station wiederum deutl. Zunahme klinischer Zeichen einer kardialen
+Dekompensation, sowie fast ausbleibende Diurese. Darüberhinaus in
+regelm. USKG Kontrollen zunehmende schließlich punktionswürdige
+Pleuraergüsse. Schließlich unter Lasix Perfusor gute Diurese und die
+Pleuraergüsse nicht mehr punktionswürdig. Die Diurese in den
+darauffolgenden Tagen gleichbleibend gut.
+
+Am 14.7.2012 jedoch wiederum deutl. Zunahme der kardialen
+Dekompensationszeichen. Daraufhin Übernahme wiederum auf die
+Intensivstation. Die Patientin katecholaminpflichtig. Bei Anfangs
+darunter stabilen Vitalparamter am 15.7.2012  1 Uhr plötzlich die
+Patietin kaltschweißig, Schnappatmung, im EKG zunehmend Exitblock. Im
+USKG zeigt sich ein circumferenter Perikarderguss mit 2,2cm DM. Dieser
+grenzwertig, hämodynamisch wirksam jedoch von subcostal schwierig zu
+punktieren. Aufgrund des schlechten AZ der Patientin und der ungünstigen
+Prognose wird in weiterer Folge auf Intubation und event.
+Perikardpunktion sowie weitere intensivmedizin. Maßnahmen verzichtet. Es
+tritt schließlich permanenter Exitblock ein und die Patientin verstirbt
+am 15.7.2012 um 1.15 Uhr.
+Die Tochter der Patientin Frau Tutinger wird telefonisch verständigt.
+
+Wir bedauern den Verlust unseres gemeinsamen Patienten.
+
+* 
+
+---------
+DIAGNOSEN
+---------
+
+R99 Exitus letalis
+I35.0 hochgradige Aortenklappenstenose
+St.p. TAVI am 27.6.2012
+leicht- mittelgradige MINS, TRINS, AINS
+N18.8 akut auf chronisches Nierenversagen
+E87.2 Metabolische Azidose
+I44.2 AV-Block III (St.p. SM-Impl. 01.07.2012)
+I25.1 KHK, St.p. NSTEMI 05/2012
+E87.6 passagere Hypokaliämie
+ postoperative Wundheilungsstörung mit Infektion und Hautnekrose rechts
+nach Leistenpunktion
+ Sarkopenie
+E64.0 Eiweiß- Malnutrition
+D50.9 Eisenmangelanämie
+E66.0 Alimentäre Adipositas
+I10 arterielle Hypertonie
+I70.2 pAVK IIb
+E11.9 Diabetes mellitus Typ II (Diät)
+J44.9 COPD [Chronic obstructive pulmonal disease]
+G47.3 Obstruktive Schlafapnoe
+M85.90 Osteoporose
+Z88.0 Penicillinallergie
+
+-----------------
+RELEVANTE BEFUNDE
+-----------------
+
+* EKG
+
+SR, 77/min, ÜLT, linksanteriorer Hemiblock, RSB, PQ 0,16sek.
+
+* EKG
+
+Sinusbradykardie, 58/min, SM-spikes mit prompter ventrik. Reizantwort
+
+* EKG
+
+idem zum Vorbefund am 27.6.2012
+
+* EKG
+
+AVB III, RSB, HF 61/min.
+
+* EKG
+
+SM-EKG:75/min, SM-spikes mit prompter ventrik. Reizantwort, 3 Spikes
+ohne Reizantwort.
+
+* EKG
+
+SR, 89/min, PQ 168ms, SM-spikes mit prompter ventrik. Reizantwort
+
+* USKG
+
+normal gr. li Ventrikel mit höhergrad. Hypertrophie (konzentr.) und
+normaler systol. Funktion, keine reg.WBST,
+diastol.Ventrikelfunktionsstörung I (Relax.störung), Füllungsdruck
+vermutlich normal,
+re Ventrikel normal groß, normale RVF
+li VH leicht-bis mittelgrad. vergr, re VH normal groß,
+höhergrad. Aortenstenose mit einem mittl.Grad. von 48mmHg, AÖF ca. 1cm²,
+mittelgrad. Mitralringverkalkung, leichte MINS,
+Trikuspidalklappe unauff., leichte TRINS,
+systol.Pulmonalisdruck ca. 38mmHg,
+kein PE
+MRD li 9, re 25
+S,SR,LAV,LAVi
+
+* USKG
+
+St.p. PAVR mit Bioprothese in Aortenposition mit einem mittl.Gradienten
+von 13mmHg,
+leicht- bis mittelgrad. AINS,
+leicht- bis mittelgrad. TRINS,
+kleiner PE
+PM Sonde in RA und RV
+punktable Pleuraergüsse bds.
+ansonsten idem zum Vorbefund vom 13.6.2012
+
+* Gastroskopie
+
+Gastroskopie
+Prämedikation 2,5 mg Dormicum und 20 mg Buscapina. O2-Gabe und
+Monitoring (
+Herzfrequenz und Sättigung ).
+Untersuchungsmodus Es handelt sich um eine elektive Untersuchung.
+Indikationen Anamnese: Erbrechen, Kaffeesatz-artiges Erbechen.
+Ösophagus Geschlängeltes Organ, die Schleimhaut unauff. Z-Linie bei 30cm
+(!).
+Magen Riesige, ca 10cm lange Hiatushernie mit Fundus und Corpus als
+Inhalt. An
+der Impression der Zwerchfellschenkel an den Faltenkämmen flache
+Ulzerationen ohne Blutungszeichen.
+In der Inversion zeigt sich an der Cardia eine aufgelockerte und zT
+gerötete Schleimhaut.
+Antrum unauff.
+Duodenum Pylorus regelrecht, normale Schleimhaut im Bulbus und im
+Duodenum bis
+pars descendens.
+Diagnosen Riesige axiale Hiatushernie mit mechanisch bedingten
+Ulzerationen im Bereich der Zwerchfellimpression.
+Kommentar Einzige Therapie dieser Situation ist die Operation der
+Hernie. Die Ulzera
+werden wahrscheinlich auch nach Steigern der PPI Dosis bestehen bleiben
+und stellen nach ev. Klappenersatz mit OAK ein signifikantes
+Blutungsrisiko dar
+
+* TAVI
+
+Untersuchungen:
+Linksherzkatheter, Aortographie der Aorta ascendens, Aortographie der
+Aorta abdominalis,
+Aortenklappensprengung, Perkutaner Aortenklappenersatz, Anlage eines
+temporären
+Schrittmachers (keine Notfallsmaßnahme), Analgosedierung des Patienten
+INDIKATION(EN):
+Aortenklappenstenose, PAVK
+elektive TF AVI
+DIAGNOSEN:
+Hochgradige Aortenklappenstenose mit einer AÖF von 0.6 cm².
+Pulmonale Hypertonus
+THERAPIE:
+Pass. SMI, PTBV der Aortenklappestenose mit 18mm DM ballon
+Implantation einer 26 mm CoreValve Aortenklappenprothese, final
+balloning mit 23mm DM
+ballon, kein leak
+PROZEDERE:
+Curocef 1,5g abends und am nächsten Morgen.
+Plavix für 6 Monat(e)
+Thrombo ASS lebenslänglich
+Regelmäßige kardiologische Kontroll Untersuchungen
+Verschluß der Punktionsstelle Arteria femoralis rechts mittels . ProStar
+Verschluß der Punktionsstelle Arteria femoralis links mittels . ProStar
+Komplikationen während der Untersuchung
+RR Abfall
+PAVK
+
+* Thorax Röntgen
+
+Thorax eine Ebene liegend
+Schnellbefund Im Vergl. zu einer VU vom 30.6.2012 soweit bei
+unterschiedl. Atemexkursion beurteilbar, keine wesentliche
+Befundänderung. Der Herzschatten ist allseits über die Größennorm
+verbreitert, keine akuten Stauungszeichen. Nahezu unverändert die
+bilateralen Pleuraergüsse mit angrenzenden Minderbelüftungen. Ein rezent
+pneum. Infiltrat ist bei Verdichtung des Herzschattens insbesondere li.
+retrocardial nicht sicher auszuschließen. Etwas verstärkte
+peribronchovasculäre Lungengerüstzeichnung. ZVK über re., die
+Sondenspitze in Projektion auf die VCS. Klappenmaterial in Projektion
+auf den Herzschatten. Links pectorales Herzschrittmacheraggregat, die
+Elektrodenspitzen in Projektion auf den re. Vorhof und re. Ventrikel.
+
+
+----------
+MEDIKATION
+----------
+

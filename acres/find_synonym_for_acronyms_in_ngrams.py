@@ -18,6 +18,7 @@ logger.setLevel(logging.INFO)
 
 NEWLINE = "¶"
 NUMERIC = "Ð"
+VERBOSE = False
 div = 1  # for sampling, if no sampling div = 1. Sampling is used for testing
 
 
@@ -54,7 +55,7 @@ def find_synonyms():
 
             logger.debug("-----------------------")
             logger.debug(ngram)
-            splits = functions.splitNgram(ngram.strip())
+            splits = functions.split_ngram(ngram.strip())
             for s in splits:
                 leftString = s[0].strip()
                 acronym = s[1].strip()

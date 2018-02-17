@@ -34,7 +34,7 @@ def GetAcronymScore(acro, full, sMorph):
     lAffixDeOne = ["a", "e", "i", "n", "o", "s", ]
     lAffixDeTwo = ["ae", "en", "er", "em", "es", "is", "um", "us"]
     # full form contains an acronym definition pattern (normally only yielded from Web scraping)
-    ret = functions.extractAcroDef(full, 7)
+    ret = functions.extract_acronym_definition(full, 7)
     if ret != None:
         if ret[0] == acro:
             full = ret[1]
@@ -48,7 +48,7 @@ def GetAcronymScore(acro, full, sMorph):
     # for each acronym in full form, penalisation
     # TODO: check if artefact
     for t in acro.split(" "):  # FIXME should be full.split??
-        if functions.isAcronym(t, 7): pen = pen / 4
+        if functions.is_acronym(t, 7): pen = pen / 4
     # Plural form of acronym reduced to singular ("s", often not found in non English full forms)
     # e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)
     # These characters cannot be always expected to occur in the full form
@@ -136,7 +136,9 @@ def GetAcronymScore(acro, full, sMorph):
         s = 0
         for fragment in split:
             # !!!! Specific for German
-            fragment = functions.simplifyGermanString(fragment).strip()
+            #TODO : check whether the function  substitute_k_and_f_by_context
+            #TODO : could be used instead (produces 7-Bit string without K and F)
+            fragment = functions.simplify_german_string(fragment).strip()
             # C, K, and Z no longer distinguished
             # XXX Soundex as an alternative ??
             logger.debug("FR: " + fragment)

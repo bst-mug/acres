@@ -1,0 +1,238 @@
+----------
+ARTZTBRIEF
+----------
+
+
+* Anamnese und klinische Symptomatik
+
+Stat. Übernahme vom LKH Fürstenfeld wegen neuerlicher Dyspnoe bei bek.
+dil. CMP u hochgr. MINS zur CA und Mitraclip / Herztransplant
+Evaluierung. Bei dem Patienten besteht der St.p. 2x Simdax Therapie im
+Oktober 2013.
+
+* Physikalischer Status
+
+48 jähr.Patient, deutl. reduz. AZ, normaler EZ
+Cor: Ht rh, nc, Systolikum mit p.max. über dem Erbschen Punkt mit
+Fortleitung in die Axila
+Pulmo: VA bds., feuchte RGs re>li
+Abdomen: BD weich, kein DS
+Extremitäten: ausgeprägte Knöchelödeme bds.
+
+* Laboruntersuchungen
+
+In Kopie beiliegend.
+
+* Beurteilung u. durchgef. Therapie
+
+Herr <-LN_621-> wurde aufgrund einer neuerlichen Dyspnoesymptomatik bei
+bek. dilat. CMP und hochgrad. MINS zur weiteren Evaluierung stat. vom
+LKH Fürstenfeld übernommen.
+
+Es erfolgte die Fortführung der bereits eingeleiteten antibiotischen
+Therapie mit Avelox bei Pneumonie im Unterfeld rechts. Weiters erfolgte
+die Rekompensation unter Lasix Therapie, darunter Stabilisierung.
+
+Es konnte am 5.11.2013 nach erfolgter Rekompensation komplikationslos
+die Koronarangiographie durchgeführt werden. Dabei konnte eine koronare
+Herzkrankheit ausgeschlossen werden. Es zeigte sich der linke Ventrikel
+deutl. vergrößer mit hochgrad. eingeschr. LVF sowie einer MINS III-IV.
+
+Weiters zeigte sich in der durchgeführten Echokardiographie eine
+verstärkte Trabekularisierung im Spitzenbereich, i.e.L. einer
+linksventrik. non compaction entsprechend.
+
+Aufgrund der gleichbleibenden Infiltratbildung im Lungenröntgen und
+neuerlich erhöhten CRP Werten wurde eine Antibiose mit Zienam und Klacid
+Uno eingeleitet. Auch darunter keine deutl. Besserung der
+Infiltratbildung. Es wurde daraufhin ein CT Thorax durchgeführt, wobei
+sich eine peribronchiale Infiltratbildung in beiden Lungen zeigte. Keine
+umschriebene Abszessformation, keine PAE. Diesbezüglich wäre weiters die
+Einholung eines infektiol. Konsils zur eventuellen Antibiotika
+Umstellung empfohlen.
+
+Bei bestehender Eisenmangelanämie wurde dem Patienten einmalig Venofer
+iV infundiert. Die orale Eisensubstitution vom Patienten nicht
+vertragen.
+Die vollständigen Myokardbiospie Ergebnisse noch ausständig.
+
+Aufgrund doch rez. Verschlechterung des AZ bei stets sehr hypotonen RR-
+Werten wurde mit einem Dobutrex-Perfusor begonnen.
+In Zusammenschau aller Befunde bei linksventrik. non compaction wurde
+mit dem Patienten das weitere Prozedere VAD bzw. HTX besprochen. Weiters
+erfolgte die Kontaktierung von Prof. <-LN_20140->.
+Hr. <-LN_621-> konnte am 15.11.2013 an die Transplant-Chirurgie
+transferiert werden.
+Wir danken für die rasche Übernahme!
+
+* 
+
+---------
+DIAGNOSEN
+---------
+
+I42.0 Dilatative Kardiomyopathie
+ Linksventrikuläre Non-compaction
+I34.0 Hochgr. Mitralklappeninsuffizienz
+ St.p. Coronarangiographie inkl. Mypocardbiopsie am 05.11.2013
+ Pneumonie UF rechts
+ Anämie
+ St.p. ICD/CRT-Implantation 03/2009
+ St.p. rez. card. Dekomp.
+ St.p. 2x Simdaxtherapie 10/2013
+ St.p. VT
+ St.p. Insult 1995
+ ACE-Hemmer-Unverträglichkeit
+
+-----------------
+RELEVANTE BEFUNDE
+-----------------
+
+* Thorax Röntgen
+
+Thorax in zwei Ebenen:
+Bds. die einsehbaren Lungenabschnitte frei von Rundherden und
+Infiltraten. Geringfügige Vergröberung der bronchovaskulären Strukturen
+zentral betont. Zeichen der zentralen und pulmonal-venösen Hypertonie.
+Deutliche Vergrößerung des linken und rechten Ventrikels, die Herzspitze
+abgerundet. Z.n. SM-Implantation links mit Projektion der
+Elektrodenenden auf den rechten Vorhof und rechten Ventrikel
+
+* Thorax Röntgen
+
+Thorax zwei Ebenen (165830986)
+Im Vergleich zur Voruntersuchung neuaufgetretene fleckige, teils
+konfluierende Verdichtung in Projektion auf das rechte Unterfeld,
+vereinbar mit pneumonischen Infiltrat. Randwinkelergüsse beidseits. Der
+Herzschatten allseits über die Norm verbreitert mit Zeichen der
+zentralvenösen Druckerhöhung. Schrittmacher über links mit Projektion
+der Elektrodenspitzen auf den rechten Vorhof und den rechten Ventrikel.
+
+* Herzkatheter
+
+Untersuchungen:
+Rechts-Linksherzkatheter plus Coro, Angiographie des rechten Ventrikels,
+Myokardbiopsie
+INDIKATION(EN):
+dilatative Kardiomyopathie
+Mitralklappeninsuffizienz
+Dyspnoe
+Z.n. ICD/CRT Implantation
+DIAGNOSEN:
+Ausschluß einer koronaren Herzerkrankung
+Linker Ventrikel deutlich vergrößert mit hochgradig eingeschränkter LV-
+Funktion, EDP: 31mmHg
+Mitralinsuffizienz Grad III-IV
+Zentralvenöse Sättigung 25,6%
+PROZEDERE:
+Biopsie-Ergebnis einholen. Vorstellung Transplantchirurgie bzgl. VAD
+oder HTX. Evaluation
+MitraClip als bridge to transplant. Optimale CMP-Therapie
+
+* Transplantchirurgie
+
+Status:
+Patient wird vorstellig zur Fragestellung HTX/VAD.
+Nach Rücksprache mit der Kardiologie, (Prof. <-LN_21632->) wird die
+ausständige Myokardbiopsie
+abgewartet. Bei Vorliegen des Ergebnisses sollte die weitere Therapie im
+Rahmen der gemeinsamen
+Herztransplantatioskonferenz diskutiert werden.
+Wir bitten nach Vorliegen aller Befunde Prof. <-LN_21632-> zu kontaktieren.
+Patient über das Vorgehen aufgeklärt.
+
+* Thorax Röntgen
+
+Thorax zwei Ebenen (166430859)
+In etwa unverändertes pneumonisches Infiltrat in Projektion auf das
+Unterfeld re. im Vergleich zur Voruntersuchung vom 31.10.2013. Im
+übrigen keine wesentliche Befundänderung.
+
+* Thorax Röntgen
+
+Thorax zwei Ebenen (166828858)
+Im Vergleich zur Voruntersuchung vom 7.11.2013 in etwa unveränderte
+Infiltratbildungen im Mittellappen und anterioren Obelappen rechts. Auch
+sonst keine wesentliche Befundänderung.
+Der Herzschatten allseits über die Norm verbreitert. Keine akuten
+Stauungszeichen. Die Hili gefäßtypisch. Lobus V. azygos. Keine
+Pleuraergüsse. Schrittmacher über links mit Projektion der
+Elektrodenspitzen auf den rechten Vorhof und den rechten Ventrikel sowie
+den linken Ventrikel.
+
+* Echo Befund
+
+Befund (gute Untersuchungsqualität)
+1) Stark vergrößerter linker Ventrikel mit dünner Wand und höhergradig
+reduzierter systolischer
+Funktion (EF ca. 20%, visuell geringe Verschlechterung vgl. zum VB vom
+14.10.2013); diffuse
+Kontraktilitätsstörung;
+Ansonsten idem zum VB vom 14.10.2013
+
+* Thorax CT
+
+CT des Thorax (166887978)
+CT des Thorax: Peribronchiale Infiltratbildungen in beiden Lungen mit
+Punktum maximum im Oberlappen rechts, geringer links, vereinbar mit
+atypisch pneumonischer Genese. Keine signifikanten Pleuraergüsse. Keine
+umschriebene Abszessformation. Ausschluss einer zentralen sowie
+segmentalen PAE. Das zentrale Tracheobronchialsystem frei durchgängig.
+Ca. 5 mm im Durchmesser haltender Nodulus subpleural in der Lingula, in
+erster Linie postentzündlich. Multiple hyperplastische mediastinale
+Lymphknoten, ein Referenzlymphknoten prätracheal mit einer Größe von 1,2
+x 1,4 cm - in erster Linie reaktiver Genese. Liegender ICD mit
+Projektion der Sondenspitze auf den linken sowie rechten Ventrikel.
+Degenerative Veränderungen der miterfassten Achsenskelettabschnitte.
+Schmorl'sche Impression in BWK 7. Sowie etwa 8 mm messendes
+Sklerosierungsareal im BWK 8 - Osteom?.
+Soweit miterfasst unauffällige Darstellung der Oberbauchorgane.
+
+* Echo Befund
+
+Befund (gute Untersuchungsqualität)
+1) Stark vergrößerter linker Ventrikel mit dünner Wand (symmetrisch) und
+höhergradig reduzierter systolischer
+Funktion; diffuse Kontraktilitätsstörung;in der
+Kontrastmitteluntersuchung(mit Sonovue) verstärkte
+Trabekularisierung im Spitzenbereich,kein Thrombus; diastolische
+Ventrikelfunktion nicht sicher
+bestimmbar,wahrscheinlich restriktiv;
+2) Rechter Ventrikel normal groß; normale Rechtsventrikelfunktion;
+3) Massiv dilatierter linker Vorhof; rechter Vorhof leicht- bis
+mittelgradig vergrößert;
+4) Aortenklappe leicht verdickt; keine Aorteninsuffizienz;
+5) Mitralklappe gering verdickt; leichte Mitralringverkalkung;
+höhergradige Mitralinsuffizienz;
+6) Als Mechanismus der Mitralinsuffizienz besteht eine Restriktion des
+hinteren Segels u.Ringdilatation; Jet
+exzentrisch nach posterior gerichtet;
+7) Trikuspidalklappe unauffällig; leicht- bis mittelgradige
+Trikuspidalinsuffizienz; systolischer Pulmonalisdruck ca. 65
+mmHg;
+8) Pulmonalklappe unauffällig; physiologische Pulmonalinsuffizienz;
+9) Kein Pericardergus
+Beurteilung:Dil.CMP;auf Grund der verstärkten Trabekularisierung im
+Spitzenbereich MRT empf.zum Ausschluss
+einer non compaction
+
+
+----------
+MEDIKATION
+----------
+
+Concor 5mg 1/2-0-0
+Blopress 8mg 1/2-0-0
+Sedacoron 200mg 1-0-0
+Magnosolv 1-0-0
+Thyrex 0,1mg 3/4-0-0
+Spirono 50mg 0-0-1
+Marcoumar dzt. 1/2tägl.
+Torasemid 10mg 1-1-0
+Lasix 40mg iv bei Bedarf
+Zienam 500mg iv 2x1, heute Tag 9
+Klacid Uno per os 0-1-0, heute Tag 9
+Lovenox 60mg s.c. 2x1
+Dobutrex 500mg ad 50ml NaCl 0,9% dzt. mit 5ml/Std. laufend
+Paracodin 15 Tr. bei Bedarf
+Paspertin 20 Tr. bei Bedarf

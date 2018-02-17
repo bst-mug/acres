@@ -1,0 +1,229 @@
+----------
+ARTZTBRIEF
+----------
+
+
+* Anamnese und klin. Symptomatik
+
+Die stat.Übernahme des Patienten von der Rheuma Station erfolgte
+zuständigkeitshalber bei Verdacht auf Endokarditis.
+Primär wurde der Patient in der EBA aufgrund von seit 2 Tagen
+bestehendem Fieber bis 40°C inkl. Schüttelfrost und leichtem Schwindel
+vorstellig. Desweiteren ist es in der Nacht laut Gattin zu einem
+einmaligem Krampfanfall bei bekannter Epilepsie gekommen. Eine AP
+Sypmtomatik und Belastungsdyspnoe bestehe nicht.
+
+* Physikalischer Status
+
+62 jähr.Patient, guter AZ, normaler EZ.
+Cor: Ht rein, rh, nc, Systolikum über 2.ICR rechts parasternal
+Pulmo: VA bds., keine RGs
+Extremitäten: keine Ödeme
+RR94/61mmHg, HF 64/min
+
+* Laboruntersuchungen
+
+In Kopie beiliegend.
+
+* Beurteilung u. durchgef. Therapie
+
+Die stationäre Übernahme des Patienten von der Rheumatologie erfolgte
+aufgrund von oben genannter Anamnese zur Fortführung der antibiotischen
+Therapie und weiteren Abklärung.
+
+Es erfolgte die Einleitung einer iV Antibiose mit Vancomycin 1g 2xtägl.
+und Refobacin 240mg 1xtägl. Desweiteren erhielt der Patient als orale
+Therapie Ciproxin 500mg 2xtägl. Nach Ausschluß einer Endocarditis durch
+TEE und PET-CT wurde auf Avelox 400mg 1xtgl po umgestellt. Dieses soll
+bei unklarer Genese der erhöhten Entzündungsparameter und zur
+Endocarditisprophylaxe für weitere 4 Wochen eingenommen werden
+
+Aufgrund der mechanischen Aortenklappe wurde eine vorübergehende
+Antikoagulation mittels Heparinperfusor in therapeutischer Dosierung
+begonnen und am 25.8.2012 nach Erreichen des therap. INR mit Marcoumar
+wieder beendet.
+
+Am 31.08.2012 konnte der Patient in gutem AZ, subjektiv beschwerdefrei
+nach Hause entlassen werden.
+
+* Prozedere/Empfehlungen:
+
+- körperliche Schonung für 14 Tage
+
+- regelm. internist. Kontrolluntersuchungen
+
+- nächste INR Kontrolle am Montag, 3.9.2012 beim HA höflich erbeten
+
+- Kontrolle von BB, CRP und Nierenfunktion in 1 Woche beim HA höflich
+erbeten
+
+- über einen Kontrolltermin in 3 Monaten in der kardiologischen Ambulanz
+werden Sie telefonisch informiert
+
+- bei Auftreten von Fieber, Schüttelfrost, verschlechterung des
+Allgemeinzustands empfehlen wir die sofortige Wiedervorstellung
+
+
+---------
+DIAGNOSEN
+---------
+
+ Infekt unklarer Genese
+ Z.n. mechanischem Aortenklappenersatz (1997)
+I25.1 KHK I - Z.n. CX + PLA PCI  bei NSTEMI (2009)
+I10 Arterielle Hypertonie
+E78.0 Hypercholesterinämie
+G40.9 Epilepsie
+
+-----------------
+RELEVANTE BEFUNDE
+-----------------
+
+* EKG
+
+SR, 81/min, ÜLT, PQ 0,17, QRS schmal, RS in V1 und AVL, neg.T in I und
+AVL.
+
+* Thorax Röntgen
+
+Thorax zwei Ebenen
+Das Herz li ventrikulär diskret vergrößert. Z. n. AKE. Pulmonalvenöse
+Stauungszeichen. Kein Erguss. Die Lunge in den einsehbaren Anteilen frei
+von entz. Infiltraten. Vermehrte Sklerosierung einiger Wirbelkörper der
+mittleren BWS (DD SUperpositioonseffekt). Weiterführend CT empfohlen.
+
+* CT Gehirnschädel
+
+CT des Gehirnschädels (137165082)
+Ausweitung betont der inneren Liquorräume e vacuo. Regelhafte
+Markrindendifferenzierung. Kein Nachweis eines sich demarkierenden
+territorialen Infarktes oder einer intracraniellen Blutung.
+Substanzdefekt rechts frontobasal posttraumatischer Genese. Vaskuläre
+Läsion im Centrum semiovale rechts. Fettisodense Läsion am Tentorium
+cerebelli rechts mit einer Ausdehung von 8 x 4 mm, in erster Linie einem
+kleinen Lipom entsprechend.
+
+* USKG
+
+höhergrad. Hypertrophie, li Ventrikelfunktion normal, keine sicheren
+WBST, mechan. Aortenklappe, mittl.Grad. 60mmHg, minim. AINS, prox.
+Aortenrings echoreiche Struktur (DD:Panus) MINS I, kein PE.
+
+* Klappendurchleuchtung
+
+Untersuchungen:
+Klappendurchleuchtung
+INDIKATION(EN):
+V.a. Endokarditis; Zunahme des Gradienten über AKE
+DIAGNOSEN:
+Zweiflügelige AKE. Linker Flügel mit geringgradig eingeschränkter
+Beweglichkeit.
+PROZEDERE:
+Empfehle PET bzgl. entzündlicher Anreicherung im Bereich der AKE
+
+* EKG
+
+SR, 74/min, ÜLT, PQ 0,18, QRS schmal, S-Persistenz bis V6, Q in I und
+AVL, neg.T in I und AVL.
+
+* Abdomen Sonographie
+
+Befund
+Hepar: Form und Größe regelrecht, Struktur homogen, normale Echodichte,
+Lebervenen und Pfortader
+unauffällig
+Gallengänge: intra- und extrahepatische normal weit
+Gallenblase: Wand zart, steinfrei
+Pankreas: gasüberlagert
+Milz: homogen, vergrößert (14,1 cm)
+Nieren: Größe und Form regelrecht, Parenchym regelrecht, Sinus
+unauffällig
+Retroperitoneum: gasüberlagert
+Unterbauch: nicht beurteilt.
+Beurteilung
+Splenomegalie 14cm
+
+* PET CT Befund
+
+PET-CT-HERZ (ZN340, 23. August 2012) 357 MBq F18-FDG i.v., statische
+Szintigraphie beginnend 40 Min.p.i. ERGEBNIS: Fehlender Tracer-Uptake im
+apexnahen Drittel der diaphragmalen Hinterwand - entsprechend Herznarbe.
+Flau verminderter Tracer-Uptake im apexnahen sowie mittleren Drittel
+Übergang Vorderwand zur posterolateralen Seitenwand sowie ebenfalls
+angedeutet im mittleren Drittel der diaphragmalen Hinterwand -
+entsprechend chronisch geschädigten Myokardzellen - ischämisch bedingt?,
+entzündlich geschädigt? Kein Hinweis für fokal gesteigerten Tracer-
+Uptake in Projektion auf die liegende Aortenklappe.
+
+* MR Herz
+
+MR des Herzens (137320754) Quantitative Auswertung (137377856)
+MRT des Herzens 1.) Funktion: Die linksventrikulären volumetrischen
+Daten: EF 42,8%. EDV 177,2ml. ESV 101,4ml. SV 75,8ml. HZV 5,61l/min.
+Linksventrikuläre myokardiale Masse von 283,1g. Aortales Vorwärtsvolumen
+von 70,82ml mit geringer Regurgitation von 2,42ml. 2.) Vitalitätsstudie
+mit KM: Breites postischämisches Late-Enhancement, vorwiegend transmural
+in den Segmenten 13, 7, 16 und 12 an der linksventrikulären Vorder- und
+Lateralwand. Zusätzlich subendokardiale bis mittmyokardiale
+postischämische Late-Enhancement Areale in den Segmenten 1 und 6.
+Kleinfleckiges transmurales Late-Enhancement Areal weiters im Segment 10
+mittinferior. Alte Infarktnarbe auch an der Herzspitze. Mehrere, wenige
+Millimeter haltende Late-Enhancement Areale ferner auch septal,
+möglicherweise im Rahmen des korregierten Aortenvitiums. 3.)
+Perfusionsstudie mit KM: Teils Vorliegen von subendokardiale
+Ruheperfusionsdefekte im Bereich der chron. Infarktbildungen. 4.)
+Morphologie: Exzentrische linksventrikuläre Hypertrophie mit
+enddiastolischen Septumstärken bis 2,2cm. Grenzwertige
+Dimensionierung des li. Ventrikels mit einem enddiastolischen
+Transversaldurchmesser von 5,5cm. Sonst normal dimensionierte
+Herzhöhlen. St.p. medianer Sternotomie mit liegenden Drahtcerclagen und
+Aortenklappenersatz. Post-Infarkt Myokardausdünnungen der linkslateralen
+Vorder- und Lateralwand mit Hypokinesie auf selber Höhe. Kein Nachweis
+einer Einengung der linksventrikulären Ausflusstraktregion. Diagnose:
+Vom Aspekt alte ausgedehnte Infarktnarben der linksventrikulären Vorder-
+und Lateralwand. Kleinfleckige transmurale Narbe zusätzlich
+mittinferior. Kleinere Late-Enhancement Areale auch septal bei St.p.
+Aortenvitium, korregiert mittels mechanischer Aortenklappenprothese.
+Sowohl Ausdünnungen (postischämisch) wie auch teils deutliche
+Hypertrophie des linksventr.Myokards. Soweit MR tomographisch
+beurteilbar kein sicherer Hinweis auf (para)valvuläre Vegetationen.
+Ebenso kein Hinweis auf Abszedierung. Eingeschränkte linksventrikuläre
+Funktion mit EF von knapp 43%. Nur minimale Aorten- und
+Mitralinsuffizienz.
+
+* USKG
+
+1) Normal großer linker Ventrikel mit mittel- bis höhergradiger
+Hypertrophie (konzentrisch) und normaler
+systolischer Funktion; keine regionalen Wandbewegungsstörungen;
+diastolische Ventrikelfunktionsstörung Grad 1
+(Relaxationsstörung) - Füllungsdruck vermutlich normal;
+2) Rechter Ventrikel normal groß; normale Rechtsventrikelfunktion;
+3) Linker Vorhof normal groß; rechter Vorhof grenzwertig groß;
+4) Mechanische Prothese in Aortenposition (Carbomedics 23R, 1997, min.
+invas. AKE) mit einem mittleren
+Gradienten von 53 mmHg (max. inst. Gradient 79 mmHg; HF 83 bpm;
+gemittelt aus 4 Schlägen); Klappe
+morphologisch unauffällig; normale Prothesenfunktion kann angenommen
+werden; normale Regurgitationen;
+Prothese erscheint etwas "gekippt", sodass sie nicht ganz parallel zur
+Flussrichtung liegen dürfte;
+5) Mitralklappe morphologisch unauffällig; leichte Mitralringverkalkung;
+leichte Mitralinsuffizienz;
+6) Trikuspidalklappe unauffällig; leichte Trikuspidalinsuffizienz;
+systolischer Pulmonalisdruck ca. 21 mmHg;
+7) Pulmonalklappe unauffällig; physiologische Pulmonalinsuffizienz;
+8) Kein Pericarderguss;
+NB: Auskult. eindeutiger mechan. Klappenklick, ca. 2/6 Syst. über allen
+Ostien;
+
+
+----------
+MEDIKATION
+----------
+
+Trileptal 150mg 1-0-1
+Sortis 40mg 0-0-1
+Marcoumar laut Pass
+Kali Oral 1x1
+Avelox 400mg 1-0-0 (für 4 Wochen)
