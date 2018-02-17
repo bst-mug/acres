@@ -3,7 +3,7 @@ import os
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from acres import create_acro_dump
+from acres import create_dumps
 from acres import create_morpho_dump
 from acres import create_ngram_dumps
 from acres import expansion_acronyms
