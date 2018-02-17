@@ -224,8 +224,7 @@ def create_corpus_char_stat_dump(doc_path = "CORPUSPATH", ngramlength = 8, digit
 
 
 
-create_corpus_char_stat_dump("SAMPLEPATH")
-1 / 0
+#create_corpus_char_stat_dump("SAMPLEPATH")
 
 
 
