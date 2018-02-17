@@ -55,7 +55,7 @@ def find_synonyms():
 
             logger.debug("-----------------------")
             logger.debug(ngram)
-            splits = functions.split_gram(ngram.strip())
+            splits = functions.split_ngram(ngram.strip())
             for s in splits:
                 leftString = s[0].strip()
                 acronym = s[1].strip()

@@ -2,10 +2,17 @@
 
 import collections
 import pickle
+import os
+import logging
 from acres import functions
 
 
-def CreateNormalisedTokenDump():
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
+
+
+def create_normalised_token_dump():
     """
     Creates a set of all tokens in the ngram table, taking into account all possible variants typical for clinical
     German.
@@ -44,18 +51,17 @@ def CreateNormalisedTokenDump():
             allTokenVariants.add(token.lower())
     pickle.dump(allTokenVariants, open("tokens.p", "wb"))
 
-
-def CreateNgramstatDump(nGramStatFile, ngramstat, minFreq):
+def create_ngramstat_dump(ngram_stat_filename, ngramstat, minFreq):
     """
     Creates dump of ngram and ngram variants.
     Create dump of word indices for increasing performance.
 
-    :param nGramStatFile:
+    :param ngram_stat_filename:
     :param ngramstat:
     :param minFreq:
     :return:
     """
-    with open(nGramStatFile) as f:
+    with open(ngram_stat_filename) as f:
         ID = 1
         for row in f:
             if row[8] == "\t":
@@ -124,28 +130,6 @@ def CreateNgramstatDump(nGramStatFile, ngramstat, minFreq):
     pickle.dump(index, open("pickle//index.p", "wb"))
 
 
-ngramstat = {}
-
-
-# Create pickle dump for min freq 3 (improve performance)
-# CreateNgramstatDump(NGRAMSTAT, ngramstat, 3)
-
-
-def load_dumps():
-    """
-    Load dumps.
-
-    :return:
-    """
-    print("Begin Read Dump")
-    ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
-    print("-")
-    index = pickle.load(open("pickle//index.p", "rb"))
-    print("-")
-    normalisedTokens = pickle.load(open("pickle//tokens.p", "rb"))
-    print("End Read Dump")
-
-
 
 def create_acro_dump():
     """
@@ -183,9 +167,6 @@ def create_acro_dump():
     # List of ngrams, containing acronyms
     pickle.dump(b, open("pickle//acronymNgrams.p", "wb"))
 
-# create_acro_dump()
-
-
 def create_morpho_dump():
     """
     Creates and dumps set of plausible English and German morphemes from morphosaurus dictionary.
@@ -215,4 +196,82 @@ def create_morpho_dump():
 
     pickle.dump(sMorph, open("pickle//morphemes.p", "wb"))
 
-# create_morpho_dump()
+def create_corpus_char_stat_dump(doc_path = "CORPUSPATH", ngramlength = 8, digit_placeholder = "Ð", break_marker = "¶"):
+    counter = 0
+    dict_char_ngrams = {}
+    corpus_path = functions.import_conf(doc_path)
+    files = os.listdir(corpus_path)
+    for file in files:
+        str_doc = ""
+        with open(corpus_path + "\\" + file, 'r', encoding="UTF-8") as single_document:
+            try:
+                counter += 1
+                for line in single_document:
+                    line = functions.clear_digits(line, digit_placeholder)
+                    str_doc = str_doc + line.strip() + break_marker
+                for i in range(0, len(line) - (ngramlength -1)):
+                        ngram = line[0 + i: ngramlength + i].strip()
+                        if len(ngram) == ngramlength:
+                            if not ngram in dict_char_ngrams:
+                                dict_char_ngrams[ngram] = 1
+                            else:
+                                dict_char_ngrams[ngram] +=1
+
+            except Exception:
+                pass
+            single_document.close()
+    pickle.dump(dict_char_ngrams, open("character_ngrams.p", "wb"))
+
+
+
+create_corpus_char_stat_dump("SAMPLEPATH")
+1 / 0
+
+
+
+
+def create_corpus_ngramstat_dump(Fixlines = True, digit_placeholder = "Ð", break_marker = "¶"):
+
+    """
+    Takes the path with the corpus.
+    It requires that all documents are in UTF-8 text
+    It can perform line break cleansing (removes artificial line breaks)
+    and substitutions of digits
+
+
+    :return:
+    """
+    entire_corpus = ""
+    counter = 0
+    corpus_path = functions.import_conf("CORPUSPATH")
+    files = os.listdir(corpus_path)
+    for file in files:
+        with open(corpus_path + "\\" + file, 'r', encoding="UTF-8") as single_document:
+            document_content = single_document.read()
+            if Fixlines:
+                document_content = functions.fix_line_endings(document_content, d, "break_marker")
+            if len(digit_placeholder) == 1:
+                document_content = functions.clear_digits(document_content, digit_placeholder)
+            document_content = document_content.replace("  ", " ").replace("  ", " ")
+            document_content = document_content.replace(break_marker, " " + break_marker + " ")
+        entire_corpus = entire_corpus + document_content + "\n\n"
+        counter += 1
+
+    logger.debug("Corpus loaded containing " + str(counter) + " documents.")
+
+
+def load_dumps():
+    """
+    Load dumps.
+
+    :return:
+    """
+    print("Begin Read Dump")
+    ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
+    print("-")
+    index = pickle.load(open("pickle//index.p", "rb"))
+    print("-")
+    normalisedTokens = pickle.load(open("pickle//tokens.p", "rb"))
+    print("End Read Dump")
+    
+

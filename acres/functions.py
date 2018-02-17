@@ -7,6 +7,7 @@ This function compares and acronym with a potential full form and returns a list
 """
 
 import configparser
+import re
 from random import randint
 
 def import_conf(key):
@@ -64,6 +65,92 @@ def extract_acronym_definition(strProbe, maxLength):
             if is_acronym(right, maxLength, "Ð") and not is_acronym(left, maxLength, "Ð"):
                 return (right, left)
 
+
+
+
+
+
+def fix_line_endings(long_text, char_ngram_dict, line_break_marker = "¶", char_ngram_length = 8,
+                     line_break_marker_position = 3 ):
+    """
+           addresses the problem that many texts come with
+           artificial line breaks. These breaks are removed if
+           distributional data show that an unbroken continuation of
+           the text is more likely than the break
+
+           :param InputString:
+           :param nMin:
+           :param nMax:
+           :return:
+           """
+    out = ""
+    verbose = False
+    long_text = long_text.strip().replace("\n", line_break_marker)
+    l = len(long_text)
+    i = 0
+    while i + char_ngram_length < l:
+        c = long_text[i]
+        ngr = long_text[i:i + char_ngram_length]
+        if ngr[line_break_marker_position] == line_break_marker:   # line break marker at nth position
+            ngrClean = ClearDigits(ngr, "°")
+            ngrCleanSpace = ngrClean.replace(line_break_marker, " ")
+            if ngrClean in char_ngram_dict:
+                nBreaks = char_ngram_dict[ngrClean]
+            else:
+                nBreaks = 0
+            if ngrCleanSpace in char_ngram_dict:
+                nSpaces = char_ngram_dict[ngrCleanSpace]
+            else:
+                nSpaces = 0
+            # TODO: implement logging
+            if verbose: print("----")
+            if verbose: print(ngr)
+            if verbose: print("With new line: ", nBreaks)
+            if verbose: print("With space: ", nSpaces)
+            if nSpaces > nBreaks:
+                # TODO: line_break_marker as delimiter inserted
+                # TODO: What happens if the break marker symbol also occurs in the original text
+                # TODO: probably safe: using the "¶" character for line breaks
+                # TODO: Check for whole code how delimiters are handled and how this
+                # TODO: might interfer with text processing
+                out = out + ngr.replace(line_break_marker, " ")
+                i = i + char_ngram_length
+                if i >= l: break
+            else:
+                out = out + c
+                i = i + 1
+                if i == l: break
+        else:
+            out = out + c
+            i = i + 1
+            if i == l: break
+
+    out = out + long_text[0 - char_ngram_length:] + line_break_marker
+    return out.replace(line_break_marker, line_break_marker + "\n")
+
+
+# for all training files
+# added " <EOL>" for end of line and substituted digits by "Ð"
+
+
+
+
+def clear_digits(strIn, substituteChar):
+    """
+       substitutes all digits by a character (or string)
+
+       Example: ClearDigits("Vitamin B12", "°"):
+
+       :param InputString:
+       :param nMin:
+       :param nMax:
+       :return: "Vitamin B°°"
+       """
+    out = ""
+    for c in strIn:
+        if c in "0123456789": out = out + substituteChar
+        else: out = out + c
+    return out
 
 def create_ngram_statistics(InputString, nMin, nMax):
     """
