@@ -182,6 +182,7 @@ def create_ngram_statistics(InputString, nMin, nMax):
     #       print ('{:>8}'.format(output[w]) + '\t' + w)
     return output
 
+
 def transliterate_to_seven_bit(strIn, language ="DE"):
     """
     Converts string to 7-bit ASCII, considering language - specific rules,

@@ -1,15 +1,15 @@
 from .context import functions
 
 
-def test_create_ngram_statistics():
-    pass
-    # assert functions.create_ngram_statistics("a b c") == []
+def test_split_ngram():
+    #pass
+    assert functions.split_ngram("a b c") == []
     #
-    # assert functions.create_ngram_statistics("a AK b") == [('a', 'AK', 'b')]
+    assert functions.split_ngram("a AK b") == [('a', 'AK', 'b')]
     #
-    # assert functions.create_ngram_statistics("l ACR1 b ACR2 c") == [('l', 'ACR1', 'b ACR2 c'), ('l ACR1 b', 'ACR2', 'c')]
+    assert functions.split_ngram("l ACR1 b ACR2 c") == [('l', 'ACR1', 'b ACR2 c'), ('l ACR1 b', 'ACR2', 'c')]
     #
-    # assert functions.create_ngram_statistics("ACR") == [('', 'ACR', '')]
+    assert functions.split_ngram("ACR") == [('', 'ACR', '')]
 
 
 def test_extract_acronym_definition():
