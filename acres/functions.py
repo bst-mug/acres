@@ -219,8 +219,6 @@ def randomSubList(inList, maxNum):
 def CheckAcroVsFull(acro, full):
     import re
     dia = diacritics()
-    aLeft = acro[0:-1]
-    aRight = acro[-1]
     bina = []
     result = []
     fl = ""
