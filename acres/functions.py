@@ -180,7 +180,7 @@ def simplifyGermanString(strInGerman):
     """
     strInGerman = strInGerman.lower()
     strInGerman = strInGerman.replace("k", "c").replace("z", "c").replace("ß", "ss")
-    strIngerman = strInGerman.replace("é", "e").replace("à", "a")
+    strInGerman = strInGerman.replace("é", "e").replace("à", "a")
     return (strInGerman.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue"))
 
 

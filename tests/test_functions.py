@@ -52,6 +52,8 @@ def test_simplifyGermanString():
     
     # XXX Is it expected?
     assert functions.simplifyGermanString("herz") == "herc"
+
+    assert functions.simplifyGermanString("café") == "cafe"
     
     
 def test_randomSubList():
