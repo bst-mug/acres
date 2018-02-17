@@ -163,8 +163,15 @@ def GetAcronymScore(acro, full, sMorph):
     return (score)
 
 
-if logger.getEffectiveLevel() == logging.DEBUG:
-    a = "TRINS"
-    f = "Tricuspidalinsuffizienz"
-    m = pickle.load(open("pickle//morphemes.p", "rb"))
-    logger.debug(GetAcronymScore(a, f, m))
+def get_acronym_score(acronym, full_form):
+    """
+    Syntactic sugar for GetAcronymScore(acro, full, sMorph)
+
+    :param acronym:
+    :param full_form:
+    :return:
+    """
+    # TODO generate pickle if not available
+    # TODO make it work even without morphemes?
+    morphemes = pickle.load(open("models/pickle/morphemes.p", "rb"))
+    return GetAcronymScore(acronym, full_form, morphemes)
