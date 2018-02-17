@@ -139,7 +139,7 @@ def substitute_k_and_f_by_context(strIn, language ="DE"):
             return strIn
         if strIn[2].isupper():
             return strIn
-        strIn = ling.transliterate_to_seven_bit(strIn)
+        strIn = transliterate_to_seven_bit(strIn)
         return strIn.replace("CAE", "ZAE").replace("COE", "ZOE").replace("CA", "KA").replace("CA", "KA").replace("CO",
           "KO").replace("CU", "KU").replace("CE", "ZE").replace("CI", "ZI").replace("CY", "ZY").replace("F", "PH")
 
