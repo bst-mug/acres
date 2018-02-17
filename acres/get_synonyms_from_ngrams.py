@@ -45,7 +45,7 @@ def findEmbeddings(strLeft,
     if verbose:
         logger.setLevel(logging.DEBUG)
 
-    MAXLIST = 100
+    # MAXLIST = 100
     DIGIT = "Ð"
     outL = []
     allBeds = []
