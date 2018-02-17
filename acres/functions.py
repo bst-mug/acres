@@ -88,10 +88,10 @@ def create_ngram_statistics(InputString, nMin, nMax):
         line = line.replace('\r', '')
         line = line.replace('\n', '')
         line = line.strip()
-        input = line.split(" ")
+        cleaned_line = line.split(" ")
         for n in range(nMin, nMax + 1):
-            for i in range(len(input) - n + 1):
-                g = ' '.join(input[i:i + n])
+            for i in range(len(cleaned_line) - n + 1):
+                g = ' '.join(cleaned_line[i:i + n])
                 output.setdefault(g, 0)
                 output[g] += 1
     #    Example for formatted output, sorted, reverse order
