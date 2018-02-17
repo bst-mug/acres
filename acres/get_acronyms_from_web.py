@@ -6,7 +6,7 @@ Finds synonyms using a n-gram frequency list from the Web
 import html2text
 import requests
 
-from acres import ling
+from acres import functions
 from acres import rate_acronym_resolutions
 from acres.functions import import_proxy
 
@@ -60,7 +60,7 @@ def ngramsWebDump(url, minNumTokens, maxNumTokens):
                 out = out + " " + word
     out = out.replace("  ", "\n").replace("[ ", "\n").replace(" ]", "\n").replace("|", "\n").replace("?", "\n").replace(
         ":", "\n")
-    output = ling.WordNgramStat(out, minNumTokens, maxNumTokens)
+    output = functions.create_ngram_statistics(out, minNumTokens, maxNumTokens)
     for ngram in output:
         outL.append('{:0>4}'.format(output[ngram]) + "\t" + ngram)
     outL.sort(reverse=True)
