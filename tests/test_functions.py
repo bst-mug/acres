@@ -52,7 +52,6 @@ def test_simplify_german_string():
 
     # XXX Is it expected?
     assert functions.simplify_german_string("herz") == "herc"
-
     assert functions.simplify_german_string("café") == "cafe"
 
 

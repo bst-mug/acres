@@ -9,6 +9,12 @@ This function compares and acronym with a potential full form and returns a list
 import configparser
 import re
 from random import randint
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
+
 
 def import_conf(key):
     """
@@ -18,8 +24,9 @@ def import_conf(key):
     """
     config = configparser.ConfigParser()
     config.read("config.ini")
-    print(config.sections())
+    logger.debug(config.sections())
     return config['DEFAULT'][key]
+
 
 def import_proxy():
     """
@@ -29,6 +36,7 @@ def import_proxy():
     config = configparser.ConfigParser()
     config.read("config.ini")
     return config["proxy"]
+
 
 def split_ngram(ngram):
     """
@@ -47,83 +55,88 @@ def split_ngram(ngram):
         c = c + 1
     return out
 
-def extract_acronym_definition(strProbe, maxLength):
+
+def extract_acronym_definition(str_probe, max_length):
     """
     Identifies potential acronym / definition pairs and extract acronym and definition candidates.
 
-    :param strProbe:
-    :param maxLength:
+    :param str_probe:
+    :param max_length:
     :return:
     """
-    strProbe = strProbe.strip()
-    if len(strProbe) > 1:
-        if strProbe[-1] == ")" and strProbe.count("(") == 1:
-            left = strProbe.split("(")[0].strip()
-            right = strProbe.split("(")[1][0:-1].strip()
-            if is_acronym(left, maxLength, "Ð") and not is_acronym(right, maxLength, "Ð"):
+    str_probe = str_probe.strip()
+    if len(str_probe) > 1:
+        if str_probe[-1] == ")" and str_probe.count("(") == 1:
+            left = str_probe.split("(")[0].strip()
+            right = str_probe.split("(")[1][0:-1].strip()
+            if is_acronym(left, max_length, "Ð") and not is_acronym(right, max_length, "Ð"):
                 return (left, right)
-            if is_acronym(right, maxLength, "Ð") and not is_acronym(left, maxLength, "Ð"):
+            if is_acronym(right, max_length, "Ð") and not is_acronym(left, max_length, "Ð"):
                 return (right, left)
 
 
-
-
-
-
-def fix_line_endings(long_text, char_ngram_dict, line_break_marker = "¶", char_ngram_length = 8,
-                     line_break_marker_position = 3 ):
-    """
-           addresses the problem that many texts come with
+def fix_line_endings(long_text, char_ngram_dict, line_break_marker="¶", char_ngram_length=8,
+                     line_break_marker_position=3):
+    '''
+    addresses the problem that many texts come with
            artificial line breaks. These breaks are removed if
            distributional data show that an unbroken continuation of
            the text is more likely than the break
+    :param long_text:
+    :param char_ngram_dict:
+    :param line_break_marker:
+    :param char_ngram_length:
+    :param line_break_marker_position:
+    :return:
+    '''
 
-           :param InputString:
-           :param nMin:
-           :param nMax:
-           :return:
-           """
+
+
+
     out = ""
-    verbose = False
     long_text = long_text.strip().replace("\n", line_break_marker)
     l = len(long_text)
     i = 0
     while i + char_ngram_length < l:
         c = long_text[i]
         ngr = long_text[i:i + char_ngram_length]
-        if ngr[line_break_marker_position] == line_break_marker:   # line break marker at nth position
-            ngrClean = ClearDigits(ngr, "°")
-            ngrCleanSpace = ngrClean.replace(line_break_marker, " ")
-            if ngrClean in char_ngram_dict:
-                nBreaks = char_ngram_dict[ngrClean]
+        if ngr[line_break_marker_position] == line_break_marker:  # line break marker at nth position
+            ngr_clean = clear_digits(ngr, "°")
+            ngrCleanSpace = ngr_clean.replace(line_break_marker, " ")
+            if ngr_clean in char_ngram_dict:
+                n_breaks = char_ngram_dict[ngr_clean]
             else:
-                nBreaks = 0
+                n_breaks = 0
             if ngrCleanSpace in char_ngram_dict:
-                nSpaces = char_ngram_dict[ngrCleanSpace]
+                n_spaces = char_ngram_dict[ngrCleanSpace]
             else:
-                nSpaces = 0
+                n_spaces = 0
             # TODO: implement logging
-            if verbose: print("----")
-            if verbose: print(ngr)
-            if verbose: print("With new line: ", nBreaks)
-            if verbose: print("With space: ", nSpaces)
-            if nSpaces > nBreaks:
-                # TODO: line_break_marker as delimiter inserted
-                # TODO: What happens if the break marker symbol also occurs in the original text
-                # TODO: probably safe: using the "¶" character for line breaks
-                # TODO: Check for whole code how delimiters are handled and how this
-                # TODO: might interfer with text processing
+            logger.debug("----")
+            logger.debug(ngr)
+            logger.debug("With new line: %s", n_breaks)
+            logger.debug("With space: %s", n_spaces)
+            if n_spaces > n_breaks:
+                """ TODO: line_break_marker as delimiter  
+                    What happens if the break marker symbol also occurs in the original text
+                    probably safe: using the "¶" character for line breaks
+                    Check for whole code how delimiters are handled and how this
+                    might interfer with text processing
+                """
                 out = out + ngr.replace(line_break_marker, " ")
                 i = i + char_ngram_length
-                if i >= l: break
+                if i >= l:
+                    break
             else:
                 out = out + c
                 i = i + 1
-                if i == l: break
+                if i == l:
+                    break
         else:
             out = out + c
             i = i + 1
-            if i == l: break
+            if i == l:
+                break
 
     out = out + long_text[0 - char_ngram_length:] + line_break_marker
     return out.replace(line_break_marker, line_break_marker + "\n")
@@ -133,26 +146,26 @@ def fix_line_endings(long_text, char_ngram_dict, line_break_marker = "¶", char_
 # added " <EOL>" for end of line and substituted digits by "Ð"
 
 
-
-
-def clear_digits(strIn, substituteChar):
+def clear_digits(str_in, substitute_char):
     """
        substitutes all digits by a character (or string)
 
        Example: ClearDigits("Vitamin B12", "°"):
 
-       :param InputString:
-       :param nMin:
-       :param nMax:
-       :return: "Vitamin B°°"
+       :param str_in:
+       :param substitute_char:
+
        """
     out = ""
-    for c in strIn:
-        if c in "0123456789": out = out + substituteChar
-        else: out = out + c
+    for c in str_in:
+        if c in "0123456789":
+            out = out + substitute_char
+        else:
+            out = out + c
     return out
 
-def create_ngram_statistics(InputString, nMin, nMax):
+
+def create_ngram_statistics(input_string, n_min, n_max):
     """
     Creates a dictionary that counts each nGram in an input string. Delimiters are spaces.
 
@@ -160,19 +173,19 @@ def create_ngram_statistics(InputString, nMin, nMax):
     nMin = 2 ,   nMax = 3
     PROBE: # print(WordNgramStat('a ab aa a a a ba ddd', 1, 4))
 
-    :param InputString:
-    :param nMin:
-    :param nMax:
+    :param input_string:
+    :param n_min:
+    :param n_max:
     :return:
     """
     output = {}
-    lines = InputString.splitlines()
+    lines = input_string.splitlines()
     for line in lines:
         line = line.replace('\r', '')
         line = line.replace('\n', '')
         line = line.strip()
         cleaned_line = line.split(" ")
-        for n in range(nMin, nMax + 1):
+        for n in range(n_min, n_max + 1):
             for i in range(len(cleaned_line) - n + 1):
                 g = ' '.join(cleaned_line[i:i + n])
                 output.setdefault(g, 0)
@@ -183,89 +196,93 @@ def create_ngram_statistics(InputString, nMin, nMax):
     return output
 
 
-def transliterate_to_seven_bit(strIn, language ="DE"):
+def transliterate_to_seven_bit(str_in, language="de"):
     """
     Converts string to 7-bit ASCII, considering language - specific rules,
     such as in German "Ä" -> "AE", in English "Ä" -> "A"
     Considering in-built capitalization rules such as "ß" -> "SS"
     TODO: completing transliteration rules when non-Western languages are used
     consider using unidecode
-    :param strIn:
+    :param str_in:
+    :param language: the language for which rules are defined (ISO_639-1)
     :return:
     """
-    if language == "DE":
-        substitutions = {"À": "A" , "Á": "A" , "Â": "A" , "Ã": "A" ,
-        "Ä": "AE" , "Å": "AA" , "Æ": "AE" , "Ç": "C" , "È": "E" ,
-    "É": "E" , "Ê": "E" , "Ë": "E" , "Ì": "I" , "Í": "I" , "Î": "I" ,
-    "Ï": "I" , "Ñ": "N" , "Ò": "O" , "Ó": "O" , "Ô": "O" , "Õ": "O" ,
-    "Ö": "OE" , "Ø": "OE" , "Ù": "U" , "Ú": "U" , "Û": "U" , "Ü": "UE"}
-    if language == "EN":
+    substitutions = {}
+    if language == "de":
         substitutions = {"À": "A", "Á": "A", "Â": "A", "Ã": "A",
-         "Ä": "A", "Å": "A", "Æ": "AE", "Ç": "C", "È": "E",
-         "É": "E", "Ê": "E", "Ë": "E", "Ì": "I", "Í": "I", "Î": "I",
-          "Ï": "I", "Ñ": "N", "Ò": "O", "Ó": "O", "Ô": "O", "Õ": "O",
-           "Ö": "O", "Ø": "O", "Ù": "U", "Ú": "U", "Û": "U", "Ü": "U"}
-    return "".join([substitutions.get(c, c) for c in strIn.upper()])
+                         "Ä": "AE", "Å": "AA", "Æ": "AE", "Ç": "C", "È": "E",
+                         "É": "E", "Ê": "E", "Ë": "E", "Ì": "I", "Í": "I", "Î": "I",
+                         "Ï": "I", "Ñ": "N", "Ò": "O", "Ó": "O", "Ô": "O", "Õ": "O",
+                         "Ö": "OE", "Ø": "OE", "Ù": "U", "Ú": "U", "Û": "U", "Ü": "UE"}
+    if language == "en":
+        substitutions = {"À": "A", "Á": "A", "Â": "A", "Ã": "A",
+                         "Ä": "A", "Å": "A", "Æ": "AE", "Ç": "C", "È": "E",
+                         "É": "E", "Ê": "E", "Ë": "E", "Ì": "I", "Í": "I", "Î": "I",
+                         "Ï": "I", "Ñ": "N", "Ò": "O", "Ó": "O", "Ô": "O", "Õ": "O",
+                         "Ö": "O", "Ø": "O", "Ù": "U", "Ú": "U", "Û": "U", "Ü": "U"}
+    return "".join([substitutions.get(c, c) for c in str_in.upper()])
 
 
-def substitute_k_and_f_by_context(strIn, language ="DE"):
+def substitute_k_and_f_by_context(str_in, language="de"):
     """
     Applies normalization rules that improves retrieval of
     clinical terms
-    :param strIn:
+    :param str_in:
+    :param language: the language for which rules are defined (ISO_639-1)
     :return:
     """
     # no Acronym
-    if language == "DE":
-        if len(strIn) == 1:
-            return strIn.isupper()
-        if len(strIn) == 2 and strIn[1].isupper():
-            return strIn
-        if strIn[2].isupper():
-            return strIn
-        strIn = transliterate_to_seven_bit(strIn)
-        return strIn.replace("CAE", "ZAE").replace("COE", "ZOE").replace("CA", "KA").replace("CA", "KA").replace("CO",
-          "KO").replace("CU", "KU").replace("CE", "ZE").replace("CI", "ZI").replace("CY", "ZY").replace("F", "PH")
+    if language == "de":
+        if len(str_in) == 1:
+            return str_in.isupper()
+        if len(str_in) == 2 and str_in[1].isupper():
+            return str_in
+        if str_in[2].isupper():
+            return str_in
+        str_in = transliterate_to_seven_bit(str_in)
+        return str_in.replace("CAE", "ZAE").replace("COE", "ZOE").replace("CA", "KA").replace("CA", "KA").replace("CO",
+                                                                                                                 "KO").replace(
+            "CU", "KU").replace("CE", "ZE").replace("CI", "ZI").replace("CY", "ZY").replace("F", "PH")
 
 
-
-
-def is_acronym(strProbe, maxLength = 7, digitPlaceholder="Ð"):
+def is_acronym(strProbe, maxLength=7, digit_placeholder="Ð"):
     """
     Identifies Acronyms, restricted by absolute length
     "Ð" as default placeholder for digits. (e.g. "Ð")
     XXX look for "authoritative" definitions for acronyms
     :param strProbe:
     :param maxLength:
+    :param digit_placeholder:
     :return:
     """
-    if len(digitPlaceholder) > 1:
+    if len(digit_placeholder) > 1:
         print("Digit placeholders must be empty or a single character")
     ret = False
-    s = strProbe.replace(digitPlaceholder, "0")
+    s = strProbe.replace(digit_placeholder, "0")
     l = 0
     u = 0
     if len(s) <= maxLength:
         for c in s:
             if c.isupper() == True: u = u + 1
             if c.islower() == True: l = l + 1
-    if u > 1 and u > l: ret = True
+    if u > 1 and u > l:
+        ret = True
     return ret
 
 
-def simplify_german_string(strInGerman):
+def simplify_german_string(str_in_german):
     """
     Decapitalises, substitutes umlauts, sharp s and converts k and z to c
 
     TODO ... explain why
 
-    :param strInGerman:
+    :param str_in_german:
     :return:
     """
-    strInGerman = strInGerman.lower()
-    strInGerman = strInGerman.replace("k", "c").replace("z", "c").replace("ß", "ss")
-    strInGerman = strInGerman.replace("é", "e").replace("à", "a")
-    return (strInGerman.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue"))
+    str_in_german = str_in_german.lower()
+    str_in_german = str_in_german.replace("k", "c").replace("z", "c").replace("ß", "ss")
+    str_in_german = str_in_german.replace("é", "e").replace("à", "a")
+    return str_in_german.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue")
 
 
 def diacritics():
@@ -274,7 +291,7 @@ def diacritics():
 
     :return: A string of diacritic characters
     """
-    return ("µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ")
+    return "µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ"
 
 
 def random_sub_list(inList, maxNum):
@@ -345,14 +362,14 @@ def check_acro_vs_expansion(acro, full):
 # print(extractAcroDef("Elektrokardiogramm", 7))
 # print(extractAcroDef("Elektrokardiogramm (EKG)", 7))
 
-def find_acro_expansions(lstNGramStat):
+def find_acro_expansions(lst_n_gram_stat):
     """
     Identifies acronyms and looks for possible expansions.
     Takes the most frequent one.
     Uses ngrams with the second token being an acronym.
 
     TODO: check for what it is needed, complete it
-    :param nGramStat: A list in which ngrams extracted
+    :param lst_n_gram_stat: A list in which ngrams extracted
     from a corpus are counted in decreasing frequency
 
     :return:
@@ -361,14 +378,14 @@ def find_acro_expansions(lstNGramStat):
     dictCountPerNgram = {}
     lstAcro = [];
     lstNonAcro = []
-    for line in lstNGramStat:
+    for line in lst_n_gram_stat:
         ngram = line.split("\t")[1]
         count = line.split("\t")[0]
         dictCountPerNgram[ngram] = count
         if " " in ngram:  # has at least 2 tokens
             OtherTokens = " ".join(ngram.split(" ")[1:])
             if len(OtherTokens) > 2:
-                if functions.isAcronym(OtherTokens[1], 7):
+                if is_acronym(OtherTokens[1], 7):
                     lstAcro.append(ngram)
                 else:
                     for word in ngram.split(" "):
@@ -397,6 +414,7 @@ def find_acro_expansions(lstNGramStat):
                         counter += 1
                         if counter > 4:
                             break
+
 
 # TODO michel 20180215 move to unit tests
 # FindExpansionsOfAcronyms("corpus_cardio_ngramstat.txt")

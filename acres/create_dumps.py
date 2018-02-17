@@ -221,6 +221,7 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength = 8, digit_placeholder
             except Exception:
                 pass
             single_document.close()
+
     pickle.dump(dict_char_ngrams, open("models/pickle/character_ngrams.p", "wb"))
 
 

@@ -3,29 +3,31 @@ import re
 from acres import functions
 
 
-def FindExpansionsOfAcronyms(lstNGramStat):
+def find_acronym_expansion(lst_ngam_stat):
     """
     Identifies acronyms and looks for possible expansions.
     Takes the most frequent one.
     Uses ngrams with the second token being an acronym.
 
     TODO: check for what it is needed, complete it
-    :param nGramStat: A list in which ngrams extracted
+    :param lst_ngam_stat: A list in which ngrams extracted
     from a corpus are counted in decreasing frequency
 
     :return:
     """
 
-    dictCountPerNgram = {}
+    dict_count_per_ngram = {}
     lstAcro = [] ;  lstNonAcro = []
-    for line in lstNGramStat:
+    acro = False
+    # TODO: check initialization of acro
+    for line in lst_ngam_stat:
         ngram = line.split("\t")[1]
         count = line.split("\t")[0]
-        dictCountPerNgram[ngram] = count
+        dict_count_per_ngram[ngram] = count
         if " " in ngram:  # has at least 2 tokens
             OtherTokens = " ".join(ngram.split(" ")[1:])
             if len(OtherTokens) > 2:
-                if functions.isAcronym(OtherTokens[1], 7):
+                if functions.is_acronym(OtherTokens[1], 7):
                     lstAcro.append(ngram)
                 else:
                     for word in ngram.split(" "):
@@ -50,7 +52,7 @@ def FindExpansionsOfAcronyms(lstNGramStat):
             if t.split(" ")[0] == tk.split(" ")[0] and not t.split(" ")[1].upper() == tk.split(" ")[1].upper():
                 if re.search(regex, endN.upper()):
                     if letter.upper() in lastN.upper():
-                        print(tk + dictCountPerNgram[tk] + "     " + t + dictCountPerNgram[t])
+                        print(tk + dict_count_per_ngram[tk] + "     " + t + dict_count_per_ngram[t])
                         counter += 1
                         if counter > 4:
                             break
