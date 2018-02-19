@@ -2,12 +2,13 @@ from .context import functions
 
 
 def test_split_ngram():
-    #pass
+    # pass
     assert functions.split_ngram("a b c") == []
     #
     assert functions.split_ngram("a AK b") == [('a', 'AK', 'b')]
     #
-    assert functions.split_ngram("l ACR1 b ACR2 c") == [('l', 'ACR1', 'b ACR2 c'), ('l ACR1 b', 'ACR2', 'c')]
+    assert functions.split_ngram("l ACR1 b ACR2 c") == [(
+        'l', 'ACR1', 'b ACR2 c'), ('l ACR1 b', 'ACR2', 'c')]
     #
     assert functions.split_ngram("ACR") == [('', 'ACR', '')]
 
@@ -15,9 +16,12 @@ def test_split_ngram():
 def test_extract_acronym_definition():
     maxLength = 7
 
-    assert functions.extract_acronym_definition("EKG (Elektrokardiogramm)", maxLength) == ('EKG', 'Elektrokardiogramm')
-    assert functions.extract_acronym_definition("Elektrokardiogramm (EKG)", maxLength) == ('EKG', 'Elektrokardiogramm')
-    assert functions.extract_acronym_definition("Elektrokardiogramm", maxLength) == None
+    assert functions.extract_acronym_definition(
+        "EKG (Elektrokardiogramm)", maxLength) == ('EKG', 'Elektrokardiogramm')
+    assert functions.extract_acronym_definition(
+        "Elektrokardiogramm (EKG)", maxLength) == ('EKG', 'Elektrokardiogramm')
+    assert functions.extract_acronym_definition(
+        "Elektrokardiogramm", maxLength) is None
 
 
 def test_is_acronym():
@@ -48,7 +52,8 @@ def test_simplify_german_string():
 
     assert functions.simplify_german_string("ekg") == "ecg"
     assert functions.simplify_german_string("heißen") == "heissen"
-    assert functions.simplify_german_string("Elektrokardiogramm") == "electrocardiogramm"
+    assert functions.simplify_german_string(
+        "Elektrokardiogramm") == "electrocardiogramm"
 
     # XXX Is it expected?
     assert functions.simplify_german_string("herz") == "herc"
@@ -56,7 +61,8 @@ def test_simplify_german_string():
 
 
 def test_random_sub_list():
-    # We output the input list if the length requested is larger or equal to the input length 
+    # We output the input list if the length requested is larger or equal to
+    # the input length
     assert functions.random_sub_list(["a", "b"], 2) == ["a", "b"]
     assert functions.random_sub_list(["a", "b"], 3) == ["a", "b"]
 
