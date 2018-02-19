@@ -52,7 +52,8 @@ def split_ngram(ngram):
     c = 0
     for t in lst_tokens:
         if is_acronym(t, 7, "Ð"):
-            tr = (" ".join(lst_tokens[0:c]), lst_tokens[c], " ".join(lst_tokens[c + 1:]))
+            tr = (" ".join(lst_tokens[0:c]),
+                  lst_tokens[c], " ".join(lst_tokens[c + 1:]))
             out.append(tr)
         c = c + 1
     return out
@@ -71,14 +72,20 @@ def extract_acronym_definition(str_probe, max_length):
         if str_probe[-1] == ")" and str_probe.count("(") == 1:
             left = str_probe.split("(")[0].strip()
             right = str_probe.split("(")[1][0:-1].strip()
-            if is_acronym(left, max_length, "Ð") and not is_acronym(right, max_length, "Ð"):
+            if is_acronym(left, max_length, "Ð") and not is_acronym(
+                    right, max_length, "Ð"):
                 return left, right
-            if is_acronym(right, max_length, "Ð") and not is_acronym(left, max_length, "Ð"):
+            if is_acronym(right, max_length, "Ð") and not is_acronym(
+                    left, max_length, "Ð"):
                 return right, left
 
 
-def fix_line_endings(long_text, char_ngram_dict, line_break_marker="¶", char_ngram_length=8,
-                     line_break_marker_position=3):
+def fix_line_endings(
+        long_text,
+        char_ngram_dict,
+        line_break_marker="¶",
+        char_ngram_length=8,
+        line_break_marker_position=3):
     """
     addresses the problem that many texts come with
            artificial line breaks. These breaks are removed if
@@ -115,7 +122,7 @@ def fix_line_endings(long_text, char_ngram_dict, line_break_marker="¶", char_ng
             logger.debug("With new line: %s", n_breaks)
             logger.debug("With space: %s", n_spaces)
             if n_spaces > n_breaks:
-                """ TODO: line_break_marker as delimiter  
+                """ TODO: line_break_marker as delimiter
                     What happens if the break marker symbol also occurs in the original text
                     probably safe: using the "¶" character for line breaks
                     Check for whole code how delimiters are handled and how this
@@ -207,17 +214,63 @@ def transliterate_to_seven_bit(str_in, language="de"):
     """
     substitutions = {}
     if language == "de":
-        substitutions = {"À": "A", "Á": "A", "Â": "A", "Ã": "A",
-                         "Ä": "AE", "Å": "AA", "Æ": "AE", "Ç": "C", "È": "E",
-                         "É": "E", "Ê": "E", "Ë": "E", "Ì": "I", "Í": "I", "Î": "I",
-                         "Ï": "I", "Ñ": "N", "Ò": "O", "Ó": "O", "Ô": "O", "Õ": "O",
-                         "Ö": "OE", "Ø": "OE", "Ù": "U", "Ú": "U", "Û": "U", "Ü": "UE"}
+        substitutions = {
+            "À": "A",
+            "Á": "A",
+            "Â": "A",
+            "Ã": "A",
+            "Ä": "AE",
+            "Å": "AA",
+            "Æ": "AE",
+            "Ç": "C",
+            "È": "E",
+            "É": "E",
+            "Ê": "E",
+            "Ë": "E",
+            "Ì": "I",
+            "Í": "I",
+            "Î": "I",
+            "Ï": "I",
+            "Ñ": "N",
+            "Ò": "O",
+            "Ó": "O",
+            "Ô": "O",
+            "Õ": "O",
+            "Ö": "OE",
+            "Ø": "OE",
+            "Ù": "U",
+            "Ú": "U",
+            "Û": "U",
+            "Ü": "UE"}
     if language == "en":
-        substitutions = {"À": "A", "Á": "A", "Â": "A", "Ã": "A",
-                         "Ä": "A", "Å": "A", "Æ": "AE", "Ç": "C", "È": "E",
-                         "É": "E", "Ê": "E", "Ë": "E", "Ì": "I", "Í": "I", "Î": "I",
-                         "Ï": "I", "Ñ": "N", "Ò": "O", "Ó": "O", "Ô": "O", "Õ": "O",
-                         "Ö": "O", "Ø": "O", "Ù": "U", "Ú": "U", "Û": "U", "Ü": "U"}
+        substitutions = {
+            "À": "A",
+            "Á": "A",
+            "Â": "A",
+            "Ã": "A",
+            "Ä": "A",
+            "Å": "A",
+            "Æ": "AE",
+            "Ç": "C",
+            "È": "E",
+            "É": "E",
+            "Ê": "E",
+            "Ë": "E",
+            "Ì": "I",
+            "Í": "I",
+            "Î": "I",
+            "Ï": "I",
+            "Ñ": "N",
+            "Ò": "O",
+            "Ó": "O",
+            "Ô": "O",
+            "Õ": "O",
+            "Ö": "O",
+            "Ø": "O",
+            "Ù": "U",
+            "Ú": "U",
+            "Û": "U",
+            "Ü": "U"}
     return "".join([substitutions.get(c, c) for c in str_in.upper()])
 
 
@@ -281,9 +334,11 @@ def simplify_german_string(str_in_german):
     :return:
     """
     str_in_german = str_in_german.lower()
-    str_in_german = str_in_german.replace("k", "c").replace("z", "c").replace("ß", "ss")
+    str_in_german = str_in_german.replace(
+        "k", "c").replace("z", "c").replace("ß", "ss")
     str_in_german = str_in_german.replace("é", "e").replace("à", "a")
-    return str_in_german.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue")
+    return str_in_german.replace("ä", "ae").replace(
+        "ö", "oe").replace("ü", "ue")
 
 
 def diacritics():
@@ -412,10 +467,16 @@ def find_acro_expansions(lst_n_gram_stat):
         for t in lst_non_acro:
             end_n = " ".join(t.split(" ")[1:])
             last_n = " ".join(t.split(" ")[-1])
-            if t.split(" ")[0] == tk.split(" ")[0] and not t.split(" ")[1].upper() == tk.split(" ")[1].upper():
+            if t.split(" ")[0] == tk.split(" ")[0] and not t.split(
+                    " ")[1].upper() == tk.split(" ")[1].upper():
                 if re.search(regex, end_n.upper()):
                     if letter.upper() in last_n.upper():
-                        print(tk + dict_count_per_ngram[tk] + "     " + t + dict_count_per_ngram[t])
+                        print(
+                            tk +
+                            dict_count_per_ngram[tk] +
+                            "     " +
+                            t +
+                            dict_count_per_ngram[t])
                         counter += 1
                         if counter > 4:
                             break

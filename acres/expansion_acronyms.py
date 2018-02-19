@@ -17,7 +17,8 @@ def find_acronym_expansion(lst_ngam_stat):
     """
 
     dict_count_per_ngram = {}
-    lstAcro = [] ;  lstNonAcro = []
+    lstAcro = []
+    lstNonAcro = []
     acro = False
     # TODO: check initialization of acro
     for line in lst_ngam_stat:
@@ -36,7 +37,8 @@ def find_acronym_expansion(lst_ngam_stat):
                             if word[1].isupper() or not word.isalpha():
                                 acro = True
                                 break
-                    if acro == False: lstNonAcro.append(ngram)
+                    if not acro:
+                        lstNonAcro.append(ngram)
 
     for tk in lstAcro:
         counter = 0
@@ -49,10 +51,17 @@ def find_acronym_expansion(lst_ngam_stat):
         for t in lstNonAcro:
             endN = " ".join(t.split(" ")[1:])
             lastN = " ".join(t.split(" ")[-1])
-            if t.split(" ")[0] == tk.split(" ")[0] and not t.split(" ")[1].upper() == tk.split(" ")[1].upper():
+            if t.split(" ")[0] == tk.split(" ")[0] and not t.split(
+                    " ")[1].upper() == tk.split(" ")[1].upper():
                 if re.search(regex, endN.upper()):
+                    # FIXME Local variable 'letter' might be referenced before assignment
                     if letter.upper() in lastN.upper():
-                        print(tk + dict_count_per_ngram[tk] + "     " + t + dict_count_per_ngram[t])
+                        print(
+                            tk +
+                            dict_count_per_ngram[tk] +
+                            "     " +
+                            t +
+                            dict_count_per_ngram[t])
                         counter += 1
                         if counter > 4:
                             break

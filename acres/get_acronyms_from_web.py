@@ -19,7 +19,7 @@ NEWLINE = "¶"
 NUMERIC = "Ð"
 
 
-def ngramsWebDump(url, minNumTokens, maxNumTokens):
+def ngrams_web_dump(url, minNumTokens, maxNumTokens):
     """
     Produces an n gram statistics from a Web Query, parsing the first return page
 
@@ -33,9 +33,8 @@ def ngramsWebDump(url, minNumTokens, maxNumTokens):
     proxy_config = import_proxy()
     try:
         if proxy_config["UseProxy"] == "yes":
-            http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + "@" + proxy_config[
-                "ProxyDomain"] + ":" + \
-                         proxy_config["ProxyPort"]
+            http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
+                "@" + proxy_config["ProxyDomain"] + ":" + proxy_config["ProxyPort"]
             https_proxy = http_proxy
             ftp_proxy = http_proxy
             proxy_dict = {
@@ -50,9 +49,17 @@ def ngramsWebDump(url, minNumTokens, maxNumTokens):
         return []
     outL = []
     txt = html2text.html2text(response.text)
-    txt = txt.replace("**", "").replace("\n", " ").replace("[", "[ ").replace("]",
-                                                                              " ]")  # .replace("(", "( ").replace(")", " )")
-    txt = txt.replace("„", "").replace('"', "").replace("'", "").replace(", ", " , ").replace(". ", " . ")
+    txt = txt.replace(
+        "**",
+        "").replace(
+        "\n",
+        " ").replace(
+            "[",
+            "[ ").replace(
+                "]",
+        " ]")  # .replace("(", "( ").replace(")", " )")
+    txt = txt.replace("„", "").replace('"', "").replace(
+        "'", "").replace(", ", " , ").replace(". ", " . ")
     out = ""
     # print(txt)
     words = txt.split(" ")
@@ -60,8 +67,19 @@ def ngramsWebDump(url, minNumTokens, maxNumTokens):
         if len(word) < 50:
             if not ('\\' in word or '/' in word or '&q=' in word):
                 out = out + " " + word
-    out = out.replace("  ", "\n").replace("[ ", "\n").replace(" ]", "\n").replace("|", "\n").replace("?", "\n").replace(
-        ":", "\n")
+    out = out.replace(
+        "  ",
+        "\n").replace(
+        "[ ",
+        "\n").replace(
+            " ]",
+            "\n").replace(
+                "|",
+                "\n").replace(
+                    "?",
+                    "\n").replace(
+                        ":",
+        "\n")
     output = functions.create_ngram_statistics(out, minNumTokens, maxNumTokens)
     for ngram in output:
         outL.append('{:0>4}'.format(output[ngram]) + "\t" + ngram)
@@ -75,10 +93,10 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     import pickle
 
     m = pickle.load(open("pickle//morphemes.p", "rb"))
-    # p = ngramsWebDump("https://www.google.at/search?q=EKG+Herz", 1, 10)
-    # p = ngramsWebDump("http://www.bing.de/search?cc=de&q=ekg+Herz", 1, 10)
-    p = ngramsWebDump('http://www.bing.de/search?cc=de&q="' + q + '"', 1, 10)
-    # p = ngramsWebDump('http://www.bing.de/search?cc=de&q=' + q , 1, 10)
+    # p = ngrams_web_dump("https://www.google.at/search?q=EKG+Herz", 1, 10)
+    # p = ngrams_web_dump("http://www.bing.de/search?cc=de&q=ekg+Herz", 1, 10)
+    p = ngrams_web_dump('http://www.bing.de/search?cc=de&q="' + q + '"', 1, 10)
+    # p = ngrams_web_dump('http://www.bing.de/search?cc=de&q=' + q , 1, 10)
     # f = open("c:\\Users\\schulz\\Nextcloud\\Terminology\\Corpora\\staging\\out.txt", 'wt')
     # f.write("\n".join(p))
     # f.close()
@@ -87,6 +105,6 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     for line in p:
         full = line.split("\t")[1]
         cnt = line.split("\t")[0]
-        s = rate_acronym_resolutions.GetAcronymScore(acro, full, m)
+        s = rate_acronym_resolutions.get_acronym_score(acro, full, m)
         if s > 0.01:
             logger.debug(str(s * int(cnt)) + "\t" + line)
