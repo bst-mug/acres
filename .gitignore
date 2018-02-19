@@ -118,4 +118,4 @@ config.ini
 data
 models
 out
-
+*.p
