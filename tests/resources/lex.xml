@@ -1,7 +1,34 @@
 <XML>
     <data>
         <lex>
-            <str>avocado</str>
+            <str>arbeits</str>
+        </lex>
+        <lex>
+            <str>kammer</str>
+        </lex>
+        <lex>
+            <str>kardio</str>
+        </lex>
+        <lex>
+            <str>krankheit</str>
+        </lex>
+        <lex>
+            <str>elektro</str>
+        </lex>
+        <lex>
+            <str>gramm</str>
+        </lex>
+        <lex>
+            <str>nieren</str>
+        </lex>
+        <lex>
+            <str>herz</str>
+        </lex>
+        <lex>
+            <str>koronar</str>
+        </lex>
+        <lex>
+            <str>el</str>
         </lex>
     </data>
 </XML>
