@@ -33,9 +33,8 @@ def ngramsWebDump(url, minNumTokens, maxNumTokens):
     proxy_config = import_proxy()
     try:
         if proxy_config["UseProxy"] == "yes":
-            http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + "@" + proxy_config[
-                "ProxyDomain"] + ":" + \
-                proxy_config["ProxyPort"]
+            http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
+                "@" + proxy_config["ProxyDomain"] + ":" + proxy_config["ProxyPort"]
             https_proxy = http_proxy
             ftp_proxy = http_proxy
             proxy_dict = {
@@ -50,8 +49,15 @@ def ngramsWebDump(url, minNumTokens, maxNumTokens):
         return []
     outL = []
     txt = html2text.html2text(response.text)
-    txt = txt.replace("**", "").replace("\n", " ").replace("[", "[ ").replace("]",
-                                                                              " ]")  # .replace("(", "( ").replace(")", " )")
+    txt = txt.replace(
+        "**",
+        "").replace(
+        "\n",
+        " ").replace(
+            "[",
+            "[ ").replace(
+                "]",
+        " ]")  # .replace("(", "( ").replace(")", " )")
     txt = txt.replace("„", "").replace('"', "").replace(
         "'", "").replace(", ", " , ").replace(". ", " . ")
     out = ""
@@ -61,8 +67,19 @@ def ngramsWebDump(url, minNumTokens, maxNumTokens):
         if len(word) < 50:
             if not ('\\' in word or '/' in word or '&q=' in word):
                 out = out + " " + word
-    out = out.replace("  ", "\n").replace("[ ", "\n").replace(" ]", "\n").replace("|", "\n").replace("?", "\n").replace(
-        ":", "\n")
+    out = out.replace(
+        "  ",
+        "\n").replace(
+        "[ ",
+        "\n").replace(
+            " ]",
+            "\n").replace(
+                "|",
+                "\n").replace(
+                    "?",
+                    "\n").replace(
+                        ":",
+        "\n")
     output = functions.create_ngram_statistics(out, minNumTokens, maxNumTokens)
     for ngram in output:
         outL.append('{:0>4}'.format(output[ngram]) + "\t" + ngram)

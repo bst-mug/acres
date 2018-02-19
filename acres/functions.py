@@ -80,8 +80,12 @@ def extract_acronym_definition(str_probe, max_length):
                 return right, left
 
 
-def fix_line_endings(long_text, char_ngram_dict, line_break_marker="¶", char_ngram_length=8,
-                     line_break_marker_position=3):
+def fix_line_endings(
+        long_text,
+        char_ngram_dict,
+        line_break_marker="¶",
+        char_ngram_length=8,
+        line_break_marker_position=3):
     """
     addresses the problem that many texts come with
            artificial line breaks. These breaks are removed if
@@ -210,17 +214,63 @@ def transliterate_to_seven_bit(str_in, language="de"):
     """
     substitutions = {}
     if language == "de":
-        substitutions = {"À": "A", "Á": "A", "Â": "A", "Ã": "A",
-                         "Ä": "AE", "Å": "AA", "Æ": "AE", "Ç": "C", "È": "E",
-                         "É": "E", "Ê": "E", "Ë": "E", "Ì": "I", "Í": "I", "Î": "I",
-                         "Ï": "I", "Ñ": "N", "Ò": "O", "Ó": "O", "Ô": "O", "Õ": "O",
-                         "Ö": "OE", "Ø": "OE", "Ù": "U", "Ú": "U", "Û": "U", "Ü": "UE"}
+        substitutions = {
+            "À": "A",
+            "Á": "A",
+            "Â": "A",
+            "Ã": "A",
+            "Ä": "AE",
+            "Å": "AA",
+            "Æ": "AE",
+            "Ç": "C",
+            "È": "E",
+            "É": "E",
+            "Ê": "E",
+            "Ë": "E",
+            "Ì": "I",
+            "Í": "I",
+            "Î": "I",
+            "Ï": "I",
+            "Ñ": "N",
+            "Ò": "O",
+            "Ó": "O",
+            "Ô": "O",
+            "Õ": "O",
+            "Ö": "OE",
+            "Ø": "OE",
+            "Ù": "U",
+            "Ú": "U",
+            "Û": "U",
+            "Ü": "UE"}
     if language == "en":
-        substitutions = {"À": "A", "Á": "A", "Â": "A", "Ã": "A",
-                         "Ä": "A", "Å": "A", "Æ": "AE", "Ç": "C", "È": "E",
-                         "É": "E", "Ê": "E", "Ë": "E", "Ì": "I", "Í": "I", "Î": "I",
-                         "Ï": "I", "Ñ": "N", "Ò": "O", "Ó": "O", "Ô": "O", "Õ": "O",
-                         "Ö": "O", "Ø": "O", "Ù": "U", "Ú": "U", "Û": "U", "Ü": "U"}
+        substitutions = {
+            "À": "A",
+            "Á": "A",
+            "Â": "A",
+            "Ã": "A",
+            "Ä": "A",
+            "Å": "A",
+            "Æ": "AE",
+            "Ç": "C",
+            "È": "E",
+            "É": "E",
+            "Ê": "E",
+            "Ë": "E",
+            "Ì": "I",
+            "Í": "I",
+            "Î": "I",
+            "Ï": "I",
+            "Ñ": "N",
+            "Ò": "O",
+            "Ó": "O",
+            "Ô": "O",
+            "Õ": "O",
+            "Ö": "O",
+            "Ø": "O",
+            "Ù": "U",
+            "Ú": "U",
+            "Û": "U",
+            "Ü": "U"}
     return "".join([substitutions.get(c, c) for c in str_in.upper()])
 
 
@@ -422,7 +472,11 @@ def find_acro_expansions(lst_n_gram_stat):
                 if re.search(regex, end_n.upper()):
                     if letter.upper() in last_n.upper():
                         print(
-                            tk + dict_count_per_ngram[tk] + "     " + t + dict_count_per_ngram[t])
+                            tk +
+                            dict_count_per_ngram[tk] +
+                            "     " +
+                            t +
+                            dict_count_per_ngram[t])
                         counter += 1
                         if counter > 4:
                             break

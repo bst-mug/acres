@@ -37,7 +37,7 @@ def find_acronym_expansion(lst_ngam_stat):
                             if word[1].isupper() or not word.isalpha():
                                 acro = True
                                 break
-                    if acro == False:
+                    if not acro:
                         lstNonAcro.append(ngram)
 
     for tk in lstAcro:
@@ -56,7 +56,11 @@ def find_acronym_expansion(lst_ngam_stat):
                 if re.search(regex, endN.upper()):
                     if letter.upper() in lastN.upper():
                         print(
-                            tk + dict_count_per_ngram[tk] + "     " + t + dict_count_per_ngram[t])
+                            tk +
+                            dict_count_per_ngram[tk] +
+                            "     " +
+                            t +
+                            dict_count_per_ngram[t])
                         counter += 1
                         if counter > 4:
                             break

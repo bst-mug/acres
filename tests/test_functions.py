@@ -33,18 +33,18 @@ def test_is_acronym():
     assert functions.is_acronym("Ecg", 3) == False
 
     # Double upper-case are acronyms
-    assert functions.is_acronym("AK", 2) == True
+    assert functions.is_acronym("AK", 2)
 
     # Acronyms should be shorter or equal to the maximum length
     assert functions.is_acronym("EKG", 2) == False
-    assert functions.is_acronym("EKG", 3) == True
+    assert functions.is_acronym("EKG", 3)
 
     # Acronyms can contain diacritics
     # XXX This fails with Python 2, because "Ä".isupper() == False
-    assert functions.is_acronym("ÄK", 3) == True
+    assert functions.is_acronym("ÄK", 3)
 
     # Acronyms can contain numbers
-    assert functions.is_acronym("5FU", 7) == True
+    assert functions.is_acronym("5FU", 7)
 
 
 def test_simplify_german_string():

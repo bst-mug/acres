@@ -39,7 +39,7 @@ def find_best_substitution(formToResolve, candidates,
             ngram = row.split("\t")[1]
             print(ngram)
             m = re.search(regexAcro, ngram, re.IGNORECASE)
-            if m is not None and not formToResolve in ngram:
+            if m is not None and formToResolve not in ngram:
                 segmL = functions.check_acro_vs_expansion(formToResolve, ngram)
                 # returns list like [[('Elektro', 'kardio', 'gramm')],
                 # [('Elektro', 'kardio', 'gramm')], [('Ele', 'ktrokardio', 'gramm')],

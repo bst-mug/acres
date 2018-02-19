@@ -34,14 +34,32 @@ def create_normalised_token_dump():
     allTokenVariants = set()
     with open(NGRAMSTAT) as f:
         for row in f:
-            row = row.replace("-", " ").replace("/",
-                                                " ").replace("(", " ").replace(")", " ")
+            row = row.replace(
+                "-",
+                " ").replace(
+                "/",
+                " ").replace(
+                "(",
+                " ").replace(
+                ")",
+                " ")
             tokens = row.split(" ")
             for token in tokens:
                 allTokens.add(token)
         for token in allTokens:
-            token = token.replace(".", "").replace(",", "").replace(";", "").replace(":", "").replace("!", "").replace(
-                "?", "")
+            token = token.replace(
+                ".",
+                "").replace(
+                ",",
+                "").replace(
+                ";",
+                "").replace(
+                ":",
+                "").replace(
+                    "!",
+                    "").replace(
+                        "?",
+                "")
             allTokenVariants.add(token)
             allTokenVariants.add(token.lower())
             token = token.replace("k", "c").replace("z", "c")
@@ -155,10 +173,10 @@ def create_acro_dump():
     for n in m:
         row = (m[n])
         ngram = row.split("\t")[1]
-        if ngram.isalnum() and not "Ð" in ngram:
+        if ngram.isalnum() and "Ð" not in ngram:
             if functions.is_acronym(ngram, 7):
                 # plausible max length for German medical language
-                if not ngram in a:
+                if ngram not in a:
                     a.append(ngram)
 
         if " " in ngram:
@@ -220,7 +238,7 @@ def create_corpus_char_stat_dump(
                 for i in range(0, len(line) - (ngramlength - 1)):
                     ngram = line[0 + i: ngramlength + i].strip()
                     if len(ngram) == ngramlength:
-                        if not ngram in dict_char_ngrams:
+                        if ngram not in dict_char_ngrams:
                             dict_char_ngrams[ngram] = 1
                         else:
                             dict_char_ngrams[ngram] += 1

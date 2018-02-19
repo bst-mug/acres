@@ -119,7 +119,7 @@ def findEmbeddings(strLeft,
                 # might suppress low n-gram frequencies
                 ngram = row.split("\t")[1].strip()
                 m = re.search(regexEmbed, ngram, re.IGNORECASE)
-                if m is not None and not row in allBeds:
+                if m is not None and row not in allBeds:
                     allBeds.append(row)
                     logger.debug(row)
                     count += 1
@@ -157,8 +157,9 @@ def findEmbeddings(strLeft,
                 logger.debug("Surrounding strMiddle: %s", w)
                 newSets.append(index[w])
             ngramsWithSurroundings = list(set.intersection(*newSets))
-            logger.debug("Size of list that includes surrounding elements: %d", len(
-                ngramsWithSurroundings))
+            logger.debug(
+                "Size of list that includes surrounding elements: %d",
+                len(ngramsWithSurroundings))
             ngramsWithSurroundings.sort(reverse=True)
             # Surrounding list sorted
             c = 0
@@ -173,9 +174,9 @@ def findEmbeddings(strLeft,
                     # print(regexBed)
                     # print(row)
                     out = m.group(1).strip()
-                    if (not strMiddle in out) and \
+                    if (strMiddle not in out) and \
                             len(out) > minWinSize and \
-                            not "¶" in out and (not DIGIT in out):
+                            "¶" not in out and (DIGIT not in out):
                         # print(ngramfrequency, out, "   [" + ngram + "]")
                         c = c + 1
                         outL.append(freq + "\t" + out)

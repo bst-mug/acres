@@ -53,7 +53,7 @@ def find_synonyms():
         if count % 1000 == 0:
             time.sleep(10)
         # and ngram.count(" ") < 3:
-        if not ngram.isupper() and not NEWLINE in ngram and count % div == 0:
+        if not ngram.isupper() and NEWLINE not in ngram and count % div == 0:
             # ngrams with newlines substitutes ("¶") seemed to be useless for
             # this purpose
 
@@ -98,24 +98,41 @@ def find_synonyms():
                     leftString = "*"
                 if rightString == "":
                     rightString = "*"
-                liCorpus = get_synonyms_from_ngrams.findEmbeddings(leftString, acronym, rightString, ngramstat, index,
-                                                                   minWinSize, minfreq, maxcount, minNumberTokens,
-                                                                   maxNumberTokens, False)
+                liCorpus = get_synonyms_from_ngrams.findEmbeddings(
+                    leftString,
+                    acronym,
+                    rightString,
+                    ngramstat,
+                    index,
+                    minWinSize,
+                    minfreq,
+                    maxcount,
+                    minNumberTokens,
+                    maxNumberTokens,
+                    False)
 
                 for item in liCorpus:
                     oldExp = ""
                     exp = item.split("\t")[1]  # Ngram expression
                     f = int(item.split("\t")[0])  # Frequency
-                    if re.search("^[\ \-A-Za-z0-9" + dia + "]*$", exp) is not None and acronym.lower() != exp.lower()[0:len(
+                    if re.search(
+                        "^[\ \-A-Za-z0-9" + dia + "]*$",
+                        exp) is not None and acronym.lower() != exp.lower()[
+                        0:len(
                             acronym.lower())]:
                         if exp != oldExp:
                             scoreCorpus = 0
                             scoreCorpus = rate_acronym_resolutions.GetAcronymScore(
                                 acronym, exp, morphemes)
                             if scoreCorpus > 0:
-                                result = str(round(scoreCorpus * math.log10(f), 2)) + " " + exp + " " + str(
-                                    round(scoreCorpus, 2)) + " " + str(f) + " " + "\t" + ngram
-                                if not acronym in dLogCorpus:
+                                result = str(
+                                    round(
+                                        scoreCorpus * math.log10(f),
+                                        2)) + " " + exp + " " + str(
+                                    round(
+                                        scoreCorpus,
+                                        2)) + " " + str(f) + " " + "\t" + ngram
+                                if acronym not in dLogCorpus:
                                     dLogCorpus[acronym] = [result]
                                 else:
                                     dLogCorpus[acronym].append(result)
@@ -125,16 +142,20 @@ def find_synonyms():
                     oldExp = ""
                     exp = item.split("\t")[1]  # Ngram expression
                     f = int(item.split("\t")[0])  # Frequency
-                    if re.search("^[\ \-A-Za-z0-9" + dia + "]*$", exp) is not None and acronym.lower() != exp.lower()[0:len(
+                    if re.search(
+                        "^[\ \-A-Za-z0-9" + dia + "]*$",
+                        exp) is not None and acronym.lower() != exp.lower()[
+                        0:len(
                             acronym.lower())]:
                         if exp != oldExp:
                             scoreWeb = 0
                             scoreWeb = rate_acronym_resolutions.GetAcronymScore(
                                 acronym, exp, morphemes)
                             if scoreWeb > 0:
-                                result = str(round(scoreWeb * math.log10(f), 2)) + " " + exp + " " + str(
-                                    round(scoreWeb, 2)) + " " + str(f) + " " + "\t" + ngram
-                                if not acronym in dLogWeb:
+                                result = str(round(scoreWeb * math.log10(f),
+                                                   2)) + " " + exp + " " + str(round(scoreWeb,
+                                                                                     2)) + " " + str(f) + " " + "\t" + ngram
+                                if acronym not in dLogWeb:
                                     dLogWeb[acronym] = [result]
                                 else:
                                     dLogWeb[acronym].append(result)
