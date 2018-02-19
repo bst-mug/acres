@@ -51,7 +51,8 @@ def find_acronym_expansion(lst_ngam_stat):
         for t in lstNonAcro:
             endN = " ".join(t.split(" ")[1:])
             lastN = " ".join(t.split(" ")[-1])
-            if t.split(" ")[0] == tk.split(" ")[0] and not t.split(" ")[1].upper() == tk.split(" ")[1].upper():
+            if t.split(" ")[0] == tk.split(" ")[0] and not t.split(
+                    " ")[1].upper() == tk.split(" ")[1].upper():
                 if re.search(regex, endN.upper()):
                     if letter.upper() in lastN.upper():
                         print(

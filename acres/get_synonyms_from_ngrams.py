@@ -106,7 +106,8 @@ def findEmbeddings(strLeft,
 
         logger.debug("press key!")
 
-    for row in sorted(selRows, reverse=True):  # iteration through all matching ngrams
+    for row in sorted(
+            selRows, reverse=True):  # iteration through all matching ngrams
         logger.debug(row)
         # input("press key!)
         ngram = row.split("\t")[1]
@@ -118,7 +119,7 @@ def findEmbeddings(strLeft,
                 # might suppress low n-gram frequencies
                 ngram = row.split("\t")[1].strip()
                 m = re.search(regexEmbed, ngram, re.IGNORECASE)
-                if m != None and not row in allBeds:
+                if m is not None and not row in allBeds:
                     allBeds.append(row)
                     logger.debug(row)
                     count += 1
@@ -168,7 +169,7 @@ def findEmbeddings(strLeft,
                 ngram = row.split("\t")[1].strip()
                 freq = row.split("\t")[0]
                 m = re.search(regexBed, ngram, re.IGNORECASE)
-                if m != None:
+                if m is not None:
                     # print(regexBed)
                     # print(row)
                     out = m.group(1).strip()
@@ -202,14 +203,17 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     # Parms: minWinSize, minfreq, maxcount, minNumberTokens, maxNumberTokens
     # print(findEmbeddings("TRINS", ngramstat, index, 1, 3, 10, 6))
     # print(findEmbeddings("HRST", ngramstat, index, 15, 3, 20, 6)) # wird nicht gefunden!
-    # print(findEmbeddings("ACVB", ngramstat, index, 15, 3, 10, 9))# wird nicht gefunden!
+    # print(findEmbeddings("ACVB", ngramstat, index, 15, 3, 10, 9))# wird
+    # nicht gefunden!
 
-    # print(findEmbeddings("Rö-Thorax", ngramstat, index, 10, 1, 20, 3)) # wird gefunden!
+    # print(findEmbeddings("Rö-Thorax", ngramstat, index, 10, 1, 20, 3)) #
+    # wird gefunden!
 
     # print(findEmbeddings("TRINS", ngramstat, index, 15, 1, 50, 3))
     # print(findEmbeddings("TRINS", ngramstat, index, 15, 1, 100, 3))
     # print(findEmbeddings("koronare Herzkrankheit", ngramstat, index, 20, 1, 100, 5))
-    # print(findEmbeddings("re OL", ngramstat, index, 5, 1, 100, 6)) # OL kommt nur 4 mal vor !
+    # print(findEmbeddings("re OL", ngramstat, index, 5, 1, 100, 6)) # OL
+    # kommt nur 4 mal vor !
 
     # print(findEmbeddings("Herz- und", ngramstat, index, 20, 1, 100, 5))
     # print(findEmbeddings("lab. maj", ngramstat, index, 20, 3, 100, 5, 6))

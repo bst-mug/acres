@@ -33,9 +33,10 @@ def GetAcronymScore(acro, full, sMorph):
     # XXX Dependent on German medical language
     lAffixDeOne = ["a", "e", "i", "n", "o", "s", ]
     lAffixDeTwo = ["ae", "en", "er", "em", "es", "is", "um", "us"]
-    # full form contains an acronym definition pattern (normally only yielded from Web scraping)
+    # full form contains an acronym definition pattern (normally only yielded
+    # from Web scraping)
     ret = functions.extract_acronym_definition(full, 7)
-    if ret != None:
+    if ret is not None:
         if ret[0] == acro:
             full = ret[1]
             score = 100  # return???
@@ -56,8 +57,10 @@ def GetAcronymScore(acro, full, sMorph):
     # Plural form of acronym reduced to singular ("s", often not found in non English full forms)
     # e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)
     # These characters cannot be always expected to occur in the full form
-    # We assume that plurals and genitives of acronyms are always marked with lower case "s"
-    if (acro[-1] == "s" or acro[-1] == "x" or acro[-1] == "X") and acro[-2:-1].isupper():
+    # We assume that plurals and genitives of acronyms are always marked with
+    # lower case "s"
+    if (acro[-1] == "s" or acro[-1] == "x" or acro[-1]
+            == "X") and acro[-2:-1].isupper():
         acro = acro[0:-1]
     # relative length, cf.
     # SCHWARTZ, Ariel S.; HEARST, Marti A. A simple algorithm for identifying abbreviation
@@ -84,7 +87,8 @@ def GetAcronymScore(acro, full, sMorph):
         return 0
     if not acroL[-1] in lastWord[0:-1]:
         return 0
-    # for each word in full higher than length of acronym, penalisation factor (square)
+    # for each word in full higher than length of acronym, penalisation factor
+    # (square)
     if len(acroL) < fullL.count(" ") + 1:
         # TODO does not use previous penalization factor
         pen = 1 / ((fullL.count(" ") + 1 - len(acroL)) * 2)
@@ -100,7 +104,7 @@ def GetAcronymScore(acro, full, sMorph):
     expUpp = expUpp.upper()  # FIXME not needed?
     # if upper case word initial is not represented in the acronym, then
     # penalisation
-    if re.search(expUpp, acro) == None:
+    if re.search(expUpp, acro) is None:
         pen = pen * 0.25  # FIXME: check whether right
 
     # FIXME duplicate code at functions.CheckAcroVsFull()
@@ -138,7 +142,7 @@ def GetAcronymScore(acro, full, sMorph):
         regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
     for reg in regs:
         # print(reg)
-        if re.search(reg, fl, re.IGNORECASE) != None:
+        if re.search(reg, fl, re.IGNORECASE) is not None:
             splits.append(re.findall(reg, fl, re.IGNORECASE)[0])
     # END of duplicate code
 
@@ -149,7 +153,8 @@ def GetAcronymScore(acro, full, sMorph):
         for fragment in split:
             # !!!! Specific for German
             # TODO : check whether the function  substitute_k_and_f_by_context
-            # TODO : could be used instead (produces 7-Bit string without K and F)
+            # TODO : could be used instead (produces 7-Bit string without K and
+            # F)
             fragment = functions.simplify_german_string(fragment).strip()
             # C, K, and Z no longer distinguished
             # XXX Soundex as an alternative ??
@@ -159,12 +164,14 @@ def GetAcronymScore(acro, full, sMorph):
             if fragment in sMorph or len(fragment) == 1:
                 s = s + 1
             else:
-                if (len(fragment) > 2) and (fragment[-1] in lAffixDeOne) and (fragment[0:-1] in sMorph):
+                if (len(fragment) > 2) and (
+                        fragment[-1] in lAffixDeOne) and (fragment[0:-1] in sMorph):
                     # stripping one character suffix or infix
                     logger.debug(fragment[0:-1])
                     s = s + 1
                 else:
-                    if (len(fragment)) > 3 and (fragment[-2:] in lAffixDeTwo) and (fragment[0:-2] in sMorph):
+                    if (len(fragment)) > 3 and (
+                            fragment[-2:] in lAffixDeTwo) and (fragment[0:-2] in sMorph):
                         # stripping two character suffix
                         logger.debug(fragment[0:-2])
                         s = s + 1

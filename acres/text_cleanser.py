@@ -2,7 +2,8 @@ import re
 from acres import functions
 
 
-def find_best_substitution(formToResolve, candidates, tokenlist, shortformtype, context):
+def find_best_substitution(formToResolve, candidates,
+                           tokenlist, shortformtype, context):
     """
     This will eventually be the master function invoked by the text cleansing process
     Finds the best resolution of a nonlexicalised form
@@ -38,7 +39,7 @@ def find_best_substitution(formToResolve, candidates, tokenlist, shortformtype, 
             ngram = row.split("\t")[1]
             print(ngram)
             m = re.search(regexAcro, ngram, re.IGNORECASE)
-            if m != None and not formToResolve in ngram:
+            if m is not None and not formToResolve in ngram:
                 segmL = functions.check_acro_vs_expansion(formToResolve, ngram)
                 # returns list like [[('Elektro', 'kardio', 'gramm')],
                 # [('Elektro', 'kardio', 'gramm')], [('Ele', 'ktrokardio', 'gramm')],

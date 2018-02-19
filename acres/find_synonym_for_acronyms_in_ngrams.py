@@ -54,7 +54,8 @@ def find_synonyms():
             time.sleep(10)
         # and ngram.count(" ") < 3:
         if not ngram.isupper() and not NEWLINE in ngram and count % div == 0:
-            # ngrams with newlines substitutes ("¶") seemed to be useless for this purpose
+            # ngrams with newlines substitutes ("¶") seemed to be useless for
+            # this purpose
 
             logger.debug("-----------------------")
             logger.debug(ngram)
@@ -105,7 +106,7 @@ def find_synonyms():
                     oldExp = ""
                     exp = item.split("\t")[1]  # Ngram expression
                     f = int(item.split("\t")[0])  # Frequency
-                    if re.search("^[\ \-A-Za-z0-9" + dia + "]*$", exp) != None and acronym.lower() != exp.lower()[0:len(
+                    if re.search("^[\ \-A-Za-z0-9" + dia + "]*$", exp) is not None and acronym.lower() != exp.lower()[0:len(
                             acronym.lower())]:
                         if exp != oldExp:
                             scoreCorpus = 0
@@ -124,7 +125,7 @@ def find_synonyms():
                     oldExp = ""
                     exp = item.split("\t")[1]  # Ngram expression
                     f = int(item.split("\t")[0])  # Frequency
-                    if re.search("^[\ \-A-Za-z0-9" + dia + "]*$", exp) != None and acronym.lower() != exp.lower()[0:len(
+                    if re.search("^[\ \-A-Za-z0-9" + dia + "]*$", exp) is not None and acronym.lower() != exp.lower()[0:len(
                             acronym.lower())]:
                         if exp != oldExp:
                             scoreWeb = 0

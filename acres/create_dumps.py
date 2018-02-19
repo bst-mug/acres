@@ -204,7 +204,8 @@ def create_morpho_dump():
     pickle.dump(sMorph, open("pickle//morphemes.p", "wb"))
 
 
-def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="Ð", break_marker="¶"):
+def create_corpus_char_stat_dump(
+        corpus_path, ngramlength=8, digit_placeholder="Ð", break_marker="¶"):
     counter = 0
     dict_char_ngrams = {}
     files = os.listdir(corpus_path)
@@ -235,7 +236,8 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
 # create_corpus_char_stat_dump("data/samples")
 
 
-def create_corpus_ngramstat_dump(Fixlines=True, digit_placeholder="Ð", break_marker="¶"):
+def create_corpus_ngramstat_dump(
+        Fixlines=True, digit_placeholder="Ð", break_marker="¶"):
     """
     Takes the path with the corpus.
     It requires that all documents are in UTF-8 text

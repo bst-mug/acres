@@ -72,9 +72,11 @@ def extract_acronym_definition(str_probe, max_length):
         if str_probe[-1] == ")" and str_probe.count("(") == 1:
             left = str_probe.split("(")[0].strip()
             right = str_probe.split("(")[1][0:-1].strip()
-            if is_acronym(left, max_length, "Ð") and not is_acronym(right, max_length, "Ð"):
+            if is_acronym(left, max_length, "Ð") and not is_acronym(
+                    right, max_length, "Ð"):
                 return left, right
-            if is_acronym(right, max_length, "Ð") and not is_acronym(left, max_length, "Ð"):
+            if is_acronym(right, max_length, "Ð") and not is_acronym(
+                    left, max_length, "Ð"):
                 return right, left
 
 
@@ -116,7 +118,7 @@ def fix_line_endings(long_text, char_ngram_dict, line_break_marker="¶", char_ng
             logger.debug("With new line: %s", n_breaks)
             logger.debug("With space: %s", n_spaces)
             if n_spaces > n_breaks:
-                """ TODO: line_break_marker as delimiter  
+                """ TODO: line_break_marker as delimiter
                     What happens if the break marker symbol also occurs in the original text
                     probably safe: using the "¶" character for line breaks
                     Check for whole code how delimiters are handled and how this
@@ -285,7 +287,8 @@ def simplify_german_string(str_in_german):
     str_in_german = str_in_german.replace(
         "k", "c").replace("z", "c").replace("ß", "ss")
     str_in_german = str_in_german.replace("é", "e").replace("à", "a")
-    return str_in_german.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue")
+    return str_in_german.replace("ä", "ae").replace(
+        "ö", "oe").replace("ü", "ue")
 
 
 def diacritics():
@@ -414,7 +417,8 @@ def find_acro_expansions(lst_n_gram_stat):
         for t in lst_non_acro:
             end_n = " ".join(t.split(" ")[1:])
             last_n = " ".join(t.split(" ")[-1])
-            if t.split(" ")[0] == tk.split(" ")[0] and not t.split(" ")[1].upper() == tk.split(" ")[1].upper():
+            if t.split(" ")[0] == tk.split(" ")[0] and not t.split(
+                    " ")[1].upper() == tk.split(" ")[1].upper():
                 if re.search(regex, end_n.upper()):
                     if letter.upper() in last_n.upper():
                         print(
