@@ -154,7 +154,7 @@ def get_acronym_score(acro, full, sMorph = None):
     # END of duplicate code
 
     score = 0
-    logger.debug(splits)
+    # logger.debug(splits)
     for split in splits:
         s = 0
         for fragment in split:
@@ -165,27 +165,35 @@ def get_acronym_score(acro, full, sMorph = None):
             fragment = functions.simplify_german_string(fragment).strip()
             # C, K, and Z no longer distinguished
             # XXX Soundex as an alternative ??
-            logger.debug("FR: " + fragment)
+            # logger.debug("FR: " + fragment)
             # Check whether fragments are in german / english morpheme list
             # From Morphosaurus
-            if fragment in sMorph or len(fragment) == 1:
-                s = s + 1
-            else:
-                if (len(fragment) > 2) and (
-                        fragment[-1] in lAffixDeOne) and (fragment[0:-1] in sMorph):
-                    # stripping one character suffix or infix
-                    logger.debug(fragment[0:-1])
-                    s = s + 1
-                else:
-                    if (len(fragment)) > 3 and (
-                            fragment[-2:] in lAffixDeTwo) and (fragment[0:-2] in sMorph):
-                        # stripping two character suffix
-                        logger.debug(fragment[0:-2])
-                        s = s + 1
+            if len(fragment) == 1:
+                s += 1
+                continue
+
+            if fragment in sMorph:
+                logger.debug(fragment)
+                s += 1
+                continue
+
+            if (len(fragment) > 2) and (
+                    fragment[-1] in lAffixDeOne) and (fragment[0:-1] in sMorph):
+                # stripping one character suffix or infix
+                logger.debug(fragment[0:-1])
+                s += 1
+                continue
+
+            if (len(fragment)) > 3 and (
+                    fragment[-2:] in lAffixDeTwo) and (fragment[0:-2] in sMorph):
+                # stripping two character suffix
+                logger.debug(fragment[0:-2])
+                s += 1
+                continue
+
         if s / len(split) > score:
             score = s / len(split)
             if score == 0:
                 score = 0.01
             score = score * pen
     return score
-
