@@ -217,7 +217,7 @@ def create_morpho_dump():
                 # print(row)
                 sMorph.add(row)
 
-    pickle.dump(sMorph, open("pickle//morphemes.p", "wb"))
+    pickle.dump(sMorph, open("models/pickle/morphemes.p", "wb"))
 
 
 def create_corpus_char_stat_dump(

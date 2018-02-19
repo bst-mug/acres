@@ -1,8 +1,8 @@
 [DEFAULT]
 NGRAMFILE =  path_to_ngram_file
 CORPUSPATH = path_to_document_corpus
-MORPH_ENG = resources/lex_en.xml
-MORPH_GER = resources/lex_de.xml
+MORPH_ENG = tests/resources/lex.xml
+MORPH_GER = tests/resources/lex.xml
 
 [proxy]
 UseProxy = no
