@@ -1,6 +1,7 @@
 import re
 from acres import functions
 
+
 def find_best_substitution(formToResolve, candidates, tokenlist, shortformtype, context):
     """
     This will eventually be the master function invoked by the text cleansing process
@@ -28,7 +29,8 @@ def find_best_substitution(formToResolve, candidates, tokenlist, shortformtype, 
     if shortformtype == "AA":
         regexAcro = ""
         out = []
-        formToResolve = formToResolve.replace(".", "").replace("-", "").replace("/", " ")
+        formToResolve = formToResolve.replace(
+            ".", "").replace("-", "").replace("/", " ")
         for c in formToResolve:
             regexAcro = regexAcro + c + ".*"
             regexAcro = "^" + regexAcro
@@ -47,8 +49,10 @@ def find_best_substitution(formToResolve, candidates, tokenlist, shortformtype, 
                     summ = 0
                     for seg in segms:
                         seg = seg.strip()
-                        if seg in tokenlist: summ += 1
-                    if summ > maxScore: maxScore = summ
+                        if seg in tokenlist:
+                            summ += 1
+                    if summ > maxScore:
+                        maxScore = summ
                 out.append('{:0>2}'.format(str(maxScore)) + "\t" + ngram)
         out.sort(reverse=True)
         return out

@@ -26,7 +26,7 @@ def create_normalised_token_dump():
     :return:
     """
     NGRAMSTAT = functions.import_conf("NGRAMFILE")
-    ##"..\\..\\stat\corpus_cardio_training_cleaned_1_to_7gram_stat.txt"
+    # "..\\..\\stat\corpus_cardio_training_cleaned_1_to_7gram_stat.txt"
     # ngram statistics representing a specific document genre and domain
     print(NGRAMSTAT)
 
@@ -34,7 +34,8 @@ def create_normalised_token_dump():
     allTokenVariants = set()
     with open(NGRAMSTAT) as f:
         for row in f:
-            row = row.replace("-", " ").replace("/", " ").replace("(", " ").replace(")", " ")
+            row = row.replace("-", " ").replace("/",
+                                                " ").replace("(", " ").replace(")", " ")
             tokens = row.split(" ")
             for token in tokens:
                 allTokens.add(token)
@@ -46,10 +47,12 @@ def create_normalised_token_dump():
             token = token.replace("k", "c").replace("z", "c")
             allTokenVariants.add(token)
             allTokenVariants.add(token.lower())
-            token = token.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("ß", "ss")
+            token = token.replace("ä", "ae").replace(
+                "ö", "oe").replace("ü", "ue").replace("ß", "ss")
             allTokenVariants.add(token)
             allTokenVariants.add(token.lower())
     pickle.dump(allTokenVariants, open("tokens.p", "wb"))
+
 
 def create_ngramstat_dump(ngram_stat_filename, ngramstat, minFreq):
     """
@@ -70,13 +73,13 @@ def create_ngramstat_dump(ngram_stat_filename, ngramstat, minFreq):
                 freq = '{:0>7}'.format(int(row.split("\t")[0]))
                 ngram = row.split("\t")[1].strip()
                 if int(freq) >= minFreq:
-                    ngramstat[ID] = freq + "\t" + ngram;
+                    ngramstat[ID] = freq + "\t" + ngram
                     ID += 1
                     # adding variations according to specific tokenization
                     # rules dependent on punctuation chars,
                     # guided by obseverations of German clinical language.
                     if "-" in row:
-                        ## !!! GERMAN-DEPENDENT !!!
+                        # !!! GERMAN-DEPENDENT !!!
                         # Variant 1: hyphen may be omitted (non-standard German)
                         # "Belastungs-Dyspnoe" -->  "Belastungs Dyspnoe"
                         ngramstat[ID] = freq + "\t" + ngram.replace("-", " ")
@@ -103,15 +106,18 @@ def create_ngramstat_dump(ngram_stat_filename, ngramstat, minFreq):
                     if ", " in row:
                         # Variant 5: insertion of space before comma, to make the
                         # preceding token accessible
-                        ngramstat[ID] = freq + "\t" + ngram.replace(", ", " , ")
+                        ngramstat[ID] = freq + "\t" + \
+                            ngram.replace(", ", " , ")
                         ID += 1
                     if "; " in row:
                         # the same with semicolon
-                        ngramstat[ID] = freq + "\t" + ngram.replace("; ", " ; ")
+                        ngramstat[ID] = freq + "\t" + \
+                            ngram.replace("; ", " ; ")
                         ID += 1
                     if ": " in row:
                         # the same with colon
-                        ngramstat[ID] = freq + "\t" + ngram.replace(": ", " : ")
+                        ngramstat[ID] = freq + "\t" + \
+                            ngram.replace(": ", " : ")
                         ID += 1
 
     index = collections.defaultdict(set)
@@ -128,7 +134,6 @@ def create_ngramstat_dump(ngram_stat_filename, ngramstat, minFreq):
 
     pickle.dump(ngramstat, open("pickle//ngramstat.p", "wb"))
     pickle.dump(index, open("pickle//index.p", "wb"))
-
 
 
 def create_acro_dump():
@@ -153,7 +158,8 @@ def create_acro_dump():
         if ngram.isalnum() and not "Ð" in ngram:
             if functions.is_acronym(ngram, 7):
                 # plausible max length for German medical language
-                if not ngram in a: a.append(ngram)
+                if not ngram in a:
+                    a.append(ngram)
 
         if " " in ngram:
             tokens = ngram.split(" ")
@@ -198,7 +204,7 @@ def create_morpho_dump():
     pickle.dump(sMorph, open("pickle//morphemes.p", "wb"))
 
 
-def create_corpus_char_stat_dump(corpus_path, ngramlength = 8, digit_placeholder = "Ð", break_marker = "¶"):
+def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="Ð", break_marker="¶"):
     counter = 0
     dict_char_ngrams = {}
     files = os.listdir(corpus_path)
@@ -210,27 +216,26 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength = 8, digit_placeholder
                 for line in single_document:
                     line = functions.clear_digits(line, digit_placeholder)
                     str_doc = str_doc + line.strip() + break_marker
-                for i in range(0, len(line) - (ngramlength -1)):
-                        ngram = line[0 + i: ngramlength + i].strip()
-                        if len(ngram) == ngramlength:
-                            if not ngram in dict_char_ngrams:
-                                dict_char_ngrams[ngram] = 1
-                            else:
-                                dict_char_ngrams[ngram] +=1
+                for i in range(0, len(line) - (ngramlength - 1)):
+                    ngram = line[0 + i: ngramlength + i].strip()
+                    if len(ngram) == ngramlength:
+                        if not ngram in dict_char_ngrams:
+                            dict_char_ngrams[ngram] = 1
+                        else:
+                            dict_char_ngrams[ngram] += 1
 
             except Exception:
                 pass
             single_document.close()
 
-    pickle.dump(dict_char_ngrams, open("models/pickle/character_ngrams.p", "wb"))
+    pickle.dump(dict_char_ngrams, open(
+        "models/pickle/character_ngrams.p", "wb"))
 
 
 # create_corpus_char_stat_dump("data/samples")
 
 
-
-def create_corpus_ngramstat_dump(Fixlines = True, digit_placeholder = "Ð", break_marker = "¶"):
-
+def create_corpus_ngramstat_dump(Fixlines=True, digit_placeholder="Ð", break_marker="¶"):
     """
     Takes the path with the corpus.
     It requires that all documents are in UTF-8 text
@@ -251,9 +256,12 @@ def create_corpus_ngramstat_dump(Fixlines = True, digit_placeholder = "Ð", brea
             # if Fixlines:
             #     document_content = functions.fix_line_endings(document_content, d, "break_marker")
             if len(digit_placeholder) == 1:
-                document_content = functions.clear_digits(document_content, digit_placeholder)
-            document_content = document_content.replace("  ", " ").replace("  ", " ")
-            document_content = document_content.replace(break_marker, " " + break_marker + " ")
+                document_content = functions.clear_digits(
+                    document_content, digit_placeholder)
+            document_content = document_content.replace(
+                "  ", " ").replace("  ", " ")
+            document_content = document_content.replace(
+                break_marker, " " + break_marker + " ")
         entire_corpus = entire_corpus + document_content + "\n\n"
         counter += 1
 
@@ -273,5 +281,3 @@ def load_dumps():
     print("-")
     normalisedTokens = pickle.load(open("pickle//tokens.p", "rb"))
     print("End Read Dump")
-    
-

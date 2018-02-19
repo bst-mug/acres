@@ -32,7 +32,8 @@ def find_synonyms():
 
     ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
     index = pickle.load(open("pickle//index.p", "rb"))
-    acronymNgrams = pickle.load(open("pickle//acronymNgrams.p", "rb"))  # ngrams that contain at least one acronym
+    # ngrams that contain at least one acronym
+    acronymNgrams = pickle.load(open("pickle//acronymNgrams.p", "rb"))
     morphemes = pickle.load(open("pickle//morphemes.p", "rb"))
 
     dia = functions.diacritics()  # list of diacritic characters
@@ -49,8 +50,10 @@ def find_synonyms():
     count = 0
     for ngram in acronymNgrams:  # language model, filtered by ngrams containing acronyms
         count = count + 1
-        if count % 1000 == 0: time.sleep(10)
-        if not ngram.isupper() and not NEWLINE in ngram and count % div == 0:  # and ngram.count(" ") < 3:
+        if count % 1000 == 0:
+            time.sleep(10)
+        # and ngram.count(" ") < 3:
+        if not ngram.isupper() and not NEWLINE in ngram and count % div == 0:
             # ngrams with newlines substitutes ("¶") seemed to be useless for this purpose
 
             logger.debug("-----------------------")
@@ -90,8 +93,10 @@ def find_synonyms():
                     liWeb = get_acronyms_from_web.ngramsWebDump(strURL, 1, 10)
 
                 # Prepare parameters for corpus model
-                if leftString == "": leftString = "*"
-                if rightString == "": rightString = "*"
+                if leftString == "":
+                    leftString = "*"
+                if rightString == "":
+                    rightString = "*"
                 liCorpus = get_synonyms_from_ngrams.findEmbeddings(leftString, acronym, rightString, ngramstat, index,
                                                                    minWinSize, minfreq, maxcount, minNumberTokens,
                                                                    maxNumberTokens, False)
@@ -104,7 +109,8 @@ def find_synonyms():
                             acronym.lower())]:
                         if exp != oldExp:
                             scoreCorpus = 0
-                            scoreCorpus = rate_acronym_resolutions.GetAcronymScore(acronym, exp, morphemes)
+                            scoreCorpus = rate_acronym_resolutions.GetAcronymScore(
+                                acronym, exp, morphemes)
                             if scoreCorpus > 0:
                                 result = str(round(scoreCorpus * math.log10(f), 2)) + " " + exp + " " + str(
                                     round(scoreCorpus, 2)) + " " + str(f) + " " + "\t" + ngram
@@ -122,7 +128,8 @@ def find_synonyms():
                             acronym.lower())]:
                         if exp != oldExp:
                             scoreWeb = 0
-                            scoreWeb = rate_acronym_resolutions.GetAcronymScore(acronym, exp, morphemes)
+                            scoreWeb = rate_acronym_resolutions.GetAcronymScore(
+                                acronym, exp, morphemes)
                             if scoreWeb > 0:
                                 result = str(round(scoreWeb * math.log10(f), 2)) + " " + exp + " " + str(
                                     round(scoreWeb, 2)) + " " + str(f) + " " + "\t" + ngram

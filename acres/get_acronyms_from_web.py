@@ -35,7 +35,7 @@ def ngramsWebDump(url, minNumTokens, maxNumTokens):
         if proxy_config["UseProxy"] == "yes":
             http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + "@" + proxy_config[
                 "ProxyDomain"] + ":" + \
-                         proxy_config["ProxyPort"]
+                proxy_config["ProxyPort"]
             https_proxy = http_proxy
             ftp_proxy = http_proxy
             proxy_dict = {
@@ -52,7 +52,8 @@ def ngramsWebDump(url, minNumTokens, maxNumTokens):
     txt = html2text.html2text(response.text)
     txt = txt.replace("**", "").replace("\n", " ").replace("[", "[ ").replace("]",
                                                                               " ]")  # .replace("(", "( ").replace(")", " )")
-    txt = txt.replace("„", "").replace('"', "").replace("'", "").replace(", ", " , ").replace(". ", " . ")
+    txt = txt.replace("„", "").replace('"', "").replace(
+        "'", "").replace(", ", " , ").replace(". ", " . ")
     out = ""
     # print(txt)
     words = txt.split(" ")

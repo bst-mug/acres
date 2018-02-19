@@ -40,15 +40,19 @@ def GetAcronymScore(acro, full, sMorph):
             full = ret[1]
             score = 100  # return???
     # acronym must have at least two characters
-    if len(acro) < 2: return 0
+    if len(acro) < 2:
+        return 0
     # length restriction for full form
-    if len(full) < 3: return 0
+    if len(full) < 3:
+        return 0
     # acronym must not occur within full form
-    if acro in full: return 0  # Check A
+    if acro in full:
+        return 0  # Check A
     # for each acronym in full form, penalisation
     # TODO: check if artefact
     for t in acro.split(" "):  # FIXME should be full.split??
-        if functions.is_acronym(t, 7): pen = pen / 4
+        if functions.is_acronym(t, 7):
+            pen = pen / 4
     # Plural form of acronym reduced to singular ("s", often not found in non English full forms)
     # e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)
     # These characters cannot be always expected to occur in the full form
@@ -58,25 +62,32 @@ def GetAcronymScore(acro, full, sMorph):
     # relative length, cf.
     # SCHWARTZ, Ariel S.; HEARST, Marti A. A simple algorithm for identifying abbreviation
     # definitions in biomedical text. In: Biocomputing 2003. 2002. S. 451-462.
-    if full.count(" ") + 1 > len(acro) * 2: return 0
-    if full.count(" ") + 1 > len(acro) + 5: return 0
+    if full.count(" ") + 1 > len(acro) * 2:
+        return 0
+    if full.count(" ") + 1 > len(acro) + 5:
+        return 0
     acroL = acro.lower()
     fullL = full.lower()
     # decapitalized acronym must not occur within decap full form,
     # if acronym has three or more letters
-    if acroL in fullL and len(acroL) > 2: return 0  # TODO unify with the check A
+    if acroL in fullL and len(acroL) > 2:
+        return 0  # TODO unify with the check A
     # first chars must be the same
-    if acroL[0] != fullL[0]: return 0
+    if acroL[0] != fullL[0]:
+        return 0
     # last char of acronym must occur in last word of full
     # but not at the end unless it is a single letter
     # "EKG" = "Enttwicklung" should not match
     # "Hepatitis A" -> "HEPA" should match
     lastWord = fullL.split(" ")[-1]
-    if len(lastWord) == 1 and acroL[-1] != lastWord: return 0
-    if not acroL[-1] in lastWord[0:-1]: return 0
+    if len(lastWord) == 1 and acroL[-1] != lastWord:
+        return 0
+    if not acroL[-1] in lastWord[0:-1]:
+        return 0
     # for each word in full higher than length of acronym, penalisation factor (square)
     if len(acroL) < fullL.count(" ") + 1:
-        pen = 1 / ((fullL.count(" ") + 1 - len(acroL)) * 2)  # TODO does not use previous penalization factor
+        # TODO does not use previous penalization factor
+        pen = 1 / ((fullL.count(" ") + 1 - len(acroL)) * 2)
         # print("Penalization = " + str(pen))
     # Extract upper case sequence from full form
     expUpp = ""
@@ -84,7 +95,8 @@ def GetAcronymScore(acro, full, sMorph):
         lTok = full.split(" ")
         for tok in lTok:
             if tok > " ":
-                if tok[0].isupper(): expUpp = expUpp + tok[0] + ".*"
+                if tok[0].isupper():
+                    expUpp = expUpp + tok[0] + ".*"
     expUpp = expUpp.upper()  # FIXME not needed?
     # if upper case word initial is not represented in the acronym, then
     # penalisation
@@ -136,8 +148,8 @@ def GetAcronymScore(acro, full, sMorph):
         s = 0
         for fragment in split:
             # !!!! Specific for German
-            #TODO : check whether the function  substitute_k_and_f_by_context
-            #TODO : could be used instead (produces 7-Bit string without K and F)
+            # TODO : check whether the function  substitute_k_and_f_by_context
+            # TODO : could be used instead (produces 7-Bit string without K and F)
             fragment = functions.simplify_german_string(fragment).strip()
             # C, K, and Z no longer distinguished
             # XXX Soundex as an alternative ??
@@ -158,7 +170,8 @@ def GetAcronymScore(acro, full, sMorph):
                         s = s + 1
         if s / len(split) > score:
             score = s / len(split)
-            if score == 0: score = 0.01
+            if score == 0:
+                score = 0.01
             score = score * pen
     return (score)
 

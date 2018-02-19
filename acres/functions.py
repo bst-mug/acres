@@ -52,7 +52,8 @@ def split_ngram(ngram):
     c = 0
     for t in lst_tokens:
         if is_acronym(t, 7, "Ð"):
-            tr = (" ".join(lst_tokens[0:c]), lst_tokens[c], " ".join(lst_tokens[c + 1:]))
+            tr = (" ".join(lst_tokens[0:c]),
+                  lst_tokens[c], " ".join(lst_tokens[c + 1:]))
             out.append(tr)
         c = c + 1
     return out
@@ -281,7 +282,8 @@ def simplify_german_string(str_in_german):
     :return:
     """
     str_in_german = str_in_german.lower()
-    str_in_german = str_in_german.replace("k", "c").replace("z", "c").replace("ß", "ss")
+    str_in_german = str_in_german.replace(
+        "k", "c").replace("z", "c").replace("ß", "ss")
     str_in_german = str_in_german.replace("é", "e").replace("à", "a")
     return str_in_german.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue")
 
@@ -415,7 +417,8 @@ def find_acro_expansions(lst_n_gram_stat):
             if t.split(" ")[0] == tk.split(" ")[0] and not t.split(" ")[1].upper() == tk.split(" ")[1].upper():
                 if re.search(regex, end_n.upper()):
                     if letter.upper() in last_n.upper():
-                        print(tk + dict_count_per_ngram[tk] + "     " + t + dict_count_per_ngram[t])
+                        print(
+                            tk + dict_count_per_ngram[tk] + "     " + t + dict_count_per_ngram[t])
                         counter += 1
                         if counter > 4:
                             break
