@@ -54,6 +54,7 @@ def find_acronym_expansion(lst_ngam_stat):
             if t.split(" ")[0] == tk.split(" ")[0] and not t.split(
                     " ")[1].upper() == tk.split(" ")[1].upper():
                 if re.search(regex, endN.upper()):
+                    # FIXME Local variable 'letter' might be referenced before assignment
                     if letter.upper() in lastN.upper():
                         print(
                             tk +

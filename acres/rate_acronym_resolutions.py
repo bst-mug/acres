@@ -13,7 +13,7 @@ logger.setLevel(logging.INFO)
 # logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
 
-def GetAcronymScore(acro, full, sMorph):
+def get_acronym_score(acro, full, sMorph = None):
     """
     Scores Acronym / resolution pairs according to a series of well-formedness criteria using a n-gram frequency list
     from related corpus.
@@ -26,6 +26,13 @@ def GetAcronymScore(acro, full, sMorph):
     :param sMorph:
     :return:
     """
+    # Syntactic sugar
+    if sMorph is None:
+        # TODO generate pickle if not available
+        # TODO make it work even without morphemes?
+        sMorph = pickle.load(open("models/pickle/morphemes.p", "rb"))
+
+    # FIXME Local variable 'score' is not used [it is not returned before being reassigned to 0]
     score = 1  # standard score
     pen = 1  # penalization factor
     acro = acro.strip()
@@ -180,18 +187,5 @@ def GetAcronymScore(acro, full, sMorph):
             if score == 0:
                 score = 0.01
             score = score * pen
-    return (score)
+    return score
 
-
-def get_acronym_score(acronym, full_form):
-    """
-    Syntactic sugar for GetAcronymScore(acro, full, sMorph)
-
-    :param acronym:
-    :param full_form:
-    :return:
-    """
-    # TODO generate pickle if not available
-    # TODO make it work even without morphemes?
-    morphemes = pickle.load(open("models/pickle/morphemes.p", "rb"))
-    return GetAcronymScore(acronym, full_form, morphemes)

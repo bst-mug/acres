@@ -19,7 +19,7 @@ NEWLINE = "¶"
 NUMERIC = "Ð"
 
 
-def ngramsWebDump(url, minNumTokens, maxNumTokens):
+def ngrams_web_dump(url, minNumTokens, maxNumTokens):
     """
     Produces an n gram statistics from a Web Query, parsing the first return page
 
@@ -93,10 +93,10 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     import pickle
 
     m = pickle.load(open("pickle//morphemes.p", "rb"))
-    # p = ngramsWebDump("https://www.google.at/search?q=EKG+Herz", 1, 10)
-    # p = ngramsWebDump("http://www.bing.de/search?cc=de&q=ekg+Herz", 1, 10)
-    p = ngramsWebDump('http://www.bing.de/search?cc=de&q="' + q + '"', 1, 10)
-    # p = ngramsWebDump('http://www.bing.de/search?cc=de&q=' + q , 1, 10)
+    # p = ngrams_web_dump("https://www.google.at/search?q=EKG+Herz", 1, 10)
+    # p = ngrams_web_dump("http://www.bing.de/search?cc=de&q=ekg+Herz", 1, 10)
+    p = ngrams_web_dump('http://www.bing.de/search?cc=de&q="' + q + '"', 1, 10)
+    # p = ngrams_web_dump('http://www.bing.de/search?cc=de&q=' + q , 1, 10)
     # f = open("c:\\Users\\schulz\\Nextcloud\\Terminology\\Corpora\\staging\\out.txt", 'wt')
     # f.write("\n".join(p))
     # f.close()
@@ -105,6 +105,6 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     for line in p:
         full = line.split("\t")[1]
         cnt = line.split("\t")[0]
-        s = rate_acronym_resolutions.GetAcronymScore(acro, full, m)
+        s = rate_acronym_resolutions.get_acronym_score(acro, full, m)
         if s > 0.01:
             logger.debug(str(s * int(cnt)) + "\t" + line)

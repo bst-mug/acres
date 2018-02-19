@@ -14,17 +14,17 @@ logger.setLevel(logging.INFO)
 # logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
 
-def findEmbeddings(strLeft,
-                   strMiddle,
-                   strRight,
-                   ngramstat,
-                   index,
-                   minWinSize,
-                   minfreq,
-                   maxcount,
-                   minNumTokens,
-                   maxNumTokens,
-                   verbose):
+def find_embeddings(strLeft,
+                    strMiddle,
+                    strRight,
+                    ngramstat,
+                    index,
+                    minWinSize,
+                    minfreq,
+                    maxcount,
+                    minNumTokens,
+                    maxNumTokens,
+                    verbose):
     """
     Input strMiddle, together with a series of filter parameters
     Three cases of embeddings: 1. bilateral, 2.left, 3.right
@@ -113,7 +113,7 @@ def findEmbeddings(strLeft,
         ngram = row.split("\t")[1]
         ngramCard = ngram.count(" ") + 1  # cardinality of the nGram
         # Filter by ngram cardinality
-        if ngramCard <= maxNumTokens and ngramCard >= minNumTokens:  # -1
+        if maxNumTokens >= ngramCard >= minNumTokens:  # -1
             # watch out for multiword input strMiddle
             if int(row.split("\t")[0]) >= minfreq:
                 # might suppress low n-gram frequencies
@@ -193,33 +193,33 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
     index = pickle.load(open("pickle//index.p", "rb"))
     logger.debug("Dumps loaded")
-    # li = findEmbeddings("", "morph.", "", ngramstat, index, 10, 3, 1000, 1, 7)
-    # li = findEmbeddings("Mitralklappe", "morph.", "*", ngramstat, index, 10, 3, 1000, 1, 7)
-    # li = findEmbeddings("", "morph.", "", ngramstat, index, 18, 3, 1000, 1, 1)
-    # li = findEmbeddings("", "morph.", "unauff.", ngramstat, index, 18, 3, 1000, 3, 7)
-    # li = findEmbeddings("*", "ms", "*", ngramstat, index, 8, 30, 500, 1, 5)
-    # li = findEmbeddings("Ð,Ð", "ms", "", ngramstat, index, 8, 3, 500, 1, 7)
+    # li = find_embeddings("", "morph.", "", ngramstat, index, 10, 3, 1000, 1, 7)
+    # li = find_embeddings("Mitralklappe", "morph.", "*", ngramstat, index, 10, 3, 1000, 1, 7)
+    # li = find_embeddings("", "morph.", "", ngramstat, index, 18, 3, 1000, 1, 1)
+    # li = find_embeddings("", "morph.", "unauff.", ngramstat, index, 18, 3, 1000, 3, 7)
+    # li = find_embeddings("*", "ms", "*", ngramstat, index, 8, 30, 500, 1, 5)
+    # li = find_embeddings("Ð,Ð", "ms", "", ngramstat, index, 8, 3, 500, 1, 7)
     # out = (Filters.bestAcronymResolution("OL", li, normalisedTokens, "AA", ""))
 
     # Parms: minWinSize, minfreq, maxcount, minNumberTokens, maxNumberTokens
-    # print(findEmbeddings("TRINS", ngramstat, index, 1, 3, 10, 6))
-    # print(findEmbeddings("HRST", ngramstat, index, 15, 3, 20, 6)) # wird nicht gefunden!
-    # print(findEmbeddings("ACVB", ngramstat, index, 15, 3, 10, 9))# wird
+    # print(find_embeddings("TRINS", ngramstat, index, 1, 3, 10, 6))
+    # print(find_embeddings("HRST", ngramstat, index, 15, 3, 20, 6)) # wird nicht gefunden!
+    # print(find_embeddings("ACVB", ngramstat, index, 15, 3, 10, 9))# wird
     # nicht gefunden!
 
-    # print(findEmbeddings("Rö-Thorax", ngramstat, index, 10, 1, 20, 3)) #
+    # print(find_embeddings("Rö-Thorax", ngramstat, index, 10, 1, 20, 3)) #
     # wird gefunden!
 
-    # print(findEmbeddings("TRINS", ngramstat, index, 15, 1, 50, 3))
-    # print(findEmbeddings("TRINS", ngramstat, index, 15, 1, 100, 3))
-    # print(findEmbeddings("koronare Herzkrankheit", ngramstat, index, 20, 1, 100, 5))
-    # print(findEmbeddings("re OL", ngramstat, index, 5, 1, 100, 6)) # OL
+    # print(find_embeddings("TRINS", ngramstat, index, 15, 1, 50, 3))
+    # print(find_embeddings("TRINS", ngramstat, index, 15, 1, 100, 3))
+    # print(find_embeddings("koronare Herzkrankheit", ngramstat, index, 20, 1, 100, 5))
+    # print(find_embeddings("re OL", ngramstat, index, 5, 1, 100, 6)) # OL
     # kommt nur 4 mal vor !
 
-    # print(findEmbeddings("Herz- und", ngramstat, index, 20, 1, 100, 5))
-    # print(findEmbeddings("lab. maj", ngramstat, index, 20, 3, 100, 5, 6))
+    # print(find_embeddings("Herz- und", ngramstat, index, 20, 1, 100, 5))
+    # print(find_embeddings("lab. maj", ngramstat, index, 20, 3, 100, 5, 6))
 
-    # print(findEmbeddings("gutem", "AZ", "nach Hause", ngramstat, index, 10, 3, 100, 3, 7, False))
+    # print(find_embeddings("gutem", "AZ", "nach Hause", ngramstat, index, 10, 3, 100, 3, 7, False))
 
-    logger.debug(findEmbeddings("*", "PDU", "*",
-                                ngramstat, index, 10, 3, 50, 1, 5, False))
+    logger.debug(find_embeddings("*", "PDU", "*",
+                                 ngramstat, index, 10, 3, 50, 1, 5, False))

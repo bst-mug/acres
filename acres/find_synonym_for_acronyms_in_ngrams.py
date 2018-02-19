@@ -91,14 +91,14 @@ def find_synonyms():
                     strURL = "http://www.bing.de/search?cc=de&q=%22" + s + "%22"
                     time.sleep(random.randint(0, 2000) / 1000)
                     logger.info(".")
-                    liWeb = get_acronyms_from_web.ngramsWebDump(strURL, 1, 10)
+                    liWeb = get_acronyms_from_web.ngrams_web_dump(strURL, 1, 10)
 
                 # Prepare parameters for corpus model
                 if leftString == "":
                     leftString = "*"
                 if rightString == "":
                     rightString = "*"
-                liCorpus = get_synonyms_from_ngrams.findEmbeddings(
+                liCorpus = get_synonyms_from_ngrams.find_embeddings(
                     leftString,
                     acronym,
                     rightString,
@@ -121,8 +121,8 @@ def find_synonyms():
                         0:len(
                             acronym.lower())]:
                         if exp != oldExp:
-                            scoreCorpus = 0
-                            scoreCorpus = rate_acronym_resolutions.GetAcronymScore(
+                            # scoreCorpus = 0
+                            scoreCorpus = rate_acronym_resolutions.get_acronym_score(
                                 acronym, exp, morphemes)
                             if scoreCorpus > 0:
                                 result = str(
@@ -149,7 +149,7 @@ def find_synonyms():
                             acronym.lower())]:
                         if exp != oldExp:
                             scoreWeb = 0
-                            scoreWeb = rate_acronym_resolutions.GetAcronymScore(
+                            scoreWeb = rate_acronym_resolutions.get_acronym_score(
                                 acronym, exp, morphemes)
                             if scoreWeb > 0:
                                 result = str(round(scoreWeb * math.log10(f),

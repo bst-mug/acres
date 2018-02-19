@@ -164,8 +164,6 @@ def create_acro_dump():
     for i in x:
         print(i)
 
-    1 / 0
-
     a = []
     b = []
 
