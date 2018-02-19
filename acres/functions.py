@@ -381,8 +381,9 @@ def check_acro_vs_expansion(acro, full):
     result = []
     fl = ""
     # remove punctuation chars from full
+    # tokenization, preserving hyphen or chars in acro
     for c in full:
-        if c.isalpha() or c.isnumeric() or c == " ":
+        if c.isalnum() or c in " -" or c == " " or c in acro:
             fl = fl + c
         else:
             fl = fl + " "
@@ -390,6 +391,11 @@ def check_acro_vs_expansion(acro, full):
     # list of binary combinations of
     # alternative regex patterns
     # (greedy vs. non-greedy)
+    # XXX: state machines instead of Regex
+    # XXX: debug what happens with "TRINS" - "Trikuspidalinsuffizienz"
+    # XXX: correct segmentation: 't', 'ricuspidal', 'i', 'n', 'suffizienz'
+    # XXX: obvious morpheme-based scoring does not work well
+    # XXX with this unorthodox building patterns
     regs = []  # list of alternative regular expressions
     for i in range(0, (2 ** (len(acro) - 1))):
         str_bin = str(bin(i))[2:].zfill(len(acro) - 1)
@@ -399,7 +405,7 @@ def check_acro_vs_expansion(acro, full):
         z = 0
         out = "^("
         for ex in lst_exp:
-            out = out + acro[z] + "." + ex + ")("
+            out = out + re.escape(acro[z]) + "." + ex + ")("
             z = z + 1
         regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
         # List of all regular expressions

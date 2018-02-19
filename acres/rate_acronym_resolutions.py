@@ -114,44 +114,7 @@ def get_acronym_score(acro, full, sMorph = None):
     if re.search(expUpp, acro) is None:
         pen = pen * 0.25  # FIXME: check whether right
 
-    # FIXME duplicate code at functions.CheckAcroVsFull()
-    dia = functions.diacritics()
-    bina = []
-    splits = []
-    fl = ""
-    # remove most punctuation chars from full
-    # tokenization, preserving hyphen or chars in acro
-    for c in fullL:
-        if c.isalnum() or c in " -" or c in acroL:
-            fl = fl + c
-        else:
-            fl = fl + " "
-    fl = fl.strip()
-    # list of binary combinations of alternative regex patterns
-    # (greedy vs. non-greedy)
-    regs = []  # list of alternative regular expressions
-    # XXX: state machines instead of Regex
-    # XXX: debug what happens with "TRINS" - "Trikuspidalinsuffizienz"
-    # XXX: correct segmentation: 't', 'ricuspidal', 'i', 'n', 'suffizienz'
-    # XXX: obvious morpheme-based scoring does not work well
-    # XXX with this unorthodox building patterns
-    for i in range(0, (2 ** (len(acroL) - 1))):
-        strBin = str(bin(i))[2:].zfill(len(acroL) - 1)
-        logger.debug(strBin)
-        bina.append(strBin.replace("0", "*|").replace("1", "*?|"))
-    for expr in bina:
-        lExp = expr.split("|")
-        z = 0
-        out = "^("
-        for ex in lExp:
-            out = out + re.escape(acroL[z]) + "." + ex + ")("
-            z = z + 1
-        regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
-    for reg in regs:
-        # print(reg)
-        if re.search(reg, fl, re.IGNORECASE) is not None:
-            splits.append(re.findall(reg, fl, re.IGNORECASE)[0])
-    # END of duplicate code
+    splits = functions.check_acro_vs_expansion(acroL, fullL)
 
     score = 0
     # logger.debug(splits)
