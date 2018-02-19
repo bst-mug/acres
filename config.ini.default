@@ -1,12 +1,12 @@
 [DEFAULT]
-NGRAMFILE = "path_to_ngram_file"
-CORPUSPATH ="path_to_document_corpus"
-MORPH_ENG = "lex_en.xml"
-MORPH_GER = "lex_de.xml"
+NGRAMFILE =  path_to_ngram_file
+CORPUSPATH = path_to_document_corpus
+MORPH_ENG = resources/lex_en.xml
+MORPH_GER = resources/lex_de.xml
 
 [proxy]
 UseProxy = no
-ProxyUser = "DOMAIN\username"
-ProxyPass = "secret"
-ProxyDomain = "example.com"
+ProxyUser = DOMAIN\username
+ProxyPass = secret
+ProxyDomain = example.com
 ProxyPort = 8080
