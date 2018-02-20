@@ -23,8 +23,7 @@ def find_embeddings(strLeft,
                     minfreq,
                     maxcount,
                     minNumTokens,
-                    maxNumTokens,
-                    verbose):
+                    maxNumTokens):
     """
     Input strMiddle, together with a series of filter parameters
     Three cases of embeddings: 1. bilateral, 2.left, 3.right
@@ -39,11 +38,8 @@ def find_embeddings(strLeft,
     :param maxcount: maximum count in list
     :param minNumTokens:
     :param maxNumTokens:
-    :param verbose:
     :return:
     """
-    if verbose:
-        logger.setLevel(logging.DEBUG)
 
     # MAXLIST = 100
     DIGIT = "Ð"
@@ -219,7 +215,7 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     # logger.debug(find_embeddings("Herz- und", ngramstat, index, 20, 1, 100, 5))
     # logger.debug(find_embeddings("lab. maj", ngramstat, index, 20, 3, 100, 5, 6))
 
-    # logger.debug(find_embeddings("gutem", "AZ", "nach Hause", ngramstat, index, 10, 3, 100, 3, 7, False))
+    # logger.debug(find_embeddings("gutem", "AZ", "nach Hause", ngramstat, index, 10, 3, 100, 3, 7))
 
     logger.debug(find_embeddings("*", "PDU", "*",
-                                 ngramstat, index, 10, 3, 50, 1, 5, False))
+                                 ngramstat, index, 10, 3, 50, 1, 5))

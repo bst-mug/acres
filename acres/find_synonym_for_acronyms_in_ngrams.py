@@ -108,8 +108,7 @@ def find_synonyms():
                     minfreq,
                     maxcount,
                     minNumberTokens,
-                    maxNumberTokens,
-                    False)
+                    maxNumberTokens)
 
                 for item in liCorpus:
                     oldExp = ""
