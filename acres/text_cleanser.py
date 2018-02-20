@@ -64,4 +64,4 @@ def find_best_substitution(formToResolve, candidates,
         return out
 
 # normalisedTokens = pickle.load(open("tokens.p", "rb"))
-# print(bestAcronymResolution("SR", ['123\tSinusrhythmus', '123\tSinusarrhytmie', '123\tkein Sinusrh.' ], normalisedTokens, "AA", ""))
+# logger.debug(bestAcronymResolution("SR", ['123\tSinusrhythmus', '123\tSinusarrhytmie', '123\tkein Sinusrh.' ], normalisedTokens, "AA", ""))

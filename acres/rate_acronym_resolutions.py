@@ -99,7 +99,7 @@ def get_acronym_score(acro, full, sMorph = None):
     if len(acroL) < fullL.count(" ") + 1:
         # TODO does not use previous penalization factor
         pen = 1 / ((fullL.count(" ") + 1 - len(acroL)) * 2)
-        # print("Penalization = " + str(pen))
+        # logger.debug("Penalization = %f", pen)
     # Extract upper case sequence from full form
     expUpp = ""
     if full.count(" ") > 0:

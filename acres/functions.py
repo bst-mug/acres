@@ -310,7 +310,9 @@ def is_acronym(str_probe, max_length=7, digit_placeholder="Ð"):
     :return:
     """
     if len(digit_placeholder) > 1:
-        print("Digit placeholders must be empty or a single character")
+        logger.error("Digit placeholders must be empty or a single character")
+        return
+
     ret = False
     s = str_probe.replace(digit_placeholder, "0")
     lower = 0
@@ -411,8 +413,8 @@ def check_acro_vs_expansion(acro, full):
             z = z + 1
         regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
         # List of all regular expressions
-        # print(regs)
-        # print(fl)
+        # logger.debug(regs)
+        # logger.debug(fl)
 
     for reg in regs:
         if re.search(reg, fl, re.IGNORECASE) is not None:
@@ -421,11 +423,11 @@ def check_acro_vs_expansion(acro, full):
 
 
 # Probes
-# print(import_conf("NGRAMFILE"))
-# print(CheckAcroVsFull("KHK", "koronare Herzkrankheit"))
-# print(extractAcroDef("EKG (Elektrokardiogramm)", 7))
-# print(extractAcroDef("Elektrokardiogramm", 7))
-# print(extractAcroDef("Elektrokardiogramm (EKG)", 7))
+# logger.debug(import_conf("NGRAMFILE"))
+# logger.debug(CheckAcroVsFull("KHK", "koronare Herzkrankheit"))
+# logger.debug(extractAcroDef("EKG (Elektrokardiogramm)", 7))
+# logger.debug(extractAcroDef("Elektrokardiogramm", 7))
+# logger.debug(extractAcroDef("Elektrokardiogramm (EKG)", 7))
 
 def find_acro_expansions(lst_n_gram_stat):
     """

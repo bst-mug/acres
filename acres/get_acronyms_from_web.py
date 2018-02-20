@@ -61,7 +61,7 @@ def ngrams_web_dump(url, minNumTokens, maxNumTokens):
     txt = txt.replace("„", "").replace('"', "").replace(
         "'", "").replace(", ", " , ").replace(". ", " . ")
     out = ""
-    # print(txt)
+    # logger.debug(txt)
     words = txt.split(" ")
     for word in words:
         if len(word) < 50:
@@ -100,7 +100,7 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     # f = open("c:\\Users\\schulz\\Nextcloud\\Terminology\\Corpora\\staging\\out.txt", 'wt')
     # f.write("\n".join(p))
     # f.close()
-    # print(p)
+    # logger.debug(p)
 
     for line in p:
         full = line.split("\t")[1]

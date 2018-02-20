@@ -171,13 +171,13 @@ def find_embeddings(strLeft,
                 freq = row.split("\t")[0]
                 m = re.search(regexBed, ngram, re.IGNORECASE)
                 if m is not None:
-                    # print(regexBed)
-                    # print(row)
+                    # logger.debug(regexBed)
+                    # logger.debug(row)
                     out = m.group(1).strip()
                     if (strMiddle not in out) and \
                             len(out) > minWinSize and \
                             "¶" not in out and (DIGIT not in out):
-                        # print(ngramfrequency, out, "   [" + ngram + "]")
+                        # logger.debug(ngramfrequency, out, "   [" + ngram + "]")
                         c = c + 1
                         outL.append(freq + "\t" + out)
 
@@ -202,24 +202,24 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     # out = (Filters.bestAcronymResolution("OL", li, normalisedTokens, "AA", ""))
 
     # Parms: minWinSize, minfreq, maxcount, minNumberTokens, maxNumberTokens
-    # print(find_embeddings("TRINS", ngramstat, index, 1, 3, 10, 6))
-    # print(find_embeddings("HRST", ngramstat, index, 15, 3, 20, 6)) # wird nicht gefunden!
-    # print(find_embeddings("ACVB", ngramstat, index, 15, 3, 10, 9))# wird
+    # logger.debug(find_embeddings("TRINS", ngramstat, index, 1, 3, 10, 6))
+    # logger.debug(find_embeddings("HRST", ngramstat, index, 15, 3, 20, 6)) # wird nicht gefunden!
+    # logger.debug(find_embeddings("ACVB", ngramstat, index, 15, 3, 10, 9))# wird
     # nicht gefunden!
 
-    # print(find_embeddings("Rö-Thorax", ngramstat, index, 10, 1, 20, 3)) #
+    # logger.debug(find_embeddings("Rö-Thorax", ngramstat, index, 10, 1, 20, 3)) #
     # wird gefunden!
 
-    # print(find_embeddings("TRINS", ngramstat, index, 15, 1, 50, 3))
-    # print(find_embeddings("TRINS", ngramstat, index, 15, 1, 100, 3))
-    # print(find_embeddings("koronare Herzkrankheit", ngramstat, index, 20, 1, 100, 5))
-    # print(find_embeddings("re OL", ngramstat, index, 5, 1, 100, 6)) # OL
+    # logger.debug(find_embeddings("TRINS", ngramstat, index, 15, 1, 50, 3))
+    # logger.debug(find_embeddings("TRINS", ngramstat, index, 15, 1, 100, 3))
+    # logger.debug(find_embeddings("koronare Herzkrankheit", ngramstat, index, 20, 1, 100, 5))
+    # logger.debug(find_embeddings("re OL", ngramstat, index, 5, 1, 100, 6)) # OL
     # kommt nur 4 mal vor !
 
-    # print(find_embeddings("Herz- und", ngramstat, index, 20, 1, 100, 5))
-    # print(find_embeddings("lab. maj", ngramstat, index, 20, 3, 100, 5, 6))
+    # logger.debug(find_embeddings("Herz- und", ngramstat, index, 20, 1, 100, 5))
+    # logger.debug(find_embeddings("lab. maj", ngramstat, index, 20, 3, 100, 5, 6))
 
-    # print(find_embeddings("gutem", "AZ", "nach Hause", ngramstat, index, 10, 3, 100, 3, 7, False))
+    # logger.debug(find_embeddings("gutem", "AZ", "nach Hause", ngramstat, index, 10, 3, 100, 3, 7, False))
 
     logger.debug(find_embeddings("*", "PDU", "*",
                                  ngramstat, index, 10, 3, 50, 1, 5, False))

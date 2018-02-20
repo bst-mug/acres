@@ -28,7 +28,7 @@ def create_normalised_token_dump():
     ngram_stat = functions.import_conf("NGRAMFILE")
     # "..\\..\\stat\corpus_cardio_training_cleaned_1_to_7gram_stat.txt"
     # ngram statistics representing a specific document genre and domain
-    print(ngram_stat)
+    logger.debug(ngram_stat)
 
     all_tokens = set()
     all_token_variants = set()
@@ -142,7 +142,7 @@ def create_ngramstat_dump(ngram_stat_filename, ngramstat, min_freq):
     for id in ngramstat:
         # inverted index for performance issue when retrieving ngram records
         # XXX Think about trie data structure
-        # print(ngramstat[ID])
+        # logger.debug(ngramstat[ID])
         ngram = ngramstat[id].split("\t")[1]
         words = ngram.split(" ")
         for word in words:
@@ -162,7 +162,7 @@ def create_acro_dump():
     """
     x = pickle.load(open("pickle//acronymNgrams.p", "rb"))
     for i in x:
-        print(i)
+        logger.debug(i)
 
     a = []
     b = []
@@ -206,7 +206,7 @@ def create_morpho_dump():
             if "<str>" in row:
                 row = row.strip()[5:-6]
                 row = row.replace("z", "c").replace("k", "c")
-                # print(row)
+                # logger.debug(row)
                 s_morph.add(row)
 
     with open(morph_eng) as f:
@@ -214,7 +214,7 @@ def create_morpho_dump():
             if "<str>" in row:
                 row = row.strip()[5:-6]
                 row = row.replace("z", "c").replace("k", "c")
-                # print(row)
+                # logger.debug(row)
                 s_morph.add(row)
 
     pickle.dump(s_morph, open("models/pickle/morphemes.p", "wb"))
@@ -239,7 +239,7 @@ def create_corpus_char_stat_dump(
     for file in files:
         str_doc = ""
         with open(corpus_path + "\\" + file, 'r') as single_document:
-            print(file)
+            logger.info(file)
             counter += 1
             for line in single_document:
                 line = functions.clear_digits(line, digit_placeholder)
@@ -313,10 +313,10 @@ def load_dumps():
 
     :return:
     """
-    print("Begin Read Dump")
+    logger.info("Begin Read Dump")
     ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
-    print("-")
+    logger.info("-")
     index = pickle.load(open("pickle//index.p", "rb"))
-    print("-")
+    logger.info("-")
     normalisedTokens = pickle.load(open("pickle//tokens.p", "rb"))
-    print("End Read Dump")
+    logger.info("End Read Dump")
