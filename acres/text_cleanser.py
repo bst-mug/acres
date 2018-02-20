@@ -1,6 +1,11 @@
+import logging
 import re
+
 from acres import functions
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
 def find_best_substitution(formToResolve, candidates,
                            tokenlist, shortformtype, context):
@@ -37,7 +42,7 @@ def find_best_substitution(formToResolve, candidates,
             regexAcro = "^" + regexAcro
         for row in candidates:
             ngram = row.split("\t")[1]
-            print(ngram)
+            logger.debug(ngram)
             m = re.search(regexAcro, ngram, re.IGNORECASE)
             if m is not None and formToResolve not in ngram:
                 segmL = functions.check_acro_vs_expansion(formToResolve, ngram)
