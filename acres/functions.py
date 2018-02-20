@@ -278,6 +278,7 @@ def substitute_k_and_f_by_context(str_in, language="de"):
     """
     Applies normalization rules that improves retrieval of
     clinical terms
+
     :param str_in:
     :param language: the language for which rules are defined (ISO_639-1)
     :return:
@@ -302,6 +303,7 @@ def is_acronym(str_probe, max_length=7, digit_placeholder="Ð"):
     Identifies Acronyms, restricted by absolute length
     "Ð" as default placeholder for digits. (e.g. "Ð")
     XXX look for "authoritative" definitions for acronyms
+
     :param str_probe:
     :param max_length:
     :param digit_placeholder:

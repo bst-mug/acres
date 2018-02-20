@@ -277,7 +277,6 @@ def create_corpus_ngramstat_dump(corpus_path, Fixlines=True, digit_placeholder="
     For fixing the lines, a character ngram stat dictionary, CREATED FROM THE SAME OR A SIMILAR CORPUS
     character_ngrams.p  must be in place
 
-
     :return:
     """
     entire_corpus = ""
