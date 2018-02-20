@@ -5,10 +5,10 @@ from acres import functions
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
-def find_best_substitution(formToResolve, candidates,
-                           tokenlist, shortformtype, context):
+
+def find_best_substitution(form_to_resolve, candidates,
+                           tokenlist, shortformtype):
     """
     This will eventually be the master function invoked by the text cleansing process
     Finds the best resolution of a nonlexicalised form
@@ -25,43 +25,39 @@ def find_best_substitution(formToResolve, candidates,
     SE_ spelling errors like "Lympfknoten"
 
 
-    :param formToResolve:
+    :param form_to_resolve:
     :param candidates:
     :param tokenlist:
     :param shortformtype:
-    :param context:
     :return:
     """
     if shortformtype == "AA":
-        regexAcro = ""
+        regex_acro = ""
         out = []
-        formToResolve = formToResolve.replace(
+        form_to_resolve = form_to_resolve.replace(
             ".", "").replace("-", "").replace("/", " ")
-        for c in formToResolve:
-            regexAcro = regexAcro + c + ".*"
-            regexAcro = "^" + regexAcro
+        for c in form_to_resolve:
+            regex_acro = regex_acro + c + ".*"
+            regex_acro = "^" + regex_acro
         for row in candidates:
             ngram = row.split("\t")[1]
             logger.debug(ngram)
-            m = re.search(regexAcro, ngram, re.IGNORECASE)
-            if m is not None and formToResolve not in ngram:
-                segmL = functions.check_acro_vs_expansion(formToResolve, ngram)
+            m = re.search(regex_acro, ngram, re.IGNORECASE)
+            if m is not None and form_to_resolve not in ngram:
+                segm = functions.check_acro_vs_expansion(form_to_resolve, ngram)
                 # returns list like [[('Elektro', 'kardio', 'gramm')],
                 # [('Elektro', 'kardio', 'gramm')], [('Ele', 'ktrokardio', 'gramm')],
                 # [('Ele', 'ktrokardio', 'gramm')]]
-                maxScore = 0
-                summ = 0
-                for segms in segmL:
+                max_score = 0
+                # summ = 0
+                for segms in segm:
                     summ = 0
                     for seg in segms:
                         seg = seg.strip()
                         if seg in tokenlist:
                             summ += 1
-                    if summ > maxScore:
-                        maxScore = summ
-                out.append('{:0>2}'.format(str(maxScore)) + "\t" + ngram)
+                    if summ > max_score:
+                        max_score = summ
+                out.append('{:0>2}'.format(str(max_score)) + "\t" + ngram)
         out.sort(reverse=True)
         return out
-
-# normalisedTokens = pickle.load(open("tokens.p", "rb"))
-# logger.debug(bestAcronymResolution("SR", ['123\tSinusrhythmus', '123\tSinusarrhytmie', '123\tkein Sinusrh.' ], normalisedTokens, "AA", ""))

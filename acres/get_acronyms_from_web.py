@@ -3,9 +3,10 @@
 Finds synonyms using a n-gram frequency list from the Web
 """
 
+import logging
+
 import html2text
 import requests
-import logging
 
 from acres import functions
 from acres import rate_acronym_resolutions
@@ -19,22 +20,22 @@ NEWLINE = "¶"
 NUMERIC = "Ð"
 
 
-def ngrams_web_dump(url, minNumTokens, maxNumTokens):
+def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
     """
     Produces an n gram statistics from a Web Query, parsing the first return page
 
     Should be used carefully, with delay.
 
     :param url:
-    :param minNumTokens:
-    :param maxNumTokens:
+    :param min_num_tokens:
+    :param max_num_tokens:
     :return:
     """
     proxy_config = import_proxy()
     try:
         if proxy_config["UseProxy"] == "yes":
             http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
-                "@" + proxy_config["ProxyDomain"] + ":" + proxy_config["ProxyPort"]
+                         "@" + proxy_config["ProxyDomain"] + ":" + proxy_config["ProxyPort"]
             https_proxy = http_proxy
             ftp_proxy = http_proxy
             proxy_dict = {
@@ -47,16 +48,16 @@ def ngrams_web_dump(url, minNumTokens, maxNumTokens):
     except requests.exceptions.RequestException as e:
         logger.critical(e)
         return []
-    outL = []
+    out_l = []
     txt = html2text.html2text(response.text)
     txt = txt.replace(
         "**",
         "").replace(
         "\n",
         " ").replace(
-            "[",
-            "[ ").replace(
-                "]",
+        "[",
+        "[ ").replace(
+        "]",
         " ]")  # .replace("(", "( ").replace(")", " )")
     txt = txt.replace("„", "").replace('"', "").replace(
         "'", "").replace(", ", " , ").replace(". ", " . ")
@@ -72,19 +73,19 @@ def ngrams_web_dump(url, minNumTokens, maxNumTokens):
         "\n").replace(
         "[ ",
         "\n").replace(
-            " ]",
-            "\n").replace(
-                "|",
-                "\n").replace(
-                    "?",
-                    "\n").replace(
-                        ":",
+        " ]",
+        "\n").replace(
+        "|",
+        "\n").replace(
+        "?",
+        "\n").replace(
+        ":",
         "\n")
-    output = functions.create_ngram_statistics(out, minNumTokens, maxNumTokens)
+    output = functions.create_ngram_statistics(out, min_num_tokens, max_num_tokens)
     for ngram in output:
-        outL.append('{:0>4}'.format(output[ngram]) + "\t" + ngram)
-    outL.sort(reverse=True)
-    return outL
+        out_l.append('{:0>4}'.format(output[ngram]) + "\t" + ngram)
+    out_l.sort(reverse=True)
+    return out_l
 
 
 if logger.getEffectiveLevel() == logging.DEBUG:

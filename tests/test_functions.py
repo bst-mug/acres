@@ -1,4 +1,4 @@
-from .context import functions
+from acres import functions
 
 
 def test_split_ngram():
@@ -49,29 +49,29 @@ def test_create_ngram_statistics():
 
 
 def test_extract_acronym_definition():
-    maxLength = 7
+    max_length = 7
 
     assert functions.extract_acronym_definition(
-        "EKG (Elektrokardiogramm)", maxLength) == ('EKG', 'Elektrokardiogramm')
+        "EKG (Elektrokardiogramm)", max_length) == ('EKG', 'Elektrokardiogramm')
     assert functions.extract_acronym_definition(
-        "Elektrokardiogramm (EKG)", maxLength) == ('EKG', 'Elektrokardiogramm')
+        "Elektrokardiogramm (EKG)", max_length) == ('EKG', 'Elektrokardiogramm')
     assert functions.extract_acronym_definition(
-        "Elektrokardiogramm", maxLength) is None
+        "Elektrokardiogramm", max_length) is None
 
 
 def test_is_acronym():
     # Single digits are not acronyms
-    assert functions.is_acronym("A", 3) == False
+    assert not functions.is_acronym("A", 3)
 
     # Lower-case are not acronyms
-    assert functions.is_acronym("ecg", 3) == False
-    assert functions.is_acronym("Ecg", 3) == False
+    assert not functions.is_acronym("ecg", 3)
+    assert not functions.is_acronym("Ecg", 3)
 
     # Double upper-case are acronyms
     assert functions.is_acronym("AK", 2)
 
     # Acronyms should be shorter or equal to the maximum length
-    assert functions.is_acronym("EKG", 2) == False
+    assert not functions.is_acronym("EKG", 2)
     assert functions.is_acronym("EKG", 3)
 
     # Acronyms can contain diacritics
@@ -106,8 +106,8 @@ def test_random_sub_list():
 
 
 def test_find_acronym_expansion():
-        ngrams = []
-        actual = functions.find_acro_expansions(ngrams)
-        expected = None
+    ngrams = []
+    actual = functions.find_acro_expansions(ngrams)
+    expected = None
 
-        assert expected == actual
+    assert expected == actual

@@ -1,19 +1,18 @@
 # Stefan Schulz 11 Nov 2017
 
 
+import logging
 import pickle
 import re
-import logging
 
 # from math import *
 from acres import functions
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
 
-def get_acronym_score(acro, full, sMorph = None):
+def get_acronym_score(acro, full, morphemes=None):
     """
     Scores Acronym / resolution pairs according to a series of well-formedness criteria using a n-gram frequency list
     from related corpus.
@@ -23,14 +22,14 @@ def get_acronym_score(acro, full, sMorph = None):
 
     :param acro:
     :param full:
-    :param sMorph:
+    :param morphemes:
     :return:
     """
     # Syntactic sugar
-    if sMorph is None:
+    if morphemes is None:
         # TODO generate pickle if not available
         # TODO make it work even without morphemes?
-        sMorph = pickle.load(open("models/pickle/morphemes.p", "rb"))
+        morphemes = pickle.load(open("models/pickle/morphemes.p", "rb"))
 
     # FIXME Local variable 'score' is not used [it is not returned before being reassigned to 0]
     score = 1  # standard score
@@ -38,8 +37,8 @@ def get_acronym_score(acro, full, sMorph = None):
     acro = acro.strip()
     full = full.strip()
     # XXX Dependent on German medical language
-    lAffixDeOne = ["a", "e", "i", "n", "o", "s", ]
-    lAffixDeTwo = ["ae", "en", "er", "em", "es", "is", "um", "us"]
+    l_affix_de_one = ["a", "e", "i", "n", "o", "s", ]
+    l_affix_de_two = ["ae", "en", "er", "em", "es", "is", "um", "us"]
     # full form contains an acronym definition pattern (normally only yielded
     # from Web scraping)
     ret = functions.extract_acronym_definition(full, 7)
@@ -66,8 +65,7 @@ def get_acronym_score(acro, full, sMorph = None):
     # These characters cannot be always expected to occur in the full form
     # We assume that plurals and genitives of acronyms are always marked with
     # lower case "s"
-    if (acro[-1] == "s" or acro[-1] == "x" or acro[-1]
-            == "X") and acro[-2:-1].isupper():
+    if (acro[-1] == "s" or acro[-1] == "x" or acro[-1] == "X") and acro[-2:-1].isupper():
         acro = acro[0:-1]
     # relative length, cf.
     # SCHWARTZ, Ariel S.; HEARST, Marti A. A simple algorithm for identifying abbreviation
@@ -76,45 +74,45 @@ def get_acronym_score(acro, full, sMorph = None):
         return 0
     if full.count(" ") + 1 > len(acro) + 5:
         return 0
-    acroL = acro.lower()
-    fullL = full.lower()
+    acro_lower = acro.lower()
+    full_lower = full.lower()
     # decapitalized acronym must not occur within decap full form,
     # if acronym has three or more letters
-    if acroL in fullL and len(acroL) > 2:
+    if acro_lower in full_lower and len(acro_lower) > 2:
         return 0  # TODO unify with the check A
     # first chars must be the same
-    if acroL[0] != fullL[0]:
+    if acro_lower[0] != full_lower[0]:
         return 0
     # last char of acronym must occur in last word of full
     # but not at the end unless it is a single letter
     # "EKG" = "Enttwicklung" should not match
     # "Hepatitis A" -> "HEPA" should match
-    lastWord = fullL.split(" ")[-1]
-    if len(lastWord) == 1 and acroL[-1] != lastWord:
+    last_word = full_lower.split(" ")[-1]
+    if len(last_word) == 1 and acro_lower[-1] != last_word:
         return 0
-    if not acroL[-1] in lastWord[0:-1]:
+    if not acro_lower[-1] in last_word[0:-1]:
         return 0
     # for each word in full higher than length of acronym, penalisation factor
     # (square)
-    if len(acroL) < fullL.count(" ") + 1:
+    if len(acro_lower) < full_lower.count(" ") + 1:
         # TODO does not use previous penalization factor
-        pen = 1 / ((fullL.count(" ") + 1 - len(acroL)) * 2)
+        pen = 1 / ((full_lower.count(" ") + 1 - len(acro_lower)) * 2)
         # logger.debug("Penalization = %f", pen)
     # Extract upper case sequence from full form
-    expUpp = ""
+    exp_upp = ""
     if full.count(" ") > 0:
-        lTok = full.split(" ")
-        for tok in lTok:
+        l_tok = full.split(" ")
+        for tok in l_tok:
             if tok > " ":
                 if tok[0].isupper():
-                    expUpp = expUpp + tok[0] + ".*"
-    expUpp = expUpp.upper()  # FIXME not needed?
+                    exp_upp = exp_upp + tok[0] + ".*"
+    exp_upp = exp_upp.upper()  # FIXME not needed?
     # if upper case word initial is not represented in the acronym, then
     # penalisation
-    if re.search(expUpp, acro) is None:
+    if re.search(exp_upp, acro) is None:
         pen = pen * 0.25  # FIXME: check whether right
 
-    splits = functions.check_acro_vs_expansion(acroL, fullL)
+    splits = functions.check_acro_vs_expansion(acro_lower, full_lower)
 
     score = 0
     # logger.debug(splits)
@@ -135,20 +133,20 @@ def get_acronym_score(acro, full, sMorph = None):
                 s += 1
                 continue
 
-            if fragment in sMorph:
+            if fragment in morphemes:
                 logger.debug(fragment)
                 s += 1
                 continue
 
             if (len(fragment) > 2) and (
-                    fragment[-1] in lAffixDeOne) and (fragment[0:-1] in sMorph):
+                    fragment[-1] in l_affix_de_one) and (fragment[0:-1] in morphemes):
                 # stripping one character suffix or infix
                 logger.debug(fragment[0:-1])
                 s += 1
                 continue
 
             if (len(fragment)) > 3 and (
-                    fragment[-2:] in lAffixDeTwo) and (fragment[0:-2] in sMorph):
+                    fragment[-2:] in l_affix_de_two) and (fragment[0:-2] in morphemes):
                 # stripping two character suffix
                 logger.debug(fragment[0:-2])
                 s += 1

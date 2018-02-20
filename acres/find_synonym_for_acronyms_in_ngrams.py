@@ -1,11 +1,11 @@
 # Stefan Schulz 03 Dec 2017
 
+import logging
 import math
 import pickle
 import random
 import re
 import time
-import logging
 
 from acres import functions
 from acres import get_acronyms_from_web
@@ -33,22 +33,22 @@ def find_synonyms():
     ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
     index = pickle.load(open("pickle//index.p", "rb"))
     # ngrams that contain at least one acronym
-    acronymNgrams = pickle.load(open("pickle//acronymNgrams.p", "rb"))
+    acronym_ngrams = pickle.load(open("pickle//acronymNgrams.p", "rb"))
     morphemes = pickle.load(open("pickle//morphemes.p", "rb"))
 
     dia = functions.diacritics()  # list of diacritic characters
-    dLogCorpus = {}  # dictionary from which the logfile is generated
-    dLogWeb = {}  # dictionary from which the logfile is generated
+    d_log_corpus = {}  # dictionary from which the logfile is generated
+    d_log_web = {}  # dictionary from which the logfile is generated
 
     logger.debug("Dumps loaded")
 
     # "Logs" are files with short form expansions
     # logCorpus: expansions based on ngram model
     # logWebs: expansions from Web mining
-    lfCorpus = open("log//logCorpus.txt", "w", encoding="UTF-8")
-    lfWeb = open("log//logWebs.txt", "w", encoding="UTF-8")
+    lf_corpus = open("log//logCorpus.txt", "w", encoding="UTF-8")
+    lf_web = open("log//logWebs.txt", "w", encoding="UTF-8")
     count = 0
-    for ngram in acronymNgrams:  # language model, filtered by ngrams containing acronyms
+    for ngram in acronym_ngrams:  # language model, filtered by ngrams containing acronyms
         count = count + 1
         if count % 1000 == 0:
             time.sleep(10)
@@ -61,112 +61,112 @@ def find_synonyms():
             logger.debug(ngram)
             splits = functions.split_ngram(ngram.strip())
             for s in splits:
-                leftString = s[0].strip()
+                left_string = s[0].strip()
                 acronym = s[1].strip()
-                rightString = s[2].strip()
-                # Parms: minWinSize, minfreq, maxcount, minNumberTokens, maxNumberTokens
+                right_string = s[2].strip()
+                # Parms: min_win_size, minfreq, maxcount, min_number_tokens, max_number_tokens
                 # Set Parameters
 
                 if len(acronym) == 2:
-                    minWinSize = 7 + len(leftString) + len(rightString)
+                    min_win_size = 7 + len(left_string) + len(right_string)
                     minfreq = 2
                     maxcount = 50
-                    minNumberTokens = 1  # + ngram.count(" ")
-                    maxNumberTokens = 4 + ngram.count(" ")
+                    min_number_tokens = 1  # + ngram.count(" ")
+                    max_number_tokens = 4 + ngram.count(" ")
                 else:
-                    minWinSize = 10 + len(leftString) + len(rightString)
+                    min_win_size = 10 + len(left_string) + len(right_string)
                     minfreq = 2
                     maxcount = 50
-                    minNumberTokens = 2  # + ngram.count(" ")
-                    maxNumberTokens = 4 + ngram.count(" ")
+                    min_number_tokens = 2  # + ngram.count(" ")
+                    max_number_tokens = 4 + ngram.count(" ")
 
                 # prepare parameters for Web model
                 if NUMERIC in ngram:
-                    liWeb = []
+                    li_web = []
                 else:
-                    s = leftString + " " + acronym + " " + rightString
+                    s = left_string + " " + acronym + " " + right_string
                     s = s.replace(".", " ").replace(",", " ")
                     s = s.replace("  ", " ")
                     s = s.replace(" ", "+")
-                    strURL = "http://www.bing.de/search?cc=de&q=%22" + s + "%22"
+                    str_url = "http://www.bing.de/search?cc=de&q=%22" + s + "%22"
                     time.sleep(random.randint(0, 2000) / 1000)
                     logger.info(".")
-                    liWeb = get_acronyms_from_web.ngrams_web_dump(strURL, 1, 10)
+                    li_web = get_acronyms_from_web.ngrams_web_dump(str_url, 1, 10)
 
                 # Prepare parameters for corpus model
-                if leftString == "":
-                    leftString = "*"
-                if rightString == "":
-                    rightString = "*"
-                liCorpus = get_synonyms_from_ngrams.find_embeddings(
-                    leftString,
+                if left_string == "":
+                    left_string = "*"
+                if right_string == "":
+                    right_string = "*"
+                li_corpus = get_synonyms_from_ngrams.find_embeddings(
+                    left_string,
                     acronym,
-                    rightString,
+                    right_string,
                     ngramstat,
                     index,
-                    minWinSize,
+                    min_win_size,
                     minfreq,
                     maxcount,
-                    minNumberTokens,
-                    maxNumberTokens)
+                    min_number_tokens,
+                    max_number_tokens)
 
-                for item in liCorpus:
-                    oldExp = ""
+                for item in li_corpus:
+                    old_exp = ""
                     exp = item.split("\t")[1]  # Ngram expression
                     f = int(item.split("\t")[0])  # Frequency
                     if re.search(
-                        "^[\ \-A-Za-z0-9" + dia + "]*$",
-                        exp) is not None and acronym.lower() != exp.lower()[
-                        0:len(
-                            acronym.lower())]:
-                        if exp != oldExp:
-                            # scoreCorpus = 0
-                            scoreCorpus = rate_acronym_resolutions.get_acronym_score(
+                            "^[\ \-A-Za-z0-9" + dia + "]*$",
+                            exp) is not None and acronym.lower() != exp.lower()[
+                                                                    0:len(
+                                                                        acronym.lower())]:
+                        if exp != old_exp:
+                            # score_corpus = 0
+                            score_corpus = rate_acronym_resolutions.get_acronym_score(
                                 acronym, exp, morphemes)
-                            if scoreCorpus > 0:
+                            if score_corpus > 0:
                                 result = str(
                                     round(
-                                        scoreCorpus * math.log10(f),
+                                        score_corpus * math.log10(f),
                                         2)) + " " + exp + " " + str(
                                     round(
-                                        scoreCorpus,
+                                        score_corpus,
                                         2)) + " " + str(f) + " " + "\t" + ngram
-                                if acronym not in dLogCorpus:
-                                    dLogCorpus[acronym] = [result]
+                                if acronym not in d_log_corpus:
+                                    d_log_corpus[acronym] = [result]
                                 else:
-                                    dLogCorpus[acronym].append(result)
-                            oldExp = exp
+                                    d_log_corpus[acronym].append(result)
+                            old_exp = exp
 
-                for item in liWeb:
-                    oldExp = ""
+                for item in li_web:
+                    old_exp = ""
                     exp = item.split("\t")[1]  # Ngram expression
                     f = int(item.split("\t")[0])  # Frequency
                     if re.search(
-                        "^[\ \-A-Za-z0-9" + dia + "]*$",
-                        exp) is not None and acronym.lower() != exp.lower()[
-                        0:len(
-                            acronym.lower())]:
-                        if exp != oldExp:
-                            scoreWeb = 0
-                            scoreWeb = rate_acronym_resolutions.get_acronym_score(
+                            "^[\ \-A-Za-z0-9" + dia + "]*$",
+                            exp) is not None and acronym.lower() != exp.lower()[
+                                                                    0:len(
+                                                                        acronym.lower())]:
+                        if exp != old_exp:
+                            # score_web = 0
+                            score_web = rate_acronym_resolutions.get_acronym_score(
                                 acronym, exp, morphemes)
-                            if scoreWeb > 0:
-                                result = str(round(scoreWeb * math.log10(f),
-                                                   2)) + " " + exp + " " + str(round(scoreWeb,
-                                                                                     2)) + " " + str(f) + " " + "\t" + ngram
-                                if acronym not in dLogWeb:
-                                    dLogWeb[acronym] = [result]
+                            if score_web > 0:
+                                a = str(round(score_web * math.log10(f), 2))
+                                b = str(round(score_web, 2))
+                                result = a + " " + exp + " " + b + " " + str(f) + " " + "\t" + ngram
+                                if acronym not in d_log_web:
+                                    d_log_web[acronym] = [result]
                                 else:
-                                    dLogWeb[acronym].append(result)
-                            oldExp = exp
+                                    d_log_web[acronym].append(result)
+                            old_exp = exp
 
-    for a in dLogCorpus:
-        for r in dLogCorpus[a]:
-            lfCorpus.write(a.rjust(8) + "\t" + r + "\n")
+    for a in d_log_corpus:
+        for r in d_log_corpus[a]:
+            lf_corpus.write(a.rjust(8) + "\t" + r + "\n")
 
-    for a in dLogWeb:
-        for r in dLogWeb[a]:
-            lfWeb.write(a.rjust(8) + "\t" + r + "\n")
+    for a in d_log_web:
+        for r in d_log_web[a]:
+            lf_web.write(a.rjust(8) + "\t" + r + "\n")
 
-    lfCorpus.close()
-    lfWeb.close()
+    lf_corpus.close()
+    lf_web.close()

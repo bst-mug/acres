@@ -9,6 +9,8 @@ from acres import functions
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+
 # logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
 
@@ -56,9 +58,9 @@ def create_normalised_token_dump():
                 "").replace(
                 ":",
                 "").replace(
-                    "!",
-                    "").replace(
-                        "?",
+                "!",
+                "").replace(
+                "?",
                 "")
             all_token_variants.add(token)
             all_token_variants.add(token.lower())
@@ -86,8 +88,7 @@ def create_ngramstat_dump(ngram_stat_filename, ngramstat, min_freq):
         id = 1
         for row in f:
             if row[8] == "\t":
-                # freq = '{:0>7}'.format(int(row.split("\t")[0]))
-                freq = row.split("\t")[0]
+                # freq = row.split("\t")[0]
                 freq = '{:0>7}'.format(int(row.split("\t")[0]))
                 ngram = row.split("\t")[1].strip()
                 if int(freq) >= min_freq:
@@ -268,7 +269,7 @@ def create_corpus_char_stat_dump(
 # create_corpus_char_stat_dump("S:\\DocumentCleansing\\CardioCorpusSplit\\Training")
 
 
-def create_corpus_ngramstat_dump(corpus_path, Fixlines=True, digit_placeholder="Ð", break_marker="¶"):
+def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, digit_placeholder="Ð", break_marker="¶"):
     """
     Takes the path with the corpus.
     It requires that all documents are in UTF-8 text
@@ -285,8 +286,7 @@ def create_corpus_ngramstat_dump(corpus_path, Fixlines=True, digit_placeholder="
     for file in files:
         with open(corpus_path + "\\" + file, 'r', encoding="UTF-8") as single_document:
             document_content = single_document.read()
-            # FIXME Undefined variable 'd' (undefined-variable)
-            if Fixlines:
+            if fix_lines:
                 dict_char_ngrams = pickle.load(open("pickle//ngramstat.p", "rb"))
                 document_content = functions.fix_line_endings(document_content, dict_char_ngrams, "break_marker")
             if len(digit_placeholder) == 1:
@@ -305,8 +305,6 @@ def create_corpus_ngramstat_dump(corpus_path, Fixlines=True, digit_placeholder="
 # create_corpus_ngramstat_dump()
 
 
-
-
 def load_dumps():
     """
     Load dumps.
@@ -318,5 +316,5 @@ def load_dumps():
     logger.info("-")
     index = pickle.load(open("pickle//index.p", "rb"))
     logger.info("-")
-    normalisedTokens = pickle.load(open("pickle//tokens.p", "rb"))
+    normalised_tokens = pickle.load(open("pickle//tokens.p", "rb"))
     logger.info("End Read Dump")
