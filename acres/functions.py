@@ -434,6 +434,7 @@ def find_acro_expansions(lst_n_gram_stat):
     Uses ngrams with the second token being an acronym.
 
     TODO: check for what it is needed, complete it
+
     :param lst_n_gram_stat: A list in which ngrams extracted
     from a corpus are counted in decreasing frequency
 
@@ -479,7 +480,7 @@ def find_acro_expansions(lst_n_gram_stat):
                     " ")[1].upper() == tk.split(" ")[1].upper():
                 if re.search(regex, end_n.upper()):
                     if letter.upper() in last_n.upper():
-                        print(
+                        logger.info(
                             tk +
                             dict_count_per_ngram[tk] +
                             "     " +

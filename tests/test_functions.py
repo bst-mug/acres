@@ -103,3 +103,11 @@ def test_random_sub_list():
 
     # TODO use Random.seed() so that the output is deterministic
     assert functions.random_sub_list(["a", "b"], 1) in [["a"], ["b"]]
+
+
+def test_find_acronym_expansion():
+        ngrams = []
+        actual = functions.find_acro_expansions(ngrams)
+        expected = None
+
+        assert expected == actual
