@@ -45,22 +45,14 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
             response = requests.get(url, timeout=1, proxies=proxy_dict)
         else:
             response = requests.get(url, timeout=1)
-    except requests.exceptions.RequestException as e:
-        logger.critical(e)
+    except requests.exceptions.RequestException as ex:
+        logger.critical(ex)
         return []
     out_l = []
     txt = html2text.html2text(response.text)
-    txt = txt.replace(
-        "**",
-        "").replace(
-        "\n",
-        " ").replace(
-        "[",
-        "[ ").replace(
-        "]",
-        " ]")  # .replace("(", "( ").replace(")", " )")
-    txt = txt.replace("„", "").replace('"', "").replace(
-        "'", "").replace(", ", " , ").replace(". ", " . ")
+    txt = txt.replace("**", "").replace("\n", " ").replace("[", "[ ").replace("]", " ]")
+    # .replace("(", "( ").replace(")", " )")
+    txt = txt.replace("„", "").replace('"', "").replace("'", "").replace(", ", " , ").replace(". ", " . ")
     out = ""
     # logger.debug(txt)
     words = txt.split(" ")
@@ -68,19 +60,8 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
         if len(word) < 50:
             if not ('\\' in word or '/' in word or '&q=' in word):
                 out = out + " " + word
-    out = out.replace(
-        "  ",
-        "\n").replace(
-        "[ ",
-        "\n").replace(
-        " ]",
-        "\n").replace(
-        "|",
-        "\n").replace(
-        "?",
-        "\n").replace(
-        ":",
-        "\n")
+    out = out.replace("  ", "\n").replace("[ ", "\n").replace(" ]", "\n")
+    out = out.replace("|", "\n").replace("?", "\n").replace(":", "\n")
     output = functions.create_ngram_statistics(out, min_num_tokens, max_num_tokens)
     for ngram in output:
         out_l.append('{:0>4}'.format(output[ngram]) + "\t" + ngram)
@@ -89,14 +70,14 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
 
 
 if logger.getEffectiveLevel() == logging.DEBUG:
-    acro = "AV"
-    q = "AV Blocks"
+    ACRO = "AV"
+    QUERY = "AV Blocks"
     import pickle
 
-    m = pickle.load(open("pickle//morphemes.p", "rb"))
+    MORPHEMES = pickle.load(open("models/pickle/morphemes.p", "rb"))
     # p = ngrams_web_dump("https://www.google.at/search?q=EKG+Herz", 1, 10)
     # p = ngrams_web_dump("http://www.bing.de/search?cc=de&q=ekg+Herz", 1, 10)
-    p = ngrams_web_dump('http://www.bing.de/search?cc=de&q="' + q + '"', 1, 10)
+    p = ngrams_web_dump('http://www.bing.de/search?cc=de&q="' + QUERY + '"', 1, 10)
     # p = ngrams_web_dump('http://www.bing.de/search?cc=de&q=' + q , 1, 10)
     # f = open("c:\\Users\\schulz\\Nextcloud\\Terminology\\Corpora\\staging\\out.txt", 'wt')
     # f.write("\n".join(p))
@@ -106,6 +87,6 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     for line in p:
         full = line.split("\t")[1]
         cnt = line.split("\t")[0]
-        s = rate_acronym_resolutions.get_acronym_score(acro, full, m)
+        s = rate_acronym_resolutions.get_acronym_score(ACRO, full, MORPHEMES)
         if s > 0.01:
             logger.debug(str(s * int(cnt)) + "\t" + line)

@@ -14,8 +14,8 @@ logger.setLevel(logging.INFO)
 
 def get_acronym_score(acro, full, morphemes=None):
     """
-    Scores Acronym / resolution pairs according to a series of well-formedness criteria using a n-gram frequency list
-    from related corpus.
+    Scores Acronym / resolution pairs according to a series of well-formedness criteria using a
+    n-gram frequency list from related corpus.
 
     Scoring is higher the better the full form is properly split into morphemes.
     Requires identification and removal of Affixes (infixes, suffixes, like "Gastr-o", "Schmerz-en").
@@ -57,8 +57,8 @@ def get_acronym_score(acro, full, morphemes=None):
         return 0  # Check A
     # for each acronym in full form, penalisation
     # TODO: check if artefact
-    for t in acro.split(" "):  # FIXME should be full.split??
-        if functions.is_acronym(t, 7):
+    for token in acro.split(" "):  # FIXME should be full.split??
+        if functions.is_acronym(token, 7):
             pen = pen / 4
     # Plural form of acronym reduced to singular ("s", often not found in non English full forms)
     # e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)

@@ -92,8 +92,8 @@ def find_embeddings(str_left,
         for t in all_tokens_l:
             if t != "*":
                 all_sets.append(index[t])
-        ngram_selection_s = set.intersection(*all_sets)
-        for r in ngram_selection_s:
+        ngram_selection = set.intersection(*all_sets)
+        for r in ngram_selection:
             sel_rows.append(ngramstat[r])
 
         logger.debug(
@@ -148,18 +148,18 @@ def find_embeddings(str_left,
             regex_bed = "^" + re.escape(bed) + "$"
             regex_bed = regex_bed.replace(str_middle_esc, "(.*)")
             surroundings = bed.replace(str_middle + " ", "").split(" ")
-            for w in surroundings:
-                logger.debug("Surrounding str_middle: %s", w)
-                new_sets.append(index[w])
+            for word in surroundings:
+                logger.debug("Surrounding str_middle: %s", word)
+                new_sets.append(index[word])
             ngrams_with_surroundings = list(set.intersection(*new_sets))
             logger.debug(
                 "Size of list that includes surrounding elements: %d",
                 len(ngrams_with_surroundings))
             ngrams_with_surroundings.sort(reverse=True)
             # Surrounding list sorted
-            c = 0
+            counter = 0
             for r in ngrams_with_surroundings:
-                if c > max_num:
+                if counter > max_num:
                     break
                 row = ngramstat[r]
                 ngram = row.split("\t")[1].strip()
@@ -173,7 +173,7 @@ def find_embeddings(str_left,
                             len(out) > min_win_size and \
                             "¶" not in out and (digit not in out):
                         # logger.debug(ngramfrequency, out, "   [" + ngram + "]")
-                        c = c + 1
+                        counter += 1
                         out.append(freq + "\t" + out)
 
         out.sort(reverse=True)

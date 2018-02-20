@@ -19,7 +19,7 @@ logger.setLevel(logging.INFO)
 NEWLINE = "¶"
 NUMERIC = "Ð"
 VERBOSE = False
-div = 1  # for sampling, if no sampling div = 1. Sampling is used for testing
+DIV = 1  # for sampling, if no sampling DIV = 1. Sampling is used for testing
 
 
 def find_synonyms():
@@ -53,7 +53,7 @@ def find_synonyms():
         if count % 1000 == 0:
             time.sleep(10)
         # and ngram.count(" ") < 3:
-        if not ngram.isupper() and NEWLINE not in ngram and count % div == 0:
+        if not ngram.isupper() and NEWLINE not in ngram and count % DIV == 0:
             # ngrams with newlines substitutes ("¶") seemed to be useless for
             # this purpose
 
@@ -114,23 +114,18 @@ def find_synonyms():
                     old_exp = ""
                     exp = item.split("\t")[1]  # Ngram expression
                     f = int(item.split("\t")[0])  # Frequency
-                    if re.search(
-                            "^[\ \-A-Za-z0-9" + dia + "]*$",
-                            exp) is not None and acronym.lower() != exp.lower()[
-                                                                    0:len(
-                                                                        acronym.lower())]:
+
+                    first_condition = re.search("^[\ \-A-Za-z0-9" + dia + "]*$", exp) is not None
+                    second_condition = acronym.lower() != exp.lower()[0:len(acronym.lower())]
+                    if first_condition and second_condition:
                         if exp != old_exp:
                             # score_corpus = 0
                             score_corpus = rate_acronym_resolutions.get_acronym_score(
                                 acronym, exp, morphemes)
                             if score_corpus > 0:
-                                result = str(
-                                    round(
-                                        score_corpus * math.log10(f),
-                                        2)) + " " + exp + " " + str(
-                                    round(
-                                        score_corpus,
-                                        2)) + " " + str(f) + " " + "\t" + ngram
+                                a = str(round(score_corpus * math.log10(f), 2))
+                                b = str(round(score_corpus, 2))
+                                result = a + " " + exp + " " + b + " " + str(f) + " " + "\t" + ngram
                                 if acronym not in d_log_corpus:
                                     d_log_corpus[acronym] = [result]
                                 else:
@@ -141,11 +136,10 @@ def find_synonyms():
                     old_exp = ""
                     exp = item.split("\t")[1]  # Ngram expression
                     f = int(item.split("\t")[0])  # Frequency
-                    if re.search(
-                            "^[\ \-A-Za-z0-9" + dia + "]*$",
-                            exp) is not None and acronym.lower() != exp.lower()[
-                                                                    0:len(
-                                                                        acronym.lower())]:
+
+                    first_condition = re.search("^[\ \-A-Za-z0-9" + dia + "]*$", exp) is not None
+                    second_condition = acronym.lower() != exp.lower()[0:len(acronym.lower())]
+                    if first_condition and second_condition:
                         if exp != old_exp:
                             # score_web = 0
                             score_web = rate_acronym_resolutions.get_acronym_score(
