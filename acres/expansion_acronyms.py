@@ -9,7 +9,7 @@ def find_acronym_expansion(lst_ngam_stat):
     Takes the most frequent one.
     Uses ngrams with the second token being an acronym.
 
-    TODO: check for what it is needed, complete it
+    FIXME check for what it is needed, complete it
 
     :param lst_ngam_stat: A list in which ngrams extracted
     from a corpus are counted in decreasing frequency
