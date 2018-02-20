@@ -17,8 +17,8 @@ def find_acronym_expansion(lst_ngam_stat):
     """
 
     dict_count_per_ngram = {}
-    lstAcro = []
-    lstNonAcro = []
+    lst_acro = []
+    lst_non_acro = []
     acro = False
     # TODO: check initialization of acro
     for line in lst_ngam_stat:
@@ -26,10 +26,10 @@ def find_acronym_expansion(lst_ngam_stat):
         count = line.split("\t")[0]
         dict_count_per_ngram[ngram] = count
         if " " in ngram:  # has at least 2 tokens
-            OtherTokens = " ".join(ngram.split(" ")[1:])
-            if len(OtherTokens) > 2:
-                if functions.is_acronym(OtherTokens[1], 7):
-                    lstAcro.append(ngram)
+            other_tokens = " ".join(ngram.split(" ")[1:])
+            if len(other_tokens) > 2:
+                if functions.is_acronym(other_tokens[1], 7):
+                    lst_acro.append(ngram)
                 else:
                     for word in ngram.split(" "):
                         acro = False
@@ -38,9 +38,9 @@ def find_acronym_expansion(lst_ngam_stat):
                                 acro = True
                                 break
                     if not acro:
-                        lstNonAcro.append(ngram)
+                        lst_non_acro.append(ngram)
 
-    for tk in lstAcro:
+    for tk in lst_acro:
         counter = 0
         end = " ".join(tk.split(" ")[1:])
         regex = "^"
@@ -48,18 +48,16 @@ def find_acronym_expansion(lst_ngam_stat):
             # regex = regex + letter.upper() + ".*\s" # space required
             regex = regex + letter.upper() + ".*"  # no space required
 
-        for t in lstNonAcro:
-            endN = " ".join(t.split(" ")[1:])
-            lastN = " ".join(t.split(" ")[-1])
+        for t in lst_non_acro:
+            end_n = " ".join(t.split(" ")[1:])
+            last_n = " ".join(t.split(" ")[-1])
             if t.split(" ")[0] == tk.split(" ")[0] and not t.split(
                     " ")[1].upper() == tk.split(" ")[1].upper():
-                if re.search(regex, endN.upper()):
+                if re.search(regex, end_n.upper()):
                     # FIXME Local variable 'letter' might be referenced before assignment
-                    if letter.upper() in lastN.upper():
+                    if letter.upper() in last_n.upper():
                         print(
-                            tk +
-                            dict_count_per_ngram[tk] +
-                            "     " +
+                            tk + dict_count_per_ngram[tk] + "     " +
                             t +
                             dict_count_per_ngram[t])
                         counter += 1

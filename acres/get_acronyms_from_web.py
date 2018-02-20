@@ -19,15 +19,15 @@ NEWLINE = "¶"
 NUMERIC = "Ð"
 
 
-def ngrams_web_dump(url, minNumTokens, maxNumTokens):
+def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
     """
     Produces an n gram statistics from a Web Query, parsing the first return page
 
     Should be used carefully, with delay.
 
     :param url:
-    :param minNumTokens:
-    :param maxNumTokens:
+    :param min_num_tokens:
+    :param max_num_tokens:
     :return:
     """
     proxy_config = import_proxy()
@@ -80,7 +80,7 @@ def ngrams_web_dump(url, minNumTokens, maxNumTokens):
                     "\n").replace(
                         ":",
         "\n")
-    output = functions.create_ngram_statistics(out, minNumTokens, maxNumTokens)
+    output = functions.create_ngram_statistics(out, min_num_tokens, max_num_tokens)
     for ngram in output:
         outL.append('{:0>4}'.format(output[ngram]) + "\t" + ngram)
     outL.sort(reverse=True)

@@ -2,8 +2,8 @@ import re
 from acres import functions
 
 
-def find_best_substitution(formToResolve, candidates,
-                           tokenlist, shortformtype, context):
+def find_best_substitution(form_to_resolve, candidates,
+                           lst_tokens, short_form_type, context):
     """
     This will eventually be the master function invoked by the text cleansing process
     Finds the best resolution of a nonlexicalised form
@@ -15,46 +15,46 @@ def find_best_substitution(formToResolve, candidates,
     AA: classical acronyms like "EKG"
     DA: dot abbreviations like "diff."
     NA: non-dot abbreviations like "re"
-    HA: hyphen abbreviations like "Rö-Thorax"
+    HA: hyphen abbreviations like "Roe-Thorax"
     MA: multiword abbreviations like "St. p."
     SE_ spelling errors like "Lympfknoten"
 
 
-    :param formToResolve:
+    :param form_to_resolve:
     :param candidates:
-    :param tokenlist:
-    :param shortformtype:
+    :param lst_tokens:
+    :param short_form_type:
     :param context:
     :return:
     """
-    if shortformtype == "AA":
-        regexAcro = ""
+    if short_form_type == "AA":
+        regex_acro = ""
         out = []
-        formToResolve = formToResolve.replace(
+        form_to_resolve = form_to_resolve.replace(
             ".", "").replace("-", "").replace("/", " ")
-        for c in formToResolve:
-            regexAcro = regexAcro + c + ".*"
-            regexAcro = "^" + regexAcro
+        for c in form_to_resolve:
+            regex_acro = regex_acro + c + ".*"
+            regex_acro = "^" + regex_acro
         for row in candidates:
             ngram = row.split("\t")[1]
             print(ngram)
-            m = re.search(regexAcro, ngram, re.IGNORECASE)
-            if m is not None and formToResolve not in ngram:
-                segmL = functions.check_acro_vs_expansion(formToResolve, ngram)
+            m = re.search(regex_acro, ngram, re.IGNORECASE)
+            if m is not None and form_to_resolve not in ngram:
+                segmL = functions.check_acro_vs_expansion(form_to_resolve, ngram)
                 # returns list like [[('Elektro', 'kardio', 'gramm')],
                 # [('Elektro', 'kardio', 'gramm')], [('Ele', 'ktrokardio', 'gramm')],
                 # [('Ele', 'ktrokardio', 'gramm')]]
-                maxScore = 0
+                max_score = 0
                 summ = 0
                 for segms in segmL:
                     summ = 0
                     for seg in segms:
                         seg = seg.strip()
-                        if seg in tokenlist:
+                        if seg in lst_tokens:
                             summ += 1
-                    if summ > maxScore:
-                        maxScore = summ
-                out.append('{:0>2}'.format(str(maxScore)) + "\t" + ngram)
+                    if summ > max_score:
+                        max_score = summ
+                out.append('{:0>2}'.format(str(max_score)) + "\t" + ngram)
         out.sort(reverse=True)
         return out
 
