@@ -49,13 +49,13 @@ def split_ngram(ngram):
     """
     out = []
     lst_tokens = ngram.split(" ")
-    c = 0
+    counter = 0
     for t in lst_tokens:
         if is_acronym(t, 7, "Ð"):
-            tr = (" ".join(lst_tokens[0:c]),
-                  lst_tokens[c], " ".join(lst_tokens[c + 1:]))
+            tr = (" ".join(lst_tokens[0:counter]),
+                  lst_tokens[counter], " ".join(lst_tokens[counter + 1:]))
             out.append(tr)
-        c = c + 1
+        counter += 1
     return out
 
 
@@ -103,7 +103,9 @@ def fix_line_endings(
     while i + char_ngram_length < len(long_text):
         c = long_text[i]
         ngr = long_text[i:i + char_ngram_length]
-        if ngr[line_break_marker_position] == line_break_marker:  # line break marker at nth position
+
+        # line break marker at nth position
+        if ngr[line_break_marker_position] == line_break_marker:
             ngr_clean = clear_digits(ngr, "°")
             ngr_clean_space = ngr_clean.replace(line_break_marker, " ")
             if ngr_clean in char_ngram_dict:
@@ -276,6 +278,7 @@ def substitute_k_and_f_by_context(str_in, language="de"):
     """
     Applies normalization rules that improves retrieval of
     clinical terms
+
     :param str_in:
     :param language: the language for which rules are defined (ISO_639-1)
     :return:
@@ -300,19 +303,22 @@ def is_acronym(str_probe, max_length=7, digit_placeholder="Ð"):
     Identifies Acronyms, restricted by absolute length
     "Ð" as default placeholder for digits. (e.g. "Ð")
     XXX look for "authoritative" definitions for acronyms
+
     :param str_probe:
     :param max_length:
     :param digit_placeholder:
     :return:
     """
     if len(digit_placeholder) > 1:
-        print("Digit placeholders must be empty or a single character")
+        logger.error("Digit placeholders must be empty or a single character")
+        return
+
     ret = False
-    s = str_probe.replace(digit_placeholder, "0")
+    replaced_probe = str_probe.replace(digit_placeholder, "0")
     lower = 0
     upper = 0
-    if len(s) <= max_length:
-        for c in s:
+    if len(replaced_probe) <= max_length:
+        for c in replaced_probe:
             if c.isupper():
                 upper = upper + 1
             if c.islower():
@@ -360,34 +366,46 @@ def random_sub_list(in_list, max_num):
     length = len(in_list)
     if length <= max_num:
         return in_list
-    c = 0
+    counter = 0
     rnumbers = []
-    while c < max_num:
+    while counter < max_num:
         rnumber = (randint(0, length - 1))
         if rnumber not in rnumbers:
             rnumbers.append(rnumber)
-            c = len(rnumbers)
+            counter = len(rnumbers)
     for rnumber in rnumbers:
         lst_out.append(in_list[rnumber])
     return lst_out
 
 
 def check_acro_vs_expansion(acro, full):
+    """
+
+    :param acro:
+    :param full:
+    :return:
+    """
     import re
     dia = diacritics()
     bina = []
     result = []
-    fl = ""
+    cleaned_full = ""
     # remove punctuation chars from full
+    # tokenization, preserving hyphen or chars in acro
     for c in full:
-        if c.isalpha() or c.isnumeric() or c == " ":
-            fl = fl + c
+        if c.isalnum() or c in " -" or c == " " or c in acro:
+            cleaned_full = cleaned_full + c
         else:
-            fl = fl + " "
-    fl = fl.strip()
+            cleaned_full = cleaned_full + " "
+    cleaned_full = cleaned_full.strip()
     # list of binary combinations of
     # alternative regex patterns
     # (greedy vs. non-greedy)
+    # XXX: state machines instead of Regex
+    # XXX: debug what happens with "TRINS" - "Trikuspidalinsuffizienz"
+    # XXX: correct segmentation: 't', 'ricuspidal', 'i', 'n', 'suffizienz'
+    # XXX: obvious morpheme-based scoring does not work well
+    # XXX with this unorthodox building patterns
     regs = []  # list of alternative regular expressions
     for i in range(0, (2 ** (len(acro) - 1))):
         str_bin = str(bin(i))[2:].zfill(len(acro) - 1)
@@ -397,53 +415,54 @@ def check_acro_vs_expansion(acro, full):
         z = 0
         out = "^("
         for ex in lst_exp:
-            out = out + acro[z] + "." + ex + ")("
-            z = z + 1
+            out = out + re.escape(acro[z]) + "." + ex + ")("
+            z += 1
         regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
         # List of all regular expressions
-        # print(regs)
-        # print(fl)
+        # logger.debug(regs)
+        # logger.debug(cleaned_full)
 
     for reg in regs:
-        if re.search(reg, fl, re.IGNORECASE) is not None:
-            result.append(re.findall(reg, fl, re.IGNORECASE)[0])
+        if re.search(reg, cleaned_full, re.IGNORECASE) is not None:
+            result.append(re.findall(reg, cleaned_full, re.IGNORECASE)[0])
     return result
 
 
 # Probes
-# print(import_conf("NGRAMFILE"))
-# print(CheckAcroVsFull("KHK", "koronare Herzkrankheit"))
-# print(extractAcroDef("EKG (Elektrokardiogramm)", 7))
-# print(extractAcroDef("Elektrokardiogramm", 7))
-# print(extractAcroDef("Elektrokardiogramm (EKG)", 7))
+# logger.debug(import_conf("NGRAMFILE"))
+# logger.debug(CheckAcroVsFull("KHK", "koronare Herzkrankheit"))
+# logger.debug(extractAcroDef("EKG (Elektrokardiogramm)", 7))
+# logger.debug(extractAcroDef("Elektrokardiogramm", 7))
+# logger.debug(extractAcroDef("Elektrokardiogramm (EKG)", 7))
 
 def find_acro_expansions(lst_n_gram_stat):
     """
     Identifies acronyms and looks for possible expansions.
     Takes the most frequent one.
-    Uses ngrams with the second token being an acronym.
+    Uses ngrams with the second token_not_acronym being an acronym.
 
     TODO: check for what it is needed, complete it
+
     :param lst_n_gram_stat: A list in which ngrams extracted
     from a corpus are counted in decreasing frequency
 
     :return:
     """
     letter = ""
-    dict_count_per_ngram = {}
-    lst_acro = []
-    lst_non_acro = []
+    count_per_ngram = {}
+    acronyms = []
+    non_acronyms = []
     is_acro = False
     # TODO: check initialization
     for line in lst_n_gram_stat:
         ngram = line.split("\t")[1]
         count = line.split("\t")[0]
-        dict_count_per_ngram[ngram] = count
+        count_per_ngram[ngram] = count
         if " " in ngram:  # has at least 2 tokens
             other_tokens = " ".join(ngram.split(" ")[1:])
             if len(other_tokens) > 2:
                 if is_acronym(other_tokens[1], 7):
-                    lst_acro.append(ngram)
+                    acronyms.append(ngram)
                 else:
                     for word in ngram.split(" "):
                         is_acro = False
@@ -452,33 +471,34 @@ def find_acro_expansions(lst_n_gram_stat):
                                 is_acro = True
                                 break
                     if not is_acro:
-                        lst_non_acro.append(ngram)
+                        non_acronyms.append(ngram)
 
-    for tk in lst_acro:
+    for token_acronym in acronyms:
         counter = 0
-        end = " ".join(tk.split(" ")[1:])
+        end = " ".join(token_acronym.split(" ")[1:])
         regex = "^"
         for letter in end:
             # regex = regex + letter.upper() + ".*\s" # space required
             regex = regex + letter.upper() + ".*"  # no space required
 
-        for t in lst_non_acro:
-            end_n = " ".join(t.split(" ")[1:])
-            last_n = " ".join(t.split(" ")[-1])
-            if t.split(" ")[0] == tk.split(" ")[0] and not t.split(
-                    " ")[1].upper() == tk.split(" ")[1].upper():
+        for token_not_acronym in non_acronyms:
+            end_n = " ".join(token_not_acronym.split(" ")[1:])
+            last_n = " ".join(token_not_acronym.split(" ")[-1])
+
+            first_condition = token_not_acronym.split(" ")[0] == token_acronym.split(" ")[0]
+            second_condition = token_not_acronym.split(" ")[1].upper() == token_acronym.split(" ")[1].upper()
+            if first_condition and not second_condition:
                 if re.search(regex, end_n.upper()):
                     if letter.upper() in last_n.upper():
-                        print(
-                            tk +
-                            dict_count_per_ngram[tk] +
+                        logger.info(
+                            token_acronym +
+                            count_per_ngram[token_acronym] +
                             "     " +
-                            t +
-                            dict_count_per_ngram[t])
+                            token_not_acronym +
+                            count_per_ngram[token_not_acronym])
                         counter += 1
                         if counter > 4:
                             break
-
 
 # TODO michel 20180215 move to unit tests
 # FindExpansionsOfAcronyms("corpus_cardio_ngramstat.txt")

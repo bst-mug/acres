@@ -1,4 +1,4 @@
-from .context import functions
+from acres import functions
 
 
 def test_split_ngram():
@@ -20,58 +20,57 @@ def test_create_ngram_statistics():
     assert functions.create_ngram_statistics(
         'a b', 1, 2) == {'a': 1, 'b': 1, 'a b': 1}
 
-    assert functions.create_ngram_statistics(
-        'a ab aa a a a ba ddd',
-        1,
-        4) == {
-               'a': 4,
-               'ab': 1,
-               'aa': 1,
-               'ba': 1,
-               'ddd': 1,
-               'a ab': 1,
-               'ab aa': 1,
-               'aa a': 1,
-               'a a': 2,
-               'a ba': 1,
-               'ba ddd': 1,
-               'a ab aa': 1,
-               'ab aa a': 1,
-               'aa a a': 1,
-               'a a a': 1,
-               'a a ba': 1,
-               'a ba ddd': 1,
-               'a ab aa a': 1,
-               'ab aa a a': 1,
-               'aa a a a': 1,
-               'a a a ba': 1,
-               'a a ba ddd': 1}
+    expected = {
+        'a': 4,
+        'ab': 1,
+        'aa': 1,
+        'ba': 1,
+        'ddd': 1,
+        'a ab': 1,
+        'ab aa': 1,
+        'aa a': 1,
+        'a a': 2,
+        'a ba': 1,
+        'ba ddd': 1,
+        'a ab aa': 1,
+        'ab aa a': 1,
+        'aa a a': 1,
+        'a a a': 1,
+        'a a ba': 1,
+        'a ba ddd': 1,
+        'a ab aa a': 1,
+        'ab aa a a': 1,
+        'aa a a a': 1,
+        'a a a ba': 1,
+        'a a ba ddd': 1}
+    actual = functions.create_ngram_statistics('a ab aa a a a ba ddd', 1, 4)
+    assert expected == actual
 
 
 def test_extract_acronym_definition():
-    maxLength = 7
+    max_length = 7
 
     assert functions.extract_acronym_definition(
-        "EKG (Elektrokardiogramm)", maxLength) == ('EKG', 'Elektrokardiogramm')
+        "EKG (Elektrokardiogramm)", max_length) == ('EKG', 'Elektrokardiogramm')
     assert functions.extract_acronym_definition(
-        "Elektrokardiogramm (EKG)", maxLength) == ('EKG', 'Elektrokardiogramm')
+        "Elektrokardiogramm (EKG)", max_length) == ('EKG', 'Elektrokardiogramm')
     assert functions.extract_acronym_definition(
-        "Elektrokardiogramm", maxLength) is None
+        "Elektrokardiogramm", max_length) is None
 
 
 def test_is_acronym():
     # Single digits are not acronyms
-    assert functions.is_acronym("A", 3) == False
+    assert not functions.is_acronym("A", 3)
 
     # Lower-case are not acronyms
-    assert functions.is_acronym("ecg", 3) == False
-    assert functions.is_acronym("Ecg", 3) == False
+    assert not functions.is_acronym("ecg", 3)
+    assert not functions.is_acronym("Ecg", 3)
 
     # Double upper-case are acronyms
     assert functions.is_acronym("AK", 2)
 
     # Acronyms should be shorter or equal to the maximum length
-    assert functions.is_acronym("EKG", 2) == False
+    assert not functions.is_acronym("EKG", 2)
     assert functions.is_acronym("EKG", 3)
 
     # Acronyms can contain diacritics
@@ -103,3 +102,11 @@ def test_random_sub_list():
 
     # TODO use Random.seed() so that the output is deterministic
     assert functions.random_sub_list(["a", "b"], 1) in [["a"], ["b"]]
+
+
+def test_find_acronym_expansion():
+    ngrams = []
+    actual = functions.find_acro_expansions(ngrams)
+    expected = None
+
+    assert expected == actual

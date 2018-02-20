@@ -1,6 +1,7 @@
 # Stefan Schulz 11 Nov 2017
 
 
+import logging
 import pickle
 import re
 import logging
@@ -110,6 +111,8 @@ def get_acronym_score(acro, full, s_morph = None, language ="de"):
         return 0
     if full.count(" ") + 1 > len(acro) + 5:
         return 0
+    acroL = acro.lower()
+    fullL = full.lower()
     # decapitalized acronym must not occur within decap full form,
     # if acronym has three or more letters
     if acro_low in full_low and len(acro_low) > 2:
@@ -155,45 +158,7 @@ def get_acronym_score(acro, full, s_morph = None, language ="de"):
     if re.search(expanded_upper, acro) is None:
         pen = pen * 0.25  # FIXME: check whether right
 
-    # FIXME duplicate code at functions.CheckAcroVsFull()
-
-    dia = functions.diacritics()
-    bina = []
-    splits = []
-    fl = ""
-    # remove most punctuation chars from full
-    # tokenization, preserving hyphen or chars in acro
-    for c in full_low:
-        if c.isalnum() or c in " -" or c in acro_low:
-            fl = fl + c
-        else:
-            fl = fl + " "
-    fl = fl.strip()
-    # list of binary combinations of alternative regex patterns
-    # (greedy vs. non-greedy)
-    regs = []  # list of alternative regular expressions
-    # XXX: state machines instead of Regex
-    # XXX: debug what happens with "TRINS" - "Trikuspidalinsuffizienz"
-    # XXX: correct segmentation: 't', 'ricuspidal', 'i', 'n', 'suffizienz'
-    # XXX: obviously morpheme-based scoring does not work well
-    # XXX with this unorthodox building patterns
-    for i in range(0, (2 ** (len(acro_low) - 1))):
-        str_bin = str(bin(i))[2:].zfill(len(acro_low) - 1)
-        logger.debug(str_bin)
-        bina.append(str_bin.replace("0", "*|").replace("1", "*?|"))
-    for expr in bina:
-        lst_expr = expr.split("|")
-        z = 0
-        out = "^("
-        for ex in lst_expr:
-            out = out + re.escape(acro_low[z]) + "." + ex + ")("
-            z = z + 1
-        regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
-    for reg in regs:
-        # print(reg)
-        if re.search(reg, fl, re.IGNORECASE) is not None:
-            splits.append(re.findall(reg, fl, re.IGNORECASE)[0])
-    # END of duplicate code
+    splits = functions.check_acro_vs_expansion(acro_lower, full_lower)
 
     score = 0
     # logger.debug(splits)
@@ -201,7 +166,7 @@ def get_acronym_score(acro, full, s_morph = None, language ="de"):
         s = 0
         for fragment in split:
             # !!!! Specific for German
-            # TODO : check whether the function substitute_k_and_f_by_context
+            # TODO : check whether the function  substitute_k_and_f_by_context
             # TODO : could be used instead (produces 7-Bit string without K and
             # F)
             fragment = functions.simplify_german_string(fragment).strip()
@@ -214,7 +179,7 @@ def get_acronym_score(acro, full, s_morph = None, language ="de"):
                 s += 1
                 continue
 
-            if fragment in s_morph:
+            if fragment in sMorph:
                 logger.debug(fragment)
                 s += 1
                 continue

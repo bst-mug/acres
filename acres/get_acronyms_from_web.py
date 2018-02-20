@@ -3,6 +3,8 @@
 Finds synonyms using a n-gram frequency list from the Web
 """
 
+import logging
+
 import html2text
 import requests
 import logging

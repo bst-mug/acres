@@ -1,6 +1,8 @@
 import re
 from acres import functions
 
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 def find_best_substitution(form_to_resolve, candidates,
                            lst_tokens, short_form_type, context):

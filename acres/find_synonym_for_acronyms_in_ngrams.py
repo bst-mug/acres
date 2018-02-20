@@ -1,5 +1,6 @@
 # Stefan Schulz 03 Dec 2017
 
+import logging
 import math
 import pickle
 import random
@@ -88,7 +89,7 @@ def find_synonyms():
                     s = s.replace(".", " ").replace(",", " ")
                     s = s.replace("  ", " ")
                     s = s.replace(" ", "+")
-                    strURL = "http://www.bing.de/search?cc=de&q=%22" + s + "%22"
+                    str_url = "http://www.bing.de/search?cc=de&q=%22" + s + "%22"
                     time.sleep(random.randint(0, 2000) / 1000)
                     logger.info(".")
                     lst_Web = get_acronyms_from_web.ngrams_web_dump(strURL, 1, 10)
@@ -124,16 +125,16 @@ def find_synonyms():
                             # scoreCorpus = 0
                             score_corpus = rate_acronym_resolutions.get_acronym_score(
                                 acronym, exp, morphemes)
-                            if score_corpus > 0:
+                            if scoreCorpus > 0:
                                 result = str(
                                     round(
-                                        score_corpus * math.log10(f),
+                                        scoreCorpus * math.log10(f),
                                         2)) + " " + exp + " " + str(
                                     round(
-                                        score_corpus,
+                                        scoreCorpus,
                                         2)) + " " + str(f) + " " + "\t" + ngram
-                                if acronym not in d_log_corpus:
-                                    d_log_corpus[acronym] = [result]
+                                if acronym not in dLogCorpus:
+                                    dLogCorpus[acronym] = [result]
                                 else:
                                     d_log_corpus[acronym].append(result)
                             old_exp = exp
@@ -158,8 +159,8 @@ def find_synonyms():
                                 if acronym not in d_log_web:
                                     d_log_web[acronym] = [result]
                                 else:
-                                    d_log_web[acronym].append(result)
-                            old_exp = exp
+                                    dLogWeb[acronym].append(result)
+                            oldExp = exp
 
     for a in d_log_corpus:
         for r in d_log_corpus[a]:

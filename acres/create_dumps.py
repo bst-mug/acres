@@ -9,13 +9,15 @@ from acres import functions
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+
 # logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
 
 def create_normalised_token_dump():
     """
-    Creates a set of all tokens in the ngram table, taking into account all possible variants typical for clinical
-    German.
+    Creates a set of all tokens in the ngram table, taking into account all possible variants
+    typical for clinical German.
 
     XXX Check whether it's used !!
     INCOMLETE RULESET FOR TRANSFORMING 8 bit to 7 bit
@@ -28,38 +30,20 @@ def create_normalised_token_dump():
     ngram_stat = functions.import_conf("NGRAMFILE")
     # "..\\..\\stat\corpus_cardio_training_cleaned_1_to_7gram_stat.txt"
     # ngram statistics representing a specific document genre and domain
-    print(ngram_stat)
+    logger.debug(ngram_stat)
 
     all_tokens = set()
     all_token_variants = set()
-    with open(ngram_stat) as f:
-        for row in f:
-            row = row.replace(
-                "-",
-                " ").replace(
-                "/",
-                " ").replace(
-                "(",
-                " ").replace(
-                ")",
-                " ")
+    with open(ngram_stat) as file:
+        for row in file:
+            row = row.replace("-", " ").replace("/", " ").replace("(", " ").replace(")", " ")
             tokens = row.split(" ")
             for token in tokens:
                 all_tokens.add(token)
         for token in all_tokens:
-            token = token.replace(
-                ".",
-                "").replace(
-                ",",
-                "").replace(
-                ";",
-                "").replace(
-                ":",
-                "").replace(
-                    "!",
-                    "").replace(
-                        "?",
-                "")
+            token = token.replace(".", "").replace(",", "").replace(";", "")
+            token = token.replace(":", "").replace("!", "").replace("?", "")
+
             all_token_variants.add(token)
             all_token_variants.add(token.lower())
             token = token.replace("k", "c").replace("z", "c")
@@ -83,16 +67,15 @@ def create_ngramstat_dump(ngram_stat_filename, ngramstat, min_freq):
     :return:
     """
     with open(ngram_stat_filename) as f:
-        id = 1
+        identifier = 1
         for row in f:
             if row[8] == "\t":
-                # freq = '{:0>7}'.format(int(row.split("\t")[0]))
-                freq = row.split("\t")[0]
+                # freq = row.split("\t")[0]
                 freq = '{:0>7}'.format(int(row.split("\t")[0]))
                 ngram = row.split("\t")[1].strip()
                 if int(freq) >= min_freq:
-                    ngramstat[id] = freq + "\t" + ngram
-                    id += 1
+                    ngramstat[identifier] = freq + "\t" + ngram
+                    identifier += 1
                     # adding variations according to specific tokenization
                     # rules dependent on punctuation chars,
                     # guided by obseverations of German clinical language.
@@ -100,58 +83,58 @@ def create_ngramstat_dump(ngram_stat_filename, ngramstat, min_freq):
                         # !!! GERMAN-DEPENDENT !!!
                         # Variant 1: hyphen may be omitted (non-standard German)
                         # "Belastungs-Dyspnoe" -->  "Belastungs Dyspnoe"
-                        ngramstat[id] = freq + "\t" + ngram.replace("-", " ")
-                        id += 1
+                        ngramstat[identifier] = freq + "\t" + ngram.replace("-", " ")
+                        identifier += 1
                         # Variant 2: words may be fused (should also be decapitalised
                         # but this is not relevant due to case-insensitive matching)
                         # "Belastungs-Dyspnoe" -->  "BelastungsDyspnoe"
-                        ngramstat[id] = freq + "\t" + ngram.replace("-", "")
-                        id += 1
+                        ngramstat[identifier] = freq + "\t" + ngram.replace("-", "")
+                        identifier += 1
                     if row[-1] in ".:;,-?!/":
                         # Variant 3: removal of trailing punctuation
                         # End of sentence should not restrain reuse of tokens
                         # E.g. "Colonoskopie."
                         # TO DO: investigate solutions to solve it before creating ngrams
                         # !!! FIX ME: sum up frequencies
-                        ngramstat[id] = freq + "\t" + ngram[:-1]
-                        id += 1
+                        ngramstat[identifier] = freq + "\t" + ngram[:-1]
+                        identifier += 1
                     if "/" in row:
                         # Variant 4: insertion of spaces around "/", because
                         # "/" is often used as a token separator with shallow meaning
                         # "/"
-                        ngramstat[id] = freq + "\t" + ngram.replace("/", " / ")
-                        id += 1
+                        ngramstat[identifier] = freq + "\t" + ngram.replace("/", " / ")
+                        identifier += 1
                     if ", " in row:
                         # Variant 5: insertion of space before comma, to make the
                         # preceding token accessible
-                        ngramstat[id] = freq + "\t" + \
+                        ngramstat[identifier] = freq + "\t" + \
                                         ngram.replace(", ", " , ")
-                        id += 1
+                        identifier += 1
                     if "; " in row:
                         # the same with semicolon
-                        ngramstat[id] = freq + "\t" + \
+                        ngramstat[identifier] = freq + "\t" + \
                                         ngram.replace("; ", " ; ")
-                        id += 1
+                        identifier += 1
                     if ": " in row:
                         # the same with colon
-                        ngramstat[id] = freq + "\t" + \
+                        ngramstat[identifier] = freq + "\t" + \
                                         ngram.replace(": ", " : ")
-                        id += 1
+                        identifier += 1
 
     index = collections.defaultdict(set)
-    for id in ngramstat:
+    for identifier in ngramstat:
         # inverted index for performance issue when retrieving ngram records
         # XXX Think about trie data structure
-        # print(ngramstat[ID])
-        ngram = ngramstat[id].split("\t")[1]
+        # logger.debug(ngramstat[ID])
+        ngram = ngramstat[identifier].split("\t")[1]
         words = ngram.split(" ")
         for word in words:
-            index[word].add(id)
+            index[word].add(identifier)
             if len(word) > 1 and not word[-1].isalpha():
-                index[word[0:-1]].add(id)
+                index[word[0:-1]].add(identifier)
 
-    pickle.dump(ngramstat, open("pickle//ngramstat.p", "wb"))
-    pickle.dump(index, open("pickle//index.p", "wb"))
+    pickle.dump(ngramstat, open("models/pickle/ngramstat.p", "wb"))
+    pickle.dump(index, open("models/pickle/index.p", "wb"))
 
 
 def create_acro_dump():
@@ -160,34 +143,34 @@ def create_acro_dump():
 
     :return:
     """
-    x = pickle.load(open("pickle//acronymNgrams.p", "rb"))
-    for i in x:
-        print(i)
+    acronym_ngrams = pickle.load(open("models/pickle/acronymNgrams.p", "rb"))
+    for i in acronym_ngrams:
+        logger.debug(i)
 
-    a = []
-    b = []
+    acronyms = []
+    new_acronym_ngrams = []
 
-    m = pickle.load(open("pickle//ngramstat.p", "rb"))
-    for n in m:
-        row = (m[n])
+    ngram_stat = pickle.load(open("models/pickle/ngramstat.p", "rb"))
+    for n in ngram_stat:
+        row = (ngram_stat[n])
         ngram = row.split("\t")[1]
         if ngram.isalnum() and "Ð" not in ngram:
             if functions.is_acronym(ngram, 7):
                 # plausible max length for German medical language
-                if ngram not in a:
-                    a.append(ngram)
+                if ngram not in acronyms:
+                    acronyms.append(ngram)
 
         if " " in ngram:
             tokens = ngram.split(" ")
             for token in tokens:
                 if functions.is_acronym(token, 7):
-                    b.append(ngram)
+                    new_acronym_ngrams.append(ngram)
                     break
 
     # List of acronyms
-    pickle.dump(a, open("pickle//acronyms.p", "wb"))
+    pickle.dump(acronyms, open("models/pickle/acronyms.p", "wb"))
     # List of ngrams, containing acronyms
-    pickle.dump(b, open("pickle//acronymNgrams.p", "wb"))
+    pickle.dump(new_acronym_ngrams, open("models/pickle/acronymNgrams.p", "wb"))
 
 
 def create_morpho_dump():
@@ -206,7 +189,7 @@ def create_morpho_dump():
             if "<str>" in row:
                 row = row.strip()[5:-6]
                 row = row.replace("z", "c").replace("k", "c")
-                # print(row)
+                # logger.debug(row)
                 s_morph.add(row)
 
     with open(morph_eng) as f:
@@ -214,7 +197,7 @@ def create_morpho_dump():
             if "<str>" in row:
                 row = row.strip()[5:-6]
                 row = row.replace("z", "c").replace("k", "c")
-                # print(row)
+                # logger.debug(row)
                 s_morph.add(row)
 
     pickle.dump(s_morph, open("models/pickle/morphemes.p", "wb"))
@@ -239,7 +222,7 @@ def create_corpus_char_stat_dump(
     for file in files:
         str_doc = ""
         with open(corpus_path + "\\" + file, 'r') as single_document:
-            print(file)
+            logger.info(file)
             counter += 1
             for line in single_document:
                 line = functions.clear_digits(line, digit_placeholder)
@@ -268,15 +251,14 @@ def create_corpus_char_stat_dump(
 # create_corpus_char_stat_dump("S:\\DocumentCleansing\\CardioCorpusSplit\\Training")
 
 
-def create_corpus_ngramstat_dump(corpus_path, Fixlines=True, digit_placeholder="Ð", break_marker="¶"):
+def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, digit_placeholder="Ð", break_marker="¶"):
     """
     Takes the path with the corpus.
-    It requires that all documents are in UTF-8 text
+    It requires that all documents are in UTF-8 text.
     It can perform line break cleansing (removes artificial line breaks)
-    and substitutions of digits
-    For fixing the lines, a character ngram stat dictionary, CREATED FROM THE SAME OR A SIMILAR CORPUS
-    character_ngrams.p  must be in place
-
+    and substitutions of digits.
+    For fixing the lines, a character ngram stat dictionary, CREATED FROM THE SAME OR A SIMILAR
+    CORPUS, character_ngrams.p  must be in place.
 
     :return:
     """
@@ -286,8 +268,7 @@ def create_corpus_ngramstat_dump(corpus_path, Fixlines=True, digit_placeholder="
     for file in files:
         with open(corpus_path + "\\" + file, 'r', encoding="UTF-8") as single_document:
             document_content = single_document.read()
-            # FIXME Undefined variable 'd' (undefined-variable)
-            if Fixlines:
+            if fix_lines:
                 dict_char_ngrams = pickle.load(open("pickle//ngramstat.p", "rb"))
                 document_content = functions.fix_line_endings(document_content, dict_char_ngrams, "break_marker")
             if len(digit_placeholder) == 1:
@@ -299,13 +280,11 @@ def create_corpus_ngramstat_dump(corpus_path, Fixlines=True, digit_placeholder="
         entire_corpus = entire_corpus + document_content + "\n\n"
         counter += 1
 
-    logger.debug("Corpus loaded containing " + str(counter) + " documents.")
+    logger.debug("Corpus loaded containing %d documents.", counter)
     # = pickle.load(open("models/pickle/character_ngrams.p", "rb"))
 
 
 # create_corpus_ngramstat_dump()
-
-
 
 
 def load_dumps():
@@ -314,10 +293,10 @@ def load_dumps():
 
     :return:
     """
-    print("Begin Read Dump")
+    logger.info("Begin Read Dump")
     ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
-    print("-")
+    logger.info("-")
     index = pickle.load(open("pickle//index.p", "rb"))
-    print("-")
-    normalisedTokens = pickle.load(open("pickle//tokens.p", "rb"))
-    print("End Read Dump")
+    logger.info("-")
+    normalised_tokens = pickle.load(open("pickle//tokens.p", "rb"))
+    logger.info("End Read Dump")

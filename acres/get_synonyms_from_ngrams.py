@@ -3,6 +3,7 @@
 Finds synonyms using a n-gram frequency list from related corpus
 """
 
+import logging
 import pickle
 import re
 import logging
@@ -26,7 +27,7 @@ def find_embeddings(str_left,
                     max_num_tokens,
                     verbose):
     """
-    Input strMiddle, together with a series of filter parameters
+    Input str_middle, together with a series of filter parameters
     Three cases of embeddings: 1. bilateral, 2.left, 3.right
 
     :param str_left: string left of unknown ("*" if to be retrieved ; "" if empty")
