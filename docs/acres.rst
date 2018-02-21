@@ -12,14 +12,6 @@ acres.create\_dumps module
     :undoc-members:
     :show-inheritance:
 
-acres.expansion\_acronyms module
---------------------------------
-
-.. automodule:: acres.expansion_acronyms
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 acres.find\_synonym\_for\_acronyms\_in\_ngrams module
 -----------------------------------------------------
 
