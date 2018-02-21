@@ -111,8 +111,7 @@ def get_acronym_score(acro, full, s_morph = None, language ="de"):
         return 0
     if full.count(" ") + 1 > len(acro) + 5:
         return 0
-    acroL = acro.lower()
-    fullL = full.lower()
+
     # decapitalized acronym must not occur within decap full form,
     # if acronym has three or more letters
     if acro_low in full_low and len(acro_low) > 2:
@@ -158,7 +157,7 @@ def get_acronym_score(acro, full, s_morph = None, language ="de"):
     if re.search(expanded_upper, acro) is None:
         pen = pen * 0.25  # FIXME: check whether right
 
-    splits = functions.check_acro_vs_expansion(acro_lower, full_lower)
+    splits = functions.check_acro_vs_expansion(acro_low, full_low)
 
     score = 0
     # logger.debug(splits)
@@ -179,7 +178,7 @@ def get_acronym_score(acro, full, s_morph = None, language ="de"):
                 s += 1
                 continue
 
-            if fragment in sMorph:
+            if fragment in s_morph:
                 logger.debug(fragment)
                 s += 1
                 continue

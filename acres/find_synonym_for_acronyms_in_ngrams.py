@@ -92,7 +92,7 @@ def find_synonyms():
                     str_url = "http://www.bing.de/search?cc=de&q=%22" + s + "%22"
                     time.sleep(random.randint(0, 2000) / 1000)
                     logger.info(".")
-                    lst_Web = get_acronyms_from_web.ngrams_web_dump(strURL, 1, 10)
+                    lst_Web = get_acronyms_from_web.ngrams_web_dump(str_url, 1, 10)
 
                 # Prepare parameters for corpus model
                 if left_string == "":
@@ -125,16 +125,12 @@ def find_synonyms():
                             # scoreCorpus = 0
                             score_corpus = rate_acronym_resolutions.get_acronym_score(
                                 acronym, exp, morphemes)
-                            if scoreCorpus > 0:
-                                result = str(
-                                    round(
-                                        scoreCorpus * math.log10(f),
-                                        2)) + " " + exp + " " + str(
-                                    round(
-                                        scoreCorpus,
-                                        2)) + " " + str(f) + " " + "\t" + ngram
-                                if acronym not in dLogCorpus:
-                                    dLogCorpus[acronym] = [result]
+                            if score_corpus > 0:
+                                a = str(round(score_corpus * math.log10(f), 2))
+                                b = str(round(score_corpus, 2))
+                                result = a + " " + exp + " " + b + " " + str(f) + " " + "\t" + ngram
+                                if acronym not in d_log_corpus:
+                                    d_log_corpus[acronym] = [result]
                                 else:
                                     d_log_corpus[acronym].append(result)
                             old_exp = exp
@@ -159,7 +155,7 @@ def find_synonyms():
                                 if acronym not in d_log_web:
                                     d_log_web[acronym] = [result]
                                 else:
-                                    dLogWeb[acronym].append(result)
+                                    d_log_web[acronym].append(result)
                             oldExp = exp
 
     for a in d_log_corpus:
