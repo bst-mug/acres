@@ -88,8 +88,8 @@ def get_acronym_score(acro, full, s_morph = None, language ="de"):
         return 0  # Check A
     # for each acronym in full form, penalisation
     # TODO: check whether artefact
-    for t in full.split(" "):
-        if functions.is_acronym(t, 7):
+    for token in full.split(" "):
+        if functions.is_acronym(token, 7):
             pen = pen / 4  # TODO: check how penalisation works. Do we really need a separate penalisation variable??
     if language == "de":
         # Plural form of acronym reduced to singular ("s", often not found in non English full forms)
