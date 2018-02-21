@@ -109,8 +109,7 @@ def find_synonyms():
                     minfreq,
                     maxcount,
                     min_number_tokens,
-                    max_number_tokens,
-                    False)
+                    max_number_tokens)
 
                 for item in lst_corpus:
                     old_exp = ""

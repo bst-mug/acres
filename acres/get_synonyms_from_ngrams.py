@@ -220,4 +220,4 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     # print(find_embeddings("gutem", "AZ", "nach Hause", ngramstat, index, 10, 3, 100, 3, 7, False))
 
     logger.debug(find_embeddings("*", "PDU", "*",
-                                 ngramstat, index, 10, 3, 50, 1, 5, False))
+                                 ngramstat, index, 10, 3, 50, 1, 5))
