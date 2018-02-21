@@ -48,12 +48,12 @@ def split_ngram(ngram):
     :return:
     """
     out = []
-    lst_tokens = ngram.split(" ")
+    tokens = ngram.split(" ")
     counter = 0
-    for t in lst_tokens:
-        if is_acronym(t, 7, "Ð"):
-            tr = (" ".join(lst_tokens[0:counter]),
-                  lst_tokens[counter], " ".join(lst_tokens[counter + 1:]))
+    for token in tokens:
+        if is_acronym(token, 7, "Ð"):
+            tr = (" ".join(tokens[0:counter]),
+                  tokens[counter], " ".join(tokens[counter + 1:]))
             out.append(tr)
         counter += 1
     return out

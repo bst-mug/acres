@@ -88,10 +88,10 @@ def find_embeddings(str_left,
     else:
         # Generate list of words for limiting the search space via word index
         str_complete = str_left.strip() + " " + str_middle.strip() + " " + str_right.strip()
-        all_tokens_l = str_complete.split(" ")
-        for t in all_tokens_l:
-            if t != "*":
-                all_sets.append(index[t])
+        all_tokens = str_complete.split(" ")
+        for token in all_tokens:
+            if token != "*":
+                all_sets.append(index[token])
         ngram_selection = set.intersection(*all_sets)
         for r in ngram_selection:
             sel_rows.append(ngramstat[r])

@@ -66,9 +66,9 @@ def create_ngramstat_dump(ngram_stat_filename, ngramstat, min_freq):
     :param min_freq:
     :return:
     """
-    with open(ngram_stat_filename) as f:
+    with open(ngram_stat_filename) as file:
         identifier = 1
-        for row in f:
+        for row in file:
             if row[8] == "\t":
                 # freq = row.split("\t")[0]
                 freq = '{:0>7}'.format(int(row.split("\t")[0]))
