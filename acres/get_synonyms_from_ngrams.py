@@ -6,13 +6,11 @@ Finds synonyms using a n-gram frequency list from related corpus
 import logging
 import pickle
 import re
-import logging
 
 from acres import functions
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
 
 def find_embeddings(str_left,
@@ -20,8 +18,8 @@ def find_embeddings(str_left,
                     str_right,
                     ngramstat,
                     index,
-                    min_window_size,
-                    min_freq,
+                    min_win_size,
+                    minfreq,
                     maxcount,
                     min_num_tokens,
                     max_num_tokens):
@@ -34,18 +32,17 @@ def find_embeddings(str_left,
     :param str_right: string right uf unknown ("*" if to be retrieved ; "" if empty")
     :param ngramstat: ngram model
     :param index: word index to ngram model
-    :param min_window_size: minimum window size
-    :param min_freq: minimum ngram frequency
+    :param min_win_size: minimum window size
+    :param minfreq: minimum ngram frequency
     :param maxcount: maximum count in list
     :param min_num_tokens:
     :param max_num_tokens:
-    :param verbose:
     :return:
     """
 
     # MAXLIST = 100
     digit = "Ð"
-    lst_out = []
+    out = []
     all_beds = []
     all_sets = []
     sel_rows = []
@@ -59,24 +56,24 @@ def find_embeddings(str_left,
     # Build regular expression for matching ngram
 
     if str_left == "*":
-        str_left_escape = "^.*\ "
+        str_left_esc = "^.*\ "
     elif str_left == "":
-        str_left_escape = "^"
+        str_left_esc = "^"
     else:
-        str_left_escape = "^" + re.escape(str_left.strip()) + "\ "
-    str_middle_escape = re.escape(str_middle.strip())
+        str_left_esc = "^" + re.escape(str_left.strip()) + "\ "
+    str_middle_esc = re.escape(str_middle.strip())
     if str_right == "*":
-        str_right_escape = "\ .*$"
+        str_right_esc = "\ .*$"
     elif str_right == "":
-        str_right_escape = "$"
+        str_right_esc = "$"
     else:
-        str_right_escape = "\ " + re.escape(str_right.strip()) + "$"
-    regex_embed = str_left_escape + str_middle_escape + str_right_escape
+        str_right_esc = "\ " + re.escape(str_right.strip()) + "$"
+    regex_embed = str_left_esc + str_middle_esc + str_right_esc
 
-    logger.debug("Unknown expression: '%s'", str_middle_escape)
-    logger.debug("Left context: '%s'", str_left_escape)
-    logger.debug("Right context: '%s'", str_right_escape)
-    logger.debug("Minimum n-gram frequency: %d", min_freq)
+    logger.debug("Unknown expression: '%s'", str_middle_esc)
+    logger.debug("Left context: '%s'", str_left_esc)
+    logger.debug("Right context: '%s'", str_right_esc)
+    logger.debug("Minimum n-gram frequency: %d", minfreq)
     logger.debug("Maximum count of iterations: %d", maxcount)
     logger.debug("N-gram cardinality between %d and %d",
                  min_num_tokens, max_num_tokens)
@@ -91,12 +88,12 @@ def find_embeddings(str_left,
     else:
         # Generate list of words for limiting the search space via word index
         str_complete = str_left.strip() + " " + str_middle.strip() + " " + str_right.strip()
-        lst_all_tokens = str_complete.split(" ")
-        for t in lst_all_tokens:
+        all_tokens_l = str_complete.split(" ")
+        for t in all_tokens_l:
             if t != "*":
                 all_sets.append(index[t])
-        n_gram_selection_s = set.intersection(*all_sets)
-        for r in n_gram_selection_s:
+        ngram_selection = set.intersection(*all_sets)
+        for r in ngram_selection:
             sel_rows.append(ngramstat[r])
 
         logger.debug(
@@ -109,11 +106,11 @@ def find_embeddings(str_left,
         logger.debug(row)
         # input("press key!)
         ngram = row.split("\t")[1]
-        ngram_cardinality = ngram.count(" ") + 1  # cardinality of the nGram
+        ngram_card = ngram.count(" ") + 1  # cardinality of the nGram
         # Filter by ngram cardinality
-        if max_num_tokens >= ngram_cardinality >= min_num_tokens:  # -1
-            # watch out for multiword input strMiddle
-            if int(row.split("\t")[0]) >= min_freq:
+        if max_num_tokens >= ngram_card >= min_num_tokens:  # -1
+            # watch out for multiword input str_middle
+            if int(row.split("\t")[0]) >= minfreq:
                 # might suppress low n-gram frequencies
                 ngram = row.split("\t")[1].strip()
                 m = re.search(regex_embed, ngram, re.IGNORECASE)
@@ -127,69 +124,69 @@ def find_embeddings(str_left,
 
         logger.debug("press key!")
 
-    selected_beds = functions.random_sub_list(all_beds, count)
-    # print(selBeds)
+    sel_beds = functions.random_sub_list(all_beds, count)
+    # print(sel_beds)
     # random selection of hits, to avoid explosion
     logger.debug("Embeddings:")
     if logger.getEffectiveLevel() == logging.DEBUG:
         for item in all_beds:
             print(item)
 
-    # print(len(selBeds), selBeds)
+        # print(len(sel_beds), sel_beds)
         logger.debug("Generated list of %d matching n-grams", count)
         logger.debug("strike key")
 
     if count > 0:
-        i_max_num = (maxcount // count) + 3
-        logger.debug("Per matching n-gram %d surroundings", i_max_num)
+        max_num = (maxcount // count) + 3
+        logger.debug("Per matching n-gram %d surroundings", max_num)
 
         # print("----------------------------------------------")
-        for row in selected_beds:  # iterate through extract
+        for row in sel_beds:  # iterate through extract
             bed = row.split("\t")[1].strip()
 
             new_sets = []
             regex_bed = "^" + re.escape(bed) + "$"
-            regex_bed = regex_bed.replace(str_middle_escape, "(.*)")
-            lst_surroundings = bed.replace(str_middle + " ", "").split(" ")
-            for w in lst_surroundings:
-                logger.debug("Surrounding strMiddle: %s", w)
-                new_sets.append(index[w])
-            lst_ngrams_with_surroundings = list(set.intersection(*new_sets))
+            regex_bed = regex_bed.replace(str_middle_esc, "(.*)")
+            surroundings = bed.replace(str_middle + " ", "").split(" ")
+            for word in surroundings:
+                logger.debug("Surrounding str_middle: %s", word)
+                new_sets.append(index[word])
+            ngrams_with_surroundings = list(set.intersection(*new_sets))
             logger.debug(
                 "Size of list that includes surrounding elements: %d",
-                len(lst_ngrams_with_surroundings))
-            lst_ngrams_with_surroundings.sort(reverse=True)
+                len(ngrams_with_surroundings))
+            ngrams_with_surroundings.sort(reverse=True)
             # Surrounding list sorted
-            c = 0
-            for r in lst_ngrams_with_surroundings:
-                if c > i_max_num:
+            counter = 0
+            for r in ngrams_with_surroundings:
+                if counter > max_num:
                     break
                 row = ngramstat[r]
                 ngram = row.split("\t")[1].strip()
                 freq = row.split("\t")[0]
                 m = re.search(regex_bed, ngram, re.IGNORECASE)
                 if m is not None:
-                    # print(regex_bed)
-                    # print(row)
+                    # logger.debug(regex_bed)
+                    # logger.debug(row)
                     out = m.group(1).strip()
                     if (str_middle not in out) and \
-                            len(out) > min_window_size and \
+                            len(out) > min_win_size and \
                             "¶" not in out and (digit not in out):
-                        # print(ngramfrequency, out, "   [" + ngram + "]")
-                        c = c + 1
-                        lst_out.append(freq + "\t" + out)
+                        # logger.debug(ngramfrequency, out, "   [" + ngram + "]")
+                        counter += 1
+                        out.append(freq + "\t" + out)
 
-        lst_out.sort(reverse=True)
+        out.sort(reverse=True)
     if logger.getEffectiveLevel() == logging.DEBUG:
-        for item in lst_out:
+        for item in out:
             logger.debug(item)
-    return lst_out
+    return out
 
 
 if logger.getEffectiveLevel() == logging.DEBUG:
-    normalisedTokens = pickle.load(open("pickle//tokens.p", "rb"))
-    ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
-    index = pickle.load(open("pickle//index.p", "rb"))
+    normalisedTokens = pickle.load(open("models/pickle/tokens.p", "rb"))
+    ngramstat = pickle.load(open("models/pickle/ngramstat.p", "rb"))
+    index = pickle.load(open("models/pickle/index.p", "rb"))
     logger.debug("Dumps loaded")
     # li = find_embeddings("", "morph.", "", ngramstat, index, 10, 3, 1000, 1, 7)
     # li = find_embeddings("Mitralklappe", "morph.", "*", ngramstat, index, 10, 3, 1000, 1, 7)
@@ -200,24 +197,24 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     # out = (Filters.bestAcronymResolution("OL", li, normalisedTokens, "AA", ""))
 
     # Parms: minWinSize, minfreq, maxcount, minNumberTokens, maxNumberTokens
-    # print(find_embeddings("TRINS", ngramstat, index, 1, 3, 10, 6))
-    # print(find_embeddings("HRST", ngramstat, index, 15, 3, 20, 6)) # wird nicht gefunden!
-    # print(find_embeddings("ACVB", ngramstat, index, 15, 3, 10, 9))# wird
+    # logger.debug(find_embeddings("TRINS", ngramstat, index, 1, 3, 10, 6))
+    # logger.debug(find_embeddings("HRST", ngramstat, index, 15, 3, 20, 6)) # wird nicht gefunden!
+    # logger.debug(find_embeddings("ACVB", ngramstat, index, 15, 3, 10, 9))# wird
     # nicht gefunden!
 
-    # print(find_embeddings("Rö-Thorax", ngramstat, index, 10, 1, 20, 3)) #
+    # logger.debug(find_embeddings("Rö-Thorax", ngramstat, index, 10, 1, 20, 3)) #
     # wird gefunden!
 
-    # print(find_embeddings("TRINS", ngramstat, index, 15, 1, 50, 3))
-    # print(find_embeddings("TRINS", ngramstat, index, 15, 1, 100, 3))
-    # print(find_embeddings("koronare Herzkrankheit", ngramstat, index, 20, 1, 100, 5))
-    # print(find_embeddings("re OL", ngramstat, index, 5, 1, 100, 6)) # OL
+    # logger.debug(find_embeddings("TRINS", ngramstat, index, 15, 1, 50, 3))
+    # logger.debug(find_embeddings("TRINS", ngramstat, index, 15, 1, 100, 3))
+    # logger.debug(find_embeddings("koronare Herzkrankheit", ngramstat, index, 20, 1, 100, 5))
+    # logger.debug(find_embeddings("re OL", ngramstat, index, 5, 1, 100, 6)) # OL
     # kommt nur 4 mal vor !
 
-    # print(find_embeddings("Herz- und", ngramstat, index, 20, 1, 100, 5))
-    # print(find_embeddings("lab. maj", ngramstat, index, 20, 3, 100, 5, 6))
+    # logger.debug(find_embeddings("Herz- und", ngramstat, index, 20, 1, 100, 5))
+    # logger.debug(find_embeddings("lab. maj", ngramstat, index, 20, 3, 100, 5, 6))
 
-    # print(find_embeddings("gutem", "AZ", "nach Hause", ngramstat, index, 10, 3, 100, 3, 7, False))
+    # logger.debug(find_embeddings("gutem", "AZ", "nach Hause", ngramstat, index, 10, 3, 100, 3, 7))
 
     logger.debug(find_embeddings("*", "PDU", "*",
                                  ngramstat, index, 10, 3, 50, 1, 5))

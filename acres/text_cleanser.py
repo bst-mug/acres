@@ -8,7 +8,7 @@ logger.setLevel(logging.INFO)
 
 
 def find_best_substitution(form_to_resolve, candidates,
-                           lst_tokens, short_form_type):
+                           tokenlist, shortformtype):
     """
     This will eventually be the master function invoked by the text cleansing process
     Finds the best resolution of a nonlexicalised form
@@ -27,11 +27,11 @@ def find_best_substitution(form_to_resolve, candidates,
 
     :param form_to_resolve:
     :param candidates:
-    :param lst_tokens:
-    :param short_form_type:
+    :param tokenlist:
+    :param shortformtype:
     :return:
     """
-    if short_form_type == "AA":
+    if shortformtype == "AA":
         regex_acro = ""
         out = []
         form_to_resolve = form_to_resolve.replace(
@@ -41,26 +41,23 @@ def find_best_substitution(form_to_resolve, candidates,
             regex_acro = "^" + regex_acro
         for row in candidates:
             ngram = row.split("\t")[1]
-            print(ngram)
-            m = re.search(regex_acro, ngram, re.IGNORECASE)
-            if m is not None and form_to_resolve not in ngram:
-                segmL = functions.check_acro_vs_expansion(form_to_resolve, ngram)
+            logger.debug(ngram)
+            match = re.search(regex_acro, ngram, re.IGNORECASE)
+            if match is not None and form_to_resolve not in ngram:
+                segm = functions.check_acro_vs_expansion(form_to_resolve, ngram)
                 # returns list like [[('Elektro', 'kardio', 'gramm')],
                 # [('Elektro', 'kardio', 'gramm')], [('Ele', 'ktrokardio', 'gramm')],
                 # [('Ele', 'ktrokardio', 'gramm')]]
                 max_score = 0
-                summ = 0
-                for segms in segmL:
+                # summ = 0
+                for segms in segm:
                     summ = 0
                     for seg in segms:
                         seg = seg.strip()
-                        if seg in lst_tokens:
+                        if seg in tokenlist:
                             summ += 1
                     if summ > max_score:
                         max_score = summ
                 out.append('{:0>2}'.format(str(max_score)) + "\t" + ngram)
         out.sort(reverse=True)
         return out
-
-# normalisedTokens = pickle.load(open("tokens.p", "rb"))
-# print(bestAcronymResolution("SR", ['123\tSinusrhythmus', '123\tSinusarrhytmie', '123\tkein Sinusrh.' ], normalisedTokens, "AA", ""))

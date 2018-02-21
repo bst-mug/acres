@@ -6,7 +6,6 @@ import pickle
 import random
 import re
 import time
-import logging
 
 from acres import functions
 from acres import get_acronyms_from_web
@@ -20,13 +19,14 @@ logger.setLevel(logging.INFO)
 NEWLINE = "¶"
 NUMERIC = "Ð"
 VERBOSE = False
-div = 1  # for sampling, if no sampling div = 1. Sampling is used for testing
+DIV = 1  # for sampling, if no sampling DIV = 1. Sampling is used for testing
 
 
 def find_synonyms():
     """
     Finds synonyms using a n-gram frequency list from related corpus.
     TODO: reformatting logfile and filter criteris
+
     :return:
     """
     # load data
@@ -54,7 +54,7 @@ def find_synonyms():
         if count % 1000 == 0:
             time.sleep(10)
         # and ngram.count(" ") < 3:
-        if not ngram.isupper() and NEWLINE not in ngram and count % div == 0:
+        if not ngram.isupper() and NEWLINE not in ngram and count % DIV == 0:
             # ngrams with newlines substitutes ("¶") seemed to be useless for
             # this purpose
 
@@ -65,7 +65,7 @@ def find_synonyms():
                 left_string = s[0].strip()
                 acronym = s[1].strip()
                 right_string = s[2].strip()
-                # Parms: minWinSize, minfreq, maxcount, minNumberTokens, maxNumberTokens
+                # Parms: min_win_size, minfreq, maxcount, min_number_tokens, max_number_tokens
                 # Set Parameters
 
                 if len(acronym) == 2:
@@ -83,7 +83,7 @@ def find_synonyms():
 
                 # prepare parameters for Web model
                 if NUMERIC in ngram:
-                    lst_Web = []
+                    li_web = []
                 else:
                     s = left_string + " " + acronym + " " + right_string
                     s = s.replace(".", " ").replace(",", " ")
@@ -92,14 +92,14 @@ def find_synonyms():
                     str_url = "http://www.bing.de/search?cc=de&q=%22" + s + "%22"
                     time.sleep(random.randint(0, 2000) / 1000)
                     logger.info(".")
-                    lst_Web = get_acronyms_from_web.ngrams_web_dump(str_url, 1, 10)
+                    li_web = get_acronyms_from_web.ngrams_web_dump(str_url, 1, 10)
 
                 # Prepare parameters for corpus model
                 if left_string == "":
                     left_string = "*"
                 if right_string == "":
                     right_string = "*"
-                lst_corpus = get_synonyms_from_ngrams.find_embeddings(
+                li_corpus = get_synonyms_from_ngrams.find_embeddings(
                     left_string,
                     acronym,
                     right_string,
@@ -111,17 +111,16 @@ def find_synonyms():
                     min_number_tokens,
                     max_number_tokens)
 
-                for item in lst_corpus:
+                for item in li_corpus:
                     old_exp = ""
                     exp = item.split("\t")[1]  # Ngram expression
                     f = int(item.split("\t")[0])  # Frequency
-                    if re.search(
-                        "^[\ \-A-Za-z0-9" + dia + "]*$",
-                        exp) is not None and acronym.lower() != exp.lower()[
-                        0:len(
-                            acronym.lower())]:
+
+                    first_condition = re.search("^[\ \-A-Za-z0-9" + dia + "]*$", exp) is not None
+                    second_condition = acronym.lower() != exp.lower()[0:len(acronym.lower())]
+                    if first_condition and second_condition:
                         if exp != old_exp:
-                            # scoreCorpus = 0
+                            # score_corpus = 0
                             score_corpus = rate_acronym_resolutions.get_acronym_score(
                                 acronym, exp, morphemes)
                             if score_corpus > 0:
@@ -134,28 +133,27 @@ def find_synonyms():
                                     d_log_corpus[acronym].append(result)
                             old_exp = exp
 
-                for item in lst_Web:
+                for item in li_web:
                     old_exp = ""
                     exp = item.split("\t")[1]  # Ngram expression
                     f = int(item.split("\t")[0])  # Frequency
-                    if re.search(
-                        "^[\ \-A-Za-z0-9" + dia + "]*$",
-                        exp) is not None and acronym.lower() != exp.lower()[
-                        0:len(
-                            acronym.lower())]:
+
+                    first_condition = re.search("^[\ \-A-Za-z0-9" + dia + "]*$", exp) is not None
+                    second_condition = acronym.lower() != exp.lower()[0:len(acronym.lower())]
+                    if first_condition and second_condition:
                         if exp != old_exp:
-                            score_web = 0
+                            # score_web = 0
                             score_web = rate_acronym_resolutions.get_acronym_score(
                                 acronym, exp, morphemes)
                             if score_web > 0:
-                                result = str(round(score_web * math.log10(f),
-                                                   2)) + " " + exp + " " + str(round(score_web,
-                                                                                     2)) + " " + str(f) + " " + "\t" + ngram
+                                a = str(round(score_web * math.log10(f), 2))
+                                b = str(round(score_web, 2))
+                                result = a + " " + exp + " " + b + " " + str(f) + " " + "\t" + ngram
                                 if acronym not in d_log_web:
                                     d_log_web[acronym] = [result]
                                 else:
                                     d_log_web[acronym].append(result)
-                            oldExp = exp
+                            old_exp = exp
 
     for a in d_log_corpus:
         for r in d_log_corpus[a]:
