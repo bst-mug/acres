@@ -8,7 +8,7 @@ logger.setLevel(logging.INFO)
 
 
 def find_best_substitution(form_to_resolve, candidates,
-                           lst_tokens, short_form_type, context):
+                           lst_tokens, short_form_type):
     """
     This will eventually be the master function invoked by the text cleansing process
     Finds the best resolution of a nonlexicalised form
@@ -29,7 +29,6 @@ def find_best_substitution(form_to_resolve, candidates,
     :param candidates:
     :param lst_tokens:
     :param short_form_type:
-    :param context:
     :return:
     """
     if short_form_type == "AA":

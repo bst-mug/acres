@@ -24,8 +24,7 @@ def find_embeddings(str_left,
                     min_freq,
                     maxcount,
                     min_num_tokens,
-                    max_num_tokens,
-                    verbose):
+                    max_num_tokens):
     """
     Input str_middle, together with a series of filter parameters
     Three cases of embeddings: 1. bilateral, 2.left, 3.right
@@ -43,8 +42,6 @@ def find_embeddings(str_left,
     :param verbose:
     :return:
     """
-    if verbose:
-        logger.setLevel(logging.DEBUG)
 
     # MAXLIST = 100
     digit = "Ð"
