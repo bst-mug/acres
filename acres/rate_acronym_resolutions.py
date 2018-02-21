@@ -4,26 +4,25 @@
 import logging
 import pickle
 import re
-import logging
 
 # from math import *
 from acres import functions
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
 
-def get_acronym_score(acro, full, s_morph = None, language ="de"):
+def get_acronym_score(acro, full, morphemes=None, language="de"):
     """
-    Scores Acronym / resolution pairs according to a series of well-formedness criteria using a n-gram frequency list
-    from related corpus.
+    Scores Acronym / resolution pairs according to a series of well-formedness criteria using a
+    n-gram frequency list from related corpus.
 
     Scoring is higher the better the full form is properly split into morphemes.
     Requires identification and removal of affixes (infixes, suffixes, like "Gastr-o", "Schmerz-en").
 
-    The scoring function should work both for acronyms extracted from a corpus (for which strict matching criteria should be applied)
-    and for acronyms harvested from the Web for which the criteria may be relaxed once strong evidence from acronym - definition patterns exist
+    The scoring function should work both for acronyms extracted from a corpus (for which strict
+    matching criteria should be applied) and for acronyms harvested from the Web for which the
+    criteria may be relaxed once strong evidence from acronym - definition patterns exist
     E.g., "ARDS (akutes Atemnotsyndrom)"
 
     In the latter case, full would take this form, i.e. a string that contains both the acronym and the expansion
@@ -32,19 +31,19 @@ def get_acronym_score(acro, full, s_morph = None, language ="de"):
 
     :param acro: acronym to be expanded
     :param full: long form to be checked whether it qualifies as an acronym expansion
-    :param s_morph:
+    :param morphemes:
     :param language: Language of expansions. Matters especially regarding the possible infixes for single noun composition
     :return: score that rates the likelihood that the full form is a valid expansion of the acronym
     """
     # Syntactic sugar
     last_letter_stripped = False  # see below cases in which the lat letter of an acromy is stripped
-    if s_morph is None:
+    if morphemes is None:
         # TODO generate pickle if not available
         # TODO make it work even without morphemes?
         # TODO comment Stefan:   |   yes it should also work without morphemes
-        # TODO comment Stefan:   |   s_morph is None should mean that no morpho lexicon
+        # TODO comment Stefan:   |   morphemes is None should mean that no morpho lexicon
         # TODO comment Stefan    |   exists for the language being processed
-        s_morph = pickle.load(open("models/pickle/morphemes.p", "rb"))
+        morphemes = pickle.load(open("models/pickle/morphemes.p", "rb"))
 
     # TODO: check whether it makes sense to set score to zero as baseline
     pen = 1  # penalization factor
@@ -98,7 +97,7 @@ def get_acronym_score(acro, full, s_morph = None, language ="de"):
         # We assume that plurals and genitives of acronyms are often marked with
         # "s", however not necessarily lower case
         if (acro[-1] in lst_acronym_suffixes) \
-                and acro[-2:-1].isupper(): # TODO: don't remember why this was a criterion
+                and acro[-2:-1].isupper():  # TODO: don't remember why this was a criterion
             acro = acro[0:-1]
             acro_low = acro_low[0:-1]
             last_letter_stripped = True
@@ -116,11 +115,11 @@ def get_acronym_score(acro, full, s_morph = None, language ="de"):
     # if acronym has three or more letters
     if acro_low in full_low and len(acro_low) > 2:
         return 0  # TODO unify with the check A
-                  # TODO maybe too strict - make it case-sensitive ?
+        # TODO maybe too strict - make it case-sensitive ?
     # first chars must be the same
     if acro_low[0] != full_low[0]:
-        return 0    # this is very strict. The only exception would be a Web-derived
-                    # unambiguous acro-full patter (already treated above)
+        return 0  # this is very strict. The only exception would be a Web-derived
+        # unambiguous acro-full patter (already treated above)
     # last char of acronym must occur in last word of full
     # but not at the end unless it is a single letter
     # "EKG" = "Entwicklung" should not match
@@ -137,7 +136,7 @@ def get_acronym_score(acro, full, s_morph = None, language ="de"):
     if len(acro_low) < full_low.count(" ") + 1:
         # TODO does not use previous penalization factor
         pen = 1 / ((full_low.count(" ") + 1 - len(acro_low)) * 2)
-        # print("Penalization = " + str(pen))
+        # logger.debug("Penalization = %f", pen)
     # Extract upper case sequence from full form
 
     # TODO: The more word initials coincide with acronym letters the better
@@ -178,20 +177,20 @@ def get_acronym_score(acro, full, s_morph = None, language ="de"):
                 s += 1
                 continue
 
-            if fragment in s_morph:
+            if fragment in morphemes:
                 logger.debug(fragment)
                 s += 1
                 continue
 
             if (len(fragment) > 2) and (
-                    fragment[-1] in lst_one_letter_affixes) and (fragment[0:-1] in s_morph):
+                    fragment[-1] in lst_one_letter_affixes) and (fragment[0:-1] in morphemes):
                 # stripping one character suffix or infix
                 logger.debug(fragment[0:-1])
                 s += 1
                 continue
 
             if (len(fragment)) > 3 and (
-                    fragment[-2:] in lst_two_letter_affixes) and (fragment[0:-2] in s_morph):
+                    fragment[-2:] in lst_two_letter_affixes) and (fragment[0:-2] in morphemes):
                 # stripping two character suffix
                 logger.debug(fragment[0:-2])
                 s += 1
