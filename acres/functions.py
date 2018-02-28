@@ -8,6 +8,7 @@ This function compares and acronym with a potential full form and returns a list
 
 import configparser
 import logging
+import os
 import re
 from random import randint
 
@@ -500,5 +501,26 @@ def find_acro_expansions(lst_n_gram_stat):
                         if counter > 4:
                             break
 
+
+def robust_text_import_from_dir(path):
+    # TODO: add unit testing with sample files
+    texts = []
+    # print(path)
+    files = os.listdir(path)
+    for file in files:
+        try:
+            with open(path + "\\" + file, "r", encoding="utf-8") as f:
+                content = f.read()
+                texts.append(content)
+                print(file + " " + str(len(content)))
+        except:
+            print("corrupt file")
+            # TODO: here there should be a log entry
+            pass
+    return texts
+
 # TODO michel 20180215 move to unit tests
 # FindExpansionsOfAcronyms("corpus_cardio_ngramstat.txt")
+
+# p = import_conf("SAMPLEPATH")
+# lst_texts = robust_text_import_from_dir(p)

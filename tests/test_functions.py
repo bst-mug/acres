@@ -108,5 +108,10 @@ def test_find_acronym_expansion():
     ngrams = []
     actual = functions.find_acro_expansions(ngrams)
     expected = None
-
     assert expected == actual
+
+
+def test_robust_text_import_from_dir():
+    actual = functions.robust_text_import_from_dir("data\samples")
+    print(str(len(actual)))
+    assert len(actual) == 20

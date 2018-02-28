@@ -2,7 +2,6 @@
 
 import collections
 import logging
-import os
 import pickle
 
 from acres import functions
@@ -203,8 +202,7 @@ def create_morpho_dump():
     pickle.dump(s_morph, open("models/pickle/morphemes.p", "wb"))
 
 
-def create_corpus_char_stat_dump(
-        corpus_path, ngramlength=8, digit_placeholder="Ð", break_marker="¶"):
+def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="Ð", break_marker="¶"):
     """
 
     Creates a character ngram statistics from a set of text files
@@ -216,24 +214,23 @@ def create_corpus_char_stat_dump(
 
     """
     counter = 0
+    texts = functions.robust_text_import_from_dir(corpus_path)
     dict_char_ngrams = {}
-    files = os.listdir(corpus_path)
     f = open("models/ngrams/character_ngrams.txt", 'w', encoding="UTF-8")
-    for file in files:
+    for text in texts:
+        print(text)
         str_doc = ""
-        with open(corpus_path + "\\" + file, 'r') as single_document:
-            logger.info(file)
-            counter += 1
-            for line in single_document:
-                line = functions.clear_digits(line, digit_placeholder)
-                str_doc = str_doc + line.strip() + break_marker
-            for i in range(0, len(line) - (ngramlength - 1)):
-                ngram = line[0 + i: ngramlength + i].strip()
-                if len(ngram) == ngramlength:
-                    if ngram not in dict_char_ngrams:
-                        dict_char_ngrams[ngram] = 1
-                    else:
-                        dict_char_ngrams[ngram] += 1
+        counter += 1
+        for line in text:
+            line = functions.clear_digits(line, digit_placeholder)
+            str_doc = str_doc + line.strip() + break_marker
+        for i in range(0, len(line) - (ngramlength - 1)):
+            ngram = line[0 + i: ngramlength + i].strip()
+            if len(ngram) == ngramlength:
+                if ngram not in dict_char_ngrams:
+                    dict_char_ngrams[ngram] = 1
+                else:
+                    dict_char_ngrams[ngram] += 1
 
     # write the ngrams into text file
     out = []
@@ -248,8 +245,9 @@ def create_corpus_char_stat_dump(
         "models/pickle/character_ngrams.p", "wb", encoding="UTF-8"))
 
 
-# create_corpus_char_stat_dump("S:\\DocumentCleansing\\CardioCorpusSplit\\Training")
+# create_corpus_char_stat_dump("SAMPLEPATH")
 
+# 1 / 0
 
 def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, digit_placeholder="Ð", break_marker="¶"):
     """
@@ -264,20 +262,18 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, digit_placeholder=
     """
     entire_corpus = ""
     counter = 0
-    files = os.listdir(corpus_path)
-    for file in files:
-        with open(corpus_path + "\\" + file, 'r', encoding="UTF-8") as single_document:
-            document_content = single_document.read()
-            if fix_lines:
-                dict_char_ngrams = pickle.load(open("pickle//ngramstat.p", "rb"))
-                document_content = functions.fix_line_endings(document_content, dict_char_ngrams, "break_marker")
-            if len(digit_placeholder) == 1:
-                document_content = functions.clear_digits(
-                    document_content, digit_placeholder)
-            document_content = document_content.replace("  ", " ").replace("  ", " ")
-            document_content = document_content.replace(
-                break_marker, " " + break_marker + " ")
-        entire_corpus = entire_corpus + document_content + "\n\n"
+    texts = functions.robust_text_import_from_dir(corpus_path)
+    for text in texts:
+        if fix_lines:
+            dict_char_ngrams = pickle.load(open("pickle//character_ngrams.p", "rb"))
+            text = functions.fix_line_endings(text, dict_char_ngrams, "break_marker")
+        if len(digit_placeholder) == 1:
+            text = functions.clear_digits(
+                text, digit_placeholder)
+        text = text.replace("  ", " ").replace("  ", " ")
+        text = text.replace(
+            break_marker, " " + break_marker + " ")
+        entire_corpus = entire_corpus + text + "\n\n"
         counter += 1
 
     logger.debug("Corpus loaded containing %d documents.", counter)
