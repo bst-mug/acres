@@ -112,6 +112,6 @@ def test_find_acronym_expansion():
 
 
 def test_robust_text_import_from_dir():
-    actual = functions.robust_text_import_from_dir("data\samples")
+    actual = functions.robust_text_import_from_dir("tests/data")
     print(str(len(actual)))
     assert len(actual) == 20
