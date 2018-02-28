@@ -1,0 +1,261 @@
+----------
+ARTZTBRIEF
+----------
+
+
+* Anamnese und klinische Symptomatik
+
+Die stat.Aufnahme erfolgte zur geplanten EPU und Ablation bei paroxysm.
+VHFA.
+
+* Physikalischer Status
+
+49 jähr.Pat., guter AZ, adipöser EZ
+C/C: unauff.
+Cor: rein, rh, nc
+Pulmo: VA bds, keine RGS
+Abdomen: BD weich, über THN, DG in allen 4 Quadr. hörbar, kein DS, keine
+Resistenzen
+Extremitäten: keine Ödeme, keine Varikose, Fußpulse tastbar
+
+* Laboruntersuchungen
+
+In Kopie.
+
+* Beurteilung u. durchgef. Therapie
+
+Die stat.Aufnahme erfolgte aufgrund der oben angeführten Anamnese.
+Vor der geplanten VH-Flimmer Ablation erfolgte am 15.12.2014 eine TTE
+sowie TEE zum Ausschluß von VH-Thromben oder eines PFO. Dabei zeigte
+sich der linke VH einschl. Herzohr frei von Thromben. Am 16.12.2014
+konnte eine erfolgreiche Ablation bei paroxysm. VHFA durchgeführt
+werden. Laut diesem Befund ist eine OAK mit Marcoumar (Ziel INR 2-2,5)
+indiziert. Postinterventionell wird die Therapie mit Betablocker, wie
+bereits vorbestehend, weitergeführt und eine antiarrhythmische
+Medikation mit Propafenon für 3 Monate eingeleitet.
+Der weitere postinterventionelle Verlauf gestaltete sich
+komplikationslos. Zusätzlich wurde der Pat. in der Diabetes Ambulanz
+vorgestellt, da er im Rahmen des stat.Aufenthaltes mehrmals erhöhter BZ
+Werte und einen Hba1c von 91 zeigte. Diesbezüglich wurde die Diabetes
+Therapie adaptiert. Zum Ausschluß einer Insulinpflicht wurde, wie
+empfohlen das C-Peptid bestimmt. Falls sich unter der aktuellen Therapie
+keine optimale Diabetes Einstellung zeigen sollte,ist eine weitere
+Abklärung über den niedergelassenen Bereich empfohlen.
+Somit konnte Herr <-LN_1062-> am 18.12.2014 kardiorespirat.stabil und mit
+blander Punktionsstelle wieder nach Hause entlassen werden.
+
+* Prozedere & Empfehlungen:
+
+-Nächste Gerinnungskontrolle am 19.12.2014 über den HA höflich erbeten
+zur OAK Einstellung.
+
+- wir empfehlen körperliche Schonung sowie Vermeiden von Heben schwerer
+Lasten und Beugen in der Hüfte für 2 Wochen
+
+- intensiv. kardiovaskuläres Risikofaktorenmanagement im Sinne einer
+antihypertensiven und lipidsenkenden Therapie
+
+- In 3 Monaten Kontrolle im niedergelassenen Bereich, inkl. 24h EKG
+(bitte um Übermittlung desselben per Fax: 0316-385-13208), falls SR,
+dann Absetzen von Rhythmonorma
+
+-nach 1 Jahr neuerliche Ko im niedergel. Bereich, bitte wieder um
+Übermittlung des 24h- EKG's
+
+- regelm. RR Kontrollen beim HA
+
+- 1x jährl. internist. Kontrolle beim niedergel. FA
+
+- sollte es unter Actos zu einer ausgeprägten Gewichtszunahme kommen,
+sollte es abgesetzt werden
+
+- weiters wird eine adäquate Ernährung und Bewegung empfohlen
+
+- eine Ernährungsberatung (gemeinsam mit Gattin) sollte erfolgen, ebenso
+zumindest jährliche Fundus und Fußkontrollen
+
+- die Statin Therapie soll weitergeführt werden
+
+- regelm. BZ Kontrollen empf.
+
+- bei Beschwerden jederzeitige Wiedervorstellung über die EBA möglich
+
+
+---------
+DIAGNOSEN
+---------
+
+I47.1 Paroxysmales Vorhofflimmern
+ St.p. Ablation 16.12.2014
+E11.9 Diabetes mellitus Typ II (nicht insulinpflichtig)
+I10 Arterielle Hypertonie
+E66.0 Alimentäre Adipositas
+E88.9 Metabolisches Syndrom
+E78.5 Hyperlipidämie
+E03.9 Hypothyreose (subst.)
+
+-----------------
+RELEVANTE BEFUNDE
+-----------------
+
+* EKG
+
+SR, 59/min, IT, RSU in V4, regel.R-Anstieg über der VW, EST konk.
+
+* USKG/TEE
+
+Befund (gute Untersuchungsqualität)
+1) Normal großer linker Ventrikel mit grenzwertiger Wanddicke und
+normaler systolischer Funktion; keine
+regionalen Wandbewegungsstörungen; normale diastolische Funktion;
+2) Rechter Ventrikel normal groß; normale Rechtsventrikelfunktion;
+3) Linker Vorhof leicht vergrößert; rechter Vorhof leicht vergrößert;
+4) Aortenklappe morphologisch und funktionell normal; eine Aortenstenose
+liegt nicht vor; keine Aorteninsuffizienz;
+5) Mitralklappe morphologisch unauffällig; minimale Mitralinsuffizienz;
+6) Trikuspidalklappe unauffällig; keine Trikuspidalinsuffizienz;
+Pulmonalisdruck mangels adäquaten
+Trikuspidalinsuffizienzsignals nicht bestimmbar;
+7) Pulmonalklappe nicht ausreichend darstellbar;
+8) Kein Pericarderguss;
+9) Linker Vorhof einschließlich Herzohr frei von Thromben; Im
+Farbdoppler sowie bei bei KM Studie kein Hinweis
+für ein offenes Foramen ovale
+
+* EPU
+
+Untersuchungen:
+Elektrophysiologische Untersuchung, AF Ablation, USKG, Analgosedierung
+des Patienten,
+Transseptale Punktion des LA
+Indikation:
+Vorhofflimmern (paroxysmal)
+Diagnose:
+Vorhofflimmern kurativ (paroxysmal )
+Therapie:
+erfolgreiche Ablation
+Procedere:
+Orale Antikoagulation (INR 2.0 ? 3.0): Marcoumar (lebenslang); bitte
+sofort cito INRKontrolle,
+bei INR>2 bitte dementsprechend heute 16h Marcoumargabe in
+Erhaltungsdosis
+(Ziel INR 2-2,5); jedenfalls auch morgen früh INR-Ko und neuerl.
+Marcoumargabe; falls
+jedoch INR heute <2 dann bitte Lovenox 60mg sc 16h heute und 100mg 8h
+früh morgen,
+und morgen wieder Marcoumar-Start
+Pantoloc 40 mg 1x1 für 1 Monat
+Antiarrhythmische Medikation: Betablocker wie eingeleitet, Propafenon
+2x150mg für 3
+Monate
+Anamnese:
+Palpitationen, Herzrasen
+EPU:
+Oberflächen EKG: normaler Sinusrhythmus
+Ablation:
+Mapping System: Carto
+Technik: ThermoCool 3.5 mm
+Ablation: Vorhofflimmern (zirkumferentielle Pulmonalvenenisolation
+[elektrisch komplett])
+Therapie: erfolgreiche Ablation
+Komplikationen:
+Keine
+
+* Diabetes Ambulanz
+
+Seit rund 10 Jahren bekannter DM. Die Diagnose wurde susp. im Rahmen
+einer Abklärung bei
+hyperglykämischen Beschwerden gestellt. Eine Therapie mit OADs wurde
+eingeleitet. Herr <-LN_1062-> gibt
+an immer übergewichtig gewesen zu sein. Die Familienanamnese ist
+positiv, beide Eltern leiden an
+DM, der Vater war Insulin therapiert.
+Herr <-LN_1062-> gibt an, dass die BZ-Werte seit einigen Wochen erhöht sind
+(aktuell: 242 bis 344mg/dl;
+davor: 180-220mg/dl lt Pat bei SK). Es bestehen keine sicheren
+hyperglykämische Beschwerden.
+Bisher keine hypoglykämische Reaktionen.
+HbA1c: 91mmol/mol
+aktuelle BZ senkende Therapie: Janumet 50/1000mg 1-0-1 (seit einigen
+Jahren)
+Actrapid zu Korrektur seit stat Aufenthalt
+107kg, 184cm
+Beurteilung:
+Therapieziel: Vermeidung der Entwicklung bzw. der Progression mikro-
+oder makrovaskulärer
+Spätschäden
+Dazu sollte das HbA1c auf < 58mmol/mol unter weitgehender Vermeidung von
+hypoglykämischen
+Reaktionen gesenkt werden, der BD < 140/90mmHg betragen und eine
+Statintherapie erfolgen.
+Aufgrund der aktuellen Höhe des HbA1c und der BG-Messwerte wäre ieL eine
+BOT Therapie, dh. die
+Gabe eines Basalinsulins abends zusätzlich zur bestehenden OAD Therapie
+agezeigt. Uber die
+möglichen NW ieL hypoglykämische Reaktionen und Gewicht, wurde Herr
+<-LN_1062-> informiert. Alternativ
+kann der Versuch einer Erweiterung der OAD Therapie erfolgen. DAbei ist
+festzuhalten, dass alle noch
+zu Verfügung stehenden Substanzen auch unerwünschte Effekte haben (mögl
+Hypos bei SH,
+Gewichtsproblematik bei SH und Pioglitazon, unklare Effekte und nicht
+gegebene Verordenbarkeit bei
+SGLT2, erhöhtes Risiko für Herzinsuff bei Pioglitazon - allerdings
+aktuell unauffällige syst und diast
+Funktion im USKG).
+Herr <-LN_1062-> möchte aktuell noch von einer Insulintherapie absehen.
+Empfehlung:
+- Janumet 50/1000mg 1-0-1 weiter
+- Metformnin 850mg 0-1-0 (NEU)
+- Actos 30mg 1-0-0 (NEU)
+Sollte es unter Actos zu einer ausgeprägten gewichtszunahme kommen,
+sollte es abgesetzt werden.
+Ko hinsichtlich Herzinsuff.
+- adäquate Ernährung und Bewegung, eine Ernährungsberatung (gemeinsam
+mit Gattin) sollte erfolgen
+- zumindest jährliche Fundus- und Fußkontrollen
+- Statin weiter
+- regelmäßige BD-Kontrollen, Therapie wie eingeleitet
+- Zum Ausschluss einer INsulinpflicht sollte das C-Ppetid bestimmt
+werden. Sollte dieses vermindert
+sein sollten die Auto-AK bestimmt werden und der Pat zur Evaluierung/zum
+Beginn einer
+Insulintherapie nochmals vorgstellt werden.
+
+* Rhythmus Ambulanz
+
+Anamnese:
+-St.p. VHFli- Ablation am 16.12.2014
+-Pat.subj.beschwerdefrei
+
+EKG:nc, SR
+USKG:EF 65%, kein Pericarderguss
+Pst. bland
+
+Therapievorschlag:
+-Pantoloc 40mg 1x1 für 3 Mo
+-Marcoumar weiter Ziel (2-3)
+-Propafenon 2x150mg f. 3 Monate
+-In 3 Monaten Ko im niedergelassenen Bereich, inkl. 24h EKG (bitte um
+Übermittlung desselben per Fax: 0316-385-13208), falls SR, dann Absetzen
+von Rhythmonorma
+-nach 1 Jahr neuerliche Ko im niedergel. Bereich, bitte wieder um
+Übermittlung des 24h- EKG's
+
+
+----------
+MEDIKATION
+----------
+
+Euthyrox 125µg 1-0-0
+Nebilan 5mg 1/2-0-0
+Pantoprazol 40mg 1-0-0
+Ramipril 5mg 1/2-0-1/2
+Crestor 10mg 0-0-1
+Magnosolv 1x1
+Marcoumar laut Pass
+Oleovit D3 1x wöchentlich (Do)
+Janumet  50/1000mg 1-0-1
+Propafenon 150mg 1-0-1 für 3 Monate
+Metformin 850mg 0-1-0
+Actos 30mg 1-0-0

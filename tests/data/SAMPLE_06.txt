@@ -1,0 +1,265 @@
+----------
+ARTZTBRIEF
+----------
+
+
+* Anamnese und klin. Symptomatik
+
+Herr <-LN_10102-> wurde von der Urologie, dort war eine Botox- Injektion
+intradetrusal geplant, wegen Blutdruckabfall konnte die Operation nicht
+durchgeführt werden und wurde zur weiteren kardialen Abklärung
+übernommen. Der Pat. war vom 02.03.-14.03.2012 schon stationär im LKH
+Voitsberg wegen Disurie und starken Schmerzen. Vom 14.03.-19.03.2012
+war der Pat. stationär ad Neurologie wegen Verwirrtheitszustand und
+fragl. Krampfanfall.
+
+* Physikalischer Status
+
+Pat. in red. AZ und normalen EZ.
+
+Cor: mechanische Aortenklappe, Systolikum, arrh, leise.
+Pulmo: bds. bronchitische RG'S.
+Abd.: BD weich, kein DS, keine Resistenzen tastbar.
+Extr.: Beinödeme bds.
+Bekannte Allergien auf Penicillin, Amoxicylin, Klindomycin und
+Augmentin.
+
+* Laboruntersuchungen
+
+
+* Beurteilung u. durchgef. Therapie
+
+Herr DI <-LN_10102-> wurde am 20.03.2012 von der Urologie wo eine
+intradetrosale Botox-Injexion wegen rezidivierender Dysurie mit
+Harninkontinenz geplant war und aufgrund eines akuten RR-Abfalles und
+beginnender kardialer Dekompensation konnte der Eingriff nicht
+durchgeführt werden, so dass der Pat. ad Kardiologie zur weiteren
+kardiolog. Abklärung übernommen wurde.
+Der Pat. zeigte sich in kardial dekomp. Zustand, es zeigten sich starke
+Beinödeme und eine Penisschwellung, so dass mit einem Lasixperfusor
+begonnen wurde, wobei es zu einer deutlichen Besserung der Ödeme kam.
+Weiters zeigte sich ein HB - Abfall, eine Blutkonserve wurde
+verabreicht. Im Breich der re. Hüfte zeigte sich ein großflächiges
+Hämatom, ein Rö des Beckens und der Hüfte ergab keinen Frakturnachweis,
+das Hämatom wurde lokal mit Hirudoid behandelt. Aufgrund des
+ansteigenden Kreatinin Wertes wurde die medikamentöse Therapie
+adaptiert. Aufgrund der starken Schmerzen wurde mehrmals der
+Schmerzdienst hinzugezogen. Am 21.03.2012 gab der Pat. an, den re. Arm
+nicht zu spüren, daraufhin wurde ein sofortiges neurolog. Konsil
+eingeleitet.  Das durchgeführte Cito-Schädel CT zeigte keine
+Auffälligkeiten, die Symptome besserten sich. Da der Pat. suizidale
+Gedanken äußerte, wurde ein Psychiater hinzugezogen. Die Therapie wurde
+entspr. adaptiert. Herr <-LN_10102-> wurde telemetris überwacht.
+Am 30.03.2012 klagte der Pat. über Dyspnoe, es wurde ein Lungenödem
+diagnostiziert und eine entspr. Therapie eingeleitet. Weiters kam es zu
+einer Schwellung der re. UE. Im durchgeführten FCDS zeigte sich eine
+Thrombose der V.fibolaris, daraufhin wurde Lovenox erhöht.
+Es wurden mehrmals ausführliche Gespräche mit der Ehefrau des Pat. bei
+deutlicher Verschlechterung des AZ durchgeführt.
+Die Ehefrau berichtet, dass der Pat. schon Wochen wiederholt
+nachdrücklich darum gebeten hat sterben zu dürfen. Daher nun der
+Entschluss zum Best Supportiv Care sowie adjuvante Schmerz- und
+Angsttherapie nach Bedarf.
+
+Trotz aller Maßnahmen kam zu einem akuten Nierenversagen und gemäß dem
+Willen des Pat. und den Angehörigen wurde eine Therapie im Sinne von
+best supportiv care beschlossen und durchgeführt.
+
+Wir bedauern Ihnen mitteilen zu müssen, dass Herr <-LN_10102-> an unserer
+Abteilung am 04.04.2012 an den Folgen eines Nierenversagens im Rahmen
+seiner Grunderkrankung verstarb.
+
+* 
+
+---------
+DIAGNOSEN
+---------
+
+R99 Exitus letalis
+N17.8 Akutes Nierenversagen
+N18.0 NINS III
+ Somatiesierte Depressio
+ Rez. Dysurie mit Dranginkontinenz
+N32.0 Harnblasenentleerungsstörung
+ Normochrome Anämie
+ Mech. Aortenklappenersatz 2002 (lfd. OAK)
+I10 Arterielle Hypertonie
+I34.0 MINS II, TRINS IV
+I48 VHFA ,OAK mit Sintrom
+R55 Unklare Synkope mit postiktalem Dämmerzustand
+ Mittelgrdadig depressive Episode
+N40 Benigne Prostatahyperplasie (operata)
+ Herpes zoster Segment C II rechts 04/ 09
+T88.7 Allergie auf Penicillin,Amoxicillin,Clindamycin und Augmentin
+I80.0 Thrombose der V. fibularis dext.
+ Incip. Pneumonie
+ Globale cerebrovaskuläre Insuffizienz mit rez. Verwirrtheitszustand
+ St.p. CHE
+ Sigmadivertikel
+
+-----------------
+RELEVANTE BEFUNDE
+-----------------
+
+* Urolog. FB
+
+Befund im Medocs noch nicht freigegeben.
+
+* Konsiliar Befund
+
+CCT-Kontrolle zum Ausschluss einer frischen Blutung .
+
+* Konsiliar Befund
+
+TX Synkope, DD: Epianfall.
+
+Procedere:
+- Schädel CT
+- EEG
+- Internes Konsil
+
+Wiedervorstellung bei Bedarf.
+
+* CT - Schädel
+
+Befund noch nicht freigegeben.
+
+* Radiologischer Befund
+
+Becken: Generalisierte Mineralgehaltminderung. Coxarthrosen bds. Scharfe
+Abgrenzbarkeit der Corticalis. Kein Nachweis einer pathologischen
+Konturunterbrechung. In dieser Projektion kein Frakturnachweis.
+Hochgradig arteriosklerotische Veränderungen. Hüfte re.: Kein
+Frakturnachweis. Coxarthrose. Hochgradig arteriosklerotische
+Veränderungen.
+
+* Transthorakale Echokardiographie
+
+1. Normal gr. li. Ventrikel mit leichter Hypertrophie (konzentrisch) und
+leicht- bis mittelgr. red. syst. Funktion. Abnorme Septumbewegungen
+postoperativ.
+
+2. re. Ventrikel normal groß, normale RV-Funktion.
+
+3. li. Vorhof leicht- bis mittelgr. vergr., re. Vorhof leicht- bis
+mittelgr. vergr.
+
+4. Mechanische Prothese in Aortenposition mit einem mittleren Gradienten
+von 10mmHg (max. Inst. Gradient 16mmHg, HF 76), klappe morpholog.
+unauff., normale Prothesenfunktion kann angenommen werden.
+
+5 Mitralklappe morpholog. unauff., leichte MINS.
+
+6. Tricuspidalklappe unauff., leichte TRINS, syst. PAP ca. 45mmHg.
+
+7. Pulmonalklappe nicht ausreichend darstellbar.
+
+8. Kein Pericarderguss.
+
+* Psychiatrischer Kons - Befund
+
+Diagnose: mittelgr. depressive Episoden plus Schmerzreaktion. Cymbalta
+60mg 1-0-0, Trittico 150mg 0-0-1, Dominal forte 80mg 0-0-0-1 fortsetzen.
+Involvieren des Schmerzdienstes, involvieren der medizinischen
+Psychiologie.
+
+* Psychosomatischer Kons - Befund
+
+Gespräch wird vom Pat. abgelehnt.
+
+* Kons- Befund
+
+Dauerschmerz zunehmend, Novalgin Gtt 2x30 weiter, Lyrica absetzen,
+Cymbalta 60mg 1-0-0 weiter.
+
+* Urolog. Konsil
+
+Vorgeschichte:
+Bekannte Nierenzyste re.
+Normochrome Anämie.
+Z.n. Cholezystektomie.
+Sigmadivertikel.
+Anamnese:
+Herr DI <-LN_10102-> kommt zugewiesen von der medizinischen Abteilung mit
+Schmerzen suprapubisch in die Harnröhre ausstrahlend in unsere Ambulanz.
+Der Dauerkatheter wurde gestern entfernt. Befunde
+Harn: o.B.
+Klinisch: NL bds. frei, afebril, starker suprapubischer Druckschmerz,
+Unterbauch leicht vorgewölbt, Bauch weich. Großes, altes Hämatom im
+Bereich der re. Hüfte.
+Sono Blase: prallvoll.
+Äußeres Genitale: Hoden und Nebenhoden palpatorisch unauff. Im Bereich
+des Penisschaftes rechtseitig ein längliches fibrin belegtes Ulcus (in
+erster Linie Katheterdruckulcus). Es erfolgt die Anlage eines DK 16
+Charr. Silikon. Es werden insgesamt 900 ml klarer Harn
+abgelassen.
+Rektal: Prostata walnussgroß, prallelastisch, glatte Oberfläche, gut
+abgrenzbar.
+Beurteilung:
+Harnsperre.
+Therapie:
+Katheterpflege!
+Bepanthen Salbe lokal im Bereich des Druckulcus am Penisschaft
+Prozedere: Wie mit Doz. <-LN_9969-> vereinbart.
+
+* Thorax - Rö
+
+Der Herzschatten allseits über die Norm verbreitert mit pulmonalvenösen
+Stauungszeichen. Verstärkte peribronchovaskuläre Lungengerüstzeichnung,
+in 1. Linie stauungsbedingt. Keine umschriebenen alveolären Infiltrate
+in den einsehbaren Lungenabschnitten, soweit stauungsbedingt
+differenzierbar. Kein Nachweis nach kranial auslaufender Pleuraergüsse.
+St.p. medianer Sternotomie propter HKE, die kaudalste Drahtcerclage
+scheint frakturiert, soweit in 1 Ebene beurteilbar. Die Hili und das
+obere Mediastinum in 1. Linie vaskulär bedingt verbreitert.
+Aortensklerose.
+
+* Angio - Ambulanz
+
+V. cava:
+rechts nicht beurteilt
+Vv. iliacae commune:
+rechts nicht beurteilt, links nicht beurteilt
+Vv. iliacae externae:
+rechts nicht beurteilt, links nicht beurteilt
+Vv. femorales communes:
+rechts o.B., links nicht beurteilt
+Vv. femorales superficiales:
+rechts o.B., links nicht beurteilt
+Vv. profundae femores:
+rechts nicht beurteilt, links nicht beurteilt
+Vv. popliteae:
+rechts o.B., links nicht beurteilt
+Vv. tibiales anteriores:
+rechts o.B., links nicht beurteilt
+Vv. tibiales posteriores:
+rechts o.B., links nicht beurteilt
+Vv. fibulares:
+rechts thrombosiert, links nicht beurteilt
+Vv. saphenae magnae:
+rechts o.B., links nicht beurteilt
+Vv. musculares:
+rechts o.B., links nicht beurteilt
+Vv. saphenae parvae:
+rechts o.B., links nicht beurteilt
+Vv. perforantes:
+rechts nicht beurteilt, links nicht beurteilt
+
+
+----------
+MEDIKATION
+----------
+
+Dominal 80mg 0-0-0-1
+Digimerck 0,07mg 1-0-0
+Concor cor 2,5mg 1-0-0
+Torasemid 10mg 1-0-0
+Trittico 150mg 0-0-1
+Urosin 300mg dzt. pausiert
+Cymbalta 60mg 1-0-0
+Novalgin 3x20 Gtt
+Pantoloc 40mg 1-0-0
+Hydal 2mg 1-1-1
+Laevolac 3x2EL
+Incontan 30mg 1-0-1
+Lovenox s.c. 2x60mg
