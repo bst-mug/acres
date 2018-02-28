@@ -509,10 +509,10 @@ def robust_text_import_from_dir(path):
     files = os.listdir(path)
     for file in files:
         try:
-            with open(path + "\\" + file, "r", encoding="utf-8") as f:
+            with open(path + "/" + file, "r", encoding="utf-8") as f:
                 content = f.read()
                 texts.append(content)
-                print(file + " " + str(len(content)))
+                # print(file + " " + str(len(content)))
         except:
             print("corrupt file")
             # TODO: here there should be a log entry

@@ -115,7 +115,7 @@ ENV/
 
 # Project-specific stuff
 config.ini
-data
+./data
 models
 out
 *.p
