@@ -3,7 +3,7 @@ python:
   - "3.5"
   - "3.6"
 before_script:
-  - mv config.ini.default config.ini
+  - cp config.ini.default config.ini
 script:
   - py.test --cov=acres && pylint -E acres
 after_success:
