@@ -40,7 +40,6 @@ def import_proxy():
     config.read("config.ini")
     return config["proxy"]
 
-
 def split_ngram(ngram):
     """
     Splits a token ngram with acronym(s) into all combinations of left - acro - token.

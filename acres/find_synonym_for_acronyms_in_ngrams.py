@@ -8,7 +8,7 @@ import re
 import time
 
 from acres import functions
-from acres import get_acronyms_from_web
+from acres import get_web_ngram_stat
 from acres import get_synonyms_from_ngrams
 from acres import rate_acronym_resolutions
 
@@ -25,7 +25,7 @@ DIV = 1  # for sampling, if no sampling DIV = 1. Sampling is used for testing
 def find_synonyms():
     """
     Finds synonyms using a n-gram frequency list from related corpus.
-    TODO: reformatting logfile and filter criteris
+    TODO: reformatting logfile and filter criteria
 
     :return:
     """
@@ -92,7 +92,7 @@ def find_synonyms():
                     str_url = "http://www.bing.de/search?cc=de&q=%22" + s + "%22"
                     time.sleep(random.randint(0, 2000) / 1000)
                     logger.info(".")
-                    li_web = get_acronyms_from_web.ngrams_web_dump(str_url, 1, 10)
+                    li_web = get_web_ngram_stat.ngrams_web_dump(str_url, 1, 10)
 
                 # Prepare parameters for corpus model
                 if left_string == "":

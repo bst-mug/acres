@@ -1,16 +1,18 @@
-# Stefan Schulz 17 July 2017
 """
-Finds synonyms using a n-gram frequency list from the Web
+
+Gets token ngram statistics from a website
+Does some cleaning and then returns ngram list
+in decreasing frequency
+
 """
 
 import logging
-
 import html2text
 import requests
 
 from acres import functions
 from acres import rate_acronym_resolutions
-from acres.functions import import_proxy
+#from acres.functions import import_proxy
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -30,24 +32,28 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
     :param min_num_tokens:
     :param max_num_tokens:
     :return:
-    """
-    proxy_config = import_proxy()
+
+    proxy_config = functions.import_proxy()
+    # FIXME  The whole proxy stuff desn't work
+
     try:
-        if proxy_config["UseProxy"] == "yes":
-            http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
-                         "@" + proxy_config["ProxyDomain"] + ":" + proxy_config["ProxyPort"]
-            https_proxy = http_proxy
-            ftp_proxy = http_proxy
-            proxy_dict = {
-                "http": http_proxy,
-                "https": https_proxy,
-                "ftp": ftp_proxy}
-            response = requests.get(url, timeout=1, proxies=proxy_dict)
-        else:
-            response = requests.get(url, timeout=1)
+       if proxy_config["UseProxy"] == "yes":
+           http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
+                        "@" + proxy_config["ProxyDomain"] + ":" + proxy_config["ProxyPort"]
+           https_proxy = http_proxy
+           ftp_proxy = http_proxy
+           proxy_dict = {
+               "http": http_proxy,
+               "https": https_proxy,
+               "ftp": ftp_proxy}
+           response = requests.get(url, timeout=1, proxies=proxy_dict)
+       else:
+           response = requests.get(url, timeout=1)
     except requests.exceptions.RequestException as ex:
-        logger.critical(ex)
-        return []
+       logger.critical(ex)
+       return []
+    """
+    response = requests.get(url, timeout=1)
     out_l = []
     txt = html2text.html2text(response.text)
     txt = txt.replace("**", "").replace("\n", " ").replace("[", "[ ").replace("]", " ]")
@@ -73,6 +79,7 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     ACRO = "AV"
     QUERY = "AV Blocks"
     import pickle
+    import functions
 
     MORPHEMES = pickle.load(open("models/pickle/morphemes.p", "rb"))
     # p = ngrams_web_dump("https://www.google.at/search?q=EKG+Herz", 1, 10)
@@ -90,3 +97,4 @@ if logger.getEffectiveLevel() == logging.DEBUG:
         s = rate_acronym_resolutions.get_acronym_score(ACRO, full, MORPHEMES)
         if s > 0.01:
             logger.debug(str(s * int(cnt)) + "\t" + line)
+
