@@ -15,8 +15,12 @@ from acres import rate_acronym_resolutions
 #from acres.functions import import_proxy
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
+logger.setLevel(logging.DEBUG)
+# logger.setLevel(logging.INFO)
+
+# Enables logging for under the hood libraries
+logging.getLogger("requests").setLevel(logging.DEBUG)
+logging.getLogger("urllib3").setLevel(logging.DEBUG)
 
 NEWLINE = "¶"
 NUMERIC = "Ð"
@@ -60,7 +64,8 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
     # .replace("(", "( ").replace(")", " )")
     txt = txt.replace("„", "").replace('"', "").replace("'", "").replace(", ", " , ").replace(". ", " . ")
     out = ""
-    # logger.debug(txt)
+    logger.debug(txt)
+
     words = txt.split(" ")
     for word in words:
         if len(word) < 50:
@@ -75,11 +80,12 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
     return out_l
 
 
+"""
 if logger.getEffectiveLevel() == logging.DEBUG:
     ACRO = "AV"
     QUERY = "AV Blocks"
     import pickle
-    import functions
+    from acres import functions
 
     MORPHEMES = pickle.load(open("models/pickle/morphemes.p", "rb"))
     # p = ngrams_web_dump("https://www.google.at/search?q=EKG+Herz", 1, 10)
@@ -97,4 +103,5 @@ if logger.getEffectiveLevel() == logging.DEBUG:
         s = rate_acronym_resolutions.get_acronym_score(ACRO, full, MORPHEMES)
         if s > 0.01:
             logger.debug(str(s * int(cnt)) + "\t" + line)
+"""
 
