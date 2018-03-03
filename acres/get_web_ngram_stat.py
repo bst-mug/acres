@@ -73,10 +73,14 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
                 out = out + " " + word
     out = out.replace("  ", "\n").replace("[ ", "\n").replace(" ]", "\n")
     out = out.replace("|", "\n").replace("?", "\n").replace(":", "\n")
+    logger.debug(out)
+
     output = functions.create_ngram_statistics(out, min_num_tokens, max_num_tokens)
     for ngram in output:
         out_l.append('{:0>4}'.format(output[ngram]) + "\t" + ngram)
     out_l.sort(reverse=True)
+    logger.debug(out_l)
+
     return out_l
 
 
