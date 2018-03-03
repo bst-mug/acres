@@ -100,9 +100,9 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
     return (counter)
 
 
-print(create_corpus_ngramstat_dump(functions.import_conf("SAMPLEPATH")))
-
-1 / 0
+# print(create_corpus_ngramstat_dump(functions.import_conf("SAMPLEPATH")))
+#
+# 1 / 0
 
 
 
