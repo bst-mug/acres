@@ -117,12 +117,7 @@ def create_ngramstat_dump(ngram_stat_filename, min_freq, is_test):
     :param min_freq:
     :return:
     """
-    ngramstat = {}
-    if is_test:
-        test_prefix = "test_"
-    else:
-        test_prefix = ""
-    with open(ngram_stat_filename, 'r', encoding="UTF-8") as file:
+    with open(ngram_stat_filename) as file:
         identifier = 1
         for row in file:
             if row[10] == "\t":
