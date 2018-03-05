@@ -12,30 +12,33 @@ logger.setLevel(logging.INFO)
 
 # logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
-def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="Ð", break_marker="¶"):
+def create_corpus_char_stat_dump(corpus_path, is_test, ngramlength=8, digit_placeholder="Ð", break_marker="¶"):
     """
     - Takes a corpus consisting of text files in a single directory
     - Substitutes digits and line breaks
     - Generates a statistics of character ngrams including the digit and break substitutes
     - Purpose: To substitute artificial breaks in a corpus
+    - returns counter (number of records)
     """
     counter = 0
+    if is_test:
+        test_prefix = "test_"
+    else:
+        test_prefix = ""
     texts = functions.robust_text_import_from_dir(corpus_path)
     dict_char_ngrams = {}
     # this produces a file with character ngrams
     # at the end also a pickle dump is created
-    f = open("models/ngrams/character_ngrams.txt", 'w', encoding="UTF-8")
+    f = open("models/ngrams/" + test_prefix + "character_ngrams.txt", 'w', encoding="UTF-8")
     for text in texts:
         str_doc = ""
         lines = text.split("\n")
         for line in lines:
-            print(line)
             line = functions.clear_digits(line, digit_placeholder)
             str_doc = str_doc + line.strip() + break_marker
         for i in range(0, len(str_doc) - (ngramlength - 1)):
             ngram = str_doc[0 + i: ngramlength + i].strip()
             if len(ngram) == ngramlength:
-                print(ngram)
                 if ngram not in dict_char_ngrams:
                     dict_char_ngrams[ngram] = 1
                 else:
@@ -49,15 +52,14 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
         f.write(line + "\n")
         counter += 1
     f.close()
-    pickle.dump(dict_char_ngrams, open("models/pickle/character_ngrams.p", "wb"))
+    pickle.dump(dict_char_ngrams, open("models/pickle/" + test_prefix + "character_ngrams.p", "wb"))
     return (counter)  # should return 70980 with sample docs
 
-
-# print(create_corpus_char_stat_dump(functions.import_conf("SAMPLEPATH")))
 # TODO : we have to assure that unit tests with small input data do not
 # TODO : overwrite the models (ngram and pickle)
 
-def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_length=7, digit_placeholder="Ð",
+def create_corpus_ngramstat_dump(corpus_path, ngram_stat_filename, is_test, fix_lines=True, min_length=1, max_length=7,
+                                 digit_placeholder="Ð",
                                  break_marker="¶"):
     """
     Takes a corpus consisting of text files in a single directory
@@ -67,15 +69,20 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
     and substitutions of digits.
     For fixing the lines, a character ngram stat dictionary, CREATED FROM THE SAME OR A SIMILAR
     CORPUS, character_ngrams.p  must be in place.
-    :return:
+    Creates a text file with token n gram statistics
+    :return:  counter ( number of records)
     """
     entire_corpus = ""
     counter = 0
+    if is_test:
+        test_prefix = "test_"
+    else:
+        test_prefix = ""
     texts = functions.robust_text_import_from_dir(corpus_path)
 
     for text in texts:
         if fix_lines:
-            dict_char_ngrams = pickle.load(open("models/pickle/character_ngrams.p", "rb"))
+            dict_char_ngrams = pickle.load(open("models/pickle/" + test_prefix + "character_ngrams.p", "rb"))
             text = functions.fix_line_endings(text, dict_char_ngrams, break_marker)
         if len(digit_placeholder) == 1:
             text = functions.clear_digits(
@@ -92,22 +99,15 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
         lst_ngramstat.append("{:10}".format(dict_ngramstat[key]) + "\t" + key)
         counter += 1
     lst_ngramstat.sort(reverse=True)
-    f = open("models/ngrams/token_ngrams.txt", 'w', encoding="UTF-8")
+    f = open(ngram_stat_filename, 'w', encoding="UTF-8")
     for line in lst_ngramstat:
         f.write(line + "\n")
     f.close()
-    pickle.dump(dict_ngramstat, open("models/pickle/token_ngrams.p", "wb"))
-    return (counter)
+    # pickle.dump(dict_ngramstat, open("models/pickle/token_ngrams.p", "wb"))
+    return counter
 
 
-print(create_corpus_ngramstat_dump(functions.import_conf("SAMPLEPATH")))
-
-1 / 0
-
-
-
-
-def create_ngramstat_dump(ngram_stat_filename, ngramstat, min_freq):
+def create_ngramstat_dump(ngram_stat_filename, min_freq, is_test):
     """
     Creates dump of ngram and ngram variants.
     Create dump of word indices for increasing performance.
@@ -117,10 +117,15 @@ def create_ngramstat_dump(ngram_stat_filename, ngramstat, min_freq):
     :param min_freq:
     :return:
     """
-    with open(ngram_stat_filename) as file:
+    ngramstat = {}
+    if is_test:
+        test_prefix = "test_"
+    else:
+        test_prefix = ""
+    with open(ngram_stat_filename, 'r', encoding="UTF-8") as file:
         identifier = 1
         for row in file:
-            if row[8] == "\t":
+            if row[10] == "\t":
                 # freq = row.split("\t")[0]
                 freq = '{:0>7}'.format(int(row.split("\t")[0]))
                 ngram = row.split("\t")[1].strip()
@@ -184,11 +189,12 @@ def create_ngramstat_dump(ngram_stat_filename, ngramstat, min_freq):
             if len(word) > 1 and not word[-1].isalpha():
                 index[word[0:-1]].add(identifier)
 
-    pickle.dump(ngramstat, open("models/pickle/ngramstat.p", "wb"))
-    pickle.dump(index, open("models/pickle/index.p", "wb"))
+    pickle.dump(ngramstat, open("models/pickle/" + test_prefix + "ngramstat.p", "wb"))
+    pickle.dump(index, open("models/pickle/" + test_prefix + "index.p", "wb"))
+    return (identifier)
 
 
-def create_normalised_token_dump():
+def create_normalised_token_dump(ngram_stat, is_test):
     """
     Creates a set of all tokens in the ngram table, taking into account all possible variants
     typical for clinical German.
@@ -201,14 +207,16 @@ def create_normalised_token_dump():
 
     :return:
     """
-    ngram_stat = functions.import_conf("NGRAMFILE")
-    # "..\\..\\stat\corpus_cardio_training_cleaned_1_to_7gram_stat.txt"
-    # ngram statistics representing a specific document genre and domain
-    logger.debug(ngram_stat)
 
+    # ngram statistics representing a specific document genre and domain
+    if is_test:
+        test_prefix = "test_"
+    else:
+        test_prefix = ""
+    logger.debug(ngram_stat)
     all_tokens = set()
     all_token_variants = set()
-    with open(ngram_stat) as file:
+    with open(ngram_stat, 'r', encoding="UTF-8") as file:
         for row in file:
             row = row.replace("-", " ").replace("/", " ").replace("(", " ").replace(")", " ")
             tokens = row.split(" ")
@@ -228,22 +236,27 @@ def create_normalised_token_dump():
             all_token_variants.add(token)
             all_token_variants.add(token.lower())
     pickle.dump(all_token_variants, open("tokens.p", "wb"))
+    return (len(all_tokens))
 
 
-def create_acro_dump():
+def create_acro_dump(is_test):
     """
     Creates and dumps set of acronyms from ngram statistics.
 
     :return:
     """
-    acronym_ngrams = pickle.load(open("models/pickle/acronymNgrams.p", "rb"))
-    for i in acronym_ngrams:
-        logger.debug(i)
-
+    # acronym_ngrams = pickle.load(open("models/pickle/acronymNgrams.p", "rb"))
+    # for i in acronym_ngrams:
+    #   logger.debug(i)
+    if is_test:
+        test_prefix = "test_"
+    else:
+        test_prefix = ""
+    counter = 0
     acronyms = []
     new_acronym_ngrams = []
 
-    ngram_stat = pickle.load(open("models/pickle/ngramstat.p", "rb"))
+    ngram_stat = pickle.load(open("models/pickle/" + test_prefix + "ngramstat.p", "rb"))
     for n in ngram_stat:
         row = (ngram_stat[n])
         ngram = row.split("\t")[1]
@@ -252,32 +265,39 @@ def create_acro_dump():
                 # plausible max length for German medical language
                 if ngram not in acronyms:
                     acronyms.append(ngram)
-
+                    counter += 1
         if " " in ngram:
             tokens = ngram.split(" ")
             for token in tokens:
                 if functions.is_acronym(token, 7):
                     new_acronym_ngrams.append(ngram)
+                    counter += 1
                     break
 
     # List of acronyms
-    pickle.dump(acronyms, open("models/pickle/acronyms.p", "wb"))
+    pickle.dump(acronyms, open("models/pickle/" + test_prefix + "acronyms.p", "wb"))
     # List of ngrams, containing acronyms
-    pickle.dump(new_acronym_ngrams, open("models/pickle/acronymNgrams.p", "wb"))
+    pickle.dump(new_acronym_ngrams, open("models/pickle/" + test_prefix + "acronym_n_grams.p", "wb"))
+    return counter
 
 
-def create_morpho_dump():
+def create_morpho_dump(language_1, language_2, is_test):
     """
-    Creates and dumps set of plausible English and German morphemes from morphosaurus dictionary.
-    created rather quick & dirty, only for scoring acronym resolutions
+    Creates and dumps set of plausible English and German morphemes
+    from morphosaurus dictionary.
+    TODO: created rather quick & dirty, only for scoring acronym resolutions
 
     :return:
     """
     morph_eng = functions.import_conf("MORPH_ENG")
     morph_ger = functions.import_conf("MORPH_GER")
     s_morph = set()
+    if is_test:
+        test_prefix = "test_"
+    else:
+        test_prefix = ""
 
-    with open(morph_ger) as f:
+    with open(language_1) as f:
         for row in f:
             if "<str>" in row:
                 row = row.strip()[5:-6]
@@ -285,7 +305,7 @@ def create_morpho_dump():
                 # logger.debug(row)
                 s_morph.add(row)
 
-    with open(morph_eng) as f:
+    with open(language_2) as f:
         for row in f:
             if "<str>" in row:
                 row = row.strip()[5:-6]
@@ -293,9 +313,8 @@ def create_morpho_dump():
                 # logger.debug(row)
                 s_morph.add(row)
 
-    pickle.dump(s_morph, open("models/pickle/morphemes.p", "wb"))
-
-
+    pickle.dump(s_morph, open("models/pickle/" + test_prefix + "morphemes.p", "wb"))
+    return (len(s_morph))
 
 # create_corpus_ngramstat_dump()
 
@@ -306,10 +325,35 @@ def load_dumps():
 
     :return:
     """
-    logger.info("Begin Read Dump")
-    ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
-    logger.info("-")
-    index = pickle.load(open("pickle//index.p", "rb"))
-    logger.info("-")
-    normalised_tokens = pickle.load(open("pickle//tokens.p", "rb"))
-    logger.info("End Read Dump")
+
+    is_test = True
+
+    if is_test:
+        ngramstat = functions.import_conf("NGRAMFILE_TEST")
+        corpuspath = functions.import_conf("CORPUS_PATH_TEST")
+        morph1 = functions.import_conf("MORPH_ENG_TEST")
+        morph2 = functions.import_conf("MORPH_GER_TEST")
+    else:
+        ngramstat = functions.import_conf("NGRAMFILE")
+        corpuspath = functions.import_conf("CORPUS_PATH")
+        morph1 = functions.import_conf("MORPH_ENG")
+        morph2 = functions.import_conf("MORPH_GER")
+
+    print(create_corpus_char_stat_dump(corpuspath, is_test))
+    print(create_corpus_ngramstat_dump(corpuspath, ngramstat, is_test))
+    print(create_ngramstat_dump(ngramstat, 2, is_test))
+    print(create_normalised_token_dump(ngramstat, is_test))
+    print(create_acro_dump(is_test))
+    print(create_morpho_dump(morph1, morph2, is_test))
+
+    # logger.info("Begin Read Dump")
+    # ngramstat = pickle.load(open("NGRAMFILE", "rb"))
+    # logger.info("-")
+    #
+    # index = pickle.load(open("pickle//index.p", "rb"))
+    # logger.info("-")
+    # normalised_tokens = pickle.load(open("pickle//tokens.p", "rb"))
+    # logger.info("End Read Dump")
+
+
+load_dumps()

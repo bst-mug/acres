@@ -3,8 +3,8 @@ import os.path
 from acres import create_dumps
 
 
-def test_create_morpho_dump():
-    output_file = "models/pickle/morphemes.p"
+def test_create_morpho_dump("tests/resources/lex.xml", "tests/resources/lex.xml", True):
+    output_file = "models/pickle/test_morphemes.p"
 
     if os.path.isfile(output_file):
         os.remove(output_file)
