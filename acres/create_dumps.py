@@ -288,7 +288,7 @@ def create_morpho_dump(language_1, language_2, is_test):
     morph_ger = functions.import_conf("MORPH_GER")
     s_morph = set()
     if is_test:
-        test_prefix = "test_"
+        test_prefix = "tests/"
     else:
         test_prefix = ""
 
@@ -308,7 +308,7 @@ def create_morpho_dump(language_1, language_2, is_test):
                 # logger.debug(row)
                 s_morph.add(row)
 
-    pickle.dump(s_morph, open("models/pickle/" + test_prefix + "morphemes.p", "wb"))
+    pickle.dump(s_morph, open(test_prefix + "models/pickle/morphemes.p", "wb"))
     return (len(s_morph))
 
 # create_corpus_ngramstat_dump()

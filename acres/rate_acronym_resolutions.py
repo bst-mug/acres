@@ -43,7 +43,7 @@ def get_acronym_score(acro, full, morphemes=None, language="de"):
         # TODO comment Stefan:   |   yes it should also work without morphemes
         # TODO comment Stefan:   |   morphemes is None should mean that no morpho lexicon
         # TODO comment Stefan    |   exists for the language being processed
-        morphemes = pickle.load(open("models/pickle/morphemes.p", "rb"))
+        morphemes = pickle.load(open("tests/models/pickle/morphemes.p", "rb"))
 
     # TODO: check whether it makes sense to set score to zero as baseline
     pen = 1  # penalization factor

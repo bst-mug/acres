@@ -4,7 +4,7 @@ from acres import create_dumps
 
 
 def test_create_morpho_dump():
-    output_file = "models/pickle/test_morphemes.p"
+    output_file = "tests/models/pickle/morphemes.p"
 
     if os.path.isfile(output_file):
         os.remove(output_file)
