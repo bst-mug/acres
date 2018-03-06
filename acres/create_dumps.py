@@ -107,7 +107,7 @@ def create_corpus_ngramstat_dump(corpus_path, ngram_stat_filename, is_test, fix_
     return counter
 
 
-def create_ngramstat_dump(ngram_stat_filename, min_freq, is_test):
+def create_ngramstat_dump(ngram_stat_filename, ngramstat, min_freq):
     """
     Creates dump of ngram and ngram variants.
     Create dump of word indices for increasing performance.
@@ -184,8 +184,8 @@ def create_ngramstat_dump(ngram_stat_filename, min_freq, is_test):
             if len(word) > 1 and not word[-1].isalpha():
                 index[word[0:-1]].add(identifier)
 
-    pickle.dump(ngramstat, open("models/pickle/" + test_prefix + "ngramstat.p", "wb"))
-    pickle.dump(index, open("models/pickle/" + test_prefix + "index.p", "wb"))
+    pickle.dump(ngramstat, open("models/pickle/ngramstat.p", "wb"))
+    pickle.dump(index, open("models/pickle/index.p", "wb"))
     return (identifier)
 
 
@@ -337,7 +337,10 @@ def load_dumps():
 
     print(create_corpus_char_stat_dump(corpuspath, is_test))
     print(create_corpus_ngramstat_dump(corpuspath, ngramstat, is_test))
-    print(create_ngramstat_dump(ngramstat, 2, is_test))
+
+    #FIXME Missing first parameter
+    #print(create_ngramstat_dump(ngramstat, 2, is_test))
+
     print(create_normalised_token_dump(ngramstat, is_test))
     print(create_acro_dump(is_test))
     print(create_morpho_dump(morph1, morph2, is_test))
