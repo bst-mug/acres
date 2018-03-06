@@ -323,6 +323,7 @@ def load_dumps():
 
     is_test = True
 
+    # TODO Refactor as a "TEST" config section
     if is_test:
         ngramstat = functions.import_conf("NGRAMFILE_TEST")
         corpuspath = functions.import_conf("CORPUS_PATH_TEST")
@@ -351,4 +352,4 @@ def load_dumps():
     # logger.info("End Read Dump")
 
 
-load_dumps()
+#load_dumps()
