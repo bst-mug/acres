@@ -7,12 +7,13 @@ in decreasing frequency
 """
 
 import logging
+
 import html2text
 import requests
 
 from acres import functions
-from acres import rate_acronym_resolutions
-#from acres.functions import import_proxy
+
+# from acres.functions import import_proxy
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -109,4 +110,3 @@ if logger.getEffectiveLevel() == logging.DEBUG:
         if s > 0.01:
             logger.debug(str(s * int(cnt)) + "\t" + line)
 """
-

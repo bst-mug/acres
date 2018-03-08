@@ -1,8 +1,3 @@
-import pickle
-
-from acres.get_synonyms_from_ngrams import find_embeddings
-from acres import resource_factory
-
 def test_find_embeddings():
     pass
     # ngrams = resource_factory.get_ngramstat()

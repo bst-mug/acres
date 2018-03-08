@@ -56,6 +56,7 @@ def create_corpus_char_stat_dump(corpus_path, is_test, ngramlength=8, digit_plac
     pickle.dump(dict_char_ngrams, open("models/pickle/" + test_prefix + "character_ngrams.p", "wb"))
     return (counter)  # should return 70980 with sample docs
 
+
 # TODO : we have to assure that unit tests with small input data do not
 # TODO : overwrite the models (ngram and pickle)
 
@@ -160,17 +161,17 @@ def create_ngramstat_dump(ngram_stat_filename, ngramstat, min_freq):
                         # Variant 5: insertion of space before comma, to make the
                         # preceding token accessible
                         ngramstat[identifier] = freq + "\t" + \
-                                        ngram.replace(", ", " , ")
+                                                ngram.replace(", ", " , ")
                         identifier += 1
                     if "; " in row:
                         # the same with semicolon
                         ngramstat[identifier] = freq + "\t" + \
-                                        ngram.replace("; ", " ; ")
+                                                ngram.replace("; ", " ; ")
                         identifier += 1
                     if ": " in row:
                         # the same with colon
                         ngramstat[identifier] = freq + "\t" + \
-                                        ngram.replace(": ", " : ")
+                                                ngram.replace(": ", " : ")
                         identifier += 1
 
     index = collections.defaultdict(set)
@@ -306,6 +307,7 @@ def create_morpho_dump(language_1, language_2):
 
     return s_morph
 
+
 # create_corpus_ngramstat_dump()
 
 
@@ -332,8 +334,8 @@ def load_dumps():
     print(create_corpus_char_stat_dump(corpuspath, is_test))
     print(create_corpus_ngramstat_dump(corpuspath, ngramstat, is_test))
 
-    #FIXME Missing first parameter
-    #print(create_ngramstat_dump(ngramstat, 2, is_test))
+    # FIXME Missing first parameter
+    # print(create_ngramstat_dump(ngramstat, 2, is_test))
 
     print(create_normalised_token_dump(ngramstat, is_test))
     print(create_acro_dump(is_test))
@@ -348,5 +350,4 @@ def load_dumps():
     # normalised_tokens = pickle.load(open("pickle//tokens.p", "rb"))
     # logger.info("End Read Dump")
 
-
-#load_dumps()
+# load_dumps()
