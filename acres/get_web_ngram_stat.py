@@ -37,10 +37,12 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
     :param min_num_tokens:
     :param max_num_tokens:
     :return:
+    """
 
+    """
     proxy_config = functions.import_proxy()
     # FIXME  The whole proxy stuff desn't work
-
+    
     try:
        if proxy_config["UseProxy"] == "yes":
            http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
@@ -58,6 +60,7 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
        logger.critical(ex)
        return []
     """
+
     response = requests.get(url, timeout=1)
     out_l = []
     txt = html2text.html2text(response.text)
