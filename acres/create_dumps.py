@@ -51,6 +51,7 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
 
     return dict_char_ngrams
 
+
 # TODO : we have to assure that unit tests with small input data do not
 # TODO : overwrite the models (ngram and pickle)
 
@@ -103,16 +104,17 @@ def create_corpus_ngramstat_dump(corpus_path, ngram_stat_filename, is_test, fix_
     return counter
 
 
-def create_ngramstat_dump(ngram_stat_filename, ngramstat, min_freq):
+def create_ngramstat_dump(ngram_stat_filename, min_freq):
     """
     Creates dump of ngram and ngram variants.
     Create dump of word indices for increasing performance.
 
     :param ngram_stat_filename:
-    :param ngramstat:
     :param min_freq:
     :return:
     """
+    ngramstat = {}
+
     with open(ngram_stat_filename) as file:
         identifier = 1
         for row in file:
@@ -180,9 +182,9 @@ def create_ngramstat_dump(ngram_stat_filename, ngramstat, min_freq):
             if len(word) > 1 and not word[-1].isalpha():
                 index[word[0:-1]].add(identifier)
 
-    pickle.dump(ngramstat, open("models/pickle/ngramstat.p", "wb"))
     pickle.dump(index, open("models/pickle/index.p", "wb"))
-    return (identifier)
+    # return (identifier)
+    return ngramstat
 
 
 def create_normalised_token_dump(ngram_stat, is_test):
@@ -314,28 +316,22 @@ def load_dumps():
 
     is_test = True
 
-    # TODO Refactor as a "TEST" config section
-    if is_test:
-        ngramstat = functions.import_conf("NGRAMFILE_TEST")
-    else:
-        ngramstat = functions.import_conf("NGRAMFILE")
-
+    ngram_file = functions.import_conf("NGRAMFILE")
     corpuspath = functions.import_conf("CORPUS_PATH")
     morph1 = functions.import_conf("MORPH_ENG")
     morph2 = functions.import_conf("MORPH_GER")
 
     print(create_corpus_char_stat_dump(corpuspath))
-    print(create_corpus_ngramstat_dump(corpuspath, ngramstat, is_test))
+    print(create_corpus_ngramstat_dump(corpuspath, ngram_file, is_test))
 
-    # FIXME Missing first parameter
-    # print(create_ngramstat_dump(ngramstat, 2, is_test))
+    print(create_ngramstat_dump(ngram_file, 2))
 
-    print(create_normalised_token_dump(ngramstat, is_test))
+    print(create_normalised_token_dump(ngram_file, is_test))
     print(create_acro_dump(is_test))
     print(create_morpho_dump(morph1, morph2))
 
     # logger.info("Begin Read Dump")
-    # ngramstat = pickle.load(open("NGRAMFILE", "rb"))
+    # ngramstat = resource_factory.get_ngramstat()
     # logger.info("-")
     #
     # index = resource_factory.get_index()

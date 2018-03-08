@@ -24,7 +24,14 @@ def get_index():
 
 
 def get_ngramstat():
-    return pickle.load(open(ROOT_FOLDER + "ngramstat.p", "rb"))
+    output_file = ROOT_FOLDER + "ngramstat.p"
+
+    if not os.path.isfile(output_file):
+        ngram_file = functions.import_conf("NGRAMFILE")
+        ngramstat = create_dumps.create_ngramstat_dump(ngram_file, 2)
+        pickle.dump(ngramstat, open(output_file, "wb"))
+
+    return pickle.load(open(output_file, "rb"))
 
 
 def get_acronym_ngrams():
@@ -40,7 +47,7 @@ def get_character_ngrams():
 
     if not os.path.isfile(output_file):
         corpus_path = functions.import_conf("CORPUS_PATH")
-        morphemes = create_dumps.create_corpus_char_stat_dump(corpus_path)
-        pickle.dump(morphemes, open(output_file, "wb"))
+        character_ngrams = create_dumps.create_corpus_char_stat_dump(corpus_path)
+        pickle.dump(character_ngrams, open(output_file, "wb"))
 
     return pickle.load(open(output_file, "rb"))
