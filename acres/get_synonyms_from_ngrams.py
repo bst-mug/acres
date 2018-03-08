@@ -4,7 +4,6 @@ Finds synonyms using a n-gram frequency list from related corpus
 """
 
 import logging
-import pickle
 import re
 
 from acres import functions
@@ -184,9 +183,11 @@ def find_embeddings(str_left,
 
 
 if logger.getEffectiveLevel() == logging.DEBUG:
-    normalisedTokens = pickle.load(open("models/pickle/tokens.p", "rb"))
-    ngramstat = pickle.load(open("models/pickle/ngramstat.p", "rb"))
-    index = pickle.load(open("models/pickle/index.p", "rb"))
+    from acres import resource_factory
+
+    normalisedTokens = resource_factory.get_tokens()
+    ngramstat = resource_factory.get_ngramstat()
+    index = resource_factory.get_index()
     logger.debug("Dumps loaded")
     # li = find_embeddings("", "morph.", "", ngramstat, index, 10, 3, 1000, 1, 7)
     # li = find_embeddings("Mitralklappe", "morph.", "*", ngramstat, index, 10, 3, 1000, 1, 7)

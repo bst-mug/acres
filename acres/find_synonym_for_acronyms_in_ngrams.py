@@ -2,15 +2,15 @@
 
 import logging
 import math
-import pickle
 import random
 import re
 import time
 
 from acres import functions
-from acres import get_web_ngram_stat
 from acres import get_synonyms_from_ngrams
+from acres import get_web_ngram_stat
 from acres import rate_acronym_resolutions
+from acres import resource_factory
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -31,11 +31,11 @@ def find_synonyms():
     """
     # load data
 
-    ngramstat = pickle.load(open("pickle//ngramstat.p", "rb"))
-    index = pickle.load(open("pickle//index.p", "rb"))
+    ngramstat = resource_factory.get_ngramstat()
+    index = resource_factory.get_index()
     # ngrams that contain at least one acronym
-    acronym_ngrams = pickle.load(open("pickle//acronymNgrams.p", "rb"))
-    morphemes = pickle.load(open("pickle//morphemes.p", "rb"))
+    acronym_ngrams = resource_factory.get_acronym_ngrams()
+    morphemes = resource_factory.get_morphemes()
 
     dia = functions.diacritics()  # list of diacritic characters
     d_log_corpus = {}  # dictionary from which the logfile is generated

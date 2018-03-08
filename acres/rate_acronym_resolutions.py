@@ -7,6 +7,7 @@ import re
 
 # from math import *
 from acres import functions
+from acres import resource_factory
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -43,7 +44,7 @@ def get_acronym_score(acro, full, morphemes=None, language="de"):
         # TODO comment Stefan:   |   yes it should also work without morphemes
         # TODO comment Stefan:   |   morphemes is None should mean that no morpho lexicon
         # TODO comment Stefan    |   exists for the language being processed
-        morphemes = pickle.load(open("tests/models/pickle/morphemes.p", "rb"))
+        morphemes = resource_factory.get_morphemes()
 
     # TODO: check whether it makes sense to set score to zero as baseline
     pen = 1  # penalization factor

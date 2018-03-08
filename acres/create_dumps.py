@@ -5,6 +5,7 @@ import logging
 import pickle
 
 from acres import functions
+from acres import resource_factory
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -251,7 +252,7 @@ def create_acro_dump(is_test):
     acronyms = []
     new_acronym_ngrams = []
 
-    ngram_stat = pickle.load(open("models/pickle/" + test_prefix + "ngramstat.p", "rb"))
+    ngram_stat = resource_factory.get_ngramstat()
     for n in ngram_stat:
         row = (ngram_stat[n])
         ngram = row.split("\t")[1]

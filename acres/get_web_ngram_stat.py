@@ -90,8 +90,9 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     QUERY = "AV Blocks"
     import pickle
     from acres import functions
+    from acres import resource_factory
 
-    MORPHEMES = pickle.load(open("models/pickle/morphemes.p", "rb"))
+    MORPHEMES = resource_factory.get_morphemes()
     # p = ngrams_web_dump("https://www.google.at/search?q=EKG+Herz", 1, 10)
     # p = ngrams_web_dump("http://www.bing.de/search?cc=de&q=ekg+Herz", 1, 10)
     p = ngrams_web_dump('http://www.bing.de/search?cc=de&q="' + QUERY + '"', 1, 10)
