@@ -7,6 +7,7 @@ import logging
 import re
 
 from acres import functions
+from acres import resource_factory
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -174,8 +175,6 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
 
 
 if logger.getEffectiveLevel() == logging.DEBUG:
-    from acres import resource_factory
-
     normalisedTokens = resource_factory.get_tokens()
     logger.debug("Dumps loaded")
     # li = find_embeddings("", "morph.", "", ngramstat, index, 10, 3, 1000, 1, 7)
