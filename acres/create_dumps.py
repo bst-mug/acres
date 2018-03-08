@@ -55,9 +55,8 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
 # TODO : we have to assure that unit tests with small input data do not
 # TODO : overwrite the models (ngram and pickle)
 
-def create_corpus_ngramstat_dump(corpus_path, ngram_stat_filename, is_test, fix_lines=True, min_length=1, max_length=7,
-                                 digit_placeholder="Ð",
-                                 break_marker="¶"):
+def create_corpus_ngramstat_dump(corpus_path, ngram_stat_filename, fix_lines=True, min_length=1, max_length=7,
+                                 digit_placeholder="Ð", break_marker="¶"):
     """
     Takes a corpus consisting of text files in a single directory
     Substitutes digits and line breaks
@@ -71,10 +70,7 @@ def create_corpus_ngramstat_dump(corpus_path, ngram_stat_filename, is_test, fix_
     """
     entire_corpus = ""
     counter = 0
-    if is_test:
-        test_prefix = "test_"
-    else:
-        test_prefix = ""
+
     texts = functions.robust_text_import_from_dir(corpus_path)
 
     for text in texts:
@@ -187,7 +183,7 @@ def create_ngramstat_dump(ngram_stat_filename, min_freq):
     return ngramstat
 
 
-def create_normalised_token_dump(ngram_stat, is_test):
+def create_normalised_token_dump(ngram_stat):
     """
     Creates a set of all tokens in the ngram table, taking into account all possible variants
     typical for clinical German.
@@ -202,10 +198,7 @@ def create_normalised_token_dump(ngram_stat, is_test):
     """
 
     # ngram statistics representing a specific document genre and domain
-    if is_test:
-        test_prefix = "test_"
-    else:
-        test_prefix = ""
+
     logger.debug(ngram_stat)
     all_tokens = set()
     all_token_variants = set()
@@ -322,11 +315,11 @@ def load_dumps():
     morph2 = functions.import_conf("MORPH_GER")
 
     print(create_corpus_char_stat_dump(corpuspath))
-    print(create_corpus_ngramstat_dump(corpuspath, ngram_file, is_test))
+    print(create_corpus_ngramstat_dump(corpuspath, ngram_file))
 
     print(create_ngramstat_dump(ngram_file, 2))
 
-    print(create_normalised_token_dump(ngram_file, is_test))
+    print(create_normalised_token_dump(ngram_file))
     print(create_acro_dump(is_test))
     print(create_morpho_dump(morph1, morph2))
 
