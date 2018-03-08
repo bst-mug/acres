@@ -115,7 +115,7 @@ def create_ngramstat_dump(ngram_stat_filename, min_freq):
     """
     ngramstat = {}
 
-    with open(ngram_stat_filename) as file:
+    with open(ngram_stat_filename, 'r', encoding="UTF-8") as file:
         identifier = 1
         for row in file:
             if row[10] == "\t":
