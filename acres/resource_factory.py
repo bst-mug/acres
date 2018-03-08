@@ -44,7 +44,7 @@ def get_ngramstat():
 
     if not os.path.isfile(output_file):
         ngram_file = functions.import_conf("NGRAMFILE")
-        ngramstat = create_dumps.create_ngramstat_dump(ngram_file, 2)
+        ngramstat = create_dumps.create_ngramstat_dump(ngram_file)
         pickle.dump(ngramstat, open(output_file, "wb"))
 
     return pickle.load(open(output_file, "rb"))
