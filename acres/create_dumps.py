@@ -277,7 +277,7 @@ def create_acro_dump(is_test):
     return counter
 
 
-def create_morpho_dump(language_1, language_2, is_test):
+def create_morpho_dump(language_1, language_2):
     """
     Creates and dumps set of plausible English and German morphemes
     from morphosaurus dictionary.
@@ -285,13 +285,8 @@ def create_morpho_dump(language_1, language_2, is_test):
 
     :return:
     """
-    morph_eng = functions.import_conf("MORPH_ENG")
-    morph_ger = functions.import_conf("MORPH_GER")
+
     s_morph = set()
-    if is_test:
-        test_prefix = "tests/"
-    else:
-        test_prefix = ""
 
     with open(language_1) as f:
         for row in f:
@@ -309,8 +304,7 @@ def create_morpho_dump(language_1, language_2, is_test):
                 # logger.debug(row)
                 s_morph.add(row)
 
-    pickle.dump(s_morph, open(test_prefix + "models/pickle/morphemes.p", "wb"))
-    return (len(s_morph))
+    return s_morph
 
 # create_corpus_ngramstat_dump()
 
@@ -328,13 +322,12 @@ def load_dumps():
     if is_test:
         ngramstat = functions.import_conf("NGRAMFILE_TEST")
         corpuspath = functions.import_conf("CORPUS_PATH_TEST")
-        morph1 = functions.import_conf("MORPH_ENG_TEST")
-        morph2 = functions.import_conf("MORPH_GER_TEST")
     else:
         ngramstat = functions.import_conf("NGRAMFILE")
         corpuspath = functions.import_conf("CORPUS_PATH")
-        morph1 = functions.import_conf("MORPH_ENG")
-        morph2 = functions.import_conf("MORPH_GER")
+
+    morph1 = functions.import_conf("MORPH_ENG")
+    morph2 = functions.import_conf("MORPH_GER")
 
     print(create_corpus_char_stat_dump(corpuspath, is_test))
     print(create_corpus_ngramstat_dump(corpuspath, ngramstat, is_test))
@@ -344,7 +337,7 @@ def load_dumps():
 
     print(create_normalised_token_dump(ngramstat, is_test))
     print(create_acro_dump(is_test))
-    print(create_morpho_dump(morph1, morph2, is_test))
+    print(create_morpho_dump(morph1, morph2))
 
     # logger.info("Begin Read Dump")
     # ngramstat = pickle.load(open("NGRAMFILE", "rb"))

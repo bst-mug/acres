@@ -1,10 +1,22 @@
+import os.path
 import pickle
+
+from acres import create_dumps
+from acres import functions
 
 PREFIX = ""
 
 
 def get_morphemes():
-    return pickle.load(open(PREFIX + "models/pickle/morphemes.p", "rb"))
+    output_file = PREFIX + "models/pickle/morphemes.p"
+
+    if not os.path.isfile(output_file):
+        morph_eng = functions.import_conf("MORPH_ENG")
+        morph_ger = functions.import_conf("MORPH_GER")
+        morphemes = create_dumps.create_morpho_dump(morph_eng, morph_ger)
+        pickle.dump(morphemes, open(output_file, "wb"))
+
+    return pickle.load(open(output_file, "rb"))
 
 
 def get_index():
