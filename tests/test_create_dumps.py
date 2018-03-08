@@ -18,34 +18,35 @@ def test_create_corpus_char_stat_dump():
 
 def test_create_ngramstat_dump():
     actual = create_dumps.create_ngramstat_dump("tests/models/ngrams/ngramstat.txt", 2)
-    expected = {1: '0002000\t¶', 2: '0000200\tder', 3: '0000100\tund'}
+    expected = {1: '0002000\t¶', 2: '0000200\tder', 3: '0000050\tEKG', 4: '0000020\tIm EKG'}
 
     assert expected == actual
 
 
 def test_create_index():
     actual = create_dumps.create_index(resource_factory.get_ngramstat())
-    expected = {'¶': {1}, 'der': {2}, 'und': {3}}
+    expected = {'¶': {1}, 'der': {2}, 'EKG': {3, 4}, 'Im': {4}}
 
     assert expected == actual
 
 
 def test_create_normalised_token_dump():
     actual = create_dumps.create_normalised_token_dump("tests/models/ngrams/ngramstat.txt")
-    expected = {'', '100\tund', '200\tder\n', '2000\t¶\n'}
+    expected = {'', '50\tEKG\n', '20\tim', '2000\t¶\n', '50\tekg\n', '200\tder\n', 'EKG', 'ekg', '20\tIm'}
 
+    print(actual)
     assert expected == actual
 
 
 def test_create_acro_dumo():
     actual = create_dumps.create_acro_dump()
-    expected = []
+    expected = ['EKG']
 
     assert expected == actual
 
 
 def test_create_new_acro_dumo():
     actual = create_dumps.create_new_acro_dump()
-    expected = []
+    expected = ['Im EKG']
 
     assert expected == actual
