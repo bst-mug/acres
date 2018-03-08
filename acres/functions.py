@@ -13,7 +13,7 @@ import re
 from random import randint
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 
 # logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
@@ -514,7 +514,7 @@ def robust_text_import_from_dir(path):
                 texts.append(content)
                 # print(file + " " + str(len(content)))
         except:
-            logger.debug("corrupt file")
+            logger.debug("corrupt file: %s", file)
             pass
     return texts
 
