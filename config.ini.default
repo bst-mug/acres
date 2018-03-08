@@ -1,9 +1,7 @@
 [DEFAULT]
 NGRAMFILE_TEST = models/ngrams/ngramstat.txt
 NGRAMFILE = models/ngrams/ngramstat.txt
-CORPUS_PATH_TEST = tests/data
-CORPUS_PATH = path_to_document_corpus
-SAMPLEPATH = tests/data
+CORPUS_PATH = tests/data
 MORPH_ENG = tests/resources/lex.xml
 MORPH_GER = tests/resources/lex.xml
 

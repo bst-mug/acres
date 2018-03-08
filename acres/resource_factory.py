@@ -36,4 +36,11 @@ def get_tokens():
 
 
 def get_character_ngrams():
-    return pickle.load(open(PREFIX + "models/pickle/character_ngrams.p", "rb"))
+    output_file = PREFIX + "models/pickle/character_ngrams.p"
+
+    if not os.path.isfile(output_file):
+        corpus_path = functions.import_conf("CORPUS_PATH")
+        morphemes = create_dumps.create_corpus_char_stat_dump(corpus_path)
+        pickle.dump(morphemes, open(output_file, "wb"))
+
+    return pickle.load(open(output_file, "rb"))

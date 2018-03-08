@@ -6,3 +6,12 @@ def test_create_morpho_dump():
     expected = {'gramm', 'nieren', 'herc', 'crancheit', 'cardio', 'arbeits', 'el', 'cammer', 'electro', 'coronar'}
 
     assert expected.issubset(actual)
+
+
+def test_create_corpus_char_stat_dump():
+    char_ngrams = create_dumps.create_corpus_char_stat_dump("tests/data")
+
+    actual = len(char_ngrams)
+    expected = 70980
+    print(actual)
+    assert expected == actual

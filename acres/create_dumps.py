@@ -13,7 +13,7 @@ logger.setLevel(logging.INFO)
 
 # logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
-def create_corpus_char_stat_dump(corpus_path, is_test, ngramlength=8, digit_placeholder="Ð", break_marker="¶"):
+def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="Ð", break_marker="¶"):
     """
     - Takes a corpus consisting of text files in a single directory
     - Substitutes digits and line breaks
@@ -22,15 +22,10 @@ def create_corpus_char_stat_dump(corpus_path, is_test, ngramlength=8, digit_plac
     - returns counter (number of records)
     """
     counter = 0
-    if is_test:
-        test_prefix = "test_"
-    else:
-        test_prefix = ""
     texts = functions.robust_text_import_from_dir(corpus_path)
     dict_char_ngrams = {}
     # this produces a file with character ngrams
-    # at the end also a pickle dump is created
-    f = open("models/ngrams/" + test_prefix + "character_ngrams.txt", 'w', encoding="UTF-8")
+    f = open("models/ngrams/character_ngrams.txt", 'w', encoding="UTF-8")
     for text in texts:
         str_doc = ""
         lines = text.split("\n")
@@ -53,9 +48,8 @@ def create_corpus_char_stat_dump(corpus_path, is_test, ngramlength=8, digit_plac
         f.write(line + "\n")
         counter += 1
     f.close()
-    pickle.dump(dict_char_ngrams, open("models/pickle/" + test_prefix + "character_ngrams.p", "wb"))
-    return (counter)  # should return 70980 with sample docs
 
+    return dict_char_ngrams
 
 # TODO : we have to assure that unit tests with small input data do not
 # TODO : overwrite the models (ngram and pickle)
@@ -323,15 +317,14 @@ def load_dumps():
     # TODO Refactor as a "TEST" config section
     if is_test:
         ngramstat = functions.import_conf("NGRAMFILE_TEST")
-        corpuspath = functions.import_conf("CORPUS_PATH_TEST")
     else:
         ngramstat = functions.import_conf("NGRAMFILE")
-        corpuspath = functions.import_conf("CORPUS_PATH")
 
+    corpuspath = functions.import_conf("CORPUS_PATH")
     morph1 = functions.import_conf("MORPH_ENG")
     morph2 = functions.import_conf("MORPH_GER")
 
-    print(create_corpus_char_stat_dump(corpuspath, is_test))
+    print(create_corpus_char_stat_dump(corpuspath))
     print(create_corpus_ngramstat_dump(corpuspath, ngramstat, is_test))
 
     # FIXME Missing first parameter
