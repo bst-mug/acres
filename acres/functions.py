@@ -13,7 +13,7 @@ import re
 from random import randint
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 
 # logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
@@ -39,6 +39,7 @@ def import_proxy():
     config = configparser.ConfigParser()
     config.read("config.ini")
     return config["proxy"]
+
 
 def split_ngram(ngram):
     """
@@ -71,7 +72,7 @@ def extract_acronym_definition(str_probe, max_length):
     if len(str_probe) > 1:
         if str_probe[-1] == ")" and str_probe.count("(") == 1:
             left = str_probe.split("(")[0].strip()  # potential definition
-            right = str_probe.split("(")[1][0:-1].strip()   # potential acronym
+            right = str_probe.split("(")[1][0:-1].strip()  # potential acronym
             if is_acronym(left, max_length, "Ð") and not is_acronym(right, max_length, "Ð"):
                 return left, right
             if is_acronym(right, max_length, "Ð") and not is_acronym(left, max_length, "Ð"):
@@ -513,8 +514,7 @@ def robust_text_import_from_dir(path):
                 texts.append(content)
                 # print(file + " " + str(len(content)))
         except:
-            print("corrupt file")
-            # TODO: here there should be a log entry
+            logger.debug("corrupt file: %s", file)
             pass
     return texts
 

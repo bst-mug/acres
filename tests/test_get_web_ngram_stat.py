@@ -1,7 +1,6 @@
-from acres import get_web_ngram_stat
-
 def test_dummy():
     assert True
+
 
 def test_ngrams_web_dump():
     pass
@@ -19,4 +18,3 @@ def test_ngrams_web_dump():
             hit = True
     assert hit
     """
-

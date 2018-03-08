@@ -7,12 +7,13 @@ in decreasing frequency
 """
 
 import logging
+
 import html2text
 import requests
 
 from acres import functions
-from acres import rate_acronym_resolutions
-#from acres.functions import import_proxy
+
+# from acres.functions import import_proxy
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -90,8 +91,9 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     QUERY = "AV Blocks"
     import pickle
     from acres import functions
+    from acres import resource_factory
 
-    MORPHEMES = pickle.load(open("models/pickle/morphemes.p", "rb"))
+    MORPHEMES = resource_factory.get_morphemes()
     # p = ngrams_web_dump("https://www.google.at/search?q=EKG+Herz", 1, 10)
     # p = ngrams_web_dump("http://www.bing.de/search?cc=de&q=ekg+Herz", 1, 10)
     p = ngrams_web_dump('http://www.bing.de/search?cc=de&q="' + QUERY + '"', 1, 10)
@@ -108,4 +110,3 @@ if logger.getEffectiveLevel() == logging.DEBUG:
         if s > 0.01:
             logger.debug(str(s * int(cnt)) + "\t" + line)
 """
-

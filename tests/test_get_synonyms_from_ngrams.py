@@ -1,12 +1,7 @@
-import pickle
-
-from acres.get_synonyms_from_ngrams import find_embeddings
-
-
 def test_find_embeddings():
     pass
-    # ngrams = pickle.load(open("models/pickle/ngramstat.p", "rb"))
-    # index = pickle.load(open("models/pickle/index.p", "rb"))
+    # ngrams = resource_factory.get_ngramstat()
+    # index = resource_factory.get_index()
     #
     # min_window_size = 5
     # freq = 1

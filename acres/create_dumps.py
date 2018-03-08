@@ -5,6 +5,7 @@ import logging
 import pickle
 
 from acres import functions
+from acres import resource_factory
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -82,7 +83,7 @@ def create_corpus_ngramstat_dump(corpus_path, ngram_stat_filename, is_test, fix_
 
     for text in texts:
         if fix_lines:
-            dict_char_ngrams = pickle.load(open("models/pickle/" + test_prefix + "character_ngrams.p", "rb"))
+            dict_char_ngrams = resource_factory.get_character_ngrams()
             text = functions.fix_line_endings(text, dict_char_ngrams, break_marker)
         if len(digit_placeholder) == 1:
             text = functions.clear_digits(
@@ -164,17 +165,17 @@ def create_ngramstat_dump(ngram_stat_filename, min_freq, is_test):
                         # Variant 5: insertion of space before comma, to make the
                         # preceding token accessible
                         ngramstat[identifier] = freq + "\t" + \
-                                        ngram.replace(", ", " , ")
+                                                ngram.replace(", ", " , ")
                         identifier += 1
                     if "; " in row:
                         # the same with semicolon
                         ngramstat[identifier] = freq + "\t" + \
-                                        ngram.replace("; ", " ; ")
+                                                ngram.replace("; ", " ; ")
                         identifier += 1
                     if ": " in row:
                         # the same with colon
                         ngramstat[identifier] = freq + "\t" + \
-                                        ngram.replace(": ", " : ")
+                                                ngram.replace(": ", " : ")
                         identifier += 1
 
     index = collections.defaultdict(set)
@@ -189,8 +190,8 @@ def create_ngramstat_dump(ngram_stat_filename, min_freq, is_test):
             if len(word) > 1 and not word[-1].isalpha():
                 index[word[0:-1]].add(identifier)
 
-    pickle.dump(ngramstat, open("models/pickle/" + test_prefix + "ngramstat.p", "wb"))
-    pickle.dump(index, open("models/pickle/" + test_prefix + "index.p", "wb"))
+    pickle.dump(ngramstat, open("models/pickle/ngramstat.p", "wb"))
+    pickle.dump(index, open("models/pickle/index.p", "wb"))
     return (identifier)
 
 
@@ -245,7 +246,7 @@ def create_acro_dump(is_test):
 
     :return:
     """
-    # acronym_ngrams = pickle.load(open("models/pickle/acronymNgrams.p", "rb"))
+    # acronym_ngrams = resource_factory.get_acronym_ngrams()
     # for i in acronym_ngrams:
     #   logger.debug(i)
     if is_test:
@@ -256,7 +257,7 @@ def create_acro_dump(is_test):
     acronyms = []
     new_acronym_ngrams = []
 
-    ngram_stat = pickle.load(open("models/pickle/" + test_prefix + "ngramstat.p", "rb"))
+    ngram_stat = resource_factory.get_ngramstat()
     for n in ngram_stat:
         row = (ngram_stat[n])
         ngram = row.split("\t")[1]
@@ -319,14 +320,14 @@ def create_morpho_dump(language_1, language_2, is_test):
 # create_corpus_ngramstat_dump()
 
 
-def load_dumps(is_test=True):
+def load_dumps():
     """
     Load dumps.
 
     :return:
     """
 
-
+    is_test = True
 
     if is_test:
         ngramstat = functions.import_conf("NGRAMFILE_TEST")

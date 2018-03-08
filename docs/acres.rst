@@ -28,18 +28,18 @@ acres.functions module
     :undoc-members:
     :show-inheritance:
 
-acres.get\_acronyms\_from\_web module
--------------------------------------
-
-.. automodule:: acres.get_acronyms_from_web
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 acres.get\_synonyms\_from\_ngrams module
 ----------------------------------------
 
 .. automodule:: acres.get_synonyms_from_ngrams
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+acres.get\_web\_ngram\_stat module
+----------------------------------
+
+.. automodule:: acres.get_web_ngram_stat
     :members:
     :undoc-members:
     :show-inheritance:
@@ -51,6 +51,14 @@ acres.rate\_acronym\_resolutions module
     :members:
     :undoc-members:
     :show-inheritance:
+
+acres.resource\_factory module
+------------------------------
+
+.. automodule:: acres.resource_factory
+:members:
+        :undoc-members:
+            :show-inheritance:
 
 acres.text\_cleanser module
 ---------------------------
