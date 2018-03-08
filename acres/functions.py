@@ -514,8 +514,7 @@ def robust_text_import_from_dir(path):
                 texts.append(content)
                 # print(file + " " + str(len(content)))
         except:
-            print("corrupt file")
-            # TODO: here there should be a log entry
+            logger.debug("corrupt file")
             pass
     return texts
 
