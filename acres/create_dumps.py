@@ -166,6 +166,10 @@ def create_ngramstat_dump(ngram_stat_filename, min_freq):
                                                 ngram.replace(": ", " : ")
                         identifier += 1
 
+    return ngramstat
+
+
+def create_index(ngramstat):
     index = collections.defaultdict(set)
     for identifier in ngramstat:
         # inverted index for performance issue when retrieving ngram records
@@ -178,9 +182,7 @@ def create_ngramstat_dump(ngram_stat_filename, min_freq):
             if len(word) > 1 and not word[-1].isalpha():
                 index[word[0:-1]].add(identifier)
 
-    pickle.dump(index, open("models/pickle/index.p", "wb"))
-    # return (identifier)
-    return ngramstat
+    return index
 
 
 def create_normalised_token_dump(ngram_stat):

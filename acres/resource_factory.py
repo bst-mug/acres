@@ -20,7 +20,14 @@ def get_morphemes():
 
 
 def get_index():
-    return pickle.load(open(ROOT_FOLDER + "index.p", "rb"))
+    output_file = ROOT_FOLDER + "index.p"
+
+    if not os.path.isfile(output_file):
+        ngramstat = get_ngramstat()
+        index = create_dumps.create_index(ngramstat)
+        pickle.dump(index, open(output_file, "wb"))
+
+    return pickle.load(open(output_file, "rb"))
 
 
 def get_ngramstat():
