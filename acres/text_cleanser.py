@@ -17,12 +17,12 @@ def find_best_substitution(form_to_resolve, candidates,
     TODO:    yield the right expansion
 
     Tentative Typology :
-    AA: classical acronyms like "EKG"
-    DA: dot abbreviations like "diff."
-    NA: non-dot abbreviations like "re"
-    HA: hyphen abbreviations like "Roe-Thorax"
-    MA: multiword abbreviations like "St. p."
-    SE_ spelling errors like "Lympfknoten"
+    - AA: classical acronyms like "EKG"
+    - DA: dot abbreviations like "diff."
+    - NA: non-dot abbreviations like "re"
+    - HA: hyphen abbreviations like "Roe-Thorax"
+    - MA: multiword abbreviations like "St. p."
+    - SE: spelling errors like "Lympfknoten"
 
 
     :param form_to_resolve:
