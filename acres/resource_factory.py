@@ -39,7 +39,14 @@ def get_acronym_ngrams():
 
 
 def get_tokens():
-    return pickle.load(open(ROOT_FOLDER + "tokens.p", "rb"))
+    output_file = ROOT_FOLDER + "tokens.p"
+
+    if not os.path.isfile(output_file):
+        ngram_file = functions.import_conf("NGRAMFILE")
+        ngramstat = create_dumps.create_normalised_token_dump(ngram_file)
+        pickle.dump(ngramstat, open(output_file, "wb"))
+
+    return pickle.load(open(output_file, "rb"))
 
 
 def get_character_ngrams():

@@ -221,8 +221,8 @@ def create_normalised_token_dump(ngram_stat):
                 "ö", "oe").replace("ü", "ue").replace("ß", "ss")
             all_token_variants.add(token)
             all_token_variants.add(token.lower())
-    pickle.dump(all_token_variants, open("tokens.p", "wb"))
-    return (len(all_tokens))
+
+    return all_token_variants
 
 
 def create_acro_dump(is_test):

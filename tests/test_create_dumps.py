@@ -21,3 +21,10 @@ def test_create_ngramstat_dump():
     expected = {1: '0002000\t¶', 2: '0000200\tder', 3: '0000100\tund'}
 
     assert expected == actual
+
+
+def test_create_normalised_token_dump():
+    actual = create_dumps.create_normalised_token_dump("tests/models/ngrams/ngramstat.txt")
+    expected = {'', '100\tund', '200\tder\n', '2000\t¶\n'}
+
+    assert expected == actual
