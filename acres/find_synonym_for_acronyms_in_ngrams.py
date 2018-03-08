@@ -94,17 +94,9 @@ def find_synonyms():
                     left_string = "*"
                 if right_string == "":
                     right_string = "*"
-                li_corpus = get_synonyms_from_ngrams.find_embeddings(
-                    left_string,
-                    acronym,
-                    right_string,
-                    ngramstat,
-                    index,
-                    min_win_size,
-                    minfreq,
-                    maxcount,
-                    min_number_tokens,
-                    max_number_tokens)
+                li_corpus = get_synonyms_from_ngrams.find_embeddings(left_string, acronym, right_string, min_win_size,
+                                                                     minfreq, maxcount, min_number_tokens,
+                                                                     max_number_tokens)
 
                 for item in li_corpus:
                     old_exp = ""

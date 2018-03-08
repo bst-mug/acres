@@ -12,16 +12,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-def find_embeddings(str_left,
-                    str_middle,
-                    str_right,
-                    ngramstat,
-                    index,
-                    min_win_size,
-                    minfreq,
-                    maxcount,
-                    min_num_tokens,
-                    max_num_tokens):
+def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxcount, min_num_tokens, max_num_tokens):
     """
     Input str_middle, together with a series of filter parameters
     Three cases of embeddings: 1. bilateral, 2.left, 3.right
@@ -29,8 +20,6 @@ def find_embeddings(str_left,
     :param str_left: string left of unknown ("*" if to be retrieved ; "" if empty")
     :param str_middle: input nonlex form (with or without context words) for which synonym is sought
     :param str_right: string right uf unknown ("*" if to be retrieved ; "" if empty")
-    :param ngramstat: ngram model
-    :param index: word index to ngram model
     :param min_win_size: minimum window size
     :param minfreq: minimum ngram frequency
     :param maxcount: maximum count in list
@@ -38,6 +27,8 @@ def find_embeddings(str_left,
     :param max_num_tokens:
     :return:
     """
+    ngramstat = resource_factory.get_ngramstat()
+    index = resource_factory.get_index()
 
     # MAXLIST = 100
     digit = "Ð"
@@ -186,8 +177,6 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     from acres import resource_factory
 
     normalisedTokens = resource_factory.get_tokens()
-    ngramstat = resource_factory.get_ngramstat()
-    index = resource_factory.get_index()
     logger.debug("Dumps loaded")
     # li = find_embeddings("", "morph.", "", ngramstat, index, 10, 3, 1000, 1, 7)
     # li = find_embeddings("Mitralklappe", "morph.", "*", ngramstat, index, 10, 3, 1000, 1, 7)
@@ -217,5 +206,4 @@ if logger.getEffectiveLevel() == logging.DEBUG:
 
     # logger.debug(find_embeddings("gutem", "AZ", "nach Hause", ngramstat, index, 10, 3, 100, 3, 7))
 
-    logger.debug(find_embeddings("*", "PDU", "*",
-                                 ngramstat, index, 10, 3, 50, 1, 5))
+    logger.debug(find_embeddings("*", "PDU", "*", 10, 3, 50, 1, 5))
