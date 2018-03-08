@@ -43,11 +43,6 @@ def find_synonyms():
 
     logger.debug("Dumps loaded")
 
-    # "Logs" are files with short form expansions
-    # logCorpus: expansions based on ngram model
-    # logWebs: expansions from Web mining
-    lf_corpus = open("log//logCorpus.txt", "w", encoding="UTF-8")
-    lf_web = open("log//logWebs.txt", "w", encoding="UTF-8")
     count = 0
     for ngram in acronym_ngrams:  # language model, filtered by ngrams containing acronyms
         count = count + 1
@@ -155,13 +150,25 @@ def find_synonyms():
                                     d_log_web[acronym].append(result)
                             old_exp = exp
 
-    for a in d_log_corpus:
-        for r in d_log_corpus[a]:
-            lf_corpus.write(a.rjust(8) + "\t" + r + "\n")
+    # "Logs" are files with short form expansions
+    # logCorpus: expansions based on ngram model
+    # logWebs: expansions from Web mining
+    write_log(d_log_corpus, resource_factory.get_log_corpus_filename())
+    write_log(d_log_web, resource_factory.get_log_web_filename())
 
-    for a in d_log_web:
-        for r in d_log_web[a]:
-            lf_web.write(a.rjust(8) + "\t" + r + "\n")
 
-    lf_corpus.close()
-    lf_web.close()
+def write_log(log, filename):
+    """
+    Writes a log into a file described by the filename.
+
+    :param log:
+    :param filename:
+    :return:
+    """
+    file = open(filename, "w", encoding="UTF-8")
+
+    for a in log:
+        for r in log[a]:
+            file.write(a.rjust(8) + "\t" + r + "\n")
+
+    file.close()
