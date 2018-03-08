@@ -84,7 +84,7 @@ def create_corpus_ngramstat_dump(corpus_path, ngram_stat_filename, is_test, fix_
 
     for text in texts:
         if fix_lines:
-            dict_char_ngrams = pickle.load(open("models/pickle/" + test_prefix + "character_ngrams.p", "rb"))
+            dict_char_ngrams = resource_factory.get_character_ngrams()
             text = functions.fix_line_endings(text, dict_char_ngrams, break_marker)
         if len(digit_placeholder) == 1:
             text = functions.clear_digits(
@@ -242,7 +242,7 @@ def create_acro_dump(is_test):
 
     :return:
     """
-    # acronym_ngrams = pickle.load(open("models/pickle/acronymNgrams.p", "rb"))
+    # acronym_ngrams = resource_factory.get_acronym_ngrams()
     # for i in acronym_ngrams:
     #   logger.debug(i)
     if is_test:
@@ -345,9 +345,9 @@ def load_dumps():
     # ngramstat = pickle.load(open("NGRAMFILE", "rb"))
     # logger.info("-")
     #
-    # index = pickle.load(open("pickle//index.p", "rb"))
+    # index = resource_factory.get_index()
     # logger.info("-")
-    # normalised_tokens = pickle.load(open("pickle//tokens.p", "rb"))
+    # normalised_tokens = resource_factory.get_tokens()
     # logger.info("End Read Dump")
 
 # load_dumps()

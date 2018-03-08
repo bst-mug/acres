@@ -33,3 +33,7 @@ def get_acronym_ngrams():
 
 def get_tokens():
     return pickle.load(open(PREFIX + "models/pickle/tokens.p", "rb"))
+
+
+def get_character_ngrams():
+    return pickle.load(open(PREFIX + "models/pickle/character_ngrams.p", "rb"))
