@@ -4,11 +4,20 @@ import pickle
 from acres import create_dumps
 from acres import functions
 
-ROOT_FOLDER = "models/pickle/"
+PICKLE_FOLDER = "models/pickle/"
+LOG_FOLDER = "models/log/"
+
+
+def get_log_corpus_filename():
+    return LOG_FOLDER + "logCorpus.txt"
+
+
+def get_log_web_filename():
+    return LOG_FOLDER + "logWebs.txt"
 
 
 def get_morphemes():
-    output_file = ROOT_FOLDER + "morphemes.p"
+    output_file = PICKLE_FOLDER + "morphemes.p"
 
     if not os.path.isfile(output_file):
         morph_eng = functions.import_conf("MORPH_ENG")
@@ -20,7 +29,7 @@ def get_morphemes():
 
 
 def get_index():
-    output_file = ROOT_FOLDER + "index.p"
+    output_file = PICKLE_FOLDER + "index.p"
 
     if not os.path.isfile(output_file):
         ngramstat = get_ngramstat()
@@ -31,7 +40,7 @@ def get_index():
 
 
 def get_ngramstat():
-    output_file = ROOT_FOLDER + "ngramstat.p"
+    output_file = PICKLE_FOLDER + "ngramstat.p"
 
     if not os.path.isfile(output_file):
         ngram_file = functions.import_conf("NGRAMFILE")
@@ -47,7 +56,7 @@ def get_acronym_ngrams():
 
     :return:
     """
-    output_file = ROOT_FOLDER + "acronymNgrams.p"
+    output_file = PICKLE_FOLDER + "acronymNgrams.p"
 
     if not os.path.isfile(output_file):
         acronym_ngrams = create_dumps.create_new_acro_dump()
@@ -62,7 +71,7 @@ def get_acronyms():
 
     :return:
     """
-    output_file = ROOT_FOLDER + "acronyms.p"
+    output_file = PICKLE_FOLDER + "acronyms.p"
 
     if not os.path.isfile(output_file):
         acronyms = create_dumps.create_acro_dump()
@@ -72,7 +81,7 @@ def get_acronyms():
 
 
 def get_tokens():
-    output_file = ROOT_FOLDER + "tokens.p"
+    output_file = PICKLE_FOLDER + "tokens.p"
 
     if not os.path.isfile(output_file):
         ngram_file = functions.import_conf("NGRAMFILE")
@@ -83,7 +92,7 @@ def get_tokens():
 
 
 def get_character_ngrams():
-    output_file = ROOT_FOLDER + "character_ngrams.p"
+    output_file = PICKLE_FOLDER + "character_ngrams.p"
 
     if not os.path.isfile(output_file):
         corpus_path = functions.import_conf("CORPUS_PATH")
