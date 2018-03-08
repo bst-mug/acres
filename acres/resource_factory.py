@@ -42,7 +42,33 @@ def get_ngramstat():
 
 
 def get_acronym_ngrams():
-    return pickle.load(open(ROOT_FOLDER + "acronymNgrams.p", "rb"))
+    """
+    List of ngrams, containing acronyms
+
+    :return:
+    """
+    output_file = ROOT_FOLDER + "acronymNgrams.p"
+
+    if not os.path.isfile(output_file):
+        acronym_ngrams = create_dumps.create_new_acro_dump()
+        pickle.dump(acronym_ngrams, open(output_file, "wb"))
+
+    return pickle.load(open(output_file, "rb"))
+
+
+def get_acronyms():
+    """
+    List of acronyms
+
+    :return:
+    """
+    output_file = ROOT_FOLDER + "acronyms.p"
+
+    if not os.path.isfile(output_file):
+        acronyms = create_dumps.create_acro_dump()
+        pickle.dump(acronyms, open(output_file, "wb"))
+
+    return pickle.load(open(output_file, "rb"))
 
 
 def get_tokens():

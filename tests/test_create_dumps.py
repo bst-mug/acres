@@ -35,3 +35,17 @@ def test_create_normalised_token_dump():
     expected = {'', '100\tund', '200\tder\n', '2000\t¶\n'}
 
     assert expected == actual
+
+
+def test_create_acro_dumo():
+    actual = create_dumps.create_acro_dump()
+    expected = []
+
+    assert expected == actual
+
+
+def test_create_new_acro_dumo():
+    actual = create_dumps.create_new_acro_dump()
+    expected = []
+
+    assert expected == actual

@@ -2,7 +2,6 @@
 
 import collections
 import logging
-import pickle
 
 from acres import functions
 from acres import resource_factory
@@ -227,7 +226,7 @@ def create_normalised_token_dump(ngram_stat):
     return all_token_variants
 
 
-def create_acro_dump(is_test):
+def create_acro_dump():
     """
     Creates and dumps set of acronyms from ngram statistics.
 
@@ -236,13 +235,8 @@ def create_acro_dump(is_test):
     # acronym_ngrams = resource_factory.get_acronym_ngrams()
     # for i in acronym_ngrams:
     #   logger.debug(i)
-    if is_test:
-        test_prefix = "test_"
-    else:
-        test_prefix = ""
     counter = 0
     acronyms = []
-    new_acronym_ngrams = []
 
     ngram_stat = resource_factory.get_ngramstat()
     for n in ngram_stat:
@@ -254,6 +248,23 @@ def create_acro_dump(is_test):
                 if ngram not in acronyms:
                     acronyms.append(ngram)
                     counter += 1
+
+    return acronyms
+
+
+def create_new_acro_dump():
+    """
+
+    :return:
+    """
+
+    counter = 0
+    new_acronym_ngrams = []
+
+    ngram_stat = resource_factory.get_ngramstat()
+    for n in ngram_stat:
+        row = (ngram_stat[n])
+        ngram = row.split("\t")[1]
         if " " in ngram:
             tokens = ngram.split(" ")
             for token in tokens:
@@ -262,11 +273,7 @@ def create_acro_dump(is_test):
                     counter += 1
                     break
 
-    # List of acronyms
-    pickle.dump(acronyms, open("models/pickle/" + test_prefix + "acronyms.p", "wb"))
-    # List of ngrams, containing acronyms
-    pickle.dump(new_acronym_ngrams, open("models/pickle/" + test_prefix + "acronym_n_grams.p", "wb"))
-    return counter
+    return new_acronym_ngrams
 
 
 def create_morpho_dump(language_1, language_2):
@@ -309,8 +316,6 @@ def load_dumps():
     :return:
     """
 
-    is_test = True
-
     ngram_file = functions.import_conf("NGRAMFILE")
     corpuspath = functions.import_conf("CORPUS_PATH")
     morph1 = functions.import_conf("MORPH_ENG")
@@ -322,7 +327,7 @@ def load_dumps():
     print(create_ngramstat_dump(ngram_file, 2))
 
     print(create_normalised_token_dump(ngram_file))
-    print(create_acro_dump(is_test))
+    print(create_acro_dump())
     print(create_morpho_dump(morph1, morph2))
 
     # logger.info("Begin Read Dump")

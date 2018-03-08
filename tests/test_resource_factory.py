@@ -36,6 +36,27 @@ def test_get_ngramstart():
     assert os.path.isfile(output_file)
 
 
+def test_get_acronym_ngrams():
+    output_file = "tests/models/pickle/acronymNgrams.p"
+
+    if os.path.isfile(output_file):
+        os.remove(output_file)
+    assert not os.path.isfile(output_file)
+
+    resource_factory.get_acronym_ngrams()
+    assert os.path.isfile(output_file)
+
+
+def test_get_acronyms():
+    output_file = "tests/models/pickle/acronyms.p"
+
+    if os.path.isfile(output_file):
+        os.remove(output_file)
+    assert not os.path.isfile(output_file)
+
+    resource_factory.get_acronyms()
+    assert os.path.isfile(output_file)
+
 def test_get_tokens():
     output_file = "tests/models/pickle/tokens.p"
 
