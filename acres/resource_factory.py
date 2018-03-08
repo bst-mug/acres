@@ -4,11 +4,11 @@ import pickle
 from acres import create_dumps
 from acres import functions
 
-PREFIX = ""
+ROOT_FOLDER = "models/pickle/"
 
 
 def get_morphemes():
-    output_file = PREFIX + "models/pickle/morphemes.p"
+    output_file = ROOT_FOLDER + "morphemes.p"
 
     if not os.path.isfile(output_file):
         morph_eng = functions.import_conf("MORPH_ENG")
@@ -20,23 +20,23 @@ def get_morphemes():
 
 
 def get_index():
-    return pickle.load(open(PREFIX + "models/pickle/index.p", "rb"))
+    return pickle.load(open(ROOT_FOLDER + "index.p", "rb"))
 
 
 def get_ngramstat():
-    return pickle.load(open(PREFIX + "models/pickle/ngramstat.p", "rb"))
+    return pickle.load(open(ROOT_FOLDER + "ngramstat.p", "rb"))
 
 
 def get_acronym_ngrams():
-    return pickle.load(open(PREFIX + "models/pickle/acronymNgrams.p", "rb"))
+    return pickle.load(open(ROOT_FOLDER + "acronymNgrams.p", "rb"))
 
 
 def get_tokens():
-    return pickle.load(open(PREFIX + "models/pickle/tokens.p", "rb"))
+    return pickle.load(open(ROOT_FOLDER + "tokens.p", "rb"))
 
 
 def get_character_ngrams():
-    output_file = PREFIX + "models/pickle/character_ngrams.p"
+    output_file = ROOT_FOLDER + "character_ngrams.p"
 
     if not os.path.isfile(output_file):
         corpus_path = functions.import_conf("CORPUS_PATH")
