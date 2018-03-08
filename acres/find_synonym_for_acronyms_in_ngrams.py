@@ -8,8 +8,8 @@ import re
 import time
 
 from acres import functions
-from acres import get_web_ngram_stat
 from acres import get_synonyms_from_ngrams
+from acres import get_web_ngram_stat
 from acres import rate_acronym_resolutions
 
 logger = logging.getLogger(__name__)
@@ -122,7 +122,7 @@ def find_synonyms():
                         if exp != old_exp:
                             # score_corpus = 0
                             score_corpus = rate_acronym_resolutions.get_acronym_score(
-                                acronym, exp, morphemes)
+                                acronym, exp, False, morphemes)
                             if score_corpus > 0:
                                 a = str(round(score_corpus * math.log10(f), 2))
                                 b = str(round(score_corpus, 2))
@@ -144,7 +144,7 @@ def find_synonyms():
                         if exp != old_exp:
                             # score_web = 0
                             score_web = rate_acronym_resolutions.get_acronym_score(
-                                acronym, exp, morphemes)
+                                acronym, exp, False, morphemes)
                             if score_web > 0:
                                 a = str(round(score_web * math.log10(f), 2))
                                 b = str(round(score_web, 2))

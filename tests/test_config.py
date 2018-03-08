@@ -16,5 +16,5 @@ def test_config():
             assert my_config.get(section, option)
 
     # Addtional checks
-    assert os.path.isfile(my_config["DEFAULT"]["MORPH_ENG"])
-    assert os.path.isfile(my_config["DEFAULT"]["MORPH_GER"])
+    assert os.path.isfile(my_config["DEFAULT"]["MORPH_ENG_TEST"])
+    assert os.path.isfile(my_config["DEFAULT"]["MORPH_GER_TEST"])

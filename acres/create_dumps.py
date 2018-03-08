@@ -117,7 +117,12 @@ def create_ngramstat_dump(ngram_stat_filename, min_freq, is_test):
     :param min_freq:
     :return:
     """
-    with open(ngram_stat_filename) as file:
+    ngramstat = {}
+    if is_test:
+        test_prefix = "test_"
+    else:
+        test_prefix = ""
+    with open(ngram_stat_filename, 'r', encoding="UTF-8") as file:
         identifier = 1
         for row in file:
             if row[10] == "\t":
@@ -284,8 +289,8 @@ def create_morpho_dump(language_1, language_2, is_test):
 
     :return:
     """
-    morph_eng = functions.import_conf("MORPH_ENG")
-    morph_ger = functions.import_conf("MORPH_GER")
+    # morph_eng = functions.import_conf("MORPH_ENG")
+    # morph_ger = functions.import_conf("MORPH_GER")
     s_morph = set()
     if is_test:
         test_prefix = "test_"
@@ -314,14 +319,14 @@ def create_morpho_dump(language_1, language_2, is_test):
 # create_corpus_ngramstat_dump()
 
 
-def load_dumps():
+def load_dumps(is_test=True):
     """
     Load dumps.
 
     :return:
     """
 
-    is_test = True
+
 
     if is_test:
         ngramstat = functions.import_conf("NGRAMFILE_TEST")
@@ -350,5 +355,4 @@ def load_dumps():
     # normalised_tokens = pickle.load(open("pickle//tokens.p", "rb"))
     # logger.info("End Read Dump")
 
-
-load_dumps()
+#load_dumps(False)

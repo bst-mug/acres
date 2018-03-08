@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-def get_acronym_score(acro, full, morphemes=None, language="de"):
+def get_acronym_score(acro, full, is_test, morphemes=None, language="de"):
     """
     Scores Acronym / resolution pairs according to a series of well-formedness criteria using a
     n-gram frequency list from related corpus.
@@ -36,6 +36,13 @@ def get_acronym_score(acro, full, morphemes=None, language="de"):
     :return: score that rates the likelihood that the full form is a valid expansion of the acronym
     """
     # Syntactic sugar
+
+    if is_test:
+        test_prefix = "test_"
+    else:
+        test_prefix = ""
+
+
     last_letter_stripped = False  # see below cases in which the lat letter of an acromy is stripped
     if morphemes is None:
         # TODO generate pickle if not available
@@ -43,7 +50,7 @@ def get_acronym_score(acro, full, morphemes=None, language="de"):
         # TODO comment Stefan:   |   yes it should also work without morphemes
         # TODO comment Stefan:   |   morphemes is None should mean that no morpho lexicon
         # TODO comment Stefan    |   exists for the language being processed
-        morphemes = pickle.load(open("models/pickle/morphemes.p", "rb"))
+        morphemes = pickle.load(open("models/pickle/" + test_prefix + "morphemes.p", "rb"))
 
     # TODO: check whether it makes sense to set score to zero as baseline
     pen = 1  # penalization factor
