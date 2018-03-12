@@ -167,6 +167,7 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
     return out
 
 
+"""
 if logger.getEffectiveLevel() == logging.DEBUG:
     normalisedTokens = resource_factory.get_tokens()
     logger.debug("Dumps loaded")
@@ -199,3 +200,4 @@ if logger.getEffectiveLevel() == logging.DEBUG:
     # logger.debug(find_embeddings("gutem", "AZ", "nach Hause", ngramstat, index, 10, 3, 100, 3, 7))
 
     logger.debug(find_embeddings("*", "PDU", "*", 10, 3, 50, 1, 5))
+"""
