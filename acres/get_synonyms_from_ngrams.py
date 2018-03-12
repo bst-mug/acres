@@ -115,7 +115,7 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
     logger.debug("Embeddings:")
     if logger.getEffectiveLevel() == logging.DEBUG:
         for item in all_beds:
-            print(item)
+            logger.debug(item)
 
         # print(len(sel_beds), sel_beds)
         logger.debug("Generated list of %d matching n-grams", count)
