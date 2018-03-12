@@ -34,7 +34,6 @@ def test_create_normalised_token_dump():
     actual = create_dumps.create_normalised_token_dump("tests/models/ngrams/ngramstat.txt")
     expected = {'', '50\tEKG\n', '20\tim', '2000\t¶\n', '50\tekg\n', '200\tder\n', 'EKG', 'ekg', '20\tIm'}
 
-    print(actual)
     assert expected == actual
 
 
