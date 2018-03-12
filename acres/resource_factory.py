@@ -5,6 +5,7 @@ from acres import create_dumps
 from acres import functions
 
 PICKLE_FOLDER = "models/pickle/"
+NGRAMS_FOLDER = "models/ngrams/"
 LOG_FOLDER = "models/log/"
 
 
@@ -39,11 +40,21 @@ def get_index():
     return pickle.load(open(output_file, "rb"))
 
 
+def get_ngramstat_txt():
+    output_file = NGRAMS_FOLDER + "ngramstat.txt"
+
+    if not os.path.isfile(output_file):
+        corpus_path = functions.import_conf("CORPUS_PATH")
+        create_dumps.create_corpus_ngramstat_dump(corpus_path, output_file)
+
+    return output_file
+
+
 def get_ngramstat():
     output_file = PICKLE_FOLDER + "ngramstat.p"
 
     if not os.path.isfile(output_file):
-        ngram_file = functions.import_conf("NGRAMFILE")
+        ngram_file = get_ngramstat_txt()
         ngramstat = create_dumps.create_ngramstat_dump(ngram_file)
         pickle.dump(ngramstat, open(output_file, "wb"))
 
@@ -84,7 +95,7 @@ def get_tokens():
     output_file = PICKLE_FOLDER + "tokens.p"
 
     if not os.path.isfile(output_file):
-        ngram_file = functions.import_conf("NGRAMFILE")
+        ngram_file = get_ngramstat_txt()
         ngramstat = create_dumps.create_normalised_token_dump(ngram_file)
         pickle.dump(ngramstat, open(output_file, "wb"))
 

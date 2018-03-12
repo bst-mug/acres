@@ -316,7 +316,7 @@ def load_dumps():
     :return:
     """
 
-    ngram_file = functions.import_conf("NGRAMFILE")
+    ngram_file = resource_factory.get_ngramstat_txt()
     corpuspath = functions.import_conf("CORPUS_PATH")
     morph1 = functions.import_conf("MORPH_ENG")
     morph2 = functions.import_conf("MORPH_GER")
