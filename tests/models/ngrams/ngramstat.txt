@@ -1,4 +1,5 @@
       2000	¶
        200	der
         50	EKG
-        20	Im EKG
+        27	* EKG ¶
+        19	* Physikalischer Status ¶

@@ -9,3 +9,7 @@ def test_find_embeddings():
     actual = get_synonyms_from_ngrams.find_embeddings("*", "PDU", "*", 10, 3, 50, 1, 5)
     expected = []
     assert expected == actual
+
+    actual = get_synonyms_from_ngrams.find_embeddings("*", "EKG", "*", 10, 3, 50, 1, 5)
+    expected = ['0000019\tPhysikalischer Status']
+    assert set(expected).issubset(actual)
