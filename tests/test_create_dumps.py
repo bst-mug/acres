@@ -25,9 +25,8 @@ def test_create_ngramstat_dump():
 
 def test_create_index():
     actual = create_dumps.create_index(resource_factory.get_ngramstat())
-    expected = {'¶': {1, 4, 5}, 'der': {2}, 'EKG': {3, 4}, '*': {4, 5}, 'Physikalischer': {5}, 'Status': {5}}
-
-    print(actual)
+    expected = {'¶': {1, 4, 6}, 'der': {2}, 'EKG': {3, 4, 5}, '*': {4, 6}, 'Im': {5}, 'Physikalischer': {6},
+                'Status': {6}}
 
     assert expected == actual
 
@@ -51,4 +50,4 @@ def test_create_new_acro_dumo():
     actual = create_dumps.create_new_acro_dump()
     expected = ['* EKG ¶']
 
-    assert expected == actual
+    assert set(expected).issubset(actual)
