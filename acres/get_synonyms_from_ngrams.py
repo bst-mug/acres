@@ -18,7 +18,7 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
     Input str_middle, together with a series of filter parameters
     Three cases of embeddings: 1. bilateral, 2.left, 3.right
 
-    :param str_left: string left of unknown ("*" if to be retrieved ; "" if empty")
+    :param str_left: string left of unknown ("*" if to be retrieved ; "" if empty)
     :param str_middle: input nonlex form (with or without context words) for which synonym is sought
     :param str_right: string right uf unknown ("*" if to be retrieved ; "" if empty")
     :param min_win_size: minimum window size
@@ -70,8 +70,6 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
                  min_num_tokens, max_num_tokens)
     logger.debug("Regular expression: %s", regex_embed)
 
-    logger.debug("press key!")
-
     # set of selected ngrams for filtering
     if str_left == "" and str_right == "":
         logger.debug("No filter. Return empty list")
@@ -89,8 +87,6 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
 
         logger.debug(
             "Number of matching ngrams by word index: %d", len(sel_rows))
-
-        logger.debug("press key!")
 
     for row in sorted(
             sel_rows, reverse=True):  # iteration through all matching ngrams
@@ -113,8 +109,6 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
                         logger.debug("List cut at %d", count)
                         break
 
-        logger.debug("press key!")
-
     sel_beds = functions.random_sub_list(all_beds, count)
     # print(sel_beds)
     # random selection of hits, to avoid explosion
@@ -125,7 +119,6 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
 
         # print(len(sel_beds), sel_beds)
         logger.debug("Generated list of %d matching n-grams", count)
-        logger.debug("strike key")
 
     if count > 0:
         max_num = (maxcount // count) + 3
