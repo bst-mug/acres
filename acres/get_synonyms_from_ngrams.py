@@ -152,13 +152,13 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
                 if m is not None:
                     # logger.debug(regex_bed)
                     # logger.debug(row)
-                    out = m.group(1).strip()
-                    if (str_middle not in out) and \
-                            len(out) > min_win_size and \
-                            "¶" not in out and (digit not in out):
-                        # logger.debug(ngramfrequency, out, "   [" + ngram + "]")
+                    out_group = m.group(1).strip()
+                    if (str_middle not in out_group) and \
+                            len(out_group) > min_win_size and \
+                            "¶" not in out_group and (digit not in out_group):
+                        # logger.debug(ngramfrequency, out_group, "   [" + ngram + "]")
                         counter += 1
-                        out.append(freq + "\t" + out)
+                        out.append(freq + "\t" + out_group)
 
         out.sort(reverse=True)
     if logger.getEffectiveLevel() == logging.DEBUG:
