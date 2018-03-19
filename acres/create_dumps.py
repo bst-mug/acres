@@ -276,7 +276,7 @@ def create_new_acro_dump():
     return new_acronym_ngrams
 
 
-def create_morpho_dump(language_1, language_2):
+def create_morpho_dump(lexicon_file, append_to=set()):
     """
     Creates and dumps set of plausible English and German morphemes
     from morphosaurus dictionary.
@@ -285,25 +285,15 @@ def create_morpho_dump(language_1, language_2):
     :return:
     """
 
-    s_morph = set()
-
-    with open(language_1) as f:
+    with open(lexicon_file) as f:
         for row in f:
             if "<str>" in row:
                 row = row.strip()[5:-6]
                 row = row.replace("z", "c").replace("k", "c")
                 # logger.debug(row)
-                s_morph.add(row)
+                append_to.add(row)
 
-    with open(language_2) as f:
-        for row in f:
-            if "<str>" in row:
-                row = row.strip()[5:-6]
-                row = row.replace("z", "c").replace("k", "c")
-                # logger.debug(row)
-                s_morph.add(row)
-
-    return s_morph
+    return append_to
 
 
 # create_corpus_ngramstat_dump()
@@ -328,7 +318,7 @@ def load_dumps():
 
     print(create_normalised_token_dump(ngram_file))
     print(create_acro_dump())
-    print(create_morpho_dump(morph1, morph2))
+    print(create_morpho_dump(morph2, create_morpho_dump(morph1)))
 
     # logger.info("Begin Read Dump")
     # ngramstat = resource_factory.get_ngramstat()
