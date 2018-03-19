@@ -13,6 +13,17 @@ def test_split_ngram():
     assert functions.split_ngram("ACR") == [('', 'ACR', '')]
 
 
+def test_extract_acronym_definition():
+    max_length = 7
+
+    assert functions.extract_acronym_definition(
+        "EKG (Elektrokardiogramm)", max_length) == ('EKG', 'Elektrokardiogramm')
+    assert functions.extract_acronym_definition(
+        "Elektrokardiogramm (EKG)", max_length) == ('EKG', 'Elektrokardiogramm')
+    assert functions.extract_acronym_definition(
+        "Elektrokardiogramm", max_length) is None
+
+
 def test_create_ngram_statistics():
     assert functions.create_ngram_statistics('a', 1, 1) == {'a': 1}
     assert functions.create_ngram_statistics('a b', 1, 1) == {'a': 1, 'b': 1}
@@ -53,17 +64,6 @@ def test_transliterate_to_seven_bit():
 
     assert "AANGSTROEM" == functions.transliterate_to_seven_bit("ångström")
     assert "ANGSTROM" == functions.transliterate_to_seven_bit("ångström", "en")
-
-
-def test_extract_acronym_definition():
-    max_length = 7
-
-    assert functions.extract_acronym_definition(
-        "EKG (Elektrokardiogramm)", max_length) == ('EKG', 'Elektrokardiogramm')
-    assert functions.extract_acronym_definition(
-        "Elektrokardiogramm (EKG)", max_length) == ('EKG', 'Elektrokardiogramm')
-    assert functions.extract_acronym_definition(
-        "Elektrokardiogramm", max_length) is None
 
 
 def test_is_acronym():
