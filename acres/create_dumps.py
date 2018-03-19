@@ -74,8 +74,7 @@ def create_corpus_ngramstat_dump(corpus_path, ngram_stat_filename, fix_lines=Tru
 
     for text in texts:
         if fix_lines:
-            dict_char_ngrams = resource_factory.get_character_ngrams()
-            text = functions.fix_line_endings(text, dict_char_ngrams, break_marker)
+            text = functions.fix_line_endings(text, break_marker)
         if len(digit_placeholder) == 1:
             text = functions.clear_digits(
                 text, digit_placeholder)

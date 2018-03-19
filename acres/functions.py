@@ -12,6 +12,8 @@ import os
 import re
 from random import randint
 
+from acres import resource_factory
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -81,7 +83,6 @@ def extract_acronym_definition(str_probe, max_length):
 
 def fix_line_endings(
         long_text,
-        char_ngram_dict,
         line_break_marker="¶",
         char_ngram_length=8,
         line_break_marker_position=3):
@@ -91,12 +92,12 @@ def fix_line_endings(
            distributional data show that an unbroken continuation of
            the text is more likely than the break
     :param long_text:
-    :param char_ngram_dict:
     :param line_break_marker:
     :param char_ngram_length:
     :param line_break_marker_position:
     :return:
     """
+    char_ngram_dict = resource_factory.get_character_ngrams()
 
     out = ""
     long_text = long_text.strip().replace("\n", line_break_marker)
