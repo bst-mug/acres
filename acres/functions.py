@@ -18,9 +18,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
-
-
 def import_conf(key):
     """
 
