@@ -213,65 +213,42 @@ def transliterate_to_seven_bit(str_in, language="de"):
     :param language: the language for which rules are defined (ISO_639-1)
     :return:
     """
-    substitutions = {}
+    substitutions = {
+        "À": "A",
+        "Á": "A",
+        "Â": "A",
+        "Ã": "A",
+        "Ä": "A",
+        "Å": "A",
+        "Æ": "AE",
+        "Ç": "C",
+        "È": "E",
+        "É": "E",
+        "Ê": "E",
+        "Ë": "E",
+        "Ì": "I",
+        "Í": "I",
+        "Î": "I",
+        "Ï": "I",
+        "Ñ": "N",
+        "Ò": "O",
+        "Ó": "O",
+        "Ô": "O",
+        "Õ": "O",
+        "Ö": "O",
+        "Ø": "O",
+        "Ù": "U",
+        "Ú": "U",
+        "Û": "U",
+        "Ü": "U"}
+
     if language == "de":
-        substitutions = {
-            "À": "A",
-            "Á": "A",
-            "Â": "A",
-            "Ã": "A",
-            "Ä": "AE",
-            "Å": "AA",
-            "Æ": "AE",
-            "Ç": "C",
-            "È": "E",
-            "É": "E",
-            "Ê": "E",
-            "Ë": "E",
-            "Ì": "I",
-            "Í": "I",
-            "Î": "I",
-            "Ï": "I",
-            "Ñ": "N",
-            "Ò": "O",
-            "Ó": "O",
-            "Ô": "O",
-            "Õ": "O",
-            "Ö": "OE",
-            "Ø": "OE",
-            "Ù": "U",
-            "Ú": "U",
-            "Û": "U",
-            "Ü": "UE"}
-    if language == "en":
-        substitutions = {
-            "À": "A",
-            "Á": "A",
-            "Â": "A",
-            "Ã": "A",
-            "Ä": "A",
-            "Å": "A",
-            "Æ": "AE",
-            "Ç": "C",
-            "È": "E",
-            "É": "E",
-            "Ê": "E",
-            "Ë": "E",
-            "Ì": "I",
-            "Í": "I",
-            "Î": "I",
-            "Ï": "I",
-            "Ñ": "N",
-            "Ò": "O",
-            "Ó": "O",
-            "Ô": "O",
-            "Õ": "O",
-            "Ö": "O",
-            "Ø": "O",
-            "Ù": "U",
-            "Ú": "U",
-            "Û": "U",
-            "Ü": "U"}
+        substitutions["Ä"] = "AE"
+        substitutions["Å"] = "AA"
+        substitutions["Ö"] = "OE"
+        substitutions["Ø"] = "OE"
+        substitutions["Ü"] = "UE"
+
     return "".join([substitutions.get(c, c) for c in str_in.upper()])
 
 
