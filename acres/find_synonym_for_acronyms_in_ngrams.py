@@ -31,8 +31,8 @@ def find_synonyms():
     """
     # load data
 
-    ngramstat = resource_factory.get_ngramstat()
-    index = resource_factory.get_index()
+    # ngramstat = resource_factory.get_ngramstat()
+    # index = resource_factory.get_index()
     # ngrams that contain at least one acronym
     acronym_ngrams = resource_factory.get_acronym_ngrams()
     morphemes = resource_factory.get_morphemes()

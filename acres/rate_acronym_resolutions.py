@@ -66,7 +66,7 @@ def get_acronym_score(acro, full, morphemes=None, language="de"):
     ret = functions.extract_acronym_definition(full, 7)
     if ret is not None:
         if ret[0] == acro:
-            full = ret[1]
+            # full = ret[1]
             # maximally high score - in this case we should just believe that the definition is right
             return 100
             # TODO: |  according to the function .extract_acronym_definition
