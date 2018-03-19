@@ -106,11 +106,32 @@ def get_tokens():
 
 
 def get_character_ngrams():
-    output_file = PICKLE_FOLDER + "character_ngrams.p"
+    pickle_output_file = PICKLE_FOLDER + "character_ngrams.p"
+    ngram_output_file = NGRAMS_FOLDER + "character_ngrams.txt"
 
-    if not os.path.isfile(output_file):
+    if not os.path.isfile(pickle_output_file):
         corpus_path = functions.import_conf("CORPUS_PATH")
         character_ngrams = create_dumps.create_corpus_char_stat_dump(corpus_path)
-        pickle.dump(character_ngrams, open(output_file, "wb"))
 
-    return pickle.load(open(output_file, "rb"))
+        write_txt(character_ngrams, ngram_output_file)
+        pickle.dump(character_ngrams, open(pickle_output_file, "wb"))
+
+    return pickle.load(open(pickle_output_file, "rb"))
+
+
+def write_txt(resource, filename):
+    counter = 0
+
+    output = []
+    for key in resource:
+        output.append("{:10}".format(resource[key]) + "\t" + key)
+        counter += 1
+
+    output.sort(reverse=True)
+
+    file = open(filename, 'w', encoding="UTF-8")
+    for line in output:
+        file.write(line + "\n")
+    file.close()
+
+    return counter

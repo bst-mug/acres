@@ -23,8 +23,7 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
     counter = 0
     texts = functions.robust_text_import_from_dir(corpus_path)
     dict_char_ngrams = {}
-    # this produces a file with character ngrams
-    f = open("models/ngrams/character_ngrams.txt", 'w', encoding="UTF-8")
+
     for text in texts:
         str_doc = ""
         lines = text.split("\n")
@@ -38,15 +37,6 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
                     dict_char_ngrams[ngram] = 1
                 else:
                     dict_char_ngrams[ngram] += 1
-    out = []
-    for n in dict_char_ngrams:
-        out.append("{:10}".format(dict_char_ngrams[n]) + "\t" + n)
-
-    out.sort(reverse=True)
-    for line in out:
-        f.write(line + "\n")
-        counter += 1
-    f.close()
 
     return dict_char_ngrams
 
