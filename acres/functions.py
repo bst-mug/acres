@@ -145,7 +145,7 @@ def fix_line_endings(
             if i == len(long_text):
                 break
 
-    out = out + long_text[0 - char_ngram_length:] + line_break_marker
+    out = out + long_text[i:] + line_break_marker
     return out.replace(line_break_marker, line_break_marker + "\n")
 
 

@@ -29,9 +29,7 @@ def test_fix_line_endings():
     actual = functions.fix_line_endings("This is a short text")
     assert expected == actual
 
-    # FIXME
-    # expected = "der Patientin¶\n"
-    expected = "der Patiatientin¶\n"
+    expected = "der Patientin¶\n"
     actual = functions.fix_line_endings("der\nPatientin")
     assert expected == actual
 
