@@ -103,7 +103,7 @@ def find_synonyms():
                     exp = item.split("\t")[1]  # Ngram expression
                     f = int(item.split("\t")[0])  # Frequency
 
-                    first_condition = re.search("^[\ \-A-Za-z0-9" + dia + "]*$", exp) is not None
+                    first_condition = re.search("^[\s\-A-Za-z0-9" + dia + "]*$", exp) is not None
                     second_condition = acronym.lower() != exp.lower()[0:len(acronym.lower())]
                     if first_condition and second_condition:
                         if exp != old_exp:
@@ -125,7 +125,7 @@ def find_synonyms():
                     exp = item.split("\t")[1]  # Ngram expression
                     f = int(item.split("\t")[0])  # Frequency
 
-                    first_condition = re.search("^[\ \-A-Za-z0-9" + dia + "]*$", exp) is not None
+                    first_condition = re.search("^[\s\-A-Za-z0-9" + dia + "]*$", exp) is not None
                     second_condition = acronym.lower() != exp.lower()[0:len(acronym.lower())]
                     if first_condition and second_condition:
                         if exp != old_exp:
