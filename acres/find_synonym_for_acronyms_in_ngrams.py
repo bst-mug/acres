@@ -29,15 +29,10 @@ def find_synonyms():
 
     :return:
     """
-    # load data
 
-    # ngramstat = resource_factory.get_ngramstat()
-    # index = resource_factory.get_index()
     # ngrams that contain at least one acronym
     acronym_ngrams = resource_factory.get_acronym_ngrams()
-    morphemes = resource_factory.get_morphemes()
 
-    dia = functions.diacritics()  # list of diacritic characters
     d_log_corpus = {}  # dictionary from which the logfile is generated
     d_log_web = {}  # dictionary from which the logfile is generated
 
@@ -98,55 +93,49 @@ def find_synonyms():
                                                                      minfreq, maxcount, min_number_tokens,
                                                                      max_number_tokens)
 
-                for item in li_corpus:
-                    old_exp = ""
-                    exp = item.split("\t")[1]  # Ngram expression
-                    f = int(item.split("\t")[0])  # Frequency
-
-                    first_condition = re.search("^[\s\-A-Za-z0-9" + dia + "]*$", exp) is not None
-                    second_condition = acronym.lower() != exp.lower()[0:len(acronym.lower())]
-                    if first_condition and second_condition:
-                        if exp != old_exp:
-                            # score_corpus = 0
-                            score_corpus = rate_acronym_resolutions.get_acronym_score(
-                                acronym, exp, morphemes)
-                            if score_corpus > 0:
-                                a = str(round(score_corpus * math.log10(f), 2))
-                                b = str(round(score_corpus, 2))
-                                result = a + " " + exp + " " + b + " " + str(f) + " " + "\t" + ngram
-                                if acronym not in d_log_corpus:
-                                    d_log_corpus[acronym] = [result]
-                                else:
-                                    d_log_corpus[acronym].append(result)
-                            old_exp = exp
-
-                for item in li_web:
-                    old_exp = ""
-                    exp = item.split("\t")[1]  # Ngram expression
-                    f = int(item.split("\t")[0])  # Frequency
-
-                    first_condition = re.search("^[\s\-A-Za-z0-9" + dia + "]*$", exp) is not None
-                    second_condition = acronym.lower() != exp.lower()[0:len(acronym.lower())]
-                    if first_condition and second_condition:
-                        if exp != old_exp:
-                            # score_web = 0
-                            score_web = rate_acronym_resolutions.get_acronym_score(
-                                acronym, exp, morphemes)
-                            if score_web > 0:
-                                a = str(round(score_web * math.log10(f), 2))
-                                b = str(round(score_web, 2))
-                                result = a + " " + exp + " " + b + " " + str(f) + " " + "\t" + ngram
-                                if acronym not in d_log_web:
-                                    d_log_web[acronym] = [result]
-                                else:
-                                    d_log_web[acronym].append(result)
-                            old_exp = exp
+                process_corpus(li_corpus, acronym, ngram, d_log_corpus)
+                process_corpus(li_web, acronym, ngram, d_log_web)
 
     # "Logs" are files with short form expansions
     # logCorpus: expansions based on ngram model
     # logWebs: expansions from Web mining
     write_log(d_log_corpus, resource_factory.get_log_corpus_filename())
     write_log(d_log_web, resource_factory.get_log_web_filename())
+
+
+def process_corpus(corpus, acronym, ngram, log):
+    """
+
+    :param corpus:
+    :param acronym:
+    :param ngram:
+    :param log:
+    :return:
+    """
+    morphemes = resource_factory.get_morphemes()
+    dia = functions.diacritics()  # list of diacritic characters
+
+    for item in corpus:
+        old_exp = ""
+        exp = item.split("\t")[1]  # Ngram expression
+        f = int(item.split("\t")[0])  # Frequency
+
+        first_condition = re.search("^[\s\-A-Za-z0-9" + dia + "]*$", exp) is not None
+        second_condition = acronym.lower() != exp.lower()[0:len(acronym.lower())]
+        if first_condition and second_condition:
+            if exp != old_exp:
+                # score_corpus = 0
+                score_corpus = rate_acronym_resolutions.get_acronym_score(
+                    acronym, exp, morphemes)
+                if score_corpus > 0:
+                    a = str(round(score_corpus * math.log10(f), 2))
+                    b = str(round(score_corpus, 2))
+                    result = a + " " + exp + " " + b + " " + str(f) + " " + "\t" + ngram
+                    if acronym not in log:
+                        log[acronym] = [result]
+                    else:
+                        log[acronym].append(result)
+                old_exp = exp
 
 
 def write_log(log, filename):
