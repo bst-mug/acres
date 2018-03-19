@@ -47,6 +47,14 @@ def test_create_ngram_statistics():
     assert expected == actual
 
 
+def test_transliterate_to_seven_bit():
+    assert "HAETTE" == functions.transliterate_to_seven_bit("hätte")
+    assert "HATTE" == functions.transliterate_to_seven_bit("hätte", "en")
+
+    assert "AANGSTROEM" == functions.transliterate_to_seven_bit("ångström")
+    assert "ANGSTROM" == functions.transliterate_to_seven_bit("ångström", "en")
+
+
 def test_extract_acronym_definition():
     max_length = 7
 
