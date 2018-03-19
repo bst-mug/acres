@@ -57,6 +57,7 @@ def test_get_acronyms():
     resource_factory.get_acronyms()
     assert os.path.isfile(output_file)
 
+
 def test_get_tokens():
     output_file = "tests/models/pickle/tokens.p"
 

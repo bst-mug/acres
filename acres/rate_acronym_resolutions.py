@@ -32,7 +32,7 @@ def get_acronym_score(acro, full, morphemes=None, language="de"):
     :param acro: acronym to be expanded
     :param full: long form to be checked whether it qualifies as an acronym expansion
     :param morphemes:
-    :param language: Language of expansions. Matters especially regarding the possible infixes for single noun composition
+    :param language: Expansion language. Matters especially regarding the possible infixes for single noun composition
     :return: score that rates the likelihood that the full form is a valid expansion of the acronym
     """
     # Syntactic sugar
