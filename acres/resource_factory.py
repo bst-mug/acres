@@ -48,7 +48,8 @@ def get_ngramstat_txt():
 
     if not os.path.isfile(output_file):
         corpus_path = functions.import_conf("CORPUS_PATH")
-        create_dumps.create_corpus_ngramstat_dump(corpus_path, output_file)
+        ngramstat = create_dumps.create_corpus_ngramstat_dump(corpus_path)
+        write_txt(ngramstat, output_file)
 
     return output_file
 

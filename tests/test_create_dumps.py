@@ -17,6 +17,14 @@ def test_create_corpus_char_stat_dump():
     assert expected == actual
 
 
+def test_create_corpus_ngramstat_dump():
+    ngramstat = create_dumps.create_corpus_ngramstat_dump("tests/data")
+
+    actual = len(ngramstat)
+    expected = 69569
+    assert expected == actual
+
+
 def test_create_ngramstat_dump():
     actual = create_dumps.create_ngramstat_dump("tests/models/ngrams/ngramstat.txt", 2)
     expected = {1: '0002000\t¶', 2: '0000200\tder', 3: '0000050\tEKG'}

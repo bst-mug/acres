@@ -44,8 +44,8 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
 # TODO : we have to assure that unit tests with small input data do not
 # TODO : overwrite the models (ngram and pickle)
 
-def create_corpus_ngramstat_dump(corpus_path, ngram_stat_filename, fix_lines=True, min_length=1, max_length=7,
-                                 digit_placeholder="Ð", break_marker="¶"):
+def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_length=7, digit_placeholder="Ð",
+                                 break_marker="¶"):
     """
     Takes a corpus consisting of text files in a single directory
     Substitutes digits and line breaks
@@ -75,17 +75,9 @@ def create_corpus_ngramstat_dump(corpus_path, ngram_stat_filename, fix_lines=Tru
 
     logger.debug("Corpus loaded containing %d documents.", counter)
     dict_ngramstat = functions.create_ngram_statistics(entire_corpus, min_length, max_length)
-    lst_ngramstat = []
-    for key in dict_ngramstat:
-        lst_ngramstat.append("{:10}".format(dict_ngramstat[key]) + "\t" + key)
-        counter += 1
-    lst_ngramstat.sort(reverse=True)
-    f = open(ngram_stat_filename, 'w', encoding="UTF-8")
-    for line in lst_ngramstat:
-        f.write(line + "\n")
-    f.close()
+
     # pickle.dump(dict_ngramstat, open("models/pickle/token_ngrams.p", "wb"))
-    return counter
+    return dict_ngramstat
 
 
 def create_ngramstat_dump(ngram_stat_filename, min_freq=2):
