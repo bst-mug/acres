@@ -24,6 +24,22 @@ def test_extract_acronym_definition():
         "Elektrokardiogramm", max_length) is None
 
 
+def test_fix_line_endings():
+    expected = "This is a short text¶\n"
+    actual = functions.fix_line_endings("This is a short text")
+    assert expected == actual
+
+    # FIXME
+    # expected = "der Patientin¶\n"
+    expected = "der Patiatientin¶\n"
+    actual = functions.fix_line_endings("der\nPatientin")
+    assert expected == actual
+
+    expected = "DIAGNOSEN¶\n---------¶\n"
+    actual = functions.fix_line_endings("DIAGNOSEN\n---------")
+    assert expected == actual
+
+
 def test_create_ngram_statistics():
     assert functions.create_ngram_statistics('a', 1, 1) == {'a': 1}
     assert functions.create_ngram_statistics('a b', 1, 1) == {'a': 1, 'b': 1}
