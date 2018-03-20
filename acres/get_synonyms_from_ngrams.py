@@ -13,7 +13,8 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxcount, min_num_tokens, max_num_tokens):
+def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxcount,
+                    min_num_tokens, max_num_tokens):
     """
     Input str_middle, together with a series of filter parameters
     Three cases of embeddings: 1. bilateral, 2.left, 3.right
@@ -82,8 +83,8 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
             if token != "*":
                 all_sets.append(index[token])
         ngram_selection = set.intersection(*all_sets)
-        for r in ngram_selection:
-            sel_rows.append(ngramstat[r])
+        for ngram in ngram_selection:
+            sel_rows.append(ngramstat[ngram])
 
         logger.debug(
             "Number of matching ngrams by word index: %d", len(sel_rows))
@@ -100,8 +101,8 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
             if int(row.split("\t")[0]) >= minfreq:
                 # might suppress low n-gram frequencies
                 ngram = row.split("\t")[1].strip()
-                m = re.search(regex_embed, ngram, re.IGNORECASE)
-                if m is not None and row not in all_beds:
+                match = re.search(regex_embed, ngram, re.IGNORECASE)
+                if match is not None and row not in all_beds:
                     all_beds.append(row)
                     logger.debug(row)
                     count += 1
@@ -142,17 +143,17 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
             ngrams_with_surroundings.sort(reverse=True)
             # Surrounding list sorted
             counter = 0
-            for r in ngrams_with_surroundings:
+            for ngram in ngrams_with_surroundings:
                 if counter > max_num:
                     break
-                row = ngramstat[r]
+                row = ngramstat[ngram]
                 ngram = row.split("\t")[1].strip()
                 freq = row.split("\t")[0]
-                m = re.search(regex_bed, ngram, re.IGNORECASE)
-                if m is not None:
+                match = re.search(regex_bed, ngram, re.IGNORECASE)
+                if match is not None:
                     # logger.debug(regex_bed)
                     # logger.debug(row)
-                    out_group = m.group(1).strip()
+                    out_group = match.group(1).strip()
                     if (str_middle not in out_group) and \
                             len(out_group) > min_win_size and \
                             "¶" not in out_group and (digit not in out_group):
@@ -165,39 +166,3 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
         for item in out:
             logger.debug(item)
     return out
-
-
-"""
-if logger.getEffectiveLevel() == logging.DEBUG:
-    normalisedTokens = resource_factory.get_tokens()
-    logger.debug("Dumps loaded")
-    # li = find_embeddings("", "morph.", "", ngramstat, index, 10, 3, 1000, 1, 7)
-    # li = find_embeddings("Mitralklappe", "morph.", "*", ngramstat, index, 10, 3, 1000, 1, 7)
-    # li = find_embeddings("", "morph.", "", ngramstat, index, 18, 3, 1000, 1, 1)
-    # li = find_embeddings("", "morph.", "unauff.", ngramstat, index, 18, 3, 1000, 3, 7)
-    # li = find_embeddings("*", "ms", "*", ngramstat, index, 8, 30, 500, 1, 5)
-    # li = find_embeddings("Ð,Ð", "ms", "", ngramstat, index, 8, 3, 500, 1, 7)
-    # out = (Filters.bestAcronymResolution("OL", li, normalisedTokens, "AA", ""))
-
-    # Parms: minWinSize, minfreq, maxcount, minNumberTokens, maxNumberTokens
-    # logger.debug(find_embeddings("TRINS", ngramstat, index, 1, 3, 10, 6))
-    # logger.debug(find_embeddings("HRST", ngramstat, index, 15, 3, 20, 6)) # wird nicht gefunden!
-    # logger.debug(find_embeddings("ACVB", ngramstat, index, 15, 3, 10, 9))# wird
-    # nicht gefunden!
-
-    # logger.debug(find_embeddings("Rö-Thorax", ngramstat, index, 10, 1, 20, 3)) #
-    # wird gefunden!
-
-    # logger.debug(find_embeddings("TRINS", ngramstat, index, 15, 1, 50, 3))
-    # logger.debug(find_embeddings("TRINS", ngramstat, index, 15, 1, 100, 3))
-    # logger.debug(find_embeddings("koronare Herzkrankheit", ngramstat, index, 20, 1, 100, 5))
-    # logger.debug(find_embeddings("re OL", ngramstat, index, 5, 1, 100, 6)) # OL
-    # kommt nur 4 mal vor !
-
-    # logger.debug(find_embeddings("Herz- und", ngramstat, index, 20, 1, 100, 5))
-    # logger.debug(find_embeddings("lab. maj", ngramstat, index, 20, 3, 100, 5, 6))
-
-    # logger.debug(find_embeddings("gutem", "AZ", "nach Hause", ngramstat, index, 10, 3, 100, 3, 7))
-
-    logger.debug(find_embeddings("*", "PDU", "*", 10, 3, 50, 1, 5))
-"""
