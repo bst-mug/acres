@@ -430,6 +430,9 @@ def find_acro_expansions(lst_n_gram_stat):
     non_acronyms = []
     is_acro = False
     # TODO: check initialization
+
+    ret = []
+
     for line in lst_n_gram_stat:
         ngram = line.split("\t")[1]
         count = line.split("\t")[0]
@@ -443,6 +446,7 @@ def find_acro_expansions(lst_n_gram_stat):
                     for word in ngram.split(" "):
                         is_acro = False
                         if len(word) > 1:
+                            # XXX Should call is_acronym()?
                             if word[1].isupper() or not word.isalpha():
                                 is_acro = True
                                 break
@@ -466,15 +470,15 @@ def find_acro_expansions(lst_n_gram_stat):
             if first_condition and not second_condition:
                 if re.search(regex, end_n.upper()):
                     if letter.upper() in last_n.upper():
-                        logger.info(
-                            token_acronym +
-                            count_per_ngram[token_acronym] +
-                            "     " +
-                            token_not_acronym +
-                            count_per_ngram[token_not_acronym])
+                        stat = token_acronym + count_per_ngram[token_acronym] + "     " + token_not_acronym + \
+                               count_per_ngram[token_not_acronym]
+                        logger.debug(stat)
+                        ret.append(stat)
                         counter += 1
                         if counter > 4:
                             break
+
+    return ret
 
 
 def robust_text_import_from_dir(path):
