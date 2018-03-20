@@ -59,6 +59,7 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
        logger.critical(ex)
        return []
     """
+    logger.info("Sending HTTP request to %s...", url)
 
     response = requests.get(url, timeout=1)
     out_l = []
