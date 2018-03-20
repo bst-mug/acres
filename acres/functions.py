@@ -360,7 +360,6 @@ def check_acro_vs_expansion(acro, full):
     :param full:
     :return:
     """
-    import re
     dia = diacritics()
     bina = []
     result = []
