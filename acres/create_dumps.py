@@ -254,7 +254,7 @@ def create_new_acro_dump():
     return new_acronym_ngrams
 
 
-def create_morpho_dump(lexicon_file, append_to=set()):
+def create_morpho_dump(lexicon_file, append_to=None):
     """
     Creates and dumps set of plausible English and German morphemes
     from morphosaurus dictionary.
@@ -262,6 +262,7 @@ def create_morpho_dump(lexicon_file, append_to=set()):
 
     :return:
     """
+    append_to = append_to or set()
 
     with open(lexicon_file) as f:
         for row in f:
