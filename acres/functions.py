@@ -121,12 +121,11 @@ def fix_line_endings(
             logger.debug("With new line: %s", n_breaks)
             logger.debug("With space: %s", n_spaces)
             if n_spaces > n_breaks:
-                """ TODO: line_break_marker as delimiter
-                    What happens if the break marker symbol also occurs in the original text
-                    probably safe: using the "¶" character for line breaks
-                    Check for whole code how delimiters are handled and how this
-                    might interfer with text processing
-                """
+                # TODO: line_break_marker as delimiter
+                # What happens if the break marker symbol also occurs in the original text
+                # probably safe: using the "¶" character for line breaks
+                # Check for whole code how delimiters are handled and how this
+                # might interfer with text processing
                 out = out + ngr.replace(line_break_marker, " ")
                 i = i + char_ngram_length
                 if i >= len(long_text):
