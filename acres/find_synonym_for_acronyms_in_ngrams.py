@@ -13,8 +13,7 @@ from acres import rate_acronym_resolutions
 from acres import resource_factory
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
+logger.setLevel(logging.DEBUG)
 
 NEWLINE = "¶"
 NUMERIC = "Ð"

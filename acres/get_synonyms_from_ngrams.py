@@ -10,7 +10,7 @@ from acres import functions
 from acres import resource_factory
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 
 def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxcount, min_num_tokens, max_num_tokens):

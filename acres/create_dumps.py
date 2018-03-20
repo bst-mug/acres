@@ -7,10 +7,8 @@ from acres import functions
 from acres import resource_factory
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
-
-# logger.setLevel(logging.DEBUG) # Uncomment this to get debug messages
 
 def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="Ð", break_marker="¶"):
     """

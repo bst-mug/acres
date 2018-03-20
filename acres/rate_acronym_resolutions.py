@@ -9,7 +9,7 @@ from acres import functions
 from acres import resource_factory
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 
 def get_acronym_score(acro, full, morphemes=None, language="de"):
