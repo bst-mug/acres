@@ -490,9 +490,13 @@ def robust_text_import_from_dir(path):
                 content = f.read()
                 texts.append(content)
                 # print(file + " " + str(len(content)))
-        except:
+        except UnicodeDecodeError:
             logger.debug("corrupt file: %s", file)
-            pass
+            continue
+        except IOError as e:
+            logger.debug("I/O error (%d) while reading %s: %s", e.errno, file, e.strerror)
+            continue
+
     return texts
 
 # TODO michel 20180215 move to unit tests
