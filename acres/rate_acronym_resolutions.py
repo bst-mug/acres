@@ -2,7 +2,6 @@
 Stefan Schulz 11 Nov 2017
 """
 
-
 import logging
 import re
 
@@ -14,40 +13,40 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-def get_acronym_score(acro, full, morphemes=None, language="de"):
+def get_acronym_score(acro, full, language="de"):
     """
     Scores Acronym / resolution pairs according to a series of well-formedness criteria using a
     n-gram frequency list from related corpus.
 
     Scoring is higher the better the full form is properly split into morphemes.
-    Requires identification and removal of affixes (infixes, suffixes, like "Gastr-o", "Schmerz-en").
+    Requires identification and removal of affixes (infixes, suffixes, like "Gastr-o",
+    "Schmerz-en").
 
     The scoring function should work both for acronyms extracted from a corpus (for which strict
     matching criteria should be applied) and for acronyms harvested from the Web for which the
     criteria may be relaxed once strong evidence from acronym - definition patterns exist
     E.g., "ARDS (akutes Atemnotsyndrom)"
 
-    In the latter case, full would take this form, i.e. a string that contains both the acronym and the expansion
+    In the latter case, full would take this form, i.e. a string that contains both the acronym and
+    the expansion
 
-    # TODO all scoring / penalization is pure heuristics. Plausibility should be tested with many examples !
+    TODO
+    all scoring / penalization is pure heuristics. Plausibility should be tested with many
+    examples !
 
     :param acro: acronym to be expanded
     :param full: long form to be checked whether it qualifies as an acronym expansion
-    :param morphemes:
-    :param language: Expansion language. Matters especially regarding the possible infixes for single noun composition
+    :param language: Expansion language. Matters especially regarding the possible infixes for
+    single noun composition
     :return: score that rates the likelihood that the full form is a valid expansion of the acronym
     """
     # Syntactic sugar
     last_letter_stripped = False  # see below cases in which the lat letter of an acromy is stripped
-    if morphemes is None:
-        # TODO generate pickle if not available
-        # TODO make it work even without morphemes?
-        # TODO comment Stefan:   |   yes it should also work without morphemes
-        # TODO comment Stefan:   |   morphemes is None should mean that no morpho lexicon
-        # TODO comment Stefan    |   exists for the language being processed
-        morphemes = resource_factory.get_morphemes()
 
-    # TODO: check whether it makes sense to set score to zero as baseline
+    # TODO it should also work without morphemes
+    morphemes = resource_factory.get_morphemes()
+
+    # TODO check whether it makes sense to set score to zero as baseline
     pen = 1  # penalization factor
     acro = acro.strip()
     full = full.strip()
@@ -70,15 +69,17 @@ def get_acronym_score(acro, full, morphemes=None, language="de"):
     if ret is not None:
         if ret[0] == acro:
             # full = ret[1]
-            # maximally high score - in this case we should just believe that the definition is right
+            # maximally high score: in this case we should just believe that the definition is right
             return 100
-            # TODO: |  according to the function .extract_acronym_definition
-            # TODO: |  this also works for the case in which the acronym is in parentheses
-            # TODO: |  Here, false positives are likely. Must be checked!!
+            # TODO
+            # according to the function .extract_acronym_definition
+            # this also works for the case in which the acronym is in parentheses
+            # Here, false positives are likely. Must be checked!!
     # acronym must have at least two characters: all those expressions like "Streptococcus B" or
     # "Vitamin C" should not be considered acronyms. Normally these compositions are lexicalised
-    # May be relevant for assessing two letter forms like "A cerebralis" (variant of "A. cerebralis")
-    # which is a short form for "Arteria cerbralis". This should be resolved
+    # May be relevant for assessing two letter forms like "A cerebralis"
+    # (variant of "A. cerebralis") which is a short form for "Arteria cerbralis".
+    # This should be resolved
     if len(acro) < 2:
         return 0
     # length restriction for full form
@@ -92,10 +93,11 @@ def get_acronym_score(acro, full, morphemes=None, language="de"):
     # TODO: check whether artefact
     for token in full.split(" "):
         if functions.is_acronym(token, 7):
-            pen = pen / 4  # TODO: check how penalisation works. Do we really need a separate penalisation variable??
+            # TODO check how penalisation works. Do we really need a separate penalisation variable?
+            pen = pen / 4
     if language == "de":
-        # Plural form of acronym reduced to singular ("s", often not found in non English full forms)
-        # e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)
+        # Plural form of acronym reduced to singular ("s", often not found in non English full
+        # forms) e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)
         # These characters cannot be always expected to occur in the full form
         # We assume that plurals and genitives of acronyms are often marked with
         # "s", however not necessarily lower case
@@ -142,10 +144,11 @@ def get_acronym_score(acro, full, morphemes=None, language="de"):
         # logger.debug("Penalization = %f", pen)
     # Extract upper case sequence from full form
 
-    # TODO: The more word initials coincide with acronym letters the better
-    # TODO: special for German (probably exclusively for German:
-    # TODO: matching first letter capitals (nouns) even better
-    # TODO: nevertheless, the following clause should be revised
+    # TODO
+    # The more word initials coincide with acronym letters the better
+    # special for German (probably exclusively for German:
+    # matching first letter capitals (nouns) even better
+    # nevertheless, the following clause should be revised
     expanded_upper = ""
     if full.count(" ") > 0:
         lst_token = full.split(" ")
@@ -164,43 +167,42 @@ def get_acronym_score(acro, full, morphemes=None, language="de"):
     score = 0
     # logger.debug(splits)
     for split in splits:
-        s = 0
+        count = 0
         for fragment in split:
             # !!!! Specific for German
-            # TODO : check whether the function  substitute_k_and_f_by_context
-            # TODO : could be used instead (produces 7-Bit string without K and
-            # F)
+            # TODO
+            # check whether the function  substitute_k_and_f_by_context
+            # could be used instead (produces 7-Bit string without K and F)
             fragment = functions.simplify_german_string(fragment).strip()
             # C, K, and Z no longer distinguished
             # XXX Soundex as an alternative ??
             # logger.debug("FR: " + fragment)
-            # Check whether fragments are in german / english morpheme list
-            # From Morphosaurus
+            # Check whether fragments are in german / english morpheme list from Morphosaurus
             if len(fragment) == 1:
-                s += 1
+                count += 1
                 continue
 
             if fragment in morphemes:
                 logger.debug(fragment)
-                s += 1
+                count += 1
                 continue
 
             if (len(fragment) > 2) and (
                     fragment[-1] in lst_one_letter_affixes) and (fragment[0:-1] in morphemes):
                 # stripping one character suffix or infix
                 logger.debug(fragment[0:-1])
-                s += 1
+                count += 1
                 continue
 
             if (len(fragment)) > 3 and (
                     fragment[-2:] in lst_two_letter_affixes) and (fragment[0:-2] in morphemes):
                 # stripping two character suffix
                 logger.debug(fragment[0:-2])
-                s += 1
+                count += 1
                 continue
 
-        if s / len(split) > score:
-            score = s / len(split)
+        if count / len(split) > score:
+            score = count / len(split)
             if score == 0:
                 score = 0.01
             score = score * pen

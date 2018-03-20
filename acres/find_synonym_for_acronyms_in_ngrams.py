@@ -87,8 +87,10 @@ def find_synonyms():
                     left_string = "*"
                 if right_string == "":
                     right_string = "*"
-                li_corpus = get_synonyms_from_ngrams.find_embeddings(left_string, acronym, right_string, min_win_size,
-                                                                     minfreq, maxcount, min_number_tokens,
+                li_corpus = get_synonyms_from_ngrams.find_embeddings(left_string, acronym,
+                                                                     right_string, min_win_size,
+                                                                     minfreq, maxcount,
+                                                                     min_number_tokens,
                                                                      max_number_tokens)
 
                 process_corpus(li_corpus, acronym, ngram, d_log_corpus)
@@ -123,8 +125,7 @@ def process_corpus(corpus, acronym, ngram, log):
         if first_condition and second_condition:
             if exp != old_exp:
                 # score_corpus = 0
-                score_corpus = rate_acronym_resolutions.get_acronym_score(
-                    acronym, exp, morphemes)
+                score_corpus = rate_acronym_resolutions.get_acronym_score(acronym, exp)
                 if score_corpus > 0:
                     a = str(round(score_corpus * math.log10(f), 2))
                     b = str(round(score_corpus, 2))
