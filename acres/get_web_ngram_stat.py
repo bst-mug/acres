@@ -42,7 +42,6 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
     """
     proxy_config = functions.import_proxy()
     # FIXME  The whole proxy stuff desn't work
-    
     try:
        if proxy_config["UseProxy"] == "yes":
            http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
