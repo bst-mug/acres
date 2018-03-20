@@ -146,6 +146,22 @@ def get_character_ngrams():
     return pickle.load(open(pickle_output_file, "rb"))
 
 
+def warmup_cache():
+    """
+    Warms up the cache of pickle and txt files by calling all the methods.
+
+    :return:
+    """
+    get_morphemes()
+    get_index()
+    get_ngramstat_txt()
+    get_ngramstat()
+    get_acronym_ngrams()
+    get_acronyms()
+    get_tokens()
+    get_character_ngrams()
+
+
 def write_txt(resource, filename):
     counter = 0
 
