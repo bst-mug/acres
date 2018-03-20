@@ -51,15 +51,16 @@ def get_acronym_score(acro, full, morphemes=None, language="de"):
     full = full.strip()
     acro_low = acro.lower()
     full_low = full.lower()
+
+    lst_one_letter_affixes = []
+    lst_two_letter_affixes = []
+    lst_acronym_suffixes = []
+
     # XXX Dependent on German medical language
     if language == "de":
         lst_one_letter_affixes = ["a", "e", "i", "n", "o", "s", ]
         lst_two_letter_affixes = ["ae", "en", "er", "em", "es", "is", "um", "us"]
         lst_acronym_suffixes = ["s", "S", "x", "X"]  # currently works only with single characters
-    else:
-        lst_one_letter_affixes = []
-        lst_two_letter_affixes = []
-        lst_acronym_suffixes = []
 
     # full form contains an acronym definition pattern (normally only yielded
     # from Web scraping, unlikely in clinical texts)
