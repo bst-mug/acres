@@ -20,7 +20,6 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
     - Purpose: To substitute artificial breaks in a corpus
     - returns counter (number of records)
     """
-    counter = 0
     texts = functions.robust_text_import_from_dir(corpus_path)
     dict_char_ngrams = {}
 
