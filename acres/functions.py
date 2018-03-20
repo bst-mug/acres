@@ -464,12 +464,14 @@ def find_acro_expansions(lst_n_gram_stat):
             last_n = " ".join(token_not_acronym.split(" ")[-1])
 
             first_condition = token_not_acronym.split(" ")[0] == token_acronym.split(" ")[0]
-            second_condition = token_not_acronym.split(" ")[1].upper() == token_acronym.split(" ")[1].upper()
+            second_condition = token_not_acronym.split(" ")[1].upper() == token_acronym.split(" ")[
+                1].upper()
             if first_condition and not second_condition:
                 if re.search(regex, end_n.upper()):
                     if letter.upper() in last_n.upper():
-                        stat = token_acronym + count_per_ngram[token_acronym] + "     " + token_not_acronym + \
-                               count_per_ngram[token_not_acronym]
+                        stat = token_acronym + count_per_ngram[
+                            token_acronym] + "     " + token_not_acronym + count_per_ngram[
+                                   token_not_acronym]
                         logger.debug(stat)
                         ret.append(stat)
                         counter += 1
@@ -489,23 +491,20 @@ def robust_text_import_from_dir(path):
     texts = []
     # print(path)
     files = os.listdir(path)
-    for file in files:
+    for filename in files:
         try:
-            with open(path + "/" + file, "r", encoding="utf-8") as f:
-                content = f.read()
+            with open(path + "/" + filename, "r", encoding="utf-8") as file:
+                content = file.read()
                 texts.append(content)
                 # print(file + " " + str(len(content)))
         except UnicodeDecodeError:
-            logger.debug("corrupt file: %s", file)
+            logger.debug("corrupt file: %s", filename)
             continue
         except IOError as e:
-            logger.debug("I/O error (%d) while reading %s: %s", e.errno, file, e.strerror)
+            logger.debug("I/O error (%d) while reading %s: %s", e.errno, filename, e.strerror)
             continue
 
     return texts
-
-# TODO michel 20180215 move to unit tests
-# FindExpansionsOfAcronyms("corpus_cardio_ngramstat.txt")
 
 # p = import_conf("SAMPLEPATH")
 # lst_texts = robust_text_import_from_dir(p)

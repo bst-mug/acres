@@ -1,4 +1,6 @@
-# Stefan Schulz 03 Dec 2017
+"""
+Stefan Schulz 03 Dec 2017
+"""
 
 import logging
 import math
@@ -50,10 +52,10 @@ def find_synonyms():
             logger.debug("-----------------------")
             logger.debug(ngram)
             splits = functions.split_ngram(ngram.strip())
-            for s in splits:
-                left_string = s[0].strip()
-                acronym = s[1].strip()
-                right_string = s[2].strip()
+            for split in splits:
+                left_string = split[0].strip()
+                acronym = split[1].strip()
+                right_string = split[2].strip()
                 # Parms: min_win_size, minfreq, maxcount, min_number_tokens, max_number_tokens
                 # Set Parameters
 
@@ -74,11 +76,11 @@ def find_synonyms():
                 if NUMERIC in ngram:
                     li_web = []
                 else:
-                    s = left_string + " " + acronym + " " + right_string
-                    s = s.replace(".", " ").replace(",", " ")
-                    s = s.replace("  ", " ")
-                    s = s.replace(" ", "+")
-                    str_url = "http://www.bing.de/search?cc=de&q=%22" + s + "%22"
+                    split = left_string + " " + acronym + " " + right_string
+                    split = split.replace(".", " ").replace(",", " ")
+                    split = split.replace("  ", " ")
+                    split = split.replace(" ", "+")
+                    str_url = "http://www.bing.de/search?cc=de&q=%22" + split + "%22"
                     time.sleep(random.randint(0, 2000) / 1000)
                     li_web = get_web_ngram_stat.ngrams_web_dump(str_url, 1, 10)
 
@@ -93,17 +95,17 @@ def find_synonyms():
                                                                      min_number_tokens,
                                                                      max_number_tokens)
 
-                process_corpus(li_corpus, acronym, ngram, d_log_corpus)
-                process_corpus(li_web, acronym, ngram, d_log_web)
+                _process_corpus(li_corpus, acronym, ngram, d_log_corpus)
+                _process_corpus(li_web, acronym, ngram, d_log_web)
 
     # "Logs" are files with short form expansions
     # logCorpus: expansions based on ngram model
     # logWebs: expansions from Web mining
-    write_log(d_log_corpus, resource_factory.get_log_corpus_filename())
-    write_log(d_log_web, resource_factory.get_log_web_filename())
+    _write_log(d_log_corpus, resource_factory.get_log_corpus_filename())
+    _write_log(d_log_web, resource_factory.get_log_web_filename())
 
 
-def process_corpus(corpus, acronym, ngram, log):
+def _process_corpus(corpus, acronym, ngram, log):
     """
 
     :param corpus:
@@ -118,7 +120,7 @@ def process_corpus(corpus, acronym, ngram, log):
     for item in corpus:
         old_exp = ""
         exp = item.split("\t")[1]  # Ngram expression
-        f = int(item.split("\t")[0])  # Frequency
+        freq = int(item.split("\t")[0])  # Frequency
 
         first_condition = re.search("^[\s\-A-Za-z0-9" + dia + "]*$", exp) is not None
         second_condition = acronym.lower() != exp.lower()[0:len(acronym.lower())]
@@ -127,9 +129,9 @@ def process_corpus(corpus, acronym, ngram, log):
                 # score_corpus = 0
                 score_corpus = rate_acronym_resolutions.get_acronym_score(acronym, exp)
                 if score_corpus > 0:
-                    a = str(round(score_corpus * math.log10(f), 2))
+                    a = str(round(score_corpus * math.log10(freq), 2))
                     b = str(round(score_corpus, 2))
-                    result = a + " " + exp + " " + b + " " + str(f) + " " + "\t" + ngram
+                    result = a + " " + exp + " " + b + " " + str(freq) + " " + "\t" + ngram
                     if acronym not in log:
                         log[acronym] = [result]
                     else:
@@ -137,7 +139,7 @@ def process_corpus(corpus, acronym, ngram, log):
                 old_exp = exp
 
 
-def write_log(log, filename):
+def _write_log(log, filename):
     """
     Writes a log into a file described by the filename.
 
@@ -147,8 +149,8 @@ def write_log(log, filename):
     """
     file = open(filename, "w", encoding="UTF-8")
 
-    for a in log:
-        for r in log[a]:
-            file.write(a.rjust(8) + "\t" + r + "\n")
+    for acronym in log:
+        for result in log[acronym]:
+            file.write(acronym.rjust(8) + "\t" + result + "\n")
 
     file.close()
