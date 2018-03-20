@@ -3,12 +3,15 @@
 This module provides methods for lazily loading resources.
 
 """
-
+import logging
 import os.path
 import pickle
 
 from acres import create_dumps
 from acres import functions
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 PICKLE_FOLDER = "models/pickle/"
 NGRAMS_FOLDER = "models/ngrams/"
@@ -27,6 +30,8 @@ def get_morphemes():
     output_file = PICKLE_FOLDER + "morphemes.p"
 
     if not os.path.isfile(output_file):
+        _log_file_not_found(output_file)
+
         morph_eng = functions.import_conf("MORPH_ENG")
         morph_ger = functions.import_conf("MORPH_GER")
 
@@ -42,6 +47,8 @@ def get_index():
     output_file = PICKLE_FOLDER + "index.p"
 
     if not os.path.isfile(output_file):
+        _log_file_not_found(output_file)
+
         ngramstat = get_ngramstat()
         index = create_dumps.create_index(ngramstat)
         pickle.dump(index, open(output_file, "wb"))
@@ -53,6 +60,8 @@ def get_ngramstat_txt():
     output_file = NGRAMS_FOLDER + "ngramstat.txt"
 
     if not os.path.isfile(output_file):
+        _log_file_not_found(output_file)
+
         corpus_path = functions.import_conf("CORPUS_PATH")
         ngramstat = create_dumps.create_corpus_ngramstat_dump(corpus_path)
         write_txt(ngramstat, output_file)
@@ -64,6 +73,8 @@ def get_ngramstat():
     output_file = PICKLE_FOLDER + "ngramstat.p"
 
     if not os.path.isfile(output_file):
+        _log_file_not_found(output_file)
+
         ngram_file = get_ngramstat_txt()
         ngramstat = create_dumps.create_ngramstat_dump(ngram_file)
         pickle.dump(ngramstat, open(output_file, "wb"))
@@ -80,6 +91,8 @@ def get_acronym_ngrams():
     output_file = PICKLE_FOLDER + "acronymNgrams.p"
 
     if not os.path.isfile(output_file):
+        _log_file_not_found(output_file)
+
         acronym_ngrams = create_dumps.create_new_acro_dump()
         pickle.dump(acronym_ngrams, open(output_file, "wb"))
 
@@ -95,6 +108,8 @@ def get_acronyms():
     output_file = PICKLE_FOLDER + "acronyms.p"
 
     if not os.path.isfile(output_file):
+        _log_file_not_found(output_file)
+
         acronyms = create_dumps.create_acro_dump()
         pickle.dump(acronyms, open(output_file, "wb"))
 
@@ -105,6 +120,8 @@ def get_tokens():
     output_file = PICKLE_FOLDER + "tokens.p"
 
     if not os.path.isfile(output_file):
+        _log_file_not_found(output_file)
+
         ngram_file = get_ngramstat_txt()
         ngramstat = create_dumps.create_normalised_token_dump(ngram_file)
         pickle.dump(ngramstat, open(output_file, "wb"))
@@ -117,6 +134,9 @@ def get_character_ngrams():
     ngram_output_file = NGRAMS_FOLDER + "character_ngrams.txt"
 
     if not os.path.isfile(pickle_output_file):
+        _log_file_not_found(pickle_output_file)
+        _log_file_not_found(ngram_output_file)
+
         corpus_path = functions.import_conf("CORPUS_PATH")
         character_ngrams = create_dumps.create_corpus_char_stat_dump(corpus_path)
 
@@ -142,3 +162,7 @@ def write_txt(resource, filename):
     file.close()
 
     return counter
+
+
+def _log_file_not_found(filename):
+    logger.warning("%s not found, will regenerate.", filename)
