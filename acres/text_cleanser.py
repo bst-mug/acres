@@ -1,3 +1,7 @@
+"""Text cleasing module
+
+"""
+
 import logging
 import re
 

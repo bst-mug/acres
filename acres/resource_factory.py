@@ -1,3 +1,9 @@
+"""Resource factory
+
+This module provides methods for lazily loading resources.
+
+"""
+
 import os.path
 import pickle
 

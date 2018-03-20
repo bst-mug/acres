@@ -1,4 +1,6 @@
-# Stefan Schulz 12 Nov 2017
+"""
+Stefan Schulz 12 Nov 2017
+"""
 
 import collections
 import logging
@@ -147,9 +149,14 @@ def create_ngramstat_dump(ngram_stat_filename, min_freq=2):
 
 
 def create_index(ngramstat):
+    """
+    Create an inverted index for performance issue when retrieving ngram records.
+
+    :param ngramstat:
+    :return:
+    """
     index = collections.defaultdict(set)
     for identifier in ngramstat:
-        # inverted index for performance issue when retrieving ngram records
         # XXX Think about trie data structure
         # logger.debug(ngramstat[ID])
         ngram = ngramstat[identifier].split("\t")[1]

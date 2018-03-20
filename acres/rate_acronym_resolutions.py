@@ -1,4 +1,6 @@
-# Stefan Schulz 11 Nov 2017
+"""
+Stefan Schulz 11 Nov 2017
+"""
 
 
 import logging

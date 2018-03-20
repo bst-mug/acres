@@ -480,7 +480,12 @@ def find_acro_expansions(lst_n_gram_stat):
 
 
 def robust_text_import_from_dir(path):
-    # TODO: add unit testing with sample files
+    """
+    Read the content of valid text files from a path into a list of strings.
+
+    :param path: The path to look for documents.
+    :return: A list of strings containing the content of each valid file.
+    """
     texts = []
     # print(path)
     files = os.listdir(path)
