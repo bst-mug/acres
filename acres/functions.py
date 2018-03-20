@@ -438,7 +438,7 @@ def find_acro_expansions(lst_n_gram_stat):
         count = line.split("\t")[0]
         count_per_ngram[ngram] = count
         if " " in ngram:  # has at least 2 tokens
-            other_tokens = " ".join(ngram.split(" ")[1:])
+            other_tokens = ngram.split(" ")[1:]
             if len(other_tokens) > 2:
                 if is_acronym(other_tokens[1], 7):
                     acronyms.append(ngram)
