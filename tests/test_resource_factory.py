@@ -21,6 +21,9 @@ def test_getindex():
         os.remove(output_file)
     assert not os.path.isfile(output_file)
 
+    # Forces recreation
+    resource_factory.INDEX = []
+
     resource_factory.get_index()
     assert os.path.isfile(output_file)
 
@@ -31,6 +34,9 @@ def test_get_ngramstart():
     if os.path.isfile(output_file):
         os.remove(output_file)
     assert not os.path.isfile(output_file)
+
+    # Forces recreation
+    resource_factory.NGRAMSTAT = []
 
     resource_factory.get_ngramstat()
     assert os.path.isfile(output_file)

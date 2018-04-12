@@ -44,18 +44,25 @@ def get_morphemes():
     return pickle.load(open(output_file, "rb"))
 
 
+INDEX = []
+
 def get_index():
-    output_file = PICKLE_FOLDER + "index.p"
+    global INDEX
 
-    if not os.path.isfile(output_file):
-        _log_file_not_found(output_file)
+    if not INDEX:
+        output_file = PICKLE_FOLDER + "index.p"
 
-        ngramstat = get_ngramstat()
-        index = create_dumps.create_index(ngramstat)
-        pickle.dump(index, open(output_file, "wb"))
+        if not os.path.isfile(output_file):
+            _log_file_not_found(output_file)
 
-    logger.info("Loading index from %s...", output_file)
-    return pickle.load(open(output_file, "rb"))
+            ngramstat = get_ngramstat()
+            index = create_dumps.create_index(ngramstat)
+            pickle.dump(index, open(output_file, "wb"))
+
+        logger.info("Loading index from %s...", output_file)
+        INDEX = pickle.load(open(output_file, "rb"))
+
+    return INDEX
 
 
 def get_ngramstat_txt():
@@ -71,18 +78,25 @@ def get_ngramstat_txt():
     return output_file
 
 
+NGRAMSTAT = []
+
 def get_ngramstat():
-    output_file = PICKLE_FOLDER + "ngramstat.p"
+    global NGRAMSTAT
 
-    if not os.path.isfile(output_file):
-        _log_file_not_found(output_file)
+    if not NGRAMSTAT:
+        output_file = PICKLE_FOLDER + "ngramstat.p"
 
-        ngram_file = get_ngramstat_txt()
-        ngramstat = create_dumps.create_ngramstat_dump(ngram_file)
-        pickle.dump(ngramstat, open(output_file, "wb"))
+        if not os.path.isfile(output_file):
+            _log_file_not_found(output_file)
 
-    logger.info("Loading ngramstat from %s...", output_file)
-    return pickle.load(open(output_file, "rb"))
+            ngram_file = get_ngramstat_txt()
+            ngramstat = create_dumps.create_ngramstat_dump(ngram_file)
+            pickle.dump(ngramstat, open(output_file, "wb"))
+
+        logger.info("Loading ngramstat from %s...", output_file)
+        NGRAMSTAT = pickle.load(open(output_file, "rb"))
+
+    return NGRAMSTAT
 
 
 def get_acronym_ngrams():
