@@ -4,8 +4,9 @@ This module provides methods for lazily loading resources.
 
 """
 import logging
-import os.path
 import pickle
+
+import os.path
 
 from acres import create_dumps
 from acres import functions
@@ -53,6 +54,7 @@ def get_index():
         index = create_dumps.create_index(ngramstat)
         pickle.dump(index, open(output_file, "wb"))
 
+    logger.info("Loading index from %s...", output_file)
     return pickle.load(open(output_file, "rb"))
 
 
@@ -79,6 +81,7 @@ def get_ngramstat():
         ngramstat = create_dumps.create_ngramstat_dump(ngram_file)
         pickle.dump(ngramstat, open(output_file, "wb"))
 
+    logger.info("Loading ngramstat from %s...", output_file)
     return pickle.load(open(output_file, "rb"))
 
 
