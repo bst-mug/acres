@@ -29,6 +29,7 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
     :param max_num_tokens:
     :return:
     """
+    # dependency injection
     ngramstat = resource_factory.get_ngramstat()
     index = resource_factory.get_index()
 
@@ -41,10 +42,10 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
     count = 0
 
     # Construction of regular expression
-    #                       Left             Middle              Right
-    # Empty	            "^"                                   "$"
-    # Specified ("abc")	    "^abc\ "	      "abc"            "\ abc$"
-    # Arbitrary, nonempty   "^.*\ "                            "\ .*$"
+    #                         Left             Middle              Right
+    # Empty	                  "^"                                   "$"
+    # Specified ("abc")	     "^abc\ "	      "abc"            "\ abc$"
+    # Arbitrary, nonempty (*)   "^.*\ "                            "\ .*$"
     # Build regular expression for matching ngram
 
     if str_left == "*":
@@ -53,6 +54,7 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
         str_left_esc = "^"
     else:
         str_left_esc = "^" + re.escape(str_left.strip()) + "\ "
+
     str_middle_esc = re.escape(str_middle.strip())
     if str_right == "*":
         str_right_esc = "\ .*$"
@@ -80,7 +82,7 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
         str_complete = str_left.strip() + " " + str_middle.strip() + " " + str_right.strip()
         all_tokens = str_complete.split(" ")
         for token in all_tokens:
-            if token != "*":
+            if token != "*" and token != "":
                 all_sets.append(index[token])
         ngram_selection = set.intersection(*all_sets)
         for ngram in ngram_selection:
@@ -153,13 +155,13 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
                 if match is not None:
                     # logger.debug(regex_bed)
                     # logger.debug(row)
-                    out_group = match.group(1).strip()
-                    if (str_middle not in out_group) and \
-                            len(out_group) > min_win_size and \
-                            "¶" not in out_group and (digit not in out_group):
-                        # logger.debug(ngramfrequency, out_group, "   [" + ngram + "]")
+                    long_form = match.group(1).strip()
+                    if len(long_form) > len(str_middle) and \
+                            "¶" not in long_form and \
+                            digit not in long_form:
+                        # logger.debug(ngramfrequency, long_form, "   [" + ngram + "]")
                         counter += 1
-                        out.append(freq + "\t" + out_group)
+                        out.append(freq + "\t" + long_form)
 
         out.sort(reverse=True)
     if logger.getEffectiveLevel() == logging.DEBUG:
