@@ -1,0 +1,34 @@
+1|*|TRINS|*|Trikuspidalinsuffizienz
+2|re|OL|*|Oberlappen
+3|*|DM|Typ|Diabetes mellitus
+4|*|DM|von|Durchmesser
+5|normaler|EZ.|*|Ernährungszustand.
+6|niedergelassenen|FA|für|Facharzt
+7|*|LVEF|*|linksventrikuläre EF
+8|Linkstyp,|QRS|*|QRS
+9|eine|KHK|III|koronare Herzkrankheit
+10|regelrechte|DGs|*|Darmgeräusche
+11|*|CA|durchgeführt|Koronarangiographie
+12|*|CABG|*|Koronararterienbypass
+13|*|PTCA|*|Perkutane transluminale Koronarangioplastie
+14|*|Funktion,|EDP|Enddiastolischer Druck
+15|*|AÖF|von|Aortenöffnungsfläche
+16|*|LUFU|*|Lungenfunktion
+17|bis|INR|im|International Normalized Ratio
+18|globale|LV|-|linksventrikuläre
+19|*|HT|rein|Herztöne
+20|minim. |MINS|*|Mitralinsuffiziens
+21|geplanten|EPU|*|Elektrophyiologische Untersuchung
+22|normocarden|SR.|*|Sinusrhythmus.
+23|*|üLT,|normale|überdrehter Linkstyp,
+24|anhaltende|VT's|*|Vorhoftachykardien
+25|Heimatkrankenhaus|(LKH|Voitsberg|Landeskrankenhaus
+26|den|NNH.|*|Nasennebenhöhlen
+27|*|AKE|einwandfrei|Aortenklappenersatz
+28|St.p.|K-TEP|li|Knie-Totalendoprothese
+29|paroxysmales|VH-Flimmern|*|Vorhofflimmern
+30|*|HF-Anstieg|von|Herzfrequenzanstieg
+31|nach|ICD|Implant|automatischen Kardioverter-Defibrillators
+32|längerfristig|NMH|*|niedermolekulares Heparin
+33|den|HA|höflich|Hausarzt
+34|Nierenfunktion|GFR|~|Glomeruläre Filtrationsrate

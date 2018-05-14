@@ -2,17 +2,68 @@ from acres import get_synonyms_from_ngrams
 
 
 def test_find_embeddings():
+    actual = get_synonyms_from_ngrams.find_embeddings("*", "TRINS", "*", 1, 2, 500, 1, 10)
+
+    f = open("tests/data/Benchmark_Acronyms.txt", "r", encoding="utf-8")
+    # sRow = input("Select row number or press enter: ")
+    for row in f:
+        row = row.strip("\n")
+
+        row_nr = row.split("|")[0]
+        print(row_nr)
+        left_context = row.split("|")[1]
+        acro = row.split("|")[2]
+        right_context = row.split("|")[3]
+        probe = row.split("|")[4]
+        # if sRow <> "":
+        #
+        lstExp = get_synonyms_from_ngrams.find_embeddings(left_context, acro, right_context, 1, 2, 500, 1, 10)
+        for term in lstExp:
+            if term.split("\t")[1] == probe:
+                print(term)
+                break
+
+    f.close
+
+    1 / 0
+
+    actual = get_synonyms_from_ngrams.find_embeddings("nach", "ICD", "Implantation", 1, 2, 500, 1, 10)
+    actual = get_synonyms_from_ngrams.find_embeddings("*", "HF-Anstieg", "von", 1, 2, 500, 1, 10)
+    actual = get_synonyms_from_ngrams.find_embeddings("*", "HT", "rein", 1, 2, 500, 1, 10)
+    # viele Treffer, die mit Ht anfangen
+    actual = get_synonyms_from_ngrams.find_embeddings("geplanten", "EPU", "*", 1, 2, 500, 1, 10)
+    actual = get_synonyms_from_ngrams.find_embeddings("einem", "EDP", "von", 1, 2, 500, 1, 10)
+    # wird nicht gefunden
+    actual = get_synonyms_from_ngrams.find_embeddings("gutem", "AZ", "nach", 1, 2, 100, 1, 10)
+    actual = get_synonyms_from_ngrams.find_embeddings("die", "VCS.", "*", 1, 2, 500, 1, 10)
+    actual = get_synonyms_from_ngrams.find_embeddings("*", "DG's", "*", 1, 2, 500, 1, 10)
+    # only without restricted context the resolution is found
+    # only DG's resolved, not DGs
+    actual = get_synonyms_from_ngrams.find_embeddings("die", "VCS.", "*", 1, 2, 500, 1, 10)
+    # only works with final dot!
+    actual = get_synonyms_from_ngrams.find_embeddings("re", "OL", "*", 1, 2, 500, 1, 10)
+
+    actual = get_synonyms_from_ngrams.find_embeddings("gutem", "AZ", "nach", 1, 2, 100, 1, 10)
+
+    actual = get_synonyms_from_ngrams.find_embeddings("die", "VCS", "", 3, 1, 100, 1, 10)
+
+    expected = []
+
+    assert set(expected).issubset(actual)
+
+
     actual = get_synonyms_from_ngrams.find_embeddings("re", "OL", "", 5, 1, 100, 6, 10)
     expected = []
-    assert expected == actual
+    assert set(expected).issubset(actual)
+
 
     actual = get_synonyms_from_ngrams.find_embeddings("*", "PDU", "*", 10, 3, 50, 1, 5)
     expected = []
-    assert expected == actual
-
-    actual = get_synonyms_from_ngrams.find_embeddings("*", "EKG", "*", 10, 3, 50, 1, 5)
-    expected = ['0000019\tPhysikalischer Status']
     assert set(expected).issubset(actual)
+
+    # actual = get_synonyms_from_ngrams.find_embeddings("*", "EKG", "*", 10, 3, 50, 1, 5)
+    # expected = ['0000019\tPhysikalischer Status']
+    # assert set(expected).issubset(actual)
 
     # li = find_embeddings("", "morph.", "", ngramstat, index, 10, 3, 1000, 1, 7)
     # li = find_embeddings("Mitralklappe", "morph.", "*", ngramstat, index, 10, 3, 1000, 1, 7)
