@@ -56,6 +56,7 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
     Creates a text file with token n gram statistics
     :return:  counter ( number of records)
     """
+
     entire_corpus = ""
     counter = 0
 
@@ -88,8 +89,9 @@ def create_ngramstat_dump(ngram_stat_filename, min_freq=2):
     :param min_freq:
     :return:
     """
-    ngramstat = {}
 
+    ngramstat = {}
+    # TODO: should be recreated with frequency 1
     with open(ngram_stat_filename, 'r', encoding="UTF-8") as file:
         identifier = 1
         for row in file:

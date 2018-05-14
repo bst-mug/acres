@@ -1,34 +1,34 @@
-1|*|TRINS|*|Trikuspidalinsuffizienz
-2|re|OL|*|Oberlappen
-3|*|DM|Typ|Diabetes mellitus
-4|*|DM|von|Durchmesser
-5|normaler|EZ.|*|Ernährungszustand.
+1|I,|TRINS|O|Trikuspidalinsuffizienz
+2|re|OL|-|Oberlappen
+3|bekanntem|DM|Typ|Diabetes mellitus
+4|max.|DM|von|Durchmesser
+5|guter|AZ|und|Allgemeinzustand
 6|niedergelassenen|FA|für|Facharzt
-7|*|LVEF|*|linksventrikuläre EF
-8|Linkstyp,|QRS|*|QRS
+7|Hypokinesie,|LVEF|max.|linksventrikuläre Auswurffraktion
+8|normal,|QRS|schmal,|QRS
 9|eine|KHK|III|koronare Herzkrankheit
-10|regelrechte|DGs|*|Darmgeräusche
-11|*|CA|durchgeführt|Koronarangiographie
-12|*|CABG|*|Koronararterienbypass
-13|*|PTCA|*|Perkutane transluminale Koronarangioplastie
-14|*|Funktion,|EDP|Enddiastolischer Druck
-15|*|AÖF|von|Aortenöffnungsfläche
-16|*|LUFU|*|Lungenfunktion
+10|regelrechte|DGs|über|Darmgeräusche
+11|eine|CA|durchgeführt|Koronarangiographie
+12|akute|CABG|OP|Koronararterienbypass
+13|einseitig,|PTCA|Eingefäß|Perkutane transluminale Koronarangioplastie
+14|erhöhter|EDP,|wie|Enddiastolischer Druck
+15|einer|AÖF|von|Aortenöffnungsfläche
+16|zur|LUFU|auf|Lungenfunktion
 17|bis|INR|im|International Normalized Ratio
 18|globale|LV|-|linksventrikuläre
-19|*|HT|rein|Herztöne
-20|minim. |MINS|*|Mitralinsuffiziens
-21|geplanten|EPU|*|Elektrophyiologische Untersuchung
-22|normocarden|SR.|*|Sinusrhythmus.
-23|*|üLT,|normale|überdrehter Linkstyp,
+19|rh,|HT|rein|Herztöne
+20|minim. |MINS,|leichte|Mitralinsuffiziens
+21|geplanten|EPU|und|Elektrophyiologische Untersuchung
+22|einen|SR.|Bei|Sinusrhythmus.
+23|oder|üLT,|keine|überdrehter Linkstyp,
 24|anhaltende|VT's|*|Vorhoftachykardien
 25|Heimatkrankenhaus|(LKH|Voitsberg|Landeskrankenhaus
-26|den|NNH.|*|Nasennebenhöhlen
-27|*|AKE|einwandfrei|Aortenklappenersatz
-28|St.p.|K-TEP|li|Knie-Totalendoprothese
-29|paroxysmales|VH-Flimmern|*|Vorhofflimmern
-30|*|HF-Anstieg|von|Herzfrequenzanstieg
+26|den|NNH.|Parotis|Nasennebenhöhlen
+27|VH-Fli),|AKE|einwandfrei|Aortenklappenersatz
+28|St.p.|K-TEP|links|Knie-Totalendoprothese
+29|permenantes|VH-Flimmern|mit|Vorhofflimmern
+30|Erschöpfung,|HF-Anstieg|von|Herzfrequenzanstieg
 31|nach|ICD|Implant|automatischen Kardioverter-Defibrillators
-32|längerfristig|NMH|*|niedermolekulares Heparin
+32|mit|NMH|wurde|niedermolekularem Heparin
 33|den|HA|höflich|Hausarzt
-34|Nierenfunktion|GFR|~|Glomeruläre Filtrationsrate
+34|niedrigen|GFR|von|Glomerulären Filtrationsrate

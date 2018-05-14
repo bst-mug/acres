@@ -13,15 +13,25 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
+def test_input(probe, left, middle, right):
+    # tests an acronym + context strings against the ngram model
+    lstExp = find_embeddings(left, middle, right, 1, 1, 500, 2, 10)
+    for term in lstExp:
+        logger.info(term)
+        if term.split("\t")[1].lower() == probe.lower():
+            logger.info("FOUND: " + term)
+            return True
+    return False
+
 def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxcount,
                     min_num_tokens, max_num_tokens):
     """
     Input str_middle, together with a series of filter parameters
     Three cases of embeddings: 1. bilateral, 2.left, 3.right
 
-    :param str_left: string left of unknown ("*" if to be retrieved ; "" if empty)
+    :param str_left: string left of unknown ("<SEL>" if to be retrieved ; "<VOID>" if empty)
     :param str_middle: input nonlex form (with or without context words) for which synonym is sought
-    :param str_right: string right uf unknown ("*" if to be retrieved ; "" if empty")
+    :param str_right: string right uf unknown ("<SEL>" if to be retrieved ; "<VOID>" if empty")
     :param min_win_size: minimum window size
     :param minfreq: minimum ngram frequency
     :param maxcount: maximum count in list
@@ -43,22 +53,24 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
 
     # Construction of regular expression
     #                         Left             Middle              Right
-    # Empty	                  "^"                                   "$"
+    # VOID	                  "^"                                   "$"
     # Specified ("abc")	     "^abc\ "	      "abc"            "\ abc$"
-    # Arbitrary, nonempty (*)   "^.*\ "                            "\ .*$"
+    # SELCETED                "^.*\ "                            "\ .*$"
     # Build regular expression for matching ngram
 
-    if str_left == "*":
+    # Three
+
+    if str_left == "<SEL>":
         str_left_esc = "^.*\ "
-    elif str_left == "":
+    elif str_left == "<VOID>":
         str_left_esc = "^"
     else:
         str_left_esc = "^" + re.escape(str_left.strip()) + "\ "
 
     str_middle_esc = re.escape(str_middle.strip())
-    if str_right == "*":
+    if str_right == "<SEL>":
         str_right_esc = "\ .*$"
-    elif str_right == "":
+    elif str_right == "<VOID>":
         str_right_esc = "$"
     else:
         str_right_esc = "\ " + re.escape(str_right.strip()) + "$"
@@ -74,7 +86,7 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
     logger.debug("Regular expression: %s", regex_embed)
 
     # set of selected ngrams for filtering
-    if str_left == "" and str_right == "":
+    if str_left == "<VOID>" and str_right == "<VOID>":
         logger.debug("No filter. Return empty list")
         return []
     else:
@@ -82,17 +94,15 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
         str_complete = str_left.strip() + " " + str_middle.strip() + " " + str_right.strip()
         all_tokens = str_complete.split(" ")
         for token in all_tokens:
-            if token != "*" and token != "":
+            if token != "<VOID>" and token != "<SEL>":
                 all_sets.append(index[token])
         ngram_selection = set.intersection(*all_sets)
         for ngram in ngram_selection:
             sel_rows.append(ngramstat[ngram])
 
-        logger.debug(
-            "Number of matching ngrams by word index: %d", len(sel_rows))
+        logger.debug("Number of matching ngrams by word index: %d", len(sel_rows))
 
-    for row in sorted(
-            sel_rows, reverse=True):  # iteration through all matching ngrams
+    for row in sorted(sel_rows, reverse=True):  # iteration through all matching ngrams
         logger.debug(row)
         # input("press key!)
         ngram = row.split("\t")[1]
@@ -100,10 +110,20 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
         # Filter by ngram cardinality
         if max_num_tokens >= ngram_card >= min_num_tokens:  # -1
             # watch out for multiword input str_middle
+            # TODO: min should be at least 1 plus cardinality of middle term
             if int(row.split("\t")[0]) >= minfreq:
                 # might suppress low n-gram frequencies
+                # TODO: probably best 1, could be increased for performance
+                # TODO: the current ngram dump and index were created on a lower
+                # TODO: frequency bound of 2
+                # TODO: This is the reason, some acronyms cannot be resolved
+                # TODO: recommendation: recreate
                 ngram = row.split("\t")[1].strip()
                 match = re.search(regex_embed, ngram, re.IGNORECASE)
+                # all_beds collects all contexts in which the unknown string
+                # is embedded.
+                # the length of right and left part of "bed" is only
+                # limited by the length of the ngram
                 if match is not None and row not in all_beds:
                     all_beds.append(row)
                     logger.debug(row)
@@ -111,6 +131,7 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
                     if count >= maxcount:
                         logger.debug("List cut at %d", count)
                         break
+    logger.info("COUNT: " + str(count))
 
     sel_beds = functions.random_sub_list(all_beds, count)
     # print(sel_beds)
@@ -161,9 +182,12 @@ def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxc
                             digit not in long_form:
                         # logger.debug(ngramfrequency, long_form, "   [" + ngram + "]")
                         counter += 1
-                        out.append(freq + "\t" + long_form)
+                        rec = freq + "\t" + long_form.strip()
+                        if not rec in out:
+                            out.append(rec)
 
         out.sort(reverse=True)
+
     if logger.getEffectiveLevel() == logging.DEBUG:
         for item in out:
             logger.debug(item)
