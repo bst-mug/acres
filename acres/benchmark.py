@@ -1,8 +1,10 @@
 # code for benchmarking
 import logging
+from logging.config import fileConfig
 
 from acres import get_synonyms_from_ngrams
 
+logging.config.fileConfig("logging.ini")
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
@@ -53,7 +55,7 @@ for row in f:
                                 out = out + "<SEL> <ACR> <VOID>: Found"
                             else:
                                 out = out + "<SEL> <ACR> <VOID>: Not Found"
-    print("Final analysis: " + row)
+    logger.info("Final analysis: " + row)
     print(out)
 
 f.close()
