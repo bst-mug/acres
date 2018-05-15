@@ -1,6 +1,15 @@
 from acres import functions
 
 
+def test_get_url():
+    url = "https://github.com/bst-mug/acres"
+    actual = functions.get_url(url)
+
+    # 200 means OK
+    assert 200 == actual.status_code
+    assert "Acronym" in actual.text
+
+
 def test_split_ngram():
     # pass
     assert functions.split_ngram("a b c") == []

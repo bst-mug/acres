@@ -12,6 +12,8 @@ import os
 import re
 from random import randint
 
+import requests
+
 from acres import resource_factory
 
 logger = logging.getLogger(__name__)
@@ -30,14 +32,34 @@ def import_conf(key):
     return config['DEFAULT'][key]
 
 
-def import_proxy():
+def get_url(url, timeout=1):
     """
+    Make a HTTP request to a given URL using proxy if necessary.
 
-    :return:
+    :param url: The URL to make the request to.
+    :param timeout: The timeout in seconds.
+    :return: Object from requests.get()
     """
     config = configparser.ConfigParser()
     config.read("config.ini")
-    return config["proxy"]
+    proxy_config = config["proxy"]
+
+    try:
+        if proxy_config["UseProxy"] == "yes":
+            http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
+                         "@" + proxy_config["ProxyDomain"] + ":" + proxy_config["ProxyPort"]
+            https_proxy = http_proxy
+            ftp_proxy = http_proxy
+            proxy_dict = {
+                "http": http_proxy,
+                "https": https_proxy,
+                "ftp": ftp_proxy}
+            return requests.get(url, timeout=timeout, proxies=proxy_dict)
+        else:
+            return requests.get(url, timeout=timeout)
+    except requests.exceptions.RequestException as ex:
+        logger.critical(ex)
+        return []
 
 
 def split_ngram(ngram):

@@ -9,11 +9,8 @@ in decreasing frequency
 import logging
 
 import html2text
-import requests
 
 from acres import functions
-
-# from acres.functions import import_proxy
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -39,28 +36,9 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
     :return:
     """
 
-    # FIXME  The whole proxy stuff doesn't work
-    # proxy_config = functions.import_proxy()
-    # try:
-    #    if proxy_config["UseProxy"] == "yes":
-    #        http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
-    #                     "@" + proxy_config["ProxyDomain"] + ":" + proxy_config["ProxyPort"]
-    #        https_proxy = http_proxy
-    #        ftp_proxy = http_proxy
-    #        proxy_dict = {
-    #            "http": http_proxy,
-    #            "https": https_proxy,
-    #            "ftp": ftp_proxy}
-    #        response = requests.get(url, timeout=1, proxies=proxy_dict)
-    #    else:
-    #        response = requests.get(url, timeout=1)
-    # except requests.exceptions.RequestException as ex:
-    #    logger.critical(ex)
-    #    return []
-
     logger.info("Sending HTTP request to %s...", url)
+    response = functions.get_url(url)
 
-    response = requests.get(url, timeout=1)
     out_l = []
     txt = html2text.html2text(response.text)
     txt = txt.replace("**", "").replace("\n", " ").replace("[", "[ ").replace("]", " ]")
