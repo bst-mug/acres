@@ -1,12 +1,14 @@
 import logging
 
+import pytest
+
 from acres import get_synonyms_from_ngrams
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-
-def test_find_embeddings():
+@pytest.mark.skip(reason="this should be moved to benchmark.py")
+def test_benchmark():
     # actual = get_synonyms_from_ngrams.find_embeddings("*", "TRINS", "*", 1, 2, 500, 1, 10)
 
     f = open("tests/data/Workbench.txt", "r", encoding="utf-8")
@@ -58,9 +60,9 @@ def test_find_embeddings():
         logger.info(out)
 
     f.close()
+    
 
-    1 / 0
-
+def test_find_embeddings():
     actual = get_synonyms_from_ngrams.find_embeddings("nach", "ICD", "Implantation", 1, 2, 500, 1, 10)
     actual = get_synonyms_from_ngrams.find_embeddings("*", "HF-Anstieg", "von", 1, 2, 500, 1, 10)
     actual = get_synonyms_from_ngrams.find_embeddings("*", "HT", "rein", 1, 2, 500, 1, 10)
