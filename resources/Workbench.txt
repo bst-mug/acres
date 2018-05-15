@@ -1,0 +1,3 @@
+2|li.|OL,|<SEL>|Oberlappen,
+4|<SEL>|DM|von|Durchmesser
+3|rechten|UL.|<SEL>|Unterlappen.
