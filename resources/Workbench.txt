@@ -1,3 +1,7 @@
-2|li.|OL,|<SEL>|Oberlappen,
-4|<SEL>|DM|von|Durchmesser
-3|rechten|UL.|<SEL>|Unterlappen.
+28|St.p.|K-TEP|links|Knie-Totalendoprothese
+29|permenantes|VH-Flimmern|mit|Vorhofflimmern
+30|Erschöpfung,|HF-Anstieg|von|Herzfrequenzanstieg
+31|nach|ICD|Implant|automatischen Kardioverter-Defibrillators
+32|mit|NMH|wurde|niedermolekularem Heparin
+33|den|HA|höflich|Hausarzt
+34|niedrigen|GFR|von|Glomerulären Filtrationsrate

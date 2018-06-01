@@ -9,16 +9,17 @@ This function compares and acronym with a potential full form and returns a list
 import configparser
 import logging
 import os
+import pickle
 import re
 from random import randint
 
 import requests
 
-from acres import resource_factory
-
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
+# TODO absolute path set because otherwise not found
+PICKLE_FOLDER = "C:\\Users\\SchulzS\\PycharmProjects\\acres\\models\\pickle\\"
 
 def import_conf(key):
     """
@@ -116,8 +117,10 @@ def fix_line_endings(
     :param line_break_marker_position:
     :return:
     """
-    char_ngram_dict = resource_factory.get_character_ngrams()
-
+    # char_ngram_dict = resource_factory.get_character_ngrams()
+    # todo line 119 commented out because problem with loading config file
+    # todo
+    char_ngram_dict = pickle.load(open(PICKLE_FOLDER + "character_ngrams.p", "rb"))
     out = ""
     long_text = long_text.strip().replace("\n", line_break_marker)
     i = 0
@@ -147,7 +150,7 @@ def fix_line_endings(
                 # What happens if the break marker symbol also occurs in the original text
                 # probably safe: using the "¶" character for line breaks
                 # Check for whole code how delimiters are handled and how this
-                # might interfer with text processing
+                # might interfere with text processing
                 out = out + ngr.replace(line_break_marker, " ")
                 i = i + char_ngram_length
                 if i >= len(long_text):

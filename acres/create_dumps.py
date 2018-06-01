@@ -80,7 +80,7 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
     return dict_ngramstat
 
 
-def create_ngramstat_dump(ngram_stat_filename, min_freq=2):
+def create_ngramstat_dump(ngram_stat_filename, min_freq):
     """
     Creates dump of ngram and ngram variants.
     Create dump of word indices for increasing performance.

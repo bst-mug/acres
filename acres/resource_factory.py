@@ -4,9 +4,8 @@ This module provides methods for lazily loading resources.
 
 """
 import logging
-import pickle
-
 import os.path
+import pickle
 
 from acres import create_dumps
 from acres import functions
@@ -90,7 +89,7 @@ def get_ngramstat():
             _log_file_not_found(output_file)
 
             ngram_file = get_ngramstat_txt()
-            ngramstat = create_dumps.create_ngramstat_dump(ngram_file)
+            ngramstat = create_dumps.create_ngramstat_dump(ngram_file, 1)
             pickle.dump(ngramstat, open(output_file, "wb"))
 
         logger.info("Loading ngramstat from %s...", output_file)
