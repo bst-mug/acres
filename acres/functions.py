@@ -9,17 +9,16 @@ This function compares and acronym with a potential full form and returns a list
 import configparser
 import logging
 import os
-import pickle
 import re
 from random import randint
 
 import requests
 
+from acres import resource_factory
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-# TODO absolute path set because otherwise not found
-PICKLE_FOLDER = "C:\\Users\\SchulzS\\PycharmProjects\\acres\\models\\pickle\\"
 
 def import_conf(key):
     """
@@ -117,10 +116,13 @@ def fix_line_endings(
     :param line_break_marker_position:
     :return:
     """
-    # char_ngram_dict = resource_factory.get_character_ngrams()
-    # todo line 119 commented out because problem with loading config file
-    # todo
-    char_ngram_dict = pickle.load(open(PICKLE_FOLDER + "character_ngrams.p", "rb"))
+    char_ngram_dict = resource_factory.get_character_ngrams()
+    # TODO line above commented out because problem with loading config file
+    # TODO absolute path set because otherwise not found
+    # import pickle
+    # PICKLE_FOLDER = "C:\\Users\\SchulzS\\PycharmProjects\\acres\\models\\pickle\\"
+    # char_ngram_dict = pickle.load(open(PICKLE_FOLDER + "character_ngrams.p", "rb"))
+
     out = ""
     long_text = long_text.strip().replace("\n", line_break_marker)
     i = 0
