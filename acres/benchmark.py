@@ -11,9 +11,6 @@ logger.setLevel(logging.DEBUG)
 # actual = get_synonyms_from_ngrams.find_embeddings("*", "TRINS", "*", 1, 2, 500, 1, 10)
 
 
-url_left = "http://www.bing.de/search?cc=de&q=%22"
-url_right = "%22"
-
 f = open("resources/Workbench.txt", "r", encoding="utf-8")
 # sRow = input("Select row number or press enter: ")
 for row in f:
