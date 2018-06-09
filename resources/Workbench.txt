@@ -1,7 +1,2 @@
-28|St.p.|K-TEP|links|Knie-Totalendoprothese
-29|permenantes|VH-Flimmern|mit|Vorhofflimmern
-30|Erschöpfung,|HF-Anstieg|von|Herzfrequenzanstieg
-31|nach|ICD|Implant|automatischen Kardioverter-Defibrillators
-32|mit|NMH|wurde|niedermolekularem Heparin
-33|den|HA|höflich|Hausarzt
-34|niedrigen|GFR|von|Glomerulären Filtrationsrate
+	BEFUND	¶ ---------- ¶ ¶ Wir danken für die Zuweisung des Pat. und b	Befund
+	BEFUND	¶ ---------- ¶ ¶ Wir danken für die Zuweisung des Pat. und b	Befund
