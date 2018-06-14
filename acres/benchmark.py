@@ -66,13 +66,13 @@ def analyze_row(input_row):
     # Order is important for the quality of the retrieved expansion
     patterns = [(left_trigram, right_trigram),  # trigrams
                 (left_bigram, right_trigram), (left_trigram, right_bigram),  # bigram + trigram
-                (left_bigram, right_bigram),    # bigrams
+                (left_bigram, right_bigram),  # bigrams
                 (left_unigram, right_bigram), (left_bigram, right_unigram),  # bigram + unigram
                 (left_unigram, right_unigram),  # unigrams
-                (left_bigram, "<SEL>"), (left_unigram, "<SEL>"),    # bigram/unigram + <SEL>
+                (left_bigram, "<SEL>"), (left_unigram, "<SEL>"),  # bigram/unigram + <SEL>
                 ("<SEL>", right_bigram), ("<SEL>", right_unigram),  # <SEL> + bigram/unigram
-                ("<SEL>", "<SEL>"),             # <SEL> + <SEL>
-                ("<SEL>", "<VOID>"), ("<VOID>", "<SEL>")            # <SEL> + <VOID>
+                ("<SEL>", "<SEL>"),  # <SEL> + <SEL>
+                ("<SEL>", "<VOID>"), ("<VOID>", "<SEL>")  # <SEL> + <VOID>
                 ]
 
     previous_left_pattern = previous_right_pattern = ""
@@ -101,17 +101,43 @@ def analyze_file(file):
 
     :param file: A tab-separated file that contains the records from the gold standard. Syntax:
     left context<TAB>acronym<TAB>right context<TAB>valid expansion 1<TAB>valid expansion 2<TAB>...
-    :return:
+    :return: A tuple with precision and recall
     """
+    total_acronyms = total_correct = total_found = 0
+    # FIXME calculate total_found
 
     f = open(file, "r", encoding="utf-8")
 
     for row in f:
+        total_acronyms += 1
         found = analyze_row(row)
         if found:
+            total_correct += 1
             print("FOUND")
 
     f.close()
 
+    precision = total_correct / total_found if total_found != 0 else 0
+    recall = total_correct / total_acronyms if total_acronyms != 0 else 0
 
-analyze_file("resources/Workbench.txt")
+    return precision, recall
+
+
+def calculate_f1(precision, recall):
+    """
+    Calculates the F1-score.
+
+    :param precision:
+    :param recall:
+    :return:
+    """
+    return (2 * precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
+
+
+if __name__ == "__main__":
+    (precision, recall) = analyze_file("resources/Workbench.txt")
+
+    f1 = calculate_f1(precision, recall)
+    print("Precision: ", precision)
+    print("Recall: ", recall)
+    print("F1: ", f1)
