@@ -1,4 +1,4 @@
-"""Resource factory
+"""Experiments
 
 This module extracts acronyms in context from
 Text and Training files
@@ -12,10 +12,6 @@ from acres import functions
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
-
-PICKLE_FOLDER = "models/pickle/"
-NGRAMS_FOLDER = "models/ngrams/"
-LOG_FOLDER = "models/log/"
 
 
 def extract_acronym_with_context(text, window):
@@ -48,11 +44,14 @@ Der Patient ist am 18.03.2010 bei K&Ö aus völligem WBF heraus zusammengebroche
 
 
 def get_acronym_sample():
-    output_file = "C:\\Users\\SchulzS\\PycharmProjects\\acres\\resources\\" + "acrosample.txt"
-    # corpus_path = functions.import_conf("CORPUS_PATH")
-    corpus_path = "S:\\DocumentCleansing\\CardioCorpusSplit\\Temp"
-    sample_size = 100
-    window_size = 500
+    #output_file = "C:\\Users\\SchulzS\\PycharmProjects\\acres\\resources\\" + "acrosample.txt"
+    output_file = "resources/acrosample.txt"
+
+    # corpus_path = "S:\\DocumentCleansing\\CardioCorpusSplit\\Temp"
+    corpus_path = functions.import_conf("CORPUS_PATH")
+
+    # sample_size = 100
+    # window_size = 500
     sampling_rate = 100
 
     digit_placeholder = "Ð"
