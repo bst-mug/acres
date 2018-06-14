@@ -9,7 +9,7 @@ from acres import get_synonyms_from_ngrams
 
 logging.config.fileConfig("logging.ini")
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 
 
 def build_search_ngrams(context, reverse=False):
@@ -40,10 +40,10 @@ def test_input(true_expansions, possible_expansions):
     :return:
     """
     for possible_expansion in possible_expansions:
-        logger.info(possible_expansion)
+        logger.debug(possible_expansion)
         for true_expansion in true_expansions:
             if possible_expansion.split("\t")[1].lower() == true_expansion.lower():
-                logger.info("FOUND: " + possible_expansion)
+                logger.debug("FOUND: " + possible_expansion)
                 return True
     return False
 
@@ -85,6 +85,8 @@ def analyze_row(input_row):
                 ("<SEL>", "<VOID>"), ("<VOID>", "<SEL>")  # <SEL> + <VOID>
                 ]
 
+    ret = {'found': False, 'correct': False}
+
     previous_left_pattern = previous_right_pattern = ""
     for pattern in patterns:
         left_pattern = pattern[0]
@@ -93,16 +95,18 @@ def analyze_row(input_row):
         # Quick optimization: don't search for patterns that happens to be the same as last one
         if left_pattern != previous_left_pattern or right_pattern != previous_right_pattern:
             possible_expansions = get_synonyms_from_ngrams.find_embeddings(left_pattern, acronym, right_pattern, 1, 1, 500, 2, 10)
-            correct = test_input(true_expansions, possible_expansions)
+
+            ret['found'] = True if len(possible_expansions) > 0 else ret['found']
+            ret['correct'] = test_input(true_expansions, possible_expansions)
 
             print(pattern)
-            if correct:
-                return True
+            if ret['correct']:
+                return ret
 
             previous_left_pattern = left_pattern
             previous_right_pattern = right_pattern
 
-    return False
+    return ret
 
 
 def analyze_file(file):
@@ -115,16 +119,18 @@ def analyze_file(file):
     :return: A tuple with precision and recall
     """
     total_acronyms = total_correct = total_found = 0
-    # FIXME calculate total_found
 
     f = open(file, "r", encoding="utf-8")
 
     for row in f:
         total_acronyms += 1
-        correct = analyze_row(row)
-        if correct:
+        row_analysis = analyze_row(row)
+        if row_analysis['found']:
+            total_found += 1
+
+        if row_analysis['correct']:
             total_correct += 1
-            print("FOUND")
+            print("CORRECT")
 
     f.close()
 
