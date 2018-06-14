@@ -31,19 +31,19 @@ def build_search_ngrams(context, reverse=False):
     return unigram, bigram, trigram
 
 
-def test_input(l_probe, lstExp):
+def test_input(true_expansions, possible_expansions):
     """
     Tests an acronym + context strings against the ngram model
 
-    :param l_probe:
-    :param lstExp:
+    :param true_expansions:
+    :param possible_expansions:
     :return:
     """
-    for term in lstExp:
-        logger.info(term)
-        for probe in l_probe:
-            if term.split("\t")[1].lower() == probe.lower():
-                logger.info("FOUND: " + term)
+    for possible_expansion in possible_expansions:
+        logger.info(possible_expansion)
+        for true_expansion in true_expansions:
+            if possible_expansion.split("\t")[1].lower() == true_expansion.lower():
+                logger.info("FOUND: " + possible_expansion)
                 return True
     return False
 
@@ -92,10 +92,11 @@ def analyze_row(input_row):
 
         # Quick optimization: don't search for patterns that happens to be the same as last one
         if left_pattern != previous_left_pattern or right_pattern != previous_right_pattern:
-            lstExp = get_synonyms_from_ngrams.find_embeddings(left_pattern, acronym, right_pattern, 1, 1, 500, 2, 10)
-            ngram_found = test_input(true_expansions, lstExp)
+            possible_expansions = get_synonyms_from_ngrams.find_embeddings(left_pattern, acronym, right_pattern, 1, 1, 500, 2, 10)
+            correct = test_input(true_expansions, possible_expansions)
+
             print(pattern)
-            if ngram_found:
+            if correct:
                 return True
 
             previous_left_pattern = left_pattern
@@ -120,8 +121,8 @@ def analyze_file(file):
 
     for row in f:
         total_acronyms += 1
-        found = analyze_row(row)
-        if found:
+        correct = analyze_row(row)
+        if correct:
             total_correct += 1
             print("FOUND")
 
