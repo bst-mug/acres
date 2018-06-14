@@ -69,37 +69,4 @@ for row in f:
                 l_prev = patt[0]
                 r_prev = patt[1]
 
-#        v = get_synonyms_from_ngrams.test_input(l_probe, lc, acro, rc)
-#          if v == True:
-#            out = out + "<DEF> <ACR> <DEF>: Found"
-#        else:
-#            out = out + "<DEF> <ACR> <DEF>: Not Found\n"
-#           v = get_synonyms_from_ngrams.test_input(l_probe, "<SEL>", acro, right_context)
-#          if v == True:
-#             out = out + "<SEL> <ACR> <DEF>: Found"
-#        else:
-#           out = out + "<SEL> <ACR> <DEF>: Not Found\n"
-#          v = get_synonyms_from_ngrams.test_input(l_probe, left_context, acro, "<SEL>")
-#         if v == True:
-#            out = out + "<DEF> <ACR> <SEL>: Found"
-#       else:
-#          out = out + "<DEF> <ACR> <SEL>: Not Found\n"
-#         v = get_synonyms_from_ngrams.test_input(l_probe, "<SEL>", acro, "<SEL>")
-#        if v == True:
-#           out = out + "<SEL> <ACR> <SEL>: Found"
-#      else:
-#         out = out + "<SEL> <ACR> <SEL>: Not Found\n"
-#        v = get_synonyms_from_ngrams.test_input(l_probe, "<VOID>", acro, "<SEL>")
-#       if v == True:
-#          out = out + "<VOID> <ACR> <SEL>: Found"
-#     else:
-#        out = out + "<VOID> <ACR> <SEL>: Not Found\n"
-#       v = get_synonyms_from_ngrams.test_input(l_probe, "<SEL>", acro, "<VOID>")
-#      if v == True:
-#         out = out + "<SEL> <ACR> <VOID>: Found"
-#    else:
-#      out = out + "<SEL> <ACR> <VOID>: Not Found"
-#  logger.info("Final analysis: " + row)
-#  print(out)
-
 f.close()
