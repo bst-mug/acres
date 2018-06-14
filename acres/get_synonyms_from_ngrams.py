@@ -13,26 +13,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-def test_input(l_probe, left, middle, right):
-    """
-    Tests an acronym + context strings against the ngram model
-
-    :param l_probe:
-    :param left:
-    :param middle:
-    :param right:
-    :return:
-    """
-    lstExp = find_embeddings(left, middle, right, 1, 1, 500, 2, 10)
-    for term in lstExp:
-        logger.info(term)
-        for probe in l_probe:
-            if term.split("\t")[1].lower() == probe.lower():
-                logger.info("FOUND: " + term)
-                return True
-    return False
-
-
 def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxcount,
                     min_num_tokens, max_num_tokens):
     """

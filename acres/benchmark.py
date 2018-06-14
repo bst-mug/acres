@@ -31,6 +31,26 @@ def build_search_ngrams(context, reverse=False):
     return unigram, bigram, trigram
 
 
+def test_input(l_probe, left, middle, right):
+    """
+    Tests an acronym + context strings against the ngram model
+
+    :param l_probe:
+    :param left:
+    :param middle:
+    :param right:
+    :return:
+    """
+    lstExp = get_synonyms_from_ngrams.find_embeddings(left, middle, right, 1, 1, 500, 2, 10)
+    for term in lstExp:
+        logger.info(term)
+        for probe in l_probe:
+            if term.split("\t")[1].lower() == probe.lower():
+                logger.info("FOUND: " + term)
+                return True
+    return False
+
+
 def analyze_row(input_row):
     """
     Analyze a given row of the gold standard.
@@ -75,8 +95,7 @@ def analyze_row(input_row):
 
         # Quick optimization: don't search for patterns that happens to be the same as last one
         if left_pattern != previous_left_pattern or right_pattern != previous_right_pattern:
-            ngram_found = get_synonyms_from_ngrams.test_input(true_expansions, left_pattern,
-                                                              acronym, right_pattern)
+            ngram_found = test_input(true_expansions, left_pattern, acronym, right_pattern)
             print(pattern)
             if ngram_found:
                 return True
