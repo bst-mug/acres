@@ -53,15 +53,8 @@ def analyze_row(input_row):
     right_context = splitted_row[2]
     true_expansions = splitted_row[3:]
 
-    left_ngrams = build_search_ngrams(left_context, True)
-    left_unigram = left_ngrams[0]
-    left_bigram = left_ngrams[1]
-    left_trigram = left_ngrams[2]
-
-    right_ngrams = build_search_ngrams(right_context)
-    right_unigram = right_ngrams[0]
-    right_bigram = right_ngrams[1]
-    right_trigram = right_ngrams[2]
+    (left_unigram, left_bigram, left_trigram) = build_search_ngrams(left_context, True)
+    (right_unigram, right_bigram, right_trigram) = build_search_ngrams(right_context)
 
     # Order is important for the quality of the retrieved expansion
     patterns = [(left_trigram, right_trigram),  # trigrams
