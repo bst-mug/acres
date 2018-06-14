@@ -31,17 +31,14 @@ def build_search_ngrams(context, reverse=False):
     return unigram, bigram, trigram
 
 
-def test_input(l_probe, left, middle, right):
+def test_input(l_probe, lstExp):
     """
     Tests an acronym + context strings against the ngram model
 
     :param l_probe:
-    :param left:
-    :param middle:
-    :param right:
+    :param lstExp:
     :return:
     """
-    lstExp = get_synonyms_from_ngrams.find_embeddings(left, middle, right, 1, 1, 500, 2, 10)
     for term in lstExp:
         logger.info(term)
         for probe in l_probe:
@@ -95,7 +92,8 @@ def analyze_row(input_row):
 
         # Quick optimization: don't search for patterns that happens to be the same as last one
         if left_pattern != previous_left_pattern or right_pattern != previous_right_pattern:
-            ngram_found = test_input(true_expansions, left_pattern, acronym, right_pattern)
+            lstExp = get_synonyms_from_ngrams.find_embeddings(left_pattern, acronym, right_pattern, 1, 1, 500, 2, 10)
+            ngram_found = test_input(true_expansions, lstExp)
             print(pattern)
             if ngram_found:
                 return True
