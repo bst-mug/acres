@@ -14,7 +14,15 @@ logger.setLevel(logging.DEBUG)
 
 
 def test_input(l_probe, left, middle, right):
-    # tests an acronym + context strings against the ngram model
+    """
+    Tests an acronym + context strings against the ngram model
+
+    :param l_probe:
+    :param left:
+    :param middle:
+    :param right:
+    :return:
+    """
     lstExp = find_embeddings(left, middle, right, 1, 1, 500, 2, 10)
     for term in lstExp:
         logger.info(term)
