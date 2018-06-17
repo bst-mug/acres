@@ -7,6 +7,7 @@ import logging
 import os.path
 import pickle
 
+from typing import Dict
 from acres import create_dumps
 from acres import functions
 
@@ -86,7 +87,13 @@ def _get_ngramstat_txt():
 NGRAMSTAT = []
 
 
-def get_ngramstat():
+def get_ngramstat() -> Dict[int, str]:
+    """
+    Load efficiently the ngramstat file.
+
+    :return: A dictionary of identifiers mapped to ngrams. Ngrams are tab-separated strings
+    containing the frequency and the corresponding ngram.
+    """
     global NGRAMSTAT
 
     if not NGRAMSTAT:
