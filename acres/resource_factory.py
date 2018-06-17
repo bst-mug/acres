@@ -91,6 +91,8 @@ def get_ngramstat() -> Dict[int, str]:
     """
     Load efficiently the ngramstat file.
 
+    @todo Use tuples instead of strings
+
     :return: A dictionary of identifiers mapped to ngrams. Ngrams are tab-separated strings
     containing the frequency and the corresponding ngram.
     """
