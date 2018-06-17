@@ -64,7 +64,12 @@ def get_index():
     return INDEX
 
 
-def get_ngramstat_txt():
+def _get_ngramstat_txt():
+    """
+    Private auxiliary method to create the ngramstat.txt file. Use get_ngramstat() when possible.
+
+    :return:
+    """
     output_file = NGRAMS_FOLDER + "ngramstat.txt"
 
     if not os.path.isfile(output_file):
@@ -88,7 +93,7 @@ def get_ngramstat():
         if not os.path.isfile(output_file):
             _log_file_not_found(output_file)
 
-            ngram_file = get_ngramstat_txt()
+            ngram_file = _get_ngramstat_txt()
             ngramstat = create_dumps.create_ngramstat_dump(ngram_file, 1)
             pickle.dump(ngramstat, open(output_file, "wb"))
 
@@ -138,7 +143,7 @@ def get_tokens():
     if not os.path.isfile(output_file):
         _log_file_not_found(output_file)
 
-        ngram_file = get_ngramstat_txt()
+        ngram_file = _get_ngramstat_txt()
         ngramstat = create_dumps.create_normalised_token_dump(ngram_file)
         pickle.dump(ngramstat, open(output_file, "wb"))
 
@@ -170,7 +175,7 @@ def warmup_cache():
     """
     get_morphemes()
     get_index()
-    get_ngramstat_txt()
+    _get_ngramstat_txt()
     get_ngramstat()
     get_acronym_ngrams()
     get_acronyms()
