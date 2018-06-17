@@ -25,7 +25,6 @@ class FilteredNGramStat(object):
 
     @todo ngramstat itself should be a generator
     """
-    NGRAMSTAT = resource_factory.get_ngramstat()
     NGRAM_SEPARATOR = "\t"
     TOKEN_SEPARATOR = " "
     PRINT_INTERVAL = 1000000
@@ -36,6 +35,7 @@ class FilteredNGramStat(object):
         :param ngram_size: The exact size of ngrams to be considered.
         """
         self.ngram_size = ngram_size
+        self.NGRAMSTAT = resource_factory.get_ngramstat()
 
     def __iter__(self):
         logger.debug("Iterating...")
@@ -78,7 +78,8 @@ def get_nn_model(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=
                          workers=4, sg=sg, hs=hs, negative=negative)
 
         # Hellrich
-        # model = gensim.models.Word2Vec(size=200, window=4, min_count=5, workers=8, alpha=0.01, sg=1, hs=0, negative=5, sample=1e-3)
+        # model = gensim.models.Word2Vec(size=200, window=4, min_count=5, workers=8, alpha=0.01,
+        # sg=1, hs=0, negative=5, sample=1e-3)
 
         model.save(MODEL_PATH)
 
