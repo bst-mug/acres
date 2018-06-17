@@ -1,3 +1,4 @@
+gensim
 requests
 html2text
 pylint
