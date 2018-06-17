@@ -45,6 +45,7 @@ def get_morphemes():
 
 INDEX = []
 
+
 def get_index():
     global INDEX
 
@@ -83,6 +84,7 @@ def _get_ngramstat_txt():
 
 
 NGRAMSTAT = []
+
 
 def get_ngramstat():
     global NGRAMSTAT
