@@ -28,7 +28,7 @@ def test_getindex():
     assert os.path.isfile(output_file)
 
 
-def test_get_ngramstart():
+def test_get_ngramstat():
     output_file = "tests/models/pickle/ngramstat.p"
 
     if os.path.isfile(output_file):
