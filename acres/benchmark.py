@@ -5,11 +5,11 @@ Benchmark code.
 import logging
 from logging.config import fileConfig
 
-from acres import get_synonyms_from_ngrams
-
 logging.config.fileConfig("logging.ini")
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+from acres import get_synonyms_from_ngrams
 
 
 def build_search_ngrams(context, reverse=False):
@@ -24,10 +24,9 @@ def build_search_ngrams(context, reverse=False):
     unigram = bigram = trigram = "<SEL>"
     if context != "":
         tokens = context.split(" ")
-        tokens = tokens[::-1] if reverse else tokens
-        unigram = " ".join(tokens[:1])
-        bigram = " ".join(tokens[:2])
-        trigram = " ".join(tokens[:3])
+        unigram = " ".join(tokens[-1:]) if reverse else " ".join(tokens[:1])
+        bigram = " ".join(tokens[-2:]) if reverse else " ".join(tokens[:2])
+        trigram = " ".join(tokens[-3:]) if reverse else " ".join(tokens[:3])
     return unigram, bigram, trigram
 
 
