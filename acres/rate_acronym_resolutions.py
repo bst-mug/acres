@@ -208,3 +208,6 @@ def get_acronym_score(acro, full, language="de"):
                 score = 0.01
             score = score * pen
     return score
+
+
+print(get_acronym_score("CMP", "Cardiomyopathie", language="de") )

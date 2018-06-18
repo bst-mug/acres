@@ -91,13 +91,13 @@ def test_transliterate_to_seven_bit():
 
 def test_substitute_k_and_f_by_context():
     # FIXME Not expected
-    assert False == functions.substitute_k_and_f_by_context("a")
+    assert False == functions.substitute_k_and_z_by_context("a")
 
     # TODO Explain reasoning
-    assert "aB" == functions.substitute_k_and_f_by_context("aB")
-    assert "abCdef" == functions.substitute_k_and_f_by_context("abCdef")
+    assert "aB" == functions.substitute_k_and_z_by_context("aB")
+    assert "abCdef" == functions.substitute_k_and_z_by_context("abCdef")
 
-    assert "PHARMAZY" == functions.substitute_k_and_f_by_context("farmacy")
+    assert "PHARMAZY" == functions.substitute_k_and_z_by_context("farmacy")
 
 
 def test_is_acronym():
