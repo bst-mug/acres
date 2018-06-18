@@ -76,8 +76,9 @@ def get_acronym_score(acro, full, language="de"):
             # this also works for the case in which the acronym is in parentheses
             # Here, false positives are likely. Must be checked!!
     # acronym must have at least two characters: all those expressions like "Streptococcus B" or
-    # "Vitamin C" should not be considered acronyms. Normally these compositions are lexicalised
+    # "Vitamin C" should not be considered containng acronyms. Normally these compositions are lexicalised
     # May be relevant for assessing two letter forms like "A cerebralis"
+    # TODO
     # (variant of "A. cerebralis") which is a short form for "Arteria cerbralis".
     # This should be resolved
     if len(acro) < 2:
@@ -124,7 +125,7 @@ def get_acronym_score(acro, full, language="de"):
     # first chars must be the same
     if acro_low[0] != full_low[0]:
         return 0  # this is very strict. The only exception would be a Web-derived
-        # unambiguous acro-full patter (already treated above)
+        # unambiguous acro-full pattern (already treated above)
     # last char of acronym must occur in last word of full
     # but not at the end unless it is a single letter
     # "EKG" = "Entwicklung" should not match
