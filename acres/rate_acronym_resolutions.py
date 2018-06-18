@@ -30,6 +30,30 @@ def get_acronym_score(acro, full, language="de"):
     In the latter case, full would take this form, i.e. a string that contains both the acronym and
     the expansion
 
+    For checking for valid German expansions it is important to consider the K-C-Z rules
+    K-C-Z transformation in medical terms:
+    "Correct" German writing avoids " CA", "CE", "CI", "CO", "CU, "CY", "COE", "CÖ", "CAE", "CÄ" , "PH"
+    and prefers
+    "KA", "ZE", "ZI", "KO", "KU", "ZY", "ZOE", "ZÖ", "ZAE", "ZÄ", "F"
+
+    Acronyms often derive from English where the above avoids do not apply.
+    Example:
+    CMP = Cardiomyopathy
+
+    In these cases, "wrong" German spelling (Cardiomyopathie) is common and would be a valid expansion.
+    But also a "correctly" spelt German word can be the expansion of an English acronym with "C"
+
+    Here CMP = Kardiomyopathie
+
+    (Unlikely the other way round.)
+
+    Let cAcro be an acronym containing a "C" and a ZK-Expansion being a German expanded term that uses correct spelling.
+    Then cAcro cannot be resolved.
+    Hence for all cAcros check alternatively against German ZK terms in which K-C-Z transformation is done
+    this is done by generating a test string using the function substitute_k_and_f_and_z_by_context
+    (this test string is upper case and still needs to be decapitalised)
+
+
     TODO
     all scoring / penalization is pure heuristics. Plausibility should be tested with many
     examples !
