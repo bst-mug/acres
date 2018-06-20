@@ -4,6 +4,7 @@ Benchmark code.
 
 import logging
 from logging.config import fileConfig
+from typing import Dict, Tuple
 
 logging.config.fileConfig("logging.ini")
 logger = logging.getLogger(__name__)
@@ -12,7 +13,7 @@ logger.setLevel(logging.INFO)
 from acres import get_synonyms_from_ngrams
 
 
-def build_search_ngrams(context, reverse=False):
+def build_search_ngrams(context: str, reverse=False) -> Tuple[str, str, str]:
     """
     Builds a context tuple containing 1 to n-grams
 
@@ -30,7 +31,7 @@ def build_search_ngrams(context, reverse=False):
     return unigram, bigram, trigram
 
 
-def test_input(true_expansions, possible_expansions):
+def test_input(true_expansions: list, possible_expansions: list) -> bool:
     """
     Tests an acronym + context strings against the ngram model
 
@@ -47,15 +48,17 @@ def test_input(true_expansions, possible_expansions):
     return False
 
 
-def analyze_row(input_row):
+def analyze_row(input_row: str) -> Dict[str, bool]:
     """
     Analyze a given row of the gold standard.
 
-    :param input_row:
-    :return:
+    :param input_row: A tab-separated string
+    :return: A dictionary with two keys: 'found' and 'correct', each key pointing to a boolean
     """
+    ret = {'found': False, 'correct': False}
+
     if input_row == "":
-        return
+        return ret
 
     row = input_row.strip("\n")
     logger.info("=======================")
@@ -84,8 +87,6 @@ def analyze_row(input_row):
                 ("<SEL>", "<VOID>"), ("<VOID>", "<SEL>")  # <SEL> + <VOID>
                 ]
 
-    ret = {'found': False, 'correct': False}
-
     previous_left_pattern = previous_right_pattern = ""
     for pattern in patterns:
         left_pattern = pattern[0]
@@ -108,18 +109,18 @@ def analyze_row(input_row):
     return ret
 
 
-def analyze_file(file):
+def analyze_file(filename: str) -> tuple:
     """
     Analyzes a gold standard with text excerpts centered on an acronym, followed by n valid
     expansions.
 
-    :param file: A tab-separated file that contains the records from the gold standard. Syntax:
+    :param filename: A tab-separated file that contains the records from the gold standard. Syntax:
     left context<TAB>acronym<TAB>right context<TAB>valid expansion 1<TAB>valid expansion 2<TAB>...
     :return: A tuple with precision and recall
     """
     total_acronyms = total_correct = total_found = 0
 
-    f = open(file, "r", encoding="utf-8")
+    f = open(filename, "r", encoding="utf-8")
 
     for row in f:
         total_acronyms += 1
@@ -139,7 +140,7 @@ def analyze_file(file):
     return precision, recall
 
 
-def calculate_f1(precision, recall):
+def calculate_f1(precision: float, recall: float) -> float:
     """
     Calculates the F1-score.
 

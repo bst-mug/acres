@@ -13,8 +13,8 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-def find_embeddings(str_left, str_middle, str_right, min_win_size, minfreq, maxcount,
-                    min_num_tokens, max_num_tokens):
+def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size: int, minfreq: int,
+                    maxcount: int, min_num_tokens: int, max_num_tokens: int) -> list:
     """
     Input str_middle, together with a series of filter parameters
     Three cases of embeddings: 1. bilateral, 2.left, 3.right
