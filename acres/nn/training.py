@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 # MUST be after logging definition, so that it works properly
-from gensim.models import Word2Vec
+from gensim.models import Word2Vec, Phrases
 from acres import resource_factory
 
 
@@ -114,7 +114,11 @@ def get_nn_model(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=
 
         sentences = FilteredNGramStat(ngram_size)
 
-        model = Word2Vec(sentences, size=net_size, alpha=alpha, window=ngram_size - 1,
+        # Find common bigram collocations
+        bigram_transformer = Phrases(sentences)
+        collocations = bigram_transformer[sentences]
+
+        model = Word2Vec(collocations, size=net_size, alpha=alpha, window=ngram_size - 1,
                          min_count=min_count,
                          workers=4, sg=sg, hs=hs, negative=negative)
 
