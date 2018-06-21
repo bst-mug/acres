@@ -87,4 +87,5 @@ def get_acronym_sample():
     g.close()
 
 
-get_acronym_sample()
+if __name__ == "__main__":
+    get_acronym_sample()
