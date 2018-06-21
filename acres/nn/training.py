@@ -6,7 +6,9 @@
 
 import logging
 import os.path
+import re
 from logging.config import fileConfig
+from typing import List
 
 logging.config.fileConfig("logging.ini")
 logger = logging.getLogger(__name__)
@@ -39,17 +41,56 @@ class FilteredNGramStat(object):
 
     def __iter__(self):
         logger.debug("Iterating...")
+
+        largest_reduction = 0
+
         for identifier, freq_ngram in self.NGRAMSTAT.items():
             freq, ngram = freq_ngram.split("\t")
             tokens = ngram.split(self.TOKEN_SEPARATOR)
+            length_tokens = len(tokens)
 
             # Only consider ngrams of a given size
-            if len(tokens) == self.ngram_size:
+            if length_tokens == self.ngram_size:
                 logger.debug("%s: %s -> %s", identifier, freq,
                              ngram) if identifier % self.PRINT_INTERVAL == 0 else 0
+
+                #cleaned_tokens = tokens
+                cleaned_tokens = preprocess(tokens)
+
+                # FIXME drop empty ngrams...
+                # FIXME what happens with word2vec if window > len(cleaned_tokens)?
+                # Should we force a smaller window size guaranteed to always fit?
+                length_difference = length_tokens - len(cleaned_tokens)
+                if (length_difference > 0 and length_difference > largest_reduction):
+                    largest_reduction = length_difference
+                    logger.debug("New largest reduction is %d (from %d to %d) on ngram '%s'",
+                                 largest_reduction, length_tokens, len(cleaned_tokens), ngram)
+
                 # Repeat ngram freq times
                 for i in range(int(freq)):
-                    yield tokens
+                    yield cleaned_tokens
+
+
+def preprocess(tokens: List[str]) -> List[str]:
+    """
+    Pre-process a given list of tokens by removing special characters.
+
+    :param tokens:
+    :return:
+    """
+    ret = []
+
+    regex_disallowed = re.compile("[^a-zA-ZÐ]")
+
+    for token in tokens:
+        # TODO normalize case if not acronym?
+        # TODO normalize german characters
+        # TODO fix ¶ cleaning bug
+        cleaned_token = regex_disallowed.sub("", token)
+        if len(cleaned_token) > 0:
+            ret.append(cleaned_token)
+
+    return ret
 
 
 def get_nn_model(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=0, negative=5):
