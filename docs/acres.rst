@@ -12,6 +12,14 @@ acres.create\_dumps module
     :undoc-members:
     :show-inheritance:
 
+acres.experiments module
+------------------------
+
+.. automodule:: acres.experiments
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 acres.find\_synonym\_for\_acronyms\_in\_ngrams module
 -----------------------------------------------------
 
@@ -56,9 +64,9 @@ acres.resource\_factory module
 ------------------------------
 
 .. automodule:: acres.resource_factory
-:members:
-        :undoc-members:
-            :show-inheritance:
+    :members:
+    :undoc-members:
+    :show-inheritance:
 
 acres.text\_cleanser module
 ---------------------------
