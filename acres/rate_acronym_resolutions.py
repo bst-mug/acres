@@ -234,4 +234,5 @@ def get_acronym_score(acro, full, language="de"):
     return score
 
 
-print(get_acronym_score("CMP", "Cardiomyopathie", language="de") )
+if __name__ == "__main__":
+    print(get_acronym_score("CMP", "Cardiomyopathie", language="de") )
