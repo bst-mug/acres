@@ -4,6 +4,7 @@ Stefan Schulz 12 Nov 2017
 
 import collections
 import logging
+from typing import Dict, Set, List
 
 from acres import functions
 from acres import resource_factory
@@ -12,7 +13,8 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="Ð", break_marker="¶"):
+def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="Ð",
+                                 break_marker="¶") -> Dict[str, int]:
     """
     - Takes a corpus consisting of text files in a single directory
     - Substitutes digits and line breaks
@@ -43,8 +45,8 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
 # TODO :   we have to assure that unit tests with small input data do not
 # TODO : overwrite the models (ngram and pickle)
 
-def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_length=7, digit_placeholder="Ð",
-                                 break_marker="¶"):
+def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_length=7,
+                                 digit_placeholder="Ð", break_marker="¶") -> Dict[str, int]:
     """
     Takes a corpus consisting of text files in a single directory
     Substitutes digits and line breaks
@@ -80,7 +82,7 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
     return dict_ngramstat
 
 
-def create_ngramstat_dump(ngram_stat_filename, min_freq):
+def create_ngramstat_dump(ngram_stat_filename: str, min_freq: int) -> Dict[int, str]:
     """
     Creates dump of ngram and ngram variants.
     Create dump of word indices for increasing performance.
@@ -150,7 +152,7 @@ def create_ngramstat_dump(ngram_stat_filename, min_freq):
     return ngramstat
 
 
-def create_index(ngramstat):
+def create_index(ngramstat: Dict[int, str]) -> Dict[str, Set[int]]:
     """
     Create an inverted index for performance issue when retrieving ngram records.
 
@@ -171,7 +173,7 @@ def create_index(ngramstat):
     return index
 
 
-def create_normalised_token_dump(ngram_stat):
+def create_normalised_token_dump(ngram_stat: str) -> Set[str]:
     """
     Creates a set of all tokens in the ngram table, taking into account all possible variants
     typical for clinical German.
@@ -213,7 +215,7 @@ def create_normalised_token_dump(ngram_stat):
     return all_token_variants
 
 
-def create_acro_dump():
+def create_acro_dump() -> List[str]:
     """
     Creates and dumps set of acronyms from ngram statistics.
 
@@ -239,7 +241,7 @@ def create_acro_dump():
     return acronyms
 
 
-def create_new_acro_dump():
+def create_new_acro_dump() -> List[str]:
     """
 
     :return:
@@ -263,7 +265,7 @@ def create_new_acro_dump():
     return new_acronym_ngrams
 
 
-def create_morpho_dump(lexicon_file, append_to=None):
+def create_morpho_dump(lexicon_file: str, append_to=None) -> Set[str]:
     """
     Creates and dumps set of plausible English and German morphemes
     from morphosaurus dictionary.

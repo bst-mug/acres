@@ -7,7 +7,7 @@ import logging
 import os.path
 import pickle
 
-from typing import Dict
+from typing import Dict, Set, List
 from acres import create_dumps
 from acres import functions
 
@@ -19,15 +19,15 @@ NGRAMS_FOLDER = "models/ngrams/"
 LOG_FOLDER = "models/log/"
 
 
-def get_log_corpus_filename():
+def get_log_corpus_filename() -> str:
     return LOG_FOLDER + "logCorpus.txt"
 
 
-def get_log_web_filename():
+def get_log_web_filename() -> str:
     return LOG_FOLDER + "logWebs.txt"
 
 
-def get_morphemes():
+def get_morphemes() -> Set[str]:
     output_file = PICKLE_FOLDER + "morphemes.p"
 
     if not os.path.isfile(output_file):
@@ -47,7 +47,7 @@ def get_morphemes():
 INDEX = []
 
 
-def get_index():
+def get_index() -> Dict[str, Set[int]]:
     global INDEX
 
     if not INDEX:
@@ -66,7 +66,7 @@ def get_index():
     return INDEX
 
 
-def _get_ngramstat_txt():
+def _get_ngramstat_txt() -> str:
     """
     Private auxiliary method to create the ngramstat.txt file. Use get_ngramstat() when possible.
 
@@ -114,7 +114,7 @@ def get_ngramstat() -> Dict[int, str]:
     return NGRAMSTAT
 
 
-def get_acronym_ngrams():
+def get_acronym_ngrams() -> List[str]:
     """
     List of ngrams, containing acronyms
 
@@ -131,7 +131,7 @@ def get_acronym_ngrams():
     return pickle.load(open(output_file, "rb"))
 
 
-def get_acronyms():
+def get_acronyms() -> List[str]:
     """
     List of acronyms
 
@@ -148,7 +148,7 @@ def get_acronyms():
     return pickle.load(open(output_file, "rb"))
 
 
-def get_tokens():
+def get_tokens() -> Set[str]:
     output_file = PICKLE_FOLDER + "tokens.p"
 
     if not os.path.isfile(output_file):
@@ -161,7 +161,7 @@ def get_tokens():
     return pickle.load(open(output_file, "rb"))
 
 
-def get_character_ngrams():
+def get_character_ngrams() -> Dict[str, int]:
     pickle_output_file = PICKLE_FOLDER + "character_ngrams.p"
     ngram_output_file = NGRAMS_FOLDER + "character_ngrams.txt"
 
@@ -194,7 +194,7 @@ def warmup_cache():
     get_character_ngrams()
 
 
-def write_txt(resource, filename):
+def write_txt(resource, filename: str) -> int:
     counter = 0
 
     output = []
@@ -212,5 +212,5 @@ def write_txt(resource, filename):
     return counter
 
 
-def _log_file_not_found(filename):
+def _log_file_not_found(filename: str):
     logger.warning("%s not found, will regenerate.", filename)

@@ -11,6 +11,7 @@ import logging
 import os
 import re
 from random import randint
+from typing import Dict, List, Tuple
 
 import requests
 
@@ -62,7 +63,7 @@ def get_url(url, timeout=1):
         return []
 
 
-def split_ngram(ngram):
+def split_ngram(ngram: str) -> List[Tuple[str, str, str]]:
     """
     Splits a token ngram with acronym(s) into all combinations of left - acro - token.
 
@@ -101,10 +102,10 @@ def extract_acronym_definition(str_probe, max_length):
 
 
 def fix_line_endings(
-        long_text,
+        long_text: str,
         line_break_marker="¶",
         char_ngram_length=8,
-        line_break_marker_position=3):
+        line_break_marker_position=3) -> str:
     """
     addresses the problem that many texts come with
            artificial line breaks. These breaks are removed if
@@ -176,7 +177,7 @@ def fix_line_endings(
 # added " <EOL>" for end of line and substituted digits by "Ð"
 
 
-def clear_digits(str_in, substitute_char):
+def clear_digits(str_in: str, substitute_char: str) -> str:
     """
        substitutes all digits by a character (or string)
 
@@ -195,7 +196,7 @@ def clear_digits(str_in, substitute_char):
     return out
 
 
-def create_ngram_statistics(input_string, n_min, n_max):
+def create_ngram_statistics(input_string: str, n_min: int, n_max: int) -> Dict[str, int]:
     """
     Creates a dictionary that counts each nGram in an input string. Delimiters are spaces.
 
@@ -226,7 +227,7 @@ def create_ngram_statistics(input_string, n_min, n_max):
     return output
 
 
-def transliterate_to_seven_bit(str_in, language="de"):
+def transliterate_to_seven_bit(str_in: str, language="de") -> str:
     """
     Converts string to 7-bit ASCII, considering language - specific rules,
     such as in German "Ä" -> "AE", in English "Ä" -> "A"
