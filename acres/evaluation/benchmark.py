@@ -4,7 +4,7 @@ Benchmark code.
 
 import logging
 from logging.config import fileConfig
-from typing import Dict, Tuple
+from typing import Dict, Tuple, List
 
 logging.config.fileConfig("logging.ini")
 logger = logging.getLogger(__name__)
@@ -42,10 +42,26 @@ def test_input(true_expansions: list, possible_expansions: list) -> bool:
     for possible_expansion in possible_expansions:
         logger.debug(possible_expansion)
         for true_expansion in true_expansions:
-            if possible_expansion.split("\t")[1].lower() == true_expansion.lower():
+            if possible_expansion.lower() == true_expansion.lower():
                 logger.debug("FOUND: " + possible_expansion)
                 return True
     return False
+
+
+def _strip_frequencies(embeddings: List[str], min_freq: int = 0) -> List[str]:
+    """
+    Strip out frequencies from a given embedding list obtained via find_embeddings.
+
+    :param embeddings: A list of embeddings in the format freq\tembedding.
+    :param min_freq: Minimum frequency to be used (defaults to 0).
+    :return: A list of embeddings containing only strings with a minimum frequency.
+    """
+    ret = []
+    for embedding in embeddings:
+        (freq, ngram) = embedding.split("\t")
+        if int(freq) >= min_freq:
+            ret.append(ngram)
+    return ret
 
 
 def analyze_row(input_row: str) -> Dict[str, bool]:
@@ -95,6 +111,7 @@ def analyze_row(input_row: str) -> Dict[str, bool]:
         # Quick optimization: don't search for patterns that happens to be the same as last one
         if left_pattern != previous_left_pattern or right_pattern != previous_right_pattern:
             possible_expansions = get_synonyms_from_ngrams.find_embeddings(left_pattern, acronym, right_pattern, 1, 1, 500, 2, 10)
+            possible_expansions = _strip_frequencies(possible_expansions)
 
             ret['found'] = True if len(possible_expansions) > 0 else ret['found']
             ret['correct'] = test_input(true_expansions, possible_expansions)
