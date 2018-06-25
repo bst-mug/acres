@@ -48,7 +48,7 @@ def test_input(true_expansions: list, possible_expansions: list) -> bool:
     return False
 
 
-def _strip_frequencies(embeddings: List[str], min_freq: int = 0) -> List[str]:
+def _strip_frequencies(embeddings: List[Tuple[int,str]], min_freq: int = 0) -> List[str]:
     """
     Strip out frequencies from a given embedding list obtained via find_embeddings.
 
@@ -59,7 +59,7 @@ def _strip_frequencies(embeddings: List[str], min_freq: int = 0) -> List[str]:
     ret = []
     for embedding in embeddings:
         (freq, ngram) = embedding
-        if int(freq) >= min_freq:
+        if freq >= min_freq:
             ret.append(ngram)
     return ret
 
