@@ -110,8 +110,8 @@ def analyze_row(input_row: str) -> Dict[str, bool]:
 
         # Quick optimization: don't search for patterns that happens to be the same as last one
         if left_pattern != previous_left_pattern or right_pattern != previous_right_pattern:
-            possible_expansions = get_synonyms_from_ngrams.find_embeddings(left_pattern, acronym, right_pattern, 1, 1, 500, 2, 10)
-            possible_expansions = _strip_frequencies(possible_expansions)
+            embeddings = get_synonyms_from_ngrams.find_embeddings(left_pattern, acronym, right_pattern, 1, 1, 500, 2, 10)
+            possible_expansions = _strip_frequencies(embeddings)
 
             ret['found'] = True if len(possible_expansions) > 0 else ret['found']
             ret['correct'] = test_input(true_expansions, possible_expansions)

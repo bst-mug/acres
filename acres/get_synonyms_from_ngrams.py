@@ -88,8 +88,8 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
             if token != "<VOID>" and token != "<SEL>":
                 all_sets.append(index[token])
         ngram_selection = set.intersection(*all_sets)
-        for ngram in ngram_selection:
-            sel_rows.append(ngramstat[ngram])
+        for ngram_id in ngram_selection:
+            sel_rows.append(ngramstat[ngram_id])
 
         logger.debug("Number of matching ngrams by word index: %d", len(sel_rows))
 
@@ -157,10 +157,10 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
             ngrams_with_surroundings.sort(reverse=True)
             # Surrounding list sorted
             counter = 0
-            for ngram in ngrams_with_surroundings:
+            for ngram_id in ngrams_with_surroundings:
                 if counter > max_num:
                     break
-                row = ngramstat[ngram]
+                row = ngramstat[ngram_id]
                 ngram = row.split("\t")[1].strip()
                 freq = int(row.split("\t")[0])
                 match = re.search(regex_bed, ngram, re.IGNORECASE)
