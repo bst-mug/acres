@@ -11,7 +11,7 @@ import logging
 import os
 import re
 from random import randint
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Union
 
 import requests
 
@@ -82,7 +82,7 @@ def split_ngram(ngram: str) -> List[Tuple[str, str, str]]:
     return out
 
 
-def extract_acronym_definition(str_probe: str, max_length: int) -> Tuple[str, str]:
+def extract_acronym_definition(str_probe: str, max_length: int) -> Union[None, Tuple[str, str]]:
     """
     Identifies potential acronym / definition pairs and extract acronym and definition candidates.
 
@@ -99,6 +99,8 @@ def extract_acronym_definition(str_probe: str, max_length: int) -> Tuple[str, st
                 return left, right
             if is_acronym(right, max_length, "Ð") and not is_acronym(left, max_length, "Ð"):
                 return right, left
+
+    return None
 
 
 def fix_line_endings(
@@ -349,7 +351,7 @@ def is_acronym(str_probe: str, max_length: int =7, digit_placeholder="Ð") -> bo
     """
     if len(digit_placeholder) > 1:
         logger.error("Digit placeholders must be empty or a single character")
-        return
+        return False
 
     ret = False
     replaced_probe = str_probe.replace(digit_placeholder, "0")
@@ -416,7 +418,7 @@ def random_sub_list(in_list: list, max_num: int) -> list:
     return lst_out
 
 
-def check_acro_vs_expansion(acro, full):
+def check_acro_vs_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
     """
 
     :param acro:
@@ -472,7 +474,7 @@ def check_acro_vs_expansion(acro, full):
 # logger.debug(extractAcroDef("Elektrokardiogramm", 7))
 # logger.debug(extractAcroDef("Elektrokardiogramm (EKG)", 7))
 
-def find_acro_expansions(lst_n_gram_stat):
+def find_acro_expansions(lst_n_gram_stat: List[str]) -> List[str]:
     """
     Identifies acronyms and looks for possible expansions.
     Takes the most frequent one.
@@ -544,7 +546,7 @@ def find_acro_expansions(lst_n_gram_stat):
     return ret
 
 
-def robust_text_import_from_dir(path):
+def robust_text_import_from_dir(path: str) -> List[str]:
     """
     Read the content of valid text files from a path into a list of strings.
 
