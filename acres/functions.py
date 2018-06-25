@@ -82,7 +82,7 @@ def split_ngram(ngram: str) -> List[Tuple[str, str, str]]:
     return out
 
 
-def extract_acronym_definition(str_probe, max_length):
+def extract_acronym_definition(str_probe: str, max_length: int) -> Tuple[str, str]:
     """
     Identifies potential acronym / definition pairs and extract acronym and definition candidates.
 
@@ -336,7 +336,7 @@ def substitute_k_and_f_and_z_by_context(str_in, language="de"):
             replace("ZY", "CY").replace("F", "PH")
 
 
-def is_acronym(str_probe, max_length=7, digit_placeholder="Ð"):
+def is_acronym(str_probe: str, max_length: int =7, digit_placeholder="Ð") -> bool:
     """
     Identifies Acronyms, restricted by absolute length
     "Ð" as default placeholder for digits. (e.g. "Ð")
@@ -366,7 +366,7 @@ def is_acronym(str_probe, max_length=7, digit_placeholder="Ð"):
     return ret
 
 
-def simplify_german_string(str_in_german):
+def simplify_german_string(str_in_german: str) -> str:
     """
     Decapitalises, substitutes umlauts, sharp s and converts k and z to c
 
@@ -383,7 +383,7 @@ def simplify_german_string(str_in_german):
         "ö", "oe").replace("ü", "ue")
 
 
-def diacritics():
+def diacritics() -> str:
     """
     TODO ... explain why
 
@@ -392,7 +392,7 @@ def diacritics():
     return "µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ"
 
 
-def random_sub_list(in_list, max_num):
+def random_sub_list(in_list: list, max_num: int) -> list:
     """
     Generates random sublist.
 
