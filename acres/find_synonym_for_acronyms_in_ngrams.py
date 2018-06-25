@@ -10,7 +10,7 @@ import time
 
 from acres import functions
 from acres import get_synonyms_from_ngrams
-from acres import get_web_ngram_stat
+from acres.web import get_web_ngram_stat
 from acres import rate_acronym_resolutions
 from acres import resource_factory
 

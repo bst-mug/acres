@@ -1,6 +1,3 @@
-from acres import get_web_ngram_stat
-
-
 def test_ngrams_web_dump():
     pass
 
