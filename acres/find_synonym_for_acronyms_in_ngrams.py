@@ -119,8 +119,7 @@ def _process_corpus(corpus, acronym, ngram, log):
 
     for item in corpus:
         old_exp = ""
-        exp = item.split("\t")[1]  # Ngram expression
-        freq = int(item.split("\t")[0])  # Frequency
+        (freq, exp) = item  # Frequency, Ngram expression
 
         first_condition = re.search("^[\s\-A-Za-z0-9" + dia + "]*$", exp) is not None
         second_condition = acronym.lower() != exp.lower()[0:len(acronym.lower())]

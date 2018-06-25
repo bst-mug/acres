@@ -5,6 +5,7 @@ Finds synonyms using a n-gram frequency list from related corpus
 
 import logging
 import re
+from typing import List, Tuple
 
 from acres import functions
 from acres import resource_factory
@@ -14,7 +15,7 @@ logger.setLevel(logging.DEBUG)
 
 
 def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size: int, minfreq: int,
-                    maxcount: int, min_num_tokens: int, max_num_tokens: int) -> list:
+                    maxcount: int, min_num_tokens: int, max_num_tokens: int) -> List[Tuple[int,str]]:
     """
     Input str_middle, together with a series of filter parameters
     Three cases of embeddings: 1. bilateral, 2.left, 3.right
@@ -161,7 +162,7 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
                     break
                 row = ngramstat[ngram]
                 ngram = row.split("\t")[1].strip()
-                freq = row.split("\t")[0]
+                freq = int(row.split("\t")[0])
                 match = re.search(regex_bed, ngram, re.IGNORECASE)
                 if match is not None:
                     # logger.debug(regex_bed)
@@ -172,7 +173,7 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
                             digit not in long_form:
                         # logger.debug(ngramfrequency, long_form, "   [" + ngram + "]")
                         counter += 1
-                        rec = freq + "\t" + long_form.strip()
+                        rec = (freq, long_form.strip())
                         if not rec in out:
                             out.append(rec)
 

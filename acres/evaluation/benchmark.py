@@ -58,7 +58,7 @@ def _strip_frequencies(embeddings: List[str], min_freq: int = 0) -> List[str]:
     """
     ret = []
     for embedding in embeddings:
-        (freq, ngram) = embedding.split("\t")
+        (freq, ngram) = embedding
         if int(freq) >= min_freq:
             ret.append(ngram)
     return ret

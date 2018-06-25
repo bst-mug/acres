@@ -7,6 +7,7 @@ in decreasing frequency
 """
 
 import logging
+from typing import List, Tuple
 
 import html2text
 
@@ -24,7 +25,7 @@ NEWLINE = "¶"
 NUMERIC = "Ð"
 
 
-def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
+def ngrams_web_dump(url, min_num_tokens, max_num_tokens) -> List[Tuple[int,str]]:
     """
     Produces an n gram statistics from a Web Query, parsing the first return page
 
@@ -60,7 +61,7 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens):
 
     output = functions.create_ngram_statistics(out, min_num_tokens, max_num_tokens)
     for ngram in output:
-        out_l.append('{:0>4}'.format(output[ngram]) + "\t" + ngram)
+        out_l.append((output[ngram], ngram))
     out_l.sort(reverse=True)
     logger.debug(out_l)
 
