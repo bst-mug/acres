@@ -7,6 +7,7 @@ import math
 import random
 import re
 import time
+from typing import Dict, List, Tuple
 
 from acres import functions
 from acres import get_synonyms_from_ngrams
@@ -23,7 +24,7 @@ VERBOSE = False
 DIV = 1  # for sampling, if no sampling DIV = 1. Sampling is used for testing
 
 
-def find_synonyms():
+def find_synonyms() -> None:
     """
     Finds synonyms using a n-gram frequency list from related corpus.
     TODO: reformatting logfile and filter criteria
@@ -76,11 +77,11 @@ def find_synonyms():
                 if NUMERIC in ngram:
                     li_web = []
                 else:
-                    split = left_string + " " + acronym + " " + right_string
-                    split = split.replace(".", " ").replace(",", " ")
-                    split = split.replace("  ", " ")
-                    split = split.replace(" ", "+")
-                    str_url = "http://www.bing.de/search?cc=de&q=%22" + split + "%22"
+                    query = left_string + " " + acronym + " " + right_string
+                    query = query.replace(".", " ").replace(",", " ")
+                    query = query.replace("  ", " ")
+                    query = query.replace(" ", "+")
+                    str_url = "http://www.bing.de/search?cc=de&q=%22" + query + "%22"
                     time.sleep(random.randint(0, 2000) / 1000)
                     li_web = get_web_ngram_stat.ngrams_web_dump(str_url, 1, 10)
 
@@ -105,7 +106,7 @@ def find_synonyms():
     _write_log(d_log_web, resource_factory.get_log_web_filename())
 
 
-def _process_corpus(corpus, acronym, ngram, log):
+def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str, log: Dict[str, List[str]]) -> None:
     """
 
     :param corpus:
@@ -138,7 +139,7 @@ def _process_corpus(corpus, acronym, ngram, log):
                 old_exp = exp
 
 
-def _write_log(log, filename):
+def _write_log(log: Dict[str, List[str]], filename: str) -> None:
     """
     Writes a log into a file described by the filename.
 

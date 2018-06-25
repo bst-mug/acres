@@ -4,6 +4,7 @@
 
 import logging
 import re
+from typing import List, Set
 
 from acres import functions
 
@@ -11,8 +12,8 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-def find_best_substitution(form_to_resolve, candidates,
-                           tokenlist, shortformtype):
+def find_best_substitution(form_to_resolve: str, candidates: List[str],
+                           tokenlist: Set[str], shortformtype: str) -> List[str]:
     """
     This will eventually be the master function invoked by the text cleansing process
     Finds the best resolution of a nonlexicalised form
@@ -28,16 +29,17 @@ def find_best_substitution(form_to_resolve, candidates,
     - MA: multiword abbreviations like "St. p."
     - SE: spelling errors like "Lympfknoten"
 
-
     :param form_to_resolve:
     :param candidates:
     :param tokenlist:
     :param shortformtype:
     :return:
     """
+    out = []
+
+    # TODO use enum
     if shortformtype == "AA":
         regex_acro = ""
-        out = []
         form_to_resolve = form_to_resolve.replace(
             ".", "").replace("-", "").replace("/", " ")
         for c in form_to_resolve:
@@ -64,4 +66,5 @@ def find_best_substitution(form_to_resolve, candidates,
                         max_score = summ
                 out.append('{:0>2}'.format(str(max_score)) + "\t" + ngram)
         out.sort(reverse=True)
-        return out
+
+    return out

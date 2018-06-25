@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 
-def get_acronym_score(acro, full, language="de"):
+def get_acronym_score(acro: str, full: str, language="de") -> float:
     """
     Scores Acronym / resolution pairs according to a series of well-formedness criteria using a
     n-gram frequency list from related corpus.
@@ -71,7 +71,7 @@ def get_acronym_score(acro, full, language="de"):
     morphemes = resource_factory.get_morphemes()
 
     # TODO check whether it makes sense to set score to zero as baseline
-    pen = 1  # penalization factor
+    pen = 1.0  # penalization factor
     acro = acro.strip()
     full = full.strip()
     acro_low = acro.lower()
@@ -189,7 +189,7 @@ def get_acronym_score(acro, full, language="de"):
 
     splits = functions.check_acro_vs_expansion(acro_low, full_low)
 
-    score = 0
+    score = 0.0
     # logger.debug(splits)
     for split in splits:
         count = 0
