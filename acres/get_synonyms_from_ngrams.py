@@ -5,7 +5,7 @@ Finds synonyms using a n-gram frequency list from related corpus
 
 import logging
 import re
-from typing import List, Tuple
+from typing import List, Tuple, Set
 
 from acres import functions
 from acres.preprocess import resource_factory
@@ -36,10 +36,10 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
 
     # MAXLIST = 100
     digit = "Ð"
-    out = []
-    all_beds = []
-    all_sets = []
-    sel_rows = []
+    out = []        # type: List[Tuple[int,str]]
+    all_beds = []   # type: List[str]
+    all_sets = []   # type: List[Set[int]]
+    sel_rows = []   # type: List[str]
     count = 0
 
     # Construction of regular expression
@@ -179,9 +179,6 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
 
         out.sort(reverse=True)
 
-    if logger.getEffectiveLevel() == logging.DEBUG:
-        for item in out:
-            logger.debug(item)
     return out
 
 

@@ -4,6 +4,7 @@ Stefan Schulz 11 Nov 2017
 
 import logging
 import re
+from typing import List
 
 # from math import *
 from acres import functions
@@ -77,9 +78,9 @@ def get_acronym_score(acro: str, full: str, language="de") -> float:
     acro_low = acro.lower()
     full_low = full.lower()
 
-    lst_one_letter_affixes = []
-    lst_two_letter_affixes = []
-    lst_acronym_suffixes = []
+    lst_one_letter_affixes = []  # type: List[str]
+    lst_two_letter_affixes = []  # type: List[str]
+    lst_acronym_suffixes = []    # type: List[str]
 
     # XXX Dependent on German medical language
     if language == "de":

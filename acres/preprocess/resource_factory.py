@@ -44,7 +44,7 @@ def get_morphemes() -> Set[str]:
     return pickle.load(open(output_file, "rb"))
 
 
-INDEX = []
+INDEX = {}  # type: Dict[str, Set[int]]
 
 
 def get_index() -> Dict[str, Set[int]]:
@@ -84,7 +84,7 @@ def _get_ngramstat_txt() -> str:
     return output_file
 
 
-NGRAMSTAT = []
+NGRAMSTAT = {}  # type: Dict[int, str]
 
 
 def get_ngramstat() -> Dict[int, str]:

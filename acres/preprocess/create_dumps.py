@@ -23,7 +23,7 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
     - returns counter (number of records)
     """
     texts = functions.robust_text_import_from_dir(corpus_path)
-    dict_char_ngrams = {}
+    dict_char_ngrams = {}   # type: Dict[str, int]
 
     for text in texts:
         str_doc = ""
@@ -159,7 +159,7 @@ def create_index(ngramstat: Dict[int, str]) -> Dict[str, Set[int]]:
     :param ngramstat:
     :return:
     """
-    index = collections.defaultdict(set)
+    index = collections.defaultdict(set)    # type: Dict[str, Set[int]]
     for identifier in ngramstat:
         # XXX Think about trie data structure
         # logger.debug(ngramstat[ID])
@@ -225,7 +225,7 @@ def create_acro_dump() -> List[str]:
     # for i in acronym_ngrams:
     #   logger.debug(i)
     counter = 0
-    acronyms = []
+    acronyms = []   # type: List[str]
 
     ngram_stat = resource_factory.get_ngramstat()
     for n in ngram_stat:

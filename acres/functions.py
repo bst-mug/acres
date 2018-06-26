@@ -211,7 +211,7 @@ def create_ngram_statistics(input_string: str, n_min: int, n_max: int) -> Dict[s
     :param n_max:
     :return:
     """
-    output = {}
+    output = {}  # type: Dict[str, int]
     lines = input_string.splitlines()
     for line in lines:
         line = line.replace('\r', '')
@@ -407,7 +407,7 @@ def random_sub_list(in_list: list, max_num: int) -> list:
     if length <= max_num:
         return in_list
     counter = 0
-    rnumbers = []
+    rnumbers = []   # type: List[int]
     while counter < max_num:
         rnumber = (randint(0, length - 1))
         if rnumber not in rnumbers:

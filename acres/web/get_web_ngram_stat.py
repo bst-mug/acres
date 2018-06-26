@@ -63,7 +63,6 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens) -> List[Tuple[int,str]]
     for ngram in output:
         out_l.append((output[ngram], ngram))
     out_l.sort(reverse=True)
-    logger.debug(out_l)
 
     return out_l
 

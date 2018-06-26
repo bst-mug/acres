@@ -35,8 +35,11 @@ def find_synonyms() -> None:
     # ngrams that contain at least one acronym
     acronym_ngrams = resource_factory.get_acronym_ngrams()
 
-    d_log_corpus = {}  # dictionary from which the logfile is generated
-    d_log_web = {}  # dictionary from which the logfile is generated
+    # dictionary from which the logfile is generated
+    d_log_corpus = {}   # type: Dict[str, List[str]]
+
+    # dictionary from which the logfile is generated
+    d_log_web = {}      # type: Dict[str, List[str]]
 
     logger.debug("Dumps loaded")
 
@@ -75,7 +78,7 @@ def find_synonyms() -> None:
 
                 # prepare parameters for Web model
                 if NUMERIC in ngram:
-                    li_web = []
+                    li_web = []  # type: List[Tuple[int, str]]
                 else:
                     query = left_string + " " + acronym + " " + right_string
                     query = query.replace(".", " ").replace(",", " ")
