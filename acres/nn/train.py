@@ -5,7 +5,6 @@
 """
 
 import logging
-import os.path
 import re
 from logging.config import fileConfig
 from typing import List
@@ -61,7 +60,7 @@ class FilteredNGramStat(object):
                 # FIXME what happens with word2vec if window > len(cleaned_tokens)?
                 # Should we force a smaller window size guaranteed to always fit?
                 length_difference = length_tokens - len(cleaned_tokens)
-                if (length_difference > 0 and length_difference > largest_reduction):
+                if length_difference > 0 and length_difference > largest_reduction:
                     largest_reduction = length_difference
                     logger.debug("New largest reduction is %d (from %d to %d) on ngram '%s'",
                                  largest_reduction, length_tokens, len(cleaned_tokens), ngram)
@@ -93,7 +92,7 @@ def preprocess(tokens: List[str]) -> List[str]:
     return ret
 
 
-def get_nn_model(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=0, negative=5):
+def train(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=0, negative=5) -> Word2Vec:
     """
     Lazy load a word2vec model.
 
@@ -106,31 +105,20 @@ def get_nn_model(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=
     :param negative:
     :return:
     """
-    MODEL_PATH = "models/nn/{}-{}-{}-{}-{}-{}-{}.model".format(ngram_size, min_count, net_size,
-                                                               alpha, sg, hs, negative)
+    sentences = FilteredNGramStat(ngram_size)
 
-    if not os.path.isfile(MODEL_PATH):
-        logger.info("Training the model...")
+    # Find common bigram collocations
+    # TODO try trigrams
+    bigram_transformer = Phrases(sentences)
+    collocations = bigram_transformer[sentences]
 
-        sentences = FilteredNGramStat(ngram_size)
+    return Word2Vec(collocations, size=net_size, alpha=alpha, window=ngram_size - 1,
+                    min_count=min_count, workers=4, sg=sg, hs=hs, negative=negative)
 
-        # Find common bigram collocations
-        bigram_transformer = Phrases(sentences)
-        collocations = bigram_transformer[sentences]
-
-        model = Word2Vec(collocations, size=net_size, alpha=alpha, window=ngram_size - 1,
-                         min_count=min_count,
-                         workers=4, sg=sg, hs=hs, negative=negative)
-
-        # Hellrich
-        # model = gensim.models.Word2Vec(size=200, window=4, min_count=5, workers=8, alpha=0.01,
-        # sg=1, hs=0, negative=5, sample=1e-3)
-
-        model.save(MODEL_PATH)
-
-    return Word2Vec.load(MODEL_PATH)
+    # Hellrich
+    # model = gensim.models.Word2Vec(size=200, window=4, min_count=5, workers=8, alpha=0.01,
+    # sg=1, hs=0, negative=5, sample=1e-3)
 
 
 if __name__ == "__main__":
-    model = get_nn_model(min_count=5)
-    model.most_similar(positive="CMP")  # [('Kardiomyopathie', 0.772693395614624), ...]
+    model = train(min_count=5)
