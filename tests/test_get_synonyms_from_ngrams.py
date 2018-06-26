@@ -22,3 +22,11 @@ def test_find_embeddings():
     actual = get_synonyms_from_ngrams.find_embeddings("<SEL>", "EKG", "<SEL>", 10, 28, 100, 1, 5)
     expected = [(19, 'Physikalischer Status')]
     assert not set(expected).issubset(actual)
+
+def test_strip_frequencies():
+    embeddings = [(42, "Abc Def, xyz"), (10, "aaaaaaa")]
+
+    expected = ["Abc Def, xyz", "aaaaaaa"]
+    actual = get_synonyms_from_ngrams._strip_frequencies(embeddings)
+
+    assert expected == actual

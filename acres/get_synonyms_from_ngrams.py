@@ -14,6 +14,83 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
+def _build_search_ngrams(context: str, reverse=False) -> Tuple[str, str, str]:
+    """
+    Builds a context tuple containing 1 to n-grams
+
+    :param context: A string with the context
+    :param reverse: Takes the context in reverse (e.g. left context)
+    :return: A tuple with 1 to n-gram
+    """
+    # TODO tentative
+    unigram = bigram = trigram = "<SEL>"
+    if context != "":
+        tokens = context.split(" ")
+        unigram = " ".join(tokens[-1:]) if reverse else " ".join(tokens[:1])
+        bigram = " ".join(tokens[-2:]) if reverse else " ".join(tokens[:2])
+        trigram = " ".join(tokens[-3:]) if reverse else " ".join(tokens[:3])
+    return unigram, bigram, trigram
+
+
+def _strip_frequencies(embeddings: List[Tuple[int,str]], min_freq: int = 0) -> List[str]:
+    """
+    Strip out frequencies from a given embedding list obtained via find_embeddings.
+
+    :param embeddings: A list of embeddings in the format freq\tembedding.
+    :param min_freq: Minimum frequency to be used (defaults to 0).
+    :return: A list of embeddings containing only strings with a minimum frequency.
+    """
+    ret = []
+    for embedding in embeddings:
+        (freq, ngram) = embedding
+        if freq >= min_freq:
+            ret.append(ngram)
+    return ret
+
+
+def robust_find_embeddings(acronym: str, left_context: str, right_context: str) -> List[str]:
+    """
+    Generates several search patterns and returns the first found embeddings.
+
+    @todo integrate with logic from find_synonyms()?
+
+    :param acronym:
+    :param left_context:
+    :param right_context:
+    :return:
+    """
+    (left_unigram, left_bigram, left_trigram) = _build_search_ngrams(left_context, True)
+    (right_unigram, right_bigram, right_trigram) = _build_search_ngrams(right_context)
+
+    # Order is important for the quality of the retrieved expansion
+    patterns = [(left_trigram, right_trigram),  # trigrams
+                (left_bigram, right_trigram), (left_trigram, right_bigram),  # bigram + trigram
+                (left_bigram, right_bigram),  # bigrams
+                (left_unigram, right_bigram), (left_bigram, right_unigram),  # bigram + unigram
+                (left_unigram, right_unigram),  # unigrams
+                (left_bigram, "<SEL>"), (left_unigram, "<SEL>"),  # bigram/unigram + <SEL>
+                ("<SEL>", right_bigram), ("<SEL>", right_unigram),  # <SEL> + bigram/unigram
+                ("<SEL>", "<SEL>"),  # <SEL> + <SEL>
+                ("<SEL>", "<VOID>"), ("<VOID>", "<SEL>")  # <SEL> + <VOID>
+                ]
+
+    previous_left_pattern = previous_right_pattern = ""
+    for pattern in patterns:
+        (left_pattern, right_pattern) = pattern
+        logger.debug("%s | %s", left_pattern, right_pattern)
+
+        # Quick optimization: don't search for patterns that happens to be the same as last one
+        if left_pattern != previous_left_pattern or right_pattern != previous_right_pattern:
+            embeddings = find_embeddings(left_pattern, acronym, right_pattern, 1, 1, 500, 2, 10)
+            if len(embeddings) > 0:
+                return _strip_frequencies(embeddings)
+
+            previous_left_pattern = left_pattern
+            previous_right_pattern = right_pattern
+
+    return []
+
+
 def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size: int, minfreq: int,
                     maxcount: int, min_num_tokens: int, max_num_tokens: int) -> List[Tuple[int,str]]:
     """
@@ -123,7 +200,7 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
                     if count >= maxcount:
                         logger.debug("List cut at %d", count)
                         break
-    logger.info("COUNT: " + str(count))
+    logger.debug("COUNT: " + str(count))
 
     sel_beds = functions.random_sub_list(all_beds, count)
     # print(sel_beds)

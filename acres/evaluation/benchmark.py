@@ -13,24 +13,6 @@ logger.setLevel(logging.INFO)
 from acres import get_synonyms_from_ngrams
 
 
-def build_search_ngrams(context: str, reverse=False) -> Tuple[str, str, str]:
-    """
-    Builds a context tuple containing 1 to n-grams
-
-    :param context: A string with the context
-    :param reverse: Takes the context in reverse (e.g. left context)
-    :return: A tuple with 1 to n-gram
-    """
-    # TODO tentative
-    unigram = bigram = trigram = "<SEL>"
-    if context != "":
-        tokens = context.split(" ")
-        unigram = " ".join(tokens[-1:]) if reverse else " ".join(tokens[:1])
-        bigram = " ".join(tokens[-2:]) if reverse else " ".join(tokens[:2])
-        trigram = " ".join(tokens[-3:]) if reverse else " ".join(tokens[:3])
-    return unigram, bigram, trigram
-
-
 def test_input(true_expansions: list, possible_expansions: list) -> bool:
     """
     Tests an acronym + context strings against the ngram model
@@ -48,22 +30,6 @@ def test_input(true_expansions: list, possible_expansions: list) -> bool:
     return False
 
 
-def _strip_frequencies(embeddings: List[Tuple[int,str]], min_freq: int = 0) -> List[str]:
-    """
-    Strip out frequencies from a given embedding list obtained via find_embeddings.
-
-    :param embeddings: A list of embeddings in the format freq\tembedding.
-    :param min_freq: Minimum frequency to be used (defaults to 0).
-    :return: A list of embeddings containing only strings with a minimum frequency.
-    """
-    ret = []
-    for embedding in embeddings:
-        (freq, ngram) = embedding
-        if freq >= min_freq:
-            ret.append(ngram)
-    return ret
-
-
 def analyze_row(input_row: str) -> Dict[str, bool]:
     """
     Analyze a given row of the gold standard.
@@ -77,9 +43,7 @@ def analyze_row(input_row: str) -> Dict[str, bool]:
         return ret
 
     row = input_row.strip("\n")
-    logger.info("=======================")
     logger.info("Analyzing: " + row)
-    logger.info("=======================")
 
     splitted_row = row.split("\t")
 
@@ -88,40 +52,10 @@ def analyze_row(input_row: str) -> Dict[str, bool]:
     right_context = splitted_row[2]
     true_expansions = splitted_row[3:]
 
-    (left_unigram, left_bigram, left_trigram) = build_search_ngrams(left_context, True)
-    (right_unigram, right_bigram, right_trigram) = build_search_ngrams(right_context)
+    possible_expansions = get_synonyms_from_ngrams.robust_find_embeddings(acronym, left_context, right_context)
 
-    # Order is important for the quality of the retrieved expansion
-    patterns = [(left_trigram, right_trigram),  # trigrams
-                (left_bigram, right_trigram), (left_trigram, right_bigram),  # bigram + trigram
-                (left_bigram, right_bigram),  # bigrams
-                (left_unigram, right_bigram), (left_bigram, right_unigram),  # bigram + unigram
-                (left_unigram, right_unigram),  # unigrams
-                (left_bigram, "<SEL>"), (left_unigram, "<SEL>"),  # bigram/unigram + <SEL>
-                ("<SEL>", right_bigram), ("<SEL>", right_unigram),  # <SEL> + bigram/unigram
-                ("<SEL>", "<SEL>"),  # <SEL> + <SEL>
-                ("<SEL>", "<VOID>"), ("<VOID>", "<SEL>")  # <SEL> + <VOID>
-                ]
-
-    previous_left_pattern = previous_right_pattern = ""
-    for pattern in patterns:
-        left_pattern = pattern[0]
-        right_pattern = pattern[1]
-
-        # Quick optimization: don't search for patterns that happens to be the same as last one
-        if left_pattern != previous_left_pattern or right_pattern != previous_right_pattern:
-            embeddings = get_synonyms_from_ngrams.find_embeddings(left_pattern, acronym, right_pattern, 1, 1, 500, 2, 10)
-            possible_expansions = _strip_frequencies(embeddings)
-
-            ret['found'] = True if len(possible_expansions) > 0 else ret['found']
-            ret['correct'] = test_input(true_expansions, possible_expansions)
-
-            print(pattern)
-            if ret['correct']:
-                return ret
-
-            previous_left_pattern = left_pattern
-            previous_right_pattern = right_pattern
+    ret['found'] = True if len(possible_expansions) > 0 else ret['found']
+    ret['correct'] = test_input(true_expansions, possible_expansions)
 
     return ret
 
