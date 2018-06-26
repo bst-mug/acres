@@ -4,13 +4,14 @@ Benchmark code.
 
 import logging
 from logging.config import fileConfig
-from typing import Dict, Tuple, List
+from typing import Dict, Tuple
 
 logging.config.fileConfig("logging.ini")
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 
 from acres import get_synonyms_from_ngrams
+from acres.nn import test
 
 
 def test_input(true_expansions: list, possible_expansions: list) -> bool:
@@ -52,7 +53,11 @@ def analyze_row(input_row: str) -> Dict[str, bool]:
     right_context = splitted_row[2]
     true_expansions = splitted_row[3:]
 
-    possible_expansions = get_synonyms_from_ngrams.robust_find_embeddings(acronym, left_context, right_context)
+    # ngram-embeddings
+    # possible_expansions = get_synonyms_from_ngrams.robust_find_embeddings(acronym, left_context, right_context)
+
+    # word2vec
+    possible_expansions = test.find_candidates(acronym, left_context, right_context)
 
     ret['found'] = True if len(possible_expansions) > 0 else ret['found']
     ret['correct'] = test_input(true_expansions, possible_expansions)
@@ -81,14 +86,29 @@ def analyze_file(filename: str) -> Tuple[float, float]:
 
         if row_analysis['correct']:
             total_correct += 1
-            print("CORRECT")
+            logger.debug("CORRECT")
+
+        # Peeking into results
+        if logger.getEffectiveLevel() == logging.DEBUG:
+            precision = _calculate_precision(total_correct, total_found)
+            recall = _calculate_recall(total_correct, total_acronyms)
+            f1 = calculate_f1(precision, recall)
+            logger.debug("P = %f, R = %f, F1 = %f", precision, recall, f1)
 
     f.close()
 
-    precision = total_correct / total_found if total_found != 0 else 0
-    recall = total_correct / total_acronyms if total_acronyms != 0 else 0
+    precision = _calculate_precision(total_correct, total_found)
+    recall = _calculate_recall(total_correct, total_acronyms)
 
     return precision, recall
+
+
+def _calculate_precision(total_correct: int, total_found: int) -> float:
+    return total_correct / total_found if total_found != 0 else 0
+
+
+def _calculate_recall(total_correct: int, total_acronyms: int) -> float:
+    return total_correct / total_acronyms if total_acronyms != 0 else 0
 
 
 def calculate_f1(precision: float, recall: float) -> float:
