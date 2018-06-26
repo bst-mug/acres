@@ -1,6 +1,6 @@
 import pytest
 
-from acres import resource_factory
+from acres.preprocess import resource_factory
 
 
 @pytest.fixture(scope="session", autouse=True)

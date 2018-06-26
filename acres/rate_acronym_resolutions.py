@@ -7,7 +7,7 @@ import re
 
 # from math import *
 from acres import functions
-from acres import resource_factory
+from acres.preprocess import resource_factory
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)

@@ -15,7 +15,7 @@ from typing import Dict, List, Tuple, Union
 
 import requests
 
-from acres import resource_factory
+from acres.preprocess import resource_factory
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)

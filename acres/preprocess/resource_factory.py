@@ -8,7 +8,7 @@ import os.path
 import pickle
 
 from typing import Dict, Set, List
-from acres import create_dumps
+from acres.preprocess import create_dumps
 from acres import functions
 
 logger = logging.getLogger(__name__)

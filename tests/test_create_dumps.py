@@ -1,5 +1,4 @@
-from acres import create_dumps
-from acres import resource_factory
+from acres.preprocess import create_dumps, resource_factory
 
 
 def test_create_morpho_dump():

@@ -16,7 +16,7 @@ logger.setLevel(logging.DEBUG)
 
 # MUST be after logging definition, so that it works properly
 from gensim.models import Word2Vec, Phrases
-from acres import resource_factory
+from acres.preprocess import resource_factory
 
 
 class FilteredNGramStat(object):

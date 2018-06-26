@@ -13,7 +13,7 @@ from acres import functions
 from acres import get_synonyms_from_ngrams
 from acres.web import get_web_ngram_stat
 from acres import rate_acronym_resolutions
-from acres import resource_factory
+from acres.preprocess import resource_factory
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
