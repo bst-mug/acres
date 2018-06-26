@@ -99,13 +99,14 @@ def get_ngramstat() -> Dict[int, Tuple[int,str]]:
     global NGRAMSTAT
 
     if not NGRAMSTAT:
-        output_file = PICKLE_FOLDER + "ngramstatV2.p"
+        min_freq = 1
+        output_file = PICKLE_FOLDER + "ngramstat-" + str(min_freq) + "-V2.p"
 
         if not os.path.isfile(output_file):
             _log_file_not_found(output_file)
 
             ngram_file = _get_ngramstat_txt()
-            ngramstat = create_dumps.create_ngramstat_dump(ngram_file, 1)
+            ngramstat = create_dumps.create_ngramstat_dump(ngram_file, min_freq)
             pickle.dump(ngramstat, open(output_file, "wb"))
 
         logger.info("Loading ngramstat from %s...", output_file)
