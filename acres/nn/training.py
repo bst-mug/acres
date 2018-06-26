@@ -45,7 +45,7 @@ class FilteredNGramStat(object):
         largest_reduction = 0
 
         for identifier, freq_ngram in self.NGRAMSTAT.items():
-            freq, ngram = freq_ngram.split("\t")
+            (freq, ngram) = freq_ngram
             tokens = ngram.split(self.TOKEN_SEPARATOR)
             length_tokens = len(tokens)
 

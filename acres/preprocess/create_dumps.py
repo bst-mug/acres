@@ -4,7 +4,7 @@ Stefan Schulz 12 Nov 2017
 
 import collections
 import logging
-from typing import Dict, Set, List
+from typing import Dict, Set, List, Tuple
 
 from acres import functions
 from acres.preprocess import resource_factory
@@ -82,7 +82,7 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
     return dict_ngramstat
 
 
-def create_ngramstat_dump(ngram_stat_filename: str, min_freq: int) -> Dict[int, str]:
+def create_ngramstat_dump(ngram_stat_filename: str, min_freq: int) -> Dict[int, Tuple[int,str]]:
     """
     Creates dump of ngram and ngram variants.
     Create dump of word indices for increasing performance.
@@ -99,10 +99,10 @@ def create_ngramstat_dump(ngram_stat_filename: str, min_freq: int) -> Dict[int, 
         for row in file:
             if row[10] == "\t":
                 # freq = row.split("\t")[0]
-                freq = '{:0>7}'.format(int(row.split("\t")[0]))
+                freq = int(row.split("\t")[0])
                 ngram = row.split("\t")[1].strip()
                 if int(freq) >= min_freq:
-                    ngramstat[identifier] = freq + "\t" + ngram
+                    ngramstat[identifier] = (freq, ngram)
                     identifier += 1
                     # adding variations according to specific tokenization
                     # rules dependent on punctuation chars,
@@ -111,48 +111,45 @@ def create_ngramstat_dump(ngram_stat_filename: str, min_freq: int) -> Dict[int, 
                         # !!! GERMAN-DEPENDENT !!!
                         # Variant 1: hyphen may be omitted (non-standard German)
                         # "Belastungs-Dyspnoe" -->  "Belastungs Dyspnoe"
-                        ngramstat[identifier] = freq + "\t" + ngram.replace("-", " ")
+                        ngramstat[identifier] = (freq, ngram.replace("-", " "))
                         identifier += 1
                         # Variant 2: words may be fused (should also be decapitalised
                         # but this is not relevant due to case-insensitive matching)
                         # "Belastungs-Dyspnoe" -->  "BelastungsDyspnoe"
-                        ngramstat[identifier] = freq + "\t" + ngram.replace("-", "")
+                        ngramstat[identifier] = (freq, ngram.replace("-", ""))
                         identifier += 1
                     if row[-1] in ".:;,-?!/":
                         # Variant 3: removal of trailing punctuation
                         # End of sentence should not restrain reuse of tokens
                         # E.g. "Colonoskopie."
                         # TO DO: investigate solutions to solve it before creating ngrams
-                        # !!! FIX ME: sum up frequencies
-                        ngramstat[identifier] = freq + "\t" + ngram[:-1]
+                        # !!! FIXME: sum up frequencies
+                        ngramstat[identifier] = (freq, ngram[:-1])
                         identifier += 1
                     if "/" in row:
                         # Variant 4: insertion of spaces around "/", because
                         # "/" is often used as a token separator with shallow meaning
                         # "/"
-                        ngramstat[identifier] = freq + "\t" + ngram.replace("/", " / ")
+                        ngramstat[identifier] = (freq, ngram.replace("/", " / "))
                         identifier += 1
                     if ", " in row:
                         # Variant 5: insertion of space before comma, to make the
                         # preceding token accessible
-                        ngramstat[identifier] = freq + "\t" + \
-                                                ngram.replace(", ", " , ")
+                        ngramstat[identifier] = (freq, ngram.replace(", ", " , "))
                         identifier += 1
                     if "; " in row:
                         # the same with semicolon
-                        ngramstat[identifier] = freq + "\t" + \
-                                                ngram.replace("; ", " ; ")
+                        ngramstat[identifier] = (freq, ngram.replace("; ", " ; "))
                         identifier += 1
                     if ": " in row:
                         # the same with colon
-                        ngramstat[identifier] = freq + "\t" + \
-                                                ngram.replace(": ", " : ")
+                        ngramstat[identifier] = (freq, ngram.replace(": ", " : "))
                         identifier += 1
 
     return ngramstat
 
 
-def create_index(ngramstat: Dict[int, str]) -> Dict[str, Set[int]]:
+def create_index(ngramstat: Dict[int, Tuple[int,str]]) -> Dict[str, Set[int]]:
     """
     Create an inverted index for performance issue when retrieving ngram records.
 
@@ -163,7 +160,7 @@ def create_index(ngramstat: Dict[int, str]) -> Dict[str, Set[int]]:
     for identifier in ngramstat:
         # XXX Think about trie data structure
         # logger.debug(ngramstat[ID])
-        ngram = ngramstat[identifier].split("\t")[1]
+        (freq, ngram) = ngramstat[identifier]
         words = ngram.split(" ")
         for word in words:
             index[word].add(identifier)
@@ -230,7 +227,7 @@ def create_acro_dump() -> List[str]:
     ngram_stat = resource_factory.get_ngramstat()
     for n in ngram_stat:
         row = (ngram_stat[n])
-        ngram = row.split("\t")[1]
+        (freq, ngram) = row
         if ngram.isalnum() and "Ð" not in ngram:
             if functions.is_acronym(ngram, 7):
                 # plausible max length for German medical language
@@ -253,7 +250,7 @@ def create_new_acro_dump() -> List[str]:
     ngram_stat = resource_factory.get_ngramstat()
     for n in ngram_stat:
         row = (ngram_stat[n])
-        ngram = row.split("\t")[1]
+        (freq, ngram) = row
         if " " in ngram:
             tokens = ngram.split(" ")
             for token in tokens:

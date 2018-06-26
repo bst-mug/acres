@@ -26,7 +26,7 @@ def test_create_corpus_ngramstat_dump():
 
 def test_create_ngramstat_dump():
     actual = create_dumps.create_ngramstat_dump("tests/models/ngrams/ngramstat.txt", 2)
-    expected = {1: '0002000\t¶', 2: '0000200\tder', 3: '0000050\tEKG'}
+    expected = {1: (2000, '¶'), 2: (200, 'der'), 3: (50, 'EKG')}
 
     assert set(expected.values()).issubset(actual.values())
 

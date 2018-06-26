@@ -29,7 +29,7 @@ def test_getindex():
 
 
 def test_get_ngramstat():
-    output_file = "tests/models/pickle/ngramstat.p"
+    output_file = "tests/models/pickle/ngramstatV2.p"
 
     if os.path.isfile(output_file):
         os.remove(output_file)

@@ -7,7 +7,7 @@ import logging
 import os.path
 import pickle
 
-from typing import Dict, Set, List
+from typing import Dict, Set, List, Tuple
 from acres.preprocess import create_dumps
 from acres import functions
 
@@ -84,10 +84,10 @@ def _get_ngramstat_txt() -> str:
     return output_file
 
 
-NGRAMSTAT = {}  # type: Dict[int, str]
+NGRAMSTAT = {}  # type: Dict[int, Tuple[int,str]]
 
 
-def get_ngramstat() -> Dict[int, str]:
+def get_ngramstat() -> Dict[int, Tuple[int,str]]:
     """
     Load efficiently the ngramstat file.
 
@@ -99,7 +99,7 @@ def get_ngramstat() -> Dict[int, str]:
     global NGRAMSTAT
 
     if not NGRAMSTAT:
-        output_file = PICKLE_FOLDER + "ngramstat.p"
+        output_file = PICKLE_FOLDER + "ngramstatV2.p"
 
         if not os.path.isfile(output_file):
             _log_file_not_found(output_file)

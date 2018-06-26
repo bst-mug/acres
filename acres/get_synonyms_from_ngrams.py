@@ -37,9 +37,9 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
     # MAXLIST = 100
     digit = "Ð"
     out = []        # type: List[Tuple[int,str]]
-    all_beds = []   # type: List[str]
+    all_beds = []   # type: List[Tuple[int,str]]
     all_sets = []   # type: List[Set[int]]
-    sel_rows = []   # type: List[str]
+    sel_rows = []   # type: List[Tuple[int,str]]
     count = 0
 
     # Construction of regular expression
@@ -94,30 +94,31 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
         logger.debug("Number of matching ngrams by word index: %d", len(sel_rows))
 
     for row in sorted(sel_rows, reverse=True):  # iteration through all matching ngrams
-        logger.debug(row)
         # input("press key!)
-        ngram = row.split("\t")[1]
+        (freq, ngram) = row
+        logger.debug("%d => %s", freq, ngram)
+
         ngram_card = ngram.count(" ") + 1  # cardinality of the nGram
         # Filter by ngram cardinality
         if max_num_tokens >= ngram_card >= min_num_tokens:  # -1
             # watch out for multiword input str_middle
             # TODO: min should be at least 1 plus cardinality of middle term
-            if int(row.split("\t")[0]) >= minfreq:
+            if freq >= minfreq:
                 # might suppress low n-gram frequencies
                 # TODO: probably best 1, could be increased for performance
                 # TODO: the current ngram dump and index were created on a lower
                 # TODO: frequency bound of 2
                 # TODO: This is the reason, some acronyms cannot be resolved
                 # TODO: recommendation: recreate
-                ngram = row.split("\t")[1].strip()
-                match = re.search(regex_embed, ngram, re.IGNORECASE)
+                stripped_ngram = ngram.strip()
+                match = re.search(regex_embed, stripped_ngram, re.IGNORECASE)
                 # all_beds collects all contexts in which the unknown string
                 # is embedded.
                 # the length of right and left part of "bed" is only
                 # limited by the length of the ngram
                 if match is not None and row not in all_beds:
                     all_beds.append(row)
-                    logger.debug(row)
+                    logger.debug("%d: %s", freq, ngram)
                     count += 1
                     if count >= maxcount:
                         logger.debug("List cut at %d", count)
@@ -129,8 +130,8 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
     # random selection of hits, to avoid explosion
     logger.debug("Embeddings:")
     if logger.getEffectiveLevel() == logging.DEBUG:
-        for item in all_beds:
-            logger.debug(item)
+        for (freq, ngram) in all_beds:
+            logger.debug("%d\t%s", freq, ngram)
 
         # print(len(sel_beds), sel_beds)
         logger.debug("Generated list of %d matching n-grams", count)
@@ -141,7 +142,8 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
 
         # print("----------------------------------------------")
         for row in sel_beds:  # iterate through extract
-            bed = row.split("\t")[1].strip()
+            (freq, ngram) = row
+            bed = ngram.strip()
 
             new_sets = []
             regex_bed = "^" + re.escape(bed) + "$"
@@ -160,10 +162,9 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
             for ngram_id in ngrams_with_surroundings:
                 if counter > max_num:
                     break
-                row = ngramstat[ngram_id]
-                ngram = row.split("\t")[1].strip()
-                freq = int(row.split("\t")[0])
-                match = re.search(regex_bed, ngram, re.IGNORECASE)
+                (freq, ngram) = ngramstat[ngram_id]
+                stripped_ngram = ngram.strip()
+                match = re.search(regex_bed, stripped_ngram, re.IGNORECASE)
                 if match is not None:
                     # logger.debug(regex_bed)
                     # logger.debug(row)
