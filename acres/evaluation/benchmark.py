@@ -126,7 +126,7 @@ def analyze_row(input_row: str) -> Dict[str, bool]:
     return ret
 
 
-def analyze_file(filename: str) -> tuple:
+def analyze_file(filename: str) -> Tuple[float, float]:
     """
     Analyzes a gold standard with text excerpts centered on an acronym, followed by n valid
     expansions.
