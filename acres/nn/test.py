@@ -1,8 +1,10 @@
 """Apply a given word2vec model
 
 """
-from acres.nn import base
 from typing import List
+
+from acres import functions
+from acres.nn import base
 
 
 def find_candidates(acronym: str, left_context: str = "", right_context: str = "") -> List[str]:
@@ -29,7 +31,8 @@ def find_candidates(acronym: str, left_context: str = "", right_context: str = "
     expansions = []
     for (expansion, prob) in similar:
         # TODO filter out invalid expansions
-        expansions.append(expansion)
+        if not functions.is_acronym(expansion):
+            expansions.append(expansion)
 
     return expansions
 
