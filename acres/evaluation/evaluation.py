@@ -186,7 +186,7 @@ if __name__ == "__main__":
     (precision, recall) = analyze_file("resources/Workbench.txt")
     end_time = time.time()
 
-    print("Time: %f (s)", end_time - start_time)
+    print("Time: (s)", end_time - start_time)
 
     f1 = calculate_f1(precision, recall)
     print("Precision: ", precision)
