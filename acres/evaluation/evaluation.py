@@ -4,7 +4,8 @@ Benchmark code.
 
 import logging
 from logging.config import fileConfig
-from typing import Dict, Tuple
+from enum import Enum
+from typing import Dict, Tuple, List
 
 logging.config.fileConfig("logging.ini")
 logger = logging.getLogger(__name__)
@@ -12,6 +13,30 @@ logger.setLevel(logging.DEBUG)
 
 from acres import get_synonyms_from_ngrams
 from acres.nn import test
+
+
+class Strategy(Enum):
+    NGRAM = 1
+    WORD2VEC = 2
+
+
+def resolve(acronym: str, left_context: str, right_context: str, strategy: Strategy) -> List[str]:
+    """
+    Resolve a given acronym + context using the provideed Strategy.
+
+    :param acronym:
+    :param left_context:
+    :param right_context:
+    :param strategy:
+    :return:
+    """
+    switcher = {
+        Strategy.NGRAM: get_synonyms_from_ngrams.robust_find_embeddings,
+        Strategy.WORD2VEC: test.find_candidates
+    }
+
+    func = switcher.get(strategy)
+    return func(acronym, left_context, right_context)
 
 
 def test_input(true_expansions: list, possible_expansions: list) -> bool:
@@ -54,10 +79,11 @@ def analyze_row(input_row: str) -> Dict[str, bool]:
     true_expansions = splitted_row[3:]
 
     # ngram-embeddings
-    # possible_expansions = get_synonyms_from_ngrams.robust_find_embeddings(acronym, left_context, right_context)
+    # possible_expansions = resolve(acronym, left_context, right_context, Strategy.NGRAM)
 
     # word2vec
-    possible_expansions = test.find_candidates(acronym, left_context, right_context)
+    possible_expansions = resolve(acronym, left_context, right_context, Strategy.WORD2VEC)
+
 
     ret['found'] = True if len(possible_expansions) > 0 else ret['found']
     ret['correct'] = test_input(true_expansions, possible_expansions)
