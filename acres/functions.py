@@ -435,6 +435,17 @@ def _acronym_aware_clean_expansion(acronym: str, expansion: str) -> str:
     return ret.strip()
 
 
+def is_valid_expansion(acronym: str, expansion: str) -> bool:
+    """
+    Checks whether a candidate expansion is valid for an acronym.
+
+    :param acronym:
+    :param expansion:
+    :return:
+    """
+    return len(check_acro_vs_expansion(acronym, expansion)) > 0
+
+
 def check_acro_vs_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
     """
 

@@ -30,8 +30,8 @@ def find_candidates(acronym: str, left_context: str = "", right_context: str = "
 
     expansions = []
     for (expansion, prob) in similar:
-        # TODO filter out invalid expansions
-        if not functions.is_acronym(expansion):
+        # TODO experiment with get_acronym_score
+        if not functions.is_acronym(expansion) and functions.is_valid_expansion(acronym, expansion):
             expansions.append(expansion)
 
     return expansions
