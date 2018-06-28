@@ -13,6 +13,7 @@ logger.setLevel(logging.DEBUG)
 from acres.nn import train
 from gensim.models import Word2Vec
 
+MODEL = None  # type: Word2Vec
 
 def get_nn_model(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=0,
                  negative=5) -> Word2Vec:
@@ -28,12 +29,17 @@ def get_nn_model(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=
     :param negative:
     :return:
     """
-    model_path = "models/nn/{}-{}-{}-{}-{}-{}-{}.model".format(ngram_size, min_count, net_size,
-                                                               alpha, sg, hs, negative)
+    global MODEL
 
-    if not os.path.isfile(model_path):
-        logger.warning("Retraining the model...")
-        model = train.train(ngram_size, min_count, net_size, alpha, sg, hs, negative)
-        model.save(model_path)
+    if not MODEL:
+        model_path = "models/nn/{}-{}-{}-{}-{}-{}-{}.model".format(ngram_size, min_count, net_size,
+                                                                   alpha, sg, hs, negative)
 
-    return Word2Vec.load(model_path)
+        if not os.path.isfile(model_path):
+            logger.warning("Retraining the model...")
+            model = train.train(ngram_size, min_count, net_size, alpha, sg, hs, negative)
+            model.save(model_path)
+
+        MODEL = Word2Vec.load(model_path)
+
+    return MODEL
