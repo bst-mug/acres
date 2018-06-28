@@ -73,15 +73,20 @@ def _resolve(acronym: str, left_context: str, right_context: str, strategy: Stra
     return func(acronym, left_context, right_context)
 
 
-def test_input(true_expansions: list, possible_expansions: list) -> bool:
+def test_input(true_expansions: list, possible_expansions: list, max_tries: int = 10) -> bool:
     """
     Tests an acronym + context strings against the ngram model
 
     :param true_expansions:
     :param possible_expansions:
+    :param max_tries: Maxinum number of tries
     :return:
     """
+    i = 0
     for possible_expansion in possible_expansions:
+        i += 1
+        if i > max_tries:
+            break
         logger.debug(possible_expansion)
         for true_expansion in true_expansions:
             if possible_expansion.lower() == true_expansion.lower():
