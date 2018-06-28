@@ -2,9 +2,10 @@
 Benchmark code.
 """
 
-import logging, time
-from logging.config import fileConfig
+import logging
+import time
 from enum import Enum
+from logging.config import fileConfig
 from typing import Dict, Tuple, List
 
 logging.config.fileConfig("logging.ini")
@@ -116,7 +117,6 @@ def analyze_row(input_row: str) -> Dict[str, bool]:
 
     # word2vec
     possible_expansions = cached_resolve(acronym, left_context, right_context, Strategy.WORD2VEC)
-
 
     ret['found'] = True if len(possible_expansions) > 0 else ret['found']
     ret['correct'] = test_input(true_expansions, possible_expansions)
