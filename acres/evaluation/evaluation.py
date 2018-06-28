@@ -2,7 +2,7 @@
 Benchmark code.
 """
 
-import logging
+import logging, time
 from logging.config import fileConfig
 from enum import Enum
 from typing import Dict, Tuple, List
@@ -182,7 +182,11 @@ def calculate_f1(precision: float, recall: float) -> float:
 
 
 if __name__ == "__main__":
+    start_time = time.time()
     (precision, recall) = analyze_file("resources/Workbench.txt")
+    end_time = time.time()
+
+    print("Time: %f (s)", end_time - start_time)
 
     f1 = calculate_f1(precision, recall)
     print("Precision: ", precision)
