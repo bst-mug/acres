@@ -176,9 +176,7 @@ def test__acronym_aware_clean_expansion():
 def test_check_acro_vs_expansion():
     # Baseline
     expected = [('Elektro', 'kardio', 'gramm'),
-                ('Elektro', 'kardio', 'gramm'),  # TODO duplicate?
-                ('Ele', 'ktrokardio', 'gramm'),
-                ('Ele', 'ktrokardio', 'gramm')]  # TODO duplicate?
+                ('Ele', 'ktrokardio', 'gramm')]
     actual = functions.check_acro_vs_expansion("EKG", "Elektrokardiogramm")
     assert expected == actual
 
@@ -188,23 +186,15 @@ def test_check_acro_vs_expansion():
     # assert expected == actual
 
     # Expansion = acronym should still work
-    expected = [('a', 'b'),
-                ('a', 'b')]  # TODO duplicate?
+    expected = [('a', 'b')]
     actual = functions.check_acro_vs_expansion("AB", "ab")
     assert expected == actual
 
-    expected = [('a', 'b', 'c'),
-                ('a', 'b', 'c'),  # TODO duplicate?
-                ('a', 'b', 'c'),  # TODO duplicate?
-                ('a', 'b', 'c')]  # TODO duplicate?
+    expected = [('a', 'b', 'c')]
     actual = functions.check_acro_vs_expansion("ABC", "abc")
     assert expected == actual
 
-    # FIXME This seems to be wrong!
-    # expected = [('a', 'b', 'c', 'd', 'e')]
-    expected = []
-    for i in range(16):
-        expected.append(('a', 'b', 'c', 'd', 'e'))
+    expected = [('a', 'b', 'c', 'd', 'e')]
     actual = functions.check_acro_vs_expansion("ABCDE", "abcde")
     assert expected == actual
 

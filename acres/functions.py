@@ -444,7 +444,6 @@ def check_acro_vs_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
     """
     dia = diacritics()
     bina = []
-    result = []
     cleaned_full = _acronym_aware_clean_expansion(acro, full)
 
     # list of binary combinations of
@@ -471,9 +470,13 @@ def check_acro_vs_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
         # logger.debug(regs)
         # logger.debug(cleaned_full)
 
+    result = []
     for reg in regs:
         if re.search(reg, cleaned_full, re.IGNORECASE) is not None:
-            result.append(re.findall(reg, cleaned_full, re.IGNORECASE)[0])
+            found = re.findall(reg, cleaned_full, re.IGNORECASE)[0]
+
+            # Avoid duplicates
+            result.append(found) if found not in result else 0
     return result
 
 
