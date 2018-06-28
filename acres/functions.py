@@ -418,6 +418,23 @@ def random_sub_list(in_list: list, max_num: int) -> list:
     return lst_out
 
 
+def _acronym_aware_clean_expansion(acronym: str, expansion: str) -> str:
+    """
+    Remove any symbol from the expanded form, preserving hyphens, spaces and chars from the acronym.
+
+    :param acronym:
+    :param expansion:
+    :return:
+    """
+    ret = ""
+    for c in expansion:
+        if c.isalnum() or c in " -" or c in acronym:
+            ret = ret + c
+        else:
+            ret = ret + " "
+    return ret.strip()
+
+
 def check_acro_vs_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
     """
 
@@ -428,15 +445,8 @@ def check_acro_vs_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
     dia = diacritics()
     bina = []
     result = []
-    cleaned_full = ""
-    # remove punctuation chars from full
-    # tokenization, preserving hyphen or chars in acro
-    for c in full:
-        if c.isalnum() or c in " -" or c == " " or c in acro:
-            cleaned_full = cleaned_full + c
-        else:
-            cleaned_full = cleaned_full + " "
-    cleaned_full = cleaned_full.strip()
+    cleaned_full = _acronym_aware_clean_expansion(acro, full)
+
     # list of binary combinations of
     # alternative regex patterns
     # (greedy vs. non-greedy)

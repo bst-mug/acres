@@ -147,6 +147,32 @@ def test_random_sub_list():
     assert functions.random_sub_list(["a", "b"], 1) in [["a"], ["b"]]
 
 
+def test__acronym_aware_clean_expansion():
+    # Baseline: return expansion if no symbols are found
+    assert "Elektrokardiogramm" == functions._acronym_aware_clean_expansion("EKG",
+                                                                            "Elektrokardiogramm")
+
+    # We should clean symbols, unless they appear in the acronym itself
+    assert "Angina pectoris" == functions._acronym_aware_clean_expansion("AP", "Angina&pectoris")
+    assert "Angina&pectoris" == functions._acronym_aware_clean_expansion("A&P", "Angina&pectoris")
+
+    # We should preserve spaces, happening or not in the acronym itself
+    assert "Angina pectoris" == functions._acronym_aware_clean_expansion("AP", "Angina pectoris")
+    assert "Angina pectoris" == functions._acronym_aware_clean_expansion("A P", "Angina pectoris")
+
+    # We should preserve hyphens, happening or not in the acronym itself
+    assert "Angina-pectoris" == functions._acronym_aware_clean_expansion("AP", "Angina-pectoris")
+    assert "Angina-pectoris" == functions._acronym_aware_clean_expansion("A-P", "Angina-pectoris")
+
+    # We strip the output even if the acronym itself is stripped
+    assert "Angina pectoris" == functions._acronym_aware_clean_expansion(" AP ",
+                                                                         " Angina pectoris ")
+
+    # XXX We do not remove duplicated spaces
+    assert "Angina   pectoris" == functions._acronym_aware_clean_expansion("AP",
+                                                                           "Angina&&&pectoris")
+
+
 def test_check_acro_vs_expansion():
     # Baseline
     expected = [('Elektro', 'kardio', 'gramm'),
