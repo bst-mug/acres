@@ -1,7 +1,10 @@
 language: python
+dist: xenial  # For Python 3.7
+sudo: true    # For Python 3.7
 python:
   - "3.5"
   - "3.6"
+  - "3.7"
 before_script:
   - cp config.ini.default config.ini
 script:
