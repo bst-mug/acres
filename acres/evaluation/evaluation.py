@@ -88,7 +88,7 @@ def test_input(true_expansions: list, possible_expansions: list, max_tries: int 
         i += 1
         if i > max_tries:
             break
-        logger.debug(possible_expansion)
+        # logger.debug(possible_expansion)
         for true_expansion in true_expansions:
             if possible_expansion.lower() == true_expansion.lower():
                 logger.debug("FOUND: " + possible_expansion)
@@ -118,11 +118,14 @@ def analyze_row(input_row: str) -> Dict[str, bool]:
     right_context = splitted_row[2]
     true_expansions = splitted_row[3:]
 
-    # ngram-embeddings
-    # possible_expansions = cached_resolve(acronym, left_context, right_context, Strategy.NGRAM)
+    ngram_expansions = cached_resolve(acronym, left_context, right_context, Strategy.NGRAM)
+    logger.debug(ngram_expansions)
 
-    # word2vec
-    possible_expansions = cached_resolve(acronym, left_context, right_context, Strategy.WORD2VEC)
+    word2vec_expansions = cached_resolve(acronym, left_context, right_context, Strategy.WORD2VEC)
+    logger.debug(word2vec_expansions)
+
+    # XXX Switch as desired
+    possible_expansions = word2vec_expansions
 
     ret['found'] = True if len(possible_expansions) > 0 else ret['found']
     ret['correct'] = test_input(true_expansions, possible_expansions)
