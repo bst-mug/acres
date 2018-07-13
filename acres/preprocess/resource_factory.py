@@ -3,21 +3,17 @@
 This module provides methods for lazily loading resources.
 
 """
-import logging
-from logging.config import fileConfig
 
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+# logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
+# logger = logging.getLogger(__name__)
+# logger.setLevel(logging.DEBUG)
 
 import os.path
 import pickle
-
 from typing import Dict, Set, List, Tuple
-from acres.preprocess import create_dumps
 
 from acres import functions
-
+from acres.preprocess import create_dumps
 
 PICKLE_FOLDER = "models/pickle/"
 NGRAMS_FOLDER = "models/ngrams/"
@@ -36,7 +32,7 @@ def get_morphemes() -> Set[str]:
     output_file = PICKLE_FOLDER + "morphemes.p"
 
     if not os.path.isfile(output_file):
-        _log_file_not_found(output_file)
+        #        _log_file_not_found(output_file)
 
         morph_eng = functions.import_conf("MORPH_ENG")
         morph_ger = functions.import_conf("MORPH_GER")
@@ -56,7 +52,7 @@ def get_index() -> Dict[str, Set[int]]:
     global INDEX
 
     if not INDEX:
-        output_file = PICKLE_FOLDER + "index.p"
+        output_file = PICKLE_FOLDER + "index" + "-V3.p"
 
         if not os.path.isfile(output_file):
             _log_file_not_found(output_file)
@@ -77,10 +73,10 @@ def _get_ngramstat_txt() -> str:
 
     :return:
     """
-    output_file = NGRAMS_FOLDER + "ngramstat.txt"
+    output_file = NGRAMS_FOLDER + "ngramstat" + "V3.txt"
 
     if not os.path.isfile(output_file):
-        _log_file_not_found(output_file)
+        #_log_file_not_found(output_file)
 
         corpus_path = functions.import_conf("CORPUS_PATH")
         ngramstat = create_dumps.create_corpus_ngramstat_dump(corpus_path)
@@ -105,7 +101,7 @@ def get_ngramstat() -> Dict[int, Tuple[int,str]]:
 
     if not NGRAMSTAT:
         min_freq = 1
-        output_file = PICKLE_FOLDER + "ngramstat-" + str(min_freq) + "-V2.p"
+        output_file = PICKLE_FOLDER + "ngramstat-" + str(min_freq) + "-V3.p"
 
         if not os.path.isfile(output_file):
             _log_file_not_found(output_file)
@@ -190,13 +186,13 @@ def warmup_cache():
 
     :return:
     """
-    get_morphemes()
-    get_index()
+    #get_morphemes()
     _get_ngramstat_txt()
     get_ngramstat()
     get_acronym_ngrams()
     get_acronyms()
     get_tokens()
+    get_index()
     get_character_ngrams()
 
 
@@ -218,8 +214,8 @@ def write_txt(resource, filename: str) -> int:
     return counter
 
 
-def _log_file_not_found(filename: str):
-    logger.warning("%s not found, will regenerate.", filename)
+# def _log_file_not_found(filename: str):
+#    logger.warning("%s not found, will regenerate.", filename)
 
 
 if __name__ == "__main__":

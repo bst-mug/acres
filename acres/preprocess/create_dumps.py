@@ -2,12 +2,9 @@
 Stefan Schulz 12 Nov 2017
 """
 
-import logging
-from logging.config import fileConfig
-
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+# logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
+# logger = logging.getLogger(__name__)
+# logger.setLevel(logging.DEBUG)
 
 import collections
 from typing import Dict, Set, List, Tuple
@@ -35,7 +32,7 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
             line = functions.clear_digits(line, digit_placeholder)
             str_doc = str_doc + line.strip() + break_marker
         for i in range(0, len(str_doc) - (ngramlength - 1)):
-            ngram = str_doc[0 + i: ngramlength + i].strip()
+            ngram = str_doc[0 + i: ngramlength + i]
             if len(ngram) == ngramlength:
                 if ngram not in dict_char_ngrams:
                     dict_char_ngrams[ngram] = 1
@@ -74,8 +71,12 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
         if len(digit_placeholder) == 1:
             text = functions.clear_digits(
                 text, digit_placeholder)
-        text = text.replace("  ", " ").replace("  ", " ")
         text = text.replace(break_marker, " " + break_marker + " ")
+        text = functions.reduce_repeated_chars(text, " ", 1)
+        text = text.replace(break_marker + " " + break_marker, break_marker + break_marker)
+        text = text.replace(break_marker + " " + break_marker, break_marker + break_marker)
+        text = functions.reduce_repeated_chars(text, break_marker, 2)
+
         entire_corpus = entire_corpus + text + "\n\n"
         counter += 1
 

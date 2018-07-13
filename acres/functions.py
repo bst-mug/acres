@@ -6,12 +6,9 @@ TODO move to proper function
 This function compares and acronym with a potential full form and returns a list of segmentations.
 """
 
-import logging
-from logging.config import fileConfig
-
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+# logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
+# logger = logging.getLogger(__name__)
+# logger.setLevel(logging.DEBUG)
 
 import configparser
 import os
@@ -32,7 +29,7 @@ def import_conf(key):
     """
     config = configparser.ConfigParser()
     config.read("config.ini")
-    logger.debug(config.sections())
+    #logger.debug(config.sections())
     return config['DEFAULT'][key]
 
 
@@ -108,7 +105,7 @@ def extract_acronym_definition(str_probe: str, max_length: int) -> Union[None, T
 
 def fix_line_endings(
         long_text: str,
-        line_break_marker="\n",
+        line_break_marker="¶",
         char_ngram_length=8,
         line_break_marker_position=3) -> str:
     """
@@ -594,6 +591,33 @@ def robust_text_import_from_dir(path: str) -> List[str]:
             continue
 
     return texts
+
+
+def reduce_repeated_chars(str_in, char, n):
+    """
+    :param str_in: text to be cleaned
+    :param char: character that should not occur more than n times in sequence
+    :param remaining_chars: n
+    :return:
+    """
+    prev = ""
+    cnt = 0
+    out = ""
+    for c in str_in:
+        if c == char:
+            cnt += 1
+            if cnt <= n:
+                out = out + c
+
+        else:
+            cnt = 0
+            out = out + c
+    return out
+
+
+
+
+
 
 # p = import_conf("SAMPLEPATH")
 # lst_texts = robust_text_import_from_dir(p)
