@@ -2,15 +2,18 @@
 Stefan Schulz 12 Nov 2017
 """
 
-import collections
 import logging
+from logging.config import fileConfig
+
+logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+import collections
 from typing import Dict, Set, List, Tuple
 
 from acres import functions
 from acres.preprocess import resource_factory
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
 
 def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="Ð",

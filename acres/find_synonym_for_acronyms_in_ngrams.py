@@ -3,6 +3,12 @@ Stefan Schulz 03 Dec 2017
 """
 
 import logging
+from logging.config import fileConfig
+
+logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 import math
 import random
 import re
@@ -14,9 +20,6 @@ from acres import get_synonyms_from_ngrams
 from acres.web import get_web_ngram_stat
 from acres import rate_acronym_resolutions
 from acres.preprocess import resource_factory
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
 NEWLINE = "¶"
 NUMERIC = "Ð"

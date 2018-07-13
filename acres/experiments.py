@@ -6,12 +6,15 @@ Text and Training files
 
 """
 import logging
+from logging.config import fileConfig
+
+logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 import random
 
 from acres import functions
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
 
 def extract_acronym_with_context(text, window):

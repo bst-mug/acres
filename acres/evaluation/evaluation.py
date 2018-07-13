@@ -3,14 +3,15 @@ Benchmark code.
 """
 
 import logging
-import time
-from enum import Enum
 from logging.config import fileConfig
-from typing import Dict, Tuple, List
 
-logging.config.fileConfig("logging.ini")
+logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
+
+import time
+from enum import Enum
+from typing import Dict, Tuple, List
 
 from acres import get_synonyms_from_ngrams
 from acres.nn import test

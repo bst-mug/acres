@@ -5,13 +5,14 @@
 """
 
 import logging
-import re
 from logging.config import fileConfig
-from typing import List
 
-logging.config.fileConfig("logging.ini")
+logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
+
+import re
+from typing import List
 
 # MUST be after logging definition, so that it works properly
 from gensim.models import Word2Vec, Phrases

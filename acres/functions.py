@@ -6,8 +6,14 @@ TODO move to proper function
 This function compares and acronym with a potential full form and returns a list of segmentations.
 """
 
-import configparser
 import logging
+from logging.config import fileConfig
+
+logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+import configparser
 import os
 import re
 from random import randint
@@ -16,9 +22,6 @@ from typing import Dict, List, Tuple, Union
 import requests
 
 from acres.preprocess import resource_factory
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
 
 def import_conf(key):
