@@ -1,6 +1,13 @@
 """Apply a given word2vec model
 
 """
+import logging
+from logging.config import fileConfig
+
+logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
 from typing import List
 
 from acres import functions
@@ -21,6 +28,7 @@ def find_candidates(acronym: str, left_context: str = "", right_context: str = "
     # Check for out of vocabulary acronyms
     # TODO fallback to something, maybe clean the acronym?
     if acronym not in model.wv.vocab:
+        logger.warning("'%s' not found in the vocabulary!", acronym)
         return []
 
     # TODO evaluate use of context
