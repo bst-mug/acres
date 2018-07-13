@@ -220,3 +220,7 @@ def write_txt(resource, filename: str) -> int:
 
 def _log_file_not_found(filename: str):
     logger.warning("%s not found, will regenerate.", filename)
+
+
+if __name__ == "__main__":
+    warmup_cache()
