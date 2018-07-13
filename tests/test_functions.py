@@ -34,15 +34,15 @@ def test_extract_acronym_definition():
 
 
 def test_fix_line_endings():
-    expected = "This is a short text¶\n"
+    expected = "This is a short text\n"
     actual = functions.fix_line_endings("This is a short text")
     assert expected == actual
 
-    expected = "der Patientin¶\n"
+    expected = "der Patientin\n"
     actual = functions.fix_line_endings("der\nPatientin")
     assert expected == actual
 
-    expected = "DIAGNOSEN¶\n---------¶\n"
+    expected = "DIAGNOSEN\n---------\n"
     actual = functions.fix_line_endings("DIAGNOSEN\n---------")
     assert expected == actual
 

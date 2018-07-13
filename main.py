@@ -1,4 +1,4 @@
-from acres.preprocess import resource_factory
+from acres.benchmark import fix_line_endings
 
 if __name__ == "__main__":
-    resource_factory.warmup_cache()
+    fix_line_endings.test_fine_ending_fixings()

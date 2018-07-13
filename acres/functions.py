@@ -108,7 +108,7 @@ def extract_acronym_definition(str_probe: str, max_length: int) -> Union[None, T
 
 def fix_line_endings(
         long_text: str,
-        line_break_marker="¶",
+        line_break_marker="\n",
         char_ngram_length=8,
         line_break_marker_position=3) -> str:
     """
@@ -138,7 +138,7 @@ def fix_line_endings(
 
         # line break marker at nth position
         if ngr[line_break_marker_position] == line_break_marker:
-            ngr_clean = clear_digits(ngr, "°")
+            ngr_clean = clear_digits(ngr, "Ð")
             ngr_clean_space = ngr_clean.replace(line_break_marker, " ")
             if ngr_clean in char_ngram_dict:
                 n_breaks = char_ngram_dict[ngr_clean]
@@ -175,11 +175,8 @@ def fix_line_endings(
                 break
 
     out = out + long_text[i:] + line_break_marker
-    return out.replace(line_break_marker, line_break_marker + "\n")
+    return out
 
-
-# for all training files
-# added " <EOL>" for end of line and substituted digits by "Ð"
 
 
 def clear_digits(str_in: str, substitute_char: str) -> str:

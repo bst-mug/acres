@@ -56,7 +56,8 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
     It requires that all documents are in UTF-8 text.
     It can perform line break cleansing (removes artificial line breaks)
     and substitutions of digits.
-    For fixing the lines, a character ngram stat dictionary, CREATED FROM THE SAME OR A SIMILAR
+    For fixing the lines, a character ngram stat dictionary,
+    CREATED FROM THE SAME OR A SIMILAR
     CORPUS, character_ngrams.p  must be in place.
     Creates a text file with token n gram statistics
     :return:  counter ( number of records)
