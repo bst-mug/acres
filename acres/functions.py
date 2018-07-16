@@ -147,11 +147,10 @@ def fix_line_endings(
                 n_spaces = char_ngram_dict[ngr_clean_space]
             else:
                 n_spaces = 0
-            # TODO: implement logging
-            logger.debug("----")
-            logger.debug(ngr)
-            logger.debug("With new line: %s", n_breaks)
-            logger.debug("With space: %s", n_spaces)
+            # logger.debug("----")
+            # logger.debug(ngr)
+            # logger.debug("With new line: %s", n_breaks)
+            # logger.debug("With space: %s", n_spaces)
             if n_spaces > n_breaks:
                 # TODO: line_break_marker as delimiter
                 # What happens if the break marker symbol also occurs in the original text
