@@ -190,6 +190,9 @@ def create_normalised_token_dump(ngram_stat: str) -> Set[str]:
 
     # ngram statistics representing a specific document genre and domain
 
+    # FIXME It seems the last token of the file is added without a line separator if the ngramstat
+    # file does not include a trailing new line character
+
     logger.debug(ngram_stat)
     all_tokens = set()
     all_token_variants = set()

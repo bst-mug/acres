@@ -37,13 +37,16 @@ def test_create_index():
     expected = {'¶': {1, 4, 6}, 'der': {2}, 'EKG': {3, 4, 5}, '*': {4, 6}, 'Im': {5}, 'Physikalischer': {6},
                 'Status': {6}}
 
-    assert expected == actual
+    # Dictionary comparison
+    for key, value in expected.items():
+        assert actual[key] == value
 
 
 def test_create_normalised_token_dump():
     actual = create_dumps.create_normalised_token_dump(
         "tests/models/ngrams/ngramstat-" + resource_factory.VERSION + ".txt")
-    expected = {'', 'EKG', '¶\n', '200\tder\n', '50\tEKG\n', 'status', '¶', '50\tekg\n', 'Status', '2000\t¶\n', '27\t*',
+    expected = {'', 'EKG', '¶\n', '200\tder\n', '50\tEKG\n', 'status', '¶\n', '50\tekg\n', 'Status',
+                '2000\t¶\n', '27\t*',
                 'Physikalischer', 'physikalischer', 'physicalischer', '19\t*', 'Physicalischer', 'ekg'}
 
     assert set(expected).issubset(actual)
