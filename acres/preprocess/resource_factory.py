@@ -16,10 +16,12 @@ from typing import Dict, Set, List, Tuple
 
 from acres import functions
 from acres.preprocess import create_dumps
+from acres.nn import base, train
 
 PICKLE_FOLDER = "models/pickle/"
 NGRAMS_FOLDER = "models/ngrams/"
 LOG_FOLDER = "models/log/"
+NN_MODELS_FOLDER = "models/nn/"
 
 VERSION = "V3"
 
@@ -182,6 +184,40 @@ def get_character_ngrams() -> Dict[str, int]:
         pickle.dump(character_ngrams, open(pickle_output_file, "wb"))
 
     return pickle.load(open(pickle_output_file, "rb"))
+
+
+NN_MODEL = None  # type: Word2Vec
+
+
+def get_nn_model(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=0,
+                 negative=5):
+    """
+    Lazy load a word2vec model.
+
+    :param ngram_size:
+    :param min_count:
+    :param net_size:
+    :param alpha:
+    :param sg:
+    :param hs:
+    :param negative:
+    :return:
+    """
+    global NN_MODEL
+
+    if not NN_MODEL:
+        model_path = NN_MODELS_FOLDER + "{}-{}-{}-{}-{}-{}-{}.model".format(ngram_size, min_count,
+                                                                            net_size,
+                                                                            alpha, sg, hs, negative)
+
+        if not os.path.isfile(model_path):
+            logger.warning("Retraining the model...")
+            model = train.train(ngram_size, min_count, net_size, alpha, sg, hs, negative)
+            model.save(model_path)
+
+        NN_MODEL = base.load_model(model_path)
+
+    return NN_MODEL
 
 
 def warmup_cache():

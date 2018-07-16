@@ -11,7 +11,7 @@ logger.setLevel(logging.DEBUG)
 from typing import List
 
 from acres import functions
-from acres.nn import base
+from acres.preprocess import resource_factory
 
 
 def find_candidates(acronym: str, left_context: str = "", right_context: str = "") -> List[str]:
@@ -23,7 +23,7 @@ def find_candidates(acronym: str, left_context: str = "", right_context: str = "
     :param right_context:
     :return:
     """
-    model = base.get_nn_model(min_count=5)
+    model = resource_factory.get_nn_model(min_count=5)
 
     # Check for out of vocabulary acronyms
     # TODO fallback to something, maybe clean the acronym?
