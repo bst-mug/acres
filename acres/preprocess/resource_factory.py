@@ -75,7 +75,7 @@ def _get_ngramstat_txt() -> str:
 
     :return:
     """
-    output_file = NGRAMS_FOLDER + "ngramstat" + "V3.txt"
+    output_file = NGRAMS_FOLDER + "ngramstat" + "-V3.txt"
 
     if not os.path.isfile(output_file):
         #_log_file_not_found(output_file)
