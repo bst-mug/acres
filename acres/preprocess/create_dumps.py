@@ -44,9 +44,6 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
     return dict_char_ngrams
 
 
-# TODO :   we have to assure that unit tests with small input data do not
-# TODO : overwrite the models (ngram and pickle)
-
 def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_length=7,
                                  digit_placeholder="Ð", break_marker="¶") -> Dict[str, int]:
     """
