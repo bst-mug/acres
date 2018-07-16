@@ -3,10 +3,12 @@
 This module provides methods for lazily loading resources.
 
 """
+import logging
+from logging.config import fileConfig
 
-# logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-# logger = logging.getLogger(__name__)
-# logger.setLevel(logging.DEBUG)
+logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 import os.path
 import pickle
@@ -214,8 +216,8 @@ def write_txt(resource, filename: str) -> int:
     return counter
 
 
-# def _log_file_not_found(filename: str):
-#    logger.warning("%s not found, will regenerate.", filename)
+def _log_file_not_found(filename: str):
+    logger.warning("%s not found, will regenerate.", filename)
 
 
 if __name__ == "__main__":

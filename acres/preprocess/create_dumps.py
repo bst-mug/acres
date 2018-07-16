@@ -1,10 +1,12 @@
 """
 Stefan Schulz 12 Nov 2017
 """
+import logging
+from logging.config import fileConfig
 
-# logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-# logger = logging.getLogger(__name__)
-# logger.setLevel(logging.DEBUG)
+logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 import collections
 from typing import Dict, Set, List, Tuple
