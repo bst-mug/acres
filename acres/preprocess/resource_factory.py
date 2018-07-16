@@ -21,6 +21,8 @@ PICKLE_FOLDER = "models/pickle/"
 NGRAMS_FOLDER = "models/ngrams/"
 LOG_FOLDER = "models/log/"
 
+VERSION = "V3"
+
 
 def get_log_corpus_filename() -> str:
     return LOG_FOLDER + "logCorpus.txt"
@@ -54,7 +56,7 @@ def get_index() -> Dict[str, Set[int]]:
     global INDEX
 
     if not INDEX:
-        output_file = PICKLE_FOLDER + "index" + "-V3.p"
+        output_file = PICKLE_FOLDER + "index-" + VERSION + ".p"
 
         if not os.path.isfile(output_file):
             _log_file_not_found(output_file)
@@ -75,7 +77,7 @@ def _get_ngramstat_txt() -> str:
 
     :return:
     """
-    output_file = NGRAMS_FOLDER + "ngramstat" + "-V3.txt"
+    output_file = NGRAMS_FOLDER + "ngramstat-" + VERSION + ".txt"
 
     if not os.path.isfile(output_file):
         #_log_file_not_found(output_file)
@@ -103,7 +105,7 @@ def get_ngramstat() -> Dict[int, Tuple[int,str]]:
 
     if not NGRAMSTAT:
         min_freq = 1
-        output_file = PICKLE_FOLDER + "ngramstat-" + str(min_freq) + "-V3.p"
+        output_file = PICKLE_FOLDER + "ngramstat-" + str(min_freq) + "-" + VERSION + ".p"
 
         if not os.path.isfile(output_file):
             _log_file_not_found(output_file)

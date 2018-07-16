@@ -25,7 +25,8 @@ def test_create_corpus_ngramstat_dump():
 
 
 def test_create_ngramstat_dump():
-    actual = create_dumps.create_ngramstat_dump("tests/models/ngrams/ngramstat-V3.txt", 2)
+    actual = create_dumps.create_ngramstat_dump(
+        "tests/models/ngrams/ngramstat-" + resource_factory.VERSION + ".txt", 2)
     expected = {1: (2000, '¶'), 2: (200, 'der'), 3: (50, 'EKG')}
 
     assert set(expected.values()).issubset(actual.values())
@@ -40,7 +41,8 @@ def test_create_index():
 
 
 def test_create_normalised_token_dump():
-    actual = create_dumps.create_normalised_token_dump("tests/models/ngrams/ngramstat-V3.txt")
+    actual = create_dumps.create_normalised_token_dump(
+        "tests/models/ngrams/ngramstat-" + resource_factory.VERSION + ".txt")
     expected = {'', 'EKG', '¶\n', '200\tder\n', '50\tEKG\n', 'status', '¶', '50\tekg\n', 'Status', '2000\t¶\n', '27\t*',
                 'Physikalischer', 'physikalischer', 'physicalischer', '19\t*', 'Physicalischer', 'ekg'}
 

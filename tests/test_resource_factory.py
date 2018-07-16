@@ -15,7 +15,7 @@ def test_get_morphemes():
 
 
 def test_getindex():
-    output_file = "tests/models/pickle/index.p"
+    output_file = "tests/models/pickle/index-" + resource_factory.VERSION + ".p"
 
     if os.path.isfile(output_file):
         os.remove(output_file)
@@ -29,7 +29,7 @@ def test_getindex():
 
 
 def test_get_ngramstat():
-    output_file = "tests/models/pickle/ngramstat-1-V2.p"
+    output_file = "tests/models/pickle/ngramstat-1-" + resource_factory.VERSION + ".p"
 
     if os.path.isfile(output_file):
         os.remove(output_file)
