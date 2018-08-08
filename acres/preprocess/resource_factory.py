@@ -38,7 +38,7 @@ def get_morphemes() -> Set[str]:
     output_file = PICKLE_FOLDER + "morphemes.p"
 
     if not os.path.isfile(output_file):
-        #        _log_file_not_found(output_file)
+        _log_file_not_found(output_file)
 
         morph_eng = functions.import_conf("MORPH_ENG")
         morph_ger = functions.import_conf("MORPH_GER")
@@ -82,7 +82,7 @@ def _get_ngramstat_txt() -> str:
     output_file = NGRAMS_FOLDER + "ngramstat-" + VERSION + ".txt"
 
     if not os.path.isfile(output_file):
-        #_log_file_not_found(output_file)
+        _log_file_not_found(output_file)
 
         corpus_path = functions.import_conf("CORPUS_PATH")
         ngramstat = create_dumps.create_corpus_ngramstat_dump(corpus_path)
@@ -106,7 +106,7 @@ def get_ngramstat() -> Dict[int, Tuple[int,str]]:
     global NGRAMSTAT
 
     if not NGRAMSTAT:
-        min_freq = 1
+        min_freq = 2
         output_file = PICKLE_FOLDER + "ngramstat-" + str(min_freq) + "-" + VERSION + ".p"
 
         if not os.path.isfile(output_file):
