@@ -176,22 +176,35 @@ def get_tokens() -> Set[str]:
     return pickle.load(open(output_file, "rb"))
 
 
+CHARACTER_NGRAMS = {}  # type: Dict[str, int]
+
+
 def get_character_ngrams() -> Dict[str, int]:
-    pickle_output_file = PICKLE_FOLDER + "character_ngrams.p"
-    ngram_output_file = NGRAMS_FOLDER + "character_ngrams.txt"
+    """
+    Get character ngrams.
 
-    if not os.path.isfile(pickle_output_file):
-        _log_file_not_found(pickle_output_file)
-        _log_file_not_found(ngram_output_file)
+    :return:
+    """
+    global CHARACTER_NGRAMS
 
-        corpus_path = functions.import_conf("CORPUS_PATH")
-        character_ngrams = create_dumps.create_corpus_char_stat_dump(corpus_path)
+    if not CHARACTER_NGRAMS:
+        pickle_output_file = PICKLE_FOLDER + "character_ngrams.p"
+        ngram_output_file = NGRAMS_FOLDER + "character_ngrams.txt"
 
-        write_txt(character_ngrams, ngram_output_file)
-        pickle.dump(character_ngrams, open(pickle_output_file, "wb"))
+        if not os.path.isfile(pickle_output_file):
+            _log_file_not_found(pickle_output_file)
+            _log_file_not_found(ngram_output_file)
 
-    _log_file_found(pickle_output_file)
-    return pickle.load(open(pickle_output_file, "rb"))
+            corpus_path = functions.import_conf("CORPUS_PATH")
+            character_ngrams = create_dumps.create_corpus_char_stat_dump(corpus_path)
+
+            write_txt(character_ngrams, ngram_output_file)
+            pickle.dump(character_ngrams, open(pickle_output_file, "wb"))
+
+        _log_file_found(pickle_output_file)
+        CHARACTER_NGRAMS = pickle.load(open(pickle_output_file, "rb"))
+
+    return CHARACTER_NGRAMS
 
 
 NN_MODEL = None  # type: Word2Vec

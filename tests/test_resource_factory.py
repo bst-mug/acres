@@ -82,5 +82,8 @@ def test_get_character_ngrams():
         os.remove(output_file)
     assert not os.path.isfile(output_file)
 
+    # Forces recreation
+    resource_factory.CHARACTER_NGRAMS = {}
+
     resource_factory.get_character_ngrams()
     assert os.path.isfile(output_file)
