@@ -15,6 +15,8 @@ def test_get_morphemes():
 
 
 def test_getindex():
+    resource_factory.MIN_FREQ = 1
+
     output_file = "tests/models/pickle/index-1-" + resource_factory.VERSION + ".p"
 
     if os.path.isfile(output_file):
@@ -29,6 +31,8 @@ def test_getindex():
 
 
 def test_get_ngramstat():
+    resource_factory.MIN_FREQ = 1
+    
     output_file = "tests/models/pickle/ngramstat-1-" + resource_factory.VERSION + ".p"
 
     if os.path.isfile(output_file):
