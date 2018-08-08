@@ -26,7 +26,7 @@ NN_MODELS_FOLDER = "models/nn/"
 VERSION = "V3"
 
 #  minimal number of occurrences of a word ngram in the corpus
-MIN_FREQ = 1
+MIN_FREQ = 2
 
 
 def get_log_corpus_filename() -> str:
