@@ -575,6 +575,8 @@ def robust_text_import_from_dir(path: str) -> List[str]:
     :param path: The path to look for documents.
     :return: A list of strings containing the content of each valid file.
     """
+    logger.info("Loading documents from %s...", str)
+
     texts = []
     # print(path)
     files = os.listdir(path)
@@ -585,10 +587,10 @@ def robust_text_import_from_dir(path: str) -> List[str]:
                 texts.append(content)
                 # print(file + " " + str(len(content)))
         except UnicodeDecodeError:
-            logger.debug("corrupt file: %s", filename)
+            logger.warning("Corrupt file: %s", filename)
             continue
         except IOError as e:
-            logger.debug("I/O error (%d) while reading %s: %s", e.errno, filename, e.strerror)
+            logger.warning("I/O error (%d) while reading %s: %s", e.errno, filename, e.strerror)
             continue
 
     return texts

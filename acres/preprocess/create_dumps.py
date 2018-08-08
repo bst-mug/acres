@@ -25,6 +25,9 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
     - returns counter (number of records)
     """
     texts = functions.robust_text_import_from_dir(corpus_path)
+
+    logger.info("Creating character ngrams from %d documents...", len(texts))
+
     dict_char_ngrams = {}   # type: Dict[str, int]
 
     for text in texts:
@@ -63,6 +66,8 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
     counter = 0
 
     texts = functions.robust_text_import_from_dir(corpus_path)
+
+    logger.info("Creating ngramstat from %d documents...", len(texts))
 
     for text in texts:
         if fix_lines:
