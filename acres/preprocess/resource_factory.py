@@ -106,6 +106,8 @@ def get_ngramstat() -> Dict[int, Tuple[int,str]]:
     global NGRAMSTAT
 
     if not NGRAMSTAT:
+        # minimal number of occurrences of a word ngram in the corpus
+        #  min_freq 1 causes performance problems
         min_freq = 1
         output_file = PICKLE_FOLDER + "ngramstat-" + str(min_freq) + "-" + VERSION + ".p"
 
