@@ -108,7 +108,7 @@ def get_ngramstat() -> Dict[int, Tuple[int,str]]:
     global NGRAMSTAT
 
     if not NGRAMSTAT:
-        min_freq = 2
+        min_freq = 1
         output_file = PICKLE_FOLDER + "ngramstat-" + str(min_freq) + "-" + VERSION + ".p"
 
         if not os.path.isfile(output_file):
