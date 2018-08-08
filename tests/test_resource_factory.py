@@ -15,7 +15,7 @@ def test_get_morphemes():
 
 
 def test_getindex():
-    output_file = "tests/models/pickle/index-" + resource_factory.VERSION + ".p"
+    output_file = "tests/models/pickle/index-1-" + resource_factory.VERSION + ".p"
 
     if os.path.isfile(output_file):
         os.remove(output_file)

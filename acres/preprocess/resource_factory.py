@@ -25,6 +25,9 @@ NN_MODELS_FOLDER = "models/nn/"
 
 VERSION = "V3"
 
+#  minimal number of occurrences of a word ngram in the corpus
+MIN_FREQ = 1
+
 
 def get_log_corpus_filename() -> str:
     return LOG_FOLDER + "logCorpus.txt"
@@ -59,7 +62,7 @@ def get_index() -> Dict[str, Set[int]]:
     global INDEX
 
     if not INDEX:
-        output_file = PICKLE_FOLDER + "index-" + VERSION + ".p"
+        output_file = PICKLE_FOLDER + "index-" + str(MIN_FREQ) + "-" + VERSION + ".p"
 
         if not os.path.isfile(output_file):
             _log_file_not_found(output_file)
@@ -108,16 +111,13 @@ def get_ngramstat() -> Dict[int, Tuple[int,str]]:
     global NGRAMSTAT
 
     if not NGRAMSTAT:
-        # minimal number of occurrences of a word ngram in the corpus
-        #  min_freq 1 causes performance problems
-        min_freq = 1
-        output_file = PICKLE_FOLDER + "ngramstat-" + str(min_freq) + "-" + VERSION + ".p"
+        output_file = PICKLE_FOLDER + "ngramstat-" + str(MIN_FREQ) + "-" + VERSION + ".p"
 
         if not os.path.isfile(output_file):
             _log_file_not_found(output_file)
 
             ngram_file = _get_ngramstat_txt()
-            ngramstat = create_dumps.create_ngramstat_dump(ngram_file, min_freq)
+            ngramstat = create_dumps.create_ngramstat_dump(ngram_file, MIN_FREQ)
             pickle.dump(ngramstat, open(output_file, "wb"))
 
         _log_file_found(output_file)
