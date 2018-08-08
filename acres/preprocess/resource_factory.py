@@ -48,6 +48,7 @@ def get_morphemes() -> Set[str]:
 
         pickle.dump(morphemes, open(output_file, "wb"))
 
+    _log_file_found(output_file)
     return pickle.load(open(output_file, "rb"))
 
 
@@ -67,7 +68,7 @@ def get_index() -> Dict[str, Set[int]]:
             index = create_dumps.create_index(ngramstat)
             pickle.dump(index, open(output_file, "wb"))
 
-        logger.info("Loading index from %s...", output_file)
+        _log_file_found(output_file)
         INDEX = pickle.load(open(output_file, "rb"))
 
     return INDEX
@@ -88,6 +89,7 @@ def _get_ngramstat_txt() -> str:
         ngramstat = create_dumps.create_corpus_ngramstat_dump(corpus_path)
         write_txt(ngramstat, output_file)
 
+    _log_file_found(output_file)
     return output_file
 
 
@@ -116,7 +118,7 @@ def get_ngramstat() -> Dict[int, Tuple[int,str]]:
             ngramstat = create_dumps.create_ngramstat_dump(ngram_file, min_freq)
             pickle.dump(ngramstat, open(output_file, "wb"))
 
-        logger.info("Loading ngramstat from %s...", output_file)
+        _log_file_found(output_file)
         NGRAMSTAT = pickle.load(open(output_file, "rb"))
 
     return NGRAMSTAT
@@ -136,6 +138,7 @@ def get_acronym_ngrams() -> List[str]:
         acronym_ngrams = create_dumps.create_new_acro_dump()
         pickle.dump(acronym_ngrams, open(output_file, "wb"))
 
+    _log_file_found(output_file)
     return pickle.load(open(output_file, "rb"))
 
 
@@ -153,6 +156,7 @@ def get_acronyms() -> List[str]:
         acronyms = create_dumps.create_acro_dump()
         pickle.dump(acronyms, open(output_file, "wb"))
 
+    _log_file_found(output_file)
     return pickle.load(open(output_file, "rb"))
 
 
@@ -166,6 +170,7 @@ def get_tokens() -> Set[str]:
         ngramstat = create_dumps.create_normalised_token_dump(ngram_file)
         pickle.dump(ngramstat, open(output_file, "wb"))
 
+    _log_file_found(output_file)
     return pickle.load(open(output_file, "rb"))
 
 
@@ -183,6 +188,7 @@ def get_character_ngrams() -> Dict[str, int]:
         write_txt(character_ngrams, ngram_output_file)
         pickle.dump(character_ngrams, open(pickle_output_file, "wb"))
 
+    _log_file_found(pickle_output_file)
     return pickle.load(open(pickle_output_file, "rb"))
 
 
@@ -256,6 +262,10 @@ def write_txt(resource, filename: str) -> int:
 
 def _log_file_not_found(filename: str):
     logger.warning("%s not found, will regenerate.", filename)
+
+
+def _log_file_found(filename: str):
+    logger.info("Loading model from file %s...", filename)
 
 
 if __name__ == "__main__":
