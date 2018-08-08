@@ -66,10 +66,13 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
     counter = 0
 
     texts = functions.robust_text_import_from_dir(corpus_path)
+    length = len(texts)
 
-    logger.info("Creating ngramstat from %d documents...", len(texts))
+    logger.info("Creating ngramstat from %d documents...", length)
 
     for text in texts:
+        logger.debug("%d/%d", counter, length)
+
         if fix_lines:
             text = functions.fix_line_endings(text, break_marker)
         if len(digit_placeholder) == 1:
@@ -84,7 +87,6 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
         entire_corpus = entire_corpus + text + "\n\n"
         counter += 1
 
-    logger.debug("Corpus loaded containing %d documents.", counter)
     dict_ngramstat = functions.create_ngram_statistics(entire_corpus, min_length, max_length)
 
     # pickle.dump(dict_ngramstat, open("models/pickle/token_ngrams.p", "wb"))
