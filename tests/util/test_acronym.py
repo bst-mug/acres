@@ -52,10 +52,9 @@ def test_split_expansion():
     actual = acres.util.acronym.split_expansion("EKG", "Elektrokardiogramm")
     assert expected == actual
 
-    # FIXME IndexError: string index out of range
-    # expected = [('a')]
-    # actual = functions.split_expansion("A", "a")
-    # assert expected == actual
+    expected = [('a')]
+    actual = acres.util.acronym.split_expansion("A", "a")
+    assert expected == actual
 
     # Expansion = acronym should still work
     expected = [('a', 'b')]

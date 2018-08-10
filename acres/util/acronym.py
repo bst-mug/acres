@@ -161,6 +161,12 @@ def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
     for i in range(0, (2 ** (len(acro) - 1))):
         # Takes the binary value of i and fills it with zeroes up to the length of acronym -1
         str_bin = str(bin(i))[2:].zfill(len(acro) - 1)
+
+        # zfill will not drop characters. In the corner case of a single letter acronym, we should
+        # generate an empty string.
+        if len(acro) == 1:
+            str_bin = ""
+
         bina.append(str_bin.replace("0", "*|").replace("1", "*?|"))
 
     # Iterate over the built list of expressions, each matching the initial characters in a
