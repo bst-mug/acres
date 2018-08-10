@@ -37,7 +37,7 @@ def get_log_web_filename() -> str:
     return LOG_FOLDER + "logWebs.txt"
 
 
-MORPHEMES = {}  # type: Set[str]
+MORPHEMES = set()  # type: Set[str]
 
 
 def get_morphemes() -> Set[str]:

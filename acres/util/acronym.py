@@ -189,13 +189,14 @@ def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
         # diacritics).
         regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
 
-    result = []
+    result = []  # type: List[Tuple[str, ...]]
     for reg in regs:
         if re.search(reg, cleaned_full, re.IGNORECASE) is not None:
             found = re.findall(reg, cleaned_full, re.IGNORECASE)[0]
 
             # Avoid duplicates
-            result.append(found) if found not in result else 0
+            if found not in result:
+                result.append(found)
     return result
 
 
