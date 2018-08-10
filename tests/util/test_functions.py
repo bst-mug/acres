@@ -10,18 +10,6 @@ def test_get_url():
     assert "Acronym" in actual.text
 
 
-def test_split_ngram():
-    # pass
-    assert functions.split_ngram("a b c") == []
-    #
-    assert functions.split_ngram("a AK b") == [('a', 'AK', 'b')]
-    #
-    assert functions.split_ngram("l ACR1 b ACR2 c") == [(
-        'l', 'ACR1', 'b ACR2 c'), ('l ACR1 b', 'ACR2', 'c')]
-    #
-    assert functions.split_ngram("ACR") == [('', 'ACR', '')]
-
-
 def test_create_ngram_statistics():
     assert functions.create_ngram_statistics('a', 1, 1) == {'a': 1}
     assert functions.create_ngram_statistics('a b', 1, 1) == {'a': 1, 'b': 1}

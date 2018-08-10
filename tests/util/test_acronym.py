@@ -106,3 +106,15 @@ def test__acronym_aware_clean_expansion():
     # XXX We do not remove duplicated spaces
     assert "Angina   pectoris" == acres.util.acronym._acronym_aware_clean_expansion("AP",
                                                                                     "Angina&&&pectoris")
+
+
+def test_split_ngram():
+    # pass
+    assert acres.util.acronym.split_ngram("a b c") == []
+    #
+    assert acres.util.acronym.split_ngram("a AK b") == [('a', 'AK', 'b')]
+    #
+    assert acres.util.acronym.split_ngram("l ACR1 b ACR2 c") == [(
+        'l', 'ACR1', 'b ACR2 c'), ('l ACR1 b', 'ACR2', 'c')]
+    #
+    assert acres.util.acronym.split_ngram("ACR") == [('', 'ACR', '')]

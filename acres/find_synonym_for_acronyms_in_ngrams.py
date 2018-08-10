@@ -5,6 +5,7 @@ Stefan Schulz 03 Dec 2017
 import logging
 from logging.config import fileConfig
 
+import acres.util.acronym
 import acres.util.text
 
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
@@ -17,7 +18,6 @@ import re
 import time
 from typing import Dict, List, Tuple
 
-from acres.util import functions
 from acres import get_synonyms_from_ngrams
 from acres.web import get_web_ngram_stat
 from acres import rate_acronym_resolutions
@@ -60,7 +60,7 @@ def find_synonyms() -> None:
 
             logger.debug("-----------------------")
             logger.debug(ngram)
-            splits = functions.split_ngram(ngram.strip())
+            splits = acres.util.acronym.split_ngram(ngram.strip())
             for split in splits:
                 left_string = split[0].strip()
                 acronym = split[1].strip()

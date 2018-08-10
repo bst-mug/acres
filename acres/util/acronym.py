@@ -205,3 +205,22 @@ def is_valid_expansion(acronym: str, expansion: str) -> bool:
     :return:
     """
     return len(split_expansion(acronym, expansion)) > 0
+
+
+def split_ngram(ngram: str) -> List[Tuple[str, str, str]]:
+    """
+    Splits a token ngram with acronym(s) into all combinations of left - acro - token.
+
+    :param ngram:
+    :return:
+    """
+    out = []
+    tokens = ngram.split(" ")
+    counter = 0
+    for token in tokens:
+        if is_acronym(token, 7, "Ð"):
+            tr = (" ".join(tokens[0:counter]),
+                  tokens[counter], " ".join(tokens[counter + 1:]))
+            out.append(tr)
+        counter += 1
+    return out

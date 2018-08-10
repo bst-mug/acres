@@ -8,8 +8,6 @@ This function compares and acronym with a potential full form and returns a list
 import logging
 from logging.config import fileConfig
 
-from acres.util.acronym import is_acronym
-
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -17,7 +15,7 @@ logger.setLevel(logging.DEBUG)
 import configparser
 import os
 from random import randint
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 import requests
 
@@ -62,25 +60,6 @@ def get_url(url, timeout=1):
     except requests.exceptions.RequestException as ex:
         logger.critical(ex)
         return []
-
-
-def split_ngram(ngram: str) -> List[Tuple[str, str, str]]:
-    """
-    Splits a token ngram with acronym(s) into all combinations of left - acro - token.
-
-    :param ngram:
-    :return:
-    """
-    out = []
-    tokens = ngram.split(" ")
-    counter = 0
-    for token in tokens:
-        if is_acronym(token, 7, "Ð"):
-            tr = (" ".join(tokens[0:counter]),
-                  tokens[counter], " ".join(tokens[counter + 1:]))
-            out.append(tr)
-        counter += 1
-    return out
 
 
 def create_ngram_statistics(input_string: str, n_min: int, n_max: int) -> Dict[str, int]:
