@@ -1,3 +1,4 @@
+import acres.util.text
 from acres.benchmark import fix_line_endings
 from acres.util import functions
 
@@ -58,7 +59,7 @@ Folsan 5mg 1xpro Woche (Di)
 Ferretab 1-1-0
 Dalacin 300mg 1-1-1bis einschl. 20.04.2020"""
 
-    text = functions.fix_line_endings(text, break_marker)
+    text = acres.util.text.fix_line_endings(text, break_marker)
 
     text = text.replace(break_marker, " " + break_marker + " ")
     text = functions.reduce_repeated_chars(text, " ", 1)

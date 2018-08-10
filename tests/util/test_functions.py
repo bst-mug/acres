@@ -22,20 +22,6 @@ def test_split_ngram():
     assert functions.split_ngram("ACR") == [('', 'ACR', '')]
 
 
-def test_fix_line_endings():
-    expected = "This is a short text¶"
-    actual = functions.fix_line_endings("This is a short text")
-    assert expected == actual
-
-    expected = "der Patientin¶"
-    actual = functions.fix_line_endings("der\nPatientin")
-    assert expected == actual
-
-    expected = "DIAGNOSEN¶---------¶"
-    actual = functions.fix_line_endings("DIAGNOSEN\n---------")
-    assert expected == actual
-
-
 def test_create_ngram_statistics():
     assert functions.create_ngram_statistics('a', 1, 1) == {'a': 1}
     assert functions.create_ngram_statistics('a b', 1, 1) == {'a': 1, 'b': 1}

@@ -1,4 +1,4 @@
-from acres.util import functions
+import acres.util.text
 
 
 def test_fine_ending_fixings():
@@ -15,4 +15,4 @@ Temp 36,3°, RR initial 198/90 nach 2 Hb Nitro 165,82
 C: nc, arrh, leise
 P iL bei < Compliance : VA
 Abd.palp. unauff, lieg. PEG"""
-    print(functions.fix_line_endings(actual_input_text, "\n"))
+    print(acres.util.text.fix_line_endings(actual_input_text, "\n"))

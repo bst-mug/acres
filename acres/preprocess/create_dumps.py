@@ -5,6 +5,7 @@ import logging
 from logging.config import fileConfig
 
 import acres.util.acronym
+import acres.util.text
 
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
@@ -36,7 +37,7 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
         str_doc = ""
         lines = text.split("\n")
         for line in lines:
-            line = functions.clear_digits(line, digit_placeholder)
+            line = acres.util.text.clear_digits(line, digit_placeholder)
             str_doc = str_doc + line.strip() + break_marker
         for i in range(0, len(str_doc) - (ngramlength - 1)):
             ngram = str_doc[0 + i: ngramlength + i]
@@ -76,9 +77,9 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
         logger.debug("%d/%d", counter, length)
 
         if fix_lines:
-            text = functions.fix_line_endings(text, break_marker)
+            text = acres.util.text.fix_line_endings(text, break_marker)
         if len(digit_placeholder) == 1:
-            text = functions.clear_digits(
+            text = acres.util.text.clear_digits(
                 text, digit_placeholder)
         text = text.replace(break_marker, " " + break_marker + " ")
         text = functions.reduce_repeated_chars(text, " ", 1)
