@@ -93,3 +93,53 @@ def clear_digits(str_in: str, substitute_char: str) -> str:
         else:
             out = out + c
     return out
+
+
+def transliterate_to_seven_bit(str_in: str, language="de") -> str:
+    """
+    Converts string to 7-bit ASCII, considering language - specific rules,
+    such as in German "Ä" -> "AE", in English "Ä" -> "A"
+    Considering in-built capitalization rules such as "ß" -> "SS"
+    TODO: completing transliteration rules when non-Western languages are used
+    consider using unidecode
+    :param str_in:
+    :param language: the language for which rules are defined (ISO_639-1)
+    :return:
+    """
+    substitutions = {
+        "À": "A",
+        "Á": "A",
+        "Â": "A",
+        "Ã": "A",
+        "Ä": "A",
+        "Å": "A",
+        "Æ": "AE",
+        "Ç": "C",
+        "È": "E",
+        "É": "E",
+        "Ê": "E",
+        "Ë": "E",
+        "Ì": "I",
+        "Í": "I",
+        "Î": "I",
+        "Ï": "I",
+        "Ñ": "N",
+        "Ò": "O",
+        "Ó": "O",
+        "Ô": "O",
+        "Õ": "O",
+        "Ö": "O",
+        "Ø": "O",
+        "Ù": "U",
+        "Ú": "U",
+        "Û": "U",
+        "Ü": "U"}
+
+    if language == "de":
+        substitutions["Ä"] = "AE"
+        substitutions["Å"] = "AA"
+        substitutions["Ö"] = "OE"
+        substitutions["Ø"] = "OE"
+        substitutions["Ü"] = "UE"
+
+    return "".join([substitutions.get(c, c) for c in str_in.upper()])

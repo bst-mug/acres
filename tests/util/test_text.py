@@ -17,3 +17,11 @@ def test_fix_line_endings():
     expected = "DIAGNOSEN¶---------¶"
     actual = acres.util.text.fix_line_endings("DIAGNOSEN\n---------")
     assert expected == actual
+
+
+def test_transliterate_to_seven_bit():
+    assert "HAETTE" == acres.util.text.transliterate_to_seven_bit("hätte")
+    assert "HATTE" == acres.util.text.transliterate_to_seven_bit("hätte", "en")
+
+    assert "AANGSTROEM" == acres.util.text.transliterate_to_seven_bit("ångström")
+    assert "ANGSTROM" == acres.util.text.transliterate_to_seven_bit("ångström", "en")

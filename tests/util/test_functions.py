@@ -56,14 +56,6 @@ def test_create_ngram_statistics():
     assert expected == actual
 
 
-def test_transliterate_to_seven_bit():
-    assert "HAETTE" == functions.transliterate_to_seven_bit("hätte")
-    assert "HATTE" == functions.transliterate_to_seven_bit("hätte", "en")
-
-    assert "AANGSTROEM" == functions.transliterate_to_seven_bit("ångström")
-    assert "ANGSTROM" == functions.transliterate_to_seven_bit("ångström", "en")
-
-
 def test_substitute_k_and_f_by_context():
     assert "A" == functions.substitute_k_and_f_and_z_by_context("a")
 
