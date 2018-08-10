@@ -173,7 +173,7 @@ def test__acronym_aware_clean_expansion():
                                                                            "Angina&&&pectoris")
 
 
-def test_check_acro_vs_expansion():
+def test_split_expansion():
     # Baseline
     expected = [('Elektro', 'kardio', 'gramm'),
                 ('Ele', 'ktrokardio', 'gramm')]
