@@ -1,7 +1,11 @@
 gensim
 requests
 html2text
+
+# dev
 pylint
 pytest
 pytest-cov
 python-coveralls
+mypy
+sphinx
