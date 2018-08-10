@@ -37,22 +37,30 @@ def get_log_web_filename() -> str:
     return LOG_FOLDER + "logWebs.txt"
 
 
+MORPHEMES = {}  # type: Set[str]
+
+
 def get_morphemes() -> Set[str]:
-    output_file = PICKLE_FOLDER + "morphemes.p"
+    global MORPHEMES
 
-    if not os.path.isfile(output_file):
-        _log_file_not_found(output_file)
+    if not MORPHEMES:
+        output_file = PICKLE_FOLDER + "morphemes.p"
 
-        morph_eng = functions.import_conf("MORPH_ENG")
-        morph_ger = functions.import_conf("MORPH_GER")
+        if not os.path.isfile(output_file):
+            _log_file_not_found(output_file)
 
-        morphemes = create_dumps.create_morpho_dump(morph_eng)
-        morphemes = create_dumps.create_morpho_dump(morph_ger, morphemes)
+            morph_eng = functions.import_conf("MORPH_ENG")
+            morph_ger = functions.import_conf("MORPH_GER")
 
-        pickle.dump(morphemes, open(output_file, "wb"))
+            morphemes = create_dumps.create_morpho_dump(morph_eng)
+            morphemes = create_dumps.create_morpho_dump(morph_ger, morphemes)
 
-    _log_file_found(output_file)
-    return pickle.load(open(output_file, "rb"))
+            pickle.dump(morphemes, open(output_file, "wb"))
+
+        _log_file_found(output_file)
+        MORPHEMES = pickle.load(open(output_file, "rb"))
+
+    return MORPHEMES
 
 
 INDEX = {}  # type: Dict[str, Set[int]]

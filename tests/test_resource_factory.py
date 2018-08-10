@@ -10,6 +10,9 @@ def test_get_morphemes():
         os.remove(output_file)
     assert not os.path.isfile(output_file)
 
+    # Forces recreation
+    resource_factory.MORPHEMES = []
+
     resource_factory.get_morphemes()
     assert os.path.isfile(output_file)
 
