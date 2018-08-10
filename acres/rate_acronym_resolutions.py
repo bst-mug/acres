@@ -193,7 +193,7 @@ def get_acronym_score(acro: str, full: str, language="de") -> float:
     if re.search(expanded_upper, acro) is None:
         pen = pen * 0.25  # FIXME: check whether right
 
-    splits = functions.split_expansion(acro_low, full_low)
+    splits = acres.util.acronym.split_expansion(acro_low, full_low)
 
     score = 0.0
     # logger.debug(splits)

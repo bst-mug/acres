@@ -2,6 +2,8 @@ import logging
 import re
 from logging.config import fileConfig
 
+from acres.util.text import diacritics
+
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -130,3 +132,76 @@ def find_acro_expansions(lst_n_gram_stat: List[str]) -> List[str]:
                             break
 
     return ret
+
+
+def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
+    """
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    dia = diacritics()
+    bina = []
+    cleaned_full = _acronym_aware_clean_expansion(acro, full)
+
+    # list of binary combinations of
+    # alternative regex patterns
+    # (greedy vs. non-greedy)
+    # XXX: state machines instead of Regex
+    # XXX: debug what happens with "TRINS" - "Trikuspidalinsuffizienz"
+    # XXX: correct segmentation: 't', 'ricuspidal', 'i', 'n', 'suffizienz'
+    # XXX: obvious morpheme-based scoring does not work well
+    # XXX with this unorthodox building patterns
+    regs = []  # list of alternative regular expressions
+    for i in range(0, (2 ** (len(acro) - 1))):
+        str_bin = str(bin(i))[2:].zfill(len(acro) - 1)
+        bina.append(str_bin.replace("0", "*|").replace("1", "*?|"))
+    for expr in bina:
+        lst_exp = expr.split("|")
+        z = 0
+        out = "^("
+        for ex in lst_exp:
+            out = out + re.escape(acro[z]) + "." + ex + ")("
+            z += 1
+        regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
+        # List of all regular expressions
+        # logger.debug(regs)
+        # logger.debug(cleaned_full)
+
+    result = []
+    for reg in regs:
+        if re.search(reg, cleaned_full, re.IGNORECASE) is not None:
+            found = re.findall(reg, cleaned_full, re.IGNORECASE)[0]
+
+            # Avoid duplicates
+            result.append(found) if found not in result else 0
+    return result
+
+
+def _acronym_aware_clean_expansion(acronym: str, expansion: str) -> str:
+    """
+    Remove any symbol from the expanded form, preserving hyphens, spaces and chars from the acronym.
+
+    :param acronym:
+    :param expansion:
+    :return:
+    """
+    ret = ""
+    for c in expansion:
+        if c.isalnum() or c in " -" or c in acronym:
+            ret = ret + c
+        else:
+            ret = ret + " "
+    return ret.strip()
+
+
+def is_valid_expansion(acronym: str, expansion: str) -> bool:
+    """
+    Checks whether a candidate expansion is valid for an acronym.
+
+    :param acronym:
+    :param expansion:
+    :return:
+    """
+    return len(split_expansion(acronym, expansion)) > 0

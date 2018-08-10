@@ -12,7 +12,6 @@ logger.setLevel(logging.DEBUG)
 
 from typing import List
 
-from acres.util import functions
 from acres.preprocess import resource_factory
 
 
@@ -41,8 +40,9 @@ def find_candidates(acronym: str, left_context: str = "", right_context: str = "
     expansions = []
     for (expansion, prob) in similar:
         # TODO experiment with get_acronym_score
-        if not acres.util.acronym.is_acronym(expansion) and functions.is_valid_expansion(acronym,
-                                                                                         expansion):
+        if not acres.util.acronym.is_acronym(expansion) and acres.util.acronym.is_valid_expansion(
+                acronym,
+                expansion):
             expansions.append(expansion)
 
     return expansions

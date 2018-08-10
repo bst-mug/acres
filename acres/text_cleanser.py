@@ -5,14 +5,14 @@
 import logging
 from logging.config import fileConfig
 
+import acres.util.acronym
+
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 import re
 from typing import List, Set
-
-from acres.util import functions
 
 
 def find_best_substitution(form_to_resolve: str, candidates: List[str],
@@ -53,7 +53,7 @@ def find_best_substitution(form_to_resolve: str, candidates: List[str],
             logger.debug(ngram)
             match = re.search(regex_acro, ngram, re.IGNORECASE)
             if match is not None and form_to_resolve not in ngram:
-                segm = functions.split_expansion(form_to_resolve, ngram)
+                segm = acres.util.acronym.split_expansion(form_to_resolve, ngram)
                 # returns list like [[('Elektro', 'kardio', 'gramm')],
                 # [('Elektro', 'kardio', 'gramm')], [('Ele', 'ktrokardio', 'gramm')],
                 # [('Ele', 'ktrokardio', 'gramm')]]
