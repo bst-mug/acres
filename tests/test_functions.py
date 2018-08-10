@@ -177,30 +177,30 @@ def test_check_acro_vs_expansion():
     # Baseline
     expected = [('Elektro', 'kardio', 'gramm'),
                 ('Ele', 'ktrokardio', 'gramm')]
-    actual = functions.check_acro_vs_expansion("EKG", "Elektrokardiogramm")
+    actual = functions.split_expansion("EKG", "Elektrokardiogramm")
     assert expected == actual
 
     # FIXME IndexError: string index out of range
     # expected = [('a')]
-    # actual = functions.check_acro_vs_expansion("A", "a")
+    # actual = functions.split_expansion("A", "a")
     # assert expected == actual
 
     # Expansion = acronym should still work
     expected = [('a', 'b')]
-    actual = functions.check_acro_vs_expansion("AB", "ab")
+    actual = functions.split_expansion("AB", "ab")
     assert expected == actual
 
     expected = [('a', 'b', 'c')]
-    actual = functions.check_acro_vs_expansion("ABC", "abc")
+    actual = functions.split_expansion("ABC", "abc")
     assert expected == actual
 
     expected = [('a', 'b', 'c', 'd', 'e')]
-    actual = functions.check_acro_vs_expansion("ABCDE", "abcde")
+    actual = functions.split_expansion("ABCDE", "abcde")
     assert expected == actual
 
     # No valid expansion should return empty
     expected = []
-    actual = functions.check_acro_vs_expansion("EKG", "Elektro")
+    actual = functions.split_expansion("EKG", "Elektro")
     assert expected == actual
 
 

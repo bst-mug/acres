@@ -443,10 +443,10 @@ def is_valid_expansion(acronym: str, expansion: str) -> bool:
     :param expansion:
     :return:
     """
-    return len(check_acro_vs_expansion(acronym, expansion)) > 0
+    return len(split_expansion(acronym, expansion)) > 0
 
 
-def check_acro_vs_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
+def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
     """
 
     :param acro:
