@@ -33,3 +33,13 @@ def test_is_acronym():
 
     # Acronyms can contain numbers
     assert acres.util.acronym.is_acronym("5FU", 7)
+
+
+def test_find_acronym_expansion():
+    assert [] == acres.util.acronym.find_acro_expansions([])
+
+    # FIXME explain reasoning and fix possible bugs
+    expected = ['Im normale EKG post50     Im normalen elektrokardiogramm post30']
+    actual = acres.util.acronym.find_acro_expansions(["50\tIm normale EKG post",
+                                                      "30\tIm normalen elektrokardiogramm post"])
+    assert expected == actual
