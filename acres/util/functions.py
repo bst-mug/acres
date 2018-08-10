@@ -9,6 +9,7 @@ import logging
 from logging.config import fileConfig
 
 from acres.util.acronym import is_acronym
+from acres.util.text import diacritics
 
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
@@ -334,15 +335,6 @@ def simplify_german_string(str_in_german: str) -> str:
     str_in_german = str_in_german.replace("é", "e").replace("à", "a")
     return str_in_german.replace("ä", "ae").replace(
         "ö", "oe").replace("ü", "ue")
-
-
-def diacritics() -> str:
-    """
-    TODO ... explain why
-
-    :return: A string of diacritic characters
-    """
-    return "µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ"
 
 
 def random_sub_list(in_list: list, max_num: int) -> list:

@@ -5,6 +5,8 @@ Stefan Schulz 03 Dec 2017
 import logging
 from logging.config import fileConfig
 
+import acres.util.text
+
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -122,7 +124,7 @@ def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str, log
     :return:
     """
     morphemes = resource_factory.get_morphemes()
-    dia = functions.diacritics()  # list of diacritic characters
+    dia = acres.util.text.diacritics()  # list of diacritic characters
 
     for item in corpus:
         old_exp = ""
