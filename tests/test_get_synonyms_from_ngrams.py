@@ -23,6 +23,7 @@ def test_find_embeddings():
     expected = [(19, 'Physikalischer Status')]
     assert not set(expected).issubset(actual)
 
+
 def test_strip_frequencies():
     embeddings = [(42, "Abc Def, xyz"), (10, "aaaaaaa")]
 
