@@ -123,7 +123,7 @@ def get_acronym_score(acro: str, full: str, language="de") -> float:
     # for each acronym in full form, penalisation
     # TODO: check whether artefact
     for token in full.split(" "):
-        if functions.is_acronym(token, 7):
+        if acres.util.acronym.is_acronym(token, 7):
             # TODO check how penalisation works. Do we really need a separate penalisation variable?
             pen = pen / 4
     if language == "de":

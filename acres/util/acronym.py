@@ -7,8 +7,6 @@ logger.setLevel(logging.DEBUG)
 
 from typing import Union, Tuple
 
-from acres.util.functions import is_acronym
-
 
 def extract_acronym_definition(str_probe: str, max_length: int) -> Union[None, Tuple[str, str]]:
     """
@@ -29,3 +27,33 @@ def extract_acronym_definition(str_probe: str, max_length: int) -> Union[None, T
                 return right, left
 
     return None
+
+
+def is_acronym(str_probe: str, max_length: int = 7, digit_placeholder="Ð") -> bool:
+    """
+    Identifies Acronyms, restricted by absolute length
+    "Ð" as default placeholder for digits. (e.g. "Ð")
+    XXX look for "authoritative" definitions for acronyms
+
+    :param str_probe:
+    :param max_length:
+    :param digit_placeholder:
+    :return:
+    """
+    if len(digit_placeholder) > 1:
+        logger.error("Digit placeholders must be empty or a single character")
+        return False
+
+    ret = False
+    replaced_probe = str_probe.replace(digit_placeholder, "0")
+    lower = 0
+    upper = 0
+    if len(replaced_probe) <= max_length:
+        for c in replaced_probe:
+            if c.isupper():
+                upper = upper + 1
+            if c.islower():
+                lower = lower + 1
+    if upper > 1 and upper > lower:
+        ret = True
+    return ret

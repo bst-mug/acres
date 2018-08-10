@@ -8,6 +8,8 @@ This function compares and acronym with a potential full form and returns a list
 import logging
 from logging.config import fileConfig
 
+from acres.util.acronym import is_acronym
+
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -315,36 +317,6 @@ def substitute_k_and_f_and_z_by_context(str_in, language="de"):
             replace("ZI", "CI").replace("ZE", "CE"). \
             replace("KA", "CA").replace("KO", "CO").replace("KU", "CU"). \
             replace("ZY", "CY").replace("F", "PH")
-
-
-def is_acronym(str_probe: str, max_length: int =7, digit_placeholder="Ð") -> bool:
-    """
-    Identifies Acronyms, restricted by absolute length
-    "Ð" as default placeholder for digits. (e.g. "Ð")
-    XXX look for "authoritative" definitions for acronyms
-
-    :param str_probe:
-    :param max_length:
-    :param digit_placeholder:
-    :return:
-    """
-    if len(digit_placeholder) > 1:
-        logger.error("Digit placeholders must be empty or a single character")
-        return False
-
-    ret = False
-    replaced_probe = str_probe.replace(digit_placeholder, "0")
-    lower = 0
-    upper = 0
-    if len(replaced_probe) <= max_length:
-        for c in replaced_probe:
-            if c.isupper():
-                upper = upper + 1
-            if c.islower():
-                lower = lower + 1
-    if upper > 1 and upper > lower:
-        ret = True
-    return ret
 
 
 def simplify_german_string(str_in_german: str) -> str:

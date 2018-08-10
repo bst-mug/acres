@@ -4,6 +4,8 @@ Stefan Schulz 12 Nov 2017
 import logging
 from logging.config import fileConfig
 
+import acres.util.acronym
+
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -243,7 +245,7 @@ def create_acro_dump() -> List[str]:
         row = (ngram_stat[n])
         (freq, ngram) = row
         if ngram.isalnum() and "Ð" not in ngram:
-            if functions.is_acronym(ngram, 7):
+            if acres.util.acronym.is_acronym(ngram, 7):
                 # plausible max length for German medical language
                 if ngram not in acronyms:
                     acronyms.append(ngram)
@@ -268,7 +270,7 @@ def create_new_acro_dump() -> List[str]:
         if " " in ngram:
             tokens = ngram.split(" ")
             for token in tokens:
-                if functions.is_acronym(token, 7):
+                if acres.util.acronym.is_acronym(token, 7):
                     new_acronym_ngrams.append(ngram)
                     counter += 1
                     break

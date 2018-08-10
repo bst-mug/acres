@@ -90,29 +90,6 @@ def test_substitute_k_and_f_by_context():
     assert "F" == functions.substitute_k_and_f_and_z_by_context("F")
 
 
-def test_is_acronym():
-    # Single digits are not acronyms
-    assert not functions.is_acronym("A", 3)
-
-    # Lower-case are not acronyms
-    assert not functions.is_acronym("ecg", 3)
-    assert not functions.is_acronym("Ecg", 3)
-
-    # Double upper-case are acronyms
-    assert functions.is_acronym("AK", 2)
-
-    # Acronyms should be shorter or equal to the maximum length
-    assert not functions.is_acronym("EKG", 2)
-    assert functions.is_acronym("EKG", 3)
-
-    # Acronyms can contain diacritics
-    # XXX This fails with Python 2, because "Ä".isupper() == False
-    assert functions.is_acronym("ÄK", 3)
-
-    # Acronyms can contain numbers
-    assert functions.is_acronym("5FU", 7)
-
-
 def test_simplify_german_string():
     assert functions.simplify_german_string("LEBER") == "leber"
 

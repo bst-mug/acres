@@ -4,6 +4,8 @@
 import logging
 from logging.config import fileConfig
 
+import acres.util.acronym
+
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -39,7 +41,8 @@ def find_candidates(acronym: str, left_context: str = "", right_context: str = "
     expansions = []
     for (expansion, prob) in similar:
         # TODO experiment with get_acronym_score
-        if not functions.is_acronym(expansion) and functions.is_valid_expansion(acronym, expansion):
+        if not acres.util.acronym.is_acronym(expansion) and functions.is_valid_expansion(acronym,
+                                                                                         expansion):
             expansions.append(expansion)
 
     return expansions
