@@ -56,18 +56,6 @@ def test_create_ngram_statistics():
     assert expected == actual
 
 
-def test_substitute_k_and_f_by_context():
-    assert "A" == functions.substitute_k_and_f_and_z_by_context("a")
-
-    # Acronyms should not be substituted
-    assert "aB" == functions.substitute_k_and_f_and_z_by_context("aB")
-    assert "abCdef" == functions.substitute_k_and_f_and_z_by_context("abCdef")
-
-    assert "PHARMACY" == functions.substitute_k_and_f_and_z_by_context("farmacy")
-
-    assert "F" == functions.substitute_k_and_f_and_z_by_context("F")
-
-
 def test_simplify_german_string():
     assert functions.simplify_german_string("LEBER") == "leber"
 
