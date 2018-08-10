@@ -12,7 +12,7 @@ logger.setLevel(logging.DEBUG)
 import re
 from typing import List, Set
 
-from acres import functions
+from acres.util import functions
 
 
 def find_best_substitution(form_to_resolve: str, candidates: List[str],

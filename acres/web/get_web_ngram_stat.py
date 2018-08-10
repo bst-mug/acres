@@ -17,7 +17,7 @@ from typing import List, Tuple
 
 import html2text
 
-from acres import functions
+from acres.util import functions
 
 # Enables logging for under the hood libraries
 logging.getLogger("requests").setLevel(logging.DEBUG)

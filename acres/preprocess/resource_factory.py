@@ -14,7 +14,7 @@ import os.path
 import pickle
 from typing import Dict, Set, List, Tuple
 
-from acres import functions
+from acres.util import functions
 from acres.preprocess import create_dumps
 from acres.nn import base, train
 

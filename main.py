@@ -1,5 +1,5 @@
-from acres import functions
 from acres.benchmark import fix_line_endings
+from acres.util import functions
 
 if __name__ == "__main__":
     break_marker = "¶"

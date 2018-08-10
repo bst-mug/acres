@@ -10,7 +10,7 @@ logger.setLevel(logging.DEBUG)
 
 from typing import List
 
-from acres import functions
+from acres.util import functions
 from acres.preprocess import resource_factory
 
 

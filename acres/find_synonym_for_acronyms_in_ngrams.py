@@ -15,7 +15,7 @@ import re
 import time
 from typing import Dict, List, Tuple
 
-from acres import functions
+from acres.util import functions
 from acres import get_synonyms_from_ngrams
 from acres.web import get_web_ngram_stat
 from acres import rate_acronym_resolutions

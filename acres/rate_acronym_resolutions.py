@@ -13,7 +13,7 @@ import re
 from typing import List
 
 # from math import *
-from acres import functions
+from acres.util import functions
 from acres.preprocess import resource_factory
 
 

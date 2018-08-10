@@ -12,7 +12,7 @@ logger.setLevel(logging.INFO)
 
 import re
 from typing import List, Tuple, Set
-from acres import functions
+from acres.util import functions
 from acres.preprocess import resource_factory
 
 

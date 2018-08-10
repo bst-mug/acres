@@ -1,4 +1,4 @@
-from acres import functions
+from acres.util import functions
 
 
 def test_fine_ending_fixings():

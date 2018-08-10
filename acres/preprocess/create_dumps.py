@@ -11,7 +11,7 @@ logger.setLevel(logging.DEBUG)
 import collections
 from typing import Dict, Set, List, Tuple
 
-from acres import functions
+from acres.util import functions
 from acres.preprocess import resource_factory
 
 
