@@ -102,11 +102,6 @@ def fix_line_endings(
     :return:
     """
     char_ngram_dict = resource_factory.get_character_ngrams()
-    # TODO line above commented out because problem with loading config file
-    # TODO absolute path set because otherwise not found
-    # import pickle
-    # PICKLE_FOLDER = "C:\\Users\\SchulzS\\PycharmProjects\\acres\\models\\pickle\\"
-    # char_ngram_dict = pickle.load(open(PICKLE_FOLDER + "character_ngrams.p", "rb"))
 
     out = ""
     long_text = long_text.strip().replace("\n", line_break_marker)
@@ -359,14 +354,6 @@ def random_sub_list(in_list: list, max_num: int) -> list:
     return lst_out
 
 
-# Probes
-# logger.debug(import_conf("NGRAMFILE"))
-# logger.debug(CheckAcroVsFull("KHK", "koronare Herzkrankheit"))
-# logger.debug(extractAcroDef("EKG (Elektrokardiogramm)", 7))
-# logger.debug(extractAcroDef("Elektrokardiogramm", 7))
-# logger.debug(extractAcroDef("Elektrokardiogramm (EKG)", 7))
-
-
 def robust_text_import_from_dir(path: str) -> List[str]:
     """
     Read the content of valid text files from a path into a list of strings.
@@ -415,12 +402,3 @@ def reduce_repeated_chars(str_in, char, n):
             cnt = 0
             out = out + c
     return out
-
-
-
-
-
-
-# p = import_conf("SAMPLEPATH")
-# lst_texts = robust_text_import_from_dir(p)
-
