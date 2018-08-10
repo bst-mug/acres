@@ -37,3 +37,16 @@ def test_substitute_k_and_f_by_context():
     assert "PHARMACY" == acres.util.text.substitute_k_and_f_and_z_by_context("farmacy")
 
     assert "F" == acres.util.text.substitute_k_and_f_and_z_by_context("F")
+
+
+def test_simplify_german_string():
+    assert acres.util.text.simplify_german_string("LEBER") == "leber"
+
+    assert acres.util.text.simplify_german_string("ekg") == "ecg"
+    assert acres.util.text.simplify_german_string("heißen") == "heissen"
+    assert acres.util.text.simplify_german_string(
+        "Elektrokardiogramm") == "electrocardiogramm"
+
+    # XXX Is it expected?
+    assert acres.util.text.simplify_german_string("herz") == "herc"
+    assert acres.util.text.simplify_german_string("café") == "cafe"

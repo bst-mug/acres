@@ -56,19 +56,6 @@ def test_create_ngram_statistics():
     assert expected == actual
 
 
-def test_simplify_german_string():
-    assert functions.simplify_german_string("LEBER") == "leber"
-
-    assert functions.simplify_german_string("ekg") == "ecg"
-    assert functions.simplify_german_string("heißen") == "heissen"
-    assert functions.simplify_german_string(
-        "Elektrokardiogramm") == "electrocardiogramm"
-
-    # XXX Is it expected?
-    assert functions.simplify_german_string("herz") == "herc"
-    assert functions.simplify_german_string("café") == "cafe"
-
-
 def test_random_sub_list():
     # We output the input list if the length requested is larger or equal to
     # the input length

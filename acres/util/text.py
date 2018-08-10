@@ -202,3 +202,20 @@ def substitute_k_and_f_and_z_by_context(str_in, language="de"):
             replace("ZI", "CI").replace("ZE", "CE"). \
             replace("KA", "CA").replace("KO", "CO").replace("KU", "CU"). \
             replace("ZY", "CY").replace("F", "PH")
+
+
+def simplify_german_string(str_in_german: str) -> str:
+    """
+    Decapitalises, substitutes umlauts, sharp s and converts k and z to c
+
+    TODO ... explain why
+
+    :param str_in_german:
+    :return:
+    """
+    str_in_german = str_in_german.lower()
+    str_in_german = str_in_german.replace(
+        "k", "c").replace("z", "c").replace("ß", "ss")
+    str_in_german = str_in_german.replace("é", "e").replace("à", "a")
+    return str_in_german.replace("ä", "ae").replace(
+        "ö", "oe").replace("ü", "ue")

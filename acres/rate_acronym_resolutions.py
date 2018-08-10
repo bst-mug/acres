@@ -6,6 +6,7 @@ import logging
 from logging.config import fileConfig
 
 import acres.util.acronym
+import acres.util.text
 
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
@@ -15,7 +16,6 @@ import re
 from typing import List
 
 # from math import *
-from acres.util import functions
 from acres.preprocess import resource_factory
 
 
@@ -204,7 +204,7 @@ def get_acronym_score(acro: str, full: str, language="de") -> float:
             # TODO
             # check whether the function  substitute_k_and_f_by_context
             # could be used instead (produces 7-Bit string without K and F)
-            fragment = functions.simplify_german_string(fragment).strip()
+            fragment = acres.util.text.simplify_german_string(fragment).strip()
             # C, K, and Z no longer distinguished
             # XXX Soundex as an alternative ??
             # logger.debug("FR: " + fragment)
