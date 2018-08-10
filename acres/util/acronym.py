@@ -145,29 +145,46 @@ def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
     bina = []
     cleaned_full = _acronym_aware_clean_expansion(acro, full)
 
-    # list of binary combinations of
-    # alternative regex patterns
-    # (greedy vs. non-greedy)
-    # XXX: state machines instead of Regex
-    # XXX: debug what happens with "TRINS" - "Trikuspidalinsuffizienz"
-    # XXX: correct segmentation: 't', 'ricuspidal', 'i', 'n', 'suffizienz'
-    # XXX: obvious morpheme-based scoring does not work well
-    # XXX with this unorthodox building patterns
-    regs = []  # list of alternative regular expressions
+    # TODO recursive function instead of Regex
+
+    # TODO debug what happens with "TRINS" - "Trikuspidalinsuffizienz"
+    # (correct segmentation: 't', 'ricuspidal', 'i', 'n', 'suffizienz')
+
+    # TODO obvious morpheme-based scoring does not work well with this unorthodox building patterns
+
+    # List of binary combinations of alternative regex patterns (greedy vs. non-greedy)
+    regs = []
+
+    # Iterate over the binary representations of `i`, with "0" being replaced by the greedy
+    # regex "*|", and "1" by the non-greedy regex "*?|". The pipe | character is just a separator,
+    # later used as a split character.
     for i in range(0, (2 ** (len(acro) - 1))):
+        # Takes the binary value of i and fills it with zeroes up to the length of acronym -1
         str_bin = str(bin(i))[2:].zfill(len(acro) - 1)
         bina.append(str_bin.replace("0", "*|").replace("1", "*?|"))
+
+    # Iterate over the built list of expressions, each matching the initial characters in a
+    # different way. Then build a list of regular expressions, e.g. for "EKG":
+    # ^(E.*)(K.*)(G[A-Za-z0-9 ]*$)
+    # ^(E.*)(K.*?)(G[A-Za-z0-9 ]*$)
+    # ^(E.*?)(K.*)(G[A-Za-z0-9 ]*$)
+    # ^(E.*?)(K.*?)(G[A-Za-z0-9 ]*$)
     for expr in bina:
         lst_exp = expr.split("|")
         z = 0
+
+        # Build capturing groups over each acronym character
         out = "^("
         for ex in lst_exp:
             out = out + re.escape(acro[z]) + "." + ex + ")("
             z += 1
+
+        # TODO Use Unicode matching instead of diacritics
+        # TODO Merge greedy and non-greedy in a single non-capturing group?
+        # FIXME if len(last_ex) > 1 (e.g. "*?"), the last dot (.) is not removed
+        # Remove the last 3 remaining characters, normally ".)(", and replace then with a group
+        # matching valid characters (alphanumeric + whitespace + diacritics).
         regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
-        # List of all regular expressions
-        # logger.debug(regs)
-        # logger.debug(cleaned_full)
 
     result = []
     for reg in regs:
