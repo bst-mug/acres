@@ -5,6 +5,8 @@ Stefan Schulz 11 Nov 2017
 import logging
 from logging.config import fileConfig
 
+import acres.util.acronym
+
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -93,7 +95,7 @@ def get_acronym_score(acro: str, full: str, language="de") -> float:
 
     # full form contains an acronym definition pattern (normally only yielded
     # from Web scraping, unlikely in clinical texts)
-    ret = functions.extract_acronym_definition(full, 7)
+    ret = acres.util.acronym.extract_acronym_definition(full, 7)
     if ret is not None:
         if ret[0] == acro:
             # full = ret[1]

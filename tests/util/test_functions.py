@@ -22,17 +22,6 @@ def test_split_ngram():
     assert functions.split_ngram("ACR") == [('', 'ACR', '')]
 
 
-def test_extract_acronym_definition():
-    max_length = 7
-
-    assert functions.extract_acronym_definition(
-        "EKG (Elektrokardiogramm)", max_length) == ('EKG', 'Elektrokardiogramm')
-    assert functions.extract_acronym_definition(
-        "Elektrokardiogramm (EKG)", max_length) == ('EKG', 'Elektrokardiogramm')
-    assert functions.extract_acronym_definition(
-        "Elektrokardiogramm", max_length) is None
-
-
 def test_fix_line_endings():
     expected = "This is a short text¶"
     actual = functions.fix_line_endings("This is a short text")
