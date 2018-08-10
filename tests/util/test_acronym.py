@@ -52,6 +52,7 @@ def test_split_expansion():
     actual = acres.util.acronym.split_expansion("EKG", "Elektrokardiogramm")
     assert expected == actual
 
+    # Single letter acronyms, even though not valid, should not break
     expected = [('a')]
     actual = acres.util.acronym.split_expansion("A", "a")
     assert expected == actual
@@ -67,6 +68,12 @@ def test_split_expansion():
 
     expected = [('a', 'b', 'c', 'd', 'e')]
     actual = acres.util.acronym.split_expansion("ABCDE", "abcde")
+    assert expected == actual
+
+    # Unexpected splits
+    expected = [('T', 'rikuspidal', 'i', 'n', 'suffizienz'),  # Correct one
+                ('T', 'r', 'ikuspidali', 'n', 'suffizienz')]
+    actual = acres.util.acronym.split_expansion("TRINS", "Trikuspidalinsuffizienz")
     assert expected == actual
 
     # No valid expansion should return empty

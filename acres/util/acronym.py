@@ -147,9 +147,6 @@ def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
 
     # TODO recursive function instead of Regex
 
-    # TODO debug what happens with "TRINS" - "Trikuspidalinsuffizienz"
-    # (correct segmentation: 't', 'ricuspidal', 'i', 'n', 'suffizienz')
-
     # TODO obvious morpheme-based scoring does not work well with this unorthodox building patterns
 
     # List of binary combinations of alternative regex patterns (greedy vs. non-greedy)
@@ -187,9 +184,9 @@ def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
 
         # TODO Use Unicode matching instead of diacritics
         # TODO Merge greedy and non-greedy in a single non-capturing group?
-        # FIXME if len(last_ex) > 1 (e.g. "*?"), the last dot (.) is not removed
-        # Remove the last 3 remaining characters, normally ".)(", and replace then with a group
-        # matching valid characters (alphanumeric + whitespace + diacritics).
+        # Remove the last 3 remaining characters --- always ".)(" (because last `ex` is empty) ---
+        # and replace them with a group matching valid characters (alphanumeric + whitespace +
+        # diacritics).
         regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
 
     result = []
