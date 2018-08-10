@@ -82,10 +82,10 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
             text = acres.util.text.clear_digits(
                 text, digit_placeholder)
         text = text.replace(break_marker, " " + break_marker + " ")
-        text = functions.reduce_repeated_chars(text, " ", 1)
+        text = acres.util.text.reduce_repeated_chars(text, " ", 1)
         text = text.replace(break_marker + " " + break_marker, break_marker + break_marker)
         text = text.replace(break_marker + " " + break_marker, break_marker + break_marker)
-        text = functions.reduce_repeated_chars(text, break_marker, 2)
+        text = acres.util.text.reduce_repeated_chars(text, break_marker, 2)
 
         entire_corpus = entire_corpus + text + "\n\n"
         counter += 1

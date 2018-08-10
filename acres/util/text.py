@@ -219,3 +219,25 @@ def simplify_german_string(str_in_german: str) -> str:
     str_in_german = str_in_german.replace("é", "e").replace("à", "a")
     return str_in_german.replace("ä", "ae").replace(
         "ö", "oe").replace("ü", "ue")
+
+
+def reduce_repeated_chars(str_in, char, n):
+    """
+    :param str_in: text to be cleaned
+    :param char: character that should not occur more than n times in sequence
+    :param remaining_chars: n
+    :return:
+    """
+    prev = ""
+    cnt = 0
+    out = ""
+    for c in str_in:
+        if c == char:
+            cnt += 1
+            if cnt <= n:
+                out = out + c
+
+        else:
+            cnt = 0
+            out = out + c
+    return out
