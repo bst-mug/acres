@@ -4,10 +4,10 @@ acres.evaluation package
 Submodules
 ----------
 
-acres.evaluation.benchmark module
----------------------------------
+acres.evaluation.evaluation module
+----------------------------------
 
-.. automodule:: acres.evaluation.benchmark
+.. automodule:: acres.evaluation.evaluation
     :members:
     :undoc-members:
     :show-inheritance:
