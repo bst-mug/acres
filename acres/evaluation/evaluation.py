@@ -13,7 +13,7 @@ import time
 from enum import Enum
 from typing import Dict, Tuple, List
 
-from acres import get_synonyms_from_ngrams
+from acres.ngram import finder
 from acres.nn import test
 
 
@@ -66,7 +66,7 @@ def _resolve(acronym: str, left_context: str, right_context: str, strategy: Stra
     :return:
     """
     switcher = {
-        Strategy.NGRAM: get_synonyms_from_ngrams.robust_find_embeddings,
+        Strategy.NGRAM: finder.robust_find_embeddings,
         Strategy.WORD2VEC: test.find_candidates
     }
 

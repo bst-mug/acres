@@ -18,7 +18,7 @@ import re
 import time
 from typing import Dict, List, Tuple
 
-from acres import get_synonyms_from_ngrams
+from acres.ngram import finder
 from acres.web import get_web_ngram_stat
 from acres import rater
 from acres.preprocess import resource_factory
@@ -98,11 +98,11 @@ def find_synonyms() -> None:
                     left_string = "*"
                 if right_string == "":
                     right_string = "*"
-                li_corpus = get_synonyms_from_ngrams.find_embeddings(left_string, acronym,
-                                                                     right_string, min_win_size,
-                                                                     minfreq, maxcount,
-                                                                     min_number_tokens,
-                                                                     max_number_tokens)
+                li_corpus = finder.find_embeddings(left_string, acronym,
+                                                   right_string, min_win_size,
+                                                   minfreq, maxcount,
+                                                   min_number_tokens,
+                                                   max_number_tokens)
 
                 _process_corpus(li_corpus, acronym, ngram, d_log_corpus)
                 _process_corpus(li_web, acronym, ngram, d_log_web)
