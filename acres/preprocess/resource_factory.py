@@ -29,6 +29,12 @@ VERSION = "V3"
 #  minimal number of occurrences of a word ngram in the corpus
 MIN_FREQ = 2
 
+MORPHEMES = set()  # type: Set[str]
+INDEX = {}  # type: Dict[str, Set[int]]
+NN_MODEL = None  # type: Word2Vec
+NGRAMSTAT = {}  # type: Dict[int, Tuple[int,str]]
+CHARACTER_NGRAMS = {}  # type: Dict[str, int]
+
 
 def get_log_corpus_filename() -> str:
     return LOG_FOLDER + "logCorpus.txt"
@@ -36,9 +42,6 @@ def get_log_corpus_filename() -> str:
 
 def get_log_web_filename() -> str:
     return LOG_FOLDER + "logWebs.txt"
-
-
-MORPHEMES = set()  # type: Set[str]
 
 
 def get_morphemes() -> Set[str]:
@@ -62,9 +65,6 @@ def get_morphemes() -> Set[str]:
         MORPHEMES = pickle.load(open(output_file, "rb"))
 
     return MORPHEMES
-
-
-INDEX = {}  # type: Dict[str, Set[int]]
 
 
 def get_index() -> Dict[str, Set[int]]:
@@ -102,9 +102,6 @@ def _get_ngramstat_txt() -> str:
 
     _log_file_found(output_file)
     return output_file
-
-
-NGRAMSTAT = {}  # type: Dict[int, Tuple[int,str]]
 
 
 def get_ngramstat() -> Dict[int, Tuple[int,str]]:
@@ -184,9 +181,6 @@ def get_tokens() -> Set[str]:
     return pickle.load(open(output_file, "rb"))
 
 
-CHARACTER_NGRAMS = {}  # type: Dict[str, int]
-
-
 def get_character_ngrams() -> Dict[str, int]:
     """
     Get character ngrams.
@@ -212,9 +206,6 @@ def get_character_ngrams() -> Dict[str, int]:
         CHARACTER_NGRAMS = pickle.load(open(pickle_output_file, "rb"))
 
     return CHARACTER_NGRAMS
-
-
-NN_MODEL = None  # type: Word2Vec
 
 
 def get_nn_model(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=0,
