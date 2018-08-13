@@ -10,3 +10,4 @@ def path_resource_factory():
     resource_factory.LOG_FOLDER = "tests/models/log/"
     resource_factory.NN_MODELS_FOLDER = "tests/models/nn/"
     resource_factory.DATA_FOLDER = "tests/data"
+    resource_factory.reset()

@@ -239,6 +239,21 @@ def get_nn_model(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=
     return NN_MODEL
 
 
+def reset():
+    """
+    Resets global variables to force model recreation.
+
+    :return:
+    """
+    global MORPHEMES, INDEX, NN_MODEL, NGRAMSTAT, CHARACTER_NGRAMS
+
+    MORPHEMES = set()
+    INDEX = {}
+    NN_MODEL = None
+    NGRAMSTAT = {}
+    CHARACTER_NGRAMS = {}
+
+
 def warmup_cache():
     """
     Warms up the cache of pickle and txt files by calling all the methods.
