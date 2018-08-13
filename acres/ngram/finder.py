@@ -125,7 +125,7 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
     #                         Left             Middle              Right
     # VOID	                  "^"                                   "$"
     # Specified ("abc")	     "^abc\ "	      "abc"            "\ abc$"
-    # SELCETED                "^.*\ "                            "\ .*$"
+    # SELECTED                "^.*\ "                            "\ .*$"
     # Build regular expression for matching ngram
 
     # Three
