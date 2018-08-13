@@ -3,12 +3,12 @@ from acres.ngram import finder
 
 def test_find_embeddings():
     # Explicit context
-    actual = finder.find_embeddings("*", "EKG", "¶", 10, 1, 100, 1, 5)
+    actual = finder.find_embeddings("<SEL>", "EKG", "¶", 10, 1, 100, 1, 5)
     expected = [(19, 'Physikalischer Status')]
     assert set(expected).issubset(actual)
 
     # Relax right context
-    actual = finder.find_embeddings("*", "EKG", "<SEL>", 10, 1, 100, 1, 5)
+    actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", 10, 1, 100, 1, 5)
     expected = [(19, 'Physikalischer Status')]
     assert set(expected).issubset(actual)
 
