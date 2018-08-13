@@ -2,7 +2,7 @@ import logging
 import re
 from logging.config import fileConfig
 
-from acres.util.text import diacritics
+from acres.util import text
 
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
@@ -141,7 +141,7 @@ def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
     :param full:
     :return:
     """
-    dia = diacritics()
+    dia = text.diacritics()
     bina = []
     cleaned_full = _acronym_aware_clean_expansion(acro, full)
 

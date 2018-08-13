@@ -4,9 +4,6 @@ Stefan Schulz 12 Nov 2017
 import logging
 from logging.config import fileConfig
 
-import acres.util.acronym
-import acres.util.text
-
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -14,6 +11,8 @@ logger.setLevel(logging.DEBUG)
 import collections
 from typing import Dict, Set, List, Tuple
 
+from acres.util import acronym
+from acres.util import text
 from acres.util import functions
 from acres.preprocess import resource_factory
 
@@ -33,11 +32,11 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
 
     dict_char_ngrams = {}   # type: Dict[str, int]
 
-    for text in texts:
+    for doc in texts:
         str_doc = ""
-        lines = text.split("\n")
+        lines = doc.split("\n")
         for line in lines:
-            line = acres.util.text.clear_digits(line, digit_placeholder)
+            line = text.clear_digits(line, digit_placeholder)
             str_doc = str_doc + line.strip() + break_marker
         for i in range(0, len(str_doc) - (ngramlength - 1)):
             ngram = str_doc[0 + i: ngramlength + i]
@@ -73,21 +72,21 @@ def create_corpus_ngramstat_dump(corpus_path, fix_lines=True, min_length=1, max_
 
     logger.info("Creating ngramstat from %d documents...", length)
 
-    for text in texts:
+    for doc in texts:
         logger.debug("%d/%d", counter, length)
 
         if fix_lines:
-            text = acres.util.text.fix_line_endings(text, break_marker)
+            doc = text.fix_line_endings(doc, break_marker)
         if len(digit_placeholder) == 1:
-            text = acres.util.text.clear_digits(
-                text, digit_placeholder)
-        text = text.replace(break_marker, " " + break_marker + " ")
-        text = acres.util.text.reduce_repeated_chars(text, " ", 1)
-        text = text.replace(break_marker + " " + break_marker, break_marker + break_marker)
-        text = text.replace(break_marker + " " + break_marker, break_marker + break_marker)
-        text = acres.util.text.reduce_repeated_chars(text, break_marker, 2)
+            doc = text.clear_digits(
+                doc, digit_placeholder)
+        doc = doc.replace(break_marker, " " + break_marker + " ")
+        doc = text.reduce_repeated_chars(doc, " ", 1)
+        doc = doc.replace(break_marker + " " + break_marker, break_marker + break_marker)
+        doc = doc.replace(break_marker + " " + break_marker, break_marker + break_marker)
+        doc = text.reduce_repeated_chars(doc, break_marker, 2)
 
-        entire_corpus = entire_corpus + text + "\n\n"
+        entire_corpus = entire_corpus + doc + "\n\n"
         counter += 1
 
     dict_ngramstat = functions.create_ngram_statistics(entire_corpus, min_length, max_length)
@@ -246,7 +245,7 @@ def create_acro_dump() -> List[str]:
         row = (ngram_stat[n])
         (freq, ngram) = row
         if ngram.isalnum() and "Ð" not in ngram:
-            if acres.util.acronym.is_acronym(ngram, 7):
+            if acronym.is_acronym(ngram, 7):
                 # plausible max length for German medical language
                 if ngram not in acronyms:
                     acronyms.append(ngram)
@@ -271,7 +270,7 @@ def create_new_acro_dump() -> List[str]:
         if " " in ngram:
             tokens = ngram.split(" ")
             for token in tokens:
-                if acres.util.acronym.is_acronym(token, 7):
+                if acronym.is_acronym(token, 7):
                     new_acronym_ngrams.append(ngram)
                     counter += 1
                     break
