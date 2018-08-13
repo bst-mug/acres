@@ -3,6 +3,10 @@ import os.path
 from acres.preprocess import resource_factory
 
 
+def test_fixture():
+    assert "tests" in resource_factory.PICKLE_FOLDER
+
+
 def test_get_morphemes():
     output_file = "tests/models/pickle/morphemes.p"
 
