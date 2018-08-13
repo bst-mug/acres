@@ -32,7 +32,7 @@ def import_conf(key):
     return config['DEFAULT'][key]
 
 
-def get_url(url, timeout=1):
+def get_url(url, timeout=2):
     """
     Make a HTTP request to a given URL using proxy if necessary.
 
