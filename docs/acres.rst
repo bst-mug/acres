@@ -8,6 +8,7 @@ Subpackages
 
     acres.benchmark
     acres.evaluation
+    acres.ngram
     acres.nn
     acres.preprocess
     acres.util
@@ -16,26 +17,10 @@ Subpackages
 Submodules
 ----------
 
-acres.find\_synonym\_for\_acronyms\_in\_ngrams module
------------------------------------------------------
+acres.rater module
+------------------
 
-.. automodule:: acres.find_synonym_for_acronyms_in_ngrams
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-acres.get\_synonyms\_from\_ngrams module
-----------------------------------------
-
-.. automodule:: acres.get_synonyms_from_ngrams
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-acres.rate\_acronym\_resolutions module
----------------------------------------
-
-.. automodule:: acres.rate_acronym_resolutions
+.. automodule:: acres.rater
     :members:
     :undoc-members:
     :show-inheritance:
