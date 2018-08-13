@@ -6,7 +6,6 @@ Subpackages
 
 .. toctree::
 
-    acres.benchmark
     acres.evaluation
     acres.ngram
     acres.nn
