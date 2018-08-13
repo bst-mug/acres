@@ -1,6 +1,6 @@
 import os.path
 
-from acres import find_synonym_for_acronyms_in_ngrams
+from acres.evaluation import corpus
 
 
 def test_find_synonyms():
@@ -10,5 +10,5 @@ def test_find_synonyms():
         os.remove(output_file)
     assert not os.path.isfile(output_file)
 
-    find_synonym_for_acronyms_in_ngrams.find_synonyms()
+    corpus.find_synonyms()
     assert os.path.isfile(output_file)
