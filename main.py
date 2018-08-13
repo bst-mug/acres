@@ -1,5 +1,4 @@
 import acres.util.text
-from acres.benchmark import fix_line_endings
 
 if __name__ == "__main__":
     break_marker = "¶"
@@ -68,7 +67,3 @@ Dalacin 300mg 1-1-1bis einschl. 20.04.2020"""
 
     print(text)
     print(text.replace(break_marker, break_marker + "\n"))
-
-    1 / 0
-
-    fix_line_endings.test_fine_ending_fixings()
