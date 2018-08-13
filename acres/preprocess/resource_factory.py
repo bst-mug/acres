@@ -22,6 +22,7 @@ PICKLE_FOLDER = "models/pickle/"
 NGRAMS_FOLDER = "models/ngrams/"
 LOG_FOLDER = "models/log/"
 NN_MODELS_FOLDER = "models/nn/"
+DATA_FOLDER = functions.import_conf("CORPUS_PATH")
 
 VERSION = "V3"
 
@@ -96,8 +97,7 @@ def _get_ngramstat_txt() -> str:
     if not os.path.isfile(output_file):
         _log_file_not_found(output_file)
 
-        corpus_path = functions.import_conf("CORPUS_PATH")
-        ngramstat = create_dumps.create_corpus_ngramstat_dump(corpus_path)
+        ngramstat = create_dumps.create_corpus_ngramstat_dump(DATA_FOLDER)
         write_txt(ngramstat, output_file)
 
     _log_file_found(output_file)
@@ -203,8 +203,7 @@ def get_character_ngrams() -> Dict[str, int]:
             _log_file_not_found(pickle_output_file)
             _log_file_not_found(ngram_output_file)
 
-            corpus_path = functions.import_conf("CORPUS_PATH")
-            character_ngrams = create_dumps.create_corpus_char_stat_dump(corpus_path)
+            character_ngrams = create_dumps.create_corpus_char_stat_dump(DATA_FOLDER)
 
             write_txt(character_ngrams, ngram_output_file)
             pickle.dump(character_ngrams, open(pickle_output_file, "wb"))

@@ -10,11 +10,11 @@ def path_resource_factory():
     resource_factory.NGRAMS_FOLDER = "models/ngrams/"
     resource_factory.LOG_FOLDER = "models/log/"
     resource_factory.NN_MODELS_FOLDER = "models/nn/"
-    print("WARNING: Switched to models containing real data.")
+    resource_factory.DATA_FOLDER = functions.import_conf("CORPUS_PATH")
+    print("WARNING: Switched to real data.")
 
 
 @pytest.fixture(scope="module", autouse=True)
 def real_data():
-    corpus_path = functions.import_conf("CORPUS_PATH")
-    if "tests" in corpus_path:
-        pytest.skip("CORPUS_PATH seems to be a test directory.")
+    if "tests" in resource_factory.DATA_FOLDER:
+        pytest.skip("DATA_FOLDER seems to be a test directory.")
