@@ -1,4 +1,4 @@
-from acres.rate_acronym_resolutions import get_acronym_score
+from acres.rater import get_acronym_score
 
 
 def test_get_acronym_score():
