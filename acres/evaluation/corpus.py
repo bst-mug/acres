@@ -3,25 +3,20 @@ Stefan Schulz 03 Dec 2017
 """
 
 import logging
-from logging.config import fileConfig
-
-import acres.util.acronym
-import acres.util.text
-
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
 import math
 import random
 import re
 import time
 from typing import Dict, List, Tuple
 
-from acres.ngram import finder
-from acres.web import get_web_ngram_stat
+import acres.util.acronym
+import acres.util.text
 from acres import rater
+from acres.ngram import finder
 from acres.preprocess import resource_factory
+from acres.web import get_web_ngram_stat
+
+logger = logging.getLogger(__name__)
 
 NEWLINE = "¶"
 NUMERIC = "Ð"

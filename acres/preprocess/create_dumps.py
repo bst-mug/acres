@@ -1,21 +1,16 @@
 """
 Stefan Schulz 12 Nov 2017
 """
-import logging
-from logging.config import fileConfig
-
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
 import collections
+import logging
 from typing import Dict, Set, List, Tuple
 
-from acres.util import acronym
-from acres.util import text
-from acres.util import functions
 from acres.preprocess import resource_factory
+from acres.util import acronym
+from acres.util import functions
+from acres.util import text
 
+logger = logging.getLogger(__name__)
 
 def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="Ð",
                                  break_marker="¶") -> Dict[str, int]:

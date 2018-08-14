@@ -1,15 +1,10 @@
 import logging
 import re
-from logging.config import fileConfig
+from typing import Union, Tuple, List
 
 from acres.util import text
 
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
-from typing import Union, Tuple, List
-
 
 def extract_acronym_definition(str_probe: str, max_length: int) -> Union[None, Tuple[str, str]]:
     """

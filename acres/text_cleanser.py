@@ -3,17 +3,12 @@
 """
 
 import logging
-from logging.config import fileConfig
-
-import acres.util.acronym
-
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
 import re
 from typing import List, Set
 
+import acres.util.acronym
+
+logger = logging.getLogger(__name__)
 
 def find_best_substitution(form_to_resolve: str, candidates: List[str],
                            tokenlist: Set[str], shortformtype: str) -> List[str]:

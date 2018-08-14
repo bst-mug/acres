@@ -4,19 +4,15 @@ This module provides methods for lazily loading resources.
 
 """
 import logging
-from logging.config import fileConfig
-
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
 import os.path
 import pickle
 from typing import Dict, Set, List, Tuple
 
-from acres.util import functions
-from acres.preprocess import create_dumps
 from acres.nn import base, train
+from acres.preprocess import create_dumps
+from acres.util import functions
+
+logger = logging.getLogger(__name__)
 
 PICKLE_FOLDER = "models/pickle/"
 NGRAMS_FOLDER = "models/ngrams/"

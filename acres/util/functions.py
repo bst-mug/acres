@@ -5,19 +5,15 @@ Module with functions for corpus analysis.
 TODO move to proper function
 This function compares and acronym with a potential full form and returns a list of segmentations.
 """
-import logging
-from logging.config import fileConfig
-
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
 import configparser
+import logging
 import os
 from random import randint
 from typing import Dict, List
 
 import requests
+
+logger = logging.getLogger(__name__)
 
 
 def import_conf(key):

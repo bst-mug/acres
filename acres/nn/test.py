@@ -2,17 +2,12 @@
 
 """
 import logging
-from logging.config import fileConfig
-
-import acres.util.acronym
-
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
 from typing import List
 
+import acres.util.acronym
 from acres.preprocess import resource_factory
+
+logger = logging.getLogger(__name__)
 
 
 def find_candidates(acronym: str, left_context: str = "", right_context: str = "") -> List[str]:

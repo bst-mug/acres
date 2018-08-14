@@ -3,20 +3,14 @@ Stefan Schulz 11 Nov 2017
 """
 
 import logging
-from logging.config import fileConfig
-
-import acres.util.acronym
-import acres.util.text
-
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
 import re
 from typing import List
 
-# from math import *
+import acres.util.acronym
+import acres.util.text
 from acres.preprocess import resource_factory
+
+logger = logging.getLogger(__name__)
 
 
 def get_acronym_score(acro: str, full: str, language="de") -> float:

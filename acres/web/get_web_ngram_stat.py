@@ -7,17 +7,13 @@ in decreasing frequency
 """
 
 import logging
-from logging.config import fileConfig
-
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
 from typing import List, Tuple
 
 import html2text
 
 from acres.util import functions
+
+logger = logging.getLogger(__name__)
 
 # Enables logging for under the hood libraries
 logging.getLogger("requests").setLevel(logging.DEBUG)

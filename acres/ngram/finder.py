@@ -4,17 +4,13 @@ Finds synonyms using a n-gram frequency list from related corpus
 """
 
 import logging
-from logging.config import fileConfig
-
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-
 import re
 from typing import List, Tuple, Set
-from acres.util import functions
-from acres.preprocess import resource_factory
 
+from acres.preprocess import resource_factory
+from acres.util import functions
+
+logger = logging.getLogger(__name__)
 
 def _build_search_ngrams(context: str, reverse=False) -> Tuple[str, str, str]:
     """

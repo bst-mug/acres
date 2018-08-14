@@ -5,18 +5,14 @@
 """
 
 import logging
-from logging.config import fileConfig
-
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
 import re
 from typing import List
 
-# MUST be after logging definition, so that it works properly
 from gensim.models import Word2Vec, Phrases
+
 from acres.preprocess import resource_factory
+
+logger = logging.getLogger(__name__)
 
 
 class FilteredNGramStat(object):

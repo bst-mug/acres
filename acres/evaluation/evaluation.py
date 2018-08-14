@@ -3,18 +3,14 @@ Benchmark code.
 """
 
 import logging
-from logging.config import fileConfig
-
-logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
 import time
 from enum import Enum
 from typing import Dict, Tuple, List
 
 from acres.ngram import finder
 from acres.nn import test
+
+logger = logging.getLogger(__name__)
 
 
 class Strategy(Enum):
