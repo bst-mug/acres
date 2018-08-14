@@ -11,6 +11,7 @@ from acres.preprocess import resource_factory
 from acres.util import functions
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 
 
 def _build_search_ngrams(context: str, reverse=False) -> Tuple[str, str, str]:
