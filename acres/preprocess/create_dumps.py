@@ -12,6 +12,7 @@ from acres.util import text
 
 logger = logging.getLogger(__name__)
 
+
 def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="Ð",
                                  break_marker="¶") -> Dict[str, int]:
     """

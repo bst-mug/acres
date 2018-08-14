@@ -12,6 +12,7 @@ from acres.util import functions
 
 logger = logging.getLogger(__name__)
 
+
 def _build_search_ngrams(context: str, reverse=False) -> Tuple[str, str, str]:
     """
     Builds a context tuple containing 1 to n-grams

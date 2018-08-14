@@ -7,8 +7,8 @@ import re
 from typing import List
 
 import acres.util.acronym
-import acres.util.text
 from acres.preprocess import resource_factory
+from acres.util import text
 
 logger = logging.getLogger(__name__)
 
@@ -198,7 +198,7 @@ def get_acronym_score(acro: str, full: str, language="de") -> float:
             # TODO
             # check whether the function  substitute_k_and_f_by_context
             # could be used instead (produces 7-Bit string without K and F)
-            fragment = acres.util.text.simplify_german_string(fragment).strip()
+            fragment = text.simplify_german_string(fragment).strip()
             # C, K, and Z no longer distinguished
             # XXX Soundex as an alternative ??
             # logger.debug("FR: " + fragment)

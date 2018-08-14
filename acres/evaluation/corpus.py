@@ -10,10 +10,10 @@ import time
 from typing import Dict, List, Tuple
 
 import acres.util.acronym
-import acres.util.text
 from acres import rater
 from acres.ngram import finder
 from acres.preprocess import resource_factory
+from acres.util import text
 from acres.web import get_web_ngram_stat
 
 logger = logging.getLogger(__name__)
@@ -119,7 +119,7 @@ def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str, log
     :return:
     """
     morphemes = resource_factory.get_morphemes()
-    dia = acres.util.text.diacritics()  # list of diacritic characters
+    dia = text.diacritics()  # list of diacritic characters
 
     for item in corpus:
         old_exp = ""

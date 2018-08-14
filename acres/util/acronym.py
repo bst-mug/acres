@@ -6,6 +6,7 @@ from acres.util import text
 
 logger = logging.getLogger(__name__)
 
+
 def extract_acronym_definition(str_probe: str, max_length: int) -> Union[None, Tuple[str, str]]:
     """
     Identifies potential acronym / definition pairs and extract acronym and definition candidates.
