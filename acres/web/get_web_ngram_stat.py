@@ -37,24 +37,25 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens) -> List[Tuple[int,str]]
 
     logger.info("Sending HTTP request to %s...", url)
     response = functions.get_url(url)
-
+    rt = response.text
+    # html2text removes diacritics, therefore substitutions!
+    rt = rt.replace("&#196;", "Ä").replace("&#228;", "ä") \
+        .replace("&#214;", "Ö").replace("&#246;", "ö").replace("&#223;", "ß") \
+        .replace("&#220;", "Ü").replace("&#252;", "ü")
     out_l = []
-    txt = html2text.html2text(response.text)
-    txt = txt.replace("**", "").replace("\n", " ").replace("[", "[ ").replace("]", " ]")
-    # .replace("(", "( ").replace(")", " )")
-    txt = txt.replace("„", "").replace('"', "").replace("'", "").replace(", ", " , ")
-    txt = txt.replace(". ", " . ")
-    
+    txt = html2text.html2text(rt)
+    txt = txt.replace("**", "").replace("\n", " ").replace("[", "[ ").replace("]", " ]") \
+        .replace("„", "").replace('"', "").replace("'", "").replace(", ", " , ").replace(". ", " . ") \
+        .replace("  ", " ").replace("  ", " ")
     out = ""
     logger.debug(txt)
-
     words = txt.split(" ")
     for word in words:
         if len(word) < 50:
             if not ('\\' in word or '/' in word or '&q=' in word):
                 out = out + " " + word
-    out = out.replace("  ", "\n").replace("[ ", "\n").replace(" ]", "\n")
-    out = out.replace("|", "\n").replace("?", "\n").replace(":", "\n")
+    out = out.replace("  ", "\n").replace("[ ", "\n").replace(" ]", "\n") \
+        .replace("|", "\n").replace("?", "\n").replace(":", "\n")
     logger.debug(out)
 
     output = functions.create_ngram_statistics(out, min_num_tokens, max_num_tokens)

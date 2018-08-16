@@ -1,4 +1,26 @@
-import acres.util.text
+import os
+import sys
+
+import acres.web.get_web_ngram_stat
+
+clear = lambda: os.system('cls')
+
+query = "GERD reflux"
+# r = acres.web.get_web_ngram_stat.ngrams_web_dump("https://news.google.com/?hl=de", 1, 2)
+# r = acres.web.get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=%22" + query + "%22", 1, 10)
+r = acres.web.get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1, 10)
+clear()
+c = 0
+for e in r:
+    c = c + 1
+    print(e)
+    if c > 500:
+        break
+
+sys.exit()
+
+
+
 
 if __name__ == "__main__":
     break_marker = "¶"

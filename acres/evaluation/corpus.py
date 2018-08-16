@@ -86,6 +86,7 @@ def find_synonyms() -> None:
                     query = query.replace(" ", "+")
                     str_url = "http://www.bing.de/search?cc=de&q=%22" + query + "%22"
                     time.sleep(random.randint(0, 2000) / 1000)
+                    print(str_url)
                     li_web = get_web_ngram_stat.ngrams_web_dump(str_url, 1, 10)
 
                 # Prepare parameters for corpus model
