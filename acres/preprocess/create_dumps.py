@@ -293,3 +293,16 @@ def create_morpho_dump(lexicon_file: str, append_to=None) -> Set[str]:
                 append_to.add(row)
 
     return append_to
+
+
+def create_ngrams(ngramstat: Dict[int, Tuple[int,str]]) -> List[str]:
+    """
+    Generates a list of all ngrams, strings only.
+
+    :param ngramstat:
+    :return:
+    """
+    ret = []
+    for (freq, ngram) in ngramstat.values():
+        ret.append(ngram)
+    return ret

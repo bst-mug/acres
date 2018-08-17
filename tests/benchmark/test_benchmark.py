@@ -1,4 +1,5 @@
 from acres.ngram import finder
+from acres.preprocess import create_dumps
 from acres.preprocess import resource_factory
 from acres.util import text
 
@@ -114,3 +115,16 @@ def test_find_embeddings():
     actual = finder.find_embeddings("Ð,Ð", "ms", "", 8, 3, 500, 1, 7)
     expected = []
     assert set(expected).issubset(actual)
+
+
+def test_get_ngramstat():
+    ngramstat = resource_factory.get_ngramstat()
+    ngrams = create_dumps.create_ngrams(ngramstat)
+    unique_ngrams = set(ngrams)
+
+    # ngramstat should not have empty entries
+    assert "" not in unique_ngrams
+    assert " " not in unique_ngrams
+
+    # ngramstat should not have duplicate entries
+    assert len(unique_ngrams) == len(ngrams)
