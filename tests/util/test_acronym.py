@@ -34,6 +34,22 @@ def test_is_acronym():
     assert acronym.is_acronym("5FU", 7)
 
 
+def test_is_proper_word():
+    # Baseline
+    assert True == acronym.is_proper_word("Elektrokardiogramm")
+
+    # Too short
+    assert False == acronym.is_proper_word("A")
+
+    # Dashes are allowed in the middle
+    assert False == acronym.is_proper_word("-abc-")
+    assert True == acronym.is_proper_word("abc-def")
+    assert False == acronym.is_proper_word("abc/def")
+
+    # Must have proper case
+    assert False == acronym.is_proper_word("BEFUND")
+
+
 def test_find_acronym_expansion():
     assert [] == acronym.find_acro_expansions([])
 
