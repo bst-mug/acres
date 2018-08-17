@@ -252,31 +252,6 @@ def replace_punctuation(s):
     return ' '.join(s.split())
 
 
-rules = [("pha", "fa"), ("fa", "pha"), ("Pha", "Fa"), ("Fa", "Pha"),
-         ("phe", "fe"), ("fe", "phe"), ("Phe", "Fe"), ("Fe", "Phe"),
-         ("phi", "fi"), ("fi", "phi"), ("Phi", "Fi"), ("Fi", "Phi"),
-         ("pho", "fo"), ("fo", "pho"), ("Pho", "Fo"), ("Fo", "Pho"),
-         ("phu", "fu"), ("fu", "phu"), ("Phu", "Fu"), ("Fu", "Phu"),
-         ("phy", "fy"), ("fy", "phy"), ("Phy", "Fy"), ("Fy", "Phy"),
-         ("phä", "fä"), ("fä", "phä"), ("Phä", "Fä"), ("Fä", "Phä"),
-         ("phö", "fö"), ("fö", "phö"), ("Phö", "Fö"), ("Fö", "Phö"),
-         ("phü", "fü"), ("fü", "phü"), ("Phü", "Fü"), ("Fü", "Phü"),
-         ("ka", "ca"), ("ca", "ka"), ("Ka", "Ca"), ("Ca", "Ka"),
-         ("ko", "co"), ("co", "ko"), ("Ko", "Co"), ("Co", "Ko"),
-         ("ku", "cu"), ("cu", "ku"), ("Ku", "Cu"), ("Cu", "Ku"),
-         ("cy", "zy"), ("zy", "cy"), ("Cy", "Zy"), ("Zy", "Cy"),
-         ("ci", "zi"), ("zi", "ci"), ("Ci", "Zi"), ("Zi", "Ci"),
-         ("ce", "ze"), ("ze", "ce"), ("Ce", "Ze"), ("Ze", "Ce"),
-         ("cl", "kl"), ("kl", "cl"), ("Cl", "Kl"), ("Kl", "Cl"),
-         ("cr", "kr"), ("kr", "cr"), ("Cr", "Kr"), ("Kr", "Cr"),
-         ("cn", "kn"), ("kn", "cn"), ("Cn", "Kn"), ("Kn", "Cn"),
-         ("cc", "kz"), ("kz", "cc"),
-         ("ö", "oe"), ("Ö", "Oe"),
-         ("ü", "ue"), ("Ü", "Ue"),
-         ("ä", "ae"), ("Ä", "Ae"),
-         ("ß", "ss"),
-         ("é", "e")]
-
 
 def resolve_ambiguous_lists(LL):
     for L in LL:
