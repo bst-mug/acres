@@ -1,3 +1,6 @@
+"""
+Utility functions related to text processing.
+"""
 import string
 
 from acres.preprocess import resource_factory

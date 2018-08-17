@@ -1,3 +1,6 @@
+"""
+Utility functions related to acronyms.
+"""
 import logging
 import re
 from typing import Union, Tuple, List
@@ -7,14 +10,16 @@ from acres.util import text
 logger = logging.getLogger(__name__)
 
 
-def extract_acronym_definition(str_probe: str, max_length: int, strict=False) -> Union[None, Tuple[str, str]]:
+def extract_acronym_definition(str_probe: str, max_length: int,
+                               strict: bool = False) -> Union[None, Tuple[str, str]]:
     """
     Identifies potential acronym / definition pairs and extract acronym and definition candidates.
     A necessary criterion is that the initial characters are the same
-    TODO: Acronym / definition pairs normally use parentheses, but also quotes and dashes can be found
+    TODO: Acronym/definition pairs normally use parentheses, but also quotes and dashes can be found
 
     :param str_probe:
     :param max_length:
+    :param strict:
     :return:
     """
     str_probe = str_probe.strip()
@@ -54,10 +59,10 @@ def is_acronym(str_probe: str, max_length: int = 7, digit_placeholder="Ð") -> b
     lower = 0
     upper = 0
     if len(replaced_probe) <= max_length:
-        for c in replaced_probe:
-            if c.isupper():
+        for char in replaced_probe:
+            if char.isupper():
                 upper = upper + 1
-            if c.islower():
+            if char.islower():
                 lower = lower + 1
     if upper > 1 and upper > lower:
         ret = True
@@ -65,11 +70,14 @@ def is_acronym(str_probe: str, max_length: int = 7, digit_placeholder="Ð") -> b
 
 
 def is_proper_word(str_probe: str, digit_placeholder="Ð") -> bool:
-    # a proper word is more than a single letter.
-    # the first character may be capitalised or nor,
-    # all other characters are lower case
-    # It must not include digits or punctuation characters
-    # Only dashes are allowed
+    """
+    A proper word is more than a single letter.
+    The first character may be capitalised or not, all other characters are lower case.
+    It must not include digits or punctuation characters (only dashes are allowed).
+    :param str_probe:
+    :param digit_placeholder:
+    :return:
+    """
     str_new = str_probe.replace("-", "").replace(digit_placeholder, "1")
     if len(str_new) < 2:
         return False
@@ -78,9 +86,6 @@ def is_proper_word(str_probe: str, digit_placeholder="Ð") -> bool:
     if not str_new[1:].islower():
         return False
     return True
-
-
-
 
 
 def find_acro_expansions(lst_n_gram_stat: List[str]) -> List[str]:
@@ -143,9 +148,9 @@ def find_acro_expansions(lst_n_gram_stat: List[str]) -> List[str]:
             if first_condition and not second_condition:
                 if re.search(regex, end_n.upper()):
                     if letter.upper() in last_n.upper():
-                        stat = token_acronym + count_per_ngram[
-                            token_acronym] + "     " + token_not_acronym + count_per_ngram[
-                                   token_not_acronym]
+                        stat = token_acronym + count_per_ngram[token_acronym] + \
+                               "     " + \
+                               token_not_acronym + count_per_ngram[token_not_acronym]
                         logger.debug(stat)
                         ret.append(stat)
                         counter += 1
@@ -195,13 +200,13 @@ def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
     # ^(E.*?)(K.*?)(G[A-Za-z0-9 ]*$)
     for expr in bina:
         lst_exp = expr.split("|")
-        z = 0
+        i = 0
 
         # Build capturing groups over each acronym character
         out = "^("
         for ex in lst_exp:
-            out = out + re.escape(acro[z]) + "." + ex + ")("
-            z += 1
+            out = out + re.escape(acro[i]) + "." + ex + ")("
+            i += 1
 
         # TODO Use Unicode matching instead of diacritics
         # TODO Merge greedy and non-greedy in a single non-capturing group?
