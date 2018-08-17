@@ -187,9 +187,18 @@ def get_acronym_score(acro: str, full: str, language="de"):
     return (full_old, score, "End")
 
 
-def get_best_acronym_resolution(left: str, acro: str, right: str, minimum_len, minimum_count, language="de"):
+def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_len, maximum_word_count, language="de"):
+    """
+    This is the main file to be used to leverage Bing search for resolving acronyms
+    :param left: left context of acronym to be expanded (any length)
+    :param acro: acronym to be expanded
+    :param right: right context of acronym to be expanded (any length)
+    :param minimum_len: the minimum length of the context words to be considered (e.g. to exclude short articles etc.)
+    :param maximum_word_count: the maximum of context words that are put into the query
+    :return: best expansion of acronym
+    """
     r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(
-        left, acro, right, minimum_len, minimum_count)
+        left, acro, right, minimum_len, maximum_word_count)
     old_weight = 0
     for t in r:
         s = get_acronym_score(acro, t[1], language="de")
