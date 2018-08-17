@@ -4,13 +4,15 @@ Stefan Schulz 11 Nov 2017
 
 import logging
 import re
+from typing import Tuple
 
 import acres.util.acronym
+from acres.evaluation import corpus
 
 logger = logging.getLogger(__name__)
 
 
-def get_acronym_score(acro: str, full: str, language="de"):
+def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str,float,str]:
     """
     TODO: All morphosaurus stuff eliminated. Could check past versions later
     TODO: whether this is worth while considering again
@@ -104,7 +106,7 @@ def get_acronym_score(acro: str, full: str, language="de"):
 
     lst_var = acres.util.text.generate_all_variants_by_rules(full)
     full_old = full
-    score = 0
+    score = 0.0
     for full in lst_var:
         go_next = False
         old_score = score
@@ -197,7 +199,7 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
     :param maximum_word_count: the maximum of context words that are put into the query
     :return: best expansion of acronym
     """
-    r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(
+    r = corpus.get_web_dump_from_acro_with_context(
         left, acro, right, minimum_len, maximum_word_count)
     old_weight = 0
     for t in r:
