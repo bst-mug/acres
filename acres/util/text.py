@@ -80,20 +80,19 @@ def fix_line_endings(
 
 def clear_digits(str_in: str, substitute_char: str) -> str:
     """
-       substitutes all digits by a character (or string)
+    Substitutes all digits by a character (or string)
 
-       Example: ClearDigits("Vitamin B12", "°"):
+    Example: ClearDigits("Vitamin B12", "°"):
 
-       :param str_in:
-       :param substitute_char:
-
-       """
+    :param str_in:
+    :param substitute_char:
+    """
     out = ""
-    for c in str_in:
-        if c in "0123456789":
+    for character in str_in:
+        if character in "0123456789":
             out = out + substitute_char
         else:
-            out = out + c
+            out = out + character
     return out
 
 
@@ -223,20 +222,19 @@ def simplify_german_string(str_in_german: str) -> str:
         "ö", "oe").replace("ü", "ue")
 
 
-def reduce_repeated_chars(str_in, char, n):
+def reduce_repeated_chars(str_in, char, remaining_chars):
     """
     :param str_in: text to be cleaned
-    :param char: character that should not occur more than n times in sequence
-    :param remaining_chars: n
+    :param char: character that should not occur more than remaining_chars times in sequence
+    :param remaining_chars: remaining_chars
     :return:
     """
-    prev = ""
     cnt = 0
     out = ""
     for c in str_in:
         if c == char:
             cnt += 1
-            if cnt <= n:
+            if cnt <= remaining_chars:
                 out = out + c
 
         else:
@@ -245,44 +243,57 @@ def reduce_repeated_chars(str_in, char, n):
     return out
 
 
-def replace_punctuation(s):
+def replace_punctuation(punctuated: str) -> str:
+    """
+    Replaces punctuation marks (as defined by pyhton string collection) by a whitespace.
+    :param punctuated: Punctuated string.
+    :return: A non-punctuated string.
+    """
     _punctuation = set(string.punctuation)
-    for punct in set(s).intersection(_punctuation):
-        s = s.replace(punct, ' ')
-    return ' '.join(s.split())
+    for punct in set(punctuated).intersection(_punctuation):
+        punctuated = punctuated.replace(punct, ' ')
+    return ' '.join(punctuated.split())
 
 
+def resolve_ambiguous_lists(lists):
+    """
 
-def resolve_ambiguous_lists(LL):
-    for L in LL:
-        L0 = []
-        L1 = []
-        Open = True
-        Tuple = False
-        for e in L:
-            if type(e) is tuple and Open == True:
-                L0.append(e[0])
-                L1.append(e[1])
-                Open = False
-                Tuple = True
+    :param lists:
+    :return:
+    """
+    for a_list in lists:
+        list0 = []
+        list1 = []
+        is_open = True
+        is_tuple = False
+        for e in a_list:
+            if type(e) is tuple and is_open:
+                list0.append(e[0])
+                list1.append(e[1])
+                is_open = False
+                is_tuple = True
             else:
-                L0.append(e)
-                L1.append(e)
-        if Tuple == True:
-            LL.append(L0)
-            LL.append(L1)
+                list0.append(e)
+                list1.append(e)
+        if is_tuple:
+            lists.append(list0)
+            lists.append(list1)
         else:
-            return LL
+            return lists
 
 
 def create_string_variants_as_list(st, se, re):
-    # analyses a string st for all substrings
-    # returns a list constituted by
-    # non-substitutable strings and/or
-    # search / replace pairs
-    if se == "": return [st]
+    """
+    Analyses a string st for all substrings.
+
+    :param st:
+    :param se:
+    :param re:
+    :return: A list constituted by non-substitutable strings and/or search/replace pairs
+    """
+    if se == "":
+        return [st]
     r = []
-    u = len(st) - len(se)
     i = 0
     s = ""
     while True:
@@ -297,17 +308,23 @@ def create_string_variants_as_list(st, se, re):
             s = s + c
             i = i + 1
         if i >= len(st):
-            if s != "": r.append(s)
+            if s != "":
+                r.append(s)
             return r
 
 
 def list_to_string(lst):
-    # transforms input of list
-    # if a list element is not a string: -> empty string
+    """
+    transforms input of list
+    if a list element is not a string: -> empty string
+
+    :param lst:
+    :return:
+    """
     out = ""
-    for e in lst:
-        if type(e) is str:
-            out = out + e
+    for element in lst:
+        if isinstance(element, str):
+            out = out + element
         else:
             return ""
     return out
@@ -317,21 +334,31 @@ def list_to_string(lst):
 
 
 def list_all_string_variants(st, se, re):
-    outL = []
-    L = resolve_ambiguous_lists([create_string_variants_as_list(st, se, re)])
-    for e in L:
-        s = list_to_string(e)
-        if s != "":
-            outL.append(s)
-    return outL
+    """
+
+    :param st:
+    :param se:
+    :param re:
+    :return:
+    """
+    out = []
+    a_list = resolve_ambiguous_lists([create_string_variants_as_list(st, se, re)])
+    for element in a_list:
+        a_string = list_to_string(element)
+        if a_string != "":
+            out.append(a_string)
+    return out
 
 
 # print(list_all_string_variants("cyclophosphamid", "id", "ide"))
 
-# 1 / 0
-
 def generate_all_variants_by_rules(st):
-    lstRules = [
+    """
+
+    :param st:
+    :return:
+    """
+    rules = [
         ("krankheit", " Disorder"),
         ("fa", "pha"), ("Fa", "Pha"),
         ("fe", "phe"), ("Fe", "Phe"),
@@ -356,13 +383,12 @@ def generate_all_variants_by_rules(st):
         ("ü", "ue"), ("Ü", "Ue"),
         ("ä", "ae"), ("Ä", "Ae")]
 
-    outL = [st]
+    out = [st]
 
-    for r in lstRules:
-        # print(r)
-        for s in outL:
-            newL = []
-            newL = list_all_string_variants(s, r[0], r[1])
-            for e in newL:
-                if not e in outL: outL.append(e)
-    return (outL)
+    for rule in rules:
+        for a_string in out:
+            new_list = list_all_string_variants(a_string, rule[0], rule[1])
+            for element in new_list:
+                if element not in out:
+                    out.append(element)
+    return out
