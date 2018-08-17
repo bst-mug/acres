@@ -26,6 +26,10 @@ NUMERIC = "Ð"
 def ngrams_web_dump(url, min_num_tokens, max_num_tokens) -> List[Tuple[int,str]]:
     """
     Produces an n gram statistics from a Web Query, parsing the first return page
+    Upper bound of ngram length may be set according to acronym length
+    Rule of thumb: acronym length + 4, in order to safely retrieve acronym / definition
+    pairs. Not that also quotes, dashes and parentheses count as single tokens
+
 
     Should be used carefully, with delay.
 
@@ -38,29 +42,40 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens) -> List[Tuple[int,str]]
     logger.info("Sending HTTP request to %s...", url)
     response = functions.get_url(url)
     rt = response.text
+    #
     # html2text removes diacritics, therefore substitutions!
+    #
     rt = rt.replace("&#196;", "Ä").replace("&#228;", "ä") \
         .replace("&#214;", "Ö").replace("&#246;", "ö").replace("&#223;", "ß") \
-        .replace("&#220;", "Ü").replace("&#252;", "ü")
+        .replace("&#220;", "Ü").replace("&#252;", "ü").replace("&quot;", 'QUOTQUOT')
     out_l = []
     txt = html2text.html2text(rt)
-    txt = txt.replace("**", "").replace("\n", " ").replace("[", "[ ").replace("]", " ]") \
-        .replace("„", "").replace('"', "").replace("'", "").replace(", ", " , ").replace(". ", " . ") \
-        .replace("  ", " ").replace("  ", " ")
+    #
+    # segmentation of text into smaller chunks; thus obtaining
+    # more concise ngram lists
+    # also detaching parentheses and quotes from enclosed text
+    #
+    txt = txt.replace("\n", " ").replace("*", "\n").replace('"', ' " ').replace('QUOTQUOT', ' " ').replace("[", "\n") \
+        .replace("]", "\n").replace(")", " ) ").replace("!", "\n").replace("(", " ( ") \
+        .replace(", ", " , ").replace(". ", "\n").replace("#", "\n").replace(";", "\n") \
+        .replace("?", "\n").replace(": ", "\n").replace("|", "\n").replace("..", "\n") \
+        .replace("   ", " ").replace("  ", " ").replace("  ", " ").replace("  ", " ")
     out = ""
-    logger.debug(txt)
+    # logger.debug(txt)
     words = txt.split(" ")
     for word in words:
+        word = word.strip()
         if len(word) < 50:
-            if not ('\\' in word or '/' in word or '&q=' in word):
+            if not ('\\' in word or '/' in word or '=' in word
+                    or "www." in word or "%" in word):
                 out = out + " " + word
-    out = out.replace("  ", "\n").replace("[ ", "\n").replace(" ]", "\n") \
-        .replace("|", "\n").replace("?", "\n").replace(":", "\n")
-    logger.debug(out)
+    #logger.debug(out)
 
     output = functions.create_ngram_statistics(out, min_num_tokens, max_num_tokens)
     for ngram in output:
-        out_l.append((output[ngram], ngram))
+        if len(ngram) > 10 and not "( )" in ngram:
+            if ngram[0].isalpha():
+                out_l.append((output[ngram], ngram))
     out_l.sort(reverse=True)
 
     return out_l

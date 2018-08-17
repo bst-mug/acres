@@ -7,19 +7,25 @@ from acres.util import text
 logger = logging.getLogger(__name__)
 
 
-def extract_acronym_definition(str_probe: str, max_length: int) -> Union[None, Tuple[str, str]]:
+def extract_acronym_definition(str_probe: str, max_length: int, strict=False) -> Union[None, Tuple[str, str]]:
     """
     Identifies potential acronym / definition pairs and extract acronym and definition candidates.
+    A necessary criterion is that the initial characters are the same
+    TODO: Acronym / definition pairs normally use parentheses, but also quotes and dashes can be found
 
     :param str_probe:
     :param max_length:
     :return:
     """
     str_probe = str_probe.strip()
-    if len(str_probe) > 1:
+
+    if len(str_probe) > 6:
         if str_probe[-1] == ")" and str_probe.count("(") == 1:
             left = str_probe.split("(")[0].strip()  # potential definition
             right = str_probe.split("(")[1][0:-1].strip()  # potential acronym
+            if strict:
+                if left[0].lower() != right[0].lower():
+                    return None
             if is_acronym(left, max_length, "Ð") and not is_acronym(right, max_length, "Ð"):
                 return left, right
             if is_acronym(right, max_length, "Ð") and not is_acronym(left, max_length, "Ð"):
@@ -56,6 +62,25 @@ def is_acronym(str_probe: str, max_length: int = 7, digit_placeholder="Ð") -> b
     if upper > 1 and upper > lower:
         ret = True
     return ret
+
+
+def is_proper_word(str_probe: str, digit_placeholder="Ð") -> bool:
+    # a proper word is more than a single letter.
+    # the first character may be capitalised or nor,
+    # all other characters are lower case
+    # It must not include digits or punctuation characters
+    # Only dashes are allowed
+    str_new = str_probe.replace("-", "").replace(digit_placeholder, "1")
+    if len(str_new) < 2:
+        return False
+    if not (str_probe[0].isalpha() and str_probe[-1].isalpha() and str_new.isalpha()):
+        return False
+    if not str_new[1:].islower():
+        return False
+    return True
+
+
+
 
 
 def find_acro_expansions(lst_n_gram_stat: List[str]) -> List[str]:

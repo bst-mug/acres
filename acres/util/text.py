@@ -1,3 +1,5 @@
+import string
+
 from acres.preprocess import resource_factory
 
 
@@ -241,3 +243,151 @@ def reduce_repeated_chars(str_in, char, n):
             cnt = 0
             out = out + c
     return out
+
+
+def replace_punctuation(s):
+    _punctuation = set(string.punctuation)
+    for punct in set(s).intersection(_punctuation):
+        s = s.replace(punct, ' ')
+    return ' '.join(s.split())
+
+
+rules = [("pha", "fa"), ("fa", "pha"), ("Pha", "Fa"), ("Fa", "Pha"),
+         ("phe", "fe"), ("fe", "phe"), ("Phe", "Fe"), ("Fe", "Phe"),
+         ("phi", "fi"), ("fi", "phi"), ("Phi", "Fi"), ("Fi", "Phi"),
+         ("pho", "fo"), ("fo", "pho"), ("Pho", "Fo"), ("Fo", "Pho"),
+         ("phu", "fu"), ("fu", "phu"), ("Phu", "Fu"), ("Fu", "Phu"),
+         ("phy", "fy"), ("fy", "phy"), ("Phy", "Fy"), ("Fy", "Phy"),
+         ("phä", "fä"), ("fä", "phä"), ("Phä", "Fä"), ("Fä", "Phä"),
+         ("phö", "fö"), ("fö", "phö"), ("Phö", "Fö"), ("Fö", "Phö"),
+         ("phü", "fü"), ("fü", "phü"), ("Phü", "Fü"), ("Fü", "Phü"),
+         ("ka", "ca"), ("ca", "ka"), ("Ka", "Ca"), ("Ca", "Ka"),
+         ("ko", "co"), ("co", "ko"), ("Ko", "Co"), ("Co", "Ko"),
+         ("ku", "cu"), ("cu", "ku"), ("Ku", "Cu"), ("Cu", "Ku"),
+         ("cy", "zy"), ("zy", "cy"), ("Cy", "Zy"), ("Zy", "Cy"),
+         ("ci", "zi"), ("zi", "ci"), ("Ci", "Zi"), ("Zi", "Ci"),
+         ("ce", "ze"), ("ze", "ce"), ("Ce", "Ze"), ("Ze", "Ce"),
+         ("cl", "kl"), ("kl", "cl"), ("Cl", "Kl"), ("Kl", "Cl"),
+         ("cr", "kr"), ("kr", "cr"), ("Cr", "Kr"), ("Kr", "Cr"),
+         ("cn", "kn"), ("kn", "cn"), ("Cn", "Kn"), ("Kn", "Cn"),
+         ("cc", "kz"), ("kz", "cc"),
+         ("ö", "oe"), ("Ö", "Oe"),
+         ("ü", "ue"), ("Ü", "Ue"),
+         ("ä", "ae"), ("Ä", "Ae"),
+         ("ß", "ss"),
+         ("é", "e")]
+
+
+def resolve_ambiguous_lists(LL):
+    for L in LL:
+        L0 = []
+        L1 = []
+        Open = True
+        Tuple = False
+        for e in L:
+            if type(e) is tuple and Open == True:
+                L0.append(e[0])
+                L1.append(e[1])
+                Open = False
+                Tuple = True
+            else:
+                L0.append(e)
+                L1.append(e)
+        if Tuple == True:
+            LL.append(L0)
+            LL.append(L1)
+        else:
+            return LL
+
+
+def create_string_variants_as_list(st, se, re):
+    # analyses a string st for all substrings
+    # returns a list constituted by
+    # non-substitutable strings and/or
+    # search / replace pairs
+    if se == "": return [st]
+    r = []
+    u = len(st) - len(se)
+    i = 0
+    s = ""
+    while True:
+        c = st[i]
+        j = i + len(se)
+        if st[i:j] == se:
+            if s != "": r.append(s)
+            s = ""
+            r.append((se, re))
+            i = i + len(se)
+        else:
+            s = s + c
+            i = i + 1
+        if i >= len(st):
+            if s != "": r.append(s)
+            return r
+
+
+def list_to_string(lst):
+    # transforms input of list
+    # if a list element is not a string: -> empty string
+    out = ""
+    for e in lst:
+        if type(e) is str:
+            out = out + e
+        else:
+            return ""
+    return out
+
+
+# print(list_to_string(["a", "b" , "c", ("g", "e")]))
+
+
+def list_all_string_variants(st, se, re):
+    outL = []
+    L = resolve_ambiguous_lists([create_string_variants_as_list(st, se, re)])
+    for e in L:
+        s = list_to_string(e)
+        if s != "":
+            outL.append(s)
+    return outL
+
+
+# print(list_all_string_variants("cyclophosphamid", "id", "ide"))
+
+# 1 / 0
+
+def generate_all_variants_by_rules(st):
+    lstRules = [
+        ("krankheit", " Disorder"),
+        ("fa", "pha"), ("Fa", "Pha"),
+        ("fe", "phe"), ("Fe", "Phe"),
+        ("fi", "phi"), ("Fi", "Phi"),
+        ("fo", "pho"), ("Fo", "Pho"),
+        ("fu", "phu"), ("Fu", "Phu"),
+        ("fy", "phy"), ("Fy", "Phy"),
+        ("fä", "phä"), ("Fä", "Phä"),
+        ("fö", "phö"), ("Fö", "Phö"),
+        ("fü", "phü"), ("Fü", "Phü"),
+        ("ka", "ca"), ("Ka", "Ca"),
+        ("ko", "co"), ("Ko", "Co"),
+        ("ku", "cu"), ("Ku", "Cu"),
+        ("zy", "cy"), ("Zy", "Cy"),
+        ("zi", "ci"), ("Zi", "Ci"),
+        ("ze", "ce"), ("Ze", "Ce"),
+        ("kl", "cl"), ("Kl", "Cl"),
+        ("kr", "cr"), ("Kr", "Cr"),
+        ("kn", "cn"), ("Kn", "Cn"),
+        ("kz", "cc"),
+        ("ö", "e"), ("Ö", "E"),  # because of esophagus
+        ("ü", "ue"), ("Ü", "Ue"),
+        ("ä", "ae"), ("Ä", "Ae")]
+
+    outL = [st]
+
+    for r in lstRules:
+        # print(r)
+        for s in outL:
+            newL = []
+            newL = list_all_string_variants(s, r[0], r[1])
+            for e in newL:
+                if not e in outL: outL.append(e)
+    return (outL)

@@ -1,21 +1,62 @@
 import os
 import sys
 
-import acres.web.get_web_ngram_stat
+import acres.evaluation.corpus
+import acres.util.text
 
 clear = lambda: os.system('cls')
 
-query = "GERD reflux"
+# print(acres.rater.get_acronym_score("ICD", "Implantierbaren Defibrillator (ICD)"))
+# print(acres.rater.get_acronym_score("ICD", "Implantierbaren Ca Defibrillator (ICD)"))
+# print(acres.util.text.generate_all_variants_by_rules("Arterielle Verschlusskrankheit"))
+
+# 1 / 0
+
+acro = "KHK"
+left = "de eine Koronarangiographie durchgeführt, dabei ¶ wurde eine"
+right = "ausgeschlossen und eine hypertensive Herzkrankheit ¶ festges"
+
+print(acres.rater.get_best_acronym_resolution(left, acro, right, 3, 7))
+
+1 / 0
+r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(
+    left, acro, right, 3, 6)
+
+for t in r:
+    s = acres.rater.get_acronym_score(acro, t[1])
+    if s[1] > 0:
+        print(str(t[0]) + "\t" + str(s[1]) + "\t" + s[0])
+
+1 / 0
+
+print(acres.rater.get_acronym_score("RR", "Blutdruck (RR)"))
+
+1 / 0
+
+# Hier Auflösung nur einmal und nur mit k
+# r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(
+#    "   ulär getriggerte li.ventriculäre SM - ¶ Stimulatation. ¶¶ *",
+#    "ICD",
+#    "- Kontrolle ¶¶ Batterie Ð,Ð Jahre, Ladezeit Ð,Ðsec. ¶ Wahrn", 3, 6)
+
+r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(
+    "Indikation zur ¶ primärprophylaktischen Versorgung mit einem",
+    "ICD",
+    "Aggregat gegeben. Da ¶ intermittierend ein Vorhofflimmern be", 3, 6)
+
+# query = "GERD Adipositas"
+query = "HDL Triglyceride"
+
 # r = acres.web.get_web_ngram_stat.ngrams_web_dump("https://news.google.com/?hl=de", 1, 2)
 # r = acres.web.get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=%22" + query + "%22", 1, 10)
-r = acres.web.get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1, 10)
+# = acres.web.get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1, 10)
 clear()
 c = 0
 for e in r:
     c = c + 1
-    print(e)
-    if c > 500:
-        break
+    print(str(e[0]) + "\t" + e[1])
+    # if c > 500:
+    #    break
 
 sys.exit()
 

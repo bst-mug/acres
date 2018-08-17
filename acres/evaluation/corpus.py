@@ -24,8 +24,68 @@ VERBOSE = False
 DIV = 1  # for sampling, if no sampling DIV = 1. Sampling is used for testing
 
 
+def get_web_dump_from_acro_with_context(left, acro, right, min_len, n_context, digit_placehoder="Ð",
+                                        newline_placeholder="¶"):
+    """
+    This routine throws acronyms with left and right context (like in Excel table) to Bing and generates an n-gram statistic
+
+    :param acro: acronym
+    :param left: left context
+    :param right: right context
+    :param: min_len: minimal length of a context word
+    :return: token ngram list with possible excronym expansion
+    """
+
+    l_con = []
+    r_con = []
+    proper_con = []
+    # reduce right and left context to words of minimal length min_len
+    # writing into the same tuple, alternating
+    left = acres.util.text.replace_punctuation(left)
+    right = acres.util.text.replace_punctuation(right)
+    lcL = left.split(" ")
+    # lcL = lcL.reverse()
+    rcL = right.split(" ")
+    for w in reversed(lcL):
+        if len(w) >= min_len:
+            if not (digit_placehoder in w or newline_placeholder in w):
+                l_con.append(w)
+    for w in rcL:
+        if len(w) >= min_len:
+            if not (digit_placehoder in w or newline_placeholder in w):
+                r_con.append(w)
+    i = 0
+    while True:
+        if i < len(l_con): proper_con.append(l_con[i])
+        if i < len(r_con): proper_con.append(r_con[i])
+        i = i + 1
+        if i >= len(l_con) and i >= len(r_con):
+            break
+    # now we have a list with the context words starting with the ones closest to the acronym
+    # in Bing the order of tokens in a query matters. Therefore the query must start with the acronym
+    query = acro + " " + " ".join(proper_con[:n_context])
+    print(query)
+    return acres.web.get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1, 10)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def find_synonyms() -> None:
     """
+    TODO: this routine was originally intended to process a large list of acronyms + contexts
     Finds synonyms using a n-gram frequency list from related corpus.
     TODO: reformatting logfile and filter criteria
 
@@ -120,6 +180,8 @@ def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str, log
     :return:
     """
     morphemes = resource_factory.get_morphemes()
+    # TODO: as morphemes are not a public resource, maybe ignore them at least in
+    # TODO: our experiments
     dia = text.diacritics()  # list of diacritic characters
 
     for item in corpus:
