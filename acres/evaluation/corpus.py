@@ -27,13 +27,14 @@ DIV = 1  # for sampling, if no sampling DIV = 1. Sampling is used for testing
 def get_web_dump_from_acro_with_context(left, acro, right, min_len, n_context, digit_placehoder="Ð",
                                         newline_placeholder="¶"):
     """
-    This routine throws acronyms with left and right context (like in Excel table) to Bing and generates an n-gram statistic
+    This routine throws acronyms with left and right context (like in Excel table) to Bing and
+    generates an n-gram statistic
 
     :param acro: acronym
     :param left: left context
     :param right: right context
     :param: min_len: minimal length of a context word
-    :return: token ngram list with possible excronym expansion
+    :return: token ngram list with possible acronym expansion
     """
 
     l_con = []
@@ -62,25 +63,11 @@ def get_web_dump_from_acro_with_context(left, acro, right, min_len, n_context, d
         if i >= len(l_con) and i >= len(r_con):
             break
     # now we have a list with the context words starting with the ones closest to the acronym
-    # in Bing the order of tokens in a query matters. Therefore the query must start with the acronym
+    # in Bing the order of tokens in a query matters. Therefore the query must start with the
+    # acronym
     query = acro + " " + " ".join(proper_con[:n_context])
     print(query)
-    return acres.web.get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1, 10)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1, 10)
 
 
 def find_synonyms() -> None:
@@ -170,7 +157,8 @@ def find_synonyms() -> None:
     _write_log(d_log_web, resource_factory.get_log_web_filename())
 
 
-def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str, log: Dict[str, List[str]]) -> None:
+def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str,
+                    log: Dict[str, List[str]]) -> None:
     """
 
     :param corpus:

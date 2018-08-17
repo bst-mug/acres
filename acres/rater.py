@@ -12,7 +12,7 @@ from acres.evaluation import corpus
 logger = logging.getLogger(__name__)
 
 
-def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str,float,str]:
+def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, str]:
     """
     TODO: All morphosaurus stuff eliminated. Could check past versions later
     TODO: whether this is worth while considering again
@@ -44,7 +44,8 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str,float,st
     :return: score that rates the likelihood that the full form is a valid expansion of the acronym
     """
 
-    last_letter_stripped = False  # see below cases in which the lat letter of an acronym is stripped
+    # see below cases in which the lat letter of an acronym is stripped
+    last_letter_stripped = False
     is_acronym_definition_pair = False
     acro = acro.strip()
     full = full.strip()
@@ -54,7 +55,8 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str,float,st
     ##
 
     # acronym must have at least two characters: all those expressions like "Streptococcus B" or
-    # "Vitamin C" should not be considered containg acronyms. Normally these compositions are lexicalised
+    # "Vitamin C" should not be considered containg acronyms. Normally these compositions are
+    # lexicalised
     # May be relevant for assessing single letter forms like "A cerebralis"
     if len(acro) < 2:
         return (full, 0, "Single letter acronym")
@@ -121,14 +123,15 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str,float,st
             # "s", however not necessarily lower case.
             # This means that "S" and "X" are not required to match
             lst_acronym_suffixes = ["s", "S", "x", "X"]
-            if (acro[-1] in lst_acronym_suffixes):
+            if acro[-1] in lst_acronym_suffixes:
                 acro = acro[0:-1]
                 acro_low = acro_low[0:-1]
                 last_letter_stripped = True
 
         # first chars must be the same, certain tolerance with acronym definition pairs
         if acro_low[0] != full_low[0]:
-            if not is_acronym_definition_pair: go_next = True
+            if not is_acronym_definition_pair:
+                go_next = True
 
         # last char of acronym must occur in last word of full
         # but not at the end unless it is a single letter
@@ -147,8 +150,8 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str,float,st
         if not go_next:
             score = 1
             regex = "^"
-            for c in acro_low:
-                regex = regex + c + ".*"
+            for char in acro_low:
+                regex = regex + char + ".*"
             if re.search(regex, full_low) is None:
                 if is_acronym_definition_pair:
                     score = score * 0.1
@@ -186,34 +189,35 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str,float,st
 
         if acro_low in full_low:
             score = score * 0.2
-    return (full_old, score, "End")
+    return full_old, score, "End"
 
 
-def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_len, maximum_word_count, language="de"):
+def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_len,
+                                    maximum_word_count):
     """
     This is the main file to be used to leverage Bing search for resolving acronyms
+
     :param left: left context of acronym to be expanded (any length)
     :param acro: acronym to be expanded
     :param right: right context of acronym to be expanded (any length)
-    :param minimum_len: the minimum length of the context words to be considered (e.g. to exclude short articles etc.)
+    :param minimum_len: the minimum length of the context words to be considered (e.g. to exclude
+    short articles etc.)
     :param maximum_word_count: the maximum of context words that are put into the query
     :return: best expansion of acronym
     """
-    r = corpus.get_web_dump_from_acro_with_context(
+    ngrams = corpus.get_web_dump_from_acro_with_context(
         left, acro, right, minimum_len, maximum_word_count)
     old_weight = 0
-    for t in r:
-        s = get_acronym_score(acro, t[1], language="de")
-        if s[1] > 0:
-            weight = t[0] * s[1]
+    out = ""
+    for (freq, ngram) in ngrams:
+        (full, score, reason) = get_acronym_score(acro, ngram, language="de")
+        if score > 0:
+            weight = freq * score
             if weight > old_weight:
-                out = s[0]
+                out = full
             old_weight = weight
     return out
 
 
-
-
-
 if __name__ == "__main__":
-    print(get_acronym_score("CMP", "Cardiomyopathie", language="de") )
+    print(get_acronym_score("CMP", "Cardiomyopathie", language="de"))
