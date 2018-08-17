@@ -193,7 +193,7 @@ def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str, log
         if first_condition and second_condition:
             if exp != old_exp:
                 # score_corpus = 0
-                score_corpus = rater.get_acronym_score(acronym, exp)
+                (full, score_corpus, reason) = rater.get_acronym_score(acronym, exp)
                 if score_corpus > 0:
                     a = str(round(score_corpus * math.log10(freq), 2))
                     b = str(round(score_corpus, 2))
