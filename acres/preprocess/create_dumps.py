@@ -102,7 +102,6 @@ def create_ngramstat_dump(ngram_stat_filename: str, min_freq: int) -> Dict[int, 
     """
 
     ngramstat = {}
-    # TODO: should be recreated with frequency 1
     with open(ngram_stat_filename, 'r', encoding="UTF-8") as file:
         identifier = 1
         for row in file:
@@ -131,7 +130,7 @@ def create_ngramstat_dump(ngram_stat_filename: str, min_freq: int) -> Dict[int, 
                         # Variant 3: removal of trailing punctuation
                         # End of sentence should not restrain reuse of tokens
                         # E.g. "Colonoskopie."
-                        # TO DO: investigate solutions to solve it before creating ngrams
+                        # TODO: investigate solutions to solve it before creating ngrams
                         # !!! FIXME: sum up frequencies
                         ngramstat[identifier] = (freq, ngram[:-1])
                         identifier += 1
