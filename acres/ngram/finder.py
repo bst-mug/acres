@@ -32,7 +32,7 @@ def _build_search_ngrams(context: str, reverse=False) -> Tuple[str, str, str]:
     return unigram, bigram, trigram
 
 
-def _strip_frequencies(embeddings: List[Tuple[int,str]], min_freq: int = 0) -> List[str]:
+def _strip_frequencies(embeddings: List[Tuple[int, str]], min_freq: int = 0) -> List[str]:
     """
     Strip out frequencies from a given embedding list obtained via find_embeddings.
 
@@ -92,7 +92,8 @@ def robust_find_embeddings(acronym: str, left_context: str, right_context: str) 
 
 
 def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size: int, minfreq: int,
-                    maxcount: int, min_num_tokens: int, max_num_tokens: int) -> List[Tuple[int,str]]:
+                    maxcount: int, min_num_tokens: int, max_num_tokens: int) -> List[
+    Tuple[int, str]]:
     """
     Input str_middle, together with a series of filter parameters
     Three cases of embeddings: 1. bilateral, 2.left, 3.right
@@ -183,10 +184,9 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
             if freq >= minfreq:
                 # might suppress low n-gram frequencies
                 # TODO: probably best 1, could be increased for performance
-                # TODO: the current ngram dump and index were created on a lower
-                # TODO: frequency bound of 2
-                # TODO: This is the reason, some acronyms cannot be resolved
-                # TODO: recommendation: recreate
+                # the current ngram dump and index were created on a lower frequency bound of 2
+                # This is the reason, some acronyms cannot be resolved
+                # recommendation: recreate
                 stripped_ngram = ngram.strip()
                 match = re.search(regex_embed, stripped_ngram, re.IGNORECASE)
                 # all_beds collects all contexts in which the unknown string
@@ -252,7 +252,7 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
                         # logger.debug(ngramfrecquency, long_form, "   [" + ngram + "]")
                         counter += 1
                         rec = (freq, long_form.strip())
-                        if not rec in out:
+                        if rec not in out:
                             out.append(rec)
 
         out.sort(reverse=True)
