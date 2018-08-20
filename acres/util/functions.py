@@ -76,6 +76,8 @@ def create_ngram_statistics(input_string: str, n_min: int, n_max: int) -> Dict[s
     output = {}  # type: Dict[str, int]
     lines = input_string.splitlines()
     for line in lines:
+        if line == '':
+            continue
         line = line.replace('\r', '')
         line = line.replace('\n', '')
         line = line.strip()

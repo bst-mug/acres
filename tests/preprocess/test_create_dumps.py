@@ -20,7 +20,7 @@ def test_create_corpus_ngramstat_dump():
     ngramstat = create_dumps.create_corpus_ngramstat_dump("tests/data")
 
     actual = len(ngramstat)
-    expected = 123658
+    expected = 123657
     assert expected == actual
 
 
