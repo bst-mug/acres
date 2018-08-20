@@ -53,7 +53,6 @@ class FilteredNGramStat(object):
                 #cleaned_tokens = tokens
                 cleaned_tokens = preprocess(tokens)
 
-                # FIXME drop empty ngrams...
                 # FIXME what happens with word2vec if window > len(cleaned_tokens)?
                 # Should we force a smaller window size guaranteed to always fit?
                 length_difference = length_tokens - len(cleaned_tokens)

@@ -3,6 +3,7 @@ Stefan Schulz 12 Nov 2017
 """
 import collections
 import logging
+import re
 from typing import Dict, Set, List, Tuple
 
 from acres.preprocess import resource_factory
@@ -100,6 +101,7 @@ def create_ngramstat_dump(ngram_stat_filename: str, min_freq: int) -> Dict[int, 
     :param min_freq:
     :return:
     """
+    empty_regex = re.compile("^\s*$")
 
     ngramstat = {}
     with open(ngram_stat_filename, 'r', encoding="UTF-8") as file:
@@ -119,21 +121,28 @@ def create_ngramstat_dump(ngram_stat_filename: str, min_freq: int) -> Dict[int, 
                         # !!! GERMAN-DEPENDENT !!!
                         # Variant 1: hyphen may be omitted (non-standard German)
                         # "Belastungs-Dyspnoe" -->  "Belastungs Dyspnoe"
-                        ngramstat[identifier] = (freq, ngram.replace("-", " "))
-                        identifier += 1
+                        cleaned_ngram = ngram.replace("-", " ")
+                        if not empty_regex.match(cleaned_ngram):
+                            ngramstat[identifier] = (freq, cleaned_ngram)
+                            identifier += 1
+
                         # Variant 2: words may be fused (should also be decapitalised
                         # but this is not relevant due to case-insensitive matching)
                         # "Belastungs-Dyspnoe" -->  "BelastungsDyspnoe"
-                        ngramstat[identifier] = (freq, ngram.replace("-", ""))
-                        identifier += 1
+                        cleaned_ngram = ngram.replace("-", "")
+                        if not empty_regex.match(cleaned_ngram):
+                            ngramstat[identifier] = (freq, cleaned_ngram)
+                            identifier += 1
                     if row[-1] in ".:;,-?!/":
                         # Variant 3: removal of trailing punctuation
                         # End of sentence should not restrain reuse of tokens
                         # E.g. "Colonoskopie."
                         # TODO: investigate solutions to solve it before creating ngrams
                         # !!! FIXME: sum up frequencies
-                        ngramstat[identifier] = (freq, ngram[:-1])
-                        identifier += 1
+                        cleaned_ngram = ngram[:-1]
+                        if not empty_regex.match(cleaned_ngram):
+                            ngramstat[identifier] = (freq, cleaned_ngram)
+                            identifier += 1
                     if "/" in row:
                         # Variant 4: insertion of spaces around "/", because
                         # "/" is often used as a token separator with shallow meaning

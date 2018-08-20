@@ -25,11 +25,22 @@ def test_create_corpus_ngramstat_dump():
 
 
 def test_create_ngramstat_dump():
-    actual = create_dumps.create_ngramstat_dump(
-        "tests/models/ngrams/ngramstat-" + resource_factory.VERSION + ".txt", 2)
-    expected = {1: (2000, '¶'), 2: (200, 'der'), 3: (50, 'EKG')}
+    ngram_stat_filename = "tests/models/ngrams/ngramstat-" + resource_factory.VERSION + ".txt"
+    ngramstat = create_dumps.create_ngramstat_dump(ngram_stat_filename, 2)
 
-    assert set(expected.values()).issubset(actual.values())
+    # Baseline
+    expected = {1: (2000, '¶'), 2: (200, 'der'), 3: (50, 'EKG')}
+    assert set(expected.values()).issubset(ngramstat.values())
+
+    ngrams = create_dumps.create_ngrams(ngramstat)
+    unique_ngrams = set(ngrams)
+
+    # It should not have empty entries...
+    assert "" not in unique_ngrams
+    assert " " not in unique_ngrams
+
+    # ...nor duplicate entries
+    # assert len(unique_ngrams) == len(ngrams)
 
 
 def test_create_index():
