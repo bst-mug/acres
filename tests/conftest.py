@@ -1,6 +1,20 @@
-import pytest
+import pytest, os
 
 from acres.preprocess import resource_factory
+
+
+@pytest.fixture(scope="session", autouse=True)
+def delete_models():
+    _delete_contents("tests/models/log")
+    _delete_contents("tests/models/ngrams")
+    _delete_contents("tests/models/nn")
+    _delete_contents("tests/models/pickle")
+
+
+def _delete_contents(folder):
+    for file in os.listdir(folder):
+        filename = os.path.join(folder, file)
+        os.unlink(filename)
 
 
 @pytest.fixture(scope="module", autouse=True)
