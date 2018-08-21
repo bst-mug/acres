@@ -48,16 +48,6 @@ def test_create_index(ngramstat):
         assert value == actual[key]
 
 
-def test_create_normalised_token_dump():
-    actual = create_dumps.create_normalised_token_dump(
-        "tests/models/ngrams/ngramstat.txt")
-    expected = {'', 'EKG', '¶\n', '200\tder\n', '50\tEKG\n', 'status', '¶\n', '50\tekg\n', 'Status',
-                '2000\t¶\n', '27\t*',
-                'Physikalischer', 'physikalischer', 'physicalischer', '19\t*', 'Physicalischer', 'ekg'}
-
-    assert set(expected).issubset(actual)
-
-
 def test_create_acro_dumo():
     actual = create_dumps.create_acro_dump()
     expected = ['EKG']
