@@ -40,13 +40,13 @@ def test_create_corpus_ngramstat_dump():
 
 
 def test_create_index():
-    actual = create_dumps.create_index(resource_factory.get_ngramstat())
-    expected = {'¶': {1, 4, 6}, 'der': {2}, 'EKG': {3, 4, 5}, '*': {4, 6}, 'Im': {5}, 'Physikalischer': {6},
-                'Status': {6}}
+    ngramstat = {1: (200, "der"), 2: (50, "EKG"), 3: (20, "Im EKG")}
+    actual = create_dumps.create_index(ngramstat)
+    expected = {'der': {1}, 'EKG': {2, 3}, 'Im': {3}}
 
     # Dictionary comparison
     for key, value in expected.items():
-        assert actual[key] == value
+        assert value == actual[key]
 
 
 def test_create_normalised_token_dump():
