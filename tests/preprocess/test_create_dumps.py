@@ -39,8 +39,7 @@ def test_create_corpus_ngramstat_dump():
     assert len(unique_ngrams) == len(ngrams)
 
 
-def test_create_index():
-    ngramstat = {1: (200, "der"), 2: (50, "EKG"), 3: (20, "Im EKG")}
+def test_create_index(ngramstat):
     actual = create_dumps.create_index(ngramstat)
     expected = {'der': {1}, 'EKG': {2, 3}, 'Im': {3}}
 
