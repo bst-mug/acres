@@ -178,7 +178,7 @@ def _filter_frequency(ngrams: Dict[str, int], min_freq) -> Dict[str, int]:
     return output
 
 
-def create_indexed_ngrams(ngrams: Dict[str, int]) -> Dict[int, Tuple[int,str]]:
+def create_indexed_ngrams(ngrams: Dict[str, int]) -> Dict[int, Tuple[int, str]]:
     """
     Create an indexed version of a ngram list. This basically adds an unique identifier to every
     (str, int) tuple.
