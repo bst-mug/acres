@@ -65,8 +65,8 @@ def test_create_acro_dumo():
     assert expected == actual
 
 
-def test_create_new_acro_dumo():
+def test_create_new_acro_dumo(ngramstat):
     actual = create_dumps.create_new_acro_dump()
-    expected = ['* EKG ¶']
+    expected = ['Im EKG']
 
     assert set(expected).issubset(actual)
