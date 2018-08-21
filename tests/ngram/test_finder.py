@@ -1,7 +1,7 @@
 from acres.ngram import finder
 
 
-def test_find_embeddings():
+def test_find_embeddings(ngramstat, index):
     # Explicit context
     actual = finder.find_embeddings("<SEL>", "EKG", "¶", 10, 1, 100, 1, 5)
     expected = [(19, 'Physikalischer Status')]
