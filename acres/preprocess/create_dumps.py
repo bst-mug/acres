@@ -190,6 +190,7 @@ def create_indexed_ngrams(ngrams: Dict[str, int]) -> Dict[int, Tuple[int,str]]:
     output = {}
     for (ngram, freq) in ngrams.items():
         output[identifier] = (freq, ngram)
+        identifier += 1
     return output
 
 
