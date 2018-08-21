@@ -215,51 +215,6 @@ def create_index(ngramstat: Dict[int, Tuple[int,str]]) -> Dict[str, Set[int]]:
     return index
 
 
-def create_normalised_token_dump(ngram_stat: str) -> Set[str]:
-    """
-    Creates a set of all tokens in the ngram table, taking into account all possible variants
-    typical for clinical German.
-
-    XXX Check whether it's used !!
-    INCOMLETE RULESET FOR TRANSFORMING 8 bit to 7 bit
-    including normalizing K-C-Z (only relevant for Medical German)
-    XXX Soundex ?
-    XXX similar function elsewhere?
-
-    :return:
-    """
-
-    # ngram statistics representing a specific document genre and domain
-
-    # FIXME It seems the last token of the file is added without a line separator if the ngramstat
-    # file does not include a trailing new line character
-
-    logger.debug(ngram_stat)
-    all_tokens = set()
-    all_token_variants = set()
-    with open(ngram_stat, 'r', encoding="UTF-8") as file:
-        for row in file:
-            row = row.replace("-", " ").replace("/", " ").replace("(", " ").replace(")", " ")
-            tokens = row.split(" ")
-            for token in tokens:
-                all_tokens.add(token)
-        for token in all_tokens:
-            token = token.replace(".", "").replace(",", "").replace(";", "")
-            token = token.replace(":", "").replace("!", "").replace("?", "")
-
-            all_token_variants.add(token)
-            all_token_variants.add(token.lower())
-            token = token.replace("k", "c").replace("z", "c")
-            all_token_variants.add(token)
-            all_token_variants.add(token.lower())
-            token = token.replace("ä", "ae").replace(
-                "ö", "oe").replace("ü", "ue").replace("ß", "ss")
-            all_token_variants.add(token)
-            all_token_variants.add(token.lower())
-
-    return all_token_variants
-
-
 def create_acro_dump() -> List[str]:
     """
     Creates and dumps set of acronyms from ngram statistics.

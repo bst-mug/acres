@@ -83,24 +83,6 @@ def get_index() -> Dict[str, Set[int]]:
     return INDEX
 
 
-def _get_ngramstat_txt() -> str:
-    """
-    Private auxiliary method to create the ngramstat.txt file. Use get_ngramstat() when possible.
-
-    @deprecated use get_word_ngrams() instead
-
-    :return:
-    """
-    output_file = NGRAMS_FOLDER + "ngramstat-" + VERSION + ".txt"
-
-    if not os.path.isfile(output_file):
-        _log_file_not_found(output_file)
-        get_word_ngrams()
-
-    _log_file_found(output_file)
-    return output_file
-
-
 def get_word_ngrams() -> Dict[str, int]:
     """
     Get a not-indexed representation of ngrams.
@@ -184,20 +166,6 @@ def get_acronyms() -> List[str]:
 
         acronyms = create_dumps.create_acro_dump()
         pickle.dump(acronyms, open(output_file, "wb"))
-
-    _log_file_found(output_file)
-    return pickle.load(open(output_file, "rb"))
-
-
-def get_tokens() -> Set[str]:
-    output_file = PICKLE_FOLDER + "tokens.p"
-
-    if not os.path.isfile(output_file):
-        _log_file_not_found(output_file)
-
-        ngram_file = _get_ngramstat_txt()
-        ngramstat = create_dumps.create_normalised_token_dump(ngram_file)
-        pickle.dump(ngramstat, open(output_file, "wb"))
 
     _log_file_found(output_file)
     return pickle.load(open(output_file, "rb"))
@@ -287,7 +255,6 @@ def warmup_cache():
     get_ngramstat()
     get_acronym_ngrams()
     get_acronyms()
-    get_tokens()
     get_index()
     get_character_ngrams()
 
