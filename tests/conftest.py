@@ -3,7 +3,7 @@ import pytest, os
 from acres.preprocess import resource_factory
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="module", autouse=True)
 def delete_models():
     _delete_contents("tests/models/log")
     _delete_contents("tests/models/ngrams")
