@@ -17,22 +17,18 @@ def test_create_corpus_char_stat_dump():
 
 
 def test_create_corpus_ngramstat_dump():
-    ngramstat = create_dumps.create_corpus_ngramstat_dump("tests/data")
+    ngramstat = create_dumps.create_corpus_ngramstat_dump("tests/data", 2)
 
+    # Check length
     actual = len(ngramstat)
-    expected = 123657
+    expected = 29597
     assert expected == actual
 
-
-def test_create_ngramstat_dump():
-    ngram_stat_filename = "tests/models/ngrams/ngramstat-" + resource_factory.VERSION + ".txt"
-    ngramstat = create_dumps.create_ngramstat_dump(ngram_stat_filename, 2)
-
     # Baseline
-    expected = {1: (2000, '¶'), 2: (200, 'der'), 3: (50, 'EKG')}
-    assert set(expected.values()).issubset(ngramstat.values())
+    expected = {('¶', 2704), ('der', 450), ('EKG', 43)}
+    assert set(expected).issubset(ngramstat.items())
 
-    ngrams = create_dumps.create_ngrams(ngramstat)
+    ngrams = ngramstat.keys()
     unique_ngrams = set(ngrams)
 
     # It should not have empty entries...
@@ -40,7 +36,7 @@ def test_create_ngramstat_dump():
     assert " " not in unique_ngrams
 
     # ...nor duplicate entries
-    # assert len(unique_ngrams) == len(ngrams)
+    assert len(unique_ngrams) == len(ngrams)
 
 
 def test_create_index():
@@ -55,7 +51,7 @@ def test_create_index():
 
 def test_create_normalised_token_dump():
     actual = create_dumps.create_normalised_token_dump(
-        "tests/models/ngrams/ngramstat-" + resource_factory.VERSION + ".txt")
+        "tests/models/ngrams/ngramstat.txt")
     expected = {'', 'EKG', '¶\n', '200\tder\n', '50\tEKG\n', 'status', '¶\n', '50\tekg\n', 'Status',
                 '2000\t¶\n', '27\t*',
                 'Physikalischer', 'physikalischer', 'physicalischer', '19\t*', 'Physicalischer', 'ekg'}
