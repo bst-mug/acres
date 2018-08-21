@@ -17,8 +17,41 @@ def path_resource_factory():
 def ngramstat():
     # Setup: save current one and assign a fake one
     old = resource_factory.NGRAMSTAT
-    resource_factory.NGRAMSTAT = {1: (200, "der"), 2: (50, "EKG"), 3: (20, "Im EKG")}
+    resource_factory.NGRAMSTAT = {1: (2000, "¶"),
+                                  2: (200, "der"),
+                                  3: (50, "EKG"),
+                                  4: (27, "* EKG ¶"),
+                                  5: (20, "Im EKG"),
+                                  6: (19, "* Physikalischer Status ¶"),
+                                  7: (19, "Long sentence used for WORD embeddings"),
+                                  8: (20, "Long sentence used for WabcOabcRabcDabc embeddings"),
+                                  }
     yield resource_factory.NGRAMSTAT
 
     # Teardown: revert back to old
     resource_factory.NGRAMSTAT = old
+
+
+@pytest.fixture(scope="module")
+def index():
+    # Setup: save current one and assign a fake one
+    old = resource_factory.INDEX
+    resource_factory.INDEX = {"¶": {1, 4, 6},
+                              "der": {2},
+                              "EKG": {3, 4, 5},
+                              "*": {4, 6},
+                              "Im": {5},
+                              "Physikalischer": {6},
+                              "Status": {6},
+                              "Long": {7, 8},
+                              "sentence": {7, 8},
+                              "used": {7, 8},
+                              "for": {7, 8},
+                              "WORD": {7},
+                              "embeddings": {7, 8},
+                              "WabcOabcRabcDabc": {8}
+                              }
+    yield resource_factory.INDEX
+
+    # Teardown: revert back to old
+    resource_factory.INDEX = old
