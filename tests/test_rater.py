@@ -18,6 +18,6 @@ def test_get_acronym_score():
 
 
 def test_get_best_acronym_web_resolution():
-    assert "Elektrokardiogramm" == rater.get_best_acronym_web_resolution("", "EKG",
+    assert ("Elektrokardiogramm", 2) == rater.get_best_acronym_web_resolution("", "EKG",
                                                                          "Absolute Arrhythmie", 3,
                                                                          5)
