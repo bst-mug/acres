@@ -96,6 +96,9 @@ def create_corpus_ngramstat_dump(corpus_path, min_freq, min_length=1, max_length
         counter += 1
 
     logger.debug("Corpus length (chars): %d", len(entire_corpus))
+    if logger.getEffectiveLevel() == logging.DEBUG:
+        import hashlib
+        logger.debug("MD5(corpus) = %s", hashlib.md5(entire_corpus.encode("utf-8")).hexdigest())
 
     dict_ngramstat = functions.create_ngram_statistics(entire_corpus, min_length, max_length)
     logger.debug("ngramstat length (initial): %d", len(dict_ngramstat))
