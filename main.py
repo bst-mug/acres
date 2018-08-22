@@ -1,8 +1,9 @@
 import os
 import sys
 
-import acres.evaluation.corpus
 import acres.util.text
+
+acres.preprocess.resource_factory
 
 clear = lambda: os.system('cls')
 
@@ -10,26 +11,34 @@ clear = lambda: os.system('cls')
 # print(acres.rater.get_acronym_score("ICD", "Implantierbaren Ca Defibrillator (ICD)"))
 # print(acres.util.text.generate_all_variants_by_rules("Arterielle Verschlusskrankheit"))
 
-# 1 / 0
+if 1 == 1:
 
-acro = "KHK"
-left = "de eine Koronarangiographie durchgeführt, dabei ¶ wurde eine"
-right = "ausgeschlossen und eine hypertensive Herzkrankheit ¶ festges"
+    acro = "OP"
+    left = "beim Hausarzt auf. Bitte diesbezüglich sämtliche Befunde zur"
+    right = "mitnehmen. ¶ Für den Eingriff Thrombo-ASS und Plavix keinesf"
 
-print(acres.rater.get_best_acronym_web_resolution(left, acro, right, 3, 7))
+    print(acres.rater.get_best_acronym_web_resolution(left, acro, right, 3, 7))
 
-1 / 0
-r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(
-    left, acro, right, 3, 6)
+    1 / 0
 
-for t in r:
-    s = acres.rater.get_acronym_score(acro, t[1])
-    if s[1] > 0:
-        print(str(t[0]) + "\t" + str(s[1]) + "\t" + s[0])
+    acro = "KHK"
+    left = "de eine Koronarangiographie durchgeführt, dabei ¶ wurde eine"
+    right = "ausgeschlossen und eine hypertensive Herzkrankheit ¶ festges"
 
-1 / 0
+    print(acres.rater.get_best_acronym_web_resolution(left, acro, right, 3, 7))
 
-print(acres.rater.get_acronym_score("RR", "Blutdruck (RR)"))
+    1 / 0
+    r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(
+        left, acro, right, 3, 6)
+
+    for t in r:
+        s = acres.rater.get_acronym_score(acro, t[1])
+        if s[1] > 0:
+            print(str(t[0]) + "\t" + str(s[1]) + "\t" + s[0])
+
+    1 / 0
+
+print(acres.rater.get_acronym_score("EKG", "Elektrocardiogramm"))
 
 1 / 0
 
