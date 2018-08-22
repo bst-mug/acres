@@ -132,6 +132,7 @@ def robust_text_import_from_dir(path: str) -> List[str]:
 
     # Make models consistent among different filesystems
     files.sort()
+    logger.debug(files)
 
     for filename in files:
         try:
