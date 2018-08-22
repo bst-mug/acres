@@ -32,6 +32,7 @@ NGRAMSTAT = {}  # type: Dict[int, Tuple[int,str]]
 CHARACTER_NGRAMS = {}  # type: Dict[str, int]
 
 
+
 def get_log_corpus_filename() -> str:
     return LOG_FOLDER + "logCorpus.txt"
 
