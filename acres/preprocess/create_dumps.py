@@ -95,10 +95,16 @@ def create_corpus_ngramstat_dump(corpus_path, min_freq, min_length=1, max_length
         entire_corpus = entire_corpus + doc + "\n\n"
         counter += 1
 
+    logger.debug("Corpus length (chars): %d", len(entire_corpus))
+
     dict_ngramstat = functions.create_ngram_statistics(entire_corpus, min_length, max_length)
+    logger.debug("ngramstat length (initial): %d", len(dict_ngramstat))
 
     dict_ngramstat = _generate_variants(dict_ngramstat)
+    logger.debug("ngramstat length with variants: %d", len(dict_ngramstat))
+
     dict_ngramstat = _filter_frequency(dict_ngramstat, min_freq)
+    logger.debug("ngramstat length filtered for frequency: %d", len(dict_ngramstat))
 
     return dict_ngramstat
 
