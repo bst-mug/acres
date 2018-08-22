@@ -17,16 +17,17 @@ def test_create_corpus_char_stat_dump():
 
 
 def test_create_corpus_ngramstat_dump():
+    # TODO It's 28 when robust_text_import_from_dir do not sort files! =O
     ngramstat = create_dumps.create_corpus_ngramstat_dump("tests/data", 100)
     actual = len(ngramstat)
-    expected = 28
+    expected = 29
     assert expected == actual
 
     ngramstat = create_dumps.create_corpus_ngramstat_dump("tests/data", 2)
 
     # Check length
     actual = len(ngramstat)
-    expected = 29597
+    expected = 29577
     assert expected == actual
 
     # Baseline

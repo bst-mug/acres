@@ -129,12 +129,15 @@ def robust_text_import_from_dir(path: str) -> List[str]:
     texts = []
     # print(path)
     files = os.listdir(path)
+
+    # Make models consistent among different filesystems
+    files.sort()
+
     for filename in files:
         try:
             with open(path + "/" + filename, "r", encoding="utf-8") as file:
                 content = file.read()
                 texts.append(content)
-                logger.debug("len(%s) = %d chars", filename, len(content))
                 # print(file + " " + str(len(content)))
         except UnicodeDecodeError:
             logger.warning("Corrupt file: %s", filename)
