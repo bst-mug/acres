@@ -1,8 +1,0 @@
-      2000	¶
-       200	der
-        50	EKG
-        27	* EKG ¶
-        20	Im EKG
-        19	* Physikalischer Status ¶
-        19	Long sentence used for WORD embeddings
-        19	Long sentence used for WabcOabcRabcDabc embeddings

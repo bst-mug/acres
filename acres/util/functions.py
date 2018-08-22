@@ -129,6 +129,11 @@ def robust_text_import_from_dir(path: str) -> List[str]:
     texts = []
     # print(path)
     files = os.listdir(path)
+
+    # Make models consistent among different filesystems
+    files.sort()
+    logger.debug(files)
+
     for filename in files:
         try:
             with open(path + "/" + filename, "r", encoding="utf-8") as file:

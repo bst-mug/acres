@@ -75,17 +75,6 @@ def test_get_acronyms():
     assert os.path.isfile(output_file)
 
 
-def test_get_tokens():
-    output_file = "tests/models/pickle/tokens.p"
-
-    if os.path.isfile(output_file):
-        os.remove(output_file)
-    assert not os.path.isfile(output_file)
-
-    resource_factory.get_tokens()
-    assert os.path.isfile(output_file)
-
-
 def test_get_character_ngrams():
     output_file = "tests/models/pickle/character_ngrams.p"
 

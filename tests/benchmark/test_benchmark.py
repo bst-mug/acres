@@ -117,9 +117,8 @@ def test_find_embeddings():
     assert set(expected).issubset(actual)
 
 
-def test_get_ngramstat():
-    ngramstat = resource_factory.get_ngramstat()
-    ngrams = create_dumps.create_ngrams(ngramstat)
+def test_get_word_ngrams():
+    ngrams = resource_factory.get_word_ngrams().keys()
     unique_ngrams = set(ngrams)
 
     # ngramstat should not have empty entries

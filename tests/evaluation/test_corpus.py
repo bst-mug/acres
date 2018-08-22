@@ -3,7 +3,7 @@ import os.path
 from acres.evaluation import corpus
 
 
-def test_find_synonyms():
+def test_find_synonyms(ngramstat):
     output_file = "tests/models/log/logWebs.txt"
 
     if os.path.isfile(output_file):

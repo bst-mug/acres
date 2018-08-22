@@ -20,7 +20,7 @@ LOG_FOLDER = "models/log/"
 NN_MODELS_FOLDER = "models/nn/"
 DATA_FOLDER = functions.import_conf("CORPUS_PATH")
 
-VERSION = "V4"
+VERSION = "V5"
 
 #  minimal number of occurrences of a word ngram in the corpus
 MIN_FREQ = 2
@@ -30,7 +30,7 @@ INDEX = {}  # type: Dict[str, Set[int]]
 NN_MODEL = None  # type: Word2Vec
 NGRAMSTAT = {}  # type: Dict[int, Tuple[int,str]]
 CHARACTER_NGRAMS = {}  # type: Dict[str, int]
-
+WORD_NGRAMS = {}  # type: Dict[str, int]
 
 
 def get_log_corpus_filename() -> str:
@@ -83,30 +83,39 @@ def get_index() -> Dict[str, Set[int]]:
     return INDEX
 
 
-def _get_ngramstat_txt() -> str:
+def get_word_ngrams() -> Dict[str, int]:
     """
-    Private auxiliary method to create the ngramstat.txt file. Use get_ngramstat() when possible.
+    Get a not-indexed representation of ngrams.
 
     :return:
     """
-    output_file = NGRAMS_FOLDER + "ngramstat-" + VERSION + ".txt"
+    global WORD_NGRAMS
 
-    if not os.path.isfile(output_file):
-        _log_file_not_found(output_file)
+    if not WORD_NGRAMS:
+        pickle_output_file = PICKLE_FOLDER + "word_ngrams.p"
+        ngram_output_file = NGRAMS_FOLDER + "ngramstat-" + str(MIN_FREQ) + "-" + VERSION + ".txt"
 
-        ngramstat = create_dumps.create_corpus_ngramstat_dump(DATA_FOLDER)
-        write_txt(ngramstat, output_file)
+        if not os.path.isfile(pickle_output_file):
+            _log_file_not_found(pickle_output_file)
+            _log_file_not_found(ngram_output_file)
 
-    _log_file_found(output_file)
-    return output_file
+            word_ngrams = create_dumps.create_corpus_ngramstat_dump(DATA_FOLDER, MIN_FREQ)
+
+            write_txt(word_ngrams, ngram_output_file)
+            pickle.dump(word_ngrams, open(pickle_output_file, "wb"))
+
+        _log_file_found(pickle_output_file)
+        WORD_NGRAMS = pickle.load(open(pickle_output_file, "rb"))
+
+    return WORD_NGRAMS
 
 
 def get_ngramstat() -> Dict[int, Tuple[int,str]]:
     """
-    Load efficiently the ngramstat file.
+    Get an indexed representation of ngrams.
 
-    :return: A dictionary of identifiers mapped to ngrams. Ngrams are tab-separated strings
-    containing the frequency and the corresponding ngram.
+    :return: A dictionary of identifiers mapped to ngrams. Ngrams are tuples with the frequency and
+    the corresponding ngram.
     """
     global NGRAMSTAT
 
@@ -116,8 +125,8 @@ def get_ngramstat() -> Dict[int, Tuple[int,str]]:
         if not os.path.isfile(output_file):
             _log_file_not_found(output_file)
 
-            ngram_file = _get_ngramstat_txt()
-            ngramstat = create_dumps.create_ngramstat_dump(ngram_file, MIN_FREQ)
+            word_ngrams = get_word_ngrams()
+            ngramstat = create_dumps.create_indexed_ngrams(word_ngrams)
             pickle.dump(ngramstat, open(output_file, "wb"))
 
         _log_file_found(output_file)
@@ -157,20 +166,6 @@ def get_acronyms() -> List[str]:
 
         acronyms = create_dumps.create_acro_dump()
         pickle.dump(acronyms, open(output_file, "wb"))
-
-    _log_file_found(output_file)
-    return pickle.load(open(output_file, "rb"))
-
-
-def get_tokens() -> Set[str]:
-    output_file = PICKLE_FOLDER + "tokens.p"
-
-    if not os.path.isfile(output_file):
-        _log_file_not_found(output_file)
-
-        ngram_file = _get_ngramstat_txt()
-        ngramstat = create_dumps.create_normalised_token_dump(ngram_file)
-        pickle.dump(ngramstat, open(output_file, "wb"))
 
     _log_file_found(output_file)
     return pickle.load(open(output_file, "rb"))
@@ -256,11 +251,10 @@ def warmup_cache():
     :return:
     """
     #get_morphemes()
-    _get_ngramstat_txt()
+    get_word_ngrams()
     get_ngramstat()
     get_acronym_ngrams()
     get_acronyms()
-    get_tokens()
     get_index()
     get_character_ngrams()
 
