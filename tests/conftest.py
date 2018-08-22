@@ -13,6 +13,8 @@ def delete_models():
 
 def _delete_contents(folder):
     for file in os.listdir(folder):
+        if file == "empty":
+            continue
         filename = os.path.join(folder, file)
         os.unlink(filename)
 
