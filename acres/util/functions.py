@@ -134,6 +134,10 @@ def robust_text_import_from_dir(path: str) -> List[str]:
             with open(path + "/" + filename, "r", encoding="utf-8") as file:
                 content = file.read()
                 texts.append(content)
+                if logger.getEffectiveLevel() == logging.DEBUG:
+                    import hashlib
+                    logger.debug("MD5(%s) = %s", filename,
+                                 hashlib.md5(content.encode("utf-8")).hexdigest())
                 # print(file + " " + str(len(content)))
         except UnicodeDecodeError:
             logger.warning("Corrupt file: %s", filename)
