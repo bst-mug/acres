@@ -158,7 +158,7 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
                 else:
                     score = 0
             else:
-                # TODO
+
                 # The more word initials coincide with acronym letters the better
                 # especially for German (probably exclusively for German:
                 # matching first letter capitals (nouns) even better
@@ -177,6 +177,12 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
                 if re.search(expanded_upper, acro) is None:
                     score = score * 0.25  # FIXME: check whether right
 
+                # rightmost expansion should start with upper case initial
+
+                if language == "de":
+                    if full.split(" ")[-1][0].islower():
+                        score = score * 0.25
+
         if old_score > score:
             score = old_score
 
@@ -189,7 +195,7 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
 
         if acro_low in full_low:
             score = score * 0.2
-    return full_old, score, "End"
+    return full_old, score, 'End'
 
 
 def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_len,
@@ -203,7 +209,7 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
     :param minimum_len: the minimum length of the context words to be considered (e.g. to exclude
     short articles etc.)
     :param maximum_word_count: the maximum of context words that are put into the query
-    :return: best expansion of acronym
+    :return: best expansion of acronym, rating
     """
     ngrams = corpus.get_web_dump_from_acro_with_context(
         left, acro, right, minimum_len, maximum_word_count)
@@ -211,12 +217,14 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
     out = ""
     for (freq, ngram) in ngrams:
         (full, score, reason) = get_acronym_score(acro, ngram, language="de")
+        if score > 0.0:
+            print(score, full)
         if score > 0:
             weight = freq * score
             if weight > old_weight:
                 out = full
             old_weight = weight
-    return out
+    return (out, weight)
 
 
 if __name__ == "__main__":
