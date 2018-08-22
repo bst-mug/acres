@@ -42,7 +42,7 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens) -> List[Tuple[int,str]]
     logger.info("Sending HTTP request to %s...", url)
     response = functions.get_url(url)
     rt = response.text
-    logger.debug(rt)
+    #logger.debug(rt)
     #
     # html2text removes diacritics, therefore substitutions!
     #
