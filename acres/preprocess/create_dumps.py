@@ -70,7 +70,7 @@ def create_corpus_ngramstat_dump(corpus_path, min_freq, min_length=1, max_length
     """
 
     entire_corpus = ""
-    counter = 0
+    counter = 1
 
     texts = functions.robust_text_import_from_dir(corpus_path)
     length = len(texts)
@@ -78,7 +78,8 @@ def create_corpus_ngramstat_dump(corpus_path, min_freq, min_length=1, max_length
     logger.info("Creating ngramstat from %d documents...", length)
 
     for doc in texts:
-        logger.debug("%d/%d", counter, length)
+        if counter % 100 == 0:
+            logger.debug("%d/%d", counter, length)
 
         if fix_lines:
             doc = text.fix_line_endings(doc, break_marker)
