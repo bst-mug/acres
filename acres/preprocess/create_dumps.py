@@ -78,7 +78,7 @@ def create_corpus_ngramstat_dump(corpus_path, min_freq, min_length=1, max_length
     logger.info("Creating ngramstat from %d documents...", length)
 
     for doc in texts:
-        if counter % 100 == 0:
+        if counter % 1000 == 0:
             logger.debug("%d/%d", counter, length)
 
         if fix_lines:
