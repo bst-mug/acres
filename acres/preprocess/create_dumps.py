@@ -123,7 +123,7 @@ def _generate_variants(ngrams: Dict[str, int]) -> Dict[str, int]:
 
     output = {}
     for (ngram, freq) in ngrams.items():
-        output[ngram] = freq
+        output[ngram] = output.get(ngram, 0) + freq
 
         # adding variations according to specific tokenization
         # rules dependent on punctuation chars,

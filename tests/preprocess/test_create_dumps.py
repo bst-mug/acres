@@ -17,19 +17,17 @@ def test_create_corpus_char_stat_dump():
 
 
 def test_create_corpus_ngramstat_dump():
-    # FIXME It's 28 on Python 3.5
-    # XXX It's also 28 when robust_text_import_from_dir do not sort files! =O
-    # ngramstat = create_dumps.create_corpus_ngramstat_dump("tests/data", 100)
-    # actual = len(ngramstat)
-    # expected = 29
-    # assert expected == actual
+    ngramstat = create_dumps.create_corpus_ngramstat_dump("tests/data", 100)
+    actual = len(ngramstat)
+    expected = 30
+    assert expected == actual
 
     ngramstat = create_dumps.create_corpus_ngramstat_dump("tests/data", 2)
 
     # Check length
-    # actual = len(ngramstat)
-    # expected = 29577
-    # assert expected == actual
+    actual = len(ngramstat)
+    expected = 29916
+    assert expected == actual
 
     # Baseline
     expected = {('¶', 2704), ('der', 450), ('EKG', 43)}

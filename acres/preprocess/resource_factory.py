@@ -20,7 +20,7 @@ LOG_FOLDER = "models/log/"
 NN_MODELS_FOLDER = "models/nn/"
 DATA_FOLDER = functions.import_conf("CORPUS_PATH")
 
-VERSION = "V5"
+VERSION = "V6"
 
 #  minimal number of occurrences of a word ngram in the corpus
 MIN_FREQ = 2
