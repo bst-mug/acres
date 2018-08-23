@@ -19,6 +19,12 @@ def test_fix_line_endings():
     assert expected == actual
 
 
+def test_replace_punctuation():
+    expected = "life changing EKG"
+    actual = acres.util.text.replace_punctuation("life-changing. EKG. ")
+    assert expected == actual
+
+
 def test_transliterate_to_seven_bit():
     assert "HAETTE" == acres.util.text.transliterate_to_seven_bit("hätte")
     assert "HATTE" == acres.util.text.transliterate_to_seven_bit("hätte", "en")
