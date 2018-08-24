@@ -5,7 +5,7 @@ Finds synonyms using a n-gram frequency list from related corpus
 
 import logging
 import re
-from typing import List, Tuple, Set
+from typing import List, Tuple, Set, Pattern, AnyStr
 
 from acres.preprocess import resource_factory
 from acres.util import functions
@@ -144,7 +144,7 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
     return _find_middle(str_middle, sel_beds, max_num)
 
 
-def _build_regex(str_left: str, str_middle: str, str_right: str) -> str:
+def _build_regex(str_left: str, str_middle: str, str_right: str) -> Pattern[AnyStr]:
     """
 
     :param str_left:
@@ -183,7 +183,7 @@ def _build_regex(str_left: str, str_middle: str, str_right: str) -> str:
     logger.debug("Right context: '%s'", str_right_esc)
     logger.debug("Regular expression: %s", regex_embed)
 
-    return regex_embed
+    return re.compile(regex_embed, re.IGNORECASE)
 
 
 def _build_sel_rows(str_left: str, str_middle: str, str_right: str) -> List[Tuple[int,str]]:
@@ -215,7 +215,7 @@ def _build_sel_rows(str_left: str, str_middle: str, str_right: str) -> List[Tupl
     return sel_rows
 
 
-def _build_all_beds(sel_rows: List[Tuple[int,str]], regex_embed: str, max_num_tokens: int, min_num_tokens: int, minfreq: int, maxcount: int) -> List[Tuple[int,str]]:
+def _build_all_beds(sel_rows: List[Tuple[int,str]], regex_embed: Pattern[AnyStr], max_num_tokens: int, min_num_tokens: int, minfreq: int, maxcount: int) -> List[Tuple[int,str]]:
     """
 
     :param sel_rows:
@@ -247,7 +247,7 @@ def _build_all_beds(sel_rows: List[Tuple[int,str]], regex_embed: str, max_num_to
                 # This is the reason, some acronyms cannot be resolved
                 # recommendation: recreate
                 stripped_ngram = ngram.strip()
-                match = re.search(regex_embed, stripped_ngram, re.IGNORECASE)
+                match = regex_embed.search(stripped_ngram)
                 # all_beds collects all contexts in which the unknown string
                 # is embedded.
                 # the length of right and left part of "bed" is only
