@@ -257,6 +257,7 @@ def warmup_cache():
     get_acronyms()
     get_index()
     get_character_ngrams()
+    get_nn_model()
 
 
 def write_txt(resource, filename: str) -> int:
