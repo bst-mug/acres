@@ -112,10 +112,8 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
     index = resource_factory.get_index()
 
     # MAXLIST = 100
-    all_beds = []   # type: List[Tuple[int,str]]
     all_sets = []   # type: List[Set[int]]
     sel_rows = []   # type: List[Tuple[int,str]]
-    count = 0
 
     logger.debug("Minimum n-gram frequency: %d", minfreq)
     logger.debug("Maximum count of iterations: %d", maxcount)
@@ -141,36 +139,9 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
 
         logger.debug("Number of matching ngrams by word index: %d", len(sel_rows))
 
-    for row in sorted(sel_rows, reverse=True):  # iteration through all matching ngrams
-        # input("press key!)
-        (freq, ngram) = row
-        logger.debug("%d => %s", freq, ngram)
+    all_beds = _build_all_beds(sel_rows, regex_embed, max_num_tokens, min_num_tokens, minfreq, maxcount)
 
-        ngram_card = ngram.count(" ") + 1  # cardinality of the nGram
-        # Filter by ngram cardinality
-        if max_num_tokens >= ngram_card >= min_num_tokens:  # -1
-            # watch out for multiword input str_middle
-            # TODO: min should be at least 1 plus cardinality of middle term
-            if freq >= minfreq:
-                # might suppress low n-gram frequencies
-                # TODO: probably best 1, could be increased for performance
-                # the current ngram dump and index were created on a lower frequency bound of 2
-                # This is the reason, some acronyms cannot be resolved
-                # recommendation: recreate
-                stripped_ngram = ngram.strip()
-                match = re.search(regex_embed, stripped_ngram, re.IGNORECASE)
-                # all_beds collects all contexts in which the unknown string
-                # is embedded.
-                # the length of right and left part of "bed" is only
-                # limited by the length of the ngram
-                if match is not None and row not in all_beds:
-                    all_beds.append(row)
-                    logger.debug("%d: %s", freq, ngram)
-                    count += 1
-                    if count >= maxcount:
-                        logger.debug("List cut at %d", count)
-                        break
-    logger.debug("COUNT: " + str(count))
+    count = len(all_beds)
 
     sel_beds = functions.random_sub_list(all_beds, count)
     # print(sel_beds)
@@ -231,6 +202,56 @@ def _build_regex(str_left: str, str_middle: str, str_right: str) -> str:
     logger.debug("Regular expression: %s", regex_embed)
 
     return regex_embed
+
+
+def _build_all_beds(sel_rows: List[Tuple[int,str]], regex_embed: str, max_num_tokens: int, min_num_tokens: int, minfreq: int, maxcount: int) -> List[Tuple[int,str]]:
+    """
+    
+    :param sel_rows:
+    :param regex_embed:
+    :param max_num_tokens:
+    :param min_num_tokens:
+    :param minfreq:
+    :param maxcount:
+    :return:
+    """
+    all_beds = []  # type: List[Tuple[int,str]]
+
+    count = 0
+
+    for row in sorted(sel_rows, reverse=True):  # iteration through all matching ngrams
+        # input("press key!)
+        (freq, ngram) = row
+        logger.debug("%d => %s", freq, ngram)
+
+        ngram_card = ngram.count(" ") + 1  # cardinality of the nGram
+        # Filter by ngram cardinality
+        if max_num_tokens >= ngram_card >= min_num_tokens:  # -1
+            # watch out for multiword input str_middle
+            # TODO: min should be at least 1 plus cardinality of middle term
+            if freq >= minfreq:
+                # might suppress low n-gram frequencies
+                # TODO: probably best 1, could be increased for performance
+                # the current ngram dump and index were created on a lower frequency bound of 2
+                # This is the reason, some acronyms cannot be resolved
+                # recommendation: recreate
+                stripped_ngram = ngram.strip()
+                match = re.search(regex_embed, stripped_ngram, re.IGNORECASE)
+                # all_beds collects all contexts in which the unknown string
+                # is embedded.
+                # the length of right and left part of "bed" is only
+                # limited by the length of the ngram
+                if match is not None and row not in all_beds:
+                    all_beds.append(row)
+                    logger.debug("%d: %s", freq, ngram)
+                    count += 1
+                    if count >= maxcount:
+                        logger.debug("List cut at %d", count)
+                        break
+
+    logger.debug("COUNT: " + str(count))
+
+    return all_beds
 
 
 def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]], max_num: int) -> List[Tuple[int, str]]:
