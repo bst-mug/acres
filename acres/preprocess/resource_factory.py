@@ -92,10 +92,10 @@ def get_word_ngrams() -> Dict[str, int]:
     global WORD_NGRAMS
 
     if not WORD_NGRAMS:
-        pickle_output_file = PICKLE_FOLDER + "word_ngrams.p"
+        pickle_output_file = PICKLE_FOLDER + "wordngrams-" + str(MIN_FREQ) + "-" + VERSION + ".p"
         ngram_output_file = NGRAMS_FOLDER + "ngramstat-" + str(MIN_FREQ) + "-" + VERSION + ".txt"
 
-        if not os.path.isfile(pickle_output_file):
+        if not os.path.isfile(pickle_output_file) or not os.path.isfile(ngram_output_file):
             _log_file_not_found(pickle_output_file)
             _log_file_not_found(ngram_output_file)
 
