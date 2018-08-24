@@ -19,7 +19,7 @@ def find_candidates(acronym: str, left_context: str = "", right_context: str = "
     :param right_context:
     :return:
     """
-    model = resource_factory.get_nn_model(min_count=5)
+    model = resource_factory.get_nn_model()
 
     # Check for out of vocabulary acronyms
     # TODO fallback to something, maybe clean the acronym?
