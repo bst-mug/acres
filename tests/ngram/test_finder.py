@@ -1,6 +1,18 @@
 from acres.ngram import finder
 
 
+def test__build_search_ngrams():
+    context = "a b c d"
+
+    expected = ("a", "a b", "a b c")
+    actual = finder._build_search_ngrams(context)
+    assert expected == actual
+
+    expected = ("d", "c d", "b c d")
+    actual = finder._build_search_ngrams(context, True)
+    assert expected == actual
+
+
 def test_find_embeddings(ngramstat, index):
     # Explicit context
     actual = finder.find_embeddings("<SEL>", "EKG", "¶", 10, 1, 100, 1, 5)
