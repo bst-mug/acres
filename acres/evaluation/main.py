@@ -40,10 +40,6 @@ if 1 == 1:
     left = "einem maximalen Gradienten ¶ von ÐÐmmHg.entsprechend einem"
     right = "von rund ÐÐmmHg., kein    Pericarderguss"
 
-    acro = "RÖ"
-    left = "Gelenksspalt, keine Blockierungssymptomatik. ¶ "
-    right = "zeigt eine Abnützung des li Kniegelenkes"
-
     # TODO: This example does not terminate
     acro = "US-Ödemen"
     left = "abnehmend, sowie das Auftreten von deutlichen"
@@ -68,6 +64,10 @@ if 1 == 1:
     acro = "ZAVK"
     left = " "
     right = " "
+
+    acro = "RÖ"
+    left = "Gelenksspalt, keine Blockierungssymptomatik. ¶ "
+    right = "zeigt eine Abnützung des li Kniegelenkes"
 
     r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(
         left, acro, right, 3, 6)
