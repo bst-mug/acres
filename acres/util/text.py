@@ -395,3 +395,8 @@ def generate_all_variants_by_rules(st):
                 if element not in out:
                     out.append(element)
     return out
+
+
+def context_ngram(words: str, n: int, reverse = False) -> str:
+    tokens = words.split(" ")
+    return " ".join(tokens[-n:]) if reverse else " ".join(tokens[:n])

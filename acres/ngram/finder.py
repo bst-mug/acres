@@ -9,6 +9,7 @@ from typing import List, Tuple, Set
 
 from acres.preprocess import resource_factory
 from acres.util import functions
+from acres.util import text
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -22,13 +23,11 @@ def _build_search_ngrams(context: str, reverse=False) -> Tuple[str, str, str]:
     :param reverse: Takes the context in reverse (e.g. left context)
     :return: A tuple with 1 to n-gram
     """
-    # TODO tentative
     unigram = bigram = trigram = "<SEL>"
     if context != "":
-        tokens = context.split(" ")
-        unigram = " ".join(tokens[-1:]) if reverse else " ".join(tokens[:1])
-        bigram = " ".join(tokens[-2:]) if reverse else " ".join(tokens[:2])
-        trigram = " ".join(tokens[-3:]) if reverse else " ".join(tokens[:3])
+        unigram = text.context_ngram(context, 1, reverse)
+        bigram = text.context_ngram(context, 2, reverse)
+        trigram = text.context_ngram(context, 3, reverse)
     return unigram, bigram, trigram
 
 
