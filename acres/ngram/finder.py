@@ -112,8 +112,6 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
     index = resource_factory.get_index()
 
     # MAXLIST = 100
-    digit = "Ð"
-    out = []        # type: List[Tuple[int,str]]
     all_beds = []   # type: List[Tuple[int,str]]
     all_sets = []   # type: List[Set[int]]
     sel_rows = []   # type: List[Tuple[int,str]]
@@ -185,52 +183,11 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
         # print(len(sel_beds), sel_beds)
         logger.debug("Generated list of %d matching n-grams", count)
 
+    out = []
     if count > 0:
-        str_middle_esc = re.escape(str_middle.strip())
-
         max_num = (maxcount // count) + 3
         logger.debug("Per matching n-gram %d surroundings", max_num)
-
-        # print("----------------------------------------------")
-        for row in sel_beds:  # iterate through extract
-            (freq, ngram) = row
-            bed = ngram.strip()
-
-            new_sets = []
-            regex_bed = "^" + re.escape(bed) + "$"
-            regex_bed = regex_bed.replace(str_middle_esc, "(.*)")
-            surroundings = bed.replace(str_middle + " ", "").split(" ")
-            for word in surroundings:
-                logger.debug("Surrounding str_middle: %s", word)
-                new_sets.append(index[word])
-            ngrams_with_surroundings = list(set.intersection(*new_sets))
-            logger.debug(
-                "Size of list that includes surrounding elements: %d",
-                len(ngrams_with_surroundings))
-            ngrams_with_surroundings.sort(reverse=True)
-            # Surrounding list sorted
-            counter = 0
-            for ngram_id in ngrams_with_surroundings:
-                if counter > max_num:
-                    break
-                (freq, ngram) = ngramstat[ngram_id]
-                stripped_ngram = ngram.strip()
-                match = re.search(regex_bed, stripped_ngram, re.IGNORECASE)
-                if match is not None:
-                    # logger.debug(regex_bed)
-                    # logger.debug(row)
-                    long_form = match.group(1).strip()
-                    if len(long_form) > len(str_middle) and \
-                            "¶" not in long_form and \
-                            digit not in long_form:
-                        # logger.debug(ngramfrecquency, long_form, "   [" + ngram + "]")
-                        counter += 1
-                        rec = (freq, long_form.strip())
-                        if rec not in out:
-                            out.append(rec)
-
-        out.sort(reverse=True)
-
+        out = _find_middle(str_middle, sel_beds, max_num)
     return out
 
 
@@ -274,6 +231,64 @@ def _build_regex(str_left: str, str_middle: str, str_right: str) -> str:
     logger.debug("Regular expression: %s", regex_embed)
 
     return regex_embed
+
+
+def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]], max_num: int) -> List[Tuple[int, str]]:
+    """
+
+    :param str_middle:
+    :param sel_beds:
+    :param max_num:
+    :return:
+    """
+    ngramstat = resource_factory.get_ngramstat()
+    index = resource_factory.get_index()
+
+    out = []        # type: List[Tuple[int,str]]
+    digit = "Ð"
+
+    str_middle_esc = re.escape(str_middle.strip())
+
+    # print("----------------------------------------------")
+    for row in sel_beds:  # iterate through extract
+        (freq, ngram) = row
+        bed = ngram.strip()
+
+        new_sets = []
+        regex_bed = "^" + re.escape(bed) + "$"
+        regex_bed = regex_bed.replace(str_middle_esc, "(.*)")
+        surroundings = bed.replace(str_middle + " ", "").split(" ")
+        for word in surroundings:
+            logger.debug("Surrounding str_middle: %s", word)
+            new_sets.append(index[word])
+        ngrams_with_surroundings = list(set.intersection(*new_sets))
+        logger.debug(
+            "Size of list that includes surrounding elements: %d",
+            len(ngrams_with_surroundings))
+        ngrams_with_surroundings.sort(reverse=True)
+        # Surrounding list sorted
+        counter = 0
+        for ngram_id in ngrams_with_surroundings:
+            if counter > max_num:
+                break
+            (freq, ngram) = ngramstat[ngram_id]
+            stripped_ngram = ngram.strip()
+            match = re.search(regex_bed, stripped_ngram, re.IGNORECASE)
+            if match is not None:
+                # logger.debug(regex_bed)
+                # logger.debug(row)
+                long_form = match.group(1).strip()
+                if len(long_form) > len(str_middle) and \
+                        "¶" not in long_form and \
+                        digit not in long_form:
+                    # logger.debug(ngramfrecquency, long_form, "   [" + ngram + "]")
+                    counter += 1
+                    rec = (freq, long_form.strip())
+                    if rec not in out:
+                        out.append(rec)
+
+    out.sort(reverse=True)
+    return out
 
 
 if __name__ == "__main__":
