@@ -25,7 +25,7 @@ DIV = 1  # for sampling, if no sampling DIV = 1. Sampling is used for testing
 
 
 def get_web_dump_from_acro_with_context(left, acro, right, min_len, n_context, digit_placehoder="Ð",
-                                        newline_placeholder="¶"):
+                                        newline_placeholder="¶", max_tokens_in_ngram=8):
     """
     This routine throws acronyms with left and right context (like in Excel table) to Bing and
     generates an n-gram statistic
@@ -66,8 +66,7 @@ def get_web_dump_from_acro_with_context(left, acro, right, min_len, n_context, d
     # in Bing the order of tokens in a query matters. Therefore the query must start with the
     # acronym
     query = acro + " " + " ".join(proper_con[:n_context])
-    print(query)
-    return get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1, 10)
+    return get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1, max_tokens_in_ngram)
 
 
 def find_synonyms() -> None:

@@ -1,0 +1,2250 @@
+AA	Alopecia areata
+AA	absolute Arrhythmie
+AA	anonyme Alkoholiker
+AAA	Abdominelles Aortenaneurysma
+AAC	Antibiotikaassoziierte Kolitis
+AACAP	American Academy of Child & Adolescent Psychiatry
+AAF	Antiatelektasefaktor
+AAION	arteriitischer Anteriore ischämische Optikusneuropathie
+AAK	Atemluftalkoholkonzentration
+AAK	Autoantikörper
+AAM	Angeborener Auslösemechanismus
+AAP	Apothekenabgabepreis
+AAP	American Academy of Pediatrics
+AAppO	Approbationsordnung für Apotheker
+ÄAppO	Approbationsordnung für Ärzte
+AAR	Antigen-Antikörper-Reaktion
+AAS	Atomabsorptionsspektrometrie
+AAT	Aachener Aphasie-Test
+AAV	Adeno-assoziiertes Virus
+AAV	akuter Aterienverschluss
+AAZ	Atemanhaltezeit
+AB	Blutgruppe
+AB	Arztbrief
+ABA	Applied Behavior Analysis
+ABC	Arnika-Belladonna-Capsicum annuum
+ABC	Airways – Breathing – Circulation
+ABC	ATP-Binding-Cassette
+ABDA	Bundesvereinigung Deutscher Apothekerverbände
+ABDM	Ambulantes Blutdruck-Monitoring
+ABGA	Arterielle Blutgasanalyse
+ABI	Auditory Brainstem Implant
+ABI	Ankle-Brachial Index
+ABP	Androgen Binding Protein
+ABPA	Allergische bronchopulmonale Aspergillose
+ABPI	Ankle Brachial Pressure Index
+ABR	Akute Belastungsreaktion
+ABR	Auditory Brainstem Response
+ABS	Amniotisches-Band-Syndrom
+ABVD	Adriamycin – Bleomycin – Vinblastin – Dacarbazin
+AC	Arteria carotis
+ACA	Anti-Centromer-Antikörper
+ACA	Akrodermatitis chronica atrophicans
+ACB	Aorto-coronarer Bypass
+ACC	Acetylcystein
+ACC	Anteriorer cingulärer Cortex
+ACC	Arteria carotis communis
+ACC	Aplasia cutis congenita
+AcCoA	Acetylcoenzym A
+ACD	Acidum citricum und Dextrose
+ACD	Alveolar Capillary Dysplasia
+ACD	Arteria coronaria dextra
+ACDF	anterior cervical discectomy and fusion
+ACE	Angiotensin Converting Enzyme
+ACE	Arteria carotis externa
+ACE	Vitamin A, C und E
+ACG	Acromioclaviculargelenk
+ACh	Acetylcholin
+AChE	Acetylcholinesterase
+AChRA	Acetylcholin-Rezeptor-Antikörper
+ACI	Arteria carotis interna
+ACI	Autologe Chondrozyten-Implantation
+ACLA	Anti-Cardiolipin-Antikörper
+ACLS	Advanced Cardiac Life Support
+ACO	Adriamycin, Cyclophosphamid und Vincristin
+ACP	Acyl-Carrier-Protein
+ACPA	Antikörper gegen citrullinierte Peptide
+ACR	anti constipation regimen
+ACR	American College of Radiology
+ACR	American College of Rheumatology
+ACS	Akutes Coronarsyndrom
+ACS	American Cancer Society
+ACS	American College of Surgeons
+ACS	arteria coronaria sinistra
+ACT	activated coagulation time
+ACT	alternierender Covertest
+ACTH	Adrenocorticotropin
+ACV	Aciclovir
+ACVB	Aortokoronarer Venenbypass
+AD	accessory anterior descending
+AD	Atopische Dermatitis
+AD	Alzheimer Demenz
+ÄD	Ärztlicher Dienst
+ADA	Adenosindeaminase
+ADC	Adenylatcyclase
+ADC	Augen-Diagnostik-Center
+ADCC	antibody dependent cell-mediated cytotoxicity
+ADD	attention deficit disorder
+ADE	Antibody dependent enhancement
+ADE	Adverse Drug Event
+ADEM	Akute disseminierte Enzephalomyelitis
+ADH	Antidiuretisches Hormon
+ADH	Atypische duktale Epithelhyperplasie
+ADH	Alkoholdehydrogenase
+ADHS	Aufmerksamkeitsdefizit-Hyperaktivitätssyndrom
+ADI	Acceptable daily intake
+ADL	Aktivitäten des täglichen Lebens
+ADM	Doxorubicin
+ADP	Adenosindiphosphat
+ADP	Anti-diuretisches Peptid
+ADP	Aminolaevulinsäure-dehydratase-Defekt-Porphyrie
+ADPKD	autosomal dominant polycystic kidney disease
+ADR	Adduktorenreflex
+ADS	Aufmerksamkeitsdefizit-Syndrom
+ADS	Abstrakte Denkstörung
+AE	Appendektomie
+AE	Antitoxin-Einheit
+AE	Alkoholembryopathie
+AE	Atopisches Ekzem
+AED	Automatisierter externer Defibrillator
+AED	Antiepileptic drug
+AEHP	akustisch evozierte Hirnstammpotentiale
+AEP	Akustisch evozierte Potentiale
+AEV	Arbeiter-Ersatzkassen-Verband
+AF	Atrial fibrillation
+AF	Atemfrequenz
+AFP	Alpha-1-Fetoprotein
+AFS	Arteria femoralis superficialis
+AGE	arterielle Gasembolie
+AGM	Allgemeine Gesundheitsmaßnahmen
+AGT	anatomisch geformter Tubus
+AGV	Abwendbar gefährlicher Verlauf
+AHA	American Heart Association
+AHI	Apnoe-Hypopnoe-Index
+AHS	African Horse Sickness
+AHT	Anti-Hyaluronidase-Test
+AI	Aortenklappeninsuffizienz
+AIC	Arteria iliaca communis
+AICD	Automatischer implantierbarer Kardioverter Defibrillator
+AIDP	Akute inflammatorische demyelinisierende Polyneuropathie
+AIDS	Acquired Immune Deficiency Syndrome
+AIE	Arteria iliaca externa
+AII	Arteria iliaca interna
+AIK	Apparative intermittierende Kompressionstherapie
+AION	Anteriore ischämische Optikusneuropathie
+AiP	Arzt im Praktikum
+AIP	Akute interstitielle Pneumonie
+AIS	Amnioninfektionssyndrom
+AIS	Arztinformationssystem
+AK	Alzheimer-Krankheit
+AKH	Allgemeines Krankenhaus
+AKN	Akustikusneurinom
+ALAT	Alanin-Aminotransferase
+ALB	Albumin
+ALCAT	Antigen Leukocyte Cellular Antibody Test
+ALD	Aldolase
+ALGS	Alagille-Syndrom
+ALI	Anterolateralinfarkt
+ALL	Akute lymphatische Leukämie
+ALND	axillary lymph node dissection
+ALS	Amyotrophe Lateralsklerose
+ALS	Advanced Life Support
+ALT	Alanin-Aminotransferase
+ALTE	Apparently Lifethreatening Event
+AM	Außenmeniskus
+AMA	American Medical Association
+AMA	Antimitochondriale Antikörper
+AMAN	Akute motorische axonale Neuropathie
+AMD	Altersabhängige Makuladegeneration
+AMDP	AMDP-System
+AMG	Arzneimittelgesetz
+AMH	Anti-Müller-Hormon
+AMI	Myokardinfarkt
+AMI	Area Mass Index
+AML	Akute myeloblastische Leukämie
+AMV	Atemminutenvolumen
+AMVV	Arzneimittelverschreibungsverordnung
+AMY	Amylasen
+ANA	Antinukleärer Antikörper
+ANA	American Neurological Association
+ANCA	Anti-Neutrophile cytoplasmatische Antikörper
+ANP	Atriales natriuretisches Peptid
+ANS	Atemnotsyndrom des Neugeborenen
+ANUG	Akut nekrotisierende ulcerative Gingivitis
+ANUP	Akut nekrotisierende ulcerative Periodontitis
+ANV	Akutes Nierenversagen
+AOK	Allgemeine Ortskrankenkasse
+AP	aggressive Parodontitis
+AP	Aktionspotential
+AP	Alkalische Phosphatase
+AP	Angina Pectoris
+APA	American Psychiatric Association
+APACHE	Acute Physiology And Chronic Health Evaluation
+APC	Aktiviertes Protein C
+APC	Adenomatous Polyposis of the Colon
+APCT	alternierender Prismen-Covertest
+aPDT	antimikrobielle Photodynamische Therapie
+APL	Promyelozytenleukämie
+APP	Amyloid-Precursor-Protein
+APRV	airway, pressure, release, ventilation
+APS	Antiphospholipid-Syndrom
+aPTT	activated Partial Thromboplastin Time
+APUD	Amine precursor uptake and decarboxylation
+APV	Amprenavir
+AQ	Anomalquotient
+AR	Außenrotation
+ARA	American Rheumatism Association
+ARAC	Arabinosylcytosin
+ARAS	Aufsteigendes retikuläres Aktivierungssystem
+ARC	AIDS-related complex
+ARDS	Acute Respiratory Distress Syndrome
+ARK	Anomale retinale Korrespondenz
+ARPKD	autosomal recessive polycystic kidney disease
+ARS	Alpine Rettung Schweiz
+ARV	Antiretrovirale Medikamente
+ARVCM	Arrhythmogene rechtsventrikuläre Kardiomyopathie
+AS	Aminosäure
+AS	Angelman-Syndrom
+AS	Aortenstenose
+AS	Asperger-Syndrom
+AS	Astigmatismus
+AS	Atriales Septum
+ASA	American Society of Anesthesiologists
+ASAN	Akute motorische und sensible axonale Neuropathie
+ASAT	Aspartat-Aminotransferase
+ASB	Assisted spontaneous breathing
+ASCOT	Anglo-Scandinavian Cardiac Outcomes Trial
+ASD	Atriumseptumdefekt
+ASD	Acute Stress Disorder
+ASD	Akut-Schmerz-Dienst
+ASH	Alkoholische Steatohepatitis
+ASI	Anteroseptalinfarkt
+ASI	Arzneimittel-Schnellinformation
+ASL	Anti-Streptolysin
+ASR	Achillessehnenreflex
+ASR	Achillessehnenruptur
+ASRM	American Society for Reproductive Medicine
+ASS	Acetylsalicylsäure
+AST	Aspartat-Aminotransferase
+AT	Applanationstonometrie
+ATC	Anatomisch-therapeutisch-chemisches Klassifikationssystem
+ATCN	Advanced Trauma Care for Nurse
+ATK	Apherese-Thrombozytenkonzentrat
+ATLS	Advanced Trauma Life Support
+ATP	Adenosintriphosphat
+ATS	Anti-Thrombose-Strumpf
+AU	Arbeitsunfähigkeit
+AUF	Arbeitsunfähigkeit
+AUG	Ausscheidungsurogramm
+AV	Attachmentverlust
+AV	Atrioventrikulär
+AV	Allgemeinveränderungen
+AvD	Arzt vom Dienst
+aVF	Augmented voltage left foot
+AVH	Arm vorhalten
+AVK	Arterielle Verschlusskrankheit
+aVL	Augmented voltage left arm
+AVM	Arteriovenöse Malformation
+aVR	Augmented voltage right arm
+AVSD	Atrio-ventrikulärer Septumdefekt
+AVV	Armvorhalteversuch
+AVV	akuter Venenverschluss
+AVWS	Auditive Verarbeitungs- und Wahrnehmungsstörung
+AWMF	Arbeitsgemeinschaft der Wissenschaftlichen Medizinischen Fachgesellschaften
+AZ	Allgemeinzustand
+ÄZQ	Ärztliches Zentrum für Qualität in der Medizin
+AZT	Azidothymidin
+AZV	Atemzugvolumen
+BA	Brodmann-Areal
+BAA	Bauchaortenaneurysma
+BAA	Bradyarrhythmia absoluta
+BAI	Body adiposity index
+BAK	Blutalkoholkonzentration
+BAL	Bronchoalveoläre Lavage
+BALT	bronchus-associated lymphoid tissue
+BaS	Bluten auf Sondieren
+BAS	Blutung auf Sondierung
+BB	Blutbild
+BB	Betablocker
+BBB	Blood-Brain Barrier
+BBS	Bardet-Biedl-Syndrom
+BC	Bronchialkarzinom
+BCC	Basal Cell Carcinoma
+BCG	Bacillus Calmette-Guérin
+BChD	Bachelor of Dental Surgery
+BCNU	Bis-Chlorethyl-Nitroso-Urea
+BD	Blutdruck
+BD	Bauchdecke
+BDI	Beck-Depressions-Inventar
+BDM	Bachelor of Dental Medicine
+BDS	Bachelor of Dental Surgery
+BDSc	Bachelor of Dental Science
+BE	Broteinheit
+BEB	Bundeseinheitliches Benennungsverzeichnis
+BED	Binge eating disorder
+BeKV	Berufskrankheiten-Verordnung
+BEL	Beckenendlage
+BEL	Bundeseinheitliches Leistungsverzeichnis
+BEMA	Bewertungsmaßstab
+BER	Braunecker-Effenberg-Reflex
+BERA	Brainstem Evoked Response Audiometry
+BES	binokulares Einfachsehen
+BET	Brusterhaltende Therapie
+BfArM	Bundesinstitut für Arzneimittel und Medizinprodukte
+BFS	benign fasciculation syndrome
+BG	Blutgruppe
+BGA	Bundesgesundheitsamt
+BGA	Blutgasanalyse
+BGU	Berufsgenossenschaftliche Unfallklinik
+BHF	British Heart Foundation
+BHR	Bauchhautreflex
+BHS	Blut-Hirn-Schranke
+BILI	Bilirubin
+BIP	Biparietaler Durchmesser
+BIPAP	Biphasic Positive Airway Pressure
+BI-RADS	Breast Imaging Reporting and Data System
+BK	Blasenkapazität
+BKG	Ballistokardiogramm
+BKK	Betriebskrankenkasse
+BKS	Blutkörperchensenkungsgeschwindigkeit
+BKV	Berufskrankheiten-Verordnung
+BKV	Bundeseinheitliches Kassenverzeichnis
+BLD	Beinlängendifferenz
+BLM	Bleomycin
+BLS	Basic Life Support
+BMÄ	Bewertungsmaßstab-Ärzte
+bMF	Besondere Maßnahmen beim Füllen
+BMG	Bundesministerium für Gesundheit
+BMI	Body-Mass-Index
+BMS	Bare Metal Stent
+BMS	Batch Monitoring System
+BNA	Basler Nomina Anatomica
+BNP	brain natriuretic peptide
+BNS	Blitz-Nick-Salaam
+BOD	Berufsverband der Orthoptistinnen Deutschlands
+BOHDSc	Bachelor of Oral Health in Dental Science
+BOLD	blood oxygenation level dependent
+BONJ	bisphosphonate-associated osteonecrosis of the jaw
+BOO	Bladder Outlet Obstruction
+BOS	Bronchiolitis-obliterans-Syndrom
+BP	Blutdruck
+BPD	Bronchopulmonale Dysplasie
+BPE	Benign Prostatic Enlargement
+BPH	Benigne Prostatahyperplasie
+BPLS	Benigner paroxysmaler Lagerungsschwindel
+BPNST	Benigner Peripherer Nervenscheidentumor
+BPO	benigne Prostataobstruktion
+BPO	Basal pepsin output
+BPO	Benzoylperoxid
+BPPV	Benigner peripherer paroxysmaler Lagerungsschwindel
+BPS	Borderline-Persönlichkeitsstörung
+BPtK	Bundespsychotherapeutenkammer
+BRONJ	bisphosphonate-related osteonecrosis of the jaw
+BSDK	Bauchspeicheldrüsenkrebs
+BSE	Bovine spongiforme Enzephalopathie
+BSG	Blutsenkungsgeschwindigkeit
+BSR	Blutsenkungsreaktion
+BSR	Bizepssehnenreflex
+BSV	Bandscheibenvorfall
+BtMG	Betäubungsmittelschutzgesetz
+BUKH	Berufsgenossenschaftliche Unfallkrankenhaus Hamburg
+BURP	backward, upward and rightward pressure
+BUS	Busulfan
+BVA	Berufsverband der Augenärzte Deutschlands
+BVH	Beinvorhalten
+BVOU	Bundesverband der Fachärzte für Orthopädie und Unfallchirurgie
+BW	Brustwirbel
+BWA	Brustwandableitung
+BWK	Brustwirbelkörper
+BWS	Brustwirbelsäule
+BX	Biopsie
+BXO	Balanitis xerotica obliterans
+BZ	Blutzucker
+BZ	Broca-Zentrum
+BZÄK	Bundeszahnärztekammer
+BZgA	Bundeszentrale für gesundheitliche Aufklärung
+CA	Carboanhydrase
+CA	Cornu Ammonis
+CABG	Coronary Artery Bypass Graft
+CAD	computer-assisted detection
+CADASIL	cerebral autosomal dominant arteriopathy
+CAG	Koronarangiographie
+CAG	Cytosin-Adenin-Guanin
+CAH	Chronisch-aggressive Hepatitis
+CAIS	Complete Androgen Insensitivity Syndrome
+CALT	conjunctival-associated lymphoid tissue
+CAPD	kontinuierliche ambulante Peritonealdialyse
+cART	Combined Anti-Retroviral Therapy
+CAS	carotid artery stenting
+CBASP	Cognitive Behavioral Analysis System of Psychotherapy
+CBD	cortikobasale Degeneration
+CBDCA	Carboplatin
+CBF	Cerebral Blood Flow
+CBL	Chlorambucil
+CBS	Cruveilhier-Baumgarten-Syndrom
+CCD	Centrum-Collum-Diaphysen
+CCD	central core disease
+CCDD	Congenital Cranial Dysinnervation Disorders
+CCE	Cholezystektomie
+CCG	Cranio-Corpo-Graphie
+CCM	cerebral cavernous malformation
+CCNU	Chlorethyl-Cyclohexyl-Nitroso-Urea
+CCPD	kontinuierliche zyklische Peritonealdialyse
+CCSVI	Chronische Cerebro-Spinale Venöse Insuffizienz
+CCT	Craniale Computertomographie
+CD	Cluster of differentiation
+CDA	Clinical Document Architecture
+CDA	Chlorodeoxyadenosin
+CDC	Centers for Disease Control and Prevention
+CDLE	Chronisch-diskoider Lupus erythematodes
+CdLS	Cornelia-de-Lange-Syndrom
+CDR	Clinical Dementia Rating
+CDS	Computerized Decision Support
+CDT	Carbohydrate-Deficient-Transferrin
+CEA	Carcino-Embryonales Antigen
+CED	Chronisch-entzündliche Darmerkrankungen
+CEL	Chronische Eosinophilenleukämie
+CF	zystische Fibrose
+CFIDS	Chronic Fatigue / Immune Dysfunction Syndrome
+CFS	Chronic Fatigue Syndrom
+CFU	Colony Forming Unit
+CGM	kontinuierliches Glukosemonitorung
+CGM	CompuGroup Medical
+CHA	chronische hyperandrogenämische Anovulation
+CHAOS	congenital high airway obstruction syndrome
+ChE	Cholinesterase
+CHE	Cholezystektomie
+CHLS	Cholestase-Lymphödem-Syndrom
+CHMP	Committee for Medicinal Products for Human Use
+CHOL	Cholesterin
+CHOP	Cyclophosphamid – Hydroxydaunorubicin – Oncovin – Prednison
+CHSA	Chondrosarkom
+CHX	Chlorhexidin
+CI	Cochleaimplantat
+CIDP	Chronisch inflammatorische demyelinisierende Polyneuropathie
+CINV	Chemotherapy-induced nausea and vomiting
+CIP	Critical-Illness-Polyneuropathie
+CIS	Klinisch isoliertes Syndrom
+CJD	Creutzfeldt Jakob Disease
+CJK	Creutzfeldt-Jakob-Krankheit
+CK	Creatin-Kinase
+CKD	Chronic Kidney Diseas
+CL	Chlor
+CLE	cutaner Lupus erythematodes
+CMA	Chlormadinonacetat
+CMD	Craniomandibuläre Dysfunktion
+CME	Continuing Medical Education
+CMF	Cyclophosphamid, Methotrexat und 5-Fluoruracil
+CML	Chronische myeloische Leukämie
+CMML	Chronische myelomonozytäre Leukämie
+CMP	Cardiomyopathie
+CMT	Cardiolipin-Mikroflockungstest
+CMT	Morbus Charcot-Marie-Tooth
+CMT	cancerogen, mutagen, teratogen
+CMV	Cytomegalievirus
+CNL	Chronische Neutrophilenleukämie
+CNP	Copy Number Polymorphisms
+CNV	Gene copy number variants
+CNV	Chronisches Nierenversagen
+CNV	Choroidale Neovaskularisationen
+COMET	Carvedilol Or Metoprolol European Trial
+COMPT	Catechol-O-Methyltransferase
+COP	kryptogene organisierende Pneumonie
+COPD	Chronisch obstruktive Lungenerkrankung
+COPP	Cyclophosphamid, Vincristin, Procarbazin und Prednison
+COX	Cyclooxygenasen
+CP	chronische Prostatitis
+CP	chronische Parodontitis
+CPA	Continuing Professional Development
+CPAP	Continuous Positive Airway Pressure
+CPEO	chronisch progressive externe Ophthalmoplegie
+CPK	Creatin-Phosphokinase
+CPK	Carotispulskurve
+CPM	Cardio-Myopathie
+CPM	Cyclophosphamid
+CPOE	Computerized Physician Order Entry
+CPP	cerebral perfusion pressure
+CPPS	Chronic Pelvic Pain Syndrome
+CPPV	Continuous Positiv Pressure Ventilation
+CPR	Cardiopulmonale Reanimation
+CPVT	Catecholaminergic Polymorphic Ventricular Tachycardia
+CR	Cornealreflex
+CREA	Kreatinin
+CREST	Calcinosis cutis, Raynaud-Syndrome, Esophageal Dysfunktion, Sklerodaktyly, Teleangiektasia
+CRF	Cardiale Risikofaktoren
+CRP	C-reaktives Protein
+CRPS	Komplexes regionales Schmerzsyndrom
+CrR	Cremasterreflex
+CRT	Cardiac Resynchronization Therapy
+CsA	Cyclosporin A
+CSF	Cerebrospinal fluid
+CSWS	cerebral salt wasting syndrome
+CSWS	continuous spikes and waves during slow sleep
+CT	Computertomographie
+CT	Covertest
+CTA	CT-Angiographie
+CTC	Common Toxicity Criteria
+CTG	Cardiotokogramm
+CTN	Chronische Transplantatnephropathie
+CTP	Cytidintriphosphat
+CTS	Karpaltunnelsyndrom
+CUP	Cancer of Unknown Primary
+CVA	Cerebrovascular Accident
+CVA	Coxsackie-Virus A-Stämme
+CVB	Coxsackie-Virus B-Stämme
+CVI	Chronisch-venöse Insuffizienz
+CVI	Cyclophosphamid, Vincristin, Prednisolon
+CVRF	Kardiovaskuläre Risikofaktoren
+CWD	Chronic Wasting Disease
+CX	Arteria circumflexa
+DA	Dosieraerosol
+DA	Dopamin
+DAB	Ductus arteriosus
+DAB	Deutsches Arzneibuch
+DACT	Actinomycin D
+DAD	diffuse alveolar damage
+DAEC	diffus adhärente Escherichia coli
+DAG	Diacylglycerol
+DALM	dysplasia-associated mass – siehe Colitis ulcerosa
+DALY	disability-adjusted life years
+DANI	Dosisanpassung bei Niereninsuffizienz
+DÄV	Deutsche Ärzteversicherung
+DB	Doppelbilder
+DBE	Doppelballon-Enteroskopie  
+DBO	Dreifache Beckenosteotomie
+DBS	Durchblutungsstörung  
+DBT	Dialektisch-Behaviorale Therapie  
+DCF	Pentostatin
+DCI	Decompression Illness
+DCI	Decompression Sickness
+DCIS	Ductal Carcinoma in Situ
+DCM	Dilatative Cardiomyopathie
+DCM	Dementia Care Mapping
+DCO	Death Certificate Only
+DD	Differenzialdiagnose
+DD	Doctor of Dentistry
+DDD	Defined Daily Dose
+DDD	Mitotane
+DDG	Deutsche Diabetes Gesellschaft
+DDI	drug-drug interaction
+DDP	Cisplatin
+DDS	Doctor of Dental Surgery
+DEA	Dog Erythrocyte Antigene
+DEAA	Diploma of the European Academy of Anaesthesiology
+DEGAM	Deutsche Gesellschaft für Allgemeinmedizin und Familienmedizin
+DES	Drug Eluting Stent
+DESA	Diplomate of the European Society of Anaesthesiology
+DEXA	Dual-Energy X-ray Absorptiometry
+DFA	Diphosphat-Aldolase
+DFDC	Gemcitabin
+DGfW	Deutsche Gesellschaft für Wundheilung und Wundbehandlung
+DGGG	Deutsche Gesellschaft für Gynäkologie und Geburtshilfe
+DGHM	Deutsche Gesellschaft für Hygiene und Mikrobiologie
+DGK	Deutsches Grünes Kreuz
+DGK	Deutsche Gesellschaft für Kinderzahnheilkunde
+DGK	Deutsche Gesellschaft für Kardiologie
+DGMP	Deutsche Gesellschaft für Medizinische Physik
+DGOOC	Deutsche Gesellschaft für Orthopädie und Orthopädische Chirurgie
+DGPPN	Deutsche Gesellschaft für Psychiatrie, Psychotherapie und Nervenheilkunde
+DGU	Deutschen Gesellschaft für Unfallchirurgie
+DGZMK	Deutsche Gesellschaft für Zahn-, Mund- und Kieferheilkunde
+DHAD	Mitoxantron
+DHARK	Disharmonisch anomale retinale Korrespondenz
+DHB	Treosulfan
+DHC	Ductus hepatocholedochus
+DHM	Deutsches Herzzentrum München
+DHZB	Deutsches Herzzentrum Berlin
+DIC	Disseminierte intravasale Koagulopathie
+DICJ	Depressions-Inventar für Kinder und Jugendliche
+DICOM	Digital Imaging and Communications in Medicine
+DIMDI	Deutsches Institut für Medizinische Dokumentation und Information
+DIND	delayed ischemic neurological deficit
+DIP	distales Interphalangealgelenk
+DK	Dauerkatheter
+DKFZ	Deutsches Krebsforschungszentrum
+DKG	Deutsche Krebsgesellschaft
+DKMS	Deutsche Knochenmarkspenderdatei
+DLB	Dementia with Lewy bodies
+DM	Dermatomyositis
+DMARD	disease-modifying anti-rheumatic drugs
+DMD	Doctor of Dental Medicine
+DMF	Decayed, Missed, Filled
+DMFS	Decayed, Missed, Filled Surface
+DMFT	Decayed, Missed, Filled Tooth
+DMP	Disease-Management-Programm
+DMS	Diffuse mesangiale Sklerose
+DMS	Durchblutung, Motorik, Sensorik
+DMS	Deutsche Mundgesundheitsstudie
+DMW	Deutsche Medizinische Wochenschrift
+DNA	desoxyribonucleic acid
+DNEbM	Deutsches Netzwerk Evidenzbasierte Medizin
+DNR	do not resuscitate
+DNR	Daunorubicin
+DNS	Desoxyribonukleinsäure
+DNS	Syndrom der dysplastischen Nävi
+DOAK	direkte orale Antikoagulation
+DOG	Deutsche ophthalmologische Gesellschaft
+DORV	Double outlet right ventricle
+DPX	dual photon X-Ray
+DRG	Diagnosis Related Groups
+DRK	Deutsches Rotes Kreuz
+DRR	Digital rekonstruiertes Röntgenbild
+DRRS	Duane-Radial Ray Syndrom
+DRU	Digital-rektale Untersuchung
+DSA	Digitale Subtraktionsangiographie
+DSD	disorder of sex development
+DSD	Detrusor-Sphinkter-Dyssynergie
+DSM	Diagnostic and Statistical Manual of Mental Disorders
+DST	Desialotransferrin
+DTIC	Dacarbazin
+DTK	Depressions-Test für Kinder
+DTP	Diphtherie, Tetanus und Pertussis
+DTXL	Docetaxel
+DVD	dissoziierte Vertikaldivergenz
+DVT	Digitale Volumentomographie
+DWI	diffusion weighted imaging
+DXA	Dual-Röntgen-Absorptiometrie
+DZ	dizygote Zwillinge
+DZW	Deutsche Zahnärztliche Wochenschrift
+EAA	extrinsic allergic alveolitis
+EAEC	Enteroaggregative Escherichia coli
+EAV	Elektroakupunktur nach Voll
+EBM	Einheitlicher Bewertungsmaßstab
+EbM	Evidenzbasierte Medizin
+EBT	Elektronenstrahltomografie
+EBV	Epstein-Barr-Virus
+ECCE	Extracapsuläre cataract extraction
+ECF	Epirubicin, Cisplatin und 5-Fluoruracil
+ECMO	Extrakorporale Membranoxygenierung
+ECT	Emissionscomputertomographie
+ED	Ellbogendysplasie
+ED	Erstdiagnose
+ED	Effektivdosis
+ED	Encephalomyelitis disseminata
+ED	Erektile Dysfunktion
+EDNOS	Eating Disorder Not Otherwise Specified
+EDP	Einzeldosispipette
+EDQM	Europäisches Direktorat für die Qualität von Arzneimitteln
+EDS	Ehlers-Danlos-Syndrom
+EDSS	Expanded Disability Status Scale
+EDTA	Ethylendiamintetraessigsäure
+EEA	Eversionsendarteriektomie
+EEG	Elektroenzephalografie
+EF	Ejektionsfraktion
+EGFR	EGF-Rezeptor
+eGFR	estimated Glomerular Filtration Rate
+E-GO	Ersatzkassen-Gebührenordnung
+EH	E-Haken
+EHEC	Enterohämorrhagische Escherichia coli
+EIA	Enzym-Immuno-Assay
+EIEC	enteroinvasive Escherichia coli
+EK	Erythrozyten-Konzentrat
+EKE	Eltern-Kind-Entfremdung
+EKG	Elektrokardiogramm
+EKT	Elektrokrampftherapie
+EL	Esslöffel
+ELBW	Extremely Low Birth Weight
+ELISA	Enzyme-linked Immunosorbent Assay
+ELS	Eileiterschwangerschaft
+ELSO	Extracorporeal Life Support Organization
+EMA	European Medicines Agency
+EMD	Elektromechanische Dissoziation
+EMDIS	European Marrow Donor Information System
+EMDR	Eye Movement Desensitization and Reprocessing
+EMEA	European Medicines Agency
+EMG	Elektromyografie
+EMS	Elektromyostimulation
+ENA	Europäischer Notfallausweis
+ENG	Elektroneurographie
+ENG	Elektronystagmographie
+ENOG	Neuronenspezifische Enolase
+ENT	ear, nose and throat
+EO	Endokrine Orbitopathie
+EOG	Elektrookulografie
+EOP	early onset periodontitis
+EOP	early-onset Pneumonie
+EORTC	European Organisation for Research on Treatment of Cancer
+EOS	Eosinophiler Granulozyt
+EP	Evozierte Potentiale
+EP	Ectopic Pregnancy
+EPAP	Expiratory Positive Airway Pressure
+EPEC	enteropathogene Escherichia coli
+EPH	Epicondylitis humeri
+EPhMRA	European Pharmaceutical Market Research Association
+EPI	Epirubicin
+EPO	Erythropoetin
+EPP	Erythropoetische Protoporphyrie
+EPRD	Endoprothesenregister Deutschland
+EPS	Electrophysiology Studies
+EPS	Extrapyramidales System
+EPS	Extrapyramidales Syndrom
+EPT	Endoskopisch ausgeführte Papillotomie
+EPU	Elektrophysiologische Untersuchung
+ER	Endoplasmatisches Retikulum
+ER	Estrogen Receptor
+ER	endoplasmatisches Retikulum  
+ERASH	Endokardiale Radiofrequenzablation der Septumhypertrophie
+ERBS	Erregungsrückbildungsstörung
+ERC	European Resuscitation Council
+ERCP	Endoskopisch retrograde Cholangiopankreatikographie
+ERG	Elektroretinogramm
+ERV	exspiratorisches Reservevolumen
+ES	Extrasystole
+ESa	Ewing-Sarkom
+ESBL	Extended Spectrum β-Lactamasen
+ESC	European Society of Cardiology
+ESES	electrical status epilepticus during slow sleep
+ESES	epidurale spinale Elektrostimulation
+ESHRE	European Society of Human Reproduction and Embryology
+ESIN	Elastic-Stable Intramedullary Nailing
+ESKD	End-Stage-Kidney-Disease
+ESR	Erythrozytensedimentationsrate
+ESRD	End Stage Renal Disease
+ESWL	Extrakorporale Stoßwellenlithotripsie
+ESWT	Extrakorporale Stoßwellentherapie
+ET	Essentielle Thrombozythämie
+ET	Endotrachealtubus
+ETEC	enterotoxische Escherichia coli
+ETI	Endotracheale Intubation
+ETR	Effective Thyroxinbinding Ratio
+ETT	Endotrachealtubus
+EUG	Extrauteringravidität
+EUROCAT	European registration of congenital abnormalities and twins
+EVB	Erythrozytenverteilungsbreite
+EVD	Externe Ventrikeldrainage
+EZ	Ernährungszustand
+EZ	eineiige Zwillinge
+EZR	extrazellulärer Raum
+FA	Facharzt
+FA	Familienanamnese
+FA	Fasciculus arcuatus
+FAB	French-American-British
+FAC	5-Fluoruracil, Doxorubicin und Cyclophosphamid
+FACS	Fluorescence activated cell sorting
+FAE	Fetale Alkoholeffekte
+FAEP	Frühe akustisch evozierte Potentiale
+FAHP	Frühe akustische Hirnstammpotentiale
+FAL	Funktionsanalyse
+FAM	Funktionstherapeutische Maßnahmen
+FAMP	Fludarabin
+FAP	Familiäre adenomatöse Polyposis
+FAS	Fetales Alkoholsyndrom
+FASD	Fetal Alcohol Spectrum Disorder
+FAST	Focused Assessment with Sonography for Trauma
+FAST	Face, Arms, Speech, Time 
+FB	Fusionsbreite
+FBA	Finger-Boden-Abstand
+FBP	Gefilterte Rückprojektion
+FBS	fetal blood sample
+FCD	Fokale kortikale Dysplasie
+FD	Functional dyspepsia
+FD	Fluoreszenzdiagnostik
+FDA	Food and Drug Administration
+FDG	Fluordesoxyglucose
+FEC	5-Fluoruracil, Epirubicin und Cyclophosphamid
+FEIA	Fluoreszenz-Enzym-Immunoassay
+FES	Funktionelle Elektrostimulation
+FFI	Fatal Familial Insomnia
+FFP	Filtering Face Piece
+FFP	Fresh Frozen Plasma
+FFTS	Fetofetales Transfusionssyndrom
+FFU	Femur-Fibula-Ulna
+FHS	Frontalhirnsyndrom
+FIA	Fluoreszenz-Immunassay
+FIRS	fetal inflammatory response syndrome
+FIX	Faktor IX
+FK	Fremdkörper
+FKDS	Farbkodierte Dopplersonografie
+FKO	Funktionskieferorthopädie
+FKS	Fall-Kontroll-Studie
+FLP	5-Fluoruracil, Leucovorin und Cisplatin
+FMD	Fibromuskuläre Dysplasie
+FMD	Frontometaphysäre Dysplasie
+FMD	Full Mouth Disinfection
+FMH	Foederatio Medicorum Helveticorum
+fMRT	Funktionelle Magnetresonanztomographie
+FMS	Fibromyalgiesyndrom
+FNAB	Feinnadelaspirationsbiopsie
+FNB	Feinnadelbiopsie
+FOBT	Fäkaler okkulter Bluttest
+FOP	Fibrodysplasia ossificans progressiva
+FPI	Freiburger Persönlichkeitsinventar
+FPSA	Freies Prostataspezifisches Antigen
+FRAX	Fracture Risk Assessment Tool
+FRC	Funktionelle Residualkapazität
+FRS	Fernröntgenseitenbild
+FSAP	Faktor VII-aktivierende Protease
+FSH	Follikelstimulierendes Hormon
+FSM	Frank-Starling-Mechanismus
+FSME	Frühsommer-Meningoenzephalitis
+FT	Fast Twitch
+FTC	Follicular thyroid cancer
+FTD	frontotemporalen Demenz
+FTS	Fetales Tabaksyndrom
+FU	Früherkennungsuntersuchung
+FVC	forcierte Exspiratorische Vitalkapazität
+FXS	Fragiles-X-Syndrom
+GABA	Gamma-Aminobuttersäure
+GALT	gut associated lymphoid tissue
+GAP	Glycerinaldehydphosphat
+GAS	Generalisierte Angststörung
+G-BA	Gemeinsamer Bundesausschuss
+GBS	Guillain-Barré-Syndrom
+GCP	Good Clinical Practice
+GCS	Glasgow Coma Scale
+GDB	Grad der Behinderung
+GE	Gesamteiweiß
+GERD	Gastroesophageal Reflux Disease
+GF	Gesichtsfeld
+GFAP	Glial fibrillary acidic protein
+GFP	Gefrorenes Frischplasma
+GFR	Glomeruläre Filtrationsrate
+GGT	γ-Glutamyltransferase
+GH	Growth Hormone
+GHb	Glykohämoglobin
+GHRH	Growth hormone releasing hormone
+GIT	Gastro-Intestinal-Trakt
+GK	Gegenstandskatalog
+GKH	Gemeinschaftskrankenhaus Herdecke
+GKV	Gesetzliche Krankenversicherung
+GLU	Glucose
+GMG	GKV-Modernisierungsgesetz
+GMP	Guanosinmonophosphat
+GMS	German Medical Science
+GN	Glomerulonephritis
+GOÄ	Gebührenordnung für Ärzte
+GOLD	Global Initiative for Chronic Obstructive Lung Disease
+GOS	Glasgow Outcome Scale
+GOT	Glutamat-Oxalat-Transaminase
+GOZ	Gebührenordnung für Zahnärzte
+GPA	gravida para abortus
+GPBB	Glykogenphosphorylase BB  
+GPT	Glutamat-Pyruvat-Transaminase
+GR	Gingivalrand
+GRE	Glykopeptid-resistenten Enterokokken
+GRP	Gastrin Releasing Peptid
+GSH	Glutathion
+GSSS	Gerstmann-Sträussler-Scheinker-Syndrom
+GT	Glutamyltransferase
+GTKA	generalisierter tonisch-klonischer Anfall
+GTM	Generalisierte Tendomyopathie
+GTR	Guided Tissue Regeneration
+GTT	Glukosetoleranztest
+GvHD	Graft-versus-Host-Disease
+GvHR	Graft-versus-Host-Disease
+GvM	Graft-versus-Malignancy
+HA	Hausarzt
+HA	Hepatitis A
+HA	Humanalbumin
+HA	Hämagglutinin
+HA	Herzaktion
+HA	Herzarbeit
+HAART	Highly Active Antiretroviral Therapy
+HAB	Homöopathisches Arzneibuch
+HACE	High-Altitude Cerebral Edema
+HAM	HTLV-assoziierte Myelopathie
+HAMD	Hamilton-Skala
+HAPE	High-Altitude Pulmonary Edema
+HARK	Harmonisch anomale retinale Korrespondenz
+HAV	Hepatitis-A-Virus
+HBDH	Hydroxy-Butyrat-Dehydrogenase
+HbS	Sichelzell-Hämoglobin
+HBV	Hepatitis-B-Virus
+HCC	Hepatozelluläres Karzinom
+HCG	Humanes Choriongonadotropin
+HCM	Hypertrophe Kardiomyopathie
+HCMV	Humanes Cytomegalievirus
+HCTZ	Hydrochlorothiazid
+HCV	Hepatitis-C-Virus
+HD	Hämodialyse
+HD	Hüftdysplasie
+HD	Hodgkin's disease
+HD	Horizontaldeviation
+HD	Huntington's disease
+HDF	Hämodiafiltration
+HDL	High-density Lipoprotein
+HDV	Hepatitis-D-Virus
+HE	Hämatoxylin-Eosin-Färbung
+HE	Hysterektomie
+HEG	Hemo-Encephalo-Graphie
+HELLP	Haemolysis – Elevated Liver enzyme levels – Low Platelet count
+HEP	Hemi-Endo-Prothese
+HES	Hypereosinophiles Syndrom
+HET	Hormonersatztherapie
+HEV	Hepatitis-E-Virus
+HEV	Hochendotheliale Venole
+HF	Herzschlagfrequenz
+HF	Hämofiltration
+HFOV	Hochfrequenzbeatmung
+HGE	humane granulozytäre Ehrlichiose
+HGH	Human Growth Hormone
+HH	Hinterhorn
+HHL	Hypophysenhinterlappen
+HHS	Hypothenar-Hammer-Syndrom
+HI	Herzinfarkt
+HI	Herzindex
+HI	HI-Virus
+HiB	Haemophilus Influenzae Serotyp B
+HIBC	Health Industry Bar Code
+HIFU	High-intensity focused ultrasound
+HIN	Health Industry Number System
+HIT	Heidelberger Ionenstrahl-Therapiezentrum
+HIV	Humanes Immundefizienz-Virus
+HK	Herzkathether
+HKN	Hüftkopfnekrose
+HKP	Heil- und Kostenplan
+HKS	Hyperkinetische Störung
+HKSG	Hystero-Kontrast-Salpingographie
+HKTW	Hilfskrankentransportwagen
+HLA	Humane-Leukozyten-Antigene
+HLHS	Hypoplastic left heart syndrome
+HLM	Herz-Lungen-Maschine
+HLP	Hyperlipoproteinämie
+HLW	Herz-Lungen-Wiederbelebung
+HMD	Hyalines Membransyndrom
+HME	Hereditäre Multiple Exostosen
+HMSN	Hereditäre motorisch-sensible Neuropathie
+HMV	Herzminutenvolumen
+HN	Hirnnerven
+HNCM	Hypertrophe nicht-obstruktive Kardiomyopathie
+HNO	Hals-Nasen-Ohren-Heilkunde
+HOCM	Hypertrophe obstruktive Kardiomyopathie
+HON	Health On the Net Foundation
+HPA	Human platelet antigen
+HPA	Hypothalamic–pituitary–adrenal axis
+HPT	Hyperparathyreoidismus
+HPV	Humanes Papillomvirus
+HRCT	High Resolution-CT
+HRS	Hepatorenales Syndrom
+HRS	Hodgkin-Reed-Sternberg-Zellen
+HRS	Herzrhythmusstörung
+HRT	Hormone Replacement Therapy
+HRT	Heidelberg Retina Tomograph
+HS	Harnsäure
+HS	Hornhautscheitelabstand
+HSE	Herpes-simplex-Enzephalitis
+HSK	Hysteroskopie
+HSM	Herzschrittmacher
+HSM	Hirnschrittmacher
+HSM	Hepatosplenomegalie
+HSP	hereditäre spastische Paraplegie
+HSRE	Harnsäure
+HST	Harnstoff
+HSV	Herpes-simplex-Viren
+HSV	Herzschlagvolumen
+HSZT	hämatopoetische Stammzelltransplantation
+HT	Herztöne
+HTA	Health Technology Assessment
+HTLV	Humanes T-lymphotropes Virus
+HTN	Hypertonie
+HTR	hämolytische Transfusionsreaktion
+HTS	Harntransportstörung
+HTx	heart exchange
+HU	Hydroxycarbamid
+HUS	Hämolytisch-urämisches Syndrom
+HUSEC	HUS-assoziierter Escherichia coli
+HVL	Hypophysenvorderlappen
+HvO	Helfer vor Ort
+HW	Hinterwand
+HWG	häufig wechselnder Geschlechtsverkehr
+HWG	Heilmittelwerbegesetz
+HWI	Harnwegsinfekt
+HWI	Hinterwandinfarkt
+HWK	Halswirbelkörper
+HWS	Halswirbelsäule
+HWZ	Halbwertszeit
+HZL	Hypophysenzwischenlappen
+HZV	Herzzeitvolumen
+HZV	Hausarztzentrierte Versorgung
+IABP	Intraaortale Ballonpumpe
+IARC	International Agency for Research on Cancer
+IBS	Irritable Bowel Syndrome
+IC	Interstitielle Zystitis
+ICB	Intracerebrale Blutung
+ICCE	Intracapsuläre cataract extraction
+ICD	Implantierbarer Kardioverter-Defibrillator
+ICD	International Statistical Classification of Diseases
+ICD-O	International Classification of Diseases for Oncology
+ICE	In Case of Emergency
+ICF	International Classification of Functioning, Disability and Health
+ICHOR	Idiopathic Cutaneous Hyperchromia of the Orbital Region
+ICIDH	International Classification of Impairment, Disability and Handicap
+ICM	Ischämische Cardiomyopathie
+ICP	intracranial pressure
+ICPM	Internationale Klassifikation der Behandlungsmethoden in der Medizin
+ICR	Intercostalraum
+ICRP	Internationale Strahlenschutzkommission
+ICRU	International Commission on Radiation Units and Measurements
+ICSD	International Classification of Sleep Disorders
+ICSI	Intrazytoplasmatische Spermieninjektion
+ICU	Intensive Care Unit
+ICV	intrazerebrales Volumen
+IDA	Idarubicin
+IDC	invasive ductal carcinoma
+IDDM	Insulin Dependant Diabetes Mellitus
+IDS	Irritables Darmsyndrom
+IDS	Inventar depressiver Symptome
+IDUS	intraduktaler Ultraschall
+IDZ	Institut der Deutschen Zahnärzte
+IE	International Unit
+IEF	Isoelektrische Fokussierung
+IENA	Internationaler Epilepsie Notfallausweis
+IF	Intrinsic-Faktor
+IFAT	indirekter Immunfluoreszenz-Antigen-Test
+IFN	Interferone
+IFO	Ifosfamid
+IfSG	Infektionsschutzgesetz
+IgA	Immunglobulin A
+IgD	Immunglobulin D
+IgE	Immunglobulin E
+IGeL	Individuelle Gesundheitsleistung
+IgG	Immunglobulin G
+IgM	Immunglobulin M
+IGRT	Image Guided Radiotherapy
+IHA	Indirekter Hämagglutinationstest
+IHK	ischämische Herzkrankheit
+IHS	International Headache Society
+IHSS	idiopathische hypertrophe subaortale Stenose
+IIP	Idiopathische interstitielle Pneumonie
+IKK	Innungskrankenkasse
+IL	Interleukin
+ILC	invasive lobular carcinoma
+iLSB	inkompletter Linksschenkelblock
+IM	Innenmeniskus
+IMC	Intermediate Care
+IMF	idiopathische Myelofibrose
+IMNM	immune-mediated necrotizing myopathy
+IMPP	Institut für medizinische und pharmazeutische Prüfungsfragen
+IMRT	intensitätsmodulierte Strahlentherapie
+IMV	Intermaxilläre Verschnürung
+INCI	Internationale Nomenklatur für kosmetische Inhaltsstoffe
+ING	Isotopennephrographie
+INN	International Nonproprietary Name
+INO	Internukleäre Ophthalmoplegie
+INR	International Normalized Ratio
+IOL	Intraokularlinse
+IOS	Innenohr-Schwerhörigkeit
+IP	Individualprophylaxe
+IP	Infect and persist
+IPD	intermittierende Peritonealdialyse
+IPF	Idiopathische pulmonale Fibrose
+IPK	Intermittierende pneumatische Kompression
+IPM	Impulsiv-Petit-mal
+IPP	Induratio penis plastica
+IPPB	Intermittent Positive Pressure Breathing
+IPPDB	Intermittent Positive Pressure Dead Space Breathing
+IPPV	Intermittent Positive Pressure Ventilation
+iPS	induzierte pluripotente Stammzelle
+IPS	Intensivpflegestation
+IPS	Idiopathisches Parkinson-Syndrom
+IPSP	Inhibitorisches postsynaptisches Potenzial
+IPSS	International Prostate Symptom Score
+IPSS	International Prognostic Scoring System
+IPV	Inaktivierte Polio-Vakzine
+IQ	Intelligenzquotient
+IQWiG	Institut für Qualität und Wirtschaftlichkeit im Gesundheitswesen
+IR	Innenrotation
+IRDS	Infant Respiratory Distress Syndrome
+IRV	Inversed Ratio Ventilation
+IRV	inspiratorisches Reservevolumen
+ISA	Intrinsische sympathomimetische Aktivität
+ISBT	Internationale Gesellschaft für Bluttransfusion
+ISG	Iliosakralgelenk
+ISH	In-situ-Hybridisierung
+ISS	Injury Severity Score
+ISSVD	International Society for the Study of Vulval Disease
+IST	Intelligenz-Struktur-Test
+ISTA	Aortenisthmusstenose
+ISTO	Informationszentrum für Standards in der Onkologie
+IT	Indifferenztyp
+ITLS	International Trauma Life Support
+ITN	Intubationsnarkose
+ITP	Idiopathische thrombozytopenische Purpura
+ITS	Intensivstation
+ITT	intention-to-treat
+ITW	Intensivtransportwagen
+ITx	Inselzelltransplantation
+IU	International Unit
+IUFT	Intrauteriner Fruchttod
+IUGR	Intrauterine growth restriction
+IVC	inspiratorische Vitalkapazität
+IVD	In-vitro-Diagnostikum
+IVD	intraventrikulären Druck
+IVF	In-vitro-Fertilisation
+IVH	intraventrikuläre Hämorrhagie
+IZR	Intrazellularraum
+JA	Jetzige Anamnese
+JAMA	Journal of the American Medical Association
+JB	Jetziger Befund
+JIA	Juvenile idiopathische Arthritis
+JLNS	Jervell- und Lange-Nielsen-Syndrom
+JMML	Juvenile myelomonozytäre Leukämie
+JNA	Jenaer Nomina Anatomica
+JP	Juvenile Parodontitis
+KBB	kleines Blutbild
+KBE	Koloniebildende Einheit
+KBR	Kieferbruch
+KBR	Komplementbindungsreaktion
+KBV	Kassenzahnärztliche Bundesvereinigung
+KDI	Knöcheldruckindex
+KDOQI	Kidney Disease Outcomes Quality Initiative
+KEL	Kell-Cellano-System
+KETV	Kammerendteilveränderung
+KFO	Kieferorthopädie
+KFRG	Krebsfrüherkennungs- und -registergesetz
+KG	Krankengeschichte
+KG	Krankengymnastik
+KG	Körpergewicht
+KG	Kiefergelenk
+KG	Kraftgrad
+KH	Kohlenhydrate
+KHBW	Kleinhirnbrückenwinkel
+KHK	koronare Herzkrankheit
+KHV	Knie-Hacke-Versuch
+KI	Kontraindikation
+KiDD	Kopfgelenk-induzierte Dyspraxis / Dysgnosie
+KIG	kieferorthopädische Indikationsgruppen
+KIS	Krankenhausinformationssystem
+KiSS	Kopfgelenk-induzierte Symmetrie-Störung
+KJP	Kinder- und Jugendpsychiatrie
+KK	Kinderkrankheiten
+KKP	Klinischer Konsensuspunkt
+KL	Klinik
+KL	Kontaktlinse
+KM	Kontrastmittel
+KO	Körperoberfläche
+KOD	Kolloidosmotischer Druck
+KOF	Körperoberfläche
+KP	Kinderpsychiatrie
+KP	Kinderpsychiater
+KPE	Komplexe Physikalische Entstauungstherapie
+KS	Klopfschmerz
+KS	Kallmann-Syndrom
+KS	Kaposi-Sarkom
+KT	Kognitive Therapie
+KTAB	Kostenträger-Abrechnungsbereich
+KTS	Karpaltunnelsyndrom
+KTW	Krankentransportwagen
+KUVG	Kranken- und Unfallversicherungsgesetz
+KV	Kassenärztliche Vereinigung
+KVG	Krankenversicherungsgesetz
+KVK	Krankenversicherungskarte
+KVT	Kognitive Verhaltenstherapie
+KVVV	Kontrolle Verbrennungen Verätzungen Vergiftungen
+KZH	Kopfzwangshaltung
+KZV	Kassenzahnärztliche Vereinigung
+LA	Lokalanästhesie
+LA	Lichen aureus
+LA	linkes Atrium
+LA	linkes Auge
+LAA	linkes Auriculus atrii
+LAD	left anterior descending
+LAD	Lymphadenektomie
+LADA	latent autoimmune diabetes with onset in adults
+LAH	Linksanteriorer Hemiblock
+LAL	Licht-adjustierbare Linse
+LAO	Left Anterior Oblique
+LAP	Leucin-Aminopeptidase
+LAS	Lymphadenopathie-Syndrom
+LASIK	Laser-in-situ-Keratomileusis
+L-ASP	L-Asparaginase
+LAVH	laparoskopisch assistierte vaginale Hysterektomie
+LB	Lyme-Borreliose
+LBP	Lipopolysaccharid-bindendes-Protein
+LCA	linke Koronararterie
+LCIS	lobular carcinoma in situ
+LCM	Lymphozytäre Choriomeningitis
+LCMV	Lymphocytic Choriomeningitis Virus
+LCR	Ligase Chain Reaction
+LCV	Leucovorin
+LD	letale Dosis
+LDH	Lactatdehydrogenase
+LDL	Low Density Lipoprotein
+LDLC	Low Density Lipoprotein Cholesterin
+LDS	Licentiate of Dental Surgery
+LE	Lupus erythematodes
+LE	Lungenembolie
+LED	Lupus erythematodes disseminatus
+LEMS	Lambert-Eaton-Rooke-Syndrom
+LFP	Leberfunktionsparameter
+LGA	Large-for-gestational
+LGS	Lennox-Gastaut-Syndrom
+LH	Luteinisierendes Hormon
+LH-RH	luteinisierendes-Hormon-Releasing-Hormon
+LIP	Lymphocytic Interstitial Pneumonia
+LITT	Laserinduzierte Thermotherapie
+LK	Lungenkarzinom
+LK	Laserkoagulation
+LKG	Lippen-Kiefer-Gaumenspalte
+LKGS	Lippen-Kiefer-Gaumen-Segelspalten
+LKK	Landwirtschaftliche Krankenkasse
+LKS	Lymphknotenschwellung
+LKS	Lungenklopfschall
+LLLT	Low-Level-Lasertherapie
+LM	Larynxmaske
+LMA	Larynxmaske
+LMBBS	Laurence-Moon-Biedl-Bardet-Syndrom
+LMN	lower motor neuron
+LMS	Limb-Mammary-Syndrom
+LNA	Leitender Notarzt
+LNS	Lesch-Nyhan-Syndrom
+LP	Lumbalpunktion
+LP	Lichen planus
+L-PAM	Melphalan
+LPH	Linksposteriorer Hemiblock
+LPR	laryngopharyngealer Reflux
+LPS	Leistungsprüfsystem
+LQ	Lebensqualität
+LQTS	Long-QT-Syndrom
+LR	Landoltring
+LR	Lichtreaktion
+LRH	laparoskopische radikale Hysterektomie
+LS	Lichen sclerosus
+LSA	Lichen sclerosus et atrophicus
+LSB	Linksschenkelblock
+LSHTM	London School of Hygiene and Tropical Medicine
+LSK	Laparoskopie
+LT	Linkstyp
+LT	Larynxtubus
+LTH	laktrotropes Hormon
+LTP	long-term potentiation
+LTPL	Lungentransplantation
+LTx	Lebertransplantation
+LTx	Lungentransplantation
+LUC	large unstained cells
+LV	linker Ventrikel
+LVAD	Left ventricular assist device
+LVH	Linksventrikuläre Hypertrophie
+LVR	Lungenvolumenreduktion
+LVSP	left ventricular systolic pressure
+LWK	Lendenwirbelkörper
+LWS	Lendenwirbelsäule
+LZ-EKG	Langzeit-EKG
+MAC	Minimum Alveolar Concentration
+MAD	Mittlerer arterieller Druck
+MAD	Mandibuloakrale Dysplasie
+MAK	Maximale Arbeitsplatz-Konzentration
+MALT	Mucosa-assoziierte-lymphatische Gewebe
+MANV	Massenanfall von Verletzten
+MAO	Monoaminooxidase
+MAP	mean arterial pressure
+MAP	Muskelantwortpotential
+MAPN	Mikroskopisch Assistierte Perkutane Nukleotomie
+MAS	Malassimilationssyndrom
+MAV	Mund-Antrum-Verbindung
+MBCT	Mindfulness Based Cognitive Therapy
+MBK	Minimale bakterizide Konzentration
+MBS	Martin-Bell-Syndrom
+MCC	Mukoziliäre Clearance
+MCD	Minimale Cerebrale Dysfunktion
+MCF	Mitomycin C, Cisplatin und 5-Fluoruracil
+MCH	Mittleres Korpuskuläres Hämoglobin
+MCHC	Mean Corpuscular Hemoglobin Concentration
+MCL	Medioclavikularlinie
+MCL	mediales Kollateralband
+MCPH	microcephaly primary hereditary
+MCS	Multiple Chemical Sensitivity
+MCS	Minimally conscious state
+MCT	Myotonia congenita Thomsen
+MCU	Miktionscystoureterogramm
+MCV	Mean Corpuscular Volume
+MDC	Major Diagnostic Categories
+MDI	Forum der Medizin Dokumentation und Medizin Informatik
+MDK	Medizinischer Dienst der Krankenversicherung
+MDK	Manisch Depressive Krankheit
+MDP	Magendarmpassage
+MDR	Multiple Drug Resistance
+MDRD	Modifikation of Diet in Renal Disease
+MDR-TB	multidrug-resistant tuberculosis
+MDS	Myelodysplastisches Syndrom
+MDS	Minimum Data Set
+MDS	Medizinischer Dienst der Spitzenverbände der Krankenversicherung
+MDS	Master of Dental Surgery
+MDZT	Mehrdimensionaler Zeichentest
+MEF	maximaler exspiratorischer Fluss
+MEG	Magnetoenzephalographie
+MELAS	Mitochondrial myopathy, encephalopathy, lactic acidosis, and stroke 
+MELD	Model for End-stage Liver Disease
+MEN	Multiple endokrine Neoplasie
+MEOS	Mikrosomales Ethanol-oxidierendes System
+MEP	Motorisch evozierte Potentiale
+MER	Muskeleigenreflexe
+MERRF	myoclonic epilepsy with ragged red fiber
+MeSH	Medical Subject Headings
+MF	Mycosis fungoides
+MFA	Medizinischer Fachangestellter
+MFDM	Mandibulo-faziale Dysostose-Mikrozephalie-Syndrom
+MFF	Maxillo-mandibuläre Fixation
+MFS	Miller-Fisher-Syndrom
+MFT	myofunktionelle Therapie
+MFT	Medizinischer Fakultätentag
+MG	Molekulargewicht
+MG	Myasthenia gravis
+MG	Modellguss
+MGL	Mukogingival Linie
+MGUS	Monoklonale Gammopathie unklarer Signifikanz
+MH	Maligne Hyperthermie
+MHC	Major Histocompatibility
+MHE	Multiple Hereditäre Exostosen
+MHH	Medizinische Hochschule Hannover
+MHK	Minimale Hemm-Konzentration
+MHS	Mittelhirnsyndrom
+MI	Myokardinfarkt
+MI	Mitralklappeninsuffizienz
+MIBG	MIBG-Szintigrafie
+MIC	Minimalinvasive Chirurgie
+MIH	Molaren-Inzisiven-Hypomineralisation
+MinIP	Minimumintensitätsprojektion
+MIOL	Multifokale Intraokularlinse
+MIP	Maximumintensitätsprojektion
+MKG	Mund-, Kiefer- und Gesichtschirurgie
+MKG	Magnetokardiogramm
+MLC	Multileafkollimator
+MLF	Fasciculus longitudinalis medialis
+MLS	MikroLaryngoSkopie
+MM	malignes Melanom
+MMC	Myelomeningocele
+MMC	Mitomycin C
+MMF	Mycophenolat-Mofetil
+MMN	Multifokale Motorische Neuropathie
+MMPI	Minnesota Multiphasic Personality Inventory
+MMR	Masern-Mumps-Röteln
+MMRV	Masern-Mumps-Röteln-Varizellen
+MMSE	Mini-Mental State Examination
+MMST	Mini-Mental-Status-Test
+MMV	Mandatory Minute Ventilation
+MND	Motor Neuron Disease
+MNS	MNS-System
+MNS	Mund-Nasen-Schutzmaske
+MNS	Melnick-Needles-Syndrom
+MO	Morphin
+MODS	Multi organ dysfunction syndrome
+MODY	Maturit-Onset Diabetes of the Young
+MOF	Multi organ failure
+MOG	Modellguss
+MÖT	Mitralklappenöffnungston
+MOTT	mycobacteria other than tuberculosis
+MOV	Multiorganversagen
+MPA	Medical-Psychological Assessment
+MPA	Mikroskopische Polyangiitis
+MPBetV	Medizinprodukte-Betreiberverordnung
+MPG	Medizinproduktegesetz
+MPH	Methylphenidat
+MPM	malignes Pleuramesotheliom
+MPS	Mononukleäres Phagozyten-System
+MPS	Myeloproliferatives Syndrom
+MPS	Mukopolysaccharidose
+MPTP	1-Methyl-4-phenyl-1,2,3,6-tetrahydropyridin
+MPTT	Mehrdimensionale Psychodynamische Traumatherapie
+MPU	Medizinisch-Psychologische Untersuchung
+MR	Medizinalrat
+MR	Magnetic Resonance Imaging
+MRA	Magnetresonanzangiographie
+MRCP	Magnetresonanz-Cholangiopankreatikographie
+MRE	Multi-resistente Erreger
+MRF	Mesenzephale Retikuläre Formation
+MRGN	Multiresistente gram-negative Stäbchen
+MRI	Magnetic Resonance Imaging
+MRI	Klinikum rechts der Isar
+MRKHS	Mayer-Rokitansky-Küster-Hauser-Syndrom
+mRNA	messenger RNA
+MRP	Multidrug Resistance-Related Proteine
+MRS	Magnetresonanzspektroskopie
+MRSA	Methicillin-resistenter Staphylococcus aureus
+MRT	Magnetresonanztomographie
+MS	Multiple Sklerose
+MS	Magensonde
+MS	Mitralstenose
+MSA	Multisystematrophie
+MSBP	Munchausen Syndrome by Proxy
+MSCT	Multislice-Computertomographie
+MSFC	Multiple Sclerosis Functional Composite
+MSH	Melanozyten-stimulierendes Hormon
+MSH	Medical School Hamburg
+MSLT	Multipler Schlaf-Latenz-Test
+MSM	Männer die Sex mit Männern haben
+MTA	Medizinisch-Technischer Assistent
+MTAF	siehe Medizinisch-Technischer Assistent
+MTBC	Mycobacterium tuberculosis complex
+MTC	Medullary thyroid cancer
+MTD	mittlere Tagesdosis
+MTI	Os metatarsale 1
+MTLA	siehe Medizinisch-Technischer Assistent
+MTLE	mediale Temporallappenepilepsie
+MTM	Medizinisches Transport-Management
+MTP	Metatarsophalangeal
+MTRA	siehe Medizinisch-Technischer Assistent
+MTS	Medizinischer Thromboseprophylaxestrumpf
+MTS	Manchester-Triage-System
+MTX	Methotrexat
+MUG	Medizinische Universität Graz
+MUI	Medizinische Universität Innsbruck
+MUW	Medizinische Universität Wien
+MVZ	Medizinisches Versorgungszentrum
+MW	Morbus Waldenström
+MWBO	Musterweiterbildungsordnung
+MWO	Musterweiterbildungsordnung
+MZ	monozygote Zwillinge
+MZU	Miktionszystourethrogramm
+NAAT	Nuclein Acid Amplification Test Technology
+NAH	Notarzthubschrauber
+NAION	nicht-arteriitischer Anteriore ischämische Optikusneuropathie
+NALT	nasal-associated lymphoid tissue
+NAP	Nervenaustrittspunkt
+NAP	Nervenantwortpotential
+NASH	Nicht-alkoholische Steatohepatitis
+NaSSA	noradrenergic and specific serotonergic antidepressant
+NAST	Nierenarterienstenose
+NAT	Nuclein Acid Amplification Test Technology
+NAW	Notarztwagen
+NB	Neuroblastom
+NBS	Nijmegen-Breakage-Syndrom
+NC	Nucleus caudatus
+NCC	Nierenzellkarzinom
+NCI	National Cancer Institute
+NCL	Neuronale Ceroid-Lipofuszinose
+nCPAP	Nasale kontinuierliche Überdruckbeatmung
+NCT	Nationales Centrum für Tumorerkrankungen
+NCT	Non-Contact-Tonometrie
+NDM	New Delhi metallo-beta-lactamase
+NEF	Notarzteinsatzfahrzeug
+NEFERT	Neck Flexion Rotation Test
+NEH	Notarzt-Einsatz-Hubschrauber
+NEJM	The New England Journal of Medicine
+NET	Neuroendokriner Tumor
+NF	Neurofibromatose
+NF-AT	nuclear factor of activated T cells
+NFJ	Naegeli-Franceschetti-Syndrom
+NFJS	Naegeli-Franceschetti-Jadassohn-Syndrom
+NFP	Nierenfunktionsparamter
+NFS	Notfallsanitäter
+NG	Nebengeräusche
+NHL	Non-Hodgkin-Lymphom
+NHS	National Health Service
+NIBP	nicht invasive Blutdruckmessung
+NIH	National Institutes of Health
+NIMH	National Institute of Mental Health
+NISS	New Injury Severity Score
+NKDA	No Known Drug Allergies
+NKI	Notfallkompetenz endotracheale Intubation
+NL	Nodus lymphaticus
+NL	Nierenlager
+NLG	Nervenleitgeschwindigkeit
+NLKS	Nierenlagerklopfschmerz
+NLM	United States National Library of Medicine
+NMH	niedermolekulare Heparine
+NMR	nuclear magnetic resonance
+NNH	Nasennebenhöhle
+NNM	Nebennierenmark
+NNM	Neutral-Null-Methode
+NNR	Nebennierenrinde
+NNT	Number needed to treat
+NOMI	Nichtokklusive mesenteriale Ischämie
+NOPEN	No Penicillin
+NOTES	Natural Orifice Transluminal Endoscopic Surgery
+NP	nekrotisierende Parodontalerkrankung
+NPH	Normal pressure hydrocephalus
+NPLE	nichtparaneoplastische limbische Enzephalitis
+NPP	Nucleus Pulposus Prolaps
+NRD	Neuralrohrdefekt
+NRK	Normale retinale Korrespondenz
+NRS	Numerische Rating-Skala
+NS	Nephrotisches Syndrom
+NS	Nervensystem
+NS	Nierenszintigrafie
+NS	noduläre Sklerose
+NS	Normalserum
+NSAID	non-steroidal anti-inflammatory drug
+NSAP	nichtsteroidales Antiphlogistikum
+NSAR	Nichtsteroidales Antirheumatikum
+NSCLC	Non-small cell lung carcinoma
+NSE	Neuronenspezifische Enolase
+NSIP	Nicht spezifische interstitielle Pneumonie
+NSTEMI	Non ST-Elevated Myocardial Infarction
+NSTV	Nadelstichverletzung
+NSV	Nadelstichverletzung
+NT	nasotracheal
+NT	Nierentransplantation
+NTE	Nahtod-Erfahrung
+NTM	Nontuberculous mycobacteria
+NTPL	Nierentransplantation
+NTx	Nierentransplantation
+NTZ	Nierentransplantationszentrums
+NU	Nachuntersuchung
+NU	Narkose-Untersuchung
+NUB	Neue Untersuchungs- und Behandlungsmethoden
+NUG	nekrotisierende ulzerierende Gingivitis
+NUP	nekrotisierende ulzerierende Parodontitis
+NV	Nierenversagen
+nvCJD	neuen Variante der Creutzfeldt-Jakob-Krankheit
+NVK	Nabelvenenkatheter
+NVL	Nationale Versorgungsleitlinie
+NVT	Nierenvenenthrombose
+NW	Nebenwirkung
+NW	Nachweis
+NYHA	New York Heart Association
+NZN	Nävuszellnävus
+NZS	neurotisches Zervikalsyndrom
+OA	Oberarm
+OA	Oberarzt
+OA	occipito-anterior
+OA	Osteoarthritis
+OÄ	Oberärztin
+OAB	Overactive Bladder
+ÖAB	Österreichisches Arzneibuch
+OAE	Otoakustische Emissionen
+OAK	orale Antikoagulanzien
+OAT	Occluded Artery Trial
+OB	Oberbauch
+OCD	Osteochondrosis dissecans
+OCD	Obsessive Compulsive Disorder
+OCT	optical coherence tomography
+OD	Oculus dexter
+OFA	Oberfeldarzt
+OFCD	OFCD-Syndrom
+OFO	Offenes Foramen ovale
+ÖGD	Öffentlicher Gesundheitsdienst
+ÖGD	Ösophago-Gastro-Duodenoskopie
+OGTT	Oraler Glukosetoleranztest
+OHF	Omsker Hämorrhagisches Fieber
+OHL	oral hairy leukoplakia
+OI	Osteogenesis imperfecta
+OI	opportunistische Infektion
+OK	Oberkiefer
+OKN	optokinetischer Nystagmus
+OLP	oraler Lichen planus
+OMF	Osteomyelofibrose
+OMIM	Online Mendelian Inheritance in Man
+OMR	Obermedizinalrat
+OP	Operation
+OP	Operationssaal
+OP	Originalpackung
+OPCA	olivopontocerebelläre Atrophie
+OPG	Orthopantomographie
+OPS	Operationen- und Prozedurenschlüssel
+OPT	Orthopantomographie
+OPTG	Orthopantomogrmm
+OPV	Orale Poliovakzine
+ÖRK	Österreichisches Rotes Kreuz
+ORL	Oto-Rhino-Laryngologie
+ORSA	Oxacillin-resistenter Staphylococcus aureus
+OS	Oculus sinister
+OS	Overall survival
+OSA	Oberstabsarzt
+OSAS	Obstruktives Schlafapnoe-Syndrom
+OSCE	Objective structured clinical examination
+OSG	oberes Sprunggelenk
+OTC	Oxytetracyclin
+OTC	Over the Counter
+OTX	OTC und Rx
+OU	Oculi uterque
+PA	Parodontitisbehandlung
+PA	Prostataadenom
+PACS	Picture Archiving and Communication System
+PAD	Public access defibrillator
+PAD	Photoaktivierte Desinfektion
+PAF	Paroxysmales atriales Flimmern
+PAH	pulmonal-arterielle Hypertonie
+PAN	Polyarteriitis nodosa
+PAP	Abstrich nach Papanicolaou
+PAPP-A	Pregnancy-associated plasma protein A
+PAR	Parodontitisbehandlung
+PAS	Periodic-acid-Schiff
+PAS	Post-Abortion-Syndrom
+PAS	Paraaminosalicylsäure
+PAS	Parental Alienation Syndrome
+PASS	Post-Abortion-Stress-Syndrom
+pAVK	periphere Arterielle Verschlusskrankheit
+PB	Prämolarenbreite
+PB	perorale Bisphosphonate
+PBI	Papillenblutungsindex
+PBP	Penicillin-bindendes Protein
+PC	Musculus pubococcygeus
+PCa	Prostatakarzinom
+PCA	Patient Controlled Analgesia
+PCB	Polychlorierte Biphenyle
+PCD	Process Challenge Device
+PCEA	Patient Controlled Epidural Analgesia
+PCI	Perkutane Koronarintervention
+PCM	Paracetamol
+PCN	Perkutane Nephrostomie
+PCOD	Polycystic Ovarian Disease
+PCOS	Polyzystisches Ovarialsyndrom
+PcP	primär chronische Polyarthritis
+PCR	Polymerase Chain Reaction
+PCT	Procalcitonin
+PCT	Prismen-Covertest
+PCV	Procarbazin, Lomustin und Vincristin
+PCZ	Procarbazin
+PD	Parkinson Disease
+PD	Pulsdefizit
+PD	Paukendrainage
+PD	Pupillardistanz
+PD	Papillendurchmesser
+PD	Pharmakodynamik
+PDA	persistierender Ductus arteriosus
+PDA	Periduralanästhesie
+PDD	Photodynamische Diagnostik
+PDE	Phosphodiesterase
+PDGF	Platelet Derived Growth Factor
+PDGF-A	Platelet-Derived Growth Factor A
+PDL	Periodontalligament
+PDL	Pflegedienstleitung
+PDPH	Post-Dural Puncture Headache
+PDT	Photodynamische Therapie
+PDT	Photodynamische Therapie
+PDW	Platelet distribution width
+PDW	proton density weighted
+PE	Probeexzision
+PE	Parenterale Ernährung
+PE	Plattenepithel
+PE	pulmonale Embolie
+PE	Pulpaeröffnung
+PEA	pulslose elektrische Aktivität
+PECH	Pause – Eis – Compression – Hochlagern
+PEEP	positive endexpiratory pressure
+PEF	Peak Expiratory Flow
+PEG	Perkutane endoskopische Gastrostomie
+PEG	Polyethylenglykol
+PEI	Paul-Ehrlich-Institut
+PEI	Perkutane Ethanol-Injektionstherapie
+PEJ	perkutane endoskopische Jejunostomie
+PEP	Phosphoenolpyruvat
+PEP	Postexpositionsprophylaxe
+PET	Positronen-Emissions-Tomographie
+PFA	Phosphofruktoaldolase
+PFA	Plättchenfunktionsanalyzer
+PFAPA	periodisches Fieber, aphthöse Stomatitis, Pharyngitis, zervikale Adenitis
+PFC	Präfrontaler Cortex
+PFO	persistierendes Foramen ovale
+PGAD	Persistent genital arousal disorder
+PGCS	Pediatric Glasgow Coma Scale
+PH	Pulmonale Hypertonie
+PHN	postherpetische Neuralgie
+PHT	Pulmonale Hypertonie
+PHT	Plötzlicher Herztod
+PHTLS	Pre Hospital Trauma Life Support
+PI	Plaqueindex
+PID	Präimplantationsdiagnostik
+PID	angeborener Immundefekt
+PIOL	Phake Intraokularlinse
+PIP	Phalango-Interphalangealgelenk
+PITT	Psychodynamisch Imaginative Traumatherapie
+PK	Pharmakokinetik
+PK/PD	Pharmakokinetik / Pharmakodynamik
+PKD	Zystenniere
+PKU	Phenylketonurie
+PKV	Private Krankenversicherung
+PLE	paraneoplastische limbische Enzephalitis
+PLIF	Posterior Lumbar Interbody Fusion
+PLMD	Periodic Limb Movement Disorder
+PLOSL	Polyzystische lipomembranöse Osteodysplasie mit sklerotischer Leukoenzephalopathie
+PM	Pacemaker
+PM	Polymyositis
+PMC	Paramyotonia congenita
+PMDS	Persistent müllerian duct syndrome
+PMF	primäre Myelofibrose
+PML	Progressive multifokale Leukenzephalopathie
+PMN	polymorphkernige neutrophile Granulozyten
+PMR	Physikalische Medizin und Rehabilitation
+PMR	Polymyalgia rheumatica
+PMR	Progressive Muskelrelaxation
+PMR	Physiologisch-Medizinische Resonanzmessung
+PMS	Prämenstruelles Syndrom
+PMU	Medizinisch-Psychologische Untersuchung
+PN	Pyelonephritis
+PNA	Pariser Nomina Anatomica
+PND	Pränataldiagnostik
+PNET	Primitiv neuroektodermaler Tumor
+PNG	Pflege-Neuausrichtungs-Gesetz
+PNH	Paroxysmale nächtliche Hämoglobinurie
+PNL	Perkutane Nephrolitholapaxie
+PNP	Polyneuropathie
+PNS	Peripheres Nervensystem
+PNS	Paraneoplastisches Syndrom
+POC	Point-of-Care
+POMC	Proopiomelanocortin
+PONV	postoperative nausea and vomiting
+POTS	Postural Orthostatic Tachycardia Syndrome
+PPA	Per-Protocol-Analyse
+PPB	Psychopathologischer Befund
+PPD	Postpartale Depression
+PPH	Pathophysiologie
+PPHT	Primäre plexogene Hypertension
+PPI	Protonenpumpeninhibitor
+pPNET	peripherer Primitiv neuroektodermaler Tumor
+PPP	Postpartale Psychose
+PQ	PQ-Intervall
+pQCT	periphere quantitative Computertomographie
+PR	Paukenröhrchen
+PR	Progesteron Rezeptor
+PRED	Prednison
+PRES	Posteriores reversibles Enzephalopathie-Syndrom
+PRH	Prolaktin-Releasing-Hormon
+PRIND	Prolongiertes reversibles ischämisches neurologisches Defizit
+PRK	Photorefraktive Keratektomie
+PRL	Prolaktin
+PROMM	Proximale myotone Myopathie
+PRP	Platelet Rich Plasma
+PrR	Pronatorenreflex
+PS	Parodontitis bei Systemerkrankung
+PS	Parkinson Syndrom
+PSA	Prostataspezifisches Antigen
+PSA	Panoramaschichtaufnahme
+PSAS	Persistent sexual arousal syndrome
+PSI	Parodontaler Screening-Index
+PSP	Progressive Supranuclear Palsy
+PSR	Patellarsehnenreflex
+PT	Partikel-Therapie
+PTA	Perkutane transluminale Angioplastie
+PTBS	Posttraumatische Belastungsstörung
+PTC	perkutane transhepatische Cholangiografie
+PTC	proximal tubular cells
+PTC	Papillary thyroid cancer
+PTCA	perkutane transluminale coronare Angioplastie
+PTH	Parathormon
+PTHrP	Parathormon-related protein
+PTK	Pool-Thrombozytenkonzentrat
+PTLD	Post-Transplant Lymphoproliferative Disorder
+PTS	Postthrombotisches Syndrom
+PTSD	Posttraumatic Stress Disorder
+PTT	Partial Thromboplastin Time
+PTx	Pankreastransplantation
+PTXL	Paclitaxel
+PTZ	Plasmathrombinzeit
+PU	Proteinurie
+PUVA	Psoralen plus UV-A
+PV	Polycythaemia vera
+PV	Pflegeversicherung
+PV	Patientenverfügung
+PVC	Procarbazin, Vincristin und Carbustatin
+PVL	Periventrikulären Leukomalazie
+PVS	Privatärztliche Verrechnungsstelle
+PVS	Post Vietnam Syndrome
+PVS	Persistent Vegetative State
+PVS	Praxenverwaltungssystem
+PWD	Pulsed-wave doppler
+PWS	Prader-Willi-Syndrom
+PZN	Pharmazentralnummer
+PZR	professionelle Zahnreinigung
+QALY	Quality adjusted life year
+QCT	quantitative Computertomographie
+QEP	Qualität und Entwicklung in Praxen
+QF	Querfinger
+QL	Querlage
+RA	refraktäre Anämie
+RA	rechtes Atrium
+RAAS	Renin-Angiotensin-Aldosteron-System
+RAC	Réflexe auriculocardiaque
+RAI	Resident Assessment Instrument
+RANKL	Receptor Activator of NF-κB Ligand
+RAP	Resident Assessment Protocol
+RAV	Retinaler Arterienverschluss
+RB	Regelblutung
+RBBB	right bundle branch block
+RBC	red blood cells
+RC	Ramus circumflexus
+RCA	rechte Koronararterie
+RCC	Renal cell carcinoma
+RCS	Retinopathia centralis serosa
+RCT	Radiochemotherapie
+RCT	Randomized Controlled Trial
+RCT	Reverser Cholesterintransport
+RCX	Ramus circumflexus
+RD	Ramus diagonalis
+RD	Rettungsdienst
+RDG	Reinigungs- und Desinfektionsgerät
+RDH	Rettungsdiensthelfer
+RDS	Reizdarmsyndrom
+RDW	Red cell distribution width
+REA	reaktive Arthritis
+REAL	Revised European American Lymphoma
+REK	Retardkapseln
+REM	Rapid Eye Movement
+RES	Retikuloendotheliales System
+REVT	Rational-Emotive Verhaltenstherapie
+RF	Raumforderung
+RF	Rheumafaktor
+RFH	Radiofrequenzablation
+RG	Rasselgeräusche
+RH	Restharn
+RH	Rettungshelfer
+RHS	Retikulohistiozytäres System
+RHS	Smith-Lemli-Opitz
+RIA	Radioimmunoassay
+RIA	Ramus interventricularis anterior
+RIN	Radioisotopennephrographie
+RIND	reversibles ischämisches neurologisches Defizit
+RIS	Radiologieinformationssystem
+RIT	Radioiodtherapie
+RITA	Radiofrequency interstitial tumor ablation
+RIVA	Ramus interventricularis anterior
+RIVP	Ramus interventricularis posterior
+RJT	Radioiodtherapie
+RK	radiäre Keratomie
+RKI	Robert-Koch-Institut
+RKM	Röntgenkontrastmittel
+RL	Rechts-Links-Shunt
+RLF	retrolentale Fibroplasie
+RLS	Reizleitungsstörung
+RLS	Restless-Legs-Syndrom
+RLV	Regelleistungsvolumen
+RM	Ramus marginalis
+RMS	Ramus marginalis sinister
+RNA	Radionuklidangiographie
+RNA	ribonucleic acid
+RNS	Ribonukleinsäure
+ROAT	repeated open application test
+ROM	range of motion
+ROSC	return of spontaneous circulation
+RöV	Röntgenverordnung
+RP	Retinopathia pigmentosa
+RPD	Removable Partial Denture
+RPE	retinalen Pigmentepithels
+RPGN	rapidly progressive glomerulonephritis
+RPLS	reversibles posteriores Leukenzephalopathiesyndrom
+RPR	Radiusperiostreflex
+RR	Arterieller Blutdruck
+RRR	Relative Risikoreduktion
+RS	Raynaud-Syndrom
+RS	Rettungssanitäter
+RS	Rhombencephalosynapsis
+RS	Rhythmusstörungen
+RSA	Risikostrukturausgleich
+RSB	Rechtsschenkelblock
+RSBI	Rapid Shallow Breathing Index
+RSF	Rippenserienfraktur
+RSI	Rapid Sequence Induction
+RSI	Repetitive Strain Injury Syndrom
+RSTL	Relaxed Skin Tension Lines
+RT	Rechtstyp
+RTA	Reintonaudiogramm
+RTH	Rettungs-Transport-Hubschrauber
+RTW	Rettungswagen
+RV	rechter Ventrikel
+RV	Restvolumen der Lunge
+RVH	Rechtsventrikuläre Hypertrophie
+RVO	Reichsversicherungsordnung
+RVSP	right ventricular systolic pressure
+RVV	retinaler Venenverschluss
+SA	Sozialanamnese
+SA	sinuatrial
+SAB	Subarachnoidalblutung
+SAE	Subkortikale arteriosklerotische Enzephalopathie
+SAE	Serious Adverse Event
+SAPV	Spezialisierte ambulante Palliativversorgung
+SAR	Serious Adverse Reaction
+SAR	Spezifische Absorptionsrate
+SARS	Severe Acute Respiratory Syndrome
+SAS	Schlafapnoe-Syndrom
+SBA	Spina bifida aperta
+SBAS	Schlafbezogene Atmungsstörungen
+sBCC	superfizielles Basal Cell Carcinom
+SBDS	Shwachman-Bodian-Diamond-Syndrom
+SBMA	Spinobulbäre Muskelatrophie
+SBO	Spina bifida occulta
+SBS	Sick-Building-Syndrom
+SBSC	Swiss Blood Stemm Cells Foundation
+SCA	spinocerebellar ataxia
+SCC	Squamous Cell Carcinoma Antigen
+SCD	Sudden Cardiac Death
+SCID	Severe Combined Immunodeficiency
+SCLC	Small Cell Lung Cancer
+SCLE	Subakut kutaner Lupus erythematodes
+SD	Schilddrüse
+SDAT	senile Demenz vom Alzheimertyp
+SED	Spondyloepiphysäre Dysplasie 
+SEI	submandibuläre endotracheale Intubation
+SEMD	Spondyloepimetaphysäre Dysplasie 
+SEP	saure Erythrozyten-Phosphatase
+SEP	Somatosensibel evozierte Potentiale
+SERCA	Sarcoplasmic endoplasmic reticulum calcium ATPase
+SES	Schmerzempfindungsskala
+SES	Sprachentwicklungsstörung
+SEV	Sprachentwicklungsverzögerung
+SGA	Small for Gestational Age
+SGOT	Glutamat-Oxalacetat-Transferase
+SGPT	Glutamat-Pyruvat-Transferase
+SHBG	Sexualhormon-bindendes Globulin
+SHF	Schenkelhalsfraktur
+SHT	Schädel-Hirn-Trauma
+SIADH	Syndrom der inadäquaten ADH-Sekretion
+SIDS	Sudden Infant Death Syndrome
+SIRS	Systemisches inflammatorisches Response-Syndrom
+SIRT	Selective internal radiation therapy
+SKG	Seismokardiogramm
+SKID	Strukturiertes Klinisches Interview für DSM-IV
+SKS	Sonorer Klopfschall
+SKT	Syndrom-Kurz-Test
+SL	Schädellage
+SL	Stimmlippe
+SLE	systemischer Lupus erythematodes
+SLOS	Smith-Lemli-Opitz-Syndrom
+SLS	Schallleitungsschwerhörigkeit
+SLS	Sjögren-Larsson-Syndrom
+SM	Schrittmacher
+SMA	Spinale Muskelatrophie
+SMBA	Spinobulbäre Muskelatrophie Typ Kennedy
+SMH	Schnelle Medizinische Hilfe
+SMS	Stiff-man-Syndrom
+SMV	Selbstmordversuch
+SND	striatonigrale Degeneration
+SNP	single nucleotide polymorphism
+SNRI	Serotonin-Noradrenalin-Reuptake-Inhibitor
+SOD	Superoxiddismutase
+SOP	Subokzipitalpunktion
+SOREM	Sleep onset REM
+SPCT	Simultan-Prismen-Covertest
+SPDK	suprapubischer Dauerkatheter
+SPECT	Single Photon Emission Computed Tomography
+SPF	Suprapubische Fistel
+SPG	Spastische Paraplegie
+SPK	suprapubischer Katheter
+SPS	Stiff-Person-Syndrom
+SPT	skin prick test
+SQTS	Short-QT-Syndrom
+SQUID	Superconducting Quantum Interference Device
+SR	Sinusrhythmus
+SR	Senkungsreaktion
+SR	Spontanremission
+SRI	Serotonin Reuptake Inhibitor
+SRK	Schweizerisches Rotes Kreuz
+SRT	Selektive RetinaTherapie
+SS	Schwangerschaft
+SSA	Schwangerschaftsabbruch
+SSB	Strahlenschutzbeauftragter
+SSEP	Somatosensibel evozierte Potentiale
+SSES	spezifische Sprachentwicklungsstörung
+SSI	Stress-Strain-Index
+SSL	Scheitel-Steiß-Länge
+SSL	Steinschnittlage
+SSN	subakute sensorische Neuropathie
+SSPE	subakut sklerosierende Panenzephalitis
+SSRI	Selective Serotonin Reuptake Inhibitor
+SSS	Sick-Sinus-Syndrom
+SSS	Subclavian-Steal-Syndrom
+SSW	Schwangerschaftswoche
+ST	Sinustachykardie
+ST	ST-Strecke
+ST	Steiltyp
+ST	Slow Twitch
+STD	sexual transmitted diseases
+STEC	Shiga-Toxin–bildende Escherichia coli
+STEMI	ST-Elevated Myocardial Infarction
+STH	somatotropes Hormon
+STIKO	Ständige Impfkommission
+StKB	Staatlich-kommunaler Blutspendedienste
+ST-PNET	supratentorieller Primitiv neuroektodermaler Tumor
+STR	Stria vascularis
+STSS	Streptokokken-induziertes Toxisches Schocksyndrom
+SUDEP	Sudden Unexpected Death in Epilepsy
+SUNDS	Sudden Unexplained Nocturnal Death Syndrome
+SV	Schlagvolumen
+SVES	Supraventrikuläre Extrasystole
+SVS	Single-Voxel-Spektroskopie
+SVT	Supraventrikuläre Tachykardie
+SVT	Sinusvenenthrombose
+SVV	Selbstverletzendes Verhalten
+SWI	Suszeptibilitätsgewichtete Bildgebung
+SWK	Sakralwirbelkörper
+SZG	Schmelz-Zement-Grenze
+TA	Transaminasen
+TAC	Docetaxel, Adriamycin und Cyclophosphamid
+TACO	Transfusion associated circulatory overload
+TAH	Thrombozytenaggregationshemmer
+TAH	Total Artificial Heart
+TAPP	transabdominale präperitoneale Netzimplantation
+TAPVC	Total Anomalous Pulmonary Venous Connection
+TASH	Transkoronare Ablation der Septumhypertrophie
+TAVI	Transkatheter-Aortenklappenimplantation
+TBB	Transbronchiale Biopsie
+TBQ	tibio-brachialer Quotient
+TBVT	tiefe Beinvenenthrombose
+TC	Tetracyclin
+TCA	Trizyklisches Antidepressivum
+TCD	transkranielle Dopplersonografie
+TCI	Target Controlled Infusion
+TCM	Traditionelle Chinesische Medizin
+TD	Tetanus-Diphtherie-Impfung
+TDK	Tiefendosiskurve
+TE	Totalexstirpation
+TE	Tonsillektomie
+TE	Tissue Engineering
+TEA	Thrombendarteriektomie
+TEA	Transiente epileptische Amnesie
+TEC	Docetaxel, Epirubicin und Cyclophosphamid
+TED	theoretische Einnahmedauer
+TEE	Transösophageale Echokardiografie
+TEN	Titanic Elastic Nail
+TENS	Transkutane elektrische Nervenstimulation
+TEOAE	Transitorisch evozierte otoakustische Emissionen
+TEP	Totalendoprothese
+TF	Trommelfell
+TFP	Transference-Focused-Psychotherapy
+TG	Thyreoglobulin
+TGA	Transposition der großen Arterien
+TGA	Transiente globale Amnesie
+TG-AK	Antikörper gegen Thyreoglobulin
+TGF	Transforming growth factor
+THAM	Tris-hydroxymethyl aminomethane
+THV	Taille-Hüft-Verhältnis
+THV	Taille-Hüft-Verhältnis
+TI	Trikuspidalinsuffizienz
+TIA	Transitorische ischämische Attacke
+TIH	Tumorinduzierte Hyperkalzämie
+TIVA	Total intravenöse Anästhesie
+TK	Thrombozyten-Konzentrat
+TKI	Tyrosinkinase-Inhibitor
+TKMS	transkranielle motorische Magnetstimulation
+TL	Teelöffel
+TLA	Therapeutische Lokalanästhesie
+TLC	Total Lung Capacity
+TLH	Totale Laparoskopische Hysterektomie
+TLR	Toll-like Receptor
+TMMR	Totale mesometriale Resektion des Uterus
+TMS	Transkranielle Magnetstimulation
+TNF	Tumornekrosefaktor
+TnI	Troponin I
+TNM	Tumor – Nodus – Metastase
+TNS	Transkutane Nervenstimulation
+TnT	Troponin T
+TOAST	Trial of Org 10172 in Acute Stroke Treatment
+TOF	Tetralogy of Fallot
+TOM	Tomudex
+TOS	Therapieoptimierungsstudie
+TOT	Transobturatorisches Tape
+TPA	Tissue polypeptid antigen
+t-PA	tissue-type plasminogen activator
+TPHA	Treponema-pallidum-Hämagglutinations-Assay
+TPI	Treponema-pallidum-Immobilisationstest
+TPR	Totales Tibialis-posterior-Reflex
+TPSA	Totales Prostataspezifisches Antigen
+TPZ	Thromboplastinzeit
+TRAK	Thyreoidea-Rezeptor-Autoantikörper
+TRALI	Transfusion related acute lung injury
+TRF	Transferrin
+TRH	Thyreoliberin
+TRI	Triglyceride
+TROF	Trofosfamid
+TS	Tourette-Syndrom
+TSC	Tuberous Sclerosis Complex
+TSH	Thyreoidea-stimulierendes Hormon
+TSM	Transaortale subvalvuläre Myektomie
+TSP	Tropische Spastische Paraparese
+TSR	Trizepssehnenreflex
+TSS	Toxisches Schocksyndrom
+TST	Taschensondierungstiefe
+TST	Tuberculin Skin Test
+TST	Two Step Testing
+TTE	transthorakale Echokardiografie
+TTE	Transthorakale Echokardiografie
+TTK	Tagestherapiekosten
+TTP	Thiotepa
+TTP	Thrombotisch-thrombozytopenische Purpura
+TULK	totale umbilikale Cholezystektomie
+TUMT	transurethrale Mikrowellenthermotherapie
+TUNEL	TdT-mediated dUTP-biotin nick end labeling
+TUR	transurethrale Resektion
+TVS	transvaginale Sonografie
+TVT	tiefe Venenthrombose
+TVT	Tension-free vaginal tape
+TVT	tiefe Venenthrombose
+TX	Transplantation
+TZO	Teilzeitokklusion
+UA	Unterarm
+UARS	Upper Airway Resistance Syndrom
+UAW	unerwünschte Arzneimittelwirkung
+UCTM	Urethrozystotonometrie
+UDU	Urodynamische Untersuchung
+UEP	Union Europäischer Phoniater
+UFH	unfraktioniertes Heparin
+UGIB	untere gastrointestinale Blutung
+UICC	Union internationale contre le cancer
+UIP	usual interstitial pneumonia
+UK	Unterkiefer
+UK	Urokinase
+UKB	Universitätsklinikum Bonn
+UKD	Universitätsklinikum Dresden
+UKD	Universitätsklinikum Düsseldorf
+UKE	Universitätsklinikum Hamburg-Eppendorf
+UKG	Ultraschall-Kardiographie
+UKGM	Universitätsklinikum Gießen und Marburg
+UKH	Universitätsklinikum Halle
+UKJ	Universitätsklinikum Jena
+UKM	Universitätsklinikum Münster
+UKR	Universitätsklinikum Regensburg
+UKS	Universitätsklinikum des Saarlandes
+UKSH	Universitätsklinikum Schleswig-Holstein
+UKT	Universitätsklinikum Tübingen
+UKW	Universitätsklinikum Würzburg
+ÜLT	überdrehter Linkstyp
+UMDNS	Nomenklatur für Medizinprodukte
+UMG	Universitätsmedizin Göttingen
+UMM	Universitätsklinikum Mannheim
+UMN	Upper motor neuron
+UÖS	unterer Ösophagussphinkter
+UOT	Umstellungsosteotomie
+UPEC	Uropathogene E-coli-Stämme
+UPT	Unterstützende Parodontitistherapie
+URS	Ureterorenoskopische Nierensteinentfernung
+US	Ultraschall
+US	Unterschenkel
+US	unkonditionierter Stimulus
+USG	unteres Sprunggelenk
+USKG	Ultraschallkardiogramm
+USZ	Universitätsspital Zürich
+UTS	Ullrich-Turner-Syndrom
+UW	unerwünschte Wirkung
+ÜW	Überweisung
+VA	alveoläre Ventilation
+VA	Vegetativumanamnese
+VA	vesikuläres Atemgeräusch
+VA	vordere Augenabschnitte
+VAC	Vincristin, Adriblastin, Cyclophosphamid
+VAC	visueller Assoziationskortex
+VAD	Ventricular Assist Device
+VAD	Vascular Access Device
+VAG	vesikuläres Atemgeräusch
+VAIN	Vaginale intraepitheliale Neoplasie
+VANS	Video-assisted neck surgery
+VAP	Ventilator-assoziierte Pneumonie
+VAS	Visuelle Analogskala
+VATS	Video-assistierte Thorakoskopie
+VB	Venenbypass
+VBL	Vinblastin
+VC	Vitalkapazität
+VCA	Virus-Capsid-Antigen
+VCAP	Vincristin, Cyclophosphamid, Adriamycin, Prednison
+VCI	Vena cava inferior
+VCR	Vincristin
+VCS	Vena cava superior
+VD	Vertikaldeviation
+VdAK	Verband der Angestellten-Krankenkassen
+VDRL	venereal disease research laboratory
+VDS	Vindesin
+VE	Vakuumextraktion
+VE	Vorerkrankung
+VECP	visually evoked cortical potentials
+VEGF	Vascular Endothelial Growth Factor
+VEL	Vollelektrolytlösungen
+VEP	Visuell evozierte Potentiale
+VES	ventrikuläre Extrasystole
+VF	ventrikuläre Fibrillation
+VHF	Vorhofflimmern
+VHF	Vorhofflattern
+VHF	Vorhofflimmern
+VHF	Venezolanisches Hämorrhagisches Fieber
+VIM	ventraler Intermediärkern
+VIN	vulväre intraepitheliale Neoplasie
+VIP	vasoaktives intestinales Peptid
+VISA	Vancomycin-intermediär-sensible Staphylococcus aureus
+VK	Vitalkapazität
+VKA	Vitamin K Antagonist
+VKG	Vektorkardiogramm
+VKNR	Vertragskassennummer
+VLBW	Very Low Birth Weight
+VLDL	Very Low Density Lipoprotein
+VLP	Viruslike particles
+VMC	Ventromedialer Cortex
+VMC	Virtueller medizinischer Campus
+VMK	Verblend-Metall-Keramik
+VMS	Vanillinmandelsäure
+VMTA	siehe Medizinisch-Technischer Assistent
+VNG	Videonystagmographie
+VNS	Vagusnerv-Stimulation
+VO	Verordnung
+VOG	Vestibulookulogramm
+VOR	Vestibulookulärer Reflex
+VP	Porphyria variegata
+VP	ventrikulo-peritoneal
+VR	vascular resistance
+VRE	Vancomycin-resistente Enterokokken
+VRL	Vinorelbin
+VRR	Vesikorenaler Reflux
+VRS	Verbale Rating-Skala
+VRSA	Vancomycin-resistenter Staphylococcus aureus
+VSD	Ventrikelseptumdefekt
+VSD	Vorhofseptumdefekt
+VSM	Vena saphena magna
+VT	Verhaltenstherapie
+VT	Venenthrombose
+VT	ventrikuläre Tachykardie
+VT	Verotoxin
+VT	Ruheatemzugvolumen
+VTA	Vaginaltabletten
+VTE	venöse Thromboembolie
+VTEC	Vero-Toxin-bildende Escherichia coli
+VTG	vitiumtypisches Geräusch
+VUC	Ventricular unloading Catheter
+VUR	vesiko-uretero-renaler Reflux
+VV	Verteilungsvolumen
+VW	Verbandwechsel
+vWF	Von-Willebrand-Faktor
+VWI	Vorderwandinfarkt
+vWS	von Willebrand-Jürgens-Syndrom
+VZK	Vitalzeichenkontrolle
+VZV	Varizella-Zoster-Virus
+WA	Wernicke-Areal
+WAR	Wassermann-Reaktion
+WAS	Wiskott-Aldrich-Syndrom
+WBC	white blood cells
+WBR	Whole Brain Radiation
+WBS	Wandbewegungsstörungen
+WDHA	Water Diarrhea Hypokalemia Achlorhydria
+WDHH	wässrige Diarrhoe, Hypokaliämie, Hypochlorhydrie
+WFR	Weil-Felix-Reaktion
+WG	Wegener-Granulomatose
+WH	Wachstumshormon
+WHIM	Wessex Head Injury Matrix
+WHO	World Health Organization
+WHR	Taille-Hüft-Verhältnis
+WHtR	Waist-to-height ratio
+WK	Wirbelkörper
+WKB	Wurzelkanalbehandlung
+WMDA	World Marrow Donor Association
+WPW	Wolff-Parkinson-White-Syndrom
+WR	Wassermannreaktion
+WR	Wurzelresektion
+WR	Wurzelspitzenresektion
+WRD	Wasserrettungsdienst
+WS	Wirbelsäule
+WSKS	Wirbelsäulenklopfschmerz
+WSR	Wurzelspitzenresektion
+WSZE	Westdeutsche SpenderZentrale Essen
+WV	Wiedervorstellung
+WW	Wechselwirkung
+XDR-TB	Extensively drug-resistant tuberculosis
+XLP	X-chromosomale lymphoproliferative Erkrankung
+XMP	Xanthosinmonophosphat
+XMRV	Xenotropic murine leukemia virus-related virus
+XR	X-ray
+X-SCID	Severe Combined Immunodeficiency
+YAC	Yeast Artificial Chromosome
+YF	Yellow Fever
+ZA	Zahnarzt
+ZA	Zwischenanamnese
+ZÄK	Zahnärztekammer
+ZAV	zentraler Arterienverschluss
+zAVM	Zerebrale arteriovenöse Malformation
+ZBMED	Zentralbibliothek für Medizin
+ZD	Zyklodeviation
+ZE	Zahnersatz
+ZEBET	Zentralstelle zur Erfassung und Bewertung von Ersatz- und Ergänzungsmethoden zum Tierversuch
+ZFA	Zeitschrift für Allgemeinmedizin
+ZIG	Zoster-Immunglobulin
+ZKRD	Zentrales Knochenmarkspender-Register Deutschland
+ZM	Zahnärztliche Mitteilungen
+ZMK	Zahn-, Mund- und Kieferheilkunde
+ZMV	Zytomegalievirus
+ZNA	Zentrale Notaufnahme
+ZNS	Zentralnervensystem
+ZR	Zahlenreihe
+ZSA	Zentrale Schlafapnoe
+ZVD	Zentraler Venendruck
+ZVK	Zentraler Venenkatheter
+ZVK	Zentralverband der Krankengymnasten
+ZVV	zentraler Venenverschluss
+ZWR	Zwischenwirbelraum
+ZWS	Zwischenwirbelscheibe
+ZZ	zweieiige Zwillinge
+γ-GT	γ-Glutamyltransferase

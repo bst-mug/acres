@@ -60,7 +60,7 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens) -> List[Tuple[int,str]]
         .replace("]", "\n").replace(")", " ) ").replace("!", "\n").replace("(", " ( ") \
         .replace(", ", " , ").replace(". ", "\n").replace("#", "\n").replace(";", "\n") \
         .replace("?", "\n").replace(": ", "\n").replace("|", "\n").replace("..", "\n") \
-        .replace("   ", " ").replace("  ", " ").replace("  ", " ").replace("  ", " ")
+        .replace("   ", " ").replace("  ", " ").replace("  ", " ").replace("  ", " ").replace(" ( ) ", " ")
     out = ""
     # logger.debug(txt)
     words = txt.split(" ")
@@ -74,9 +74,7 @@ def ngrams_web_dump(url, min_num_tokens, max_num_tokens) -> List[Tuple[int,str]]
 
     output = functions.create_ngram_statistics(out, min_num_tokens, max_num_tokens)
     for ngram in output:
-        if len(ngram) > 10 and not "( )" in ngram:
-            if ngram[0].isalpha():
-                out_l.append((output[ngram], ngram))
+        out_l.append((output[ngram], ngram))
     out_l.sort(reverse=True)
 
     return out_l

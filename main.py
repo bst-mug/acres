@@ -1,7 +1,7 @@
 import os
 import sys
 
-import acres.util.text
+import acres.rater
 
 acres.preprocess.resource_factory
 
@@ -11,15 +11,75 @@ clear = lambda: os.system('cls')
 # print(acres.rater.get_acronym_score("ICD", "Implantierbaren Ca Defibrillator (ICD)"))
 # print(acres.util.text.generate_all_variants_by_rules("Arterielle Verschlusskrankheit"))
 
+
 if 1 == 1:
+    # TODO: "Operation" does not appear in list!
+
+    acro = "ED"
+    left = "Patienten mit"
+    right = "die eine arterielle koronare Verschlusskrankheit"
 
     acro = "OP"
     left = "beim Hausarzt auf. Bitte diesbezüglich sämtliche Befunde zur"
     right = "mitnehmen. ¶ Für den Eingriff Thrombo-ASS und Plavix keinesf"
 
-    print(acres.rater.get_best_acronym_web_resolution(left, acro, right, 3, 7))
+    acro = "LV"
+    left = "¶ li.Vorhof mit ÐÐ mm mittelgradig vergrößert, RA und"
+    right = "groß, ¶ Aortenklappensklerose ohne signifikante Steno"
+
+    acro = "NINS"
+    left = "beginnende KHK ¶ NÐÐ.Ð Dialysepflichtige"
+    right = "IDDM(seit über ÐÐ Jahren)"
+
+    acro = "NYHA"
+    left = "Kardiologie Ambuzlanz erfolgte bei ¶ Belastungsdyspnoe"
+    right = "III mit zunehmender Leistungsminderung"
+
+    # not found => wrong suggestion
+    acro = "PAP"
+    left = "einem maximalen Gradienten ¶ von ÐÐmmHg.entsprechend einem"
+    right = "von rund ÐÐmmHg., kein    Pericarderguss"
+
+    acro = "RÖ"
+    left = "Gelenksspalt, keine Blockierungssymptomatik. ¶ "
+    right = "zeigt eine Abnützung des li Kniegelenkes"
+
+    # TODO: This example does not terminate
+    acro = "US-Ödemen"
+    left = "abnehmend, sowie das Auftreten von deutlichen"
+    right = "ohne"
+
+    # not found ("Ultraschallkardiogramm" is rather uncommon)
+    acro = "USKG"
+    left = "ein      Aortenvitium    und ¶ wie    das    heutige"
+    right = "zeigt, auch     ein    Mitralklappenvitium"
+
+    # not found => no suggestion
+    acro = "ZAVK"
+    left = "NYHA II Niereninsuffizienz Stadium III und"
+    right = "III mit zunehmender Leistungsminderung"
+
+    # found: correct!
+    acro = "ZAVK"
+    left = " "
+    right = "Carotis"
+
+    # found "Zack Spiegel im Preisvergleich bei idealo.de Kosmetikspiegel"
+    acro = "ZAVK"
+    left = " "
+    right = " "
+
+    r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(
+        left, acro, right, 3, 6)
+
+    for t in r:
+        s = acres.rater.get_acronym_score(acro, t[1])
+        if s[1] > 0:
+            print(str(t[0]) + "\t" + str(s[1]) + "\t" + s[0])
 
     1 / 0
+
+    print(acres.rater.get_best_acronym_web_resolution(left, acro, right, 3, 7))
 
     acro = "KHK"
     left = "de eine Koronarangiographie durchgeführt, dabei ¶ wurde eine"
