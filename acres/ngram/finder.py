@@ -107,37 +107,19 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
     :param max_num_tokens:
     :return:
     """
-    # dependency injection
-    ngramstat = resource_factory.get_ngramstat()
-    index = resource_factory.get_index()
-
-    # MAXLIST = 100
-    all_sets = []   # type: List[Set[int]]
-    sel_rows = []   # type: List[Tuple[int,str]]
-
     logger.debug("Minimum n-gram frequency: %d", minfreq)
     logger.debug("Maximum count of iterations: %d", maxcount)
     logger.debug("N-gram cardinality between %d and %d",
                  min_num_tokens, max_num_tokens)
 
-    regex_embed = _build_regex(str_left, str_middle, str_right)
-
     # set of selected ngrams for filtering
     if str_left == "<VOID>" and str_right == "<VOID>":
         logger.debug("No filter. Return empty list")
         return []
-    else:
-        # Generate list of words for limiting the search space via word index
-        str_complete = str_left.strip() + " " + str_middle.strip() + " " + str_right.strip()
-        all_tokens = str_complete.split(" ")
-        for token in all_tokens:
-            if token != "<VOID>" and token != "<SEL>":
-                all_sets.append(index[token])
-        ngram_selection = set.intersection(*all_sets)
-        for ngram_id in ngram_selection:
-            sel_rows.append(ngramstat[ngram_id])
 
-        logger.debug("Number of matching ngrams by word index: %d", len(sel_rows))
+    sel_rows = _build_sel_rows(str_left, str_middle, str_right)
+
+    regex_embed = _build_regex(str_left, str_middle, str_right)
 
     all_beds = _build_all_beds(sel_rows, regex_embed, max_num_tokens, min_num_tokens, minfreq, maxcount)
 
@@ -154,12 +136,12 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
         # print(len(sel_beds), sel_beds)
         logger.debug("Generated list of %d matching n-grams", count)
 
-    out = []
-    if count > 0:
-        max_num = (maxcount // count) + 3
-        logger.debug("Per matching n-gram %d surroundings", max_num)
-        out = _find_middle(str_middle, sel_beds, max_num)
-    return out
+    if count <= 0:
+        return []
+
+    max_num = (maxcount // count) + 3
+    logger.debug("Per matching n-gram %d surroundings", max_num)
+    return _find_middle(str_middle, sel_beds, max_num)
 
 
 def _build_regex(str_left: str, str_middle: str, str_right: str) -> str:
@@ -204,9 +186,38 @@ def _build_regex(str_left: str, str_middle: str, str_right: str) -> str:
     return regex_embed
 
 
+def _build_sel_rows(str_left: str, str_middle: str, str_right: str) -> List[Tuple[int,str]]:
+    """
+    Generate list of words for limiting the search space via word index
+
+    :param str_left:
+    :param str_middle:
+    :param str_right:
+    :return:
+    """
+    ngramstat = resource_factory.get_ngramstat()
+    index = resource_factory.get_index()
+
+    sel_rows = []   # type: List[Tuple[int,str]]
+    all_sets = []   # type: List[Set[int]]
+
+    str_complete = str_left.strip() + " " + str_middle.strip() + " " + str_right.strip()
+    all_tokens = str_complete.split(" ")
+    for token in all_tokens:
+        if token != "<VOID>" and token != "<SEL>":
+            all_sets.append(index[token])
+    ngram_selection = set.intersection(*all_sets)
+    for ngram_id in ngram_selection:
+        sel_rows.append(ngramstat[ngram_id])
+
+    logger.debug("Number of matching ngrams by word index: %d", len(sel_rows))
+
+    return sel_rows
+
+
 def _build_all_beds(sel_rows: List[Tuple[int,str]], regex_embed: str, max_num_tokens: int, min_num_tokens: int, minfreq: int, maxcount: int) -> List[Tuple[int,str]]:
     """
-    
+
     :param sel_rows:
     :param regex_embed:
     :param max_num_tokens:
