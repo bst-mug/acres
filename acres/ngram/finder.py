@@ -289,6 +289,7 @@ def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]], max_num: int)
         new_sets = []
         regex_bed = "^" + re.escape(bed) + "$"
         regex_bed = regex_bed.replace(str_middle_esc, "(.*)")
+        compiled_regex_bed = re.compile(regex_bed, re.IGNORECASE)
         surroundings = bed.replace(str_middle + " ", "").split(" ")
         for word in surroundings:
             logger.debug("Surrounding str_middle: %s", word)
@@ -305,7 +306,7 @@ def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]], max_num: int)
                 break
             (freq, ngram) = ngramstat[ngram_id]
             stripped_ngram = ngram.strip()
-            match = re.search(regex_bed, stripped_ngram, re.IGNORECASE)
+            match = compiled_regex_bed.search(stripped_ngram)
             if match is not None:
                 # logger.debug(regex_bed)
                 # logger.debug(row)
