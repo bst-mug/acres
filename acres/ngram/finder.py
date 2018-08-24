@@ -119,39 +119,12 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
     sel_rows = []   # type: List[Tuple[int,str]]
     count = 0
 
-    # Construction of regular expression
-    #                         Left             Middle              Right
-    # VOID	                  "^"                                   "$"
-    # Specified ("abc")	     "^abc\ "	      "abc"            "\ abc$"
-    # SELECTED                "^.*\ "                            "\ .*$"
-    # Build regular expression for matching ngram
-
-    # Three
-
-    if str_left == "<SEL>":
-        str_left_esc = "^.*\ "
-    elif str_left == "<VOID>":
-        str_left_esc = "^"
-    else:
-        str_left_esc = "^" + re.escape(str_left.strip()) + "\ "
-
-    str_middle_esc = re.escape(str_middle.strip())
-    if str_right == "<SEL>":
-        str_right_esc = "\ .*$"
-    elif str_right == "<VOID>":
-        str_right_esc = "$"
-    else:
-        str_right_esc = "\ " + re.escape(str_right.strip()) + "$"
-    regex_embed = str_left_esc + str_middle_esc + str_right_esc
-
-    logger.debug("Unknown expression: '%s'", str_middle_esc)
-    logger.debug("Left context: '%s'", str_left_esc)
-    logger.debug("Right context: '%s'", str_right_esc)
     logger.debug("Minimum n-gram frequency: %d", minfreq)
     logger.debug("Maximum count of iterations: %d", maxcount)
     logger.debug("N-gram cardinality between %d and %d",
                  min_num_tokens, max_num_tokens)
-    logger.debug("Regular expression: %s", regex_embed)
+
+    regex_embed = _build_regex(str_left, str_middle, str_right)
 
     # set of selected ngrams for filtering
     if str_left == "<VOID>" and str_right == "<VOID>":
@@ -213,6 +186,8 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
         logger.debug("Generated list of %d matching n-grams", count)
 
     if count > 0:
+        str_middle_esc = re.escape(str_middle.strip())
+
         max_num = (maxcount // count) + 3
         logger.debug("Per matching n-gram %d surroundings", max_num)
 
@@ -257,6 +232,48 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
         out.sort(reverse=True)
 
     return out
+
+
+def _build_regex(str_left: str, str_middle: str, str_right: str) -> str:
+    """
+
+    :param str_left:
+    :param str_middle:
+    :param str_right:
+    :return:
+    """
+    # Construction of regular expression
+    #                         Left             Middle              Right
+    # VOID	                  "^"                                   "$"
+    # Specified ("abc")	     "^abc\ "	      "abc"            "\ abc$"
+    # SELECTED                "^.*\ "                            "\ .*$"
+    # Build regular expression for matching ngram
+
+    # Three
+
+    str_middle_esc = re.escape(str_middle.strip())
+
+    if str_left == "<SEL>":
+        str_left_esc = "^.*\ "
+    elif str_left == "<VOID>":
+        str_left_esc = "^"
+    else:
+        str_left_esc = "^" + re.escape(str_left.strip()) + "\ "
+
+    if str_right == "<SEL>":
+        str_right_esc = "\ .*$"
+    elif str_right == "<VOID>":
+        str_right_esc = "$"
+    else:
+        str_right_esc = "\ " + re.escape(str_right.strip()) + "$"
+    regex_embed = str_left_esc + str_middle_esc + str_right_esc
+
+    logger.debug("Unknown expression: '%s'", str_middle_esc)
+    logger.debug("Left context: '%s'", str_left_esc)
+    logger.debug("Right context: '%s'", str_right_esc)
+    logger.debug("Regular expression: %s", regex_embed)
+
+    return regex_embed
 
 
 if __name__ == "__main__":
