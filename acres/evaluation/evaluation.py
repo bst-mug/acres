@@ -9,6 +9,7 @@ from typing import Dict, Tuple, List
 
 from acres.ngram import finder
 from acres.nn import test
+from acres.util import text
 
 logger = logging.getLogger(__name__)
 
@@ -109,9 +110,9 @@ def analyze_row(input_row: str) -> Dict[str, bool]:
 
     splitted_row = row.split("\t")
 
-    left_context = splitted_row[0]
+    left_context = text.context_ngram(splitted_row[0], 3, True)
     acronym = splitted_row[1]
-    right_context = splitted_row[2]
+    right_context = text.context_ngram(splitted_row[2], 3, False)
     true_expansions = splitted_row[3:]
 
     ngram_expansions = cached_resolve(acronym, left_context, right_context, Strategy.NGRAM)
