@@ -78,9 +78,11 @@ def create_ngram_statistics(input_string: str, n_min: int, n_max: int) -> Dict[s
     for line in lines:
         if line == '':
             continue
-        line = line.replace('\r', '')
-        line = line.replace('\n', '')
+        line = line.replace('\r', ' ')
+        line = line.replace('\n', ' ')
+        line = line.replace('  ', ' ')
         line = line.strip()
+        print(line)
         cleaned_line = line.split(" ")
         for n in range(n_min, n_max + 1):
             for i in range(len(cleaned_line) - n + 1):
@@ -146,3 +148,17 @@ def robust_text_import_from_dir(path: str) -> List[str]:
     return texts
 
 
+def Levenshtein(s, t):
+    if s == "":
+        return len(t)
+    if t == "":
+        return len(s)
+    if s[-1] == t[-1]:
+        cost = 0
+    else:
+        cost = 1
+
+    res = min([Levenshtein(s[:-1], t) + 1,
+               Levenshtein(s, t[:-1]) + 1,
+               Levenshtein(s[:-1], t[:-1]) + cost])
+    return res

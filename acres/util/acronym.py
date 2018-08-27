@@ -69,6 +69,17 @@ def is_acronym(str_probe: str, max_length: int = 7, digit_placeholder="Ð") -> b
     return ret
 
 
+def create_german_acronym(full):
+    out = ""
+    neg_list = (
+    "and", "auf", "bei", "bei", "beim", "by", "der", "des", "die", "et", "for", "für", "gegen", "im", "in", "mit",
+    "nach", "not", "of", "on", "than", "the", "to", "und", "vom", "von", "vor", "with", "zum", "zur")
+    full = full.replace("-", " ").replace("/", " ").replace("  ", " ").replace("  ", " ").strip()
+    for w in full.split(" "):
+        if w not in neg_list:
+            out = out + w[0].upper()
+    return out
+
 def is_proper_word(str_probe: str, digit_placeholder="Ð") -> bool:
     """
     A proper word is more than a single letter.

@@ -58,6 +58,13 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
     # "Vitamin C" should not be considered containg acronyms. Normally these compositions are
     # lexicalised
     # May be relevant for assessing single letter forms like "A cerebralis"
+
+    if "(" in full or ")" in full:
+        return (full, 0, "Parenthesis in full expression ")
+
+    if len(full) <= 5:
+        return (full, 0, "Full expression  too short")
+
     if len(acro) < 2:
         return (full, 0, "Single letter acronym")
     acro_low = acro.lower()
@@ -67,10 +74,18 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
         if full.islower():
             return (full, 0, "Full form without capitals")
 
-    # length restriction for full form
+    # length restrictions (according to analysis of
+    # "acro_full_reference.txt" (modified from Wikipedia))
     # TODO: could be much greater then 5. Look for cases in which this is an issue
-    if len(full) < 5:
+    if len(acro) / len(full) < 0.05:
+        return (full, 0, "Full form too long")
+
+    if len(acro) / len(full) > 0.6:
         return (full, 0, "Full form too short")
+
+    lev = acres.util.functions.Levenshtein(acro.upper(), acres.util.acronym.create_german_acronym(full))
+    if lev >= len(acro):
+        return (full, 0, "Levenshtein edit distance too high")
 
     # Schwartz / Hearst rule
     if full.count(" ") + 1 > len(acro) * 2:
@@ -183,6 +198,19 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
                     if full.split(" ")[-1][0].islower():
                         score = score * 0.25
 
+                # exact match of real acronym with generated acronym
+                if language == "de":
+                    if acres.util.functions.Levenshtein(acro.upper(),
+                                                        acres.util.acronym.create_german_acronym(full)) == 0:
+                        score = score * 5
+
+                # if short full form, the coincidence of the first two letters of full and acronym increases score
+                if full.count(" ") + 1 < len(acro):
+                    if full.upper()[0:2] == acro.upper()[0:2]:
+                        score = score * 3
+
+
+
         if old_score > score:
             score = old_score
 
@@ -195,7 +223,8 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
 
         if acro_low in full_low:
             score = score * 0.2
-    return full_old, score, 'End'
+
+    return full_old, round(score, 2), 'End'
 
 
 def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_len,
