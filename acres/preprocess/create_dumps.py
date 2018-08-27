@@ -121,7 +121,7 @@ def _generate_variants(ngrams: Dict[str, int]) -> Dict[str, int]:
     """
     empty_regex = re.compile("^\s*$")
 
-    output = {}
+    output = {}     # type: Dict[str, int]
     for (ngram, freq) in ngrams.items():
         output[ngram] = output.get(ngram, 0) + freq
 
