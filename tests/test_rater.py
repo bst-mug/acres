@@ -11,7 +11,7 @@ def test_get_acronym_score():
     assert 0 == rater.get_acronym_score("ABCDEL", "a b c d e f g h i j k ll")[1]  # Long acronym
 
     assert 0.2 == rater.get_acronym_score("NTX", "Nierentransplantation")[1]
-    assert 1.0 == rater.get_acronym_score("TRINS", "Tricuspidalinsuffizienz")[1]
+    assert 3.0 == rater.get_acronym_score("TRINS", "Tricuspidalinsuffizienz")[1]
     assert 1.0 == rater.get_acronym_score("EKG", "Elektrokardiogramm")[1]
     assert 1.0 == rater.get_acronym_score("AK", "Arbeitskammer")[1]
     assert 1.0 == rater.get_acronym_score("KHK", "koronare Herzkrankheit")[1]
