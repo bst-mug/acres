@@ -33,18 +33,6 @@ def test_transliterate_to_seven_bit():
     assert "ANGSTROM" == acres.util.text.transliterate_to_seven_bit("ångström", "en")
 
 
-def test_substitute_k_and_f_by_context():
-    assert "A" == acres.util.text.substitute_k_and_f_and_z_by_context("a")
-
-    # Acronyms should not be substituted
-    assert "aB" == acres.util.text.substitute_k_and_f_and_z_by_context("aB")
-    assert "abCdef" == acres.util.text.substitute_k_and_f_and_z_by_context("abCdef")
-
-    assert "PHARMACY" == acres.util.text.substitute_k_and_f_and_z_by_context("farmacy")
-
-    assert "F" == acres.util.text.substitute_k_and_f_and_z_by_context("F")
-
-
 def test_simplify_german_string():
     assert acres.util.text.simplify_german_string("LEBER") == "leber"
 

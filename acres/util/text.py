@@ -150,65 +150,6 @@ def transliterate_to_seven_bit(str_in: str, language="de") -> str:
     return "".join([substitutions.get(c, c) for c in str_in.upper()])
 
 
-def substitute_c_and_ph_by_context(str_in, language="de"):
-    """
-    Applies normalization rules that improves retrieval of
-    clinical terms. This function transforms an English / Latin spelling
-    pattern by a German one
-    Also maps to 7bit chars
-
-    :param str_in:
-    :param language: the language for which rules are defined (ISO_639-1)
-    :return:
-    """
-    # no Acronym
-    if language == "de":
-        if len(str_in) == 1:
-            return str_in.isupper()
-        if len(str_in) == 2 and str_in[1].isupper():
-            return str_in
-        if str_in[2].isupper():
-            return str_in
-        str_in = transliterate_to_seven_bit(str_in)
-        return str_in.replace("CAE", "ZAE").replace("COE", "ZOE"). \
-            replace("CA", "KA").replace("CO", "KO"). \
-            replace("CU", "KU").replace("CE", "ZE").replace("CI", "ZI"). \
-            replace("CY", "ZY").replace("PH", "F")
-
-
-def substitute_k_and_f_and_z_by_context(str_in, language="de"):
-    """
-    Applies normalization rules that improves retrieval of
-    clinical terms. This function transforms a German spelling
-    pattern by a English / Latin one.
-    Also maps to 7bit chars and upper case everything.
-    Input should be a single token.
-
-    @todo Enforce it's a single token
-
-    :param str_in:
-    :param language: the language for which rules are defined (ISO_639-1)
-    :return:
-    """
-    # no Acronym
-    if language == "de":
-        if len(str_in) == 1:
-            return str_in.upper()
-
-        # Check for acronym
-        # TODO Use is_acronym
-        if len(str_in) == 2 and str_in[1].isupper():
-            return str_in
-        if str_in[2].isupper():
-            return str_in
-
-        str_in = transliterate_to_seven_bit(str_in)
-        return str_in.replace("ZAE", "CAE").replace("ZOE", "COE"). \
-            replace("ZI", "CI").replace("ZE", "CE"). \
-            replace("KA", "CA").replace("KO", "CO").replace("KU", "CU"). \
-            replace("ZY", "CY").replace("F", "PH")
-
-
 def simplify_german_string(str_in_german: str) -> str:
     """
     Decapitalises, substitutes umlauts, sharp s and converts k and z to c
