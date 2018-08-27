@@ -63,7 +63,7 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
         return (full, 0, "Parenthesis in full expression ")
 
     if len(full) <= 5:
-        return (full, 0, "Full expression  too short")
+        return (full, 0, "Full expression too short")
 
     if len(acro) < 2:
         return (full, 0, "Single letter acronym")
