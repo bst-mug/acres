@@ -40,7 +40,7 @@ def show_extremes(txt, lst, lowest_n, highest_n):
                 break
 
 
-def run_tests()
+def run_tests():
 
     r = dump_sample(3, 3)
     for l in r:
