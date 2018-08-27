@@ -1,6 +1,7 @@
 """
 Utility functions related to text processing.
 """
+import re
 import string
 
 from acres.preprocess import resource_factory
@@ -400,3 +401,14 @@ def generate_all_variants_by_rules(st):
 def context_ngram(words: str, n: int, reverse = False) -> str:
     tokens = words.split(" ")
     return " ".join(tokens[-n:]) if reverse else " ".join(tokens[:n])
+
+
+def remove_duplicated_whitespaces(whitespaced: str) -> str:
+    """
+    Clean up an input string out of any number of repeated whitespaces.
+
+    :param whitespaced:
+    :return:
+    """
+    cleaner = re.compile("\s+")
+    return cleaner.sub(" ", whitespaced)

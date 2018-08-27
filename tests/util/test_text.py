@@ -56,3 +56,9 @@ def test_simplify_german_string():
     # XXX Is it expected?
     assert acres.util.text.simplify_german_string("herz") == "herc"
     assert acres.util.text.simplify_german_string("café") == "cafe"
+
+
+def test_remove_duplicated_whitespaces():
+    expected = "abc def ghi z"
+    actual = acres.util.text.remove_duplicated_whitespaces("abc    def   ghi z")
+    assert expected == actual

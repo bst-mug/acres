@@ -34,6 +34,13 @@ def test_is_acronym():
     assert acronym.is_acronym("5FU", 7)
 
 
+def test_create_german_acronym():
+    # Separated by hyphen and whitespace
+    expected = "WHB"
+    actual = acronym.create_german_acronym("Wert - - Herzkrank-Board")
+    assert expected == actual
+
+
 def test_is_proper_word():
     # Baseline
     assert True == acronym.is_proper_word("Elektrokardiogramm")
