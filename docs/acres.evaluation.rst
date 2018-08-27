@@ -4,6 +4,14 @@ acres.evaluation package
 Submodules
 ----------
 
+acres.evaluation.acro\_def\_sample module
+-----------------------------------------
+
+.. automodule:: acres.evaluation.acro_def_sample
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 acres.evaluation.corpus module
 ------------------------------
 
