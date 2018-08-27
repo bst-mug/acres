@@ -176,15 +176,15 @@ def reduce_repeated_chars(str_in, char, remaining_chars):
     """
     cnt = 0
     out = ""
-    for c in str_in:
-        if c == char:
+    for k in str_in:
+        if k == char:
             cnt += 1
             if cnt <= remaining_chars:
-                out = out + c
+                out = out + k
 
         else:
             cnt = 0
-            out = out + c
+            out = out + k
     return out
 
 
