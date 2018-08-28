@@ -191,6 +191,7 @@ def reduce_repeated_chars(str_in, char, remaining_chars):
 def replace_punctuation(punctuated: str) -> str:
     """
     Replaces punctuation marks (as defined by pyhton string collection) by a whitespace.
+
     :param punctuated: Punctuated string.
     :return: A non-punctuated string.
     """
