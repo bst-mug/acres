@@ -110,13 +110,11 @@ def find_synonyms() -> None:
                 # Set Parameters
 
                 if len(acronym) == 2:
-                    min_win_size = 7 + len(left_string) + len(right_string)
                     minfreq = 2
                     maxcount = 50
                     min_number_tokens = 1  # + ngram.count(" ")
                     max_number_tokens = 4 + ngram.count(" ")
                 else:
-                    min_win_size = 10 + len(left_string) + len(right_string)
                     minfreq = 2
                     maxcount = 50
                     min_number_tokens = 2  # + ngram.count(" ")
@@ -140,11 +138,8 @@ def find_synonyms() -> None:
                     left_string = "*"
                 if right_string == "":
                     right_string = "*"
-                li_corpus = finder.find_embeddings(left_string, acronym,
-                                                   right_string, min_win_size,
-                                                   minfreq, maxcount,
-                                                   min_number_tokens,
-                                                   max_number_tokens)
+                li_corpus = finder.find_embeddings(left_string, acronym, right_string, minfreq,
+                                                   maxcount, min_number_tokens, max_number_tokens)
 
                 _process_corpus(li_corpus, acronym, ngram, d_log_corpus)
                 _process_corpus(li_web, acronym, ngram, d_log_web)

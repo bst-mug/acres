@@ -15,23 +15,23 @@ def test__build_search_ngrams():
 
 def test_find_embeddings(ngramstat, index):
     # Explicit context
-    actual = finder.find_embeddings("<SEL>", "EKG", "¶", 10, 1, 100, 1, 5)
+    actual = finder.find_embeddings("<SEL>", "EKG", "¶", 1, 100, 1, 5)
     expected = [(19, 'Physikalischer Status')]
     assert set(expected).issubset(actual)
 
     # Relax right context
-    actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", 10, 1, 100, 1, 5)
+    actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", 1, 100, 1, 5)
     expected = [(19, 'Physikalischer Status')]
     assert set(expected).issubset(actual)
 
     # Relax left and right contexts
-    actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", 10, 1, 100, 1, 5)
+    actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", 1, 100, 1, 5)
     expected = [(19, 'Physikalischer Status')]
     assert set(expected).issubset(actual)
 
     # Changing min_num_tokens should restrict results
     # "* EKG ¶", the only valid embedding, happens 27 times
-    actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", 10, 28, 100, 1, 5)
+    actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", 28, 100, 1, 5)
     expected = [(19, 'Physikalischer Status')]
     assert not set(expected).issubset(actual)
 

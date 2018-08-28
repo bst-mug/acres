@@ -80,7 +80,7 @@ def robust_find_embeddings(acronym: str, left_context: str, right_context: str) 
 
         # Quick optimization: don't search for patterns that happens to be the same as last one
         if left_pattern != previous_left_pattern or right_pattern != previous_right_pattern:
-            embeddings = find_embeddings(left_pattern, acronym, right_pattern, 1, 1, 500, 2, 10)
+            embeddings = find_embeddings(left_pattern, acronym, right_pattern, 1, 500, 2, 10)
             if len(embeddings) > 0:
                 return _strip_frequencies(embeddings)
 
@@ -90,8 +90,8 @@ def robust_find_embeddings(acronym: str, left_context: str, right_context: str) 
     return []
 
 
-def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size: int, minfreq: int,
-                    maxcount: int, min_num_tokens: int, max_num_tokens: int) -> List[
+def find_embeddings(str_left: str, str_middle: str, str_right: str, minfreq: int, maxcount: int,
+                    min_num_tokens: int, max_num_tokens: int) -> List[
     Tuple[int, str]]:
     """
     Input str_middle, together with a series of filter parameters
@@ -100,7 +100,6 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, min_win_size
     :param str_left: string left of unknown ("<SEL>" if to be retrieved ; "<VOID>" if empty)
     :param str_middle: input nonlex form (with or without context words) for which synonym is sought
     :param str_right: string right uf unknown ("<SEL>" if to be retrieved ; "<VOID>" if empty")
-    :param min_win_size: minimum window size
     :param minfreq: minimum ngram frequency
     :param maxcount: maximum count in list
     :param min_num_tokens:
