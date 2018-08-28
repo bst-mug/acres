@@ -15,7 +15,6 @@ from acres.util import text
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-
 FinderConstraints = namedtuple('FinderConstraints', ['min_freq', 'max_count', 'min_num_tokens',
                                                      'max_num_tokens'])
 
@@ -188,7 +187,7 @@ def _build_regex(str_left: str, str_middle: str, str_right: str) -> Pattern[AnyS
     return re.compile(regex_embed, re.IGNORECASE)
 
 
-def _build_sel_rows(str_left: str, str_middle: str, str_right: str) -> List[Tuple[int,str]]:
+def _build_sel_rows(str_left: str, str_middle: str, str_right: str) -> List[Tuple[int, str]]:
     """
     Generate list of words for limiting the search space via word index
 
@@ -200,8 +199,8 @@ def _build_sel_rows(str_left: str, str_middle: str, str_right: str) -> List[Tupl
     ngramstat = resource_factory.get_ngramstat()
     index = resource_factory.get_index()
 
-    sel_rows = []   # type: List[Tuple[int,str]]
-    all_sets = []   # type: List[Set[int]]
+    sel_rows = []  # type: List[Tuple[int,str]]
+    all_sets = []  # type: List[Set[int]]
 
     str_complete = str_left.strip() + " " + str_middle.strip() + " " + str_right.strip()
     all_tokens = str_complete.split(" ")
@@ -217,7 +216,7 @@ def _build_sel_rows(str_left: str, str_middle: str, str_right: str) -> List[Tupl
     return sel_rows
 
 
-def _build_all_beds(sel_rows: List[Tuple[int,str]], regex_embed: Pattern[AnyStr],
+def _build_all_beds(sel_rows: List[Tuple[int, str]], regex_embed: Pattern[AnyStr],
                     finder_constraints: FinderConstraints) -> List[Tuple[int, str]]:
     """
 
@@ -239,7 +238,7 @@ def _build_all_beds(sel_rows: List[Tuple[int,str]], regex_embed: Pattern[AnyStr]
 
         ngram_card = ngram.count(" ") + 1  # cardinality of the nGram
         # Filter by ngram cardinality
-        if finder_constraints.max_num_tokens >= ngram_card >= finder_constraints.min_num_tokens:  # -1
+        if finder_constraints.max_num_tokens >= ngram_card >= finder_constraints.min_num_tokens:
             # watch out for multiword input str_middle
             # TODO: min should be at least 1 plus cardinality of middle term
             if freq >= finder_constraints.min_freq:
@@ -267,7 +266,8 @@ def _build_all_beds(sel_rows: List[Tuple[int,str]], regex_embed: Pattern[AnyStr]
     return all_beds
 
 
-def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]], max_num: int) -> List[Tuple[int, str]]:
+def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]], max_num: int) -> List[
+    Tuple[int, str]]:
     """
 
     :param str_middle:
@@ -278,7 +278,7 @@ def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]], max_num: int)
     ngramstat = resource_factory.get_ngramstat()
     index = resource_factory.get_index()
 
-    out = []        # type: List[Tuple[int,str]]
+    out = []  # type: List[Tuple[int,str]]
     digit = "Ð"
 
     str_middle_esc = re.escape(str_middle.strip())

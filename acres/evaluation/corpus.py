@@ -66,7 +66,8 @@ def get_web_dump_from_acro_with_context(left, acro, right, min_len, n_context, d
     # in Bing the order of tokens in a query matters. Therefore the query must start with the
     # acronym
     query = acro + " " + " ".join(proper_con[:n_context])
-    return get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1, max_tokens_in_ngram)
+    return get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1,
+                                              max_tokens_in_ngram)
 
 
 def find_synonyms() -> None:
@@ -82,10 +83,10 @@ def find_synonyms() -> None:
     acronym_ngrams = resource_factory.get_acronym_ngrams()
 
     # dictionary from which the logfile is generated
-    d_log_corpus = {}   # type: Dict[str, List[str]]
+    d_log_corpus = {}  # type: Dict[str, List[str]]
 
     # dictionary from which the logfile is generated
-    d_log_web = {}      # type: Dict[str, List[str]]
+    d_log_web = {}  # type: Dict[str, List[str]]
 
     logger.debug("Dumps loaded")
 
