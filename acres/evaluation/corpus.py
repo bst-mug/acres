@@ -110,15 +110,13 @@ def find_synonyms() -> None:
                 # Set Parameters
 
                 if len(acronym) == 2:
-                    minfreq = 2
-                    maxcount = 50
-                    min_number_tokens = 1  # + ngram.count(" ")
-                    max_number_tokens = 4 + ngram.count(" ")
+                    constraints = finder.FinderConstraints(min_freq=2, max_count=50,
+                                                           min_num_tokens=1,
+                                                           max_num_tokens=4 + ngram.count(" "))
                 else:
-                    minfreq = 2
-                    maxcount = 50
-                    min_number_tokens = 2  # + ngram.count(" ")
-                    max_number_tokens = 4 + ngram.count(" ")
+                    constraints = finder.FinderConstraints(min_freq=2, max_count=50,
+                                                           min_num_tokens=2,
+                                                           max_num_tokens=4 + ngram.count(" "))
 
                 # prepare parameters for Web model
                 if NUMERIC in ngram:
@@ -138,8 +136,7 @@ def find_synonyms() -> None:
                     left_string = "*"
                 if right_string == "":
                     right_string = "*"
-                li_corpus = finder.find_embeddings(left_string, acronym, right_string, minfreq,
-                                                   maxcount, min_number_tokens, max_number_tokens)
+                li_corpus = finder.find_embeddings(left_string, acronym, right_string, constraints)
 
                 _process_corpus(li_corpus, acronym, ngram, d_log_corpus)
                 _process_corpus(li_web, acronym, ngram, d_log_web)

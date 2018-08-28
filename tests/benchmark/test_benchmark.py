@@ -40,79 +40,97 @@ Abd.palp. unauff, lieg. PEG
 
 
 def test_find_embeddings():
-    actual = finder.find_embeddings("nach", "ICD", "Implantation", 2, 500, 1, 10)
+    finder_constraints = finder.FinderConstraints(min_freq=2, max_count=500, min_num_tokens=1,
+                                                  max_num_tokens=10)
+    actual = finder.find_embeddings("nach", "ICD", "Implantation", finder_constraints)
     expected = [(76, 'CRT/ICD'), (50, 'prophylaktischer CRT/ICD'), (42, 'prophylaktischer ICD')]
     assert set(expected).issubset(actual)
 
-    actual = finder.find_embeddings("<SEL>", "HF-Anstieg", "von", 2, 500, 1, 10)
+    actual = finder.find_embeddings("<SEL>", "HF-Anstieg", "von", finder_constraints)
     expected = []
     assert set(expected).issubset(actual)
 
-    actual = finder.find_embeddings("<SEL>", "HT", "rein", 2, 500, 1, 10)
+    actual = finder.find_embeddings("<SEL>", "HT", "rein", finder_constraints)
     expected = []
     assert set(expected).issubset(actual)
 
     # viele Treffer, die mit Ht anfangen
-    actual = finder.find_embeddings("geplanten", "EPU", "*", 2, 500, 1, 10)
+    actual = finder.find_embeddings("geplanten", "EPU", "*", finder_constraints)
     expected = []
     assert set(expected).issubset(actual)
 
-    actual = finder.find_embeddings("einem", "EDP", "von", 2, 500, 1, 10)
+    actual = finder.find_embeddings("einem", "EDP", "von", finder_constraints)
     expected = [(1737, 'max. Gradienten'), (710, 'mittleren Gradienten'), (325, 'LVEDD')]
     assert set(expected).issubset(actual)
 
     # wird nicht gefunden
-    actual = finder.find_embeddings("gutem", "AZ", "nach", 2, 100, 1, 10)
+    stricter_max_count = finder.FinderConstraints(min_freq=2, max_count=100, min_num_tokens=1,
+                                                  max_num_tokens=10)
+    actual = finder.find_embeddings("gutem", "AZ", "nach", stricter_max_count)
     expected = [(311, 'AZ und mit blander Punktionsstelle'), (277, 'AZ wieder'),
                 (140, 'AZ und bei blander Punktionsstelle')]
     assert set(expected).issubset(actual)
 
-    actual = finder.find_embeddings("die", "VCS.", "<SEL>", 2, 500, 1, 10)
+    actual = finder.find_embeddings("die", "VCS.", "<SEL>", finder_constraints)
     expected = []
     assert set(expected).issubset(actual)
 
-    actual = finder.find_embeddings("<SEL>", "DG's", "<SEL>", 2, 500, 1, 10)
+    actual = finder.find_embeddings("<SEL>", "DG's", "<SEL>", finder_constraints)
     expected = []
     assert set(expected).issubset(actual)
 
     # only without restricted context the resolution is found
     # only DG's resolved, not DGs
-    actual = finder.find_embeddings("die", "VCS.", "<SEL>", 2, 500, 1, 10)
+    actual = finder.find_embeddings("die", "VCS.", "<SEL>", finder_constraints)
     expected = []
     assert set(expected).issubset(actual)
 
     # only works with final dot!
-    actual = finder.find_embeddings("re", "OL", "<SEL>", 2, 500, 1, 10)
+    actual = finder.find_embeddings("re", "OL", "<SEL>", finder_constraints)
     expected = []
     assert set(expected).issubset(actual)
 
-    actual = finder.find_embeddings("die", "VCS", "<VOID>", 1, 100, 1, 10)
+    actual = finder.find_embeddings("die", "VCS", "<VOID>",
+                                    finder.FinderConstraints(min_freq=1, max_count=100,
+                                                             min_num_tokens=1, max_num_tokens=10))
     expected = []
     assert set(expected).issubset(actual)
 
     # Code originally commented out below #
 
-    actual = finder.find_embeddings("", "morph.", "", 3, 1000, 1, 7)
+    actual = finder.find_embeddings("", "morph.", "",
+                                    finder.FinderConstraints(min_freq=3, max_count=1000,
+                                                             min_num_tokens=1, max_num_tokens=7))
     expected = []
     assert set(expected).issubset(actual)
 
-    actual = finder.find_embeddings("Mitralklappe", "morph.", "*", 3, 1000, 1, 7)
+    actual = finder.find_embeddings("Mitralklappe", "morph.", "*",
+                                    finder.FinderConstraints(min_freq=3, max_count=1000,
+                                                             min_num_tokens=1, max_num_tokens=7))
     expected = []
     assert set(expected).issubset(actual)
 
-    actual = finder.find_embeddings("", "morph.", "", 3, 1000, 1, 1)
+    actual = finder.find_embeddings("", "morph.", "",
+                                    finder.FinderConstraints(min_freq=3, max_count=1000,
+                                                             min_num_tokens=1, max_num_tokens=1))
     expected = []
     assert set(expected).issubset(actual)
 
-    actual = finder.find_embeddings("", "morph.", "unauff.", 3, 1000, 3, 7)
+    actual = finder.find_embeddings("", "morph.", "unauff.",
+                                    finder.FinderConstraints(min_freq=3, max_count=1000,
+                                                             min_num_tokens=3, max_num_tokens=7))
     expected = []
     assert set(expected).issubset(actual)
 
-    actual = finder.find_embeddings("<SEL>", "ms", "<SEL>", 30, 500, 1, 5)
+    actual = finder.find_embeddings("<SEL>", "ms", "<SEL>",
+                                    finder.FinderConstraints(min_freq=30, max_count=500,
+                                                             min_num_tokens=1, max_num_tokens=5))
     expected = []
     assert set(expected).issubset(actual)
 
-    actual = finder.find_embeddings("Ð,Ð", "ms", "", 3, 500, 1, 7)
+    actual = finder.find_embeddings("Ð,Ð", "ms", "",
+                                    finder.FinderConstraints(min_freq=3, max_count=500,
+                                                             min_num_tokens=1, max_num_tokens=7))
     expected = []
     assert set(expected).issubset(actual)
 

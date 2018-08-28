@@ -5,6 +5,7 @@ Finds synonyms using a n-gram frequency list from related corpus
 
 import logging
 import re
+from collections import namedtuple
 from typing import List, Tuple, Set, Pattern, AnyStr
 
 from acres.preprocess import resource_factory
@@ -13,6 +14,10 @@ from acres.util import text
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+
+FinderConstraints = namedtuple('FinderConstraints', ['min_freq', 'max_count', 'min_num_tokens',
+                                                     'max_num_tokens'])
 
 
 def _build_search_ngrams(context: str, reverse=False) -> Tuple[str, str, str]:
@@ -73,6 +78,8 @@ def robust_find_embeddings(acronym: str, left_context: str, right_context: str) 
                 ("<SEL>", "<VOID>"), ("<VOID>", "<SEL>")  # <SEL> + <VOID>
                 ]
 
+    finder_constraints = FinderConstraints(min_freq=1, max_count=500, min_num_tokens=2,
+                                           max_num_tokens=10)
     previous_left_pattern = previous_right_pattern = ""
     for pattern in patterns:
         (left_pattern, right_pattern) = pattern
@@ -80,7 +87,7 @@ def robust_find_embeddings(acronym: str, left_context: str, right_context: str) 
 
         # Quick optimization: don't search for patterns that happens to be the same as last one
         if left_pattern != previous_left_pattern or right_pattern != previous_right_pattern:
-            embeddings = find_embeddings(left_pattern, acronym, right_pattern, 1, 500, 2, 10)
+            embeddings = find_embeddings(left_pattern, acronym, right_pattern, finder_constraints)
             if len(embeddings) > 0:
                 return _strip_frequencies(embeddings)
 
@@ -90,9 +97,8 @@ def robust_find_embeddings(acronym: str, left_context: str, right_context: str) 
     return []
 
 
-def find_embeddings(str_left: str, str_middle: str, str_right: str, minfreq: int, maxcount: int,
-                    min_num_tokens: int, max_num_tokens: int) -> List[
-    Tuple[int, str]]:
+def find_embeddings(str_left: str, str_middle: str, str_right: str,
+                    finder_constraints: FinderConstraints) -> List[Tuple[int, str]]:
     """
     Input str_middle, together with a series of filter parameters
     Three cases of embeddings: 1. bilateral, 2.left, 3.right
@@ -100,16 +106,13 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, minfreq: int
     :param str_left: string left of unknown ("<SEL>" if to be retrieved ; "<VOID>" if empty)
     :param str_middle: input nonlex form (with or without context words) for which synonym is sought
     :param str_right: string right uf unknown ("<SEL>" if to be retrieved ; "<VOID>" if empty")
-    :param minfreq: minimum ngram frequency
-    :param maxcount: maximum count in list
-    :param min_num_tokens:
-    :param max_num_tokens:
+    :param finder_constraints:
     :return:
     """
-    logger.debug("Minimum n-gram frequency: %d", minfreq)
-    logger.debug("Maximum count of iterations: %d", maxcount)
+    logger.debug("Minimum n-gram frequency: %d", finder_constraints.min_freq)
+    logger.debug("Maximum count of iterations: %d", finder_constraints.max_count)
     logger.debug("N-gram cardinality between %d and %d",
-                 min_num_tokens, max_num_tokens)
+                 finder_constraints.min_num_tokens, finder_constraints.max_num_tokens)
 
     # set of selected ngrams for filtering
     if str_left == "<VOID>" and str_right == "<VOID>":
@@ -120,7 +123,7 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, minfreq: int
 
     regex_embed = _build_regex(str_left, str_middle, str_right)
 
-    all_beds = _build_all_beds(sel_rows, regex_embed, max_num_tokens, min_num_tokens, minfreq, maxcount)
+    all_beds = _build_all_beds(sel_rows, regex_embed, finder_constraints)
 
     count = len(all_beds)
 
@@ -138,7 +141,7 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str, minfreq: int
     if count <= 0:
         return []
 
-    max_num = (maxcount // count) + 3
+    max_num = (finder_constraints.max_count // count) + 3
     logger.debug("Per matching n-gram %d surroundings", max_num)
     return _find_middle(str_middle, sel_beds, max_num)
 
@@ -214,15 +217,15 @@ def _build_sel_rows(str_left: str, str_middle: str, str_right: str) -> List[Tupl
     return sel_rows
 
 
-def _build_all_beds(sel_rows: List[Tuple[int,str]], regex_embed: Pattern[AnyStr], max_num_tokens: int, min_num_tokens: int, minfreq: int, maxcount: int) -> List[Tuple[int,str]]:
+def _build_all_beds(sel_rows: List[Tuple[int,str]], regex_embed: Pattern[AnyStr],
+                    finder_constraints: FinderConstraints) -> List[Tuple[int, str]]:
     """
+
+    #max_num_tokens: int, min_num_tokens: int, minfreq: int, maxcount: int
 
     :param sel_rows:
     :param regex_embed:
-    :param max_num_tokens:
-    :param min_num_tokens:
-    :param minfreq:
-    :param maxcount:
+    :param finder_constraints:
     :return:
     """
     all_beds = []  # type: List[Tuple[int,str]]
@@ -236,10 +239,10 @@ def _build_all_beds(sel_rows: List[Tuple[int,str]], regex_embed: Pattern[AnyStr]
 
         ngram_card = ngram.count(" ") + 1  # cardinality of the nGram
         # Filter by ngram cardinality
-        if max_num_tokens >= ngram_card >= min_num_tokens:  # -1
+        if finder_constraints.max_num_tokens >= ngram_card >= finder_constraints.min_num_tokens:  # -1
             # watch out for multiword input str_middle
             # TODO: min should be at least 1 plus cardinality of middle term
-            if freq >= minfreq:
+            if freq >= finder_constraints.min_freq:
                 # might suppress low n-gram frequencies
                 # TODO: probably best 1, could be increased for performance
                 # the current ngram dump and index were created on a lower frequency bound of 2
@@ -255,7 +258,7 @@ def _build_all_beds(sel_rows: List[Tuple[int,str]], regex_embed: Pattern[AnyStr]
                     all_beds.append(row)
                     logger.debug("%d: %s", freq, ngram)
                     count += 1
-                    if count >= maxcount:
+                    if count >= finder_constraints.max_count:
                         logger.debug("List cut at %d", count)
                         break
 

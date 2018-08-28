@@ -14,24 +14,29 @@ def test__build_search_ngrams():
 
 
 def test_find_embeddings(ngramstat, index):
+    finder_constraints = finder.FinderConstraints(min_freq=1, max_count=100, min_num_tokens=1,
+                                                  max_num_tokens=5)
+
     # Explicit context
-    actual = finder.find_embeddings("<SEL>", "EKG", "¶", 1, 100, 1, 5)
+    actual = finder.find_embeddings("<SEL>", "EKG", "¶", finder_constraints)
     expected = [(19, 'Physikalischer Status')]
     assert set(expected).issubset(actual)
 
     # Relax right context
-    actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", 1, 100, 1, 5)
+    actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", finder_constraints)
     expected = [(19, 'Physikalischer Status')]
     assert set(expected).issubset(actual)
 
     # Relax left and right contexts
-    actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", 1, 100, 1, 5)
+    actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", finder_constraints)
     expected = [(19, 'Physikalischer Status')]
     assert set(expected).issubset(actual)
 
     # Changing min_num_tokens should restrict results
+    finder_constraints = finder.FinderConstraints(min_freq=1, max_count=100, min_num_tokens=28,
+                                                  max_num_tokens=5)
     # "* EKG ¶", the only valid embedding, happens 27 times
-    actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", 28, 100, 1, 5)
+    actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", finder_constraints)
     expected = [(19, 'Physikalischer Status')]
     assert not set(expected).issubset(actual)
 
