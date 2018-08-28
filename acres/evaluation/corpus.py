@@ -37,35 +37,37 @@ def get_web_dump_from_acro_with_context(left, acro, right, min_len, n_context, d
     :return: token ngram list with possible acronym expansion
     """
 
-    l_con = []
-    r_con = []
-    proper_con = []
+    cleaned_left_context = []
+    cleaned_right_context = []
+    proper_context = []
     # reduce right and left context to words of minimal length min_len
     # writing into the same tuple, alternating
     left = acres.util.text.replace_punctuation(left)
     right = acres.util.text.replace_punctuation(right)
-    lcL = left.split(" ")
-    # lcL = lcL.reverse()
-    rcL = right.split(" ")
-    for w in reversed(lcL):
-        if len(w) >= min_len:
-            if not (digit_placehoder in w or newline_placeholder in w):
-                l_con.append(w)
-    for w in rcL:
-        if len(w) >= min_len:
-            if not (digit_placehoder in w or newline_placeholder in w):
-                r_con.append(w)
+    left_context = left.split(" ")
+    # left_context = left_context.reverse()
+    right_context = right.split(" ")
+    for word in reversed(left_context):
+        if len(word) >= min_len:
+            if not (digit_placehoder in word or newline_placeholder in word):
+                cleaned_left_context.append(word)
+    for word in right_context:
+        if len(word) >= min_len:
+            if not (digit_placehoder in word or newline_placeholder in word):
+                cleaned_right_context.append(word)
     i = 0
     while True:
-        if i < len(l_con): proper_con.append(l_con[i])
-        if i < len(r_con): proper_con.append(r_con[i])
+        if i < len(cleaned_left_context):
+            proper_context.append(cleaned_left_context[i])
+        if i < len(cleaned_right_context):
+            proper_context.append(cleaned_right_context[i])
         i = i + 1
-        if i >= len(l_con) and i >= len(r_con):
+        if i >= len(cleaned_left_context) and i >= len(cleaned_right_context):
             break
     # now we have a list with the context words starting with the ones closest to the acronym
     # in Bing the order of tokens in a query matters. Therefore the query must start with the
     # acronym
-    query = acro + " " + " ".join(proper_con[:n_context])
+    query = acro + " " + " ".join(proper_context[:n_context])
     return get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1,
                                               max_tokens_in_ngram)
 
@@ -159,21 +161,20 @@ def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str,
     :param log:
     :return:
     """
-    morphemes = resource_factory.get_morphemes()
-    # TODO: as morphemes are not a public resource, maybe ignore them at least in
-    # TODO: our experiments
+    # morphemes = resource_factory.get_morphemes()
+    # TODO: as morphemes are not a public resource, maybe ignore them at least in our experiments
     dia = text.diacritics()  # list of diacritic characters
 
     for item in corpus:
         old_exp = ""
         (freq, exp) = item  # Frequency, Ngram expression
 
-        first_condition = re.search("^[\s\-A-Za-z0-9" + dia + "]*$", exp) is not None
+        first_condition = re.search(r"^[\s\-A-Za-z0-9" + dia + "]*$", exp) is not None
         second_condition = acronym.lower() != exp.lower()[0:len(acronym.lower())]
         if first_condition and second_condition:
             if exp != old_exp:
                 # score_corpus = 0
-                (full, score_corpus, reason) = rater.get_acronym_score(acronym, exp)
+                score_corpus = rater.get_acronym_score(acronym, exp)[1]
                 if score_corpus > 0:
                     a = str(round(score_corpus * math.log10(freq), 2))
                     b = str(round(score_corpus, 2))
