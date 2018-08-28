@@ -7,7 +7,6 @@ import re
 from typing import Tuple
 
 import acres.util.acronym
-from acres.evaluation import corpus
 
 logger = logging.getLogger(__name__)
 
@@ -225,35 +224,6 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
             score = score * 0.2
 
     return full_old, round(score, 2), 'End'
-
-
-def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_len,
-                                    maximum_word_count):
-    """
-    This is the main file to be used to leverage Bing search for resolving acronyms
-
-    :param left: left context of acronym to be expanded (any length)
-    :param acro: acronym to be expanded
-    :param right: right context of acronym to be expanded (any length)
-    :param minimum_len: the minimum length of the context words to be considered (e.g. to exclude
-    short articles etc.)
-    :param maximum_word_count: the maximum of context words that are put into the query
-    :return: best expansion of acronym, rating
-    """
-    ngrams = corpus.get_web_dump_from_acro_with_context(
-        left, acro, right, minimum_len, maximum_word_count)
-    old_weight = 0
-    out = ""
-    for (freq, ngram) in ngrams:
-        (full, score, reason) = get_acronym_score(acro, ngram, language="de")
-        if score > 0.0:
-            print(score, full)
-        if score > 0:
-            weight = freq * score
-            if weight > old_weight:
-                out = full
-            old_weight = weight
-    return (out, weight)
 
 
 if __name__ == "__main__":

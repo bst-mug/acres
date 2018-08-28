@@ -24,54 +24,6 @@ VERBOSE = False
 DIV = 1  # for sampling, if no sampling DIV = 1. Sampling is used for testing
 
 
-def get_web_dump_from_acro_with_context(left, acro, right, min_len, n_context, digit_placehoder="Ð",
-                                        newline_placeholder="¶", max_tokens_in_ngram=8):
-    """
-    This routine throws acronyms with left and right context (like in Excel table) to Bing and
-    generates an n-gram statistic
-
-    :param acro: acronym
-    :param left: left context
-    :param right: right context
-    :param: min_len: minimal length of a context word
-    :return: token ngram list with possible acronym expansion
-    """
-
-    cleaned_left_context = []
-    cleaned_right_context = []
-    proper_context = []
-    # reduce right and left context to words of minimal length min_len
-    # writing into the same tuple, alternating
-    left = acres.util.text.replace_punctuation(left)
-    right = acres.util.text.replace_punctuation(right)
-    left_context = left.split(" ")
-    # left_context = left_context.reverse()
-    right_context = right.split(" ")
-    for word in reversed(left_context):
-        if len(word) >= min_len:
-            if not (digit_placehoder in word or newline_placeholder in word):
-                cleaned_left_context.append(word)
-    for word in right_context:
-        if len(word) >= min_len:
-            if not (digit_placehoder in word or newline_placeholder in word):
-                cleaned_right_context.append(word)
-    i = 0
-    while True:
-        if i < len(cleaned_left_context):
-            proper_context.append(cleaned_left_context[i])
-        if i < len(cleaned_right_context):
-            proper_context.append(cleaned_right_context[i])
-        i = i + 1
-        if i >= len(cleaned_left_context) and i >= len(cleaned_right_context):
-            break
-    # now we have a list with the context words starting with the ones closest to the acronym
-    # in Bing the order of tokens in a query matters. Therefore the query must start with the
-    # acronym
-    query = acro + " " + " ".join(proper_context[:n_context])
-    return get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1,
-                                              max_tokens_in_ngram)
-
-
 def find_synonyms() -> None:
     """
     TODO: this routine was originally intended to process a large list of acronyms + contexts

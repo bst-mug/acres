@@ -1,7 +1,7 @@
 import os
 import sys
 
-import acres.rater
+import acres.web.get_web_ngram_stat
 
 acres.preprocess.resource_factory
 
@@ -79,13 +79,13 @@ if 1 == 1:
 
     1 / 0
 
-    print(acres.rater.get_best_acronym_web_resolution(left, acro, right, 3, 7))
+    print(acres.web.get_web_ngram_stat.get_best_acronym_web_resolution(left, acro, right, 3, 7))
 
     acro = "KHK"
     left = "de eine Koronarangiographie durchgeführt, dabei ¶ wurde eine"
     right = "ausgeschlossen und eine hypertensive Herzkrankheit ¶ festges"
 
-    print(acres.rater.get_best_acronym_web_resolution(left, acro, right, 3, 7))
+    print(acres.web.get_web_ngram_stat.get_best_acronym_web_resolution(left, acro, right, 3, 7))
 
     1 / 0
     r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(
