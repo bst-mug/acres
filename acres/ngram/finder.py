@@ -87,7 +87,7 @@ def robust_find_embeddings(acronym: str, left_context: str, right_context: str) 
         # Quick optimization: don't search for patterns that happens to be the same as last one
         if left_pattern != previous_left_pattern or right_pattern != previous_right_pattern:
             embeddings = find_embeddings(left_pattern, acronym, right_pattern, finder_constraints)
-            if len(embeddings) > 0:
+            if embeddings:
                 return _strip_frequencies(embeddings)
 
             previous_left_pattern = left_pattern
@@ -126,16 +126,11 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str,
 
     count = len(all_beds)
 
-    sel_beds = functions.random_sub_list(all_beds, count)
-    # print(sel_beds)
     # random selection of hits, to avoid explosion
-    logger.debug("Embeddings:")
-    if logger.getEffectiveLevel() == logging.DEBUG:
-        for (freq, ngram) in all_beds:
-            logger.debug("%d\t%s", freq, ngram)
+    sel_beds = functions.random_sub_list(all_beds, count)
 
-        # print(len(sel_beds), sel_beds)
-        logger.debug("Generated list of %d matching n-grams", count)
+    if logger.getEffectiveLevel() == logging.DEBUG:
+        _debug_embeddings(all_beds)
 
     if count <= 0:
         return []
@@ -165,18 +160,18 @@ def _build_regex(str_left: str, str_middle: str, str_right: str) -> Pattern[AnyS
     str_middle_esc = re.escape(str_middle.strip())
 
     if str_left == "<SEL>":
-        str_left_esc = "^.*\ "
+        str_left_esc = r"^.*\ "
     elif str_left == "<VOID>":
         str_left_esc = "^"
     else:
-        str_left_esc = "^" + re.escape(str_left.strip()) + "\ "
+        str_left_esc = "^" + re.escape(str_left.strip()) + r"\ "
 
     if str_right == "<SEL>":
-        str_right_esc = "\ .*$"
+        str_right_esc = r"\ .*$"
     elif str_right == "<VOID>":
         str_right_esc = "$"
     else:
-        str_right_esc = "\ " + re.escape(str_right.strip()) + "$"
+        str_right_esc = r"\ " + re.escape(str_right.strip()) + "$"
     regex_embed = str_left_esc + str_middle_esc + str_right_esc
 
     logger.debug("Unknown expression: '%s'", str_middle_esc)
@@ -261,9 +256,16 @@ def _build_all_beds(sel_rows: List[Tuple[int, str]], regex_embed: Pattern[AnyStr
                         logger.debug("List cut at %d", count)
                         break
 
-    logger.debug("COUNT: " + str(count))
+    logger.debug("COUNT: %d", count)
 
     return all_beds
+
+
+def _debug_embeddings(all_beds: List[Tuple[int, str]]) -> None:
+    logger.debug("Embeddings:")
+    for (freq, ngram) in all_beds:
+        logger.debug("%d\t%s", freq, ngram)
+    logger.debug("Generated list of %d matching n-grams", len(all_beds))
 
 
 def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]], max_num: int) -> List[
@@ -279,7 +281,6 @@ def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]], max_num: int)
     index = resource_factory.get_index()
 
     out = []  # type: List[Tuple[int,str]]
-    digit = "Ð"
 
     str_middle_esc = re.escape(str_middle.strip())
 
@@ -315,7 +316,7 @@ def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]], max_num: int)
                 long_form = match.group(1).strip()
                 if len(long_form) > len(str_middle) and \
                         "¶" not in long_form and \
-                        digit not in long_form:
+                        "Ð" not in long_form:
                     # logger.debug(ngramfrecquency, long_form, "   [" + ngram + "]")
                     counter += 1
                     rec = (freq, long_form.strip())
@@ -324,7 +325,3 @@ def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]], max_num: int)
 
     out.sort(reverse=True)
     return out
-
-
-if __name__ == "__main__":
-    pass
