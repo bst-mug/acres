@@ -1,12 +1,16 @@
-def _resolve_ambiguous_lists(lists):
+from typing import List, Union, Tuple
+
+
+def _resolve_ambiguous_lists(lists: List[List[Union[str, Tuple[str, str]]]]) -> List[
+    List[Union[str, Tuple[str, str]]]]:
     """
 
     :param lists:
     :return:
     """
     for a_list in lists:
-        list0 = []
-        list1 = []
+        list0 = []  # type: List[Union[str, Tuple[str, str]]]
+        list1 = []  # type: List[Union[str, Tuple[str, str]]]
         is_open = True
         is_tuple = False
         for element in a_list:
@@ -24,8 +28,11 @@ def _resolve_ambiguous_lists(lists):
         else:
             return lists
 
+    return [[]]
 
-def _create_string_variants_as_list(a_string, search, replace):
+
+def _create_string_variants_as_list(a_string: str, search: str, replace: str) -> List[
+    Union[str, Tuple[str, str]]]:
     """
     Analyses a string a_string for all substrings.
 
@@ -36,7 +43,7 @@ def _create_string_variants_as_list(a_string, search, replace):
     """
     if search == "":
         return [a_string]
-    ret = []
+    ret = []  # type: List[Union[str, Tuple[str, str]]]
     i = 0
     built_string = ""
     while True:
@@ -57,7 +64,7 @@ def _create_string_variants_as_list(a_string, search, replace):
             return ret
 
 
-def _list_to_string(a_list):
+def _list_to_string(a_list: List[Union[str, Tuple[str, str]]]) -> str:
     """
     transforms input of list
     if a list element is not a string: -> empty string
@@ -74,7 +81,7 @@ def _list_to_string(a_list):
     return out
 
 
-def _list_all_string_variants(a_string, search, replace):
+def _list_all_string_variants(a_string: str, search: str, replace: str) -> List[str]:
     """
 
     :param a_string:
@@ -83,6 +90,7 @@ def _list_all_string_variants(a_string, search, replace):
     :return:
     """
     out = []
+    # XXX Why do we need to encapsulate the return of _create_string_variants_as_list in a list?
     a_list = _resolve_ambiguous_lists([_create_string_variants_as_list(a_string, search, replace)])
     for element in a_list:
         a_string = _list_to_string(element)
@@ -91,7 +99,7 @@ def _list_all_string_variants(a_string, search, replace):
     return out
 
 
-def generate_all_variants_by_rules(raw_string):
+def generate_all_variants_by_rules(raw_string: str) -> List[str]:
     """
 
     :param raw_string:
