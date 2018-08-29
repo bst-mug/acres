@@ -212,15 +212,15 @@ def resolve_ambiguous_lists(lists):
         list1 = []
         is_open = True
         is_tuple = False
-        for e in a_list:
-            if type(e) is tuple and is_open:
-                list0.append(e[0])
-                list1.append(e[1])
+        for element in a_list:
+            if isinstance(element, tuple) and is_open:
+                list0.append(element[0])
+                list1.append(element[1])
                 is_open = False
                 is_tuple = True
             else:
-                list0.append(e)
-                list1.append(e)
+                list0.append(element)
+                list1.append(element)
         if is_tuple:
             lists.append(list0)
             lists.append(list1)
@@ -228,47 +228,48 @@ def resolve_ambiguous_lists(lists):
             return lists
 
 
-def create_string_variants_as_list(st, se, re):
+def create_string_variants_as_list(a_string, search, replace):
     """
-    Analyses a string st for all substrings.
+    Analyses a string a_string for all substrings.
 
-    :param st:
-    :param se:
-    :param re:
+    :param a_string:
+    :param search:
+    :param replace:
     :return: A list constituted by non-substitutable strings and/or search/replace pairs
     """
-    if se == "":
-        return [st]
-    r = []
+    if search == "":
+        return [a_string]
+    ret = []
     i = 0
-    s = ""
+    built_string = ""
     while True:
-        c = st[i]
-        j = i + len(se)
-        if st[i:j] == se:
-            if s != "": r.append(s)
-            s = ""
-            r.append((se, re))
-            i = i + len(se)
+        char = a_string[i]
+        j = i + len(search)
+        if a_string[i:j] == search:
+            if built_string != "":
+                ret.append(built_string)
+            built_string = ""
+            ret.append((search, replace))
+            i = i + len(search)
         else:
-            s = s + c
+            built_string = built_string + char
             i = i + 1
-        if i >= len(st):
-            if s != "":
-                r.append(s)
-            return r
+        if i >= len(a_string):
+            if built_string != "":
+                ret.append(built_string)
+            return ret
 
 
-def list_to_string(lst):
+def list_to_string(a_list):
     """
     transforms input of list
     if a list element is not a string: -> empty string
 
-    :param lst:
+    :param a_list:
     :return:
     """
     out = ""
-    for element in lst:
+    for element in a_list:
         if isinstance(element, str):
             out = out + element
         else:
@@ -279,16 +280,16 @@ def list_to_string(lst):
 # print(list_to_string(["a", "b" , "c", ("g", "e")]))
 
 
-def list_all_string_variants(st, se, re):
+def list_all_string_variants(a_string, search, replace):
     """
 
-    :param st:
-    :param se:
-    :param re:
+    :param a_string:
+    :param search:
+    :param replace:
     :return:
     """
     out = []
-    a_list = resolve_ambiguous_lists([create_string_variants_as_list(st, se, re)])
+    a_list = resolve_ambiguous_lists([create_string_variants_as_list(a_string, search, replace)])
     for element in a_list:
         a_string = list_to_string(element)
         if a_string != "":
@@ -298,10 +299,10 @@ def list_all_string_variants(st, se, re):
 
 # print(list_all_string_variants("cyclophosphamid", "id", "ide"))
 
-def generate_all_variants_by_rules(st):
+def generate_all_variants_by_rules(raw_string):
     """
 
-    :param st:
+    :param raw_string:
     :return:
     """
     rules = [
@@ -329,7 +330,7 @@ def generate_all_variants_by_rules(st):
         ("ü", "ue"), ("Ü", "Ue"),
         ("ä", "ae"), ("Ä", "Ae")]
 
-    out = [st]
+    out = [raw_string]
 
     for rule in rules:
         for a_string in out:
@@ -340,9 +341,19 @@ def generate_all_variants_by_rules(st):
     return out
 
 
-def context_ngram(words: str, n: int, reverse = False) -> str:
+def context_ngram(words: str, size: int, reverse=False) -> str:
+    """
+    Reduces a given sentence to `size` words, to be used as a context n-gram.
+
+    If `reverse` is `True`, the last `size` words are used, commonly employed as a left context.
+
+    :param words:
+    :param size:
+    :param reverse:
+    :return:
+    """
     tokens = words.split(" ")
-    return " ".join(tokens[-n:]) if reverse else " ".join(tokens[:n])
+    return " ".join(tokens[-size:]) if reverse else " ".join(tokens[:size])
 
 
 def remove_duplicated_whitespaces(whitespaced: str) -> str:
@@ -352,5 +363,5 @@ def remove_duplicated_whitespaces(whitespaced: str) -> str:
     :param whitespaced:
     :return:
     """
-    cleaner = re.compile("\s+")
+    cleaner = re.compile(r"\s+")
     return cleaner.sub(" ", whitespaced)
