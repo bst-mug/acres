@@ -28,6 +28,14 @@ acres.util.text module
     :undoc-members:
     :show-inheritance:
 
+acres.util.variants module
+--------------------------
+
+.. automodule:: acres.util.variants
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 Module contents
 ---------------
