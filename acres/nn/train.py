@@ -47,8 +47,8 @@ class FilteredNGramStat(object):
 
             # Only consider ngrams of a given size
             if length_tokens == self.ngram_size:
-                logger.debug("%s: %s -> %s", identifier, freq,
-                             ngram) if identifier % self.PRINT_INTERVAL == 0 else 0
+                if identifier % self.PRINT_INTERVAL == 0:
+                    logger.debug("%s: %s -> %s", identifier, freq, ngram)
 
                 #cleaned_tokens = tokens
                 cleaned_tokens = preprocess(tokens)
@@ -62,7 +62,7 @@ class FilteredNGramStat(object):
                                  largest_reduction, length_tokens, len(cleaned_tokens), ngram)
 
                 # Repeat ngram freq times
-                for i in range(int(freq)):
+                for _ in range(int(freq)):
                     yield cleaned_tokens
 
 

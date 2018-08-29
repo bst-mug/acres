@@ -88,7 +88,7 @@ def test_input(true_expansions: list, possible_expansions: list, max_tries: int 
         # logger.debug(possible_expansion)
         for true_expansion in true_expansions:
             if possible_expansion.lower() == true_expansion.lower():
-                logger.debug("FOUND: " + possible_expansion)
+                logger.debug("FOUND: %s", possible_expansion)
                 return True
     return False
 
@@ -106,7 +106,7 @@ def analyze_row(input_row: str) -> Dict[str, bool]:
         return ret
 
     row = input_row.strip("\n")
-    logger.info("Analyzing: " + row)
+    logger.info("Analyzing: %s", row)
 
     splitted_row = row.split("\t")
 
@@ -137,7 +137,7 @@ def analyze_file(filename: str) -> Tuple[float, float]:
 
     :param filename: A tab-separated file that contains the records from the gold standard. Syntax:
     left context<TAB>acronym<TAB>right context<TAB>valid expansion 1<TAB>valid expansion 2<TAB>...
-    :return: A tuple with precision and recall
+    :return: A tuple with final_precision and final_recall
     """
     total_acronyms = total_correct = total_found = 0
 
@@ -189,12 +189,12 @@ def calculate_f1(precision: float, recall: float) -> float:
 
 if __name__ == "__main__":
     start_time = time.time()
-    (precision, recall) = analyze_file("resources/Workbench.txt")
+    (final_precision, final_recall) = analyze_file("resources/Workbench.txt")
     end_time = time.time()
 
     print("Time: (s)", end_time - start_time)
 
-    f1 = calculate_f1(precision, recall)
-    print("Precision: ", precision)
-    print("Recall: ", recall)
-    print("F1: ", f1)
+    final_f1 = calculate_f1(final_precision, final_recall)
+    print("Precision: ", final_precision)
+    print("Recall: ", final_recall)
+    print("F1: ", final_f1)

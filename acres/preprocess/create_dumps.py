@@ -119,7 +119,7 @@ def _generate_variants(ngrams: Dict[str, int]) -> Dict[str, int]:
     :param ngrams:
     :return:
     """
-    empty_regex = re.compile("^\s*$")
+    empty_regex = re.compile(r"^\s*$")
 
     output = {}     # type: Dict[str, int]
     for (ngram, freq) in ngrams.items():
