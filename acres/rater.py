@@ -7,6 +7,7 @@ import re
 from typing import Tuple
 
 import acres.util.acronym
+from acres.util import variants
 
 logger = logging.getLogger(__name__)
 
@@ -120,7 +121,7 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
     ## of k, c, and z in clinical texts
     ## can be enhanced by frequent translations in acres.util.text.
 
-    lst_var = acres.util.text.generate_all_variants_by_rules(full)
+    lst_var = variants.generate_all_variants_by_rules(full)
     full_old = full
     score = 0.0
     for full in lst_var:
