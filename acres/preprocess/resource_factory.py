@@ -8,6 +8,8 @@ import os.path
 import pickle
 from typing import Dict, Set, List, Tuple
 
+from gensim.models import Word2Vec
+
 from acres.nn import base, train
 from acres.preprocess import create_dumps
 from acres.util import functions
@@ -198,8 +200,8 @@ def get_character_ngrams() -> Dict[str, int]:
     return CHARACTER_NGRAMS
 
 
-def get_nn_model(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=0,
-                 negative=5):
+def get_nn_model(ngram_size: int = 6, min_count: int = 1, net_size: int = 100, alpha: float = 0.025,
+                 sg: int = 1, hs: int = 0, negative: int = 5) -> Word2Vec:
     """
     Lazy load a word2vec model.
 
@@ -229,7 +231,7 @@ def get_nn_model(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=
     return NN_MODEL
 
 
-def reset():
+def reset() -> None:
     """
     Resets global variables to force model recreation.
 
@@ -244,7 +246,7 @@ def reset():
     CHARACTER_NGRAMS = {}
 
 
-def warmup_cache():
+def warmup_cache() -> None:
     """
     Warms up the cache of pickle and txt files by calling all the methods.
 
@@ -260,7 +262,7 @@ def warmup_cache():
     get_nn_model()
 
 
-def write_txt(resource, filename: str) -> int:
+def write_txt(resource: Dict[str, int], filename: str) -> int:
     counter = 0
 
     output = []
@@ -278,11 +280,11 @@ def write_txt(resource, filename: str) -> int:
     return counter
 
 
-def _log_file_not_found(filename: str):
+def _log_file_not_found(filename: str) -> None:
     logger.warning("%s not found, will regenerate.", filename)
 
 
-def _log_file_found(filename: str):
+def _log_file_found(filename: str) -> None:
     logger.info("Loading model from file %s...", filename)
 
 

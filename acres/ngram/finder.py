@@ -19,7 +19,7 @@ FinderConstraints = namedtuple('FinderConstraints', ['min_freq', 'max_count', 'm
                                                      'max_num_tokens'])
 
 
-def _build_search_ngrams(context: str, reverse=False) -> Tuple[str, str, str]:
+def _build_search_ngrams(context: str, reverse: bool = False) -> Tuple[str, str, str]:
     """
     Builds a context tuple containing 1 to n-grams
 

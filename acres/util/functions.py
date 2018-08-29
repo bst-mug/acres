@@ -9,14 +9,15 @@ import configparser
 import logging
 import os
 from random import randint
-from typing import Dict, List
+from typing import Dict, List, Union
 
 import requests
+from requests import Response
 
 logger = logging.getLogger(__name__)
 
 
-def import_conf(key):
+def import_conf(key: str) -> str:
     """
 
     :param key:
@@ -28,7 +29,7 @@ def import_conf(key):
     return config['DEFAULT'][key]
 
 
-def get_url(url, timeout=2):
+def get_url(url: str, timeout: int = 2) -> Union[Response, None]:
     """
     Make a HTTP request to a given URL using proxy if necessary.
 
@@ -55,7 +56,7 @@ def get_url(url, timeout=2):
             return requests.get(url, timeout=timeout)
     except requests.exceptions.RequestException as ex:
         logger.critical(ex)
-        return []
+        return None
 
 
 def create_ngram_statistics(input_string: str, n_min: int, n_max: int) -> Dict[str, int]:
@@ -148,7 +149,7 @@ def robust_text_import_from_dir(path: str) -> List[str]:
     return texts
 
 
-def Levenshtein(s, t):
+def Levenshtein(s: str, t: str) -> int:
     if s == "":
         return len(t)
     if t == "":

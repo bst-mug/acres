@@ -6,7 +6,7 @@
 
 import logging
 import re
-from typing import List
+from typing import List, Generator
 
 from gensim.models import Word2Vec, Phrases
 
@@ -27,7 +27,7 @@ class FilteredNGramStat(object):
     TOKEN_SEPARATOR = " "
     PRINT_INTERVAL = 1000000
 
-    def __init__(self, ngram_size):
+    def __init__(self, ngram_size: int) -> None:
         """
 
         :param ngram_size: The exact size of ngrams to be considered.
@@ -35,7 +35,7 @@ class FilteredNGramStat(object):
         self.ngram_size = ngram_size
         self.NGRAMSTAT = resource_factory.get_ngramstat()
 
-    def __iter__(self):
+    def __iter__(self) -> Generator[List[str], None, None]:
         logger.debug("Iterating...")
 
         largest_reduction = 0
@@ -88,7 +88,8 @@ def preprocess(tokens: List[str]) -> List[str]:
     return ret
 
 
-def train(ngram_size=6, min_count=1, net_size=100, alpha=0.025, sg=1, hs=0, negative=5) -> Word2Vec:
+def train(ngram_size: int = 6, min_count: int = 1, net_size: int = 100, alpha: float = 0.025,
+          sg: int = 1, hs: int = 0, negative: int = 5) -> Word2Vec:
     """
     Lazy load a word2vec model.
 

@@ -18,9 +18,9 @@ def diacritics() -> str:
 
 def fix_line_endings(
         long_text: str,
-        line_break_marker="¶",
-        char_ngram_length=8,
-        line_break_marker_position=3) -> str:
+        line_break_marker: str = "¶",
+        char_ngram_length: int = 8,
+        line_break_marker_position: int = 3) -> str:
     """
     addresses the problem that many texts come with
            artificial line breaks. These breaks are removed if
@@ -100,7 +100,7 @@ def clear_digits(str_in: str, substitute_char: str) -> str:
     return out
 
 
-def transliterate_to_seven_bit(str_in: str, language="de") -> str:
+def transliterate_to_seven_bit(str_in: str, language: str = "de") -> str:
     """
     Converts string to 7-bit ASCII, considering language - specific rules,
     such as in German "Ä" -> "AE", in English "Ä" -> "A"
@@ -167,7 +167,7 @@ def simplify_german_string(str_in_german: str) -> str:
         "ö", "oe").replace("ü", "ue")
 
 
-def reduce_repeated_chars(str_in, char, remaining_chars):
+def reduce_repeated_chars(str_in: str, char: str, remaining_chars: int) -> str:
     """
     :param str_in: text to be cleaned
     :param char: character that should not occur more than remaining_chars times in sequence
@@ -201,7 +201,7 @@ def replace_punctuation(punctuated: str) -> str:
     return ' '.join(punctuated.split())
 
 
-def context_ngram(words: str, size: int, reverse=False) -> str:
+def context_ngram(words: str, size: int, reverse: bool = False) -> str:
     """
     Reduces a given sentence to `size` words, to be used as a context n-gram.
 
