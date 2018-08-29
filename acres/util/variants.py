@@ -1,4 +1,4 @@
-def resolve_ambiguous_lists(lists):
+def _resolve_ambiguous_lists(lists):
     """
 
     :param lists:
@@ -25,7 +25,7 @@ def resolve_ambiguous_lists(lists):
             return lists
 
 
-def create_string_variants_as_list(a_string, search, replace):
+def _create_string_variants_as_list(a_string, search, replace):
     """
     Analyses a string a_string for all substrings.
 
@@ -57,7 +57,7 @@ def create_string_variants_as_list(a_string, search, replace):
             return ret
 
 
-def list_to_string(a_list):
+def _list_to_string(a_list):
     """
     transforms input of list
     if a list element is not a string: -> empty string
@@ -74,7 +74,7 @@ def list_to_string(a_list):
     return out
 
 
-def list_all_string_variants(a_string, search, replace):
+def _list_all_string_variants(a_string, search, replace):
     """
 
     :param a_string:
@@ -83,9 +83,9 @@ def list_all_string_variants(a_string, search, replace):
     :return:
     """
     out = []
-    a_list = resolve_ambiguous_lists([create_string_variants_as_list(a_string, search, replace)])
+    a_list = _resolve_ambiguous_lists([_create_string_variants_as_list(a_string, search, replace)])
     for element in a_list:
-        a_string = list_to_string(element)
+        a_string = _list_to_string(element)
         if a_string != "":
             out.append(a_string)
     return out
@@ -126,7 +126,7 @@ def generate_all_variants_by_rules(raw_string):
 
     for rule in rules:
         for a_string in out:
-            new_list = list_all_string_variants(a_string, rule[0], rule[1])
+            new_list = _list_all_string_variants(a_string, rule[0], rule[1])
             for element in new_list:
                 if element not in out:
                     out.append(element)
