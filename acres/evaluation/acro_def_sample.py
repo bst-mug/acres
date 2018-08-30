@@ -40,8 +40,7 @@ def show_extremes(txt, lst, lowest_n, highest_n):
                 break
 
 
-def run_tests():
-
+if __name__ == "__main__":
     r = dump_sample(3, 3)
     for l in r:
         acro = l.split("\t")[0].strip()
