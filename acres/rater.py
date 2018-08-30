@@ -187,10 +187,7 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
                             if tok[0].isupper():
                                 expanded_upper = expanded_upper + tok[0] + ".*"
 
-                # if upper case word initial is not represented in the acronym, then
-                # penalisation
-                if re.search(expanded_upper, acro) is None:
-                    score = score * 0.25  # FIXME: check whether right
+
 
                 # rightmost expansion should start with upper case initial
 
@@ -202,12 +199,12 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
                 if language == "de":
                     if acres.util.functions.Levenshtein(acro.upper(),
                                                         acres.util.acronym.create_german_acronym(full)) == 0:
-                        score = score * 5
+                        score = score * 2
 
                 # if short full form, the coincidence of the first two letters of full and acronym increases score
                 if full.count(" ") + 1 < len(acro):
                     if full.upper()[0:2] == acro.upper()[0:2]:
-                        score = score * 3
+                        score = score * 2
 
 
 
