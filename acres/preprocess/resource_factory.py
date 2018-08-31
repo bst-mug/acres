@@ -116,8 +116,8 @@ def get_ngramstat() -> Dict[int, Tuple[int,str]]:
     """
     Get an indexed representation of ngrams.
 
-    :return: A dictionary of identifiers mapped to ngrams. Ngrams are tuples with the frequency and
-    the corresponding ngram.
+    :return: A dictionary of identifiers mapped to ngrams. Ngrams are tuples with the frequency \
+    and the corresponding ngram.
     """
     global NGRAMSTAT
 

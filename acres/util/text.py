@@ -26,6 +26,7 @@ def fix_line_endings(
            artificial line breaks. These breaks are removed if
            distributional data show that an unbroken continuation of
            the text is more likely than the break
+
     :param long_text:
     :param line_break_marker:
     :param char_ngram_length:

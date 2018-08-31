@@ -108,8 +108,8 @@ def find_acro_expansions(lst_n_gram_stat: List[str]) -> List[str]:
 
     TODO: check for what it is needed, complete it
 
-    :param lst_n_gram_stat: A list in which ngrams extracted
-    from a corpus are counted in decreasing frequency
+    :param lst_n_gram_stat: A list in which ngrams extracted from a corpus are counted in \
+    decreasing frequency
 
     :return:
     """

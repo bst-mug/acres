@@ -135,7 +135,8 @@ def analyze_file(filename: str) -> Tuple[float, float]:
     Analyzes a gold standard with text excerpts centered on an acronym, followed by n valid
     expansions.
 
-    :param filename: A tab-separated file that contains the records from the gold standard. Syntax:
+    :param filename: A tab-separated file that contains the records from the gold standard. \
+    Syntax: \
     left context<TAB>acronym<TAB>right context<TAB>valid expansion 1<TAB>valid expansion 2<TAB>...
     :return: A tuple with final_precision and final_recall
     """

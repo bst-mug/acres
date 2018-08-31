@@ -33,7 +33,7 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
     :param left: left context of acronym to be expanded (any length)
     :param acro: acronym to be expanded
     :param right: right context of acronym to be expanded (any length)
-    :param minimum_len: the minimum length of the context words to be considered (e.g. to exclude
+    :param minimum_len: the minimum length of the context words to be considered (e.g. to exclude \
     short articles etc.)
     :param maximum_word_count: the maximum of context words that are put into the query
     :return: best expansion of acronym, rating
