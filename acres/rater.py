@@ -12,7 +12,7 @@ from acres.util import variants
 logger = logging.getLogger(__name__)
 
 
-def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, str]:
+def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, float, str]:
     """
     TODO: All morphosaurus stuff eliminated. Could check past versions later
     TODO: whether this is worth while considering again

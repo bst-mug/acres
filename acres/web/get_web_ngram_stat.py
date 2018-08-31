@@ -25,8 +25,8 @@ NEWLINE = "¶"
 NUMERIC = "Ð"
 
 
-def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_len,
-                                    maximum_word_count):
+def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_len: int,
+                                    maximum_word_count: int) -> Tuple[str, float]:
     """
     This is the main file to be used to leverage Bing search for resolving acronyms
 
@@ -40,7 +40,7 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
     """
     ngrams = get_web_dump_from_acro_with_context(
         left, acro, right, minimum_len, maximum_word_count)
-    old_weight = 0
+    old_weight = 0.0
     out = ""
     for (freq, ngram) in ngrams:
         (full, score, reason) = rater.get_acronym_score(acro, ngram, language="de")
@@ -54,8 +54,10 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
     return (out, weight)
 
 
-def get_web_dump_from_acro_with_context(left, acro, right, min_word_len, n_context, digit_placehoder="Ð",
-                                        newline_placeholder="¶", max_tokens_in_ngram=8):
+def get_web_dump_from_acro_with_context(left: str, acro: str, right: str, min_word_len: int,
+                                        n_context: int, digit_placehoder: str = "Ð",
+                                        newline_placeholder: str = "¶",
+                                        max_tokens_in_ngram: int = 8) -> List[Tuple[int,str]]:
     """
     This routine throws acronyms with left and right context (like in Excel table) to Bing and
     generates an n-gram statistic
@@ -102,7 +104,7 @@ def get_web_dump_from_acro_with_context(left, acro, right, min_word_len, n_conte
                                               max_tokens_in_ngram)
 
 
-def ngrams_web_dump(url, min_num_tokens, max_num_tokens) -> List[Tuple[int,str]]:
+def ngrams_web_dump(url: str, min_num_tokens: int, max_num_tokens: int) -> List[Tuple[int,str]]:
     """
     Produces an n gram statistics from a Web Query, parsing the first return page
     Upper bound of ngram length may be set according to acronym length

@@ -4,7 +4,7 @@ Stefan Schulz 12 Nov 2017
 import collections
 import logging
 import re
-from typing import Dict, Set, List, Tuple
+from typing import Dict, Set, List, Tuple, Optional
 
 from acres.preprocess import resource_factory
 from acres.util import acronym
@@ -14,8 +14,8 @@ from acres.util import text
 logger = logging.getLogger(__name__)
 
 
-def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="Ð",
-                                 break_marker="¶") -> Dict[str, int]:
+def create_corpus_char_stat_dump(corpus_path: str, ngramlength: int = 8,
+                                 digit_placeholder: str = "Ð", break_marker: str = "¶") -> Dict[str, int]:
     """
     - Takes a corpus consisting of text files in a single directory
     - Substitutes digits and line breaks
@@ -46,9 +46,9 @@ def create_corpus_char_stat_dump(corpus_path, ngramlength=8, digit_placeholder="
     return dict_char_ngrams
 
 
-def create_corpus_ngramstat_dump(corpus_path, min_freq, min_length=1, max_length=7,
-                                 digit_placeholder="Ð", break_marker="¶",
-                                 fix_lines=True) -> Dict[str, int]:
+def create_corpus_ngramstat_dump(corpus_path: str, min_freq: int, min_length: int = 1,
+                                 max_length: int = 7, digit_placeholder: str = "Ð",
+                                 break_marker: str = "¶", fix_lines: bool = True) -> Dict[str, int]:
     """
     Takes a corpus consisting of text files in a single directory
     Substitutes digits and line breaks
@@ -173,7 +173,7 @@ def _generate_variants(ngrams: Dict[str, int]) -> Dict[str, int]:
     return output
 
 
-def _filter_frequency(ngrams: Dict[str, int], min_freq) -> Dict[str, int]:
+def _filter_frequency(ngrams: Dict[str, int], min_freq: int) -> Dict[str, int]:
     """
     Filter a ngram list for ngrams with a minimum frequency.
 
@@ -275,7 +275,7 @@ def create_new_acro_dump() -> List[str]:
     return new_acronym_ngrams
 
 
-def create_morpho_dump(lexicon_file: str, append_to=None) -> Set[str]:
+def create_morpho_dump(lexicon_file: str, append_to: Optional[Set] = None) -> Set[str]:
     """
     Creates and dumps set of plausible English and German morphemes
     from morphosaurus dictionary.
