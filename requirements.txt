@@ -9,3 +9,4 @@ pytest-cov
 python-coveralls
 mypy
 sphinx
+sphinx-autodoc-typehints
