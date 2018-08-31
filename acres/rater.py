@@ -39,7 +39,7 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
 
     :param acro: acronym to be expanded
     :param full: long form to be checked whether it qualifies as an acronym expansion
-    :param language: Expansion language. Matters especially regarding the possible infixes for
+    :param language: Expansion language. Matters especially regarding the possible infixes for \
     single noun composition
     :return: score that rates the likelihood that the full form is a valid expansion of the acronym
     """
