@@ -1,9 +1,8 @@
 import os
 import sys
 
-import acres.web.get_web_ngram_stat
-
-acres.preprocess.resource_factory
+import acres.preprocess.resource_factory
+from acres.web import get_web_ngram_stat
 
 clear = lambda: os.system('cls')
 
@@ -55,10 +54,7 @@ if 1 == 1:
     left = "NYHA II Niereninsuffizienz Stadium III und"
     right = "III mit zunehmender Leistungsminderung"
 
-    # found: correct!
-    acro = "ZAVK"
-    left = " "
-    right = "Carotis"
+
 
     # found "Zack Spiegel im Preisvergleich bei idealo.de Kosmetikspiegel"
     acro = "ZAVK"
@@ -69,8 +65,176 @@ if 1 == 1:
     left = "Gelenksspalt, keine Blockierungssymptomatik. ¶ "
     right = "zeigt eine Abnützung des li Kniegelenkes"
 
-    r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(
-        left, acro, right, 3, 6)
+    acro = "III"
+    left = "DIAGNOSEN ¶ --------- ¶¶ IÐÐ.Ð KHK"
+    right = "¶ St.p. Ðfacher Stentimplantation RCA u. LAD ÐÐ,ÐÐ ¶ St.p. P"
+
+    # found: correct!
+    acro = "ZAVK"
+    left = " "
+    right = "Carotis"
+
+    # not found ("Ultraschallkardiogramm" is rather uncommon)
+    acro = "USKG"
+    left = "ein      Aortenvitium    und ¶ wie    das    heutige"
+    right = "zeigt, auch     ein    Mitralklappenvitium"
+
+    # not found => wrong suggestion
+    acro = "PAP"
+    left = "einem maximalen Gradienten ¶ von ÐÐmmHg.entsprechend einem"
+    right = "von rund ÐÐmmHg., kein    Pericarderguss"
+
+    acro = "RÖ"
+    left = "Gelenksspalt, keine Blockierungssymptomatik. ¶ "
+    right = "zeigt eine Abnützung des li Kniegelenkes"
+
+    acro = "KHK"
+    left = "Koronarangiographie  durchgeführt.Dabei wurde eine relevante"
+    right = "¶ ausgeschlossen.Eine konservative Therapie ist empfohlen."
+
+    acro = "LKH"
+    left = ""
+    right = "Feldbach"
+
+    acro = "LKH"
+    left = "klin.Symptomatik ¶¶ Die Patientin wurde infolge NSTEMI vom"
+    right = "Fürstenfeld "
+
+    acro = "LKH"
+    left = "klin.Symptomatik ¶¶ Die Patientin wurde infolge NSTEMI vom"
+    right = "Fürstenfeld "
+
+    acro = "LKH"
+    left = "vom Notarzt in das"
+    right = "überstellt wurde "
+
+    acro = "MINS"
+    left = "antigraden Fluss, leichte"
+    right = "¶ und geringe TRINS, kein Pericarderguss"
+
+    acro = "MINS"
+    left = "antigraden Fluss, leichte"
+    right = "¶ und geringe TRINS, kein Pericarderguss"
+
+    acro = "AKE"
+    left = "Das weitere Procedere"
+    right = "oder PAVR) hängt von"
+
+    acro = "PAP"
+    left = " m / sec, keine ¶ AST.MINS Ð.Gr., TRINS"
+    right = "Pericarderguss"
+
+    acro = "NTX"
+    left = "OP - Vorbereitung zur geplanten"
+    right = "zur Abklärung, Angina pectoris"
+
+    acro = "LKH"
+    left = "klin.Symptomatik ¶¶ Die Patientin wurde infolge NSTEMI vom"
+    right = "Fürstenfeld "
+
+    acro = "ASS"
+    left = "MEDIKATION ¶ ---------- ¶¶ Thrombo"
+    right = "dant. ¶¶¶ ---------- ¶"
+
+    acro = "AST"
+    left = """ 
+   uter LV ¶ Funktion und im aktuellen USKG nur leicht gardiger
+
+    """
+    right = """
+    ist der Patient ¶ in seiner Belastbarkeit signifikant einges
+
+    """
+
+    acro = "BMS"
+    left = """ 
+    e ¶¶ LAD ÐÐ %, CX ÐÐ %, OM ÐÐ %: Ð BMS Stent und OM ÐÐ %: Ð
+
+
+
+     """
+    right = """
+     Stents. ¶¶¶ ---------- ¶ MEDIKATION ¶ ---------- ¶¶ Plavi
+
+
+
+     """
+
+    acro = "CHE"
+    left = """ 
+    ÐÐ.Ð Hypothyreose ¶ GÐÐ.Ð Essentieller Tremor ¶ KÐÐ.Ð St. p.
+
+
+
+
+     """
+    right = """
+     ¶ KÐÐ.Ð Kolondivertikulitis ¶ MÐÐ.ÐÐ St. p. Ovarektomie li. 
+
+
+
+
+     """
+
+    acro = "III"
+    left = """ 
+    e ¶ IDDM (Typ I seit ÐÐ Jahren) ¶ Diab. Nephropathie Stadium
+
+
+
+
+
+     """
+    right = """
+     ¶ Renale Anämie ¶ Sek. HPT ¶ Persönlichkeitsstörung ¶ sek. H
+
+
+
+
+
+     """
+
+    acro = "LV"
+    left = """ 
+      ter), ¶ li. Vorhof mit ÐÐ mm mittelgradig vergrößert, RA und
+
+     """
+    right = """
+     normal groß, ¶ Aortenklappensklerose ohne signifikante Steno
+
+
+     """
+
+    acro = "AP"
+    left = """ 
+      ¶ * Labor ¶¶ patholog.: Harnsäure Ð,Ð, ges. Bilirubin Ð,ÐÐ,
+
+
+     """
+    right = """
+     ÐÐÐ, GGT ÐÐÐ, NT- ¶ proBNP ÐÐÐ (besser im Vergleich zur letz
+
+
+
+     """
+
+    acro = "AP"
+    left = """ 
+        e des Pat. erfolgte zur Koronarangiographie bei ¶ instabiler
+
+
+
+       """
+    right = """
+       (zunehmende AP-Symptomatik bei Belastung seit Ð Monaten). ¶ 
+
+
+
+
+       """
+
+    r = get_web_ngram_stat.get_web_dump_from_acro_with_context(
+        left, acro, right, 2, 9)
 
     for t in r:
         s = acres.rater.get_acronym_score(acro, t[1])
@@ -79,13 +243,13 @@ if 1 == 1:
 
     1 / 0
 
-    print(acres.web.get_web_ngram_stat.get_best_acronym_web_resolution(left, acro, right, 3, 7))
+    print(get_web_ngram_stat.get_best_acronym_web_resolution(left, acro, right, 3, 7))
 
     acro = "KHK"
     left = "de eine Koronarangiographie durchgeführt, dabei ¶ wurde eine"
     right = "ausgeschlossen und eine hypertensive Herzkrankheit ¶ festges"
 
-    print(acres.web.get_web_ngram_stat.get_best_acronym_web_resolution(left, acro, right, 3, 7))
+    print(get_web_ngram_stat.get_best_acronym_web_resolution(left, acro, right, 3, 7))
 
     1 / 0
     r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(

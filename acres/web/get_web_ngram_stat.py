@@ -54,7 +54,7 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
     return (out, weight)
 
 
-def get_web_dump_from_acro_with_context(left, acro, right, min_len, n_context, digit_placehoder="Ð",
+def get_web_dump_from_acro_with_context(left, acro, right, min_word_len, n_context, digit_placehoder="Ð",
                                         newline_placeholder="¶", max_tokens_in_ngram=8):
     """
     This routine throws acronyms with left and right context (like in Excel table) to Bing and
@@ -63,14 +63,14 @@ def get_web_dump_from_acro_with_context(left, acro, right, min_len, n_context, d
     :param acro: acronym
     :param left: left context
     :param right: right context
-    :param: min_len: minimal length of a context word
+    :param: min_word_len: minimal length of a context word
     :return: token ngram list with possible acronym expansion
     """
 
     cleaned_left_context = []
     cleaned_right_context = []
     proper_context = []
-    # reduce right and left context to words of minimal length min_len
+    # reduce right and left context to words of minimal length min_word_len
     # writing into the same tuple, alternating
     left = text.replace_punctuation(left)
     right = text.replace_punctuation(right)
@@ -78,11 +78,11 @@ def get_web_dump_from_acro_with_context(left, acro, right, min_len, n_context, d
     # left_context = left_context.reverse()
     right_context = right.split(" ")
     for word in reversed(left_context):
-        if len(word) >= min_len:
+        if len(word) >= min_word_len:
             if not (digit_placehoder in word or newline_placeholder in word):
                 cleaned_left_context.append(word)
     for word in right_context:
-        if len(word) >= min_len:
+        if len(word) >= min_word_len:
             if not (digit_placehoder in word or newline_placeholder in word):
                 cleaned_right_context.append(word)
     i = 0

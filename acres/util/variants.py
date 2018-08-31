@@ -106,6 +106,7 @@ def generate_all_variants_by_rules(raw_string: str) -> List[str]:
     :return:
     """
     rules = [
+        ("druck", " pressure"),
         ("krankheit", " Disorder"),
         ("fa", "pha"), ("Fa", "Pha"),
         ("fe", "phe"), ("Fe", "Phe"),
