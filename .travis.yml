@@ -10,8 +10,6 @@ matrix:
     - python: "3.7"
 before_install:
   - export BOTO_CONFIG=/dev/null  # See https://github.com/travis-ci/travis-ci/issues/7940
-before_script:
-  - cp config.ini.default config.ini
 script:
   - pylint -E acres && py.test --cov=acres
 after_success:

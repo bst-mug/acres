@@ -2,6 +2,7 @@ __all__ = ['rater', 'text_cleanser']
 
 import logging
 import os
+import shutil
 from logging.config import fileConfig
 
 # Automatically switch to the right working directory.
@@ -10,9 +11,9 @@ from logging.config import fileConfig
 # Working directory must be the root project folder, which is the parent folder of this init file.
 os.chdir(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Check if config.ini exists
+# Automatically create config.ini out of default if not present
 if "config.ini" not in os.listdir(os.getcwd()):
-    raise ValueError("config.ini not found!")
+    shutil.copyfile("config.ini.default", "config.ini")
 
 # Setup logging
 logging.config.fileConfig("logging.ini", disable_existing_loggers=False)
