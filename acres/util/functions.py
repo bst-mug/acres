@@ -120,6 +120,54 @@ def random_sub_list(in_list: list, max_num: int) -> list:
     return lst_out
 
 
+def is_stopword(str_in, lang="de"):
+    # tests whether word is stopword, according to list
+    # for German, source http://snowball.tartarus.org/algorithms/german/stop.txt
+    ret = False
+    if lang == "de":
+        stopwords = ['ab', 'aber', 'alle', 'allem', 'allen', 'aller', 'alles', 'als', 'also', 'am', 'an', 'andere',
+                     'anderem', 'anderem',
+                     'anderen', 'anderer', 'anderer', 'anderes', 'andern', 'anders', 'auch', 'auf', 'aus', 'bei', 'bin',
+                     'bis', 'bist',
+                     'da', 'damit', 'dann', 'das', 'dass', 'daß', 'dasselbe', 'dazu', 'dein', 'deine', 'deinem',
+                     'deinen', 'deiner',
+                     'deines', 'dem', 'demselben', 'den', 'denn', 'denselben', 'der', 'derer', 'derselbe', 'derselben',
+                     'des',
+                     'desselben', 'dessen', 'dich', 'die', 'dies', 'diese', 'dieselbe', 'dieselben', 'diesem', 'diesen',
+                     'dieser',
+                     'dieses', 'dir', 'doch', 'dort', 'du', 'durch', 'ein', 'eine', 'einem', 'einen', 'einer', 'eines',
+                     'einig',
+                     'einige', 'einigem', 'einigen', 'einiger', 'einiges', 'einmal', 'er', 'es', 'etwas', 'euch',
+                     'euer', 'eure',
+                     'eurem', 'euren', 'eurer', 'eures', 'für', 'gegen', 'gewesen', 'hab', 'habe', 'haben', 'hat',
+                     'hatte', 'hatten',
+                     'hier', 'hin', 'hinter', 'ich', 'ihm', 'ihn', 'ihnen', 'ihr', 'ihre', 'ihrem', 'ihren', 'ihrer',
+                     'ihres', 'im',
+                     'in', 'indem', 'ins', 'ist', 'jede', 'jedem', 'jeden', 'jeder', 'jedes', 'jene', 'jenem', 'jenen',
+                     'jener', 'jenes',
+                     'jetzt', 'kann', 'kein', 'keine', 'keinem', 'keinen', 'keiner', 'keines', 'können', 'könnte',
+                     'machen', 'man',
+                     'manche', 'manchem', 'manchen', 'mancher', 'manches', 'mein', 'meine', 'meinem', 'meinen',
+                     'meiner', 'meines',
+                     'mich', 'mir', 'mit', 'muss', 'musste', 'nach', 'nicht', 'nichts', 'noch', 'nun', 'nur', 'ob',
+                     'oder', 'ohne',
+                     'sehr', 'sein', 'seine', 'seinem', 'seinen', 'seiner', 'seines', 'selbst', 'sich', 'sie', 'sind',
+                     'so', 'solche',
+                     'solchem', 'solchen', 'solcher', 'solches', 'soll', 'sollte', 'sondern', 'sonst', 'über', 'um',
+                     'und', 'uns',
+                     'unser', 'unsere', 'unserem', 'unseren', 'unseres', 'unter', 'viel', 'vom', 'von', 'vor',
+                     'während', 'war',
+                     'waren', 'warst', 'was', 'weg', 'weil', 'weiter', 'welche', 'welchem', 'welchen', 'welcher',
+                     'welches', 'wenn',
+                     'werde', 'werden', 'wie', 'wieder', 'will', 'wir', 'wird', 'wirst', 'wo', 'wollen', 'wollte',
+                     'würde', 'würden',
+                     'zu', 'zum', 'zur', 'zwar', 'zwischen']
+        if str_in.lower() in stopwords:
+            ret = True
+    return ret
+
+
+
 def robust_text_import_from_dir(path: str) -> List[str]:
     """
     Read the content of valid text files from a path into a list of strings.

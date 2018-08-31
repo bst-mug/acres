@@ -65,6 +65,9 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
     if len(full) <= 5:
         return (full, 0, "Full expression too short")
 
+    if acres.util.functions.is_stopword(full.split(' ', 1)[0]):
+        return (full, 0, "first word in stopword list")
+
     if len(acro) < 2:
         return (full, 0, "Single letter acronym")
     acro_low = acro.lower()
@@ -174,31 +177,14 @@ def get_acronym_score(acro: str, full: str, language="de") -> Tuple[str, float, 
                     score = 0
             else:
 
-                # The more word initials coincide with acronym letters the better
-                # especially for German (probably exclusively for German:
-                # matching first letter capitals (nouns) even better
-                # nevertheless, the following clause should be revised
-
-                expanded_upper = ""
-                if full.count(" ") > 0:
-                    lst_token = full.split(" ")
-                    for tok in lst_token:
-                        if tok > " ":
-                            if tok[0].isupper():
-                                expanded_upper = expanded_upper + tok[0] + ".*"
-
-
-
                 # rightmost expansion should start with upper case initial
-
                 if language == "de":
                     if full.split(" ")[-1][0].islower():
                         score = score * 0.25
 
                 # exact match of real acronym with generated acronym
                 if language == "de":
-                    if acres.util.functions.Levenshtein(acro.upper(),
-                                                        acres.util.acronym.create_german_acronym(full)) == 0:
+                    if acro.upper() == acres.util.acronym.create_german_acronym(full):
                         score = score * 2
 
                 # if short full form, the coincidence of the first two letters of full and acronym increases score

@@ -5,7 +5,7 @@ AAA	Abdominelles Aortenaneurysma
 AAC	Antibiotikaassoziierte Kolitis
 AACAP	American Academy of Child & Adolescent Psychiatry
 AAF	Antiatelektasefaktor
-AAION	arteriitischer Anteriore ischämische Optikusneuropathie
+AAION	arteriitische anteriore ischämische Optikusneuropathie
 AAK	Atemluftalkoholkonzentration
 AAK	Autoantikörper
 AAM	Angeborener Auslösemechanismus
@@ -19,7 +19,6 @@ AAT	Aachener Aphasie-Test
 AAV	Adeno-assoziiertes Virus
 AAV	akuter Aterienverschluss
 AAZ	Atemanhaltezeit
-AB	Blutgruppe
 AB	Arztbrief
 ABA	Applied Behavior Analysis
 ABC	Arnika-Belladonna-Capsicum annuum

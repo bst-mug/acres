@@ -176,62 +176,45 @@ if 1 == 1:
 
      """
 
-    acro = "III"
+    acro = "AP"  # "Angina pectoris"  - OK
     left = """ 
-    e ¶ IDDM (Typ I seit ÐÐ Jahren) ¶ Diab. Nephropathie Stadium
-
-
-
-
-
-     """
+    e des Pat. erfolgte zur Koronarangiographie bei ¶ instabiler
+    """
     right = """
-     ¶ Renale Anämie ¶ Sek. HPT ¶ Persönlichkeitsstörung ¶ sek. H
+    (zunehmende AP-Symptomatik bei Belastung seit Ð Monaten). ¶ 
 
-
-
-
-
-     """
-
-    acro = "LV"
-    left = """ 
-      ter), ¶ li. Vorhof mit ÐÐ mm mittelgradig vergrößert, RA und
-
-     """
-    right = """
-     normal groß, ¶ Aortenklappensklerose ohne signifikante Steno
-
-
-     """
+    """
 
     acro = "AP"
     left = """ 
       ¶ * Labor ¶¶ patholog.: Harnsäure Ð,Ð, ges. Bilirubin Ð,ÐÐ,
-
-
      """
     right = """
      ÐÐÐ, GGT ÐÐÐ, NT- ¶ proBNP ÐÐÐ (besser im Vergleich zur letz
-
-
-
      """
 
-    acro = "AP"
+    acro = "LV"  # "Linker Vorhof" und "linker Ventrikel" gleich!
     left = """ 
-        e des Pat. erfolgte zur Koronarangiographie bei ¶ instabiler
-
-
+        ter), ¶ li. Vorhof mit ÐÐ mm mittelgradig vergrößert, RA und
 
        """
     right = """
-       (zunehmende AP-Symptomatik bei Belastung seit Ð Monaten). ¶ 
-
-
+       normal groß, ¶ Aortenklappensklerose ohne signifikante Steno
 
 
        """
+
+    acro = "III"  # wrong results: "Innere Medizin", "Informationen , Hilfe"
+    left = """ 
+    e ¶ IDDM (Typ I seit ÐÐ Jahren) ¶ Diab. Nephropathie Stadium
+     """
+    right = """
+     ¶ Renale Anämie ¶ Sek. HPT ¶ Persönlichkeitsstörung ¶ sek. H
+     """
+
+
+
+
 
     r = get_web_ngram_stat.get_web_dump_from_acro_with_context(
         left, acro, right, 2, 9)
