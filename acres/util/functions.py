@@ -17,7 +17,7 @@ from requests import Response
 logger = logging.getLogger(__name__)
 
 
-def import_conf(key: str) -> str:
+def import_conf(key: str) -> Optional[str]:
     """
 
     :param key:
@@ -25,7 +25,9 @@ def import_conf(key: str) -> str:
     """
     config = configparser.ConfigParser()
     config.read("config.ini")
-    #logger.debug(config.sections())
+    if key not in config['DEFAULT']:
+        logging.critical("'%s' was not found in the DEFAULT section of config.ini.", key)
+        return None
     return config['DEFAULT'][key]
 
 
