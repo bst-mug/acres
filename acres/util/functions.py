@@ -9,7 +9,7 @@ import configparser
 import logging
 import os
 from random import randint
-from typing import Dict, List, Union
+from typing import Dict, List, Optional
 
 import requests
 from requests import Response
@@ -29,11 +29,14 @@ def import_conf(key: str) -> str:
     return config['DEFAULT'][key]
 
 
-def get_url(url: str, timeout: int = 2) -> Union[Response, None]:
+def get_url(url: str, params: Optional[Dict] = None, headers: Optional[Dict] = None,
+            timeout: int = 2) -> Optional[Response]:
     """
-    Make a HTTP request to a given URL using proxy if necessary.
+    Make a GET request to a given URL using proxy if necessary.
 
     :param url: The URL to make the request to.
+    :param params: GET parameters
+    :param headers: GET headers
     :param timeout: The timeout in seconds.
     :return: Object from requests.get()
     """
@@ -53,7 +56,8 @@ def get_url(url: str, timeout: int = 2) -> Union[Response, None]:
 
     response = None
     try:
-        response = requests.get(url, timeout=timeout, proxies=proxy_dict)
+        response = requests.get(url, params=params, headers=headers, timeout=timeout,
+                                proxies=proxy_dict)
         response.raise_for_status()
     except requests.exceptions.RequestException as ex:
         logger.critical(ex)
