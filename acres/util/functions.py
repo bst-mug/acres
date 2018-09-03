@@ -40,20 +40,19 @@ def get_url(url: str, timeout: int = 2) -> Union[Response, None]:
     config = configparser.ConfigParser()
     config.read("config.ini")
     proxy_config = config["proxy"]
+    proxy_dict = None
+    if proxy_config["UseProxy"] == "yes":
+        http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
+                     "@" + proxy_config["ProxyDomain"] + ":" + proxy_config["ProxyPort"]
+        https_proxy = http_proxy
+        ftp_proxy = http_proxy
+        proxy_dict = {
+            "http": http_proxy,
+            "https": https_proxy,
+            "ftp": ftp_proxy}
 
     try:
-        if proxy_config["UseProxy"] == "yes":
-            http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
-                         "@" + proxy_config["ProxyDomain"] + ":" + proxy_config["ProxyPort"]
-            https_proxy = http_proxy
-            ftp_proxy = http_proxy
-            proxy_dict = {
-                "http": http_proxy,
-                "https": https_proxy,
-                "ftp": ftp_proxy}
-            return requests.get(url, timeout=timeout, proxies=proxy_dict)
-        else:
-            return requests.get(url, timeout=timeout)
+        return requests.get(url, timeout=timeout, proxies=proxy_dict)
     except requests.exceptions.RequestException as ex:
         logger.critical(ex)
         return None
