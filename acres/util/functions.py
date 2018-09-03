@@ -51,11 +51,13 @@ def get_url(url: str, timeout: int = 2) -> Union[Response, None]:
             "https": https_proxy,
             "ftp": ftp_proxy}
 
+    response = None
     try:
-        return requests.get(url, timeout=timeout, proxies=proxy_dict)
+        response = requests.get(url, timeout=timeout, proxies=proxy_dict)
+        response.raise_for_status()
     except requests.exceptions.RequestException as ex:
         logger.critical(ex)
-        return None
+    return response
 
 
 def create_ngram_statistics(input_string: str, n_min: int, n_max: int) -> Dict[str, int]:
