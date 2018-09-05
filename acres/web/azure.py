@@ -15,6 +15,22 @@ WebResult = namedtuple('WebResult', ['name', 'url', 'language', 'snippet'])
 RESULTS_CACHE = {}  # type: Dict[str, List[WebResult]]
 
 
+def get_web_corpus(query: str) -> str:
+    """
+    Generates a pseudo-corpus out of the web results for a given query.
+
+    :param query:
+    :return: A string containing all titles and snippets for 50 web results for the query.
+    """
+    web_results = cached_get_web_results(query)
+
+    output = []
+    for result in web_results:
+        output.append(result.name)
+        output.append(result.snippet)
+    return ' '.join(output)
+
+
 def cached_get_web_results(query: str) -> List[WebResult]:
     """
     Cached version of `get_web_results`.
