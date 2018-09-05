@@ -100,4 +100,3 @@ def get_web_dump_from_acro_with_context(left: str, acro: str, right: str, min_wo
     query = acro + " " + " ".join(proper_context[:n_context])
     return bing.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1,
                            max_tokens_in_ngram)
-

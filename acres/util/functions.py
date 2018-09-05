@@ -9,7 +9,7 @@ import configparser
 import logging
 import os
 from random import randint
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 import requests
 from requests import Response
@@ -218,3 +218,30 @@ def Levenshtein(s: str, t: str) -> int:
                Levenshtein(s, t[:-1]) + 1,
                Levenshtein(s[:-1], t[:-1]) + cost])
     return res
+
+
+def dict_to_sorted_list(ngrams_dict: Dict[str, int]) -> List[Tuple[int,str]]:
+    """
+    Converts a ngram dictionary to a list of tuples, ordered by decreasing frequency.
+
+    :param ngrams_dict:
+    :return:
+    """
+    output = []
+    for ngram in ngrams_dict:
+        output.append((ngrams_dict[ngram], ngram))
+    output.sort(reverse=True)
+    return output
+
+
+def corpus_to_ngram_list(corpus: str, min_num_tokens: int,
+                         max_num_tokens: int) -> List[Tuple[int, str]]:
+    """
+    Generates a ngram list, sorted by frequency, out of a corpus.
+    :param corpus:
+    :param min_num_tokens:
+    :param max_num_tokens:
+    :return:
+    """
+    stats = create_ngram_statistics(corpus, min_num_tokens, max_num_tokens)
+    return dict_to_sorted_list(stats)

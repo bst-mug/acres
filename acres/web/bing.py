@@ -34,7 +34,6 @@ def ngrams_web_dump(url: str, min_num_tokens: int, max_num_tokens: int) -> List[
     rt = rt.replace("&#196;", "Ä").replace("&#228;", "ä") \
         .replace("&#214;", "Ö").replace("&#246;", "ö").replace("&#223;", "ß") \
         .replace("&#220;", "Ü").replace("&#252;", "ü").replace("&quot;", 'QUOTQUOT')
-    out_l = []
     txt = html2text.html2text(rt)
     #
     # segmentation of text into smaller chunks; thus obtaining
@@ -57,12 +56,7 @@ def ngrams_web_dump(url: str, min_num_tokens: int, max_num_tokens: int) -> List[
                 out = out + " " + word
     #logger.debug(out)
 
-    output = functions.create_ngram_statistics(out, min_num_tokens, max_num_tokens)
-    for ngram in output:
-        out_l.append((output[ngram], ngram))
-    out_l.sort(reverse=True)
-
-    return out_l
+    return functions.corpus_to_ngram_list(out, min_num_tokens, max_num_tokens)
 
 
 # if logger.getEffectiveLevel() == logging.DEBUG:
