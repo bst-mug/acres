@@ -1,3 +1,6 @@
+"""
+Module for querying the Bing Web Search API v7.
+"""
 import logging
 import os.path
 import pickle
