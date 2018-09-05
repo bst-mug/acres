@@ -14,7 +14,7 @@ from acres import rater
 from acres.ngram import finder
 from acres.preprocess import resource_factory
 from acres.util import text
-from acres.web import get_web_ngram_stat
+from acres.web import bing
 
 logger = logging.getLogger(__name__)
 
@@ -84,7 +84,7 @@ def find_synonyms() -> None:
                     str_url = "http://www.bing.de/search?cc=de&q=%22" + query + "%22"
                     time.sleep(random.randint(0, 2000) / 1000)
                     print(str_url)
-                    li_web = get_web_ngram_stat.ngrams_web_dump(str_url, 1, 10)
+                    li_web = bing.ngrams_web_dump(str_url, 1, 10)
 
                 # Prepare parameters for corpus model
                 if left_string == "":
