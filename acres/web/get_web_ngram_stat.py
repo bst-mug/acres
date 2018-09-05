@@ -12,6 +12,7 @@ from typing import List, Tuple
 from acres import rater
 from acres.util import text
 from acres.web import bing
+from acres.util import functions
 
 logger = logging.getLogger(__name__)
 
@@ -98,5 +99,16 @@ def get_web_dump_from_acro_with_context(left: str, acro: str, right: str, min_wo
     # in Bing the order of tokens in a query matters. Therefore the query must start with the
     # acronym
     query = acro + " " + " ".join(proper_context[:n_context])
-    return bing.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1,
-                           max_tokens_in_ngram)
+    return ngrams_web_dump(query, 1, max_tokens_in_ngram)
+
+
+def ngrams_web_dump(query: str, min_num_tokens: int, max_num_tokens: int) -> List[Tuple[int,str]]:
+    """
+
+    :param query:
+    :param min_num_tokens:
+    :param max_num_tokens:
+    :return:
+    """
+    corpus = bing.get_web_corpus(query)
+    return functions.corpus_to_ngram_list(corpus, min_num_tokens, max_num_tokens)

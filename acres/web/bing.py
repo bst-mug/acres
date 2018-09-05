@@ -8,22 +8,19 @@ from acres.util import functions
 logger = logging.getLogger(__name__)
 
 
-def ngrams_web_dump(url: str, min_num_tokens: int, max_num_tokens: int) -> List[Tuple[int,str]]:
+def get_web_corpus(query: str) -> str:
     """
-    Produces an n gram statistics from a Web Query, parsing the first return page
-    Upper bound of ngram length may be set according to acronym length
-    Rule of thumb: acronym length + 4, in order to safely retrieve acronym / definition
-    pairs. Not that also quotes, dashes and parentheses count as single tokens
-
+    Manually queries Bing for a given query to obtain a web corpus from the first return page.
 
     Should be used carefully, with delay.
 
-    :param url:
-    :param min_num_tokens:
-    :param max_num_tokens:
+    :param query:
     :return:
     """
+    return get_url_corpus("http://www.bing.de/search?cc=de&q=" + query)
 
+
+def get_url_corpus(url: str) -> str:
     logger.info("Sending HTTP request to %s...", url)
     response = functions.get_url(url)
     rt = response.text
@@ -55,8 +52,22 @@ def ngrams_web_dump(url: str, min_num_tokens: int, max_num_tokens: int) -> List[
                     or "www." in word or "%" in word):
                 out = out + " " + word
     #logger.debug(out)
+    return out
 
-    return functions.corpus_to_ngram_list(out, min_num_tokens, max_num_tokens)
+
+def ngrams_url_dump(url: str, min_num_tokens: int, max_num_tokens: int) -> List[Tuple[int, str]]:
+    """
+    Produces n-gram statistics from a given URL.
+
+    If querying Bing, prefer ngrams_web_dump, which uses the Bing API if available.
+
+    :param url:
+    :param min_num_tokens:
+    :param max_num_tokens:
+    :return:
+    """
+    corpus = get_url_corpus(url)
+    return functions.corpus_to_ngram_list(corpus, min_num_tokens, max_num_tokens)
 
 
 # if logger.getEffectiveLevel() == logging.DEBUG:
@@ -67,10 +78,10 @@ def ngrams_web_dump(url: str, min_num_tokens: int, max_num_tokens: int) -> List[
 #     from acres import resource_factory
 #
 #     MORPHEMES = resource_factory.get_morphemes()
-#     # p = ngrams_web_dump("https://www.google.at/search?q=EKG+Herz", 1, 10)
-#     # p = ngrams_web_dump("http://www.bing.de/search?cc=de&q=ekg+Herz", 1, 10)
-#     p = ngrams_web_dump('http://www.bing.de/search?cc=de&q="' + QUERY + '"', 1, 10)
-#     # p = ngrams_web_dump('http://www.bing.de/search?cc=de&q=' + q , 1, 10)
+#     # p = ngrams_url_dump("https://www.google.at/search?q=EKG+Herz", 1, 10)
+#     # p = ngrams_url_dump("http://www.bing.de/search?cc=de&q=ekg+Herz", 1, 10)
+#     p = ngrams_url_dump('http://www.bing.de/search?cc=de&q="' + QUERY + '"', 1, 10)
+#     # p = ngrams_url_dump('http://www.bing.de/search?cc=de&q=' + q , 1, 10)
 #     # f = open("c:\\Users\\schulz\\Nextcloud\\Terminology\\Corpora\\staging\\out.txt", 'wt')
 #     # f.write("\n".join(p))
 #     # f.close()

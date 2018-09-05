@@ -238,6 +238,11 @@ def corpus_to_ngram_list(corpus: str, min_num_tokens: int,
                          max_num_tokens: int) -> List[Tuple[int, str]]:
     """
     Generates a ngram list, sorted by frequency, out of a corpus.
+
+    Upper bound of ngram length may be set according to acronym length
+    Rule of thumb: acronym length + 4, in order to safely retrieve acronym / definition
+    pairs. Not that also quotes, dashes and parentheses count as single tokens
+
     :param corpus:
     :param min_num_tokens:
     :param max_num_tokens:

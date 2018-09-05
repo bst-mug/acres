@@ -263,9 +263,9 @@ r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(
 # query = "GERD Adipositas"
 query = "HDL Triglyceride"
 
-# r = acres.web.get_web_ngram_stat.ngrams_web_dump("https://news.google.com/?hl=de", 1, 2)
-# r = acres.web.get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=%22" + query + "%22", 1, 10)
-# = acres.web.get_web_ngram_stat.ngrams_web_dump("http://www.bing.de/search?cc=de&q=" + query, 1, 10)
+# r = acres.web.bing.ngrams_url_dump("https://news.google.com/?hl=de", 1, 2)
+# r = acres.web.bing.ngrams_url_dump("http://www.bing.de/search?cc=de&q=%22" + query + "%22", 1, 10)
+# = acres.web.bing.ngrams_url_dump("http://www.bing.de/search?cc=de&q=" + query, 1, 10)
 clear()
 c = 0
 for e in r:
