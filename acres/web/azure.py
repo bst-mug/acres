@@ -1,4 +1,5 @@
 import logging
+from collections import namedtuple
 from typing import List, Tuple, Dict, Any
 
 import requests
@@ -7,24 +8,39 @@ from acres.util import functions
 
 logger = logging.getLogger(__name__)
 
+WebResult = namedtuple('WebResult', ['name', 'url', 'language', 'snippet'])
 
-def get_title_snippets(query: str) -> List[Tuple[str, str]]:
+
+def get_web_results(query: str) -> List[WebResult]:
     """
-    Queries Bing using a given term and returns a list of tuples with titles and snippets.
+    Queries Bing using a given term and returns a list of WebResults.
 
     :param query:
     :return:
     """
     headers, response = __query(query)
-    # logger.debug(headers)
+    logger.debug(headers)
+    logger.debug(response)
     # logger.debug(json.dumps(response, indent=4))
 
-    titles_snippets = []
+    # 'id': 'https://api.cognitive.microsoft.com/api/v7/#WebPages.0',
+    # 'name': 'Elektrokardiogramm – Wikipedia',
+    # 'url': 'https://de.wikipedia.org/wiki/Elektrokardiogramm',
+    # 'about': [{'name': 'Electrocardiography'}],
+    # 'isFamilyFriendly': True,
+    # 'displayUrl': 'https://de.wikipedia.org/wiki/Elektrokardiogramm',
+    # 'snippet': 'Das Elektrokardiogramm (EKG) (zu altgriechisch καρδία kardía, deutsch ‚Herz‘, und
+    # γράμμα grámma, deutsch ‚Geschriebenes‘) ist die Aufzeichnung ...',
+    # 'dateLastCrawled': '2018-08-18T10:10:00.0000000Z',
+    # 'language': 'de',
+    # 'isNavigational': False
+    results = []
     for value in response["webPages"]["value"]:
-        result = (value["name"], value["snippet"])
-        titles_snippets.append(result)
+        web_result = WebResult(name=value['name'], url=value['url'], language=value['language'],
+                               snippet=value['snippet'])
+        results.append(web_result)
 
-    return titles_snippets
+    return results
 
 
 def __query(query: str) -> Tuple[Dict, Any]:
@@ -42,8 +58,9 @@ def __query(query: str) -> Tuple[Dict, Any]:
 
     headers = {"Ocp-Apim-Subscription-Key": subscription_key}
     params = {"q": query,
-              "textDecorations": True,
-              "textFormat": "HTML"}
+              "count": 10,  # max: 50
+              "mkt": "de-AT",
+              "responseFilter": "Webpages"}
     response = requests.get(search_url, headers=headers, params=params)
     response.raise_for_status()
     return response.headers, response.json()
