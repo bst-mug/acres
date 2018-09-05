@@ -2,7 +2,7 @@ import os
 import sys
 
 import acres.preprocess.resource_factory
-from acres.web import get_web_ngram_stat
+from acres.web import base
 
 clear = lambda: os.system('cls')
 
@@ -216,7 +216,7 @@ if 1 == 1:
 
 
 
-    r = get_web_ngram_stat.get_web_dump_from_acro_with_context(
+    r = base.get_web_dump_from_acro_with_context(
         left, acro, right, 2, 9)
 
     for t in r:
@@ -226,13 +226,13 @@ if 1 == 1:
 
     1 / 0
 
-    print(get_web_ngram_stat.get_best_acronym_web_resolution(left, acro, right, 3, 7))
+    print(base.get_best_acronym_web_resolution(left, acro, right, 3, 7))
 
     acro = "KHK"
     left = "de eine Koronarangiographie durchgeführt, dabei ¶ wurde eine"
     right = "ausgeschlossen und eine hypertensive Herzkrankheit ¶ festges"
 
-    print(get_web_ngram_stat.get_best_acronym_web_resolution(left, acro, right, 3, 7))
+    print(base.get_best_acronym_web_resolution(left, acro, right, 3, 7))
 
     1 / 0
     r = acres.evaluation.corpus.get_web_dump_from_acro_with_context(
