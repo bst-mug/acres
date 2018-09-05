@@ -1,4 +1,6 @@
 import logging
+import os.path
+import pickle
 from collections import namedtuple
 from typing import List, Tuple, Dict, Any
 
@@ -10,14 +12,54 @@ logger = logging.getLogger(__name__)
 
 WebResult = namedtuple('WebResult', ['name', 'url', 'language', 'snippet'])
 
+RESULTS_CACHE = {}  # type: Dict[str, List[WebResult]]
+
+
+def cached_get_web_results(query: str) -> List[WebResult]:
+    """
+    Cached version of `get_web_results`.
+
+    :param query:
+    :return:
+    """
+    global RESULTS_CACHE
+
+    if not RESULTS_CACHE:
+        _load_cache()
+
+    if query not in RESULTS_CACHE:
+        web_results = get_web_results(query)
+        RESULTS_CACHE[query] = web_results
+        _persist_cache()
+
+    return RESULTS_CACHE[query]
+
+
+def _load_cache() -> None:
+    global RESULTS_CACHE
+
+    if os.path.isfile(_get_cache_name()):
+        RESULTS_CACHE = pickle.load(open(_get_cache_name(), "rb"))
+
+
+def _persist_cache() -> None:
+    pickle.dump(RESULTS_CACHE, open(_get_cache_name(), "wb"))
+
+
+def _get_cache_name() -> str:
+    return "cache/azure.p"
+
 
 def get_web_results(query: str) -> List[WebResult]:
     """
     Queries Bing using a given term and returns a list of WebResults.
 
+    When possible, prefer cached_get_web_results, which uses a cache of results.
+
     :param query:
     :return:
     """
+
     headers, response = __query(query)
     logger.debug(headers)
     logger.debug(response)
@@ -54,11 +96,13 @@ def __query(query: str) -> Tuple[Dict, Any]:
     assert __valid_key()
     subscription_key = functions.import_conf("BingSearchApiKey")
 
+    logger.warning("Querying Bing... This API call will be charged.")
+
     search_url = "https://api.cognitive.microsoft.com/bing/v7.0/search"
 
     headers = {"Ocp-Apim-Subscription-Key": subscription_key}
     params = {"q": query,
-              "count": 10,  # max: 50
+              "count": 50,  # max: 50
               "mkt": "de-AT",
               "responseFilter": "Webpages"}
     response = requests.get(search_url, headers=headers, params=params)
@@ -72,4 +116,5 @@ def __valid_key() -> bool:
 
     :return:
     """
-    return len(functions.import_conf("BingSearchApiKey")) == 32
+    key = functions.import_conf("BingSearchApiKey")
+    return isinstance(key, str) and len(key) == 32
