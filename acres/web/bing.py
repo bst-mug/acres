@@ -32,6 +32,10 @@ def get_web_corpus(query: str) -> str:
 def get_url_corpus(url: str) -> str:
     logger.info("Sending HTTP request to %s...", url)
     response = functions.get_url(url)
+    if not response:
+        logger.warning("Got empty response from %s.", url)
+        return ""
+
     rt = response.text
     #logger.debug(rt)
     #
