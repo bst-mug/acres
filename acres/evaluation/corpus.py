@@ -46,7 +46,8 @@ def find_synonyms() -> None:
     for ngram in acronym_ngrams:  # language model, filtered by ngrams containing acronyms
         count = count + 1
         if count % 1000 == 0:
-            time.sleep(10)
+            # time.sleep(10)
+            logger.info(count)
         # and ngram.count(" ") < 3:
         if not ngram.isupper() and NEWLINE not in ngram and count % DIV == 0:
             # ngrams with newlines substitutes ("¶") seemed to be useless for
@@ -149,3 +150,7 @@ def _write_log(log: Dict[str, List[str]], filename: str) -> None:
             file.write(acronym.rjust(8) + "\t" + result + "\n")
 
     file.close()
+
+
+if __name__ == "__main__":
+    find_synonyms()
