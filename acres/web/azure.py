@@ -5,7 +5,7 @@ import logging
 import os.path
 import pickle
 from collections import namedtuple
-from typing import List, Tuple, Dict, Any
+from typing import List, Tuple, Dict, Any, Optional
 
 import requests
 
@@ -26,6 +26,8 @@ def get_web_corpus(query: str) -> str:
     :return: A string containing all titles and snippets for 50 web results for the query.
     """
     web_results = cached_get_web_results(query)
+    if not web_results:
+        return ""
 
     output = []
     for result in web_results:
@@ -34,7 +36,7 @@ def get_web_corpus(query: str) -> str:
     return ' '.join(output)
 
 
-def cached_get_web_results(query: str) -> List[WebResult]:
+def cached_get_web_results(query: str) -> Optional[List[WebResult]]:
     """
     Cached version of `get_web_results`.
 
@@ -69,9 +71,11 @@ def _get_cache_name() -> str:
     return "cache/azure.p"
 
 
-def get_web_results(query: str) -> List[WebResult]:
+def get_web_results(query: str) -> Optional[List[WebResult]]:
     """
     Queries Bing using a given term and returns a list of WebResults.
+
+    If nothing is found, returns `None`.
 
     When possible, prefer cached_get_web_results, which uses a cache of results.
 
@@ -83,6 +87,9 @@ def get_web_results(query: str) -> List[WebResult]:
     logger.debug(headers)
     logger.debug(response)
     # logger.debug(json.dumps(response, indent=4))
+
+    if "webPages" not in response:
+        return None
 
     # 'id': 'https://api.cognitive.microsoft.com/api/v7/#WebPages.0',
     # 'name': 'Elektrokardiogramm – Wikipedia',
