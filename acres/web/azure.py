@@ -119,7 +119,7 @@ def __query(query: str) -> Tuple[Dict, Any]:
     :param query: A query term.
     :return: A tuple containining response headers and a JSON representation of the web results.
     """
-    assert __valid_key()
+    assert is_valid_key()
     subscription_key = functions.import_conf("BingSearchApiKey")
 
     logger.warning("Querying Bing... This API call will be charged.")
@@ -136,7 +136,7 @@ def __query(query: str) -> Tuple[Dict, Any]:
     return response.headers, response.json()
 
 
-def __valid_key() -> bool:
+def is_valid_key() -> bool:
     """
     Checks if the Bing key is valid.
 

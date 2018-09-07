@@ -11,7 +11,7 @@ from typing import List, Tuple
 
 from acres import rater
 from acres.util import text
-from acres.web import azure
+from acres.web import azure, bing
 from acres.util import functions
 
 logger = logging.getLogger(__name__)
@@ -110,5 +110,8 @@ def ngrams_web_dump(query: str, min_num_tokens: int, max_num_tokens: int) -> Lis
     :param max_num_tokens:
     :return:
     """
-    corpus = azure.get_web_corpus(query)
+    if azure.is_valid_key():
+        corpus = azure.get_web_corpus(query)
+    else:
+        corpus = bing.get_web_corpus(query)
     return functions.corpus_to_ngram_list(corpus, min_num_tokens, max_num_tokens)
