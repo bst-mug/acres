@@ -1,6 +1,11 @@
 from acres.util import functions
 
 
+def test_import_conf():
+    corpus_path = functions.import_conf("CORPUS_PATH")
+    assert isinstance(corpus_path, str)
+
+
 def test_get_url():
     url = "https://github.com/bst-mug/acres"
     actual = functions.get_url(url)

@@ -4,9 +4,7 @@ Stefan Schulz 03 Dec 2017
 
 import logging
 import math
-import random
 import re
-import time
 from typing import Dict, List, Tuple
 
 import acres.util.acronym
@@ -14,7 +12,7 @@ from acres import rater
 from acres.ngram import finder
 from acres.preprocess import resource_factory
 from acres.util import text
-from acres.web import get_web_ngram_stat
+from acres.web import base
 
 logger = logging.getLogger(__name__)
 
@@ -48,7 +46,8 @@ def find_synonyms() -> None:
     for ngram in acronym_ngrams:  # language model, filtered by ngrams containing acronyms
         count = count + 1
         if count % 1000 == 0:
-            time.sleep(10)
+            # time.sleep(10)
+            logger.info(count)
         # and ngram.count(" ") < 3:
         if not ngram.isupper() and NEWLINE not in ngram and count % DIV == 0:
             # ngrams with newlines substitutes ("¶") seemed to be useless for
@@ -78,13 +77,11 @@ def find_synonyms() -> None:
                     li_web = []  # type: List[Tuple[int, str]]
                 else:
                     query = left_string + " " + acronym + " " + right_string
+
+                    # TODO use text.replace_punctuation instead
                     query = query.replace(".", " ").replace(",", " ")
-                    query = query.replace("  ", " ")
-                    query = query.replace(" ", "+")
-                    str_url = "http://www.bing.de/search?cc=de&q=%22" + query + "%22"
-                    time.sleep(random.randint(0, 2000) / 1000)
-                    print(str_url)
-                    li_web = get_web_ngram_stat.ngrams_web_dump(str_url, 1, 10)
+
+                    li_web = base.ngrams_web_dump("\"" + query + "\"", 1, 10)
 
                 # Prepare parameters for corpus model
                 if left_string == "":
@@ -153,3 +150,7 @@ def _write_log(log: Dict[str, List[str]], filename: str) -> None:
             file.write(acronym.rjust(8) + "\t" + result + "\n")
 
     file.close()
+
+
+if __name__ == "__main__":
+    find_synonyms()

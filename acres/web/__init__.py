@@ -1,1 +1,1 @@
-__all__ = ['get_web_ngram_stat']
+__all__ = ['azure', 'base', 'bing']

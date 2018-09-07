@@ -4,10 +4,26 @@ acres.web package
 Submodules
 ----------
 
-acres.web.get\_web\_ngram\_stat module
---------------------------------------
+acres.web.azure module
+----------------------
 
-.. automodule:: acres.web.get_web_ngram_stat
+.. automodule:: acres.web.azure
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+acres.web.base module
+---------------------
+
+.. automodule:: acres.web.base
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+acres.web.bing module
+---------------------
+
+.. automodule:: acres.web.bing
     :members:
     :undoc-members:
     :show-inheritance:

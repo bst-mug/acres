@@ -9,7 +9,7 @@ import configparser
 import logging
 import os
 from random import randint
-from typing import Dict, List, Union
+from typing import Dict, List, Optional, Tuple
 
 import requests
 from requests import Response
@@ -17,7 +17,7 @@ from requests import Response
 logger = logging.getLogger(__name__)
 
 
-def import_conf(key: str) -> str:
+def import_conf(key: str) -> Optional[str]:
     """
 
     :param key:
@@ -25,38 +25,45 @@ def import_conf(key: str) -> str:
     """
     config = configparser.ConfigParser()
     config.read("config.ini")
-    #logger.debug(config.sections())
+    if key not in config['DEFAULT']:
+        logging.critical("'%s' was not found in the DEFAULT section of config.ini.", key)
+        return None
     return config['DEFAULT'][key]
 
 
-def get_url(url: str, timeout: int = 2) -> Union[Response, None]:
+def get_url(url: str, params: Optional[Dict] = None, headers: Optional[Dict] = None,
+            timeout: int = 2) -> Optional[Response]:
     """
-    Make a HTTP request to a given URL using proxy if necessary.
+    Make a GET request to a given URL using proxy if necessary.
 
     :param url: The URL to make the request to.
+    :param params: GET parameters
+    :param headers: GET headers
     :param timeout: The timeout in seconds.
     :return: Object from requests.get()
     """
     config = configparser.ConfigParser()
     config.read("config.ini")
     proxy_config = config["proxy"]
+    proxy_dict = None
+    if proxy_config["UseProxy"] == "yes":
+        http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
+                     "@" + proxy_config["ProxyDomain"] + ":" + proxy_config["ProxyPort"]
+        https_proxy = http_proxy
+        ftp_proxy = http_proxy
+        proxy_dict = {
+            "http": http_proxy,
+            "https": https_proxy,
+            "ftp": ftp_proxy}
 
+    response = None
     try:
-        if proxy_config["UseProxy"] == "yes":
-            http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
-                         "@" + proxy_config["ProxyDomain"] + ":" + proxy_config["ProxyPort"]
-            https_proxy = http_proxy
-            ftp_proxy = http_proxy
-            proxy_dict = {
-                "http": http_proxy,
-                "https": https_proxy,
-                "ftp": ftp_proxy}
-            return requests.get(url, timeout=timeout, proxies=proxy_dict)
-        else:
-            return requests.get(url, timeout=timeout)
+        response = requests.get(url, params=params, headers=headers, timeout=timeout,
+                                proxies=proxy_dict)
+        response.raise_for_status()
     except requests.exceptions.RequestException as ex:
         logger.critical(ex)
-        return None
+    return response
 
 
 def create_ngram_statistics(input_string: str, n_min: int, n_max: int) -> Dict[str, int]:
@@ -211,3 +218,35 @@ def Levenshtein(s: str, t: str) -> int:
                Levenshtein(s, t[:-1]) + 1,
                Levenshtein(s[:-1], t[:-1]) + cost])
     return res
+
+
+def dict_to_sorted_list(ngrams_dict: Dict[str, int]) -> List[Tuple[int, str]]:
+    """
+    Converts a ngram dictionary to a list of tuples, ordered by decreasing frequency.
+
+    :param ngrams_dict:
+    :return:
+    """
+    output = []
+    for ngram in ngrams_dict:
+        output.append((ngrams_dict[ngram], ngram))
+    output.sort(reverse=True)
+    return output
+
+
+def corpus_to_ngram_list(corpus: str, min_num_tokens: int,
+                         max_num_tokens: int) -> List[Tuple[int, str]]:
+    """
+    Generates a ngram list, sorted by frequency, out of a corpus.
+
+    Upper bound of ngram length may be set according to acronym length
+    Rule of thumb: acronym length + 4, in order to safely retrieve acronym / definition
+    pairs. Not that also quotes, dashes and parentheses count as single tokens
+
+    :param corpus:
+    :param min_num_tokens:
+    :param max_num_tokens:
+    :return:
+    """
+    stats = create_ngram_statistics(corpus, min_num_tokens, max_num_tokens)
+    return dict_to_sorted_list(stats)
