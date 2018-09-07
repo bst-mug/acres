@@ -1,5 +1,6 @@
 from acres.web import azure
 
+# TODO use fixture for tests instead of committed azure.p
 
 def test_get_web_corpus():
     expected = ""

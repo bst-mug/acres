@@ -15,6 +15,7 @@ logger = logging.getLogger(__name__)
 
 WebResult = namedtuple('WebResult', ['name', 'url', 'language', 'snippet'])
 
+# TODO prune cache automatically
 RESULTS_CACHE = {}  # type: Dict[str, List[WebResult]]
 
 
