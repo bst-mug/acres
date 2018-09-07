@@ -5,7 +5,7 @@ import logging
 import os.path
 import pickle
 from collections import namedtuple
-from typing import List, Tuple, Dict, Any, Optional
+from typing import List, Tuple, Dict, Any, Optional, MutableMapping
 
 import requests
 
@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 WebResult = namedtuple('WebResult', ['name', 'url', 'language', 'snippet'])
 
 # TODO prune cache automatically
-RESULTS_CACHE = {}  # type: Dict[str, List[WebResult]]
+RESULTS_CACHE = {}  # type: Dict[str, Optional[List[WebResult]]]
 
 
 def get_web_corpus(query: str) -> str:
@@ -112,7 +112,7 @@ def get_web_results(query: str) -> Optional[List[WebResult]]:
     return results
 
 
-def __query(query: str) -> Tuple[Dict, Any]:
+def __query(query: str) -> Tuple[MutableMapping[str, str], Any]:
     """
     Queries Bing using a given term and returns a JSON representation of the results.
     Requires a valid `BingSearchApiKey` set on config.ini.
