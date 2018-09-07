@@ -4,9 +4,7 @@ Stefan Schulz 03 Dec 2017
 
 import logging
 import math
-import random
 import re
-import time
 from typing import Dict, List, Tuple
 
 import acres.util.acronym
@@ -78,11 +76,11 @@ def find_synonyms() -> None:
                     li_web = []  # type: List[Tuple[int, str]]
                 else:
                     query = left_string + " " + acronym + " " + right_string
+
+                    # TODO use text.replace_punctuation instead
                     query = query.replace(".", " ").replace(",", " ")
-                    query = query.replace("  ", " ")
-                    query = query.replace(" ", "+")
-                    time.sleep(random.randint(0, 2000) / 1000)
-                    li_web = base.ngrams_web_dump("%22" + query + "%22", 1, 10)
+
+                    li_web = base.ngrams_web_dump("\"" + query + "\"", 1, 10)
 
                 # Prepare parameters for corpus model
                 if left_string == "":

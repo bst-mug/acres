@@ -1,4 +1,6 @@
 import logging
+import time
+import random
 from typing import List, Tuple
 
 import html2text
@@ -17,6 +19,13 @@ def get_web_corpus(query: str) -> str:
     :param query:
     :return:
     """
+    query = query.replace("  ", " ")
+
+    # Escape HTML
+    query = query.replace(" ", "+")
+    query = query.replace("\"", "%22")
+
+    time.sleep(random.randint(0, 2000) / 1000)
     return get_url_corpus("http://www.bing.de/search?cc=de&q=" + query)
 
 
