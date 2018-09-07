@@ -1,9 +1,5 @@
 """
-
-Gets token ngram statistics from a website
-Does some cleaning and then returns ngram list
-in decreasing frequency
-
+Base module for web-based acronym resolution.
 """
 
 import logging

@@ -220,7 +220,7 @@ def Levenshtein(s: str, t: str) -> int:
     return res
 
 
-def dict_to_sorted_list(ngrams_dict: Dict[str, int]) -> List[Tuple[int,str]]:
+def dict_to_sorted_list(ngrams_dict: Dict[str, int]) -> List[Tuple[int, str]]:
     """
     Converts a ngram dictionary to a list of tuples, ordered by decreasing frequency.
 

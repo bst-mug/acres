@@ -1,3 +1,8 @@
+"""
+Gets token ngram statistics from a website
+Does some cleaning and then returns ngram list
+in decreasing frequency
+"""
 import logging
 import time
 import random
@@ -30,31 +35,38 @@ def get_web_corpus(query: str) -> str:
 
 
 def get_url_corpus(url: str) -> str:
+    """
+    Generates a pseudo-corpus out of a given URL.
+
+    :param url:
+    :return:
+    """
     logger.info("Sending HTTP request to %s...", url)
     response = functions.get_url(url)
     if not response:
         logger.warning("Got empty response from %s.", url)
         return ""
 
-    rt = response.text
-    #logger.debug(rt)
+    response_text = response.text
+    #logger.debug(response_text)
     #
     # html2text removes diacritics, therefore substitutions!
     #
-    rt = rt.replace("&#196;", "Ä").replace("&#228;", "ä") \
+    response_text = response_text.replace("&#196;", "Ä").replace("&#228;", "ä") \
         .replace("&#214;", "Ö").replace("&#246;", "ö").replace("&#223;", "ß") \
         .replace("&#220;", "Ü").replace("&#252;", "ü").replace("&quot;", 'QUOTQUOT')
-    txt = html2text.html2text(rt)
+    txt = html2text.html2text(response_text)
     #
     # segmentation of text into smaller chunks; thus obtaining
     # more concise ngram lists
     # also detaching parentheses and quotes from enclosed text
     #
-    txt = txt.replace("\n", " ").replace("*", "\n").replace('"', ' " ').replace('QUOTQUOT', ' " ').replace("[", "\n") \
-        .replace("]", "\n").replace(")", " ) ").replace("!", "\n").replace("(", " ( ") \
-        .replace(", ", " , ").replace(". ", "\n").replace("#", "\n").replace(";", "\n") \
-        .replace("?", "\n").replace(": ", "\n").replace("|", "\n").replace("..", "\n") \
-        .replace("   ", " ").replace("  ", " ").replace("  ", " ").replace("  ", " ").replace(" ( ) ", " ")
+    txt = txt.replace("\n", " ").replace("*", "\n").replace('"', ' " ').replace('QUOTQUOT', ' " ')\
+        .replace("[", "\n").replace("]", "\n").replace(")", " ) ").replace("!", "\n")\
+        .replace("(", " ( ").replace(", ", " , ").replace(". ", "\n").replace("#", "\n")\
+        .replace(";", "\n").replace("?", "\n").replace(": ", "\n").replace("|", "\n")\
+        .replace("..", "\n").replace("   ", " ").replace("  ", " ").replace("  ", " ")\
+        .replace("  ", " ").replace(" ( ) ", " ")
     out = ""
     # logger.debug(txt)
     words = txt.split(" ")
