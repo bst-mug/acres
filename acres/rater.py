@@ -50,9 +50,9 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
     acro = acro.strip()
     full = full.strip()
 
-    ##
-    ## ELIMINATION RULES
-    ##
+    #
+    # ELIMINATION RULES
+    #
 
     # acronym must have at least two characters: all those expressions like "Streptococcus B" or
     # "Vitamin C" should not be considered containg acronyms. Normally these compositions are
@@ -86,7 +86,8 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
     if len(acro) / len(full) > 0.6:
         return (full, 0, "Full form too short")
 
-    lev = acres.util.functions.Levenshtein(acro.upper(), acres.util.acronym.create_german_acronym(full))
+    lev = acres.util.functions.levenshtein(acro.upper(),
+                                           acres.util.acronym.create_german_acronym(full))
     if lev >= len(acro):
         return (full, 0, "Levenshtein edit distance too high")
 
@@ -98,10 +99,10 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
     # SCHWARTZ, Ariel S.; HEARST, Marti A. A simple algorithm for identifying abbreviation
     # definitions in biomedical text. In: Biocomputing 2003. 2002. S. 451-462.
 
-    ## ACRONYM DEFINITION PATTERNS
-    ## full form contains an acronym definition pattern (normally only yielded
-    ## from Web scraping, unlikely in clinical texts)
-    ## acronym is included; is then removed from full form
+    # ACRONYM DEFINITION PATTERNS
+    # full form contains an acronym definition pattern (normally only yielded
+    # from Web scraping, unlikely in clinical texts)
+    # acronym is included; is then removed from full form
 
     acro_def_pattern = acres.util.acronym.extract_acronym_definition(full, 7)
     if acro_def_pattern is not None:
@@ -117,12 +118,12 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
         if "(" in full or ")" in full:
             return (full, 0, "Parenthesis in full")
 
-    ## from here no elimination
+    # from here no elimination
 
-    ## GENERATION OF VARIANTS
-    ## Typical substitutions, mostly concerning the inconsistent use
-    ## of k, c, and z in clinical texts
-    ## can be enhanced by frequent translations in acres.util.text.
+    # GENERATION OF VARIANTS
+    # Typical substitutions, mostly concerning the inconsistent use
+    # of k, c, and z in clinical texts
+    # can be enhanced by frequent translations in acres.util.text.
 
     lst_var = variants.generate_all_variants_by_rules(full)
     full_old = full
@@ -187,12 +188,11 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
                     if acro.upper() == acres.util.acronym.create_german_acronym(full):
                         score = score * 2
 
-                # if short full form, the coincidence of the first two letters of full and acronym increases score
+                # if short full form, the coincidence of the first two letters of full and acronym
+                # increases score
                 if full.count(" ") + 1 < len(acro):
                     if full.upper()[0:2] == acro.upper()[0:2]:
                         score = score * 2
-
-
 
         if old_score > score:
             score = old_score

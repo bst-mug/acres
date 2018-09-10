@@ -92,11 +92,11 @@ def create_ngram_statistics(input_string: str, n_min: int, n_max: int) -> Dict[s
         line = line.strip()
         print(line)
         cleaned_line = line.split(" ")
-        for n in range(n_min, n_max + 1):
-            for i in range(len(cleaned_line) - n + 1):
-                g = ' '.join(cleaned_line[i:i + n])
-                output.setdefault(g, 0)
-                output[g] += 1
+        for i in range(n_min, n_max + 1):
+            for j in range(len(cleaned_line) - i + 1):
+                ngram = ' '.join(cleaned_line[j:j + i])
+                output.setdefault(ngram, 0)
+                output[ngram] += 1
     #    Example for formatted output, sorted, reverse order
     #    for w in sorted(output, key=output.get, reverse = True):
     #       print ('{:>8}'.format(output[w]) + '\t' + w)
@@ -132,47 +132,36 @@ def is_stopword(str_in, lang="de"):
     # for German, source http://snowball.tartarus.org/algorithms/german/stop.txt
     ret = False
     if lang == "de":
-        stopwords = ['ab', 'aber', 'alle', 'allem', 'allen', 'aller', 'alles', 'als', 'also', 'am', 'an', 'andere',
-                     'anderem', 'anderem',
-                     'anderen', 'anderer', 'anderer', 'anderes', 'andern', 'anders', 'auch', 'auf', 'aus', 'bei', 'bin',
-                     'bis', 'bist',
-                     'da', 'damit', 'dann', 'das', 'dass', 'daß', 'dasselbe', 'dazu', 'dein', 'deine', 'deinem',
-                     'deinen', 'deiner',
-                     'deines', 'dem', 'demselben', 'den', 'denn', 'denselben', 'der', 'derer', 'derselbe', 'derselben',
-                     'des',
-                     'desselben', 'dessen', 'dich', 'die', 'dies', 'diese', 'dieselbe', 'dieselben', 'diesem', 'diesen',
-                     'dieser',
-                     'dieses', 'dir', 'doch', 'dort', 'du', 'durch', 'ein', 'eine', 'einem', 'einen', 'einer', 'eines',
-                     'einig',
-                     'einige', 'einigem', 'einigen', 'einiger', 'einiges', 'einmal', 'er', 'es', 'etwas', 'euch',
-                     'euer', 'eure',
-                     'eurem', 'euren', 'eurer', 'eures', 'für', 'gegen', 'gewesen', 'hab', 'habe', 'haben', 'hat',
-                     'hatte', 'hatten',
-                     'hier', 'hin', 'hinter', 'ich', 'ihm', 'ihn', 'ihnen', 'ihr', 'ihre', 'ihrem', 'ihren', 'ihrer',
-                     'ihres', 'im',
-                     'in', 'indem', 'ins', 'ist', 'jede', 'jedem', 'jeden', 'jeder', 'jedes', 'jene', 'jenem', 'jenen',
-                     'jener', 'jenes',
-                     'jetzt', 'kann', 'kein', 'keine', 'keinem', 'keinen', 'keiner', 'keines', 'können', 'könnte',
-                     'machen', 'man',
-                     'manche', 'manchem', 'manchen', 'mancher', 'manches', 'mein', 'meine', 'meinem', 'meinen',
-                     'meiner', 'meines',
-                     'mich', 'mir', 'mit', 'muss', 'musste', 'nach', 'nicht', 'nichts', 'noch', 'nun', 'nur', 'ob',
-                     'oder', 'ohne',
-                     'sehr', 'sein', 'seine', 'seinem', 'seinen', 'seiner', 'seines', 'selbst', 'sich', 'sie', 'sind',
-                     'so', 'solche',
-                     'solchem', 'solchen', 'solcher', 'solches', 'soll', 'sollte', 'sondern', 'sonst', 'über', 'um',
-                     'und', 'uns',
-                     'unser', 'unsere', 'unserem', 'unseren', 'unseres', 'unter', 'viel', 'vom', 'von', 'vor',
-                     'während', 'war',
-                     'waren', 'warst', 'was', 'weg', 'weil', 'weiter', 'welche', 'welchem', 'welchen', 'welcher',
-                     'welches', 'wenn',
-                     'werde', 'werden', 'wie', 'wieder', 'will', 'wir', 'wird', 'wirst', 'wo', 'wollen', 'wollte',
-                     'würde', 'würden',
-                     'zu', 'zum', 'zur', 'zwar', 'zwischen']
+        stopwords = ['ab', 'aber', 'alle', 'allem', 'allen', 'aller', 'alles', 'als', 'also', 'am',
+                     'an', 'andere', 'anderem', 'anderem', 'anderen', 'anderer', 'anderer',
+                     'anderes', 'andern', 'anders', 'auch', 'auf', 'aus', 'bei', 'bin', 'bis',
+                     'bist', 'da', 'damit', 'dann', 'das', 'dass', 'daß', 'dasselbe', 'dazu',
+                     'dein', 'deine', 'deinem', 'deinen', 'deiner', 'deines', 'dem', 'demselben',
+                     'den', 'denn', 'denselben', 'der', 'derer', 'derselbe', 'derselben', 'des',
+                     'desselben', 'dessen', 'dich', 'die', 'dies', 'diese', 'dieselbe', 'dieselben',
+                     'diesem', 'diesen', 'dieser', 'dieses', 'dir', 'doch', 'dort', 'du', 'durch',
+                     'ein', 'eine', 'einem', 'einen', 'einer', 'eines', 'einig', 'einige',
+                     'einigem', 'einigen', 'einiger', 'einiges', 'einmal', 'er', 'es', 'etwas',
+                     'euch', 'euer', 'eure', 'eurem', 'euren', 'eurer', 'eures', 'für', 'gegen',
+                     'gewesen', 'hab', 'habe', 'haben', 'hat', 'hatte', 'hatten', 'hier', 'hin',
+                     'hinter', 'ich', 'ihm', 'ihn', 'ihnen', 'ihr', 'ihre', 'ihrem', 'ihren',
+                     'ihrer', 'ihres', 'im', 'in', 'indem', 'ins', 'ist', 'jede', 'jedem', 'jeden',
+                     'jeder', 'jedes', 'jene', 'jenem', 'jenen', 'jener', 'jenes', 'jetzt', 'kann',
+                     'kein', 'keine', 'keinem', 'keinen', 'keiner', 'keines', 'können', 'könnte',
+                     'machen', 'man', 'manche', 'manchem', 'manchen', 'mancher', 'manches', 'mein',
+                     'meine', 'meinem', 'meinen', 'meiner', 'meines', 'mich', 'mir', 'mit', 'muss',
+                     'musste', 'nach', 'nicht', 'nichts', 'noch', 'nun', 'nur', 'ob', 'oder',
+                     'ohne', 'sehr', 'sein', 'seine', 'seinem', 'seinen', 'seiner', 'seines',
+                     'selbst', 'sich', 'sie', 'sind', 'so', 'solche', 'solchem', 'solchen',
+                     'solcher', 'solches', 'soll', 'sollte', 'sondern', 'sonst', 'über', 'um',
+                     'und', 'uns', 'unser', 'unsere', 'unserem', 'unseren', 'unseres', 'unter',
+                     'viel', 'vom', 'von', 'vor', 'während', 'war', 'waren', 'warst', 'was', 'weg',
+                     'weil', 'weiter', 'welche', 'welchem', 'welchen', 'welcher', 'welches', 'wenn',
+                     'werde', 'werden', 'wie', 'wieder', 'will', 'wir', 'wird', 'wirst', 'wo',
+                     'wollen', 'wollte', 'würde', 'würden', 'zu', 'zum', 'zur', 'zwar', 'zwischen']
         if str_in.lower() in stopwords:
             ret = True
     return ret
-
 
 
 def robust_text_import_from_dir(path: str) -> List[str]:
@@ -197,26 +186,33 @@ def robust_text_import_from_dir(path: str) -> List[str]:
         except UnicodeDecodeError:
             logger.warning("Corrupt file: %s", filename)
             continue
-        except IOError as e:
-            logger.warning("I/O error (%d) while reading %s: %s", e.errno, filename, e.strerror)
+        except IOError as ex:
+            logger.warning("I/O error (%d) while reading %s: %s", ex.errno, filename, ex.strerror)
             continue
 
     return texts
 
 
-def Levenshtein(s: str, t: str) -> int:
-    if s == "":
-        return len(t)
-    if t == "":
-        return len(s)
-    if s[-1] == t[-1]:
+def levenshtein(source: str, target: str) -> int:
+    """
+    Calculates the Levenshtein distance between two strings.
+
+    :param source:
+    :param target:
+    :return:
+    """
+    if source == "":
+        return len(target)
+    if target == "":
+        return len(source)
+    if source[-1] == target[-1]:
         cost = 0
     else:
         cost = 1
 
-    res = min([Levenshtein(s[:-1], t) + 1,
-               Levenshtein(s, t[:-1]) + 1,
-               Levenshtein(s[:-1], t[:-1]) + cost])
+    res = min([levenshtein(source[:-1], target) + 1,
+               levenshtein(source, target[:-1]) + 1,
+               levenshtein(source[:-1], target[:-1]) + cost])
     return res
 
 

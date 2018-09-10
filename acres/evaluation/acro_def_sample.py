@@ -71,7 +71,7 @@ if __name__ == "__main__":
         full = l.split("\t")[1]
         if abs(len(acro) - full.count(" ") - 1) <= 2:
             n_acro = acres.util.acronym.create_german_acronym(full)
-            lev = acres.util.functions.Levenshtein(acro.upper(), n_acro)
+            lev = acres.util.functions.levenshtein(acro.upper(), n_acro)
             l_count.append((lev, acro, full))
 
     show_extremes("edit distance with generated acronym", l_count, 10, 10)
