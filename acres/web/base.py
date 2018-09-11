@@ -6,9 +6,9 @@ import logging
 from typing import List, Tuple
 
 from acres import rater
+from acres.util import functions
 from acres.util import text
 from acres.web import azure, bing
-from acres.util import functions
 
 logger = logging.getLogger(__name__)
 
@@ -33,20 +33,22 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
     :param maximum_word_count: the maximum of context words that are put into the query
     :return: best expansion of acronym, rating
     """
-    ngrams = get_web_dump_from_acro_with_context(
-        left, acro, right, minimum_len, maximum_word_count)
+    ngrams = get_web_dump_from_acro_with_context(left, acro, right, minimum_len, maximum_word_count)
+
     old_weight = 0.0
+    weight = 0.0
     out = ""
+
     for (freq, ngram) in ngrams:
         (full, score, reason) = rater.get_acronym_score(acro, ngram, language="de")
         if score > 0.0:
-            print(score, full)
-        if score > 0:
+            logger.debug("%.2f %s", score, full)
             weight = freq * score
             if weight > old_weight:
                 out = full
                 old_weight = weight
-    return (out, weight)
+
+    return out, weight
 
 
 def get_web_dump_from_acro_with_context(left: str, acro: str, right: str, min_word_len: int,
