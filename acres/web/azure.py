@@ -10,6 +10,7 @@ from typing import List, Tuple, Dict, Any, Optional, MutableMapping
 import requests
 
 from acres.util import functions
+from acres.util import text
 
 logger = logging.getLogger(__name__)
 
@@ -49,12 +50,15 @@ def cached_get_web_results(query: str) -> Optional[List[WebResult]]:
     if not RESULTS_CACHE:
         _load_cache()
 
-    if query not in RESULTS_CACHE:
-        web_results = get_web_results(query)
-        RESULTS_CACHE[query] = web_results
+    # Trailing whitespaces make no difference
+    cleaned_query = text.clean_whitespaces(query)
+
+    if cleaned_query not in RESULTS_CACHE:
+        web_results = get_web_results(cleaned_query)
+        RESULTS_CACHE[cleaned_query] = web_results
         _persist_cache()
 
-    return RESULTS_CACHE[query]
+    return RESULTS_CACHE[cleaned_query]
 
 
 def _load_cache() -> None:

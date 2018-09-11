@@ -74,7 +74,7 @@ def create_german_acronym(full: str) -> str:
     neg_list = ("and", "auf", "bei", "bei", "beim", "by", "der", "des", "die", "et", "for", "für",
                 "gegen", "im", "in", "mit", "nach", "not", "of", "on", "than", "the", "to", "und",
                 "vom", "von", "vor", "with", "zum", "zur")
-    full = text.remove_duplicated_whitespaces(full.replace("-", " ").replace("/", " ")).strip()
+    full = text.clean_whitespaces(full.replace("-", " ").replace("/", " "))
     for w in full.split(" "):
         if w not in neg_list:
             out = out + w[0].upper()

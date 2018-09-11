@@ -226,3 +226,13 @@ def remove_duplicated_whitespaces(whitespaced: str) -> str:
     """
     cleaner = re.compile(r"\s+")
     return cleaner.sub(" ", whitespaced)
+
+
+def clean_whitespaces(whitespaced: str) -> str:
+    """
+    Clean up an input string of repeating and trailing whitespaces.
+
+    :param whitespaced:
+    :return:
+    """
+    return remove_duplicated_whitespaces(whitespaced).strip()
