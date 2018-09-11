@@ -28,30 +28,37 @@ class Stats:
         self.acronyms = Stats.count_acronyms(text)
         self.sentences = Stats.count_sentences(text)
 
+    @staticmethod
     def count_chars(text: str) -> int:
         return len(''.join(text.split()))
 
+    @staticmethod
     def count_types(text: str) -> int:
         types = set()
         for token in text.split():
             types.add(token)
         return len(types)
 
+    @staticmethod
     def count_tokens(text: str) -> int:
         return len(text.split())
 
+    @staticmethod
     def count_acronyms(text: str) -> int:
         return len(Stats._get_acronyms(text))
 
+    @staticmethod
     def count_acronyms_types(text: str) -> int:
         return len(set(Stats._get_acronyms(text)))
 
+    @staticmethod
     def count_sentences(text: str) -> int:
         count = 0
         for _ in text.split(Stats.line_separator):
             count += 1
         return count
 
+    @staticmethod
     def _get_acronyms(text: str) -> List[str]:
         acronyms = []
         for token in text.split():
@@ -98,7 +105,8 @@ def get_stats(corpus_path: str) -> List[Stats]:
 
 def print_stats() -> None:
     all_stats = get_stats(functions.import_conf("CORPUS_PATH"))
-    [print(doc) for doc in all_stats]
+    for doc in all_stats:
+        print(doc)
     print("Total docs: " + str(len(all_stats) - 1))
 
 
