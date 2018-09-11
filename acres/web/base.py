@@ -45,7 +45,7 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
             weight = freq * score
             if weight > old_weight:
                 out = full
-            old_weight = weight
+                old_weight = weight
     return (out, weight)
 
 
