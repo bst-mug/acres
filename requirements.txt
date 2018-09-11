@@ -4,7 +4,7 @@ html2text
 
 # dev
 pylint
-pytest
+pytest>=3.7.3   # https://github.com/pytest-dev/pytest/issues/3819
 pytest-cov
 python-coveralls
 mypy
