@@ -58,7 +58,7 @@ def print_ambiguous(filename: str) -> None:
     acronyms = get_sense_buckets(filename)
     for key, value in acronyms.items():
         if len(value) > 1:
-            print(key, value, sep="\t")
+            print(key, sorted(value), sep="\t")
 
 
 def print_senses(filename: str) -> None:

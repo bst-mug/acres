@@ -18,6 +18,6 @@ def test_print_ambiguous(capsys):
 
     captured = capsys.readouterr()
 
-    expected = "AP\t{'Angina pectoris', 'Alkalische Phosphatase'}"
+    expected = "AP\t['Alkalische Phosphatase', 'Angina pectoris']"
     actual = captured.out.split("\n")[-2]
     assert expected == actual
