@@ -3,7 +3,7 @@ from typing import List
 
 class ReferenceRow:
     """
-
+    Class that helds data for each row in the reference standard.
     """
 
     def __init__(self, row: str):
@@ -20,6 +20,12 @@ class ReferenceRow:
 
 
 def parse(filename: str) -> List[ReferenceRow]:
+    """
+    Parses a .tsv-formatted reference file into a list of ReferenceRow's.
+
+    :param filename:
+    :return:
+    """
     file = open(filename, "r", encoding="utf-8")
 
     gold_standard = []  # type: List[ReferenceRow]

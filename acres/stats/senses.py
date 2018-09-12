@@ -1,3 +1,6 @@
+"""
+Module to estimate acronym ambiguity.
+"""
 from typing import Dict, List, Set
 
 from acres.model import reference
@@ -12,7 +15,7 @@ def bucketize(acronyms: Dict[str, Set[str]]) -> Dict[int, int]:
     :return:
     """
     buckets = {}  # type: Dict[int, int]
-    for key, value in acronyms.items():
+    for _, value in acronyms.items():
         senses = len(value)
         buckets.setdefault(senses, 0)
         buckets[senses] += 1
@@ -36,6 +39,7 @@ def map_senses_acronym(standard: List[ReferenceRow]) -> Dict[str, Set[str]]:
 
 def get_sense_buckets(filename: str) -> Dict[str, Set[str]]:
     """
+    Parses a reference standard and get a map of senses per acronym.
 
     :param filename:
     :return:
@@ -45,6 +49,12 @@ def get_sense_buckets(filename: str) -> Dict[str, Set[str]]:
 
 
 def print_ambiguous(filename: str) -> None:
+    """
+    Print ambiguous acronyms, the ones with more than one sense according to the reference standard.
+
+    :param filename:
+    :return:
+    """
     acronyms = get_sense_buckets(filename)
     for key, value in acronyms.items():
         if len(value) > 1:
@@ -52,12 +62,18 @@ def print_ambiguous(filename: str) -> None:
 
 
 def print_senses(filename: str) -> None:
+    """
+    Print the distribution of senses per acronym.
+
+    :param filename:
+    :return:
+    """
     buckets = bucketize(get_sense_buckets(filename))
     for key, value in sorted(buckets.items()):
         print(key, value, sep="\t")
 
 
 if __name__ == "__main__":
-    filename = "resources/Workbench_All.txt"
-    print_senses(filename)
-    print_ambiguous(filename)
+    WORKBENCH = "resources/Workbench_All.txt"
+    print_senses(WORKBENCH)
+    print_ambiguous(WORKBENCH)
