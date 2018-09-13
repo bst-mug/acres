@@ -1,7 +1,9 @@
+import pytest
+
 from acres.ngram import finder
-from acres.preprocess import create_dumps
 from acres.preprocess import resource_factory
 from acres.util import text
+from acres.evaluation import evaluation
 
 
 def test_fixture():
@@ -145,3 +147,16 @@ def test_get_word_ngrams():
 
     # ngramstat should not have duplicate entries
     assert len(unique_ngrams) == len(ngrams)
+
+
+def test_evaluation():
+    # XXX word2vec is not deterministic, different models might lead to slighthly different metrics
+    (precision, recall) = evaluation.analyze_file("resources/gold_standard.tsv", evaluation.Strategy.WORD2VEC)
+    absolute_tolerance = 0.01
+    assert pytest.approx(0.20, abs=absolute_tolerance) == precision
+    assert pytest.approx(0.06, abs=absolute_tolerance) == recall
+
+    (precision, recall) = evaluation.analyze_file("resources/gold_standard.tsv", evaluation.Strategy.NGRAM)
+    absolute_tolerance = 0.01
+    assert pytest.approx(0.09, abs=absolute_tolerance) == precision
+    assert pytest.approx(0.09, abs=absolute_tolerance) == recall
