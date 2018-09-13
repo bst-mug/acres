@@ -74,6 +74,6 @@ def print_senses(filename: str) -> None:
 
 
 if __name__ == "__main__":
-    WORKBENCH = "resources/Workbench_All.txt"
+    WORKBENCH = "resources/gold_standard.tsv"
     print_senses(WORKBENCH)
     print_ambiguous(WORKBENCH)
