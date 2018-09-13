@@ -93,11 +93,12 @@ def test_input(true_expansions: list, possible_expansions: list, max_tries: int 
     return False
 
 
-def analyze_row(input_row: str) -> Dict[str, bool]:
+def analyze_row(input_row: str, strategy: Strategy) -> Dict[str, bool]:
     """
     Analyze a given row of the gold standard.
 
     :param input_row: A tab-separated string
+    :param strategy:
     :return: A dictionary with two keys: 'found' and 'correct', each key pointing to a boolean
     """
     ret = {'found': False, 'correct': False}
@@ -115,14 +116,8 @@ def analyze_row(input_row: str) -> Dict[str, bool]:
     right_context = text.context_ngram(splitted_row[2], 3, False)
     true_expansions = splitted_row[3:]
 
-    ngram_expansions = cached_resolve(acronym, left_context, right_context, Strategy.NGRAM)
-    logger.debug(ngram_expansions)
-
-    word2vec_expansions = cached_resolve(acronym, left_context, right_context, Strategy.WORD2VEC)
-    logger.debug(word2vec_expansions)
-
-    # XXX Switch as desired
-    possible_expansions = word2vec_expansions
+    possible_expansions = cached_resolve(acronym, left_context, right_context, strategy)
+    logger.debug(possible_expansions)
 
     ret['found'] = True if len(possible_expansions) > 0 else ret['found']
     ret['correct'] = test_input(true_expansions, possible_expansions)
@@ -130,7 +125,7 @@ def analyze_row(input_row: str) -> Dict[str, bool]:
     return ret
 
 
-def analyze_file(filename: str) -> Tuple[float, float]:
+def analyze_file(filename: str, strategy: Strategy) -> Tuple[float, float]:
     """
     Analyzes a gold standard with text excerpts centered on an acronym, followed by n valid
     expansions.
@@ -138,6 +133,7 @@ def analyze_file(filename: str) -> Tuple[float, float]:
     :param filename: A tab-separated file that contains the records from the gold standard. \
     Syntax: \
     left context<TAB>acronym<TAB>right context<TAB>valid expansion 1<TAB>valid expansion 2<TAB>...
+    :param strategy:
     :return: A tuple with final_precision and final_recall
     """
     total_acronyms = total_correct = total_found = 0
@@ -146,7 +142,7 @@ def analyze_file(filename: str) -> Tuple[float, float]:
 
     for row in f:
         total_acronyms += 1
-        row_analysis = analyze_row(row)
+        row_analysis = analyze_row(row, strategy)
         if row_analysis['found']:
             total_found += 1
 
@@ -189,8 +185,12 @@ def calculate_f1(precision: float, recall: float) -> float:
 
 
 if __name__ == "__main__":
+    # XXX Switch as desired
+    # strategy = Strategy.NGRAM
+    strategy = Strategy.WORD2VEC
+
     start_time = time.time()
-    (final_precision, final_recall) = analyze_file("resources/Workbench.txt")
+    (final_precision, final_recall) = analyze_file("resources/Workbench.txt", strategy)
     end_time = time.time()
 
     print("Time: (s)", end_time - start_time)
