@@ -186,11 +186,11 @@ def calculate_f1(precision: float, recall: float) -> float:
 
 if __name__ == "__main__":
     # XXX Switch as desired
-    # strategy = Strategy.NGRAM
-    strategy = Strategy.WORD2VEC
+    # a_strategy = Strategy.NGRAM
+    a_strategy = Strategy.WORD2VEC
 
     start_time = time.time()
-    (final_precision, final_recall) = analyze_file("resources/Workbench.txt", strategy)
+    (final_precision, final_recall) = analyze_file("resources/Workbench.txt", a_strategy)
     end_time = time.time()
 
     print("Time: (s)", end_time - start_time)

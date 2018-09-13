@@ -128,8 +128,15 @@ def random_sub_list(in_list: list, max_num: int) -> list:
 
 
 def is_stopword(str_in, lang="de"):
-    # tests whether word is stopword, according to list
-    # for German, source http://snowball.tartarus.org/algorithms/german/stop.txt
+    """
+    Tests whether word is stopword, according to list.
+
+    For German, source http://snowball.tartarus.org/algorithms/german/stop.txt
+
+    :param str_in:
+    :param lang:
+    :return:
+    """
     ret = False
     if lang == "de":
         stopwords = ['ab', 'aber', 'alle', 'allem', 'allen', 'aller', 'alles', 'als', 'also', 'am',
