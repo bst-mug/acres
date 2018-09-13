@@ -13,7 +13,7 @@ from acres.util import functions
 from acres.util import text
 
 logger = logging.getLogger(__name__)
-# logger.setLevel(logging.INFO)
+logger.setLevel(logging.INFO)
 
 FinderConstraints = namedtuple('FinderConstraints', ['min_freq', 'max_count', 'min_num_tokens',
                                                      'max_num_tokens'])
