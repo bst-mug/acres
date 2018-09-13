@@ -6,7 +6,7 @@ This module provides methods for lazily loading resources.
 import logging
 import os.path
 import pickle
-from typing import Dict, Set, List, Tuple
+from typing import Dict, Set, List, Tuple, Any
 
 from gensim.models import Word2Vec
 
@@ -22,7 +22,7 @@ LOG_FOLDER = "models/log/"
 NN_MODELS_FOLDER = "models/nn/"
 DATA_FOLDER = functions.import_conf("CORPUS_PATH")
 
-VERSION = "V6"
+VERSION = "V7"
 
 #  minimal number of occurrences of a word ngram in the corpus
 MIN_FREQ = 2
@@ -58,10 +58,10 @@ def get_morphemes() -> Set[str]:
             morphemes = create_dumps.create_morpho_dump(morph_eng)
             morphemes = create_dumps.create_morpho_dump(morph_ger, morphemes)
 
-            pickle.dump(morphemes, open(output_file, "wb"))
+            _dump(morphemes, output_file)
 
         _log_file_found(output_file)
-        MORPHEMES = pickle.load(open(output_file, "rb"))
+        MORPHEMES = _load(output_file)
 
     return MORPHEMES
 
@@ -77,10 +77,10 @@ def get_index() -> Dict[str, Set[int]]:
 
             ngramstat = get_ngramstat()
             index = create_dumps.create_index(ngramstat)
-            pickle.dump(index, open(output_file, "wb"))
+            _dump(index, output_file)
 
         _log_file_found(output_file)
-        INDEX = pickle.load(open(output_file, "rb"))
+        INDEX = _load(output_file)
 
     return INDEX
 
@@ -104,10 +104,10 @@ def get_word_ngrams() -> Dict[str, int]:
             word_ngrams = create_dumps.create_corpus_ngramstat_dump(DATA_FOLDER, MIN_FREQ)
 
             write_txt(word_ngrams, ngram_output_file)
-            pickle.dump(word_ngrams, open(pickle_output_file, "wb"))
+            _dump(word_ngrams, pickle_output_file)
 
         _log_file_found(pickle_output_file)
-        WORD_NGRAMS = pickle.load(open(pickle_output_file, "rb"))
+        WORD_NGRAMS = _load(pickle_output_file)
 
     return WORD_NGRAMS
 
@@ -129,10 +129,10 @@ def get_ngramstat() -> Dict[int, Tuple[int,str]]:
 
             word_ngrams = get_word_ngrams()
             ngramstat = create_dumps.create_indexed_ngrams(word_ngrams)
-            pickle.dump(ngramstat, open(output_file, "wb"))
+            _dump(ngramstat, output_file)
 
         _log_file_found(output_file)
-        NGRAMSTAT = pickle.load(open(output_file, "rb"))
+        NGRAMSTAT = _load(output_file)
 
     return NGRAMSTAT
 
@@ -149,10 +149,10 @@ def get_acronym_ngrams() -> List[str]:
         _log_file_not_found(output_file)
 
         acronym_ngrams = create_dumps.create_new_acro_dump()
-        pickle.dump(acronym_ngrams, open(output_file, "wb"))
+        _dump(acronym_ngrams, output_file)
 
     _log_file_found(output_file)
-    return pickle.load(open(output_file, "rb"))
+    return _load(output_file)
 
 
 def get_acronyms() -> List[str]:
@@ -167,10 +167,10 @@ def get_acronyms() -> List[str]:
         _log_file_not_found(output_file)
 
         acronyms = create_dumps.create_acro_dump()
-        pickle.dump(acronyms, open(output_file, "wb"))
+        _dump(acronyms, output_file)
 
     _log_file_found(output_file)
-    return pickle.load(open(output_file, "rb"))
+    return _load(output_file)
 
 
 def get_character_ngrams() -> Dict[str, int]:
@@ -192,10 +192,10 @@ def get_character_ngrams() -> Dict[str, int]:
             character_ngrams = create_dumps.create_corpus_char_stat_dump(DATA_FOLDER)
 
             write_txt(character_ngrams, ngram_output_file)
-            pickle.dump(character_ngrams, open(pickle_output_file, "wb"))
+            _dump(character_ngrams, pickle_output_file)
 
         _log_file_found(pickle_output_file)
-        CHARACTER_NGRAMS = pickle.load(open(pickle_output_file, "rb"))
+        CHARACTER_NGRAMS = _load(pickle_output_file)
 
     return CHARACTER_NGRAMS
 
@@ -278,6 +278,29 @@ def write_txt(resource: Dict[str, int], filename: str) -> int:
     file.close()
 
     return counter
+
+
+def _dump(data: Any, filename: str) -> None:
+    """
+    Dumps data into a file.
+
+    :param data:
+    :param filename:
+    :return:
+    """
+    with open(filename, "wb") as file:
+        pickle.dump(data, file, protocol=pickle.HIGHEST_PROTOCOL)
+
+
+def _load(filename: str) -> Any:
+    """
+    Loads data from a dump file.
+
+    :param filename:
+    :return:
+    """
+    with open(filename, "rb") as file:
+        return pickle.load(file)
 
 
 def _log_file_not_found(filename: str) -> None:
