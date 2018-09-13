@@ -43,7 +43,7 @@ def test_find_embeddings():
     finder_constraints = finder.FinderConstraints(min_freq=2, max_count=500, min_num_tokens=1,
                                                   max_num_tokens=10)
     actual = finder.find_embeddings("nach", "ICD", "Implantation", finder_constraints)
-    expected = [(76, 'CRT/ICD'), (50, 'prophylaktischer CRT/ICD'), (42, 'prophylaktischer ICD')]
+    expected = [(91, 'CRT/ICD'), (57, 'prophylaktischer CRT/ICD'), (47, 'prophylaktischer ICD')]
     assert set(expected).issubset(actual)
 
     actual = finder.find_embeddings("<SEL>", "HF-Anstieg", "von", finder_constraints)
