@@ -13,7 +13,7 @@ from acres.util import functions
 from acres.util import text
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+# logger.setLevel(logging.INFO)
 
 FinderConstraints = namedtuple('FinderConstraints', ['min_freq', 'max_count', 'min_num_tokens',
                                                      'max_num_tokens'])
@@ -129,8 +129,8 @@ def find_embeddings(str_left: str, str_middle: str, str_right: str,
     # random selection of hits, to avoid explosion
     sel_beds = functions.random_sub_list(all_beds, count)
 
-    if logger.getEffectiveLevel() == logging.DEBUG:
-        _debug_embeddings(all_beds)
+    # if logger.getEffectiveLevel() == logging.DEBUG:
+    #     _debug_embeddings(all_beds)
 
     if count <= 0:
         return []
@@ -174,9 +174,9 @@ def _build_regex(str_left: str, str_middle: str, str_right: str) -> Pattern[AnyS
         str_right_esc = r"\ " + re.escape(str_right.strip()) + "$"
     regex_embed = str_left_esc + str_middle_esc + str_right_esc
 
-    logger.debug("Unknown expression: '%s'", str_middle_esc)
-    logger.debug("Left context: '%s'", str_left_esc)
-    logger.debug("Right context: '%s'", str_right_esc)
+    # logger.debug("Unknown expression: '%s'", str_middle_esc)
+    # logger.debug("Left context: '%s'", str_left_esc)
+    # logger.debug("Right context: '%s'", str_right_esc)
     logger.debug("Regular expression: %s", regex_embed)
 
     return re.compile(regex_embed, re.IGNORECASE)
@@ -229,7 +229,7 @@ def _build_all_beds(sel_rows: List[Tuple[int, str]], regex_embed: Pattern[AnyStr
     for row in sorted(sel_rows, reverse=True):  # iteration through all matching ngrams
         # input("press key!)
         (freq, ngram) = row
-        logger.debug("%d => %s", freq, ngram)
+        #logger.debug("%d => %s", freq, ngram)
 
         ngram_card = ngram.count(" ") + 1  # cardinality of the nGram
         # Filter by ngram cardinality
@@ -250,13 +250,13 @@ def _build_all_beds(sel_rows: List[Tuple[int, str]], regex_embed: Pattern[AnyStr
                 # limited by the length of the ngram
                 if match is not None and row not in all_beds:
                     all_beds.append(row)
-                    logger.debug("%d: %s", freq, ngram)
+                    # logger.debug("%d: %s", freq, ngram)
                     count += 1
                     if count >= finder_constraints.max_count:
                         logger.debug("List cut at %d", count)
                         break
 
-    logger.debug("COUNT: %d", count)
+    # logger.debug("COUNT: %d", count)
 
     return all_beds
 
@@ -295,12 +295,12 @@ def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]], max_num: int)
         compiled_regex_bed = re.compile(regex_bed, re.IGNORECASE)
         surroundings = bed.replace(str_middle + " ", "").split(" ")
         for word in surroundings:
-            logger.debug("Surrounding str_middle: %s", word)
+            # logger.debug("Surrounding str_middle: %s", word)
             new_sets.append(index[word])
         ngrams_with_surroundings = list(set.intersection(*new_sets))
-        logger.debug(
-            "Size of list that includes surrounding elements: %d",
-            len(ngrams_with_surroundings))
+        # logger.debug(
+        #     "Size of list that includes surrounding elements: %d",
+        #     len(ngrams_with_surroundings))
         ngrams_with_surroundings.sort(reverse=True)
         # Surrounding list sorted
         counter = 0

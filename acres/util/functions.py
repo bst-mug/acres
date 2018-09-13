@@ -90,7 +90,7 @@ def create_ngram_statistics(input_string: str, n_min: int, n_max: int) -> Dict[s
         line = line.replace('\n', ' ')
         line = line.replace('  ', ' ')
         line = line.strip()
-        print(line)
+        #print(line)
         cleaned_line = line.split(" ")
         for i in range(n_min, n_max + 1):
             for j in range(len(cleaned_line) - i + 1):
