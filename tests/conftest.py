@@ -27,6 +27,7 @@ def path_resource_factory():
     resource_factory.NN_MODELS_FOLDER = "tests/models/nn/"
     resource_factory.DATA_FOLDER = "tests/data"
     resource_factory.reset()
+    print("INFO: Switched to test data.")
 
 
 @pytest.fixture(scope="module")
