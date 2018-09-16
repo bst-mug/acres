@@ -8,6 +8,12 @@ import acres.util.functions
 
 
 def dump_sample(min_len=1, max_len=15):
+    """
+    
+    :param min_len:
+    :param max_len:
+    :return:
+    """
     ret = []
     f = open("resources/acro_full_reference.txt", "r", encoding="utf-8")
     for l in f:
@@ -19,6 +25,14 @@ def dump_sample(min_len=1, max_len=15):
 
 
 def show_extremes(txt, lst, lowest_n, highest_n):
+    """
+
+    :param txt:
+    :param lst:
+    :param lowest_n:
+    :param highest_n:
+    :return:
+    """
     if len(lst) <= lowest_n + highest_n:
         print("List too small")
     else:
