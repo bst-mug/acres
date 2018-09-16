@@ -1,7 +1,6 @@
-###
-### Metrics from large German acronym / definition list
-###
-###
+"""
+Metrics from large German acronym / definition list
+"""
 
 import acres.util.acronym
 import acres.util.functions
@@ -9,7 +8,7 @@ import acres.util.functions
 
 def dump_sample(min_len=1, max_len=15):
     """
-    
+
     :param min_len:
     :param max_len:
     :return:
