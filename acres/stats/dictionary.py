@@ -1,12 +1,13 @@
 """
 Metrics from large German acronym / definition list
 """
+from typing import List
 
 import acres.util.acronym
 import acres.util.functions
 
 
-def dump_sample(min_len=1, max_len=15):
+def dump_sample(min_len: int = 1, max_len: int = 15) -> List[str]:
     """
 
     :param min_len:
@@ -23,7 +24,7 @@ def dump_sample(min_len=1, max_len=15):
     return ret
 
 
-def show_extremes(txt, lst, lowest_n, highest_n):
+def show_extremes(txt: str, lst: List, lowest_n: int, highest_n: int) -> None:
     """
 
     :param txt:
