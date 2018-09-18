@@ -127,7 +127,7 @@ def random_sub_list(in_list: list, max_num: int) -> list:
     return lst_out
 
 
-def is_stopword(str_in, lang="de"):
+def is_stopword(str_in: str, lang: str = "de") -> bool:
     """
     Tests whether word is stopword, according to list.
 

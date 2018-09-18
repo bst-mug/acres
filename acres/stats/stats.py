@@ -12,7 +12,7 @@ class Stats:
     line_separator = "\n"
 
     def __init__(self, chars: int = 0, types: int = 0, tokens: int = 0, acronym_types: int = 0,
-                 acronyms: int = 0, sentences: int = 0):
+                 acronyms: int = 0, sentences: int = 0) -> None:
         self.chars = chars
         self.types = types
         self.tokens = tokens
@@ -20,7 +20,7 @@ class Stats:
         self.acronyms = acronyms
         self.sentences = sentences
 
-    def calc_stats(self, text: str):
+    def calc_stats(self, text: str) -> None:
         self.chars = Stats.count_chars(text)
         self.types = Stats.count_types(text)
         self.tokens = Stats.count_tokens(text)
@@ -66,7 +66,7 @@ class Stats:
                 acronyms.append(token)
         return acronyms
 
-    def __str__(self):
+    def __str__(self) -> str:
         ret = []
         ret.append("Chars: " + str(self.chars) + "\n")
         ret.append("Types: " + str(self.types) + "\n")
@@ -76,7 +76,7 @@ class Stats:
         ret.append("Sentences: " + str(self.sentences) + "\n")
         return ''.join(ret)
 
-    def __add__(self, other):
+    def __add__(self, other: 'Stats') -> 'Stats':
         self.chars += other.chars
         self.types += other.types
         self.tokens += other.tokens
@@ -85,7 +85,7 @@ class Stats:
         self.sentences += other.sentences
         return self
 
-    def __radd__(self, other):
+    def __radd__(self, other: 'Stats') -> 'Stats':
         return self.__add__(other)
 
 
@@ -104,7 +104,11 @@ def get_stats(corpus_path: str) -> List[Stats]:
 
 
 def print_stats() -> None:
-    all_stats = get_stats(functions.import_conf("CORPUS_PATH"))
+    corpus_path = functions.import_conf("CORPUS_PATH")
+    if not corpus_path:
+        return None
+
+    all_stats = get_stats(corpus_path)
     for doc in all_stats:
         print(doc)
     print("Total docs: " + str(len(all_stats) - 1))
