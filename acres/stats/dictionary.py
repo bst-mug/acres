@@ -1,7 +1,7 @@
 """
 Metrics from large German acronym / definition list
 """
-from typing import List, Tuple
+from typing import List, Tuple, Optional
 
 import acres.util.acronym
 import acres.util.functions
@@ -70,6 +70,24 @@ def ratio_acro_words(line: str) -> Tuple:
     return rat, acro, full
 
 
+def edit_distance_generated_acro(line: str) -> Optional[Tuple]:
+    """
+    Calculates the edit distance between the original acronym and the generated acronym out of the
+    full form.
+
+    :param line:
+    :return:
+    """
+    acro = line.split("\t")[0]
+    full = line.split("\t")[1]
+    ret = None
+    if abs(len(acro) - full.count(" ") - 1) <= 2:
+        n_acro = acres.util.acronym.create_german_acronym(full)
+        lev = acres.util.functions.levenshtein(acro.upper(), n_acro)
+        ret = (lev, acro, full)
+    return ret
+
+
 if __name__ == "__main__":
     senses = dump_sample(3, 3)
     for line in senses:
@@ -89,11 +107,7 @@ if __name__ == "__main__":
 
     analyzed_senses = []  ## edit distance with generated acronym
     for line in senses:
-        acro = line.split("\t")[0]
-        full = line.split("\t")[1]
-        if abs(len(acro) - full.count(" ") - 1) <= 2:
-            n_acro = acres.util.acronym.create_german_acronym(full)
-            lev = acres.util.functions.levenshtein(acro.upper(), n_acro)
-            analyzed_senses.append((lev, acro, full))
-
+        distance = edit_distance_generated_acro(line)
+        if distance:
+            analyzed_senses.append(distance)
     show_extremes("edit distance with generated acronym", analyzed_senses, 10, 10)
