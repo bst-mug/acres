@@ -7,7 +7,7 @@ from acres.util import acronym as acro_util
 from acres.util import functions
 
 
-def dump_sample(filename, max_len: int = 15, min_len: int = 1) -> List[Tuple[str, str]]:
+def dump_sample(filename: str, max_len: int = 15, min_len: int = 1) -> List[Tuple[str, str]]:
     """
 
     :param filename:
