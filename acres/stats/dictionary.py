@@ -17,8 +17,8 @@ def dump_sample(min_len: int = 1, max_len: int = 15) -> List[str]:
     ret = []
     file = open("resources/acro_full_reference.txt", "r", encoding="utf-8")
     for line in file:
-        acro = line.split("\t")[0]
-        if min_len <= len(acro) <= max_len:
+        acronym = line.split("\t")[0]
+        if min_len <= len(acronym) <= max_len:
             ret.append(line.strip())
     file.close()
     return ret
@@ -90,9 +90,9 @@ def edit_distance_generated_acro(line: str) -> Optional[Tuple]:
 
 if __name__ == "__main__":
     senses = dump_sample(3, 3)
-    for line in senses:
-        acro = line.split("\t")[0].strip()
-        full = line.split("\t")[1].strip()
+    for acronym_defintion in senses:
+        acro = acronym_defintion.split("\t")[0].strip()
+        full = acronym_defintion.split("\t")[1].strip()
         if not acres.util.acronym.is_acronym(acro):
             print(acro + " is not an acronym according to our definition")
         if full.count(" ") + 1 > len(acro) * 2:
@@ -101,13 +101,13 @@ if __name__ == "__main__":
             print(acro + " contradicts Schwartz / Hearst rule")
 
     analyzed_senses = []  ## ratio acro / words
-    for line in senses:
-        analyzed_senses.append(ratio_acro_words(line))
+    for acronym_defintion in senses:
+        analyzed_senses.append(ratio_acro_words(acronym_defintion))
     show_extremes("Ratio acronym length / words in full form", analyzed_senses, 10, 10)
 
     analyzed_senses = []  ## edit distance with generated acronym
-    for line in senses:
-        distance = edit_distance_generated_acro(line)
+    for acronym_defintion in senses:
+        distance = edit_distance_generated_acro(acronym_defintion)
         if distance:
             analyzed_senses.append(distance)
     show_extremes("edit distance with generated acronym", analyzed_senses, 10, 10)
