@@ -208,7 +208,3 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
             score = score * 0.2
 
     return full_old, round(score, 2), 'End'
-
-
-if __name__ == "__main__":
-    print(get_acronym_score("CMP", "Cardiomyopathie", language="de"))
