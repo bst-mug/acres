@@ -7,15 +7,16 @@ from acres.util import acronym as acro_util
 from acres.util import functions
 
 
-def dump_sample(min_len: int = 1, max_len: int = 15) -> List[Tuple[str, str]]:
+def dump_sample(filename, max_len: int = 15, min_len: int = 1) -> List[Tuple[str, str]]:
     """
 
+    :param filename:
     :param min_len:
     :param max_len:
     :return:
     """
     ret = []
-    file = open("resources/acro_full_reference.txt", "r", encoding="utf-8")
+    file = open(filename, "r", encoding="utf-8")
     for line in file:
         acronym = line.split("\t")[0].strip()
         full_form = line.split("\t")[1].strip()
@@ -88,7 +89,7 @@ def edit_distance_generated_acro(acro: str, full: str) -> Optional[Tuple]:
 
 
 if __name__ == "__main__":
-    senses = dump_sample(3, 3)
+    senses = dump_sample("resources/acro_full_reference.txt", 3, 3)
     for (acro, full) in senses:
         if not acro_util.is_acronym(acro):
             print(acro + " is not an acronym according to our definition")
