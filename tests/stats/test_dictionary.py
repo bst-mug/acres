@@ -19,3 +19,9 @@ def test_show_extremes(capsys):
     captured = capsys.readouterr()
     actual = captured.out.split("\n")[-4:-1]
     assert expected == actual
+
+
+def test_ratio_acro_words():
+    expected = (0.43, 'DSM', 'Diagnostic and Statistical Manual of Mental Disorders')
+    actual = dictionary.ratio_acro_words("DSM\tDiagnostic and Statistical Manual of Mental Disorders")
+    assert expected == actual

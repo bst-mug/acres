@@ -1,7 +1,7 @@
 """
 Metrics from large German acronym / definition list
 """
-from typing import List
+from typing import List, Tuple
 
 import acres.util.acronym
 import acres.util.functions
@@ -54,6 +54,22 @@ def show_extremes(txt: str, lst: List, lowest_n: int, highest_n: int) -> None:
                 break
 
 
+def ratio_acro_words(line: str) -> Tuple:
+    """
+    Calculates the ratio of acronym lenfth to the number of words in the full form.
+
+    :param line:
+    :return:
+    """
+    acro = line.split("\t")[0]
+    full = line.split("\t")[1]
+    full_norm = full.replace("/", " ").replace("-", " ").replace("  ", " ").strip()
+    c_words_full = full_norm.count(" ") + 1
+    c_chars_acro = len(acro)
+    rat = round(c_chars_acro / c_words_full, 2)
+    return rat, acro, full
+
+
 if __name__ == "__main__":
     senses = dump_sample(3, 3)
     for line in senses:
@@ -68,14 +84,7 @@ if __name__ == "__main__":
 
     analyzed_senses = []  ## ratio acro / words
     for line in senses:
-        acro = line.split("\t")[0]
-        full = line.split("\t")[1]
-        full_norm = full.replace("/", " ").replace("-", " ").replace("  ", " ").strip()
-        c_words_full = full_norm.count(" ") + 1
-        c_chars_acro = len(acro)
-        rat = round(c_chars_acro / c_words_full, 2)
-        analyzed_senses.append((rat, acro, full))
-
+        analyzed_senses.append(ratio_acro_words(line))
     show_extremes("Ratio acronym length / words in full form", analyzed_senses, 10, 10)
 
     analyzed_senses = []  ## edit distance with generated acronym
