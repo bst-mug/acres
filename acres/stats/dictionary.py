@@ -3,8 +3,8 @@ Metrics from large German acronym / definition list
 """
 from typing import List, Tuple, Optional
 
-import acres.util.acronym
-import acres.util.functions
+from acres.util import acronym as acro_util
+from acres.util import functions
 
 
 def dump_sample(min_len: int = 1, max_len: int = 15) -> List[Tuple[str, str]]:
@@ -81,8 +81,8 @@ def edit_distance_generated_acro(acro: str, full: str) -> Optional[Tuple]:
     """
     ret = None
     if abs(len(acro) - full.count(" ") - 1) <= 2:
-        n_acro = acres.util.acronym.create_german_acronym(full)
-        lev = acres.util.functions.levenshtein(acro.upper(), n_acro)
+        n_acro = acro_util.create_german_acronym(full)
+        lev = functions.levenshtein(acro.upper(), n_acro)
         ret = (lev, acro, full)
     return ret
 
@@ -90,7 +90,7 @@ def edit_distance_generated_acro(acro: str, full: str) -> Optional[Tuple]:
 if __name__ == "__main__":
     senses = dump_sample(3, 3)
     for (acro, full) in senses:
-        if not acres.util.acronym.is_acronym(acro):
+        if not acro_util.is_acronym(acro):
             print(acro + " is not an acronym according to our definition")
         if full.count(" ") + 1 > len(acro) * 2:
             print(acro + " contradicts Schwartz / Hearst rule")
