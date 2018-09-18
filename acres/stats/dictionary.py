@@ -24,7 +24,7 @@ def dump_sample(min_len: int = 1, max_len: int = 15) -> List[str]:
     return ret
 
 
-def show_extremes(txt: str, lst: List, lowest_n: int, highest_n: int) -> None:
+def show_extremes(txt: str, lst: List, lowest_n: int = 10, highest_n: int = 10) -> None:
     """
 
     :param txt:
@@ -103,11 +103,11 @@ if __name__ == "__main__":
     analyzed_senses = []  ## ratio acro / words
     for acronym_defintion in senses:
         analyzed_senses.append(ratio_acro_words(acronym_defintion))
-    show_extremes("Ratio acronym length / words in full form", analyzed_senses, 10, 10)
+    show_extremes("Ratio acronym length / words in full form", analyzed_senses)
 
     analyzed_senses = []  ## edit distance with generated acronym
     for acronym_defintion in senses:
         distance = edit_distance_generated_acro(acronym_defintion)
         if distance:
             analyzed_senses.append(distance)
-    show_extremes("edit distance with generated acronym", analyzed_senses, 10, 10)
+    show_extremes("edit distance with generated acronym", analyzed_senses)
