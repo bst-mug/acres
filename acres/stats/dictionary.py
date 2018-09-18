@@ -88,8 +88,14 @@ def edit_distance_generated_acro(acro: str, full: str) -> Optional[Tuple]:
     return ret
 
 
-if __name__ == "__main__":
-    senses = dump_sample("resources/acro_full_reference.txt", 3, 3)
+def analyze_file(filename: str) -> None:
+    """
+    Analyzes a given dictionary file for extreme cases.
+
+    :param filename:
+    :return:
+    """
+    senses = dump_sample(filename, 3, 3)
     for (acro, full) in senses:
         if not acro_util.is_acronym(acro):
             print(acro + " is not an acronym according to our definition")
@@ -109,3 +115,7 @@ if __name__ == "__main__":
         if distance:
             analyzed_senses.append(distance)
     show_extremes("edit distance with generated acronym", analyzed_senses)
+
+
+if __name__ == "__main__":
+    analyze_file("resources/acro_full_reference.txt")
