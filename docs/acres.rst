@@ -10,6 +10,7 @@ Subpackages
     acres.ngram
     acres.nn
     acres.preprocess
+    acres.stats
     acres.util
     acres.web
 
