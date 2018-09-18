@@ -1,1 +1,1 @@
-__all__ = ['acro_def_sample', 'senses', 'stats']
+__all__ = ['dictionary', 'senses', 'stats']
