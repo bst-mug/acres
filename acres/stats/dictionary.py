@@ -7,7 +7,7 @@ import acres.util.acronym
 import acres.util.functions
 
 
-def dump_sample(min_len: int = 1, max_len: int = 15) -> List[str]:
+def dump_sample(min_len: int = 1, max_len: int = 15) -> List[Tuple[str, str]]:
     """
 
     :param min_len:
@@ -17,9 +17,10 @@ def dump_sample(min_len: int = 1, max_len: int = 15) -> List[str]:
     ret = []
     file = open("resources/acro_full_reference.txt", "r", encoding="utf-8")
     for line in file:
-        acronym = line.split("\t")[0]
+        acronym = line.split("\t")[0].strip()
+        full_form = line.split("\t")[1].strip()
         if min_len <= len(acronym) <= max_len:
-            ret.append(line.strip())
+            ret.append((acronym, full_form))
     file.close()
     return ret
 
@@ -54,15 +55,14 @@ def show_extremes(txt: str, lst: List, lowest_n: int = 10, highest_n: int = 10) 
                 break
 
 
-def ratio_acro_words(line: str) -> Tuple:
+def ratio_acro_words(acro: str, full: str) -> Tuple:
     """
     Calculates the ratio of acronym lenfth to the number of words in the full form.
 
-    :param line:
+    :param acro:
+    :param full:
     :return:
     """
-    acro = line.split("\t")[0]
-    full = line.split("\t")[1]
     full_norm = full.replace("/", " ").replace("-", " ").replace("  ", " ").strip()
     c_words_full = full_norm.count(" ") + 1
     c_chars_acro = len(acro)
@@ -70,16 +70,15 @@ def ratio_acro_words(line: str) -> Tuple:
     return rat, acro, full
 
 
-def edit_distance_generated_acro(line: str) -> Optional[Tuple]:
+def edit_distance_generated_acro(acro: str, full: str) -> Optional[Tuple]:
     """
     Calculates the edit distance between the original acronym and the generated acronym out of the
     full form.
 
-    :param line:
+    :param acro:
+    :param full:
     :return:
     """
-    acro = line.split("\t")[0]
-    full = line.split("\t")[1]
     ret = None
     if abs(len(acro) - full.count(" ") - 1) <= 2:
         n_acro = acres.util.acronym.create_german_acronym(full)
@@ -90,9 +89,7 @@ def edit_distance_generated_acro(line: str) -> Optional[Tuple]:
 
 if __name__ == "__main__":
     senses = dump_sample(3, 3)
-    for acronym_defintion in senses:
-        acro = acronym_defintion.split("\t")[0].strip()
-        full = acronym_defintion.split("\t")[1].strip()
+    for (acro, full) in senses:
         if not acres.util.acronym.is_acronym(acro):
             print(acro + " is not an acronym according to our definition")
         if full.count(" ") + 1 > len(acro) * 2:
@@ -101,13 +98,13 @@ if __name__ == "__main__":
             print(acro + " contradicts Schwartz / Hearst rule")
 
     analyzed_senses = []  ## ratio acro / words
-    for acronym_defintion in senses:
-        analyzed_senses.append(ratio_acro_words(acronym_defintion))
+    for (acro, full) in senses:
+        analyzed_senses.append(ratio_acro_words(acro, full))
     show_extremes("Ratio acronym length / words in full form", analyzed_senses)
 
     analyzed_senses = []  ## edit distance with generated acronym
-    for acronym_defintion in senses:
-        distance = edit_distance_generated_acro(acronym_defintion)
+    for (acro, full) in senses:
+        distance = edit_distance_generated_acro(acro, full)
         if distance:
             analyzed_senses.append(distance)
     show_extremes("edit distance with generated acronym", analyzed_senses)
