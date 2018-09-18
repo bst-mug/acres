@@ -33,7 +33,7 @@ def find_candidates(acronym: str, left_context: str = "", right_context: str = "
         positive=acronym)  # [('Kardiomyopathie', 0.772693395614624), ...]
 
     expansions = []
-    for (expansion, prob) in similar:
+    for (expansion, _) in similar:
         # TODO experiment with get_acronym_score
         if not acres.util.acronym.is_acronym(expansion) and acres.util.acronym.is_valid_expansion(
                 acronym,

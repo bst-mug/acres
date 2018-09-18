@@ -215,7 +215,7 @@ def create_index(ngramstat: Dict[int, Tuple[int,str]]) -> Dict[str, Set[int]]:
     for identifier in ngramstat:
         # XXX Think about trie data structure
         # logger.debug(ngramstat[ID])
-        (freq, ngram) = ngramstat[identifier]
+        (_, ngram) = ngramstat[identifier]
         words = ngram.split(" ")
         for word in words:
             index[word].add(identifier)
@@ -240,7 +240,7 @@ def create_acro_dump() -> List[str]:
     ngram_stat = resource_factory.get_ngramstat()
     for n in ngram_stat:
         row = (ngram_stat[n])
-        (freq, ngram) = row
+        (_, ngram) = row
         if ngram.isalnum() and "Ð" not in ngram:
             if acronym.is_acronym(ngram, 7):
                 # plausible max length for German medical language
@@ -263,7 +263,7 @@ def create_new_acro_dump() -> List[str]:
     ngram_stat = resource_factory.get_ngramstat()
     for n in ngram_stat:
         row = (ngram_stat[n])
-        (freq, ngram) = row
+        (_, ngram) = row
         if " " in ngram:
             tokens = ngram.split(" ")
             for token in tokens:
