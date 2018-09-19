@@ -37,6 +37,8 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
     all scoring / penalization is pure heuristics. Plausibility should be tested with many
     examples !
 
+    @todo use acres.util.acronym.is_valid_expansion(acro, full) as well
+
     :param acro: acronym to be expanded
     :param full: long form to be checked whether it qualifies as an acronym expansion
     :param language: Expansion language. Matters especially regarding the possible infixes for \
@@ -103,7 +105,7 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
     # full form contains an acronym definition pattern (normally only yielded
     # from Web scraping, unlikely in clinical texts)
     # acronym is included; is then removed from full form
-
+    # TODO move to separate method
     acro_def_pattern = acres.util.acronym.extract_acronym_definition(full, 7)
     if acro_def_pattern is not None:
         is_acronym_definition_pair = True
