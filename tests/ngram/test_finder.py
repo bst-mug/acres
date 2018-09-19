@@ -13,6 +13,15 @@ def test__build_search_ngrams():
     assert expected == actual
 
 
+def test__strip_frequencies():
+    embeddings = [(42, "Abc Def, xyz"), (10, "aaaaaaa")]
+
+    expected = ["Abc Def, xyz", "aaaaaaa"]
+    actual = finder._strip_frequencies(embeddings)
+
+    assert expected == actual
+
+
 def test_find_embeddings(ngramstat, index):
     finder_constraints = finder.FinderConstraints(min_freq=1, max_count=100, min_num_tokens=1,
                                                   max_num_tokens=5)
@@ -39,12 +48,3 @@ def test_find_embeddings(ngramstat, index):
     actual = finder.find_embeddings("<SEL>", "EKG", "<SEL>", finder_constraints)
     expected = [(19, 'Physikalischer Status')]
     assert not set(expected).issubset(actual)
-
-
-def test_strip_frequencies():
-    embeddings = [(42, "Abc Def, xyz"), (10, "aaaaaaa")]
-
-    expected = ["Abc Def, xyz", "aaaaaaa"]
-    actual = finder._strip_frequencies(embeddings)
-
-    assert expected == actual
