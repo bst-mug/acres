@@ -10,6 +10,7 @@ from typing import Dict, Tuple, List
 from acres.ngram import finder
 from acres.nn import test
 from acres.util import text
+from acres.util import acronym as acro_util
 
 logger = logging.getLogger(__name__)
 
@@ -99,11 +100,13 @@ def analyze_row(input_row: str, strategy: Strategy) -> Dict[str, bool]:
 
     :param input_row: A tab-separated string
     :param strategy:
-    :return: A dictionary with two keys: 'found' and 'correct', each key pointing to a boolean
+    :return: A dictionary with three keys: 'found', 'correct', and 'ignored', each key pointing to \
+    a boolean
     """
-    ret = {'found': False, 'correct': False}
+    ret = {'found': False, 'correct': False, 'ignored': False}
 
     if input_row == "":
+        ret['ignored'] = True
         return ret
 
     row = input_row.strip("\n")
@@ -115,6 +118,13 @@ def analyze_row(input_row: str, strategy: Strategy) -> Dict[str, bool]:
     acronym = splitted_row[1]
     right_context = text.context_ngram(splitted_row[2], 3, False)
     true_expansions = splitted_row[3:]
+
+    # A gold standard should not contain invalid acronyms
+    # This is actually a required check, as some long and invalid acronyms
+    # (e.g. "ACE-Hemmerunverträglichkeit") lead to performance issues.
+    if not acro_util.is_acronym(acronym):
+        ret['ignored'] = True
+        return ret
 
     possible_expansions = cached_resolve(acronym, left_context, right_context, strategy)
     logger.debug(possible_expansions)
@@ -136,7 +146,7 @@ def analyze_file(filename: str, strategy: Strategy) -> Tuple[float, float]:
     :param strategy:
     :return: A tuple with final_precision and final_recall
     """
-    total_acronyms = total_correct = total_found = 0
+    total_acronyms = valid_acronyms = total_correct = total_found = 0
 
     f = open(filename, "r", encoding="utf-8")
 
@@ -150,17 +160,25 @@ def analyze_file(filename: str, strategy: Strategy) -> Tuple[float, float]:
             total_correct += 1
             logger.debug("CORRECT")
 
+        if not row_analysis['ignored']:
+            valid_acronyms += 1
+
         # Peeking into results
         if logger.getEffectiveLevel() == logging.DEBUG:
             precision = _calculate_precision(total_correct, total_found)
-            recall = _calculate_recall(total_correct, total_acronyms)
+            recall = _calculate_recall(total_correct, valid_acronyms)
             f1 = calculate_f1(precision, recall)
             logger.debug("P = %f, R = %f, F1 = %f", precision, recall, f1)
 
     f.close()
 
+    invalid_absolute = total_acronyms - valid_acronyms
+    invalid_relative = 100 * invalid_absolute / total_acronyms
+    logger.info("%d out of %d (%.2f%%) acronyms were ignored.", invalid_absolute, total_acronyms,
+                invalid_relative)
+
     precision = _calculate_precision(total_correct, total_found)
-    recall = _calculate_recall(total_correct, total_acronyms)
+    recall = _calculate_recall(total_correct, valid_acronyms)
 
     return precision, recall
 
