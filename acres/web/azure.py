@@ -7,8 +7,6 @@ import pickle
 from collections import namedtuple
 from typing import List, Tuple, Dict, Any, Optional, MutableMapping
 
-import requests
-
 from acres.util import functions
 from acres.util import text
 
@@ -136,8 +134,7 @@ def __query(query: str) -> Tuple[MutableMapping[str, str], Any]:
               "count": 50,  # max: 50
               "mkt": "de-AT",
               "responseFilter": "Webpages"}
-    response = requests.get(search_url, headers=headers, params=params)
-    response.raise_for_status()
+    response = functions.get_url(search_url, headers=headers, params=params)
     return response.headers, response.json()
 
 
