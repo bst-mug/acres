@@ -96,7 +96,8 @@ def get_web_dump_from_acro_with_context(left: str, acro: str, right: str, min_wo
     # now we have a list with the context words starting with the ones closest to the acronym
     # in Bing the order of tokens in a query matters. Therefore the query must start with the
     # acronym
-    query = acro + " " + " ".join(proper_context[:n_context])
+    query_tokens = [acro] + proper_context[:n_context]
+    query = " ".join(query_tokens)
     return ngrams_web_dump(query, 1, max_tokens_in_ngram)
 
 
