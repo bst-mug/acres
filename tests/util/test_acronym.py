@@ -103,6 +103,10 @@ def test_split_expansion():
     actual = acronym.split_expansion("EKG", "Elektro")
     assert expected == actual
 
+    # FIXME Very poor performance
+    # expected = []
+    # actual = acronym.split_expansion('ACE-Hemmerunverträglichkeit', 'ACEHemmerunverträglichkeit')
+
 
 def test__acronym_aware_clean_expansion():
     # Baseline: return expansion if no symbols are found

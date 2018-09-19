@@ -179,6 +179,9 @@ def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
     :param full:
     :return:
     """
+    if len(acro) > 7:
+        logger.warning("The current code is very slow for long acronyms, this may take a while...")
+
     dia = text.diacritics()
     bina = []
     cleaned_full = _acronym_aware_clean_expansion(acro, full)
