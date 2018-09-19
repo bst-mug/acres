@@ -5,12 +5,12 @@
 """
 
 import logging
-import re
 from typing import List, Generator
 
 from gensim.models import Word2Vec, Phrases
 
 from acres.preprocess import resource_factory
+from acres.nn import base
 
 logger = logging.getLogger(__name__)
 
@@ -51,7 +51,7 @@ class FilteredNGramStat(object):
                     logger.debug("%s: %s -> %s", identifier, freq, ngram)
 
                 #cleaned_tokens = tokens
-                cleaned_tokens = preprocess(tokens)
+                cleaned_tokens = base.preprocess(tokens)
 
                 # FIXME what happens with word2vec if window > len(cleaned_tokens)?
                 # Should we force a smaller window size guaranteed to always fit?
@@ -64,28 +64,6 @@ class FilteredNGramStat(object):
                 # Repeat ngram freq times
                 for _ in range(int(freq)):
                     yield cleaned_tokens
-
-
-def preprocess(tokens: List[str]) -> List[str]:
-    """
-    Pre-process a given list of tokens by removing special characters.
-
-    :param tokens:
-    :return:
-    """
-    ret = []
-
-    regex_disallowed = re.compile("[^a-zA-ZÐ]")
-
-    for token in tokens:
-        # TODO normalize case if not acronym?
-        # TODO normalize german characters
-        # TODO fix ¶ cleaning bug
-        cleaned_token = regex_disallowed.sub("", token)
-        if len(cleaned_token) > 0:
-            ret.append(cleaned_token)
-
-    return ret
 
 
 def train(ngram_size: int = 6, min_count: int = 1, net_size: int = 100, alpha: float = 0.025,
