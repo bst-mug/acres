@@ -119,3 +119,6 @@ config.ini
 models
 out
 *.p
+
+# Sphinx-apidoc stuff
+.doctrees
