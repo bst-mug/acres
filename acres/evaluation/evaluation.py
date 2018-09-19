@@ -190,7 +190,7 @@ if __name__ == "__main__":
     a_strategy = Strategy.WORD2VEC
 
     start_time = time.time()
-    (final_precision, final_recall) = analyze_file("resources/Workbench.txt", a_strategy)
+    (final_precision, final_recall) = analyze_file("resources/gold_standard.tsv", a_strategy)
     end_time = time.time()
 
     print("Time: (s)", end_time - start_time)
