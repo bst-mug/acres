@@ -22,6 +22,12 @@ def test__strip_frequencies():
     assert expected == actual
 
 
+def test_robust_find_embeddings(ngramstat, index):
+    actual = finder.robust_find_embeddings("EKG", "", "")
+    expected = ['Physikalischer Status']
+    assert set(expected).issubset(actual)
+
+
 def test_find_embeddings(ngramstat, index):
     finder_constraints = finder.FinderConstraints(min_freq=1, max_count=100, min_num_tokens=1,
                                                   max_num_tokens=5)
