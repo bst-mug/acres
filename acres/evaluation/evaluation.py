@@ -184,13 +184,17 @@ def calculate_f1(precision: float, recall: float) -> float:
     return (2 * precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
 
 
-if __name__ == "__main__":
-    # XXX Switch as desired
-    # a_strategy = Strategy.NGRAM
-    a_strategy = Strategy.WORD2VEC
+def do_analysis(filename: str, strategy: Strategy):
+    """
+    Analyzes a given reference standard.
+
+    :param filename:
+    :param strategy:
+    :return:
+    """
 
     start_time = time.time()
-    (final_precision, final_recall) = analyze_file("resources/gold_standard.tsv", a_strategy)
+    (final_precision, final_recall) = analyze_file(filename, strategy)
     end_time = time.time()
 
     print("Time: (s)", end_time - start_time)
@@ -199,3 +203,9 @@ if __name__ == "__main__":
     print("Precision: ", final_precision)
     print("Recall: ", final_recall)
     print("F1: ", final_f1)
+
+
+if __name__ == "__main__":
+    # XXX Switch as desired
+    # do_analysis("resources/gold_standard.tsv", Strategy.NGRAM)
+    do_analysis("resources/gold_standard.tsv", Strategy.WORD2VEC)
