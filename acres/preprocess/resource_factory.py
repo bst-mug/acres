@@ -201,7 +201,7 @@ def get_character_ngrams() -> Dict[str, int]:
 
 
 def get_nn_model(ngram_size: int = 6, min_count: int = 1, net_size: int = 100, alpha: float = 0.025,
-                 sg: int = 1, hs: int = 0, negative: int = 5) -> Word2Vec:
+                 sg: int = 0, hs: int = 0, negative: int = 5) -> Word2Vec:
     """
     Lazy load a word2vec model.
 
