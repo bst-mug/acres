@@ -11,6 +11,7 @@ from acres.ngram import finder
 from acres.nn import test
 from acres.util import text
 from acres.util import acronym as acro_util
+from acres.nn import base
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +31,7 @@ def cached_resolve(acronym: str, left_context: str, right_context: str, strategy
     Resolve a given acronym + context using the provideed Strategy.
     Leverages a cache of previous resolutions to speed up processing of long files.
 
-    @todo Shorten context by using _build_search_ngrams so that cache is more used
+    @todo Shorten context by using _bbuild_search_ngrams so that cache is more used
 
     :param acronym:
     :param left_context:
@@ -118,6 +119,12 @@ def analyze_row(input_row: str, strategy: Strategy) -> Dict[str, bool]:
     acronym = splitted_row[1]
     right_context = text.context_ngram(splitted_row[2], 3, False)
     true_expansions = splitted_row[3:]
+
+    # Remove any symbols from the true expansion
+    # FIXME Do it in a common way that works for all strategies (#9)
+    # true_expansion = base.clean(true_expansion)
+    if strategy == Strategy.WORD2VEC:
+        true_expansions = list(map(lambda expansion: base.clean(expansion), true_expansions))
 
     # A gold standard should not contain invalid acronyms
     # This is actually a required check, as some long and invalid acronyms

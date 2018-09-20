@@ -50,7 +50,6 @@ class FilteredNGramStat(object):
                 if identifier % self.PRINT_INTERVAL == 0:
                     logger.debug("%s: %s -> %s", identifier, freq, ngram)
 
-                #cleaned_tokens = tokens
                 cleaned_tokens = base.preprocess(tokens)
 
                 # FIXME what happens with word2vec if window > len(cleaned_tokens)?

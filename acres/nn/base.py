@@ -12,6 +12,16 @@ def load_model(model_path: str) -> Word2Vec:
     return Word2Vec.load(model_path)
 
 
+def clean(sentence: str) -> str:
+    """
+    Cleans a given sentence.
+
+    :param sentence:
+    :return:
+    """
+    return " ".join(preprocess(sentence.split(" ")))
+
+
 def preprocess(tokens: List[str]) -> List[str]:
     """
     Pre-process a given list of tokens by removing special characters.
@@ -31,4 +41,6 @@ def preprocess(tokens: List[str]) -> List[str]:
         if len(cleaned_token) > 0:
             ret.append(cleaned_token)
 
+    # XXX NOOP We should do it in a common way (https://github.com/bst-mug/acres/issues/9)
     return ret
+    #return tokens
