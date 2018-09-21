@@ -37,10 +37,13 @@ def find_candidates(acronym: str, left_context: str = "", right_context: str = "
 
     expansions = []
     for (expansion, _) in similar:
+        # When using Phrases, common collocations (e.g. "koronaren_Herzerkrankung") are shown with
+        # '_' as a delimiter
+        unglued_expansion = expansion.replace("_", " ")
         # TODO experiment with get_acronym_score
-        if not acro_util.is_acronym(expansion) and \
-                acro_util.is_valid_expansion(cleaned_acronym, expansion):
-            expansions.append(expansion)
+        if not acro_util.is_acronym(unglued_expansion) and \
+                acro_util.is_valid_expansion(cleaned_acronym, unglued_expansion):
+            expansions.append(unglued_expansion)
 
     return expansions
 
