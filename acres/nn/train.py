@@ -83,6 +83,7 @@ def train(ngram_size: int = 6, min_count: int = 1, net_size: int = 100, alpha: f
 
     # Find common bigram collocations
     # TODO try trigrams
+    # TODO debug why "Rechter_Ventrikel" is not generated
     bigram_transformer = Phrases(sentences)
     collocations = bigram_transformer[sentences]
 

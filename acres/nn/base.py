@@ -31,11 +31,13 @@ def preprocess(tokens: List[str]) -> List[str]:
     """
     ret = []
 
+    # FIXME allow german characters
     regex_disallowed = re.compile("[^a-zA-ZÐ]")
 
     for token in tokens:
         # TODO normalize case if not acronym?
-        # TODO normalize german characters
+        # TODO normalize german characters: ä => ae
+        # TODO normalize c = k (soundex?)
         # TODO fix ¶ cleaning bug
         cleaned_token = regex_disallowed.sub("", token)
         if len(cleaned_token) > 0:

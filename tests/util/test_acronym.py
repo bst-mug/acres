@@ -33,6 +33,10 @@ def test_is_acronym():
     # Acronyms can contain numbers
     assert acronym.is_acronym("5FU", 7)
 
+    # Hard, mixed cases due to variant generation...
+    assert not acronym.is_acronym("VTEpisoden")
+    assert not acronym.is_acronym("USdeme")
+
 
 def test_create_german_acronym():
     # Separated by hyphen and whitespace

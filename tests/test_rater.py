@@ -17,3 +17,6 @@ def test_get_acronym_score():
     assert 1.0 == rater.get_acronym_score("KHK", "koronare Herzkrankheit")[1]
 
     assert 1.0 == rater.get_acronym_score("CMP", "Cardiomyopathie")[1]
+
+    # TODO Wrong
+    #assert rater.get_acronym_score("SR", "Sinusrythmus")[1] > rater.get_acronym_score("SR", "Sinusarrhythmie")[1]

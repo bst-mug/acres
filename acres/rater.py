@@ -38,6 +38,9 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
     examples !
 
     @todo use acres.util.acronym.is_valid_expansion(acro, full) as well
+    Maybe some of the checks, especially boolean ones, (e.g. length) should be moved there.
+
+    @todo evaluate scoring higher shorter valid expansions
 
     :param acro: acronym to be expanded
     :param full: long form to be checked whether it qualifies as an acronym expansion

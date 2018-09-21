@@ -44,6 +44,17 @@ def test_create_corpus_ngramstat_dump():
     assert len(unique_ngrams) == len(ngrams)
 
 
+def test__generate_variants():
+    ngrams = {"US-Ödeme": 10}
+
+    actual = create_dumps._generate_variants(ngrams)
+    expected = {"US Ödeme": 10,
+                "US-Ödeme": 10,
+                "USÖdeme": 10   # TODO this is an invalid variant
+                }
+    assert expected == actual
+
+
 def test_create_index(ngramstat, index):
     actual = create_dumps.create_index(ngramstat)
     expected = index
