@@ -124,7 +124,7 @@ def analyze_row(input_row: str, strategy: Strategy) -> Dict[str, bool]:
     # FIXME Do it in a common way that works for all strategies (#9)
     # true_expansion = base.clean(true_expansion)
     if strategy == Strategy.WORD2VEC:
-        true_expansions = list(map(lambda expansion: base.clean(expansion), true_expansions))
+        true_expansions = list(map(base.clean, true_expansions))
 
     # A gold standard should not contain invalid acronyms
     # This is actually a required check, as some long and invalid acronyms
@@ -209,7 +209,7 @@ def calculate_f1(precision: float, recall: float) -> float:
     return (2 * precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
 
 
-def do_analysis(filename: str, strategy: Strategy):
+def do_analysis(filename: str, strategy: Strategy) -> None:
     """
     Analyzes a given reference standard.
 
