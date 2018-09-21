@@ -4,7 +4,7 @@
 import logging
 from typing import List
 
-import acres.util.acronym
+from acres.util import acronym as acro_util
 from acres.preprocess import resource_factory
 from acres.nn import base
 
@@ -32,15 +32,14 @@ def find_candidates(acronym: str, left_context: str = "", right_context: str = "
 
     # TODO evaluate use of context
     # TODO use context somehow
-    similar = model.wv.most_similar(
-        positive=cleaned_acronym)  # [('Kardiomyopathie', 0.772693395614624), ...]
+    # [('Kardiomyopathie', 0.772693395614624), ...]
+    similar = model.wv.most_similar(positive=cleaned_acronym)
 
     expansions = []
     for (expansion, _) in similar:
         # TODO experiment with get_acronym_score
-        if not acres.util.acronym.is_acronym(expansion) and acres.util.acronym.is_valid_expansion(
-                cleaned_acronym,
-                expansion):
+        if not acro_util.is_acronym(expansion) and \
+                acro_util.is_valid_expansion(cleaned_acronym, expansion):
             expansions.append(expansion)
 
     return expansions
