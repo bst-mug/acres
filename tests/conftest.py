@@ -40,8 +40,8 @@ def ngramstat():
                                   4: (27, "* EKG ¶"),
                                   5: (20, "Im EKG"),
                                   6: (19, "* Physikalischer Status ¶"),
-                                  7: (19, "Long sentence used for WORD embeddings"),
-                                  8: (20, "Long sentence used for WabcOabcRabcDabc embeddings"),
+                                  7: (19, "for WORD embeddings"),
+                                  8: (20, "for WabcOabcRabcDabc embeddings"),
                                   }
     yield resource_factory.NGRAMSTAT
 
