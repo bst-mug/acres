@@ -1,8 +1,5 @@
 #!/bin/bash
 
-echo "Switching environment..."
-pyenv activate python-3.7
-
 echo "Checking for syntax errors..."
 pylint -E acres
 
