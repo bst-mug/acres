@@ -45,15 +45,14 @@ class FilteredNGramStat(object):
             tokens = ngram.split(self.TOKEN_SEPARATOR)
             length_tokens = len(tokens)
 
-            # Only consider ngrams of a given size
+            # Only consider ngrams of a given size, so that we work with a non-overlapping list
             if length_tokens == self.ngram_size:
                 if identifier % self.PRINT_INTERVAL == 0:
                     logger.debug("%s: %s -> %s", identifier, freq, ngram)
 
                 cleaned_tokens = base.preprocess(tokens)
 
-                # FIXME what happens with word2vec if window > len(cleaned_tokens)?
-                # Should we force a smaller window size guaranteed to always fit?
+                # If window > len(cleaned_tokens), word2vec still works
                 length_difference = length_tokens - len(cleaned_tokens)
                 if length_difference > 0 and length_difference > largest_reduction:
                     largest_reduction = length_difference
