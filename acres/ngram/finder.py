@@ -74,8 +74,7 @@ def robust_find_embeddings(acronym: str, left_context: str, right_context: str) 
                 (left_bigram, "<SEL>"), (left_unigram, "<SEL>"),  # bigram/unigram + <SEL>
                 ("<SEL>", right_bigram), ("<SEL>", right_unigram),  # <SEL> + bigram/unigram
                 ("<SEL>", "<SEL>"),  # <SEL> + <SEL>
-                ("<SEL>", "<VOID>"), ("<VOID>", "<SEL>")  # <SEL> + <VOID>
-                ]
+                ("<SEL>", "<VOID>"), ("<VOID>", "<SEL>")]  # <SEL> + <VOID>
 
     finder_constraints = FinderConstraints(min_freq=1, max_count=500, min_num_tokens=2,
                                            max_num_tokens=10)
@@ -268,8 +267,8 @@ def _debug_embeddings(all_beds: List[Tuple[int, str]]) -> None:
     logger.debug("Generated list of %d matching n-grams", len(all_beds))
 
 
-def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]], max_num: int) -> List[
-    Tuple[int, str]]:
+def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]],
+                 max_num: int) -> List[Tuple[int, str]]:
     """
 
     :param str_middle:

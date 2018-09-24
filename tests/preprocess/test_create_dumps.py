@@ -64,14 +64,14 @@ def test_create_index(ngramstat, index):
         assert value == actual[key]
 
 
-def test_create_acro_dumo():
+def test_create_acro_dump(ngramstat):
     actual = create_dumps.create_acro_dump()
     expected = ['EKG']
 
     assert expected == actual
 
 
-def test_create_new_acro_dumo(ngramstat):
+def test_create_new_acro_dump(ngramstat):
     actual = create_dumps.create_new_acro_dump()
     expected = ['Im EKG']
 

@@ -36,14 +36,34 @@ WORD_NGRAMS = {}  # type: Dict[str, int]
 
 
 def get_log_corpus_filename() -> str:
+    """
+    Get the full path to the `logCorpus.txt` file.
+
+    :return:
+    """
     return LOG_FOLDER + "logCorpus.txt"
 
 
 def get_log_web_filename() -> str:
+    """
+    Get the full path to the `logWebs.txt` file.
+
+    :return:
+    """
     return LOG_FOLDER + "logWebs.txt"
 
 
 def get_morphemes() -> Set[str]:
+    """
+    Lazy load the set of morphemes.
+
+    Loading order is as follows:
+    1. Variable;
+    2. Pickle file;
+    3. Generation.
+
+    :return:
+    """
     global MORPHEMES
 
     if not MORPHEMES:
@@ -67,6 +87,16 @@ def get_morphemes() -> Set[str]:
 
 
 def get_index() -> Dict[str, Set[int]]:
+    """
+    Lazy load the inverted index of ngrams.
+
+    Loading order is as follows:
+    1. Variable;
+    2. Pickle file;
+    3. Generation.
+
+    :return:
+    """
     global INDEX
 
     if not INDEX:
@@ -87,7 +117,12 @@ def get_index() -> Dict[str, Set[int]]:
 
 def get_word_ngrams() -> Dict[str, int]:
     """
-    Get a not-indexed representation of ngrams.
+    Lazy load a not-indexed representation of ngrams.
+
+    Loading order is as follows:
+    1. Variable;
+    2. Pickle file;
+    3. Generation.
 
     :return:
     """
@@ -114,7 +149,12 @@ def get_word_ngrams() -> Dict[str, int]:
 
 def get_ngramstat() -> Dict[int, Tuple[int,str]]:
     """
-    Get an indexed representation of ngrams.
+    Lazy load an indexed representation of ngrams.
+
+    Loading order is as follows:
+    1. Variable;
+    2. Pickle file;
+    3. Generation.
 
     :return: A dictionary of identifiers mapped to ngrams. Ngrams are tuples with the frequency \
     and the corresponding ngram.
@@ -139,7 +179,11 @@ def get_ngramstat() -> Dict[int, Tuple[int,str]]:
 
 def get_acronym_ngrams() -> List[str]:
     """
-    List of ngrams, containing acronyms
+    Lazy load a list of ngrams containing acronyms.
+
+    Loading order is as follows:
+    1. Pickle file;
+    2. Generation.
 
     :return:
     """
@@ -157,7 +201,11 @@ def get_acronym_ngrams() -> List[str]:
 
 def get_acronyms() -> List[str]:
     """
-    List of acronyms
+    Lazy load a list of acronyms.
+
+    Loading order is as follows:
+    1. Pickle file;
+    2. Generation.
 
     :return:
     """
@@ -175,7 +223,12 @@ def get_acronyms() -> List[str]:
 
 def get_character_ngrams() -> Dict[str, int]:
     """
-    Get character ngrams.
+    Lazy load character ngrams.
+
+    Loading order is as follows:
+    1. Variable;
+    2. Pickle file;
+    3. Generation.
 
     :return:
     """
@@ -263,6 +316,13 @@ def warmup_cache() -> None:
 
 
 def write_txt(resource: Dict[str, int], filename: str) -> int:
+    """
+    Writes a tab-separated represenation of a dictionary into a file specified by filename.
+
+    :param resource:
+    :param filename:
+    :return:
+    """
     counter = 0
 
     output = []

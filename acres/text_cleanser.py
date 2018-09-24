@@ -40,8 +40,8 @@ def find_best_substitution(form_to_resolve: str, candidates: List[str],
         regex_acro = ""
         form_to_resolve = form_to_resolve.replace(
             ".", "").replace("-", "").replace("/", " ")
-        for c in form_to_resolve:
-            regex_acro = regex_acro + c + ".*"
+        for char in form_to_resolve:
+            regex_acro = regex_acro + char + ".*"
             regex_acro = "^" + regex_acro
         for row in candidates:
             ngram = row.split("\t")[1]

@@ -204,7 +204,7 @@ def create_indexed_ngrams(ngrams: Dict[str, int]) -> Dict[int, Tuple[int, str]]:
     return output
 
 
-def create_index(ngramstat: Dict[int, Tuple[int,str]]) -> Dict[str, Set[int]]:
+def create_index(ngramstat: Dict[int, Tuple[int, str]]) -> Dict[str, Set[int]]:
     """
     Create an inverted index for performance issue when retrieving ngram records.
 
@@ -238,8 +238,8 @@ def create_acro_dump() -> List[str]:
     acronyms = []   # type: List[str]
 
     ngram_stat = resource_factory.get_ngramstat()
-    for n in ngram_stat:
-        row = (ngram_stat[n])
+    for entry in ngram_stat:
+        row = (ngram_stat[entry])
         (_, ngram) = row
         if ngram.isalnum() and "Ð" not in ngram:
             if acronym.is_acronym(ngram, 7):
@@ -285,8 +285,8 @@ def create_morpho_dump(lexicon_file: str, append_to: Optional[Set] = None) -> Se
     """
     append_to = append_to or set()
 
-    with open(lexicon_file) as f:
-        for row in f:
+    with open(lexicon_file) as file:
+        for row in file:
             if "<str>" in row:
                 row = row.strip()[5:-6]
                 row = row.replace("z", "c").replace("k", "c")
