@@ -8,6 +8,7 @@ import logging
 from typing import List, Generator
 
 from gensim.models import Word2Vec, Phrases
+from gensim.models.phrases import Phraser
 
 from acres.preprocess import resource_factory
 from acres.nn import base
@@ -83,7 +84,8 @@ def train(ngram_size: int = 6, min_count: int = 1, net_size: int = 100, alpha: f
     # Find common bigram collocations
     # TODO try trigrams
     # TODO debug why "Rechter_Ventrikel" is not generated
-    bigram_transformer = Phrases(sentences)
+    phrases = Phrases(sentences)
+    bigram_transformer = Phraser(phrases)
     collocations = bigram_transformer[sentences]
 
     return Word2Vec(collocations, size=net_size, alpha=alpha, window=ngram_size - 1,
