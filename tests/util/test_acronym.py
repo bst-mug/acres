@@ -39,10 +39,26 @@ def test_is_acronym():
 
 
 def test_create_german_acronym():
+    # Baseline
+    expected = "AP"
+    actual = acronym.create_german_acronym("Angina pectoris")
+    assert expected == actual
+
     # Separated by hyphen and whitespace
     expected = "WHB"
     actual = acronym.create_german_acronym("Wert - - Herzkrank-Board")
     assert expected == actual
+
+    # Containing prepositions
+    expected = "NIH"
+    actual = acronym.create_german_acronym("National Institutes of Health")
+    assert expected == actual
+
+    # This fails.
+    # TODO Reconsider some prepositions?
+    # expected = "LCIS"
+    # actual = acronym.create_german_acronym("lobular carcinoma in situ")
+    # assert expected == actual
 
 
 def test_is_proper_word():

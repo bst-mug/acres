@@ -70,14 +70,22 @@ def is_acronym(str_probe: str, max_length: int = 7, digit_placeholder: str = "Ð
 
 
 def create_german_acronym(full: str) -> str:
+    """
+    Creates an acronym out of a given multi-word expression.
+
+    @todo Use is_stopword?
+
+    :param full: A full form containing whitespaces.
+    :return:
+    """
     out = ""
     neg_list = ("and", "auf", "bei", "bei", "beim", "by", "der", "des", "die", "et", "for", "für",
                 "gegen", "im", "in", "mit", "nach", "not", "of", "on", "than", "the", "to", "und",
                 "vom", "von", "vor", "with", "zum", "zur")
     full = text.clean_whitespaces(full.replace("-", " ").replace("/", " "))
-    for w in full.split(" "):
-        if w not in neg_list:
-            out = out + w[0].upper()
+    for word in full.split(" "):
+        if word not in neg_list:
+            out = out + word[0].upper()
     return out
 
 
@@ -250,9 +258,9 @@ def _acronym_aware_clean_expansion(acronym: str, expansion: str) -> str:
     :return:
     """
     ret = ""
-    for c in expansion:
-        if c.isalnum() or c in " -" or c in acronym:
-            ret = ret + c
+    for char in expansion:
+        if char.isalnum() or char in " -" or char in acronym:
+            ret = ret + char
         else:
             ret = ret + " "
     return ret.strip()
@@ -281,8 +289,8 @@ def split_ngram(ngram: str) -> List[Tuple[str, str, str]]:
     counter = 0
     for token in tokens:
         if is_acronym(token, 7, "Ð"):
-            tr = (" ".join(tokens[0:counter]),
-                  tokens[counter], " ".join(tokens[counter + 1:]))
-            out.append(tr)
+            acronym_context = (" ".join(tokens[0:counter]),
+                               tokens[counter], " ".join(tokens[counter + 1:]))
+            out.append(acronym_context)
         counter += 1
     return out
