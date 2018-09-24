@@ -9,6 +9,12 @@ from gensim.models import Word2Vec
 
 
 def load_model(model_path: str) -> Word2Vec:
+    """
+    Loads a given model specified by a given filename.
+
+    :param model_path:
+    :return:
+    """
     return Word2Vec.load(model_path)
 
 
@@ -40,7 +46,7 @@ def preprocess(tokens: List[str]) -> List[str]:
         # TODO normalize c = k (soundex?)
         # TODO fix ¶ cleaning bug
         cleaned_token = regex_disallowed.sub("", token)
-        if len(cleaned_token) > 0:
+        if cleaned_token:
             ret.append(cleaned_token)
 
     # XXX NOOP We should do it in a common way (https://github.com/bst-mug/acres/issues/9)

@@ -34,14 +34,14 @@ class FilteredNGramStat(object):
         :param ngram_size: The exact size of ngrams to be considered.
         """
         self.ngram_size = ngram_size
-        self.NGRAMSTAT = resource_factory.get_ngramstat()
+        self.ngramstat = resource_factory.get_ngramstat()
 
     def __iter__(self) -> Generator[List[str], None, None]:
         logger.debug("Iterating...")
 
         largest_reduction = 0
 
-        for identifier, freq_ngram in self.NGRAMSTAT.items():
+        for identifier, freq_ngram in self.ngramstat.items():
             (freq, ngram) = freq_ngram
             tokens = ngram.split(self.TOKEN_SEPARATOR)
             length_tokens = len(tokens)
@@ -81,8 +81,8 @@ def train(ngram_size: int = 6, min_count: int = 1, net_size: int = 100, alpha: f
     """
     sentences = FilteredNGramStat(ngram_size)
 
-    # Find common bigram collocations
-    # TODO try trigrams
+    # Find common bigram collocations.
+    # Trigrams led to a 2% drop in F1 caused by a 2% drop in recall (though precision increased 2%).
     # TODO debug why "Rechter_Ventrikel" is not generated
     phrases = Phrases(sentences)
     bigram_transformer = Phraser(phrases)
@@ -97,4 +97,4 @@ def train(ngram_size: int = 6, min_count: int = 1, net_size: int = 100, alpha: f
 
 
 if __name__ == "__main__":
-    model = train(min_count=5)
+    MODEL = train(min_count=5)

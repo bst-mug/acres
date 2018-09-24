@@ -1,8 +1,11 @@
+"""
+Module to generate string variants.
+"""
 from typing import List, Union, Tuple
 
 
-def _resolve_ambiguous_lists(lists: List[List[Union[str, Tuple[str, str]]]]) -> List[
-    List[Union[str, Tuple[str, str]]]]:
+def _resolve_ambiguous_lists(lists: List[List[Union[str, Tuple[str, str]]]]) -> \
+        List[List[Union[str, Tuple[str, str]]]]:
     """
 
     :param lists:
@@ -31,8 +34,8 @@ def _resolve_ambiguous_lists(lists: List[List[Union[str, Tuple[str, str]]]]) -> 
     return [[]]
 
 
-def _create_string_variants_as_list(a_string: str, search: str, replace: str) -> List[
-    Union[str, Tuple[str, str]]]:
+def _create_string_variants_as_list(a_string: str, search: str, replace: str) -> \
+        List[Union[str, Tuple[str, str]]]:
     """
     Analyses a string a_string for all substrings.
 

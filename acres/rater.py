@@ -166,10 +166,12 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
             last_word = full_low.split(" ")[-1]
             if len(last_word) == 1 and acro_low[-1] != last_word:
                 # Rightmost acronym character is not equal rightmost single-char word
-                if not is_acronym_definition_pair: go_next = True
+                if not is_acronym_definition_pair:
+                    go_next = True
             if not acro_low[-1] in last_word[0:-1]:
                 # Rightmost acronym character is not in rightmost word
-                if not is_acronym_definition_pair: go_next = True
+                if not is_acronym_definition_pair:
+                    go_next = True
 
         if not go_next:
             score = 1

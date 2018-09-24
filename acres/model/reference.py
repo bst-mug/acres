@@ -1,3 +1,6 @@
+"""
+Model class that represents a reference standard.
+"""
 from typing import List
 
 
