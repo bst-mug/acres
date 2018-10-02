@@ -73,6 +73,10 @@ def _is_schwarzt_hearst_valid(acro: str, full: str) -> bool:
     "Hybrid text mining for finding abbreviations and their definitions."
     Proceedings of the 2001 conference on empirical methods in natural language processing. 2001.
 
+    Schwartz, Ariel S., and Marti A. Hearst.
+    "A simple algorithm for identifying abbreviation definitions in biomedical text."
+    Biocomputing 2003. 2002. 451-462.
+
     :param acro:
     :param full:
     :return:
@@ -88,6 +92,10 @@ def _is_relative_length_valid(acro: str, full: str) -> bool:
 
     A full form can be up to 20 times longer than the acronym and the acronym has to be at most 60%
     of the full form.
+
+    According to analysis of `acro_full_reference.txt` (modified from Wikipedia).
+
+    @todo could be much greater then 5. Look for cases in which this is an issue
 
     :param acro:
     :param full:
@@ -252,44 +260,19 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
     acro = acro.strip()
     full = full.strip()
 
-    #
     # ELIMINATION RULES
-    #
 
     # acronym must have at least two characters: all those expressions like "Streptococcus B" or
     # "Vitamin C" should not be considered containg acronyms. Normally these compositions are
     # lexicalised
     # May be relevant for assessing single letter forms like "A cerebralis"
-
-    if _has_parenthesis(full):
+    if not acro_util.is_acronym(acro):
         return 0
 
-    if _is_full_too_short(full):
+    if not is_full_valid(full):
         return 0
 
-    if _starts_with_stopword(full):
-        return 0
-
-    if len(acro) < 2:   # TODO is_acronym()
-        return 0
-
-    if language == "de":
-        if not _has_capitals(full):
-            return 0
-
-    # length restrictions (according to analysis of
-    # "acro_full_reference.txt" (modified from Wikipedia))
-    # TODO: could be much greater then 5. Look for cases in which this is an issue
-    if not _is_relative_length_valid(acro, full):
-        return 0
-
-    # Schwartz / Hearst rule
-    if not _is_schwarzt_hearst_valid(acro, full):
-        return 0
-    # SCHWARTZ, Ariel S.; HEARST, Marti A. A simple algorithm for identifying abbreviation
-    # definitions in biomedical text. In: Biocomputing 2003. 2002. S. 451-462.
-
-    if _is_levenshtein_distance_too_high(acro, full):
+    if not is_expansion_valid(acro, full):
         return 0
 
     # ACRONYM DEFINITION PATTERNS
