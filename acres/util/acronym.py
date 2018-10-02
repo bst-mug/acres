@@ -294,3 +294,20 @@ def split_ngram(ngram: str) -> List[Tuple[str, str, str]]:
             out.append(acronym_context)
         counter += 1
     return out
+
+
+def trim_plural(acronym: str) -> str:
+    """
+    Trim the german plural form out of an acronym.
+
+    @todo rewrite as regex
+
+    :param acronym:
+    :return:
+    """
+    acronym_plurals = ["s", "S", "x", "X"]
+
+    singular_acronym = acronym
+    if acronym[-1] in acronym_plurals:
+        singular_acronym = acronym[0:-1]
+    return singular_acronym

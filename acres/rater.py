@@ -6,16 +6,213 @@ import logging
 import re
 from typing import Tuple
 
-import acres.util.acronym
+from acres.util import acronym as acro_util
+from acres.util import functions
 from acres.util import variants
 
 logger = logging.getLogger(__name__)
 
 
+def _has_parenthesis(full: str) -> bool:
+    """
+    Check whether a given string contains parenthesis.
+
+    :param full:
+    :return:
+    """
+    if "(" in full or ")" in full:
+        return True
+    return False
+
+
+def _is_full_too_short(full: str) -> bool:
+    """
+    Check whether a given full form is too short.
+
+    @todo ignore whitespaces?
+
+    :param full:
+    :return:
+    """
+    too_short = 5
+    if len(full) <= too_short:
+        return True
+    return False
+
+
+def _starts_with_stopword(full: str) -> bool:
+    """
+    Check whether the full form starts with a stopword.
+
+    :param full:
+    :return:
+    """
+    if functions.is_stopword(full.split(' ', 1)[0]):
+        return True
+    return False
+
+
+def _has_capitals(full: str) -> bool:
+    """
+    Check whether a string has at least one capital letter.
+
+    :param full:
+    :return:
+    """
+    if full.islower():
+        return False
+    return True
+
+
+def _is_schwarzt_hearst_valid(acro: str, full: str) -> bool:
+    """
+    Check whether the full form length is within the bounds defined by Park/Roy and used by
+    Schwarzt/Hearst.
+
+    Park, Youngja, and Roy J. Byrd.
+    "Hybrid text mining for finding abbreviations and their definitions."
+    Proceedings of the 2001 conference on empirical methods in natural language processing. 2001.
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    if len(full.split()) > min(len(acro) + 5, len(acro) * 2):
+        return False
+    return True
+
+
+def _is_relative_length_valid(acro: str, full: str) -> bool:
+    """
+    Check whether the relative length of acronym to full form are within reasonable bounds.
+
+    A full form can be up to 20 times longer than the acronym and the acronym has to be at most 60%
+    of the full form.
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    if 0.05 <= len(acro) / len(full) <= 0.6:
+        return True
+    return False
+
+
+def _is_levenshtein_distance_too_high(acro: str, full: str) -> bool:
+    """
+    Check whether the Levenshtein distance between the given acronym and a generated one is too
+    high.
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    distance = functions.levenshtein(acro.upper(), acro_util.create_german_acronym(full))
+    if distance < len(acro):
+        return False
+    return True
+
+
+def _is_substring(acro: str, full: str) -> bool:
+    """
+    Check whether a given acronym is present in the full for.
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    if acro in full:
+        return True
+    return False
+
+
+def _is_short_form(acro: str, full: str) -> bool:
+    """
+    Check whether a given expansion is shorter than the acronym.
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    if len(full.split()) < len(acro):
+        return True
+    return False
+
+
+def _compute_full_valid(full: str) -> int:
+    """
+
+    :param full:
+    :return:
+    """
+    ret = 0
+    if _has_parenthesis(full):
+        ret += 1
+
+    if _is_full_too_short(full):
+        ret += 2
+
+    if _starts_with_stopword(full):
+        ret += 4
+
+    # TODO restrict to german
+    # A valid expansion of a german acronym would require at least one noun, which is capitalized.
+    if not _has_capitals(full):
+        ret += 8
+
+    return ret
+
+
+def is_full_valid(full: str) -> bool:
+    """
+    Check whether the full form is valid.
+
+    :param full:
+    :return:
+    """
+    return _compute_full_valid(full) == 0
+
+
+def _compute_expansion_valid(acro: str, full: str) -> int:
+    """
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    ret = 0
+
+    if not _is_schwarzt_hearst_valid(acro, full):
+        ret += 1
+
+    if not _is_relative_length_valid(acro, full):
+        ret += 2
+
+    if _is_levenshtein_distance_too_high(acro, full):
+        ret += 4
+
+    if _is_substring(acro, full):
+        ret += 8
+
+    return ret
+
+
+def is_expansion_valid(acro: str, full: str) -> bool:
+    """
+    Check whether an expansion is valid for a given acronym.
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    return _compute_expansion_valid(acro, full) == 0
+
+
 def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, float, str]:
     """
-    TODO: All morphosaurus stuff eliminated. Could check past versions later
-    TODO: whether this is worth while considering again
+    TODO: All morphosaurus stuff eliminated. Could check past versions later whether this is worth
+    while considering again
+
     Scores Acronym / resolution pairs according to a series of well-formedness criteria using a
     n-gram frequency list from related corpus.
 
@@ -64,52 +261,43 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
     # lexicalised
     # May be relevant for assessing single letter forms like "A cerebralis"
 
-    if "(" in full or ")" in full:
+    if _has_parenthesis(full):
         return (full, 0, "Parenthesis in full expression ")
 
-    if len(full) <= 5:
+    if _is_full_too_short(full):
         return (full, 0, "Full expression too short")
 
-    if acres.util.functions.is_stopword(full.split(' ', 1)[0]):
+    if _starts_with_stopword(full):
         return (full, 0, "first word in stopword list")
 
-    if len(acro) < 2:
+    if len(acro) < 2:   # TODO is_acronym()
         return (full, 0, "Single letter acronym")
-    acro_low = acro.lower()
-    full_low = full.lower()
 
     if language == "de":
-        if full.islower():
+        if not _has_capitals(full):
             return (full, 0, "Full form without capitals")
 
     # length restrictions (according to analysis of
     # "acro_full_reference.txt" (modified from Wikipedia))
     # TODO: could be much greater then 5. Look for cases in which this is an issue
-    if len(acro) / len(full) < 0.05:
-        return (full, 0, "Full form too long")
-
-    if len(acro) / len(full) > 0.6:
-        return (full, 0, "Full form too short")
-
-    lev = acres.util.functions.levenshtein(acro.upper(),
-                                           acres.util.acronym.create_german_acronym(full))
-    if lev >= len(acro):
-        return (full, 0, "Levenshtein edit distance too high")
+    if not _is_relative_length_valid(acro, full):
+        return (full, 0, "Full form too long or too short")
 
     # Schwartz / Hearst rule
-    if full.count(" ") + 1 > len(acro) * 2:
-        return (full, 0, "Contradicts Schwartz / Hearst rule")
-    if full.count(" ") + 1 > len(acro) + 5:
+    if not _is_schwarzt_hearst_valid(acro, full):
         return (full, 0, "Contradicts Schwartz / Hearst rule")
     # SCHWARTZ, Ariel S.; HEARST, Marti A. A simple algorithm for identifying abbreviation
     # definitions in biomedical text. In: Biocomputing 2003. 2002. S. 451-462.
+
+    if _is_levenshtein_distance_too_high(acro, full):
+        return (full, 0, "Levenshtein edit distance too high")
 
     # ACRONYM DEFINITION PATTERNS
     # full form contains an acronym definition pattern (normally only yielded
     # from Web scraping, unlikely in clinical texts)
     # acronym is included; is then removed from full form
     # TODO move to separate method
-    acro_def_pattern = acres.util.acronym.extract_acronym_definition(full, 7)
+    acro_def_pattern = acro_util.extract_acronym_definition(full, 7)
     if acro_def_pattern is not None:
         is_acronym_definition_pair = True
         if acro_def_pattern[0] == acro:
@@ -118,12 +306,14 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
 
     else:
         # acronym must not occur within full form (case sensitive)
-        if acro in full:
+        if _is_substring(acro, full):
             return (full, 0, "Acronym case-sensitive substring of full")
-        if "(" in full or ")" in full:
+        if _has_parenthesis(full):
             return (full, 0, "Parenthesis in full")
 
     # from here no elimination
+    acro_low = acro.lower()
+    full_low = full.lower()
 
     # GENERATION OF VARIANTS
     # Typical substitutions, mostly concerning the inconsistent use
@@ -133,6 +323,8 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
     lst_var = variants.generate_all_variants_by_rules(full)
     full_old = full
     score = 0.0
+
+    # Iterates over all variants. The best score is then returned.
     for full in lst_var:
         go_next = False
         old_score = score
@@ -146,22 +338,23 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
             # We assume that plurals and genitives of acronyms are often marked with
             # "s", however not necessarily lower case.
             # This means that "S" and "X" are not required to match
-            lst_acronym_suffixes = ["s", "S", "x", "X"]
-            if acro[-1] in lst_acronym_suffixes:
-                acro = acro[0:-1]
-                acro_low = acro_low[0:-1]
+            singular_acro = acro_util.trim_plural(acro)
+            if singular_acro != acro:
+                acro = singular_acro
+                acro_low = singular_acro.lower()
                 last_letter_stripped = True
 
         # first chars must be the same, certain tolerance with acronym definition pairs
-        if acro_low[0] != full_low[0]:
+        if acro_low[0] != full_low[0]:  # TODO split_expansion should get it
             if not is_acronym_definition_pair:
-                go_next = True
+                go_next = True  # TODO continue
 
         # last char of acronym must occur in last word of full
         # but not at the end unless it is a single letter
         # "EKG" = "Entwicklung" should not match
         # "Hepatitis A" -> "HEPA" should match
         # HOWEVER: not applicable if last letter stripped
+        # TODO move to split_expansion (or a semantic-powered version of it)
         if not last_letter_stripped:
             last_word = full_low.split(" ")[-1]
             if len(last_word) == 1 and acro_low[-1] != last_word:
@@ -178,9 +371,9 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
             regex = "^"
             for char in acro_low:
                 regex = regex + char + ".*"
-            if re.search(regex, full_low) is None:
+            if re.search(regex, full_low) is None:  # TODO split_expansion
                 if is_acronym_definition_pair:
-                    score = score * 0.1
+                    score = score * 0.1     # TODO score = 0.1
                 else:
                     score = 0
             else:
@@ -192,12 +385,12 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
 
                 # exact match of real acronym with generated acronym
                 if language == "de":
-                    if acro.upper() == acres.util.acronym.create_german_acronym(full):
+                    if acro.upper() == acro_util.create_german_acronym(full):
                         score = score * 2
 
                 # if short full form, the coincidence of the first two letters of full and acronym
                 # increases score
-                if full.count(" ") + 1 < len(acro):
+                if _is_short_form(acro, full):
                     if full.upper()[0:2] == acro.upper()[0:2]:
                         score = score * 2
 
@@ -211,7 +404,7 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
         score = score * 10
     else:
 
-        if acro_low in full_low:
+        if _is_substring(acro_low, full_low):
             score = score * 0.2
 
     return full_old, round(score, 2), 'End'
