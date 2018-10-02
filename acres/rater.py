@@ -216,6 +216,36 @@ def is_expansion_valid(acro: str, full: str) -> bool:
     return _compute_expansion_valid(acro, full) == 0
 
 
+def get_acronym_definition_pair_score(acro: str, full: str, language: str = "de") \
+        -> Tuple[str, float]:
+    """
+    Wrapper function for `get_acronym_score` that takes possible acronym-definition pairs into
+    account.
+
+    :param acro:
+    :param full:
+    :param language:
+    :return:
+    """
+    is_acronym_definition_pair = False
+    definition = full
+
+    # full form contains an acronym definition pattern (normally only yielded
+    # from Web scraping, unlikely in clinical texts)
+    # acronym is included; is then removed from full form
+    acro_def_pattern = acro_util.extract_acronym_definition(full, 7)
+    if acro_def_pattern is not None:
+        is_acronym_definition_pair = True
+        if acro_def_pattern[0] == acro:
+            definition = acro_def_pattern[1]
+            # high score, but also might be something else
+
+    score = get_acronym_score(acro, definition, language)
+    if is_acronym_definition_pair:
+        score *= 10
+    return definition, score
+
+
 def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
     """
     TODO: All morphosaurus stuff eliminated. Could check past versions later whether this is worth
@@ -256,7 +286,6 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
 
     # see below cases in which the lat letter of an acronym is stripped
     last_letter_stripped = False
-    is_acronym_definition_pair = False
     acro = acro.strip()
     full = full.strip()
 
@@ -274,25 +303,6 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
 
     if not is_expansion_valid(acro, full):
         return 0
-
-    # ACRONYM DEFINITION PATTERNS
-    # full form contains an acronym definition pattern (normally only yielded
-    # from Web scraping, unlikely in clinical texts)
-    # acronym is included; is then removed from full form
-    # TODO move to separate method
-    acro_def_pattern = acro_util.extract_acronym_definition(full, 7)
-    if acro_def_pattern is not None:
-        is_acronym_definition_pair = True
-        if acro_def_pattern[0] == acro:
-            full = acro_def_pattern[1]
-            # high score, but also might be something else
-
-    else:
-        # acronym must not occur within full form (case sensitive)
-        if _is_substring(acro, full):
-            return 0
-        if _has_parenthesis(full):
-            return 0
 
     # from here no elimination
     acro_low = acro.lower()
@@ -329,8 +339,8 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
 
         # first chars must be the same, certain tolerance with acronym definition pairs
         if acro_low[0] != full_low[0]:  # TODO split_expansion should get it
-            if not is_acronym_definition_pair:
-                go_next = True  # TODO continue
+            # TODO avoid score=0 due to acronym-definition pairs
+            go_next = True  # TODO continue
 
         # last char of acronym must occur in last word of full
         # but not at the end unless it is a single letter
@@ -341,13 +351,13 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
         if not last_letter_stripped:
             last_word = full_low.split(" ")[-1]
             if len(last_word) == 1 and acro_low[-1] != last_word:
+                # TODO avoid score=0 due to acronym-definition pairs
                 # Rightmost acronym character is not equal rightmost single-char word
-                if not is_acronym_definition_pair:
-                    go_next = True
+                go_next = True
             if not acro_low[-1] in last_word[0:-1]:
                 # Rightmost acronym character is not in rightmost word
-                if not is_acronym_definition_pair:
-                    go_next = True
+                # TODO avoid score=0 due to acronym-definition pairs
+                go_next = True
 
         if not go_next:
             score = 1
@@ -355,10 +365,8 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
             for char in acro_low:
                 regex = regex + char + ".*"
             if re.search(regex, full_low) is None:  # TODO split_expansion
-                if is_acronym_definition_pair:
-                    score = score * 0.1     # TODO score = 0.1
-                else:
-                    score = 0
+                # TODO avoid score=0 due to acronym-definition pairs
+                score = 0
             else:
 
                 # rightmost expansion should start with upper case initial
@@ -382,12 +390,7 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
 
     # decapitalized acronym should not occur within decap full form,
     # if acronym has three or more letters
-
-    if is_acronym_definition_pair:
-        score = score * 10
-    else:
-
-        if _is_substring(acro_low, full_low):
-            score = score * 0.2
+    if _is_substring(acro_low, full_low):
+        score = score * 0.2
 
     return round(score, 2)

@@ -12,7 +12,7 @@ def test_get_best_acronym_web_resolution(monkeypatch):
     monkeypatch.setattr(azure, "get_web_corpus", mockreturn)
     monkeypatch.setattr(bing, "get_web_corpus", mockreturn)
 
-    expected = ("Elektrokardiogramm", 2)
+    expected = ("Elektrokardiogramm", 10)
     actual = base.get_best_acronym_web_resolution("", "EKG", "", 3, 5)
     assert expected == actual
 
