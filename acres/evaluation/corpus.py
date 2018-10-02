@@ -7,7 +7,7 @@ import math
 import re
 from typing import Dict, List, Tuple
 
-import acres.util.acronym
+from acres.util import acronym as acro_util
 from acres import rater
 from acres.ngram import finder
 from acres.preprocess import resource_factory
@@ -55,7 +55,7 @@ def find_synonyms() -> None:
 
             logger.debug("-----------------------")
             logger.debug(ngram)
-            splits = acres.util.acronym.split_ngram(ngram.strip())
+            splits = acro_util.split_ngram(ngram.strip())
             for split in splits:
                 left_string = split[0].strip()
                 acronym = split[1].strip()
