@@ -159,3 +159,10 @@ def test_split_ngram():
     assert [('l', 'ACR1', 'b ACR2 c'), ('l ACR1 b', 'ACR2', 'c')] == acronym.split_ngram("l ACR1 b ACR2 c")
     #
     assert [('', 'ACR', '')] == acronym.split_ngram("ACR")
+
+
+def test_trim_plural():
+    assert "EKG" == acronym.trim_plural("EKGs")
+
+    # XXX corner case
+    assert "S" == acronym.trim_plural("SS")

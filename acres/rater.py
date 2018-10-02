@@ -315,6 +315,19 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
     acro_low = acro.lower()
     full_low = full.lower()
 
+    if language == "de":
+        # Plural form of acronym reduced to singular ("s", often not found in non English full
+        # forms) e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)
+        # These characters cannot be always expected to occur in the full form
+        # We assume that plurals and genitives of acronyms are often marked with
+        # "s", however not necessarily lower case.
+        # This means that "S" and "X" are not required to match
+        singular_acro = acro_util.trim_plural(acro)
+        if singular_acro != acro:
+            acro = singular_acro
+            acro_low = singular_acro.lower()
+            last_letter_stripped = True
+
     # GENERATION OF VARIANTS
     # Typical substitutions, mostly concerning the inconsistent use
     # of k, c, and z in clinical texts
@@ -330,19 +343,6 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
         old_score = score
         full_low = full.lower()
         # here no direct eliminations
-
-        if language == "de":
-            # Plural form of acronym reduced to singular ("s", often not found in non English full
-            # forms) e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)
-            # These characters cannot be always expected to occur in the full form
-            # We assume that plurals and genitives of acronyms are often marked with
-            # "s", however not necessarily lower case.
-            # This means that "S" and "X" are not required to match
-            singular_acro = acro_util.trim_plural(acro)
-            if singular_acro != acro:
-                acro = singular_acro
-                acro_low = singular_acro.lower()
-                last_letter_stripped = True
 
         # first chars must be the same, certain tolerance with acronym definition pairs
         if acro_low[0] != full_low[0]:  # TODO split_expansion should get it

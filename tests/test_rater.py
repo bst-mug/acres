@@ -73,5 +73,8 @@ def test_get_acronym_score():
     # Score of the best variant should be preserved
     assert 2.0 == rater.get_acronym_score("AK", "Arbeits Kranker")[1]    # sic
 
+    # Acronyms with only plural letters should not cause IndexError
+    assert 0 == rater.get_acronym_score("SS", "Überprüfen Sie die")[1]
+
     # TODO Wrong
     #assert rater.get_acronym_score("SR", "Sinusrythmus")[1] > rater.get_acronym_score("SR", "Sinusarrhythmie")[1]
