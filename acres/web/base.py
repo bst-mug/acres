@@ -25,6 +25,8 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
     """
     This is the main file to be used to leverage Bing search for resolving acronyms
 
+    @todo call find_embeddings on the web corpus instead?
+
     :param left: left context of acronym to be expanded (any length)
     :param acro: acronym to be expanded
     :param right: right context of acronym to be expanded (any length)

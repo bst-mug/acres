@@ -84,6 +84,7 @@ def find_synonyms() -> None:
                     li_web = base.ngrams_web_dump("\"" + query + "\"", 1, 10)
 
                 # Prepare parameters for corpus model
+                # TODO potentially broken
                 if left_string == "":
                     left_string = "*"
                 if right_string == "":
@@ -103,6 +104,7 @@ def find_synonyms() -> None:
 def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str,
                     log: Dict[str, List[str]]) -> None:
     """
+    @todo return log instead of receiving it via parameter
 
     :param corpus:
     :param acronym:

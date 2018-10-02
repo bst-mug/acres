@@ -3,7 +3,7 @@ Utility functions related to acronyms.
 """
 import logging
 import re
-from typing import Union, Tuple, List
+from typing import Tuple, List, Optional
 
 from acres.util import text
 
@@ -11,11 +11,13 @@ logger = logging.getLogger(__name__)
 
 
 def extract_acronym_definition(str_probe: str, max_length: int,
-                               strict: bool = False) -> Union[None, Tuple[str, str]]:
+                               strict: bool = False) -> Optional[Tuple[str, str]]:
     """
     Identifies potential acronym / definition pairs and extract acronym and definition candidates.
     A necessary criterion is that the initial characters are the same
     TODO: Acronym/definition pairs normally use parentheses, but also quotes and dashes can be found
+
+    @todo Add sibling function is_acronym_definition_pair
 
     :param str_probe:
     :param max_length:
