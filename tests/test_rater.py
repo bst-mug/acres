@@ -34,6 +34,16 @@ def test__compute_expansion_valid():
     assert 8 == rater._compute_expansion_valid("AM", "AMbulanz")
 
 
+def tets_get_acronym_score_variants():
+    # Acronyms created out of spelling variants are accepted
+    assert 1.0 == rater.get_acronym_score("AK", "Arbeitskammer")
+    assert 1.0 == rater.get_acronym_score("AC", "Arbeitskammer")
+
+    # But not the opposite!
+    # TODO Is is expected?
+    assert 0.0 == rater.get_acronym_score("AK", "Arbeitscammer")
+
+
 def test_get_acronym_score():
     # BASIC CHECKS
     # Acronym too short
@@ -61,14 +71,6 @@ def test_get_acronym_score():
 
     # Exact match of acronym to generated acronym
     assert 2.0 == rater.get_acronym_score("AP", "Angina Pectoris")
-
-    # Acronyms created out of spelling variants are accepted
-    assert 1.0 == rater.get_acronym_score("AK", "Arbeitskammer")
-    assert 1.0 == rater.get_acronym_score("AC", "Arbeitskammer")
-
-    # But not the opposite!
-    # TODO Is is expected?
-    assert 0.0 == rater.get_acronym_score("AK", "Arbeitscammer")
 
     # Score of the best variant should be preserved
     assert 2.0 == rater.get_acronym_score("AK", "Arbeits Kranker")    # sic
