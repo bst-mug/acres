@@ -208,7 +208,7 @@ def is_expansion_valid(acro: str, full: str) -> bool:
     return _compute_expansion_valid(acro, full) == 0
 
 
-def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, float, str]:
+def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
     """
     TODO: All morphosaurus stuff eliminated. Could check past versions later whether this is worth
     while considering again
@@ -262,35 +262,35 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
     # May be relevant for assessing single letter forms like "A cerebralis"
 
     if _has_parenthesis(full):
-        return (full, 0, "Parenthesis in full expression ")
+        return 0
 
     if _is_full_too_short(full):
-        return (full, 0, "Full expression too short")
+        return 0
 
     if _starts_with_stopword(full):
-        return (full, 0, "first word in stopword list")
+        return 0
 
     if len(acro) < 2:   # TODO is_acronym()
-        return (full, 0, "Single letter acronym")
+        return 0
 
     if language == "de":
         if not _has_capitals(full):
-            return (full, 0, "Full form without capitals")
+            return 0
 
     # length restrictions (according to analysis of
     # "acro_full_reference.txt" (modified from Wikipedia))
     # TODO: could be much greater then 5. Look for cases in which this is an issue
     if not _is_relative_length_valid(acro, full):
-        return (full, 0, "Full form too long or too short")
+        return 0
 
     # Schwartz / Hearst rule
     if not _is_schwarzt_hearst_valid(acro, full):
-        return (full, 0, "Contradicts Schwartz / Hearst rule")
+        return 0
     # SCHWARTZ, Ariel S.; HEARST, Marti A. A simple algorithm for identifying abbreviation
     # definitions in biomedical text. In: Biocomputing 2003. 2002. S. 451-462.
 
     if _is_levenshtein_distance_too_high(acro, full):
-        return (full, 0, "Levenshtein edit distance too high")
+        return 0
 
     # ACRONYM DEFINITION PATTERNS
     # full form contains an acronym definition pattern (normally only yielded
@@ -307,9 +307,9 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
     else:
         # acronym must not occur within full form (case sensitive)
         if _is_substring(acro, full):
-            return (full, 0, "Acronym case-sensitive substring of full")
+            return 0
         if _has_parenthesis(full):
-            return (full, 0, "Parenthesis in full")
+            return 0
 
     # from here no elimination
     acro_low = acro.lower()
@@ -407,4 +407,4 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> Tuple[str, 
         if _is_substring(acro_low, full_low):
             score = score * 0.2
 
-    return full_old, round(score, 2), 'End'
+    return round(score, 2)

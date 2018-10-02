@@ -40,12 +40,12 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
     out = ""
 
     for (freq, ngram) in ngrams:
-        (full, score, _) = rater.get_acronym_score(acro, ngram, language="de")
+        score = rater.get_acronym_score(acro, ngram, language="de")
         if score > 0.0:
-            logger.debug("%.2f %s", score, full)
+            logger.debug("%.2f %s", score, ngram)
             weight = freq * score
             if weight > old_weight:
-                out = full
+                out = ngram
                 old_weight = weight
 
     return out, weight

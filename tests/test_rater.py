@@ -37,44 +37,44 @@ def test__compute_expansion_valid():
 def test_get_acronym_score():
     # BASIC CHECKS
     # Acronym too short
-    assert 0 == rater.get_acronym_score("A", "Ambulanz")[1]
+    assert 0 == rater.get_acronym_score("A", "Ambulanz")
 
     # Rightmost acronym character is not in rightmost word
-    assert 0 == rater.get_acronym_score("CK", "Creaking Test")[1]
+    assert 0 == rater.get_acronym_score("CK", "Creaking Test")
 
     # Acronym characters not found in full form
-    assert 0 == rater.get_acronym_score("ECG", "Egramm")[1]
+    assert 0 == rater.get_acronym_score("ECG", "Egramm")
 
     # Baseline
-    assert 1.0 == rater.get_acronym_score("EKG", "Elektrokardiogramm")[1]
-    assert 1.0 == rater.get_acronym_score("KHK", "koronare Herzkrankheit")[1]
-    assert 1.0 == rater.get_acronym_score("CMP", "Cardiomyopathie")[1]
+    assert 1.0 == rater.get_acronym_score("EKG", "Elektrokardiogramm")
+    assert 1.0 == rater.get_acronym_score("KHK", "koronare Herzkrankheit")
+    assert 1.0 == rater.get_acronym_score("CMP", "Cardiomyopathie")
 
     # Lower case rightmost expansion is penalized
-    assert 0.25 == rater.get_acronym_score("AP", "Angina leptoris")[1]
+    assert 0.25 == rater.get_acronym_score("AP", "Angina leptoris")
 
     # Acronym as a substring of full form (case-insensitive) is penalized
-    assert 0.2 == rater.get_acronym_score("NTX", "Nierentransplantation")[1]
+    assert 0.2 == rater.get_acronym_score("NTX", "Nierentransplantation")
 
     # Short full form with same initial letters gets a boost
-    assert 2.0 == rater.get_acronym_score("TRINS", "Tricuspidalinsuffizienz")[1]
+    assert 2.0 == rater.get_acronym_score("TRINS", "Tricuspidalinsuffizienz")
 
     # Exact match of acronym to generated acronym
-    assert 2.0 == rater.get_acronym_score("AP", "Angina Pectoris")[1]
+    assert 2.0 == rater.get_acronym_score("AP", "Angina Pectoris")
 
     # Acronyms created out of spelling variants are accepted
-    assert 1.0 == rater.get_acronym_score("AK", "Arbeitskammer")[1]
-    assert 1.0 == rater.get_acronym_score("AC", "Arbeitskammer")[1]
+    assert 1.0 == rater.get_acronym_score("AK", "Arbeitskammer")
+    assert 1.0 == rater.get_acronym_score("AC", "Arbeitskammer")
 
     # But not the opposite!
     # TODO Is is expected?
-    assert 0.0 == rater.get_acronym_score("AK", "Arbeitscammer")[1]
+    assert 0.0 == rater.get_acronym_score("AK", "Arbeitscammer")
 
     # Score of the best variant should be preserved
-    assert 2.0 == rater.get_acronym_score("AK", "Arbeits Kranker")[1]    # sic
+    assert 2.0 == rater.get_acronym_score("AK", "Arbeits Kranker")    # sic
 
     # Acronyms with only plural letters should not cause IndexError
-    assert 0 == rater.get_acronym_score("SS", "Überprüfen Sie die")[1]
+    assert 0 == rater.get_acronym_score("SS", "Überprüfen Sie die")
 
     # TODO Wrong
-    #assert rater.get_acronym_score("SR", "Sinusrythmus")[1] > rater.get_acronym_score("SR", "Sinusarrhythmie")[1]
+    #assert rater.get_acronym_score("SR", "Sinusrythmus") > rater.get_acronym_score("SR", "Sinusarrhythmie")

@@ -221,8 +221,8 @@ if 1 == 1:
 
     for t in r:
         s = acres.rater.get_acronym_score(acro, t[1])
-        if s[1] > 0:
-            print(str(t[0]) + "\t" + str(s[1]) + "\t" + s[0])
+        if s > 0:
+            print(str(t[0]) + "\t" + str(s) + "\t" + t[1])
 
     1 / 0
 
@@ -240,8 +240,8 @@ if 1 == 1:
 
     for t in r:
         s = acres.rater.get_acronym_score(acro, t[1])
-        if s[1] > 0:
-            print(str(t[0]) + "\t" + str(s[1]) + "\t" + s[0])
+        if s > 0:
+            print(str(t[0]) + "\t" + str(s) + "\t" + t[1])
 
     1 / 0
 
