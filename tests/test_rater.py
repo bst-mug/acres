@@ -1,6 +1,29 @@
 from acres import rater
 
 
+def test__acro_chars_full():
+    # Baseline
+    assert rater._is_possible_expansion("EKG", "Elektrokardiogramm")
+
+    # First char must match
+    assert not rater._is_possible_expansion("BC", "Abc")
+
+    # Short acronyms
+    assert rater._is_possible_expansion("A", "a")
+    assert rater._is_possible_expansion("AB", "ab")
+
+    # Invalid expansion
+    assert not rater._is_possible_expansion("EKG", "Elektro")
+
+    # Equal last char
+    assert rater._is_possible_expansion("HEPA", "Hepatitis A")
+
+    # Empty parameters
+    assert not rater._is_possible_expansion("A", "")
+    assert rater._is_possible_expansion("", "a")
+    assert rater._is_possible_expansion("", "")
+
+
 def test__compute_full_valid():
     # Full form has parenthesis
     assert 1 == rater._compute_full_valid("Abcde(fghi")

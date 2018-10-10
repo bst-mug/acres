@@ -272,6 +272,8 @@ def is_valid_expansion(acronym: str, expansion: str) -> bool:
     """
     Checks whether a candidate expansion is valid for an acronym.
 
+    @deprecated Use rater._is_possible_expansion instead
+
     :param acronym:
     :param expansion:
     :return:

@@ -3,7 +3,6 @@ Stefan Schulz 11 Nov 2017
 """
 
 import logging
-import re
 from typing import Tuple
 
 from acres.util import acronym as acro_util
@@ -144,6 +143,41 @@ def _is_short_form(acro: str, full: str) -> bool:
     """
     if len(full.split()) < len(acro):
         return True
+    return False
+
+
+def _is_possible_expansion(acro: str, full: str) -> bool:
+    """
+    Check whether all acronym characters are present in the full form.
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    # Empty acronym is presented everywhere
+    if len(acro) == 0:
+        return True
+
+    # Non-empty acronym is not presented in empty full form
+    if len(full) == 0:
+        return False
+
+    # First char must be the same
+    if acro[0].lower() != full[0].lower():
+        return False
+
+    j = 0
+    # We then skip the first char, as it has already been checked
+    for i in range(1, len(acro)):
+        j += 1
+        while j < len(full):
+            if acro[i].lower() == full[j].lower():
+                break
+            j += 1
+
+    if j < len(full):
+        return True
+
     return False
 
 
@@ -367,10 +401,7 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
             # TODO avoid score=0 due to acronym-definition pairs
             return 0
 
-    regex = "^"
-    for char in acro_low:
-        regex = regex + char + ".*"
-    if re.search(regex, full_low) is None:  # TODO split_expansion
+    if not _is_possible_expansion(acro, full):
         # TODO avoid score=0 due to acronym-definition pairs
         return 0
 
