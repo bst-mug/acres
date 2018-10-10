@@ -368,9 +368,6 @@ def get_acronym_score(acro: str, full: str) -> float:
     :param full: long form to be checked whether it qualifies as an acronym expansion
     :return: score that rates the likelihood that the full form is a valid expansion of the acronym
     """
-
-    # see below cases in which the lat letter of an acronym is stripped
-    last_letter_stripped = False
     acro = acro.strip()
     full = full.strip()
 
@@ -381,10 +378,7 @@ def get_acronym_score(acro: str, full: str) -> float:
     # We assume that plurals and genitives of acronyms are often marked with
     # "s", however not necessarily lower case.
     # This means that "S" and "X" are not required to match
-    singular_acro = acro_util.trim_plural(acro)
-    if singular_acro != acro:
-        acro = singular_acro
-        last_letter_stripped = True
+    acro = acro_util.trim_plural(acro)
 
     # ELIMINATION RULES
 
@@ -421,17 +415,14 @@ def get_acronym_score(acro: str, full: str) -> float:
     # but not at the end unless it is a single letter
     # "EKG" = "Entwicklung" should not match
     # "Hepatitis A" -> "HEPA" should match
-    # HOWEVER: not applicable if last letter stripped
-    # TODO move to split_expansion (or a semantic-powered version of it)
-    if not last_letter_stripped:
-        last_word = full_low.split(" ")[-1]
-        if len(last_word) == 1 and acro_low[-1] != last_word:
-            # TODO avoid score=0 due to acronym-definition pairs
-            # Rightmost acronym character is not equal rightmost single-char word
-            return 0
-        if len(last_word) != 1 and acro_low[-1] not in last_word[0:-1]:
-            # Rightmost acronym character is not in rightmost word
-            # TODO avoid score=0 due to acronym-definition pairs
-            return 0
+    last_word = full.lower().split(" ")[-1]
+    if len(last_word) == 1 and acro.lower()[-1] != last_word:
+        # TODO avoid score=0 due to acronym-definition pairs
+        # Rightmost acronym character is not equal rightmost single-char word
+        return 0
+    if len(last_word) != 1 and acro.lower()[-1] not in last_word[0:-1]:
+        # Rightmost acronym character is not in rightmost word
+        # TODO avoid score=0 due to acronym-definition pairs
+        return 0
 
     return _calc_score(acro, full)
