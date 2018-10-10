@@ -323,10 +323,6 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
     if not is_expansion_valid(acro, full):
         return 0
 
-    # from here no elimination
-    acro_low = acro.lower()
-    full_low = full.lower()
-
     if language == "de":
         # Plural form of acronym reduced to singular ("s", often not found in non English full
         # forms) e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)
@@ -337,7 +333,6 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
         singular_acro = acro_util.trim_plural(acro)
         if singular_acro != acro:
             acro = singular_acro
-            acro_low = singular_acro.lower()
             last_letter_stripped = True
 
     # GENERATION OF VARIANTS
@@ -345,16 +340,15 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
     # of k, c, and z in clinical texts
     # can be enhanced by frequent translations in acres.util.text.
 
-    score = 0.0
-
-    do_scoring = True
+    acro_low = acro.lower()
     full_low = full.lower()
+
     # here no direct eliminations
 
     # first chars must be the same, certain tolerance with acronym definition pairs
     if acro_low[0] != full_low[0]:  # TODO split_expansion should get it
         # TODO avoid score=0 due to acronym-definition pairs
-        do_scoring = False
+        return 0
 
     # last char of acronym must occur in last word of full
     # but not at the end unless it is a single letter
@@ -367,41 +361,40 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
         if len(last_word) == 1 and acro_low[-1] != last_word:
             # TODO avoid score=0 due to acronym-definition pairs
             # Rightmost acronym character is not equal rightmost single-char word
-            do_scoring = False
+            return 0
         if not acro_low[-1] in last_word[0:-1]:
             # Rightmost acronym character is not in rightmost word
             # TODO avoid score=0 due to acronym-definition pairs
-            do_scoring = False
+            return 0
 
-    if do_scoring:
-        score = 1
-        regex = "^"
-        for char in acro_low:
-            regex = regex + char + ".*"
-        if re.search(regex, full_low) is None:  # TODO split_expansion
-            # TODO avoid score=0 due to acronym-definition pairs
-            score = 0
-        else:
+    regex = "^"
+    for char in acro_low:
+        regex = regex + char + ".*"
+    if re.search(regex, full_low) is None:  # TODO split_expansion
+        # TODO avoid score=0 due to acronym-definition pairs
+        return 0
 
-            # rightmost expansion should start with upper case initial
-            if language == "de":
-                if full.split(" ")[-1][0].islower():
-                    score = score * 0.25
+    score = 1
 
-            # exact match of real acronym with generated acronym
-            if language == "de":
-                if acro.upper() == acro_util.create_german_acronym(full):
-                    score = score * 2
+    # rightmost expansion should start with upper case initial
+    if language == "de":
+        if full.split(" ")[-1][0].islower():
+            score = score * 0.25
 
-            # if short full form, the coincidence of the first two letters of full and acronym
-            # increases score
-            if _is_short_form(acro, full):
-                if full.upper()[0:2] == acro.upper()[0:2]:
-                    score = score * 2
+    # exact match of real acronym with generated acronym
+    if language == "de":
+        if acro.upper() == acro_util.create_german_acronym(full):
+            score = score * 2
+
+    # if short full form, the coincidence of the first two letters of full and acronym
+    # increases score
+    if _is_short_form(acro, full):
+        if full.upper()[0:2] == acro.upper()[0:2]:
+            score = score * 2
 
     # decapitalized acronym should not occur within decap full form,
     # if acronym has three or more letters
     if _is_substring(acro_low, full_low):
         score = score * 0.2
 
-    return round(score, 2)
+    return score
