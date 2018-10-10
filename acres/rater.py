@@ -236,6 +236,9 @@ def _compute_expansion_valid(acro: str, full: str) -> int:
     if _is_substring(acro, full):
         ret += 8
 
+    if not _is_possible_expansion(acro, full):
+        ret += 16
+
     return ret
 
 
@@ -342,6 +345,18 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
     acro = acro.strip()
     full = full.strip()
 
+    if language == "de":
+        # Plural form of acronym reduced to singular ("s", often not found in non English full
+        # forms) e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)
+        # These characters cannot be always expected to occur in the full form
+        # We assume that plurals and genitives of acronyms are often marked with
+        # "s", however not necessarily lower case.
+        # This means that "S" and "X" are not required to match
+        singular_acro = acro_util.trim_plural(acro)
+        if singular_acro != acro:
+            acro = singular_acro
+            last_letter_stripped = True
+
     # ELIMINATION RULES
 
     # acronym must have at least two characters: all those expressions like "Streptococcus B" or
@@ -355,19 +370,8 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
         return 0
 
     if not is_expansion_valid(acro, full):
+        # TODO avoid score=0 due to acronym-definition pairs
         return 0
-
-    if language == "de":
-        # Plural form of acronym reduced to singular ("s", often not found in non English full
-        # forms) e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)
-        # These characters cannot be always expected to occur in the full form
-        # We assume that plurals and genitives of acronyms are often marked with
-        # "s", however not necessarily lower case.
-        # This means that "S" and "X" are not required to match
-        singular_acro = acro_util.trim_plural(acro)
-        if singular_acro != acro:
-            acro = singular_acro
-            last_letter_stripped = True
 
     # GENERATION OF VARIANTS
     # Typical substitutions, mostly concerning the inconsistent use
@@ -400,10 +404,6 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
             # Rightmost acronym character is not in rightmost word
             # TODO avoid score=0 due to acronym-definition pairs
             return 0
-
-    if not _is_possible_expansion(acro, full):
-        # TODO avoid score=0 due to acronym-definition pairs
-        return 0
 
     score = 1
 

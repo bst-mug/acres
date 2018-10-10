@@ -46,12 +46,12 @@ def test__compute_expansion_valid():
 
     # RELATIVE LENGTH RESTRICTIONS
     # Acronym has to be at most 60% of the full form
-    assert 2 == rater._compute_expansion_valid("DCBA", "ABCDEF")
+    assert 2 == rater._compute_expansion_valid("ABCE", "ABCDEF")
     # Full form can be up to 20 times longer than acronym
-    assert 2 == rater._compute_expansion_valid("BA", "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNO")
+    assert 2 == rater._compute_expansion_valid("AC", "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNO")
 
     # Levenshtein distance too high
-    assert 4 == rater._compute_expansion_valid("HEPA", "A B C D")
+    assert 4 == rater._compute_expansion_valid("HEPA", "Ha Be Cp Da En")
 
     # Acronym within full form
     assert 8 == rater._compute_expansion_valid("AM", "AMbulanz")
@@ -86,8 +86,17 @@ def test_get_acronym_score():
     # Lower case rightmost expansion is penalized
     assert 0.25 == rater.get_acronym_score("AP", "Angina leptoris")
 
-    # Acronym as a substring of full form (case-insensitive) is penalized
+    # Plural form in English format
+    assert 1 == rater.get_acronym_score("EKGs", "Elektrokardiogramme")
+
+    # Final X is not needed in full form
     assert 0.2 == rater.get_acronym_score("NTX", "Nierentransplantation")
+
+    # Short acronyms ending with X are not allowed
+    assert 0 == rater.get_acronym_score("TX", "Transplantation")
+
+    # Acronym as a substring of full form (case-insensitive) is penalized
+    assert 0.2 == rater.get_acronym_score("NT", "Nierentransplantation")
 
     # Short full form with same initial letters gets a boost
     assert 2.0 == rater.get_acronym_score("TRINS", "Tricuspidalinsuffizienz")
