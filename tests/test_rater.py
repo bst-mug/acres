@@ -24,6 +24,19 @@ def test__is_possible_expansion():
     assert rater._is_possible_expansion("", "")
 
 
+def test__is_acronym_tail_on_last_word():
+    # Last char of acronym must occur in last word of full...
+    assert not rater._is_acronym_tail_on_last_word("HEPC", "Hepatitis Ab")
+    assert rater._is_acronym_tail_on_last_word("HEPA", "Hepatitis Ab")
+
+    # ...but not at the end...
+    assert not rater._is_acronym_tail_on_last_word("HEPA", "Hepatitis Ba")
+
+    # ...unless it is a single letter
+    assert not rater._is_acronym_tail_on_last_word("HEPC", "Hepacitis A")  # sic
+    assert rater._is_acronym_tail_on_last_word("HEPA", "Hepatitis A")
+
+
 def test__compute_full_valid():
     # Full form has parenthesis
     assert 1 == rater._compute_full_valid("Abcde(fghi")
@@ -87,17 +100,10 @@ def test_get_acronym_score():
     # Acronym too short
     assert 0 == rater.get_acronym_score("A", "Ambulanz")
 
-    # Last char of acronym must occur in last word of full...
-    assert 0 == rater.get_acronym_score("HEPC", "Hepatitis Ab")
-    assert 0.4 == rater.get_acronym_score("HEPA", "Hepatitis Ab")
+    # Invalid full form
+    assert 0 == rater.get_acronym_score("A", "Auf Abcde(fghi")
 
-    # ...but not at the end...
-    assert 0 == rater.get_acronym_score("HEPA", "Hepatitis Ba")
-
-    # ...unless it is a single letter
-    assert 0 == rater.get_acronym_score("HEPC", "Hepacitis A")  # sic
-    assert 0.4 == rater.get_acronym_score("HEPA", "Hepatitis A")
-
+    # PLURAL FORMS
     # Plural form in English format
     assert 1 == rater.get_acronym_score("EKGs", "Elektrokardiogramme")
 
@@ -106,12 +112,6 @@ def test_get_acronym_score():
 
     # Short acronyms ending with X are not allowed
     assert 0 == rater.get_acronym_score("TX", "Transplantation")
-
-    # Score of the best variant should be preserved
-    assert 2.0 == rater.get_acronym_score("AK", "Arbeits Kranker")    # sic
-
-    # Acronyms with only plural letters should not cause IndexError
-    assert 0 == rater.get_acronym_score("SS", "Überprüfen Sie die")
 
     # TODO Wrong
     #assert rater.get_acronym_score("SR", "Sinusrythmus") > rater.get_acronym_score("SR", "Sinusarrhythmie")
@@ -126,6 +126,15 @@ def test_get_acronym_score_variants():
     # TODO Is is expected?
     assert 0.0 == rater.get_acronym_score_variants("AK", "Arbeitscammer")
 
+    # Score of the best variant should be preserved
+    assert 2.0 == rater.get_acronym_score_variants("AK", "Arbeits Kranker")    # sic
+
+    # Acronyms with only plural letters should not cause IndexError
+    assert 0 == rater.get_acronym_score_variants("SS", "Überprüfen Sie die")
+
 
 def test_get_acronym_definition_pair_score():
     assert 10 == rater.get_acronym_definition_pair_score("EKG", "EKG (Elektrokardiogramm)")[1]
+
+    # FIXME Does not work
+    #assert 10 == rater.get_acronym_definition_pair_score("ARDS", "ARDS (akutes Atemnotsyndrom)")[1]
