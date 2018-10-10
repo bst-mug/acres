@@ -1,7 +1,7 @@
 from acres import rater
 
 
-def test__acro_chars_full():
+def test__is_possible_expansion():
     # Baseline
     assert rater._is_possible_expansion("EKG", "Elektrokardiogramm")
 
@@ -56,18 +56,11 @@ def test__compute_expansion_valid():
     # Acronym within full form
     assert 8 == rater._compute_expansion_valid("AM", "AMbulanz")
 
+    # Acronym characters not found in full form
+    assert 16 == rater._compute_expansion_valid("ECG", "Egramm")
+
     # Acronym tail on last word
     assert 32 == rater._compute_expansion_valid("HEPC", "Hepacitis A")
-
-
-def test_get_acronym_score_variants():
-    # Acronyms created out of spelling variants are accepted
-    assert 1.0 == rater.get_acronym_score_variants("AK", "Arbeitskammer")
-    assert 1.0 == rater.get_acronym_score_variants("AC", "Arbeitskammer")
-
-    # But not the opposite!
-    # TODO Is is expected?
-    assert 0.0 == rater.get_acronym_score_variants("AK", "Arbeitscammer")
 
 
 def test__calc_score():
@@ -105,9 +98,6 @@ def test_get_acronym_score():
     assert 0 == rater.get_acronym_score("HEPC", "Hepacitis A")  # sic
     assert 0.4 == rater.get_acronym_score("HEPA", "Hepatitis A")
 
-    # Acronym characters not found in full form
-    assert 0 == rater.get_acronym_score("ECG", "Egramm")
-
     # Plural form in English format
     assert 1 == rater.get_acronym_score("EKGs", "Elektrokardiogramme")
 
@@ -125,3 +115,17 @@ def test_get_acronym_score():
 
     # TODO Wrong
     #assert rater.get_acronym_score("SR", "Sinusrythmus") > rater.get_acronym_score("SR", "Sinusarrhythmie")
+
+
+def test_get_acronym_score_variants():
+    # Acronyms created out of spelling variants are accepted
+    assert 1.0 == rater.get_acronym_score_variants("AK", "Arbeitskammer")
+    assert 1.0 == rater.get_acronym_score_variants("AC", "Arbeitskammer")
+
+    # But not the opposite!
+    # TODO Is is expected?
+    assert 0.0 == rater.get_acronym_score_variants("AK", "Arbeitscammer")
+
+
+def test_get_acronym_definition_pair_score():
+    assert 10 == rater.get_acronym_definition_pair_score("EKG", "EKG (Elektrokardiogramm)")[1]

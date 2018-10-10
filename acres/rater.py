@@ -282,52 +282,6 @@ def is_expansion_valid(acro: str, full: str) -> bool:
     return _compute_expansion_valid(acro, full) == 0
 
 
-def get_acronym_definition_pair_score(acro: str, full: str) -> Tuple[str, float]:
-    """
-    Wrapper function for `get_acronym_score` that takes possible acronym-definition pairs into
-    account.
-
-    :param acro:
-    :param full:
-    :return:
-    """
-    is_acronym_definition_pair = False
-    definition = full
-
-    # full form contains an acronym definition pattern (normally only yielded
-    # from Web scraping, unlikely in clinical texts)
-    # acronym is included; is then removed from full form
-    acro_def_pattern = acro_util.extract_acronym_definition(full, 7)
-    if acro_def_pattern is not None:
-        is_acronym_definition_pair = True
-        if acro_def_pattern[0] == acro:
-            definition = acro_def_pattern[1]
-            # high score, but also might be something else
-
-    # XXX Maybe we shouldn't consider variants in case it's an acronym-definition pair
-    score = get_acronym_score_variants(acro, definition)
-    if is_acronym_definition_pair:
-        score *= 10
-    return definition, score
-
-
-def get_acronym_score_variants(acro: str, full: str) -> float:
-    """
-    Wrapper for `get_acronym_score` that takes variants into consideration.
-
-    Return the score of the best variant.
-
-    :param acro:
-    :param full:
-    :return:
-    """
-    max_score = 0
-    variants = varianter.generate_all_variants_by_rules(full)
-    for variant in variants:
-        max_score = max(max_score, get_acronym_score(acro, variant))
-    return max_score
-
-
 def _calc_score(acro: str, full: str) -> float:
     """
     Calculates a score for the given expansion.
@@ -433,3 +387,49 @@ def get_acronym_score(acro: str, full: str) -> float:
     # here no direct eliminations
 
     return _calc_score(acro, full)
+
+
+def get_acronym_score_variants(acro: str, full: str) -> float:
+    """
+    Wrapper for `get_acronym_score` that takes variants into consideration.
+
+    Return the score of the best variant.
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    max_score = 0
+    variants = varianter.generate_all_variants_by_rules(full)
+    for variant in variants:
+        max_score = max(max_score, get_acronym_score(acro, variant))
+    return max_score
+
+
+def get_acronym_definition_pair_score(acro: str, full: str) -> Tuple[str, float]:
+    """
+    Wrapper function for `get_acronym_score` that takes possible acronym-definition pairs into
+    account.
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    is_acronym_definition_pair = False
+    definition = full
+
+    # full form contains an acronym definition pattern (normally only yielded
+    # from Web scraping, unlikely in clinical texts)
+    # acronym is included; is then removed from full form
+    acro_def_pattern = acro_util.extract_acronym_definition(full, 7)
+    if acro_def_pattern is not None:
+        is_acronym_definition_pair = True
+        if acro_def_pattern[0] == acro:
+            definition = acro_def_pattern[1]
+            # high score, but also might be something else
+
+    # XXX Maybe we shouldn't consider variants in case it's an acronym-definition pair
+    score = get_acronym_score_variants(acro, definition)
+    if is_acronym_definition_pair:
+        score *= 10
+    return definition, score
