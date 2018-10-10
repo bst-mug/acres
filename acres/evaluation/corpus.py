@@ -8,7 +8,7 @@ import re
 from typing import Dict, List, Tuple
 
 from acres.util import acronym as acro_util
-from acres import rater
+from acres.rater import rater
 from acres.ngram import finder
 from acres.preprocess import resource_factory
 from acres.util import text

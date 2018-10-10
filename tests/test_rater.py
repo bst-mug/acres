@@ -1,4 +1,4 @@
-from acres import rater
+from acres.rater import rater
 
 
 def test__is_possible_expansion():

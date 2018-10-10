@@ -6,8 +6,8 @@ from acres.web import base
 
 clear = lambda: os.system('cls')
 
-# print(acres.rater.get_acronym_score("ICD", "Implantierbaren Defibrillator (ICD)"))
-# print(acres.rater.get_acronym_score("ICD", "Implantierbaren Ca Defibrillator (ICD)"))
+# print(acres.rater.rater.get_acronym_score("ICD", "Implantierbaren Defibrillator (ICD)"))
+# print(acres.rater.rater.get_acronym_score("ICD", "Implantierbaren Ca Defibrillator (ICD)"))
 # print(acres.util.text.generate_all_variants_by_rules("Arterielle Verschlusskrankheit"))
 
 
@@ -220,7 +220,7 @@ if 1 == 1:
         left, acro, right, 2, 9)
 
     for t in r:
-        s = acres.rater.get_acronym_score(acro, t[1])
+        s = acres.rater.rater.get_acronym_score(acro, t[1])
         if s > 0:
             print(str(t[0]) + "\t" + str(s) + "\t" + t[1])
 
@@ -239,13 +239,13 @@ if 1 == 1:
         left, acro, right, 3, 6)
 
     for t in r:
-        s = acres.rater.get_acronym_score(acro, t[1])
+        s = acres.rater.rater.get_acronym_score(acro, t[1])
         if s > 0:
             print(str(t[0]) + "\t" + str(s) + "\t" + t[1])
 
     1 / 0
 
-print(acres.rater.get_acronym_score("EKG", "Elektrocardiogramm"))
+print(acres.rater.rater.get_acronym_score("EKG", "Elektrocardiogramm"))
 
 1 / 0
 

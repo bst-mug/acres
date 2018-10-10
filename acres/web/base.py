@@ -5,7 +5,7 @@ Base module for web-based acronym resolution.
 import logging
 from typing import List, Tuple
 
-from acres import rater
+from acres.rater import rater
 from acres.util import functions
 from acres.util import text
 from acres.web import azure, bing

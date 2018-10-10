@@ -1,4 +1,4 @@
-__all__ = ['rater', 'text_cleanser']
+__all__ = ['text_cleanser']
 
 import logging
 import os
