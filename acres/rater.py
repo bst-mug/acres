@@ -400,7 +400,7 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
             # TODO avoid score=0 due to acronym-definition pairs
             # Rightmost acronym character is not equal rightmost single-char word
             return 0
-        if not acro_low[-1] in last_word[0:-1]:
+        if len(last_word) != 1 and acro_low[-1] not in last_word[0:-1]:
             # Rightmost acronym character is not in rightmost word
             # TODO avoid score=0 due to acronym-definition pairs
             return 0

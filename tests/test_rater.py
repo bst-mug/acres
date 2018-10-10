@@ -16,7 +16,7 @@ def test__acro_chars_full():
     assert not rater._is_possible_expansion("EKG", "Elektro")
 
     # Equal last char
-    assert rater._is_possible_expansion("HEPA", "Hepatitis A")
+    assert rater._is_possible_expansion("EKG", "Entwicklung")
 
     # Empty parameters
     assert not rater._is_possible_expansion("A", "")
@@ -72,8 +72,16 @@ def test_get_acronym_score():
     # Acronym too short
     assert 0 == rater.get_acronym_score("A", "Ambulanz")
 
-    # Rightmost acronym character is not in rightmost word
-    assert 0 == rater.get_acronym_score("CK", "Creaking Test")
+    # Last char of acronym must occur in last word of full...
+    assert 0 == rater.get_acronym_score("HEPC", "Hepatitis Ab")
+    assert 0.4 == rater.get_acronym_score("HEPA", "Hepatitis Ab")
+
+    # ...but not at the end...
+    assert 0 == rater.get_acronym_score("HEPA", "Hepatitis Ba")
+
+    # ...unless it is a single letter
+    assert 0 == rater.get_acronym_score("HEPC", "Hepacitis A")  # sic
+    assert 0.4 == rater.get_acronym_score("HEPA", "Hepatitis A")
 
     # Acronym characters not found in full form
     assert 0 == rater.get_acronym_score("ECG", "Egramm")
