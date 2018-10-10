@@ -181,6 +181,32 @@ def _is_possible_expansion(acro: str, full: str) -> bool:
     return False
 
 
+def _is_acronym_tail_on_last_word(acro: str, full: str) -> bool:
+    """
+    Check whether the acronym last character is present on the last word of the full form,
+    but not at the end, unless it is a single letter.
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    # "EKG" = "Entwicklung" should not match
+    # "Hepatitis A" -> "HEPA" should match
+    last_word = full.lower().split()[-1]
+    if len(last_word) == 1:
+        if acro.lower()[-1] != last_word:
+            # TODO avoid score=0 due to acronym-definition pairs
+            # Rightmost acronym character is not equal rightmost single-char word
+            return False
+    else:
+        if acro.lower()[-1] not in last_word[0:-1]:
+            # Rightmost acronym character is not in rightmost word
+            # TODO avoid score=0 due to acronym-definition pairs
+            return False
+
+    return True
+
+
 def _compute_full_valid(full: str) -> int:
     """
 
@@ -238,6 +264,9 @@ def _compute_expansion_valid(acro: str, full: str) -> int:
 
     if not _is_possible_expansion(acro, full):
         ret += 16
+
+    if not _is_acronym_tail_on_last_word(acro, full):
+        ret += 32
 
     return ret
 
@@ -402,19 +431,5 @@ def get_acronym_score(acro: str, full: str) -> float:
     # can be enhanced by frequent translations in acres.util.text.
 
     # here no direct eliminations
-
-    # last char of acronym must occur in last word of full
-    # but not at the end unless it is a single letter
-    # "EKG" = "Entwicklung" should not match
-    # "Hepatitis A" -> "HEPA" should match
-    last_word = full.lower().split()[-1]
-    if len(last_word) == 1 and acro.lower()[-1] != last_word:
-        # TODO avoid score=0 due to acronym-definition pairs
-        # Rightmost acronym character is not equal rightmost single-char word
-        return 0
-    if len(last_word) != 1 and acro.lower()[-1] not in last_word[0:-1]:
-        # Rightmost acronym character is not in rightmost word
-        # TODO avoid score=0 due to acronym-definition pairs
-        return 0
 
     return _calc_score(acro, full)

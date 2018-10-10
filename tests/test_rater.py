@@ -51,11 +51,13 @@ def test__compute_expansion_valid():
     assert 2 == rater._compute_expansion_valid("AC", "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNO")
 
     # Levenshtein distance too high
-    assert 4 == rater._compute_expansion_valid("HEPA", "Ha Be Cp Da En")
+    assert 4 == rater._compute_expansion_valid("HEPA", "Ha Be Cp Dn Ean")
 
     # Acronym within full form
     assert 8 == rater._compute_expansion_valid("AM", "AMbulanz")
 
+    # Acronym tail on last word
+    assert 32 == rater._compute_expansion_valid("HEPC", "Hepacitis A")
 
 
 def test_get_acronym_score_variants():
