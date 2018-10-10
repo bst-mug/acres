@@ -57,14 +57,15 @@ def test__compute_expansion_valid():
     assert 8 == rater._compute_expansion_valid("AM", "AMbulanz")
 
 
-def tets_get_acronym_score_variants():
+
+def test_get_acronym_score_variants():
     # Acronyms created out of spelling variants are accepted
-    assert 1.0 == rater.get_acronym_score("AK", "Arbeitskammer")
-    assert 1.0 == rater.get_acronym_score("AC", "Arbeitskammer")
+    assert 1.0 == rater.get_acronym_score_variants("AK", "Arbeitskammer")
+    assert 1.0 == rater.get_acronym_score_variants("AC", "Arbeitskammer")
 
     # But not the opposite!
     # TODO Is is expected?
-    assert 0.0 == rater.get_acronym_score("AK", "Arbeitscammer")
+    assert 0.0 == rater.get_acronym_score_variants("AK", "Arbeitscammer")
 
 
 def test__calc_score():
