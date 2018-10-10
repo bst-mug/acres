@@ -401,15 +401,7 @@ def get_acronym_score(acro: str, full: str) -> float:
     # of k, c, and z in clinical texts
     # can be enhanced by frequent translations in acres.util.text.
 
-    acro_low = acro.lower()
-    full_low = full.lower()
-
     # here no direct eliminations
-
-    # first chars must be the same, certain tolerance with acronym definition pairs
-    if acro_low[0] != full_low[0]:  # TODO split_expansion should get it
-        # TODO avoid score=0 due to acronym-definition pairs
-        return 0
 
     # last char of acronym must occur in last word of full
     # but not at the end unless it is a single letter
