@@ -299,6 +299,40 @@ def get_acronym_score_variants(acro: str, full: str) -> float:
     return max_score
 
 
+def _calc_score(acro: str, full: str) -> float:
+    """
+    Calculates a score for the given expansion.
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    score = 1
+
+    # rightmost expansion should start with upper case initial
+    # XXX german-only
+    if full.split(" ")[-1][0].islower():
+        score = score * 0.25
+
+    # exact match of real acronym with generated acronym
+    # XXX german-only
+    if acro.upper() == acro_util.create_german_acronym(full):
+        score = score * 2
+
+    # if short full form, the coincidence of the first two letters of full and acronym
+    # increases score
+    if _is_short_form(acro, full):
+        if full.upper()[0:2] == acro.upper()[0:2]:
+            score = score * 2
+
+    # decapitalized acronym should not occur within decap full form,
+    # if acronym has three or more letters
+    if _is_substring(acro.lower(), full.lower()):
+        score = score * 0.2
+
+    return score
+
+
 def get_acronym_score(acro: str, full: str) -> float:
     """
     TODO: All morphosaurus stuff eliminated. Could check past versions later whether this is worth
@@ -400,27 +434,4 @@ def get_acronym_score(acro: str, full: str) -> float:
             # TODO avoid score=0 due to acronym-definition pairs
             return 0
 
-    score = 1
-
-    # rightmost expansion should start with upper case initial
-    # XXX german-only
-    if full.split(" ")[-1][0].islower():
-        score = score * 0.25
-
-    # exact match of real acronym with generated acronym
-    # XXX german-only
-    if acro.upper() == acro_util.create_german_acronym(full):
-        score = score * 2
-
-    # if short full form, the coincidence of the first two letters of full and acronym
-    # increases score
-    if _is_short_form(acro, full):
-        if full.upper()[0:2] == acro.upper()[0:2]:
-            score = score * 2
-
-    # decapitalized acronym should not occur within decap full form,
-    # if acronym has three or more letters
-    if _is_substring(acro_low, full_low):
-        score = score * 0.2
-
-    return score
+    return _calc_score(acro, full)
