@@ -407,7 +407,7 @@ def get_acronym_score(acro: str, full: str) -> float:
     # but not at the end unless it is a single letter
     # "EKG" = "Entwicklung" should not match
     # "Hepatitis A" -> "HEPA" should match
-    last_word = full.lower().split(" ")[-1]
+    last_word = full.lower().split()[-1]
     if len(last_word) == 1 and acro.lower()[-1] != last_word:
         # TODO avoid score=0 due to acronym-definition pairs
         # Rightmost acronym character is not equal rightmost single-char word
