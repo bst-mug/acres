@@ -197,7 +197,7 @@ def _compute_full_valid(full: str) -> int:
     if _starts_with_stopword(full):
         ret += 4
 
-    # TODO restrict to german
+    # XXX german-only
     # A valid expansion of a german acronym would require at least one noun, which is capitalized.
     if not _has_capitals(full):
         ret += 8
@@ -253,15 +253,13 @@ def is_expansion_valid(acro: str, full: str) -> bool:
     return _compute_expansion_valid(acro, full) == 0
 
 
-def get_acronym_definition_pair_score(acro: str, full: str, language: str = "de") \
-        -> Tuple[str, float]:
+def get_acronym_definition_pair_score(acro: str, full: str) -> Tuple[str, float]:
     """
     Wrapper function for `get_acronym_score` that takes possible acronym-definition pairs into
     account.
 
     :param acro:
     :param full:
-    :param language:
     :return:
     """
     is_acronym_definition_pair = False
@@ -278,13 +276,13 @@ def get_acronym_definition_pair_score(acro: str, full: str, language: str = "de"
             # high score, but also might be something else
 
     # XXX Maybe we shouldn't consider variants in case it's an acronym-definition pair
-    score = get_acronym_score_variants(acro, definition, language)
+    score = get_acronym_score_variants(acro, definition)
     if is_acronym_definition_pair:
         score *= 10
     return definition, score
 
 
-def get_acronym_score_variants(acro: str, full: str, language: str = "de") -> float:
+def get_acronym_score_variants(acro: str, full: str) -> float:
     """
     Wrapper for `get_acronym_score` that takes variants into consideration.
 
@@ -292,17 +290,16 @@ def get_acronym_score_variants(acro: str, full: str, language: str = "de") -> fl
 
     :param acro:
     :param full:
-    :param language:
     :return:
     """
     max_score = 0
     variants = varianter.generate_all_variants_by_rules(full)
     for variant in variants:
-        max_score = max(max_score, get_acronym_score(acro, variant, language))
+        max_score = max(max_score, get_acronym_score(acro, variant))
     return max_score
 
 
-def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
+def get_acronym_score(acro: str, full: str) -> float:
     """
     TODO: All morphosaurus stuff eliminated. Could check past versions later whether this is worth
     while considering again
@@ -335,8 +332,6 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
 
     :param acro: acronym to be expanded
     :param full: long form to be checked whether it qualifies as an acronym expansion
-    :param language: Expansion language. Matters especially regarding the possible infixes for \
-    single noun composition
     :return: score that rates the likelihood that the full form is a valid expansion of the acronym
     """
 
@@ -345,17 +340,17 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
     acro = acro.strip()
     full = full.strip()
 
-    if language == "de":
-        # Plural form of acronym reduced to singular ("s", often not found in non English full
-        # forms) e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)
-        # These characters cannot be always expected to occur in the full form
-        # We assume that plurals and genitives of acronyms are often marked with
-        # "s", however not necessarily lower case.
-        # This means that "S" and "X" are not required to match
-        singular_acro = acro_util.trim_plural(acro)
-        if singular_acro != acro:
-            acro = singular_acro
-            last_letter_stripped = True
+    # XXX german-only
+    # Plural form of acronym reduced to singular ("s", often not found in non English full
+    # forms) e.g. "EKGs", "EKGS", "NTx", "NTX" (Nierentransplantation)
+    # These characters cannot be always expected to occur in the full form
+    # We assume that plurals and genitives of acronyms are often marked with
+    # "s", however not necessarily lower case.
+    # This means that "S" and "X" are not required to match
+    singular_acro = acro_util.trim_plural(acro)
+    if singular_acro != acro:
+        acro = singular_acro
+        last_letter_stripped = True
 
     # ELIMINATION RULES
 
@@ -408,14 +403,14 @@ def get_acronym_score(acro: str, full: str, language: str = "de") -> float:
     score = 1
 
     # rightmost expansion should start with upper case initial
-    if language == "de":
-        if full.split(" ")[-1][0].islower():
-            score = score * 0.25
+    # XXX german-only
+    if full.split(" ")[-1][0].islower():
+        score = score * 0.25
 
     # exact match of real acronym with generated acronym
-    if language == "de":
-        if acro.upper() == acro_util.create_german_acronym(full):
-            score = score * 2
+    # XXX german-only
+    if acro.upper() == acro_util.create_german_acronym(full):
+        score = score * 2
 
     # if short full form, the coincidence of the first two letters of full and acronym
     # increases score
