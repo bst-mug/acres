@@ -1,5 +1,5 @@
 """
-Expansion rating module.
+Rating main module.
 """
 
 import logging
@@ -131,7 +131,7 @@ def get_acronym_score_variants(acro: str, full: str) -> float:
     return max_score
 
 
-def get_acronym_definition_pair_score(acro: str, full: str) -> Tuple[str, float]:
+def get_acro_def_pair_score(acro: str, full: str) -> Tuple[str, float]:
     """
     Wrapper function for `get_acronym_score` that takes possible acronym-definition pairs into
     account.

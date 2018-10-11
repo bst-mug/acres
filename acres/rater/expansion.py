@@ -1,3 +1,6 @@
+"""
+Rating submodule for expansion (acronym + full form) checks.
+"""
 from acres.util import functions
 from acres.util import acronym as acro_util
 
@@ -68,11 +71,11 @@ def _is_possible_expansion(acro: str, full: str) -> bool:
     :return:
     """
     # Empty acronym is presented everywhere
-    if len(acro) == 0:
+    if not acro:
         return True
 
     # Non-empty acronym is not presented in empty full form
-    if len(full) == 0:
+    if not full:
         return False
 
     # First char must be the same

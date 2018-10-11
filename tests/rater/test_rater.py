@@ -59,7 +59,7 @@ def test_get_acronym_score_variants():
 
 
 def test_get_acronym_definition_pair_score():
-    assert 10 == rater.get_acronym_definition_pair_score("EKG", "EKG (Elektrokardiogramm)")[1]
+    assert 10 == rater.get_acro_def_pair_score("EKG", "EKG (Elektrokardiogramm)")[1]
 
     # FIXME Does not work
     #assert 10 == rater.get_acronym_definition_pair_score("ARDS", "ARDS (akutes Atemnotsyndrom)")[1]

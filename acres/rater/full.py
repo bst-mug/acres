@@ -1,3 +1,6 @@
+"""
+Rating submodule for full form checks.
+"""
 from acres.util import functions
 
 
