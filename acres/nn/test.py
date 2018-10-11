@@ -4,9 +4,9 @@
 import logging
 from typing import List
 
-from acres.util import acronym as acro_util
 from acres.preprocess import resource_factory
 from acres.nn import base
+from acres.rater import rater
 
 logger = logging.getLogger(__name__)
 
@@ -40,9 +40,7 @@ def find_candidates(acronym: str, left_context: str = "", right_context: str = "
         # When using Phrases, common collocations (e.g. "koronaren_Herzerkrankung") are shown with
         # '_' as a delimiter
         unglued_expansion = expansion.replace("_", " ")
-        # TODO experiment with get_acronym_score
-        if not acro_util.is_acronym(unglued_expansion) and \
-                acro_util.is_valid_expansion(cleaned_acronym, unglued_expansion):
+        if rater.get_acronym_score(cleaned_acronym, unglued_expansion) > 0:
             expansions.append(unglued_expansion)
 
     return expansions
