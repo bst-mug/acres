@@ -7,8 +7,8 @@ import math
 import re
 from typing import Dict, List, Tuple
 
-import acres.util.acronym
-from acres import rater
+from acres.util import acronym as acro_util
+from acres.rater import rater
 from acres.ngram import finder
 from acres.preprocess import resource_factory
 from acres.util import text
@@ -55,7 +55,7 @@ def find_synonyms() -> None:
 
             logger.debug("-----------------------")
             logger.debug(ngram)
-            splits = acres.util.acronym.split_ngram(ngram.strip())
+            splits = acro_util.split_ngram(ngram.strip())
             for split in splits:
                 left_string = split[0].strip()
                 acronym = split[1].strip()
@@ -84,6 +84,7 @@ def find_synonyms() -> None:
                     li_web = base.ngrams_web_dump("\"" + query + "\"", 1, 10)
 
                 # Prepare parameters for corpus model
+                # TODO potentially broken
                 if left_string == "":
                     left_string = "*"
                 if right_string == "":
@@ -103,6 +104,7 @@ def find_synonyms() -> None:
 def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str,
                     log: Dict[str, List[str]]) -> None:
     """
+    @todo return log instead of receiving it via parameter
 
     :param corpus:
     :param acronym:
@@ -123,7 +125,7 @@ def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str,
         if first_condition and second_condition:
             if exp != old_exp:
                 # score_corpus = 0
-                score_corpus = rater.get_acronym_score(acronym, exp)[1]
+                (_, score_corpus) = rater.get_acro_def_pair_score(acronym, exp)
                 if score_corpus > 0:
                     a = str(round(score_corpus * math.log10(freq), 2))
                     b = str(round(score_corpus, 2))

@@ -3,7 +3,7 @@ Utility functions related to acronyms.
 """
 import logging
 import re
-from typing import Union, Tuple, List
+from typing import Tuple, List, Optional
 
 from acres.util import text
 
@@ -11,11 +11,13 @@ logger = logging.getLogger(__name__)
 
 
 def extract_acronym_definition(str_probe: str, max_length: int,
-                               strict: bool = False) -> Union[None, Tuple[str, str]]:
+                               strict: bool = False) -> Optional[Tuple[str, str]]:
     """
     Identifies potential acronym / definition pairs and extract acronym and definition candidates.
     A necessary criterion is that the initial characters are the same
     TODO: Acronym/definition pairs normally use parentheses, but also quotes and dashes can be found
+
+    @todo Add sibling function is_acronym_definition_pair
 
     :param str_probe:
     :param max_length:
@@ -270,6 +272,8 @@ def is_valid_expansion(acronym: str, expansion: str) -> bool:
     """
     Checks whether a candidate expansion is valid for an acronym.
 
+    @deprecated Use rater._is_possible_expansion instead
+
     :param acronym:
     :param expansion:
     :return:
@@ -294,3 +298,20 @@ def split_ngram(ngram: str) -> List[Tuple[str, str, str]]:
             out.append(acronym_context)
         counter += 1
     return out
+
+
+def trim_plural(acronym: str) -> str:
+    """
+    Trim the german plural form out of an acronym.
+
+    @todo rewrite as regex
+
+    :param acronym:
+    :return:
+    """
+    acronym_plurals = ["s", "S", "x", "X"]
+
+    singular_acronym = acronym
+    if acronym[-1] in acronym_plurals:
+        singular_acronym = acronym[0:-1]
+    return singular_acronym

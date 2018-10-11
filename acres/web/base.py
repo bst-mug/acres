@@ -5,7 +5,7 @@ Base module for web-based acronym resolution.
 import logging
 from typing import List, Tuple
 
-from acres import rater
+from acres.rater import rater
 from acres.util import functions
 from acres.util import text
 from acres.web import azure, bing
@@ -25,6 +25,8 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
     """
     This is the main file to be used to leverage Bing search for resolving acronyms
 
+    @todo call find_embeddings on the web corpus instead?
+
     :param left: left context of acronym to be expanded (any length)
     :param acro: acronym to be expanded
     :param right: right context of acronym to be expanded (any length)
@@ -40,7 +42,7 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
     out = ""
 
     for (freq, ngram) in ngrams:
-        (full, score, _) = rater.get_acronym_score(acro, ngram, language="de")
+        (full, score) = rater.get_acro_def_pair_score(acro, ngram)
         if score > 0.0:
             logger.debug("%.2f %s", score, full)
             weight = freq * score

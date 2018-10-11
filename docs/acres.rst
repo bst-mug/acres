@@ -10,20 +10,13 @@ Subpackages
     acres.ngram
     acres.nn
     acres.preprocess
+    acres.rater
     acres.stats
     acres.util
     acres.web
 
 Submodules
 ----------
-
-acres.rater module
-------------------
-
-.. automodule:: acres.rater
-    :members:
-    :undoc-members:
-    :show-inheritance:
 
 acres.text\_cleanser module
 ---------------------------
