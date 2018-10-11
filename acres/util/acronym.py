@@ -309,6 +309,10 @@ def trim_plural(acronym: str) -> str:
     :param acronym:
     :return:
     """
+    # Do not trim two-chars acronyms, as this would lead to a single-char (and invalid) acronym.
+    if len(acronym) <= 2:
+        return acronym
+
     acronym_plurals = ["s", "S", "x", "X"]
 
     singular_acronym = acronym

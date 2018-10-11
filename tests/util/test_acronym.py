@@ -162,7 +162,15 @@ def test_split_ngram():
 
 
 def test_trim_plural():
+    # Baseline
     assert "EKG" == acronym.trim_plural("EKGs")
+    assert "NT" == acronym.trim_plural("NTX")
 
-    # XXX corner case
-    assert "S" == acronym.trim_plural("SS")
+    # Short forms should not be trimmed
+    assert "SS" == acronym.trim_plural("SS")
+    assert "TX" == acronym.trim_plural("TX")
+    assert "DS" == acronym.trim_plural("DS")
+    assert "US" == acronym.trim_plural("US")
+
+    # XXX Some cases we still get wrong
+    #assert "TRINS" == acronym.trim_plural("TRINS")
