@@ -60,3 +60,7 @@ def test__compute_expansion_valid():
 
     # Acronym tail on last word
     assert 32 == expansion._compute_expansion_valid("HEPC", "Hepacitis A")
+
+    # XXX Uncommon expansions fail
+    assert 20 == expansion._compute_expansion_valid("RR", "Blutdruck")
+    assert 20 == expansion._compute_expansion_valid("EF", "Auswurffraktion")
