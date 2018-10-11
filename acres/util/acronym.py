@@ -85,7 +85,7 @@ def create_german_acronym(full: str) -> str:
                 "gegen", "im", "in", "mit", "nach", "not", "of", "on", "than", "the", "to", "und",
                 "vom", "von", "vor", "with", "zum", "zur")
     full = text.clean_whitespaces(full.replace("-", " ").replace("/", " "))
-    for word in full.split(" "):
+    for word in full.split():
         if word not in neg_list:
             out = out + word[0].upper()
     return out
