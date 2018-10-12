@@ -9,6 +9,7 @@ from typing import Dict, Tuple, List
 
 from acres.ngram import finder
 from acres.nn import test
+from acres.rater import rater
 from acres.util import text
 from acres.util import acronym as acro_util
 from acres.nn import base
@@ -73,7 +74,18 @@ def _resolve(acronym: str, left_context: str, right_context: str, strategy: Stra
     }
 
     func = switcher.get(strategy)
-    return func(acronym, left_context, right_context)
+
+    # FIXME Do it in a common way that works for all strategies (#9)
+    # acronym = base.clean(acronym)
+    if strategy == Strategy.WORD2VEC:
+        acronym = base.clean(acronym)
+
+    filtered_expansions = []
+    for expansion in func(acronym, left_context, right_context):
+        if rater.get_acronym_score(acronym, expansion) > 0:
+            filtered_expansions.append(expansion)
+
+    return filtered_expansions
 
 
 def test_input(true_expansions: list, possible_expansions: list, max_tries: int = 10) -> bool:

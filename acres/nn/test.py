@@ -22,26 +22,22 @@ def find_candidates(acronym: str, left_context: str = "", right_context: str = "
     """
     model = resource_factory.get_nn_model()
 
-    cleaned_acronym = base.clean(acronym)
-
     # Check for out of vocabulary acronyms
     # TODO fallback to something, maybe clean the acronym?
-    if cleaned_acronym not in model.wv.vocab:
-        logger.warning("'%s' not found in the vocabulary!", cleaned_acronym)
+    if acronym not in model.wv.vocab:
+        logger.warning("'%s' not found in the vocabulary!", acronym)
         return []
 
     # TODO evaluate use of context
     # TODO use context somehow
     # [('Kardiomyopathie', 0.772693395614624), ...]
-    similar = model.wv.most_similar(positive=cleaned_acronym)
+    similar = model.wv.most_similar(positive=acronym)
 
     expansions = []
     for (expansion, _) in similar:
         # When using Phrases, common collocations (e.g. "koronaren_Herzerkrankung") are shown with
         # '_' as a delimiter
-        unglued_expansion = expansion.replace("_", " ")
-        if rater.get_acronym_score(cleaned_acronym, unglued_expansion) > 0:
-            expansions.append(unglued_expansion)
+        expansions.append(expansion.replace("_", " "))
 
     return expansions
 
