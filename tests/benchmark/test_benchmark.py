@@ -153,10 +153,10 @@ def test_evaluation():
     # XXX word2vec is not deterministic, different models might lead to slighthly different metrics
     (precision, recall) = evaluation.analyze_file("resources/gold_standard.tsv", evaluation.Strategy.WORD2VEC)
     absolute_tolerance = 0.02
-    assert pytest.approx(0.57, abs=absolute_tolerance) == precision
-    assert pytest.approx(0.30, abs=absolute_tolerance) == recall
+    assert pytest.approx(0.81, abs=absolute_tolerance) == precision
+    assert pytest.approx(0.26, abs=absolute_tolerance) == recall
 
     (precision, recall) = evaluation.analyze_file("resources/gold_standard.tsv", evaluation.Strategy.NGRAM)
     absolute_tolerance = 0.01
-    assert pytest.approx(0.09, abs=absolute_tolerance) == precision
-    assert pytest.approx(0.09, abs=absolute_tolerance) == recall
+    assert pytest.approx(0.31, abs=absolute_tolerance) == precision
+    assert pytest.approx(0.07, abs=absolute_tolerance) == recall

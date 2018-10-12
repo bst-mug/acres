@@ -85,7 +85,7 @@ def create_german_acronym(full: str) -> str:
                 "gegen", "im", "in", "mit", "nach", "not", "of", "on", "than", "the", "to", "und",
                 "vom", "von", "vor", "with", "zum", "zur")
     full = text.clean_whitespaces(full.replace("-", " ").replace("/", " "))
-    for word in full.split(" "):
+    for word in full.split():
         if word not in neg_list:
             out = out + word[0].upper()
     return out
@@ -268,19 +268,6 @@ def _acronym_aware_clean_expansion(acronym: str, expansion: str) -> str:
     return ret.strip()
 
 
-def is_valid_expansion(acronym: str, expansion: str) -> bool:
-    """
-    Checks whether a candidate expansion is valid for an acronym.
-
-    @deprecated Use rater._is_possible_expansion instead
-
-    :param acronym:
-    :param expansion:
-    :return:
-    """
-    return len(split_expansion(acronym, expansion)) > 0
-
-
 def split_ngram(ngram: str) -> List[Tuple[str, str, str]]:
     """
     Splits a token ngram with acronym(s) into all combinations of left - acro - token.
@@ -309,6 +296,10 @@ def trim_plural(acronym: str) -> str:
     :param acronym:
     :return:
     """
+    # Do not trim two-chars acronyms, as this would lead to a single-char (and invalid) acronym.
+    if len(acronym) <= 2:
+        return acronym
+
     acronym_plurals = ["s", "S", "x", "X"]
 
     singular_acronym = acronym

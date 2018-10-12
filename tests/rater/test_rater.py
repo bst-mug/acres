@@ -35,8 +35,11 @@ def test_get_acronym_score():
     # Final X is not needed in full form
     assert 0.2 == rater.get_acronym_score("NTX", "Nierentransplantation")
 
-    # Short acronyms ending with X are not allowed
-    assert 0 == rater.get_acronym_score("TX", "Transplantation")
+    # ...unless it's a short acronym
+    assert 1 == rater.get_acronym_score("DS", "Druckschmerz")
+
+    # TODO Short acronyms ending with X or S are not allowed
+    #assert 0 < rater.get_acronym_score("TX", "Transplantation")
 
     # TODO Wrong
     #assert rater.get_acronym_score("SR", "Sinusrythmus") > rater.get_acronym_score("SR", "Sinusarrhythmie")
