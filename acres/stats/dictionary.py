@@ -92,7 +92,6 @@ def analyze_file(filename: str) -> None:
     """
     Analyzes a given dictionary file for extreme cases.
 
-    @todo use acres.util.acronym.is_valid_expansion(acro, full) as well
     @todo use rater.rater.get_acronym_score as well
 
     :param filename:

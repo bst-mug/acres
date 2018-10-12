@@ -268,19 +268,6 @@ def _acronym_aware_clean_expansion(acronym: str, expansion: str) -> str:
     return ret.strip()
 
 
-def is_valid_expansion(acronym: str, expansion: str) -> bool:
-    """
-    Checks whether a candidate expansion is valid for an acronym.
-
-    @deprecated Use rater._is_possible_expansion instead
-
-    :param acronym:
-    :param expansion:
-    :return:
-    """
-    return len(split_expansion(acronym, expansion)) > 0
-
-
 def split_ngram(ngram: str) -> List[Tuple[str, str, str]]:
     """
     Splits a token ngram with acronym(s) into all combinations of left - acro - token.

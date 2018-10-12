@@ -74,6 +74,8 @@ def get_acronym_score(acro: str, full: str) -> float:
 
     TODO Consider again morphosaurus checks.
 
+    TODO Full form should not be an acronym itself.
+
     :param acro: Acronym to be expanded.
     :param full: Long form to be checked whether it qualifies as an acronym expansion.
     :return: score that rates the likelihood that the full form is a valid expansion of the acronym.
