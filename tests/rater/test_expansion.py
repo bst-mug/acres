@@ -8,15 +8,27 @@ def test__is_possible_expansion():
     # First char must match
     assert not expansion._is_possible_expansion("BC", "Abc")
 
-    # Short acronyms
+    # Short acronyms must match
     assert expansion._is_possible_expansion("A", "a")
     assert expansion._is_possible_expansion("AB", "ab")
 
-    # Invalid expansion
+    # Invalid expansion should not match
     assert not expansion._is_possible_expansion("EKG", "Elektro")
 
-    # Equal last char
+    # Equal last char should still match
     assert expansion._is_possible_expansion("EKG", "Entwicklung")
+
+    # Wrong order shall not match
+    assert not expansion._is_possible_expansion("EKG", "Entwigklun")   # sic
+
+    # Extreme case should not match
+    assert not expansion._is_possible_expansion("EKG", "Egggkkk")
+
+    # Two same initial characters should still match
+    assert expansion._is_possible_expansion("EKG", "Ekariogasas")
+
+    # Second acronym char should not match first on expansion
+    assert not expansion._is_possible_expansion("EEG", "Ekariogasas")
 
     # Empty parameters
     assert not expansion._is_possible_expansion("A", "")
