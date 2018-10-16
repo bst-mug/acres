@@ -69,7 +69,7 @@ def create_corpus_ngramstat_dump(corpus_path: str, min_freq: int, min_length: in
     :return:
     """
 
-    entire_corpus = ""
+    docs = []
     counter = 1
 
     texts = functions.robust_text_import_from_dir(corpus_path)
@@ -92,8 +92,10 @@ def create_corpus_ngramstat_dump(corpus_path: str, min_freq: int, min_length: in
         doc = doc.replace(break_marker + " " + break_marker, break_marker + break_marker)
         doc = text.reduce_repeated_chars(doc, break_marker, 2)
 
-        entire_corpus = entire_corpus + doc + "\n\n"
+        docs.append(doc)
         counter += 1
+
+    entire_corpus = "\n\n".join(docs)
 
     logger.debug("Corpus length (chars): %d", len(entire_corpus))
     if logger.getEffectiveLevel() == logging.DEBUG:
