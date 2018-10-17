@@ -1,6 +1,7 @@
 gensim
 requests
 html2text
+nltk
 
 # dev
 pylint

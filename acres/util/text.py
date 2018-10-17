@@ -1,6 +1,7 @@
 """
 Utility functions related to text processing.
 """
+import nltk
 import re
 import string
 
@@ -236,3 +237,14 @@ def clean_whitespaces(whitespaced: str) -> str:
     :return:
     """
     return remove_duplicated_whitespaces(whitespaced).strip()
+
+
+def tokenize(text: str) -> str:
+    """
+    Tokenizes a given text.
+
+    :param text:
+    :return:
+    """
+    # XXX german-only
+    return " ".join(nltk.word_tokenize(text, "german"))
