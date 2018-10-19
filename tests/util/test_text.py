@@ -57,3 +57,16 @@ def test_tokenize():
     expected = "SB und LAHB , ¶ QRS-Verbreiterung auf ÐÐÐmsec. , QTC ÐÐÐmsec. ,"
     input_text = "SB und LAHB, ¶ QRS-Verbreiterung auf ÐÐÐmsec., QTC ÐÐÐmsec.,"
     assert expected == text.tokenize(input_text)
+
+
+def test_clean():
+    input_text = "SB und LAHB, ¶ QRS-Verbreiterung auf ÐÐÐmsec., QTC ÐÐÐmsec.,"
+
+    expected = "SB und LAHB QRS Verbreiterung auf msec QTC msec"
+    assert expected == text.clean(input_text)
+
+    expected = "SB und LAHB ¶ QRS Verbreiterung auf msec QTC msec"
+    assert expected == text.clean(input_text, preserve_linebreaks=True)
+
+    expected = "SB und LAHB QRS Verbreiterung auf ÐÐÐmsec QTC ÐÐÐmsec"
+    assert expected == text.clean(input_text, preserve_digits=True)
