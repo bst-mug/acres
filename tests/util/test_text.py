@@ -34,19 +34,6 @@ def test_transliterate_to_seven_bit():
     assert "ANGSTROM" == acres.util.text.transliterate_to_seven_bit("ångström", "en")
 
 
-def test_simplify_german_string():
-    assert acres.util.text.simplify_german_string("LEBER") == "leber"
-
-    assert acres.util.text.simplify_german_string("ekg") == "ecg"
-    assert acres.util.text.simplify_german_string("heißen") == "heissen"
-    assert acres.util.text.simplify_german_string(
-        "Elektrokardiogramm") == "electrocardiogramm"
-
-    # XXX Is it expected?
-    assert acres.util.text.simplify_german_string("herz") == "herc"
-    assert acres.util.text.simplify_german_string("café") == "cafe"
-
-
 def test_remove_duplicated_whitespaces():
     expected = "abc def ghi z"
     actual = acres.util.text.remove_duplicated_whitespaces("abc    def   ghi z")

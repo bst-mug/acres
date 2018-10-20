@@ -152,23 +152,6 @@ def transliterate_to_seven_bit(str_in: str, language: str = "de") -> str:
     return "".join([substitutions.get(c, c) for c in str_in.upper()])
 
 
-def simplify_german_string(str_in_german: str) -> str:
-    """
-    Decapitalises, substitutes umlauts, sharp s and converts k and z to c
-
-    TODO ... explain why
-
-    :param str_in_german:
-    :return:
-    """
-    str_in_german = str_in_german.lower()
-    str_in_german = str_in_german.replace(
-        "k", "c").replace("z", "c").replace("ß", "ss")
-    str_in_german = str_in_german.replace("é", "e").replace("à", "a")
-    return str_in_german.replace("ä", "ae").replace(
-        "ö", "oe").replace("ü", "ue")
-
-
 def reduce_repeated_chars(str_in: str, char: str, remaining_chars: int) -> str:
     """
     :param str_in: text to be cleaned

@@ -40,3 +40,12 @@ def test_generate_all_variants_by_rules():
                 'Arterielle Verschlusscrankheit']
     actual = variants.generate_all_variants_by_rules("Arterielle Verschlusskrankheit")
     assert expected == actual
+
+    expected = ["elektrokardiogramm", "elektrocardiogramm"]
+    assert expected == variants.generate_all_variants_by_rules("elektrokardiogramm")
+
+    # TODO "esophagus" is never mentioned in the corpus, while "oesophagus" is.
+    #assert ["ösophagus", "oesophagus"] == variants.generate_all_variants_by_rules("ösophagus")
+    assert ["herz"] == variants.generate_all_variants_by_rules("herz")
+    assert ["café"] == variants.generate_all_variants_by_rules("café")  # TODO add cafe
+    assert ["à"] == variants.generate_all_variants_by_rules("à")        # TODO add a
