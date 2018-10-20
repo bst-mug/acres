@@ -1,4 +1,5 @@
 import acres.util
+from acres.util import text
 
 
 def test_diacritics():
@@ -33,20 +34,27 @@ def test_transliterate_to_seven_bit():
     assert "ANGSTROM" == acres.util.text.transliterate_to_seven_bit("ångström", "en")
 
 
-def test_simplify_german_string():
-    assert acres.util.text.simplify_german_string("LEBER") == "leber"
-
-    assert acres.util.text.simplify_german_string("ekg") == "ecg"
-    assert acres.util.text.simplify_german_string("heißen") == "heissen"
-    assert acres.util.text.simplify_german_string(
-        "Elektrokardiogramm") == "electrocardiogramm"
-
-    # XXX Is it expected?
-    assert acres.util.text.simplify_german_string("herz") == "herc"
-    assert acres.util.text.simplify_german_string("café") == "cafe"
-
-
 def test_remove_duplicated_whitespaces():
     expected = "abc def ghi z"
     actual = acres.util.text.remove_duplicated_whitespaces("abc    def   ghi z")
     assert expected == actual
+
+
+def test_tokenize():
+    expected = "SB und LAHB , ¶ QRS-Verbreiterung auf ÐÐÐmsec. , QTC ÐÐÐmsec. ,"
+    input_text = "SB und LAHB, ¶ QRS-Verbreiterung auf ÐÐÐmsec., QTC ÐÐÐmsec.,"
+    assert expected == text.tokenize(input_text)
+
+
+def test_clean():
+    input_text = "SB und LAHB, ¶ QRS-Verbreiterung auf ÐÐÐmsec., QTC ÐÐÐmsec.,"
+
+    expected = "SB und LAHB QRS Verbreiterung auf ÐÐÐmsec QTC ÐÐÐmsec"
+    assert expected == text.clean(input_text, preserve_linebreaks=False)
+
+    expected = "SB und LAHB ¶ QRS Verbreiterung auf ÐÐÐmsec QTC ÐÐÐmsec"
+    assert expected == text.clean(input_text, preserve_linebreaks=True)
+
+    # Unicode characters should not be cleaned
+    assert "herztöne" == text.clean("herztöne")
+    assert "heißen" == text.clean("heißen")

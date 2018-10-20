@@ -19,18 +19,18 @@ def test_create_corpus_char_stat_dump():
 def test_create_corpus_ngramstat_dump():
     ngramstat = create_dumps.create_corpus_ngramstat_dump("tests/data", 100)
     actual = len(ngramstat)
-    expected = 30
+    expected = 24
     assert expected == actual
 
     ngramstat = create_dumps.create_corpus_ngramstat_dump("tests/data", 2)
 
     # Check length
     actual = len(ngramstat)
-    expected = 29916
+    expected = 15860
     assert expected == actual
 
     # Baseline
-    expected = {('¶', 2704), ('der', 450), ('EKG', 43)}
+    expected = {('der', 450), ('EKG', 66)}
     assert set(expected).issubset(ngramstat.items())
 
     ngrams = ngramstat.keys()
@@ -42,17 +42,6 @@ def test_create_corpus_ngramstat_dump():
 
     # ...nor duplicate entries
     assert len(unique_ngrams) == len(ngrams)
-
-
-def test__generate_variants():
-    ngrams = {"US-Ödeme": 10}
-
-    actual = create_dumps._generate_variants(ngrams)
-    expected = {"US Ödeme": 10,
-                "US-Ödeme": 10,
-                "USÖdeme": 10   # TODO this is an invalid variant
-                }
-    assert expected == actual
 
 
 def test_create_index(ngramstat, index):

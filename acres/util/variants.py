@@ -130,6 +130,7 @@ def generate_all_variants_by_rules(raw_string: str) -> List[str]:
         ("kr", "cr"), ("Kr", "Cr"),
         ("kn", "cn"), ("Kn", "Cn"),
         ("kz", "cc"),
+        # TODO remove. Use `transliterate_to_seven_bit` on input first
         ("ö", "e"), ("Ö", "E"),  # because of esophagus
         ("ü", "ue"), ("Ü", "Ue"),
         ("ä", "ae"), ("Ä", "Ae")]

@@ -1,10 +1,14 @@
 """
 Utility functions related to text processing.
 """
+import nltk
 import re
 import string
 
 from acres.preprocess import resource_factory
+
+
+nltk.download('punkt')
 
 
 def diacritics() -> str:
@@ -151,23 +155,6 @@ def transliterate_to_seven_bit(str_in: str, language: str = "de") -> str:
     return "".join([substitutions.get(c, c) for c in str_in.upper()])
 
 
-def simplify_german_string(str_in_german: str) -> str:
-    """
-    Decapitalises, substitutes umlauts, sharp s and converts k and z to c
-
-    TODO ... explain why
-
-    :param str_in_german:
-    :return:
-    """
-    str_in_german = str_in_german.lower()
-    str_in_german = str_in_german.replace(
-        "k", "c").replace("z", "c").replace("ß", "ss")
-    str_in_german = str_in_german.replace("é", "e").replace("à", "a")
-    return str_in_german.replace("ä", "ae").replace(
-        "ö", "oe").replace("ü", "ue")
-
-
 def reduce_repeated_chars(str_in: str, char: str, remaining_chars: int) -> str:
     """
     :param str_in: text to be cleaned
@@ -236,3 +223,32 @@ def clean_whitespaces(whitespaced: str) -> str:
     :return:
     """
     return remove_duplicated_whitespaces(whitespaced).strip()
+
+
+def tokenize(text: str) -> str:
+    """
+    Tokenizes a given text.
+
+    :param text:
+    :return:
+    """
+    # XXX german-only
+    return " ".join(nltk.word_tokenize(text, "german"))
+
+
+def clean(text: str, preserve_linebreaks: bool = False) -> str:
+    """
+    Clean a given text to preserve only alphabetic characters, spaces, and, optionally, line breaks.
+
+    :param text:
+    :param preserve_linebreaks:
+    :return:
+    """
+    allowed = [r'\w', r'\s']
+
+    if preserve_linebreaks:
+        allowed.append("¶")     # TODO constants class
+
+    disallowed_regex = "[^" + "".join(allowed) + "]"        # [^a-zA-Z\s¶Ð]
+
+    return clean_whitespaces(re.sub(disallowed_regex, " ", text))
