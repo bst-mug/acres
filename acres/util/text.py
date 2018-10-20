@@ -12,15 +12,6 @@ from acres.preprocess import resource_factory
 nltk.download('punkt')
 
 
-def diacritics() -> str:
-    """
-    TODO ... explain why
-
-    :return: A string of diacritic characters
-    """
-    return "µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ"
-
-
 def fix_line_endings(long_text: str, char_ngram_length: int = 8,
                      line_break_marker_position: int = 3) -> str:
     """

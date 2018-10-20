@@ -113,13 +113,12 @@ def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str,
     """
     # morphemes = resource_factory.get_morphemes()
     # TODO: as morphemes are not a public resource, maybe ignore them at least in our experiments
-    dia = text.diacritics()  # list of diacritic characters
 
     for item in corpus:
         old_exp = ""
         (freq, exp) = item  # Frequency, Ngram expression
 
-        first_condition = re.search(r"^[\s\-A-Za-z0-9" + dia + "]*$", exp) is not None
+        first_condition = re.search(r"^[\s\-\w]*$", exp) is not None
         second_condition = acronym.lower() != exp.lower()[0:len(acronym.lower())]
         if first_condition and second_condition:
             if exp != old_exp:
