@@ -6,6 +6,7 @@ import logging
 import re
 from typing import Dict, Set, List, Tuple, Optional
 
+from acres.constants import Constants
 from acres.preprocess import resource_factory
 from acres.util import acronym
 from acres.util import functions
@@ -14,8 +15,7 @@ from acres.util import text
 logger = logging.getLogger(__name__)
 
 
-def create_corpus_char_stat_dump(corpus_path: str, ngramlength: int = 8,
-                                 digit_placeholder: str = "Ð", break_marker: str = "¶") -> Dict[str, int]:
+def create_corpus_char_stat_dump(corpus_path: str, ngramlength: int = 8) -> Dict[str, int]:
     """
     - Takes a corpus consisting of text files in a single directory
     - Substitutes digits and line breaks
@@ -33,8 +33,8 @@ def create_corpus_char_stat_dump(corpus_path: str, ngramlength: int = 8,
         str_doc = ""
         lines = doc.split("\n")
         for line in lines:
-            line = text.clear_digits(line, digit_placeholder)
-            str_doc = str_doc + line.strip() + break_marker
+            line = text.clear_digits(line, Constants.digit_marker)
+            str_doc = str_doc + line.strip() + Constants.line_break
         for i in range(0, len(str_doc) - (ngramlength - 1)):
             ngram = str_doc[0 + i: ngramlength + i]
             if len(ngram) == ngramlength:
@@ -47,8 +47,7 @@ def create_corpus_char_stat_dump(corpus_path: str, ngramlength: int = 8,
 
 
 def create_corpus_ngramstat_dump(corpus_path: str, min_freq: int, min_length: int = 1,
-                                 max_length: int = 7, digit_placeholder: str = "Ð",
-                                 break_marker: str = "¶", fix_lines: bool = True) -> Dict[str, int]:
+                                 max_length: int = 7, fix_lines: bool = True) -> Dict[str, int]:
     """
     Takes a corpus consisting of text files in a single directory
     Substitutes digits and line breaks
@@ -63,8 +62,6 @@ def create_corpus_ngramstat_dump(corpus_path: str, min_freq: int, min_length: in
     :param min_freq:
     :param min_length:
     :param max_length:
-    :param digit_placeholder:
-    :param break_marker:
     :param fix_lines:
     :return:
     """
@@ -77,12 +74,14 @@ def create_corpus_ngramstat_dump(corpus_path: str, min_freq: int, min_length: in
 
     logger.info("Creating ngramstat from %d documents...", length)
 
+    break_marker = Constants.line_break
+
     for doc in texts:
         if counter % 1000 == 0:
             logger.debug("%d/%d", counter, length)
 
         if fix_lines:
-            doc = text.fix_line_endings(doc, break_marker)
+            doc = text.fix_line_endings(doc)
 
         # TODO normalize case if not acronym?
         # TODO normalize german characters: ä => ae
@@ -93,8 +92,8 @@ def create_corpus_ngramstat_dump(corpus_path: str, min_freq: int, min_length: in
         # doc = text.tokenize(doc)
         doc = text.clean(doc)
 
-        if len(digit_placeholder) == 1:
-            doc = text.clear_digits(doc, digit_placeholder)
+        doc = text.clear_digits(doc, Constants.digit_marker)
+
         doc = doc.replace(break_marker, " " + break_marker + " ")
         doc = text.reduce_repeated_chars(doc, " ", 1)
         doc = doc.replace(break_marker + " " + break_marker, break_marker + break_marker)
@@ -188,7 +187,7 @@ def create_acro_dump() -> List[str]:
     for entry in ngram_stat:
         row = (ngram_stat[entry])
         (_, ngram) = row
-        if ngram.isalnum() and "Ð" not in ngram:
+        if ngram.isalnum() and Constants.digit_marker not in ngram:
             if acronym.is_acronym(ngram, 7):
                 # plausible max length for German medical language
                 if ngram not in acronyms:

@@ -8,6 +8,7 @@ import re
 from collections import namedtuple
 from typing import List, Tuple, Set, Pattern, AnyStr
 
+from acres.constants import Constants
 from acres.preprocess import resource_factory
 from acres.util import functions
 from acres.util import text
@@ -314,8 +315,8 @@ def _find_middle(str_middle: str, sel_beds: List[Tuple[int, str]],
                 # logger.debug(row)
                 long_form = match.group(1).strip()
                 if len(long_form) > len(str_middle) and \
-                        "¶" not in long_form and \
-                        "Ð" not in long_form:
+                        Constants.line_break not in long_form and \
+                        Constants.digit_marker not in long_form:
                     # logger.debug(ngramfrecquency, long_form, "   [" + ngram + "]")
                     counter += 1
                     rec = (freq, long_form.strip())

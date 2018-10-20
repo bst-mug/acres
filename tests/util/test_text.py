@@ -1,4 +1,5 @@
 import acres.util
+from acres.constants import Constants
 from acres.util import text
 
 
@@ -27,11 +28,13 @@ def test_replace_punctuation():
 
 
 def test_transliterate_to_seven_bit():
-    assert "HAETTE" == acres.util.text.transliterate_to_seven_bit("hätte")
-    assert "HATTE" == acres.util.text.transliterate_to_seven_bit("hätte", "en")
+    Constants.language = "en"
+    assert "HATTE" == acres.util.text.transliterate_to_seven_bit("hätte")
+    assert "ANGSTROM" == acres.util.text.transliterate_to_seven_bit("ångström")
 
+    Constants.language = "de"
+    assert "HAETTE" == acres.util.text.transliterate_to_seven_bit("hätte")
     assert "AANGSTROEM" == acres.util.text.transliterate_to_seven_bit("ångström")
-    assert "ANGSTROM" == acres.util.text.transliterate_to_seven_bit("ångström", "en")
 
 
 def test_remove_duplicated_whitespaces():
