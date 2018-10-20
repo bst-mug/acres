@@ -12,7 +12,6 @@ from acres.nn import test
 from acres.rater import rater
 from acres.util import text
 from acres.util import acronym as acro_util
-from acres.nn import base
 
 logger = logging.getLogger(__name__)
 
@@ -87,7 +86,8 @@ def _resolve(acronym: str, left_context: str, right_context: str, strategy: Stra
     return filtered_expansions
 
 
-def test_input(true_expansions: List[str], possible_expansions: List[str], max_tries: int = 10) -> bool:
+def test_input(true_expansions: List[str], possible_expansions: List[str],
+               max_tries: int = 10) -> bool:
     """
     Tests an acronym + context strings against the ngram model
 
