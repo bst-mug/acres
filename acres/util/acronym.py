@@ -5,7 +5,7 @@ import logging
 import re
 from typing import Tuple, List, Optional
 
-from acres.constants import Constants
+from acres import constants
 from acres.util import text
 
 logger = logging.getLogger(__name__)
@@ -52,7 +52,7 @@ def is_acronym(str_probe: str, max_length: int = 7) -> bool:
     :return:
     """
     ret = False
-    replaced_probe = str_probe.replace(Constants.digit_marker, "0")
+    replaced_probe = str_probe.replace(constants.DIGIT_MARKER, "0")
     lower = 0
     upper = 0
     if len(replaced_probe) <= max_length:
@@ -94,7 +94,7 @@ def is_proper_word(str_probe: str) -> bool:
     :param str_probe:
     :return:
     """
-    str_new = str_probe.replace("-", "").replace(Constants.digit_marker, "1")
+    str_new = str_probe.replace("-", "").replace(constants.DIGIT_MARKER, "1")
     if len(str_new) < 2:
         return False
     if not (str_probe[0].isalpha() and str_probe[-1].isalpha() and str_new.isalpha()):

@@ -1,5 +1,5 @@
 import acres.util
-from acres.constants import Constants
+from acres import constants
 from acres.util import text
 
 
@@ -28,11 +28,11 @@ def test_replace_punctuation():
 
 
 def test_transliterate_to_seven_bit():
-    Constants.language = "en"
+    constants.LANGUAGE = "en"
     assert "HATTE" == acres.util.text.transliterate_to_seven_bit("hätte")
     assert "ANGSTROM" == acres.util.text.transliterate_to_seven_bit("ångström")
 
-    Constants.language = "de"
+    constants.LANGUAGE = "de"
     assert "HAETTE" == acres.util.text.transliterate_to_seven_bit("hätte")
     assert "AANGSTROEM" == acres.util.text.transliterate_to_seven_bit("ångström")
 

@@ -5,7 +5,7 @@ import nltk
 import re
 import string
 
-from acres.constants import Constants
+from acres import constants
 from acres.preprocess import resource_factory
 
 
@@ -36,7 +36,7 @@ def fix_line_endings(long_text: str, char_ngram_length: int = 8,
     """
     char_ngram_dict = resource_factory.get_character_ngrams()
 
-    line_break_marker = Constants.line_break
+    line_break_marker = constants.LINE_BREAK
 
     out = ""
     long_text = long_text.strip().replace("\n", line_break_marker)
@@ -47,7 +47,7 @@ def fix_line_endings(long_text: str, char_ngram_length: int = 8,
 
         # line break marker at nth position
         if ngr[line_break_marker_position] == line_break_marker:
-            ngr_clean = clear_digits(ngr, Constants.digit_marker)
+            ngr_clean = clear_digits(ngr, constants.DIGIT_MARKER)
             ngr_clean_space = ngr_clean.replace(line_break_marker, " ")
             if ngr_clean in char_ngram_dict:
                 n_breaks = char_ngram_dict[ngr_clean]
@@ -145,7 +145,7 @@ def transliterate_to_seven_bit(str_in: str) -> str:
         "Û": "U",
         "Ü": "U"}
 
-    if Constants.language == "de":
+    if constants.LANGUAGE == "de":
         substitutions["Ä"] = "AE"
         substitutions["Å"] = "AA"
         substitutions["Ö"] = "OE"
@@ -247,7 +247,7 @@ def clean(text: str, preserve_linebreaks: bool = False) -> str:
     allowed = [r'\w', r'\s']
 
     if preserve_linebreaks:
-        allowed.append(Constants.line_break)
+        allowed.append(constants.LINE_BREAK)
 
     disallowed_regex = "[^" + "".join(allowed) + "]"        # [^a-zA-Z\s¶Ð]
 

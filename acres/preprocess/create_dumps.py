@@ -6,7 +6,7 @@ import logging
 import re
 from typing import Dict, Set, List, Tuple, Optional
 
-from acres.constants import Constants
+from acres import constants
 from acres.preprocess import resource_factory
 from acres.util import acronym
 from acres.util import functions
@@ -33,8 +33,8 @@ def create_corpus_char_stat_dump(corpus_path: str, ngramlength: int = 8) -> Dict
         str_doc = ""
         lines = doc.split("\n")
         for line in lines:
-            line = text.clear_digits(line, Constants.digit_marker)
-            str_doc = str_doc + line.strip() + Constants.line_break
+            line = text.clear_digits(line, constants.DIGIT_MARKER)
+            str_doc = str_doc + line.strip() + constants.LINE_BREAK
         for i in range(0, len(str_doc) - (ngramlength - 1)):
             ngram = str_doc[0 + i: ngramlength + i]
             if len(ngram) == ngramlength:
@@ -74,7 +74,7 @@ def create_corpus_ngramstat_dump(corpus_path: str, min_freq: int, min_length: in
 
     logger.info("Creating ngramstat from %d documents...", length)
 
-    break_marker = Constants.line_break
+    break_marker = constants.LINE_BREAK
 
     for doc in texts:
         if counter % 1000 == 0:
@@ -92,7 +92,7 @@ def create_corpus_ngramstat_dump(corpus_path: str, min_freq: int, min_length: in
         # doc = text.tokenize(doc)
         doc = text.clean(doc)
 
-        doc = text.clear_digits(doc, Constants.digit_marker)
+        doc = text.clear_digits(doc, constants.DIGIT_MARKER)
 
         doc = doc.replace(break_marker, " " + break_marker + " ")
         doc = text.reduce_repeated_chars(doc, " ", 1)
@@ -187,7 +187,7 @@ def create_acro_dump() -> List[str]:
     for entry in ngram_stat:
         row = (ngram_stat[entry])
         (_, ngram) = row
-        if ngram.isalnum() and Constants.digit_marker not in ngram:
+        if ngram.isalnum() and constants.DIGIT_MARKER not in ngram:
             if acronym.is_acronym(ngram, 7):
                 # plausible max length for German medical language
                 if ngram not in acronyms:

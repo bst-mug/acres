@@ -14,7 +14,7 @@ from typing import Dict, List, Optional, Tuple
 import requests
 from requests import Response
 
-from acres.constants import Constants
+from acres import constants
 
 logger = logging.getLogger(__name__)
 
@@ -139,7 +139,7 @@ def is_stopword(str_in: str) -> bool:
     :return:
     """
     ret = False
-    if Constants.language == "de":
+    if constants.LANGUAGE == "de":
         stopwords = ['ab', 'aber', 'alle', 'allem', 'allen', 'aller', 'alles', 'als', 'also', 'am',
                      'an', 'andere', 'anderem', 'anderem', 'anderen', 'anderer', 'anderer',
                      'anderes', 'andern', 'anders', 'auch', 'auf', 'aus', 'bei', 'bin', 'bis',

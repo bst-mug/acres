@@ -7,7 +7,7 @@ import math
 import re
 from typing import Dict, List, Tuple
 
-from acres.constants import Constants
+from acres import constants
 from acres.util import acronym as acro_util
 from acres.rater import rater
 from acres.ngram import finder
@@ -48,7 +48,7 @@ def find_synonyms() -> None:
             # time.sleep(10)
             logger.info(count)
         # and ngram.count(" ") < 3:
-        if not ngram.isupper() and Constants.line_break not in ngram and count % DIV == 0:
+        if not ngram.isupper() and constants.LINE_BREAK not in ngram and count % DIV == 0:
             # ngrams with newlines substitutes ("¶") seemed to be useless for
             # this purpose
 
@@ -72,7 +72,7 @@ def find_synonyms() -> None:
                                                            max_num_tokens=4 + ngram.count(" "))
 
                 # prepare parameters for Web model
-                if Constants.digit_marker in ngram:
+                if constants.DIGIT_MARKER in ngram:
                     li_web = []  # type: List[Tuple[int, str]]
                 else:
                     query = left_string + " " + acronym + " " + right_string
