@@ -49,11 +49,12 @@ def test_tokenize():
 def test_clean():
     input_text = "SB und LAHB, ¶ QRS-Verbreiterung auf ÐÐÐmsec., QTC ÐÐÐmsec.,"
 
-    expected = "SB und LAHB QRS Verbreiterung auf msec QTC msec"
-    assert expected == text.clean(input_text)
+    expected = "SB und LAHB QRS Verbreiterung auf ÐÐÐmsec QTC ÐÐÐmsec"
+    assert expected == text.clean(input_text, preserve_linebreaks=False)
 
-    expected = "SB und LAHB ¶ QRS Verbreiterung auf msec QTC msec"
+    expected = "SB und LAHB ¶ QRS Verbreiterung auf ÐÐÐmsec QTC ÐÐÐmsec"
     assert expected == text.clean(input_text, preserve_linebreaks=True)
 
-    expected = "SB und LAHB QRS Verbreiterung auf ÐÐÐmsec QTC ÐÐÐmsec"
-    assert expected == text.clean(input_text, preserve_digits=True)
+    # Unicode characters should not be cleaned
+    assert "herztöne" == text.clean("herztöne")
+    assert "heißen" == text.clean("heißen")

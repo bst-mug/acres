@@ -233,23 +233,18 @@ def tokenize(text: str) -> str:
     return " ".join(nltk.word_tokenize(text, "german"))
 
 
-def clean(text: str, preserve_linebreaks: bool = False, preserve_digits: bool = False) -> str:
+def clean(text: str, preserve_linebreaks: bool = False) -> str:
     """
-    Clean a given text to preserve only alphabetic characters, spaces, and, optionally, line breaks
-    and digits.
+    Clean a given text to preserve only alphabetic characters, spaces, and, optionally, line breaks.
 
     :param text:
     :param preserve_linebreaks:
-    :param preserve_digits:
     :return:
     """
-    allowed = ['a-z', 'A-Z', '\s']
+    allowed = [r'\w', r'\s']
 
     if preserve_linebreaks:
         allowed.append("¶")     # TODO constants class
-
-    if preserve_digits:
-        allowed.append("Ð")     # TODO constants class
 
     disallowed_regex = "[^" + "".join(allowed) + "]"        # [^a-zA-Z\s¶Ð]
 
