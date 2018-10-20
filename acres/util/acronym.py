@@ -186,7 +186,6 @@ def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
     if len(acro) > 7:
         logger.warning("The current code is very slow for long acronyms, this may take a while...")
 
-    dia = text.diacritics()
     bina = []
     cleaned_full = _acronym_aware_clean_expansion(acro, full)
 
@@ -232,7 +231,7 @@ def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
         # Remove the last 3 remaining characters --- always ".)(" (because last `ex` is empty) ---
         # and replace them with a group matching valid characters (alphanumeric + whitespace +
         # diacritics).
-        regs.append(out[0:-3] + "[A-Za-z" + dia + "0-9 ]*$)")
+        regs.append(out[0:-3] + r"[\w\s]*$)")
 
     result = []  # type: List[Tuple[str, ...]]
     for reg in regs:

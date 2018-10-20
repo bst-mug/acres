@@ -128,6 +128,20 @@ def test_split_expansion():
     actual = acronym.split_expansion("EKG", "Elektro")
     assert expected == actual
 
+    # Underscore and dashes
+    assert [("Kardio", "gra mm")] == acronym.split_expansion("KG", "Kardiogra_mm")
+    assert [] == acronym.split_expansion("KG", "Kardiogra-mm")
+
+    # Whitespaces
+    assert [("Kardio", "gra mm")] == acronym.split_expansion("KG", "Kardiogra mm")
+    assert [("Kardio", "gra mm")] == acronym.split_expansion("KG", "Kardiogra\tmm")
+
+    # Digit marker
+    assert [("Kardio", "graÐmm")] == acronym.split_expansion("KG", "KardiograÐmm")
+
+    # Symbols
+    assert [("Kardio", "gra mm")] == acronym.split_expansion("KG", "Kardiogra&mm")
+
     # FIXME Very poor performance
     # expected = []
     # actual = acronym.split_expansion('ACE-Hemmerunverträglichkeit', 'ACEHemmerunverträglichkeit')
