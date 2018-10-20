@@ -8,6 +8,9 @@ import string
 from acres.preprocess import resource_factory
 
 
+nltk.download('punkt')
+
+
 def diacritics() -> str:
     """
     TODO ... explain why
