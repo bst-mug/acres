@@ -7,6 +7,7 @@ import math
 import re
 from typing import Dict, List, Tuple
 
+from acres import constants
 from acres.util import acronym as acro_util
 from acres.rater import rater
 from acres.ngram import finder
@@ -16,8 +17,6 @@ from acres.web import base
 
 logger = logging.getLogger(__name__)
 
-NEWLINE = "¶"
-NUMERIC = "Ð"
 VERBOSE = False
 DIV = 1  # for sampling, if no sampling DIV = 1. Sampling is used for testing
 
@@ -49,7 +48,7 @@ def find_synonyms() -> None:
             # time.sleep(10)
             logger.info(count)
         # and ngram.count(" ") < 3:
-        if not ngram.isupper() and NEWLINE not in ngram and count % DIV == 0:
+        if not ngram.isupper() and constants.LINE_BREAK not in ngram and count % DIV == 0:
             # ngrams with newlines substitutes ("¶") seemed to be useless for
             # this purpose
 
@@ -73,7 +72,7 @@ def find_synonyms() -> None:
                                                            max_num_tokens=4 + ngram.count(" "))
 
                 # prepare parameters for Web model
-                if NUMERIC in ngram:
+                if constants.DIGIT_MARKER in ngram:
                     li_web = []  # type: List[Tuple[int, str]]
                 else:
                     query = left_string + " " + acronym + " " + right_string

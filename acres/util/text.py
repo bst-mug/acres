@@ -5,6 +5,7 @@ import nltk
 import re
 import string
 
+from acres import constants
 from acres.preprocess import resource_factory
 
 
@@ -20,11 +21,8 @@ def diacritics() -> str:
     return "µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ"
 
 
-def fix_line_endings(
-        long_text: str,
-        line_break_marker: str = "¶",
-        char_ngram_length: int = 8,
-        line_break_marker_position: int = 3) -> str:
+def fix_line_endings(long_text: str, char_ngram_length: int = 8,
+                     line_break_marker_position: int = 3) -> str:
     """
     addresses the problem that many texts come with
            artificial line breaks. These breaks are removed if
@@ -32,12 +30,13 @@ def fix_line_endings(
            the text is more likely than the break
 
     :param long_text:
-    :param line_break_marker:
     :param char_ngram_length:
     :param line_break_marker_position:
     :return:
     """
     char_ngram_dict = resource_factory.get_character_ngrams()
+
+    line_break_marker = constants.LINE_BREAK
 
     out = ""
     long_text = long_text.strip().replace("\n", line_break_marker)
@@ -48,7 +47,7 @@ def fix_line_endings(
 
         # line break marker at nth position
         if ngr[line_break_marker_position] == line_break_marker:
-            ngr_clean = clear_digits(ngr, "Ð")
+            ngr_clean = clear_digits(ngr, constants.DIGIT_MARKER)
             ngr_clean_space = ngr_clean.replace(line_break_marker, " ")
             if ngr_clean in char_ngram_dict:
                 n_breaks = char_ngram_dict[ngr_clean]
@@ -93,6 +92,8 @@ def clear_digits(str_in: str, substitute_char: str) -> str:
 
     Example: ClearDigits("Vitamin B12", "°"):
 
+    TODO rewrite as regex
+
     :param str_in:
     :param substitute_char:
     """
@@ -105,7 +106,7 @@ def clear_digits(str_in: str, substitute_char: str) -> str:
     return out
 
 
-def transliterate_to_seven_bit(str_in: str, language: str = "de") -> str:
+def transliterate_to_seven_bit(str_in: str) -> str:
     """
     Converts string to 7-bit ASCII, considering language - specific rules,
     such as in German "Ä" -> "AE", in English "Ä" -> "A"
@@ -113,7 +114,6 @@ def transliterate_to_seven_bit(str_in: str, language: str = "de") -> str:
     TODO: completing transliteration rules when non-Western languages are used
     consider using unidecode
     :param str_in:
-    :param language: the language for which rules are defined (ISO_639-1)
     :return:
     """
     substitutions = {
@@ -145,7 +145,7 @@ def transliterate_to_seven_bit(str_in: str, language: str = "de") -> str:
         "Û": "U",
         "Ü": "U"}
 
-    if language == "de":
+    if constants.LANGUAGE == "de":
         substitutions["Ä"] = "AE"
         substitutions["Å"] = "AA"
         substitutions["Ö"] = "OE"
@@ -247,7 +247,7 @@ def clean(text: str, preserve_linebreaks: bool = False) -> str:
     allowed = [r'\w', r'\s']
 
     if preserve_linebreaks:
-        allowed.append("¶")     # TODO constants class
+        allowed.append(constants.LINE_BREAK)
 
     disallowed_regex = "[^" + "".join(allowed) + "]"        # [^a-zA-Z\s¶Ð]
 

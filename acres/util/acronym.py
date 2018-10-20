@@ -5,6 +5,7 @@ import logging
 import re
 from typing import Tuple, List, Optional
 
+from acres import constants
 from acres.util import text
 
 logger = logging.getLogger(__name__)
@@ -33,31 +34,25 @@ def extract_acronym_definition(str_probe: str, max_length: int,
             if strict:
                 if left[0].lower() != right[0].lower():
                     return None
-            if is_acronym(left, max_length, "Ð") and not is_acronym(right, max_length, "Ð"):
+            if is_acronym(left, max_length) and not is_acronym(right, max_length):
                 return left, right
-            if is_acronym(right, max_length, "Ð") and not is_acronym(left, max_length, "Ð"):
+            if is_acronym(right, max_length) and not is_acronym(left, max_length):
                 return right, left
 
     return None
 
 
-def is_acronym(str_probe: str, max_length: int = 7, digit_placeholder: str = "Ð") -> bool:
+def is_acronym(str_probe: str, max_length: int = 7) -> bool:
     """
     Identifies Acronyms, restricted by absolute length
-    "Ð" as default placeholder for digits. (e.g. "Ð")
     XXX look for "authoritative" definitions for acronyms
 
     :param str_probe:
     :param max_length:
-    :param digit_placeholder:
     :return:
     """
-    if len(digit_placeholder) > 1:
-        logger.error("Digit placeholders must be empty or a single character")
-        return False
-
     ret = False
-    replaced_probe = str_probe.replace(digit_placeholder, "0")
+    replaced_probe = str_probe.replace(constants.DIGIT_MARKER, "0")
     lower = 0
     upper = 0
     if len(replaced_probe) <= max_length:
@@ -91,16 +86,15 @@ def create_german_acronym(full: str) -> str:
     return out
 
 
-def is_proper_word(str_probe: str, digit_placeholder: str = "Ð") -> bool:
+def is_proper_word(str_probe: str) -> bool:
     """
     A proper word is more than a single letter.
     The first character may be capitalised or not, all other characters are lower case.
     It must not include digits or punctuation characters (only dashes are allowed).
     :param str_probe:
-    :param digit_placeholder:
     :return:
     """
-    str_new = str_probe.replace("-", "").replace(digit_placeholder, "1")
+    str_new = str_probe.replace("-", "").replace(constants.DIGIT_MARKER, "1")
     if len(str_new) < 2:
         return False
     if not (str_probe[0].isalpha() and str_probe[-1].isalpha() and str_new.isalpha()):
@@ -279,7 +273,7 @@ def split_ngram(ngram: str) -> List[Tuple[str, str, str]]:
     tokens = ngram.split(" ")
     counter = 0
     for token in tokens:
-        if is_acronym(token, 7, "Ð"):
+        if is_acronym(token, 7):
             acronym_context = (" ".join(tokens[0:counter]),
                                tokens[counter], " ".join(tokens[counter + 1:]))
             out.append(acronym_context)

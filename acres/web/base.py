@@ -5,6 +5,7 @@ Base module for web-based acronym resolution.
 import logging
 from typing import List, Tuple
 
+from acres import constants
 from acres.rater import rater
 from acres.util import functions
 from acres.util import text
@@ -15,9 +16,6 @@ logger = logging.getLogger(__name__)
 # Enables logging for under the hood libraries
 logging.getLogger("requests").setLevel(logging.DEBUG)
 logging.getLogger("urllib3").setLevel(logging.DEBUG)
-
-NEWLINE = "¶"
-NUMERIC = "Ð"
 
 
 def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_len: int,
@@ -54,9 +52,8 @@ def get_best_acronym_web_resolution(left: str, acro: str, right: str, minimum_le
 
 
 def get_web_dump_from_acro_with_context(left: str, acro: str, right: str, min_word_len: int,
-                                        n_context: int, digit_placehoder: str = "Ð",
-                                        newline_placeholder: str = "¶",
-                                        max_tokens_in_ngram: int = 8) -> List[Tuple[int,str]]:
+                                        n_context: int, max_tokens_in_ngram: int = 8) \
+        -> List[Tuple[int, str]]:
     """
     This routine throws acronyms with left and right context (like in Excel table) to Bing and
     generates an n-gram statistic
@@ -80,11 +77,11 @@ def get_web_dump_from_acro_with_context(left: str, acro: str, right: str, min_wo
     right_context = right.split(" ")
     for word in reversed(left_context):
         if len(word) >= min_word_len:
-            if not (digit_placehoder in word or newline_placeholder in word):
+            if not (constants.DIGIT_MARKER in word or constants.LINE_BREAK in word):
                 cleaned_left_context.append(word)
     for word in right_context:
         if len(word) >= min_word_len:
-            if not (digit_placehoder in word or newline_placeholder in word):
+            if not (constants.DIGIT_MARKER in word or constants.LINE_BREAK in word):
                 cleaned_right_context.append(word)
     i = 0
     while True:

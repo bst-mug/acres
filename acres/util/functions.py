@@ -14,6 +14,8 @@ from typing import Dict, List, Optional, Tuple
 import requests
 from requests import Response
 
+from acres import constants
+
 logger = logging.getLogger(__name__)
 
 
@@ -127,18 +129,17 @@ def random_sub_list(in_list: list, max_num: int) -> list:
     return lst_out
 
 
-def is_stopword(str_in: str, lang: str = "de") -> bool:
+def is_stopword(str_in: str) -> bool:
     """
     Tests whether word is stopword, according to list.
 
     For German, source http://snowball.tartarus.org/algorithms/german/stop.txt
 
     :param str_in:
-    :param lang:
     :return:
     """
     ret = False
-    if lang == "de":
+    if constants.LANGUAGE == "de":
         stopwords = ['ab', 'aber', 'alle', 'allem', 'allen', 'aller', 'alles', 'als', 'also', 'am',
                      'an', 'andere', 'anderem', 'anderem', 'anderen', 'anderer', 'anderer',
                      'anderes', 'andern', 'anders', 'auch', 'auf', 'aus', 'bei', 'bin', 'bis',
