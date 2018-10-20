@@ -231,7 +231,7 @@ def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
         # Remove the last 3 remaining characters --- always ".)(" (because last `ex` is empty) ---
         # and replace them with a group matching valid characters (alphanumeric + whitespace +
         # diacritics).
-        regs.append(out[0:-3] + "[\w\s]*$)")
+        regs.append(out[0:-3] + r"[\w\s]*$)")
 
     result = []  # type: List[Tuple[str, ...]]
     for reg in regs:
