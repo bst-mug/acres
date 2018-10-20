@@ -39,30 +39,20 @@ class FilteredNGramStat(object):
     def __iter__(self) -> Generator[List[str], None, None]:
         logger.debug("Iterating...")
 
-        largest_reduction = 0
-
         for identifier, freq_ngram in self.ngramstat.items():
             (freq, ngram) = freq_ngram
             tokens = ngram.split(self.TOKEN_SEPARATOR)
             length_tokens = len(tokens)
 
             # Only consider ngrams of a given size, so that we work with a non-overlapping list
+            # If window > len(tokens), word2vec still works
             if length_tokens == self.ngram_size:
                 if identifier % self.PRINT_INTERVAL == 0:
                     logger.debug("%s: %s -> %s", identifier, freq, ngram)
 
-                cleaned_tokens = base.preprocess(tokens)
-
-                # If window > len(cleaned_tokens), word2vec still works
-                length_difference = length_tokens - len(cleaned_tokens)
-                if length_difference > 0 and length_difference > largest_reduction:
-                    largest_reduction = length_difference
-                    logger.debug("New largest reduction is %d (from %d to %d) on ngram '%s'",
-                                 largest_reduction, length_tokens, len(cleaned_tokens), ngram)
-
                 # Repeat ngram freq times
                 for _ in range(int(freq)):
-                    yield cleaned_tokens
+                    yield tokens
 
 
 def train(ngram_size: int = 6, min_count: int = 1, net_size: int = 100, alpha: float = 0.025,

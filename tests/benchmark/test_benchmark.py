@@ -45,7 +45,7 @@ def test_find_embeddings():
     finder_constraints = finder.FinderConstraints(min_freq=2, max_count=500, min_num_tokens=1,
                                                   max_num_tokens=10)
     actual = finder.find_embeddings("nach", "ICD", "Implantation", finder_constraints)
-    expected = [(91, 'CRT/ICD'), (57, 'prophylaktischer CRT/ICD'), (47, 'prophylaktischer ICD')]
+    expected = [(273, 'CRT ICD'), (221, 'prophylaktischer CRT ICD'), (257, 'prophylaktischer ICD')]
     assert set(expected).issubset(actual)
 
     actual = finder.find_embeddings("<SEL>", "HF-Anstieg", "von", finder_constraints)
@@ -62,15 +62,15 @@ def test_find_embeddings():
     assert set(expected).issubset(actual)
 
     actual = finder.find_embeddings("einem", "EDP", "von", finder_constraints)
-    expected = [(1737, 'max. Gradienten'), (710, 'mittleren Gradienten'), (325, 'LVEDD')]
+    expected = [(1741, 'max Gradienten'), (710, 'mittleren Gradienten'), (325, 'LVEDD')]
     assert set(expected).issubset(actual)
 
     # wird nicht gefunden
     stricter_max_count = finder.FinderConstraints(min_freq=2, max_count=100, min_num_tokens=1,
                                                   max_num_tokens=10)
     actual = finder.find_embeddings("gutem", "AZ", "nach", stricter_max_count)
-    expected = [(311, 'AZ und mit blander Punktionsstelle'), (277, 'AZ wieder'),
-                (140, 'AZ und bei blander Punktionsstelle')]
+    expected = [(312, 'AZ und mit blander Punktionsstelle'), (277, 'AZ wieder'),
+                (141, 'AZ und bei blander Punktionsstelle')]
     assert set(expected).issubset(actual)
 
     actual = finder.find_embeddings("die", "VCS.", "<SEL>", finder_constraints)
@@ -153,10 +153,10 @@ def test_evaluation():
     # XXX word2vec is not deterministic, different models might lead to slighthly different metrics
     (precision, recall) = evaluation.analyze_file("resources/gold_standard.tsv", evaluation.Strategy.WORD2VEC)
     absolute_tolerance = 0.02
-    assert pytest.approx(0.81, abs=absolute_tolerance) == precision
+    assert pytest.approx(0.78, abs=absolute_tolerance) == precision
     assert pytest.approx(0.26, abs=absolute_tolerance) == recall
 
     (precision, recall) = evaluation.analyze_file("resources/gold_standard.tsv", evaluation.Strategy.NGRAM)
     absolute_tolerance = 0.01
-    assert pytest.approx(0.31, abs=absolute_tolerance) == precision
-    assert pytest.approx(0.07, abs=absolute_tolerance) == recall
+    assert pytest.approx(0.62, abs=absolute_tolerance) == precision
+    assert pytest.approx(0.28, abs=absolute_tolerance) == recall

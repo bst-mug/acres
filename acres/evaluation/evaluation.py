@@ -75,10 +75,9 @@ def _resolve(acronym: str, left_context: str, right_context: str, strategy: Stra
 
     func = switcher.get(strategy)
 
-    # FIXME Do it in a common way that works for all strategies (#9)
-    # acronym = base.clean(acronym)
-    if strategy == Strategy.WORD2VEC:
-        acronym = base.clean(acronym)
+    # TODO Might not be needed after new gold standard (#35)
+    # Get the first acronym of an eventual pair
+    acronym = text.clean(acronym).split()[0]
 
     filtered_expansions = []
     for expansion in func(acronym, left_context, right_context):
@@ -104,7 +103,8 @@ def test_input(true_expansions: List[str], possible_expansions: List[str], max_t
             break
         # logger.debug(possible_expansion)
         for true_expansion in true_expansions:
-            if possible_expansion.lower() == true_expansion.lower():
+            # TODO normalize german chars in true_expansions
+            if true_expansion.lower().startswith(possible_expansion.lower()):
                 logger.debug("FOUND: %s", possible_expansion)
                 return True
     return False
@@ -137,10 +137,8 @@ def analyze_row(input_row: str, strategy: Strategy) -> Dict[str, bool]:
     logger.info("CURRENT: %s [%s] %s => %s", left_context, acronym, right_context, true_expansions)
 
     # Remove any symbols from the true expansion
-    # FIXME Do it in a common way that works for all strategies (#9)
-    # true_expansion = base.clean(true_expansion)
-    if strategy == Strategy.WORD2VEC:
-        true_expansions = list(map(base.clean, true_expansions))
+    # TODO Might not be needed after new gold standard (#35)
+    true_expansions = list(map(text.clean, true_expansions))
 
     # A gold standard should not contain invalid acronyms
     # This is actually a required check, as some long and invalid acronyms
