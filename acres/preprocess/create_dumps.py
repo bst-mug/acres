@@ -206,9 +206,8 @@ def create_new_acro_dump() -> List[str]:
     new_acronym_ngrams = []
 
     ngram_stat = resource_factory.get_ngramstat()
-    for n in ngram_stat:
-        row = (ngram_stat[n])
-        (_, ngram) = row
+    for identifier, freq_ngram in ngram_stat.items():
+        (freq, ngram) = freq_ngram
         if " " in ngram:
             tokens = ngram.split(" ")
             for token in tokens:
@@ -239,4 +238,3 @@ def create_morpho_dump(lexicon_file: str, append_to: Optional[Set] = None) -> Se
                 append_to.add(row)
 
     return append_to
-

@@ -147,7 +147,7 @@ def get_word_ngrams() -> Dict[str, int]:
     return WORD_NGRAMS
 
 
-def get_ngramstat() -> Dict[int, Tuple[int,str]]:
+def get_ngramstat() -> Dict[int, Tuple[int, str]]:
     """
     Lazy load an indexed representation of ngrams.
 

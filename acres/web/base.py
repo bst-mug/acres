@@ -100,7 +100,7 @@ def get_web_dump_from_acro_with_context(left: str, acro: str, right: str, min_wo
     return ngrams_web_dump(query, 1, max_tokens_in_ngram)
 
 
-def ngrams_web_dump(query: str, min_num_tokens: int, max_num_tokens: int) -> List[Tuple[int,str]]:
+def ngrams_web_dump(query: str, min_num_tokens: int, max_num_tokens: int) -> List[Tuple[int, str]]:
     """
 
     :param query:
