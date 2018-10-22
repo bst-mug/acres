@@ -1,15 +1,15 @@
-from acres.preprocess import create_dumps, resource_factory
+from acres.preprocess import dumps, resource_factory
 
 
 def test_create_morpho_dump():
-    actual = create_dumps.create_morpho_dump("tests/resources/lex.xml")
+    actual = dumps.create_morpho_dump("tests/resources/lex.xml")
     expected = {'gramm', 'nieren', 'herc', 'crancheit', 'cardio', 'arbeits', 'el', 'cammer', 'electro', 'coronar'}
 
     assert expected.issubset(actual)
 
 
 def test_create_corpus_char_stat_dump():
-    char_ngrams = create_dumps.create_corpus_char_stat_dump("tests/data")
+    char_ngrams = dumps.create_corpus_char_stat_dump("tests/data")
 
     actual = len(char_ngrams)
     expected = 86187
@@ -17,12 +17,12 @@ def test_create_corpus_char_stat_dump():
 
 
 def test_create_corpus_ngramstat_dump():
-    ngramstat = create_dumps.create_corpus_ngramstat_dump("tests/data", 100)
+    ngramstat = dumps.create_corpus_ngramstat_dump("tests/data", 100)
     actual = len(ngramstat)
     expected = 24
     assert expected == actual
 
-    ngramstat = create_dumps.create_corpus_ngramstat_dump("tests/data", 2)
+    ngramstat = dumps.create_corpus_ngramstat_dump("tests/data", 2)
 
     # Check length
     actual = len(ngramstat)
@@ -45,7 +45,7 @@ def test_create_corpus_ngramstat_dump():
 
 
 def test_create_index(ngramstat, index):
-    actual = create_dumps.create_index(ngramstat)
+    actual = dumps.create_index(ngramstat)
     expected = index
 
     # Dictionary comparison
@@ -54,14 +54,14 @@ def test_create_index(ngramstat, index):
 
 
 def test_create_acro_dump(ngramstat):
-    actual = create_dumps.create_acro_dump()
+    actual = dumps.create_acro_dump()
     expected = ['EKG']
 
     assert expected == actual
 
 
 def test_create_new_acro_dump(ngramstat):
-    actual = create_dumps.create_new_acro_dump()
+    actual = dumps.create_new_acro_dump()
     expected = ['Im EKG']
 
     assert set(expected).issubset(actual)

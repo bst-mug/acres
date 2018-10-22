@@ -11,7 +11,7 @@ from typing import Dict, Set, List, Tuple, Any
 from gensim.models import Word2Vec
 
 from acres.nn import train
-from acres.preprocess import create_dumps
+from acres.preprocess import dumps
 from acres.util import functions
 
 logger = logging.getLogger(__name__)
@@ -75,8 +75,8 @@ def get_morphemes() -> Set[str]:
             morph_eng = functions.import_conf("MORPH_ENG")
             morph_ger = functions.import_conf("MORPH_GER")
 
-            morphemes = create_dumps.create_morpho_dump(morph_eng)
-            morphemes = create_dumps.create_morpho_dump(morph_ger, morphemes)
+            morphemes = dumps.create_morpho_dump(morph_eng)
+            morphemes = dumps.create_morpho_dump(morph_ger, morphemes)
 
             _dump(morphemes, output_file)
 
@@ -106,7 +106,7 @@ def get_index() -> Dict[str, Set[int]]:
             _log_file_not_found(output_file)
 
             ngramstat = get_ngramstat()
-            index = create_dumps.create_index(ngramstat)
+            index = dumps.create_index(ngramstat)
             _dump(index, output_file)
 
         _log_file_found(output_file)
@@ -136,7 +136,7 @@ def get_word_ngrams() -> Dict[str, int]:
             _log_file_not_found(pickle_output_file)
             _log_file_not_found(ngram_output_file)
 
-            word_ngrams = create_dumps.create_corpus_ngramstat_dump(DATA_FOLDER, MIN_FREQ)
+            word_ngrams = dumps.create_corpus_ngramstat_dump(DATA_FOLDER, MIN_FREQ)
 
             write_txt(word_ngrams, ngram_output_file)
             _dump(word_ngrams, pickle_output_file)
@@ -168,7 +168,7 @@ def get_ngramstat() -> Dict[int, Tuple[int, str]]:
             _log_file_not_found(output_file)
 
             word_ngrams = get_word_ngrams()
-            ngramstat = create_dumps.create_indexed_ngrams(word_ngrams)
+            ngramstat = dumps.create_indexed_ngrams(word_ngrams)
             _dump(ngramstat, output_file)
 
         _log_file_found(output_file)
@@ -192,7 +192,7 @@ def get_acronym_ngrams() -> List[str]:
     if not os.path.isfile(output_file):
         _log_file_not_found(output_file)
 
-        acronym_ngrams = create_dumps.create_new_acro_dump()
+        acronym_ngrams = dumps.create_new_acro_dump()
         _dump(acronym_ngrams, output_file)
 
     _log_file_found(output_file)
@@ -214,7 +214,7 @@ def get_acronyms() -> List[str]:
     if not os.path.isfile(output_file):
         _log_file_not_found(output_file)
 
-        acronyms = create_dumps.create_acro_dump()
+        acronyms = dumps.create_acro_dump()
         _dump(acronyms, output_file)
 
     _log_file_found(output_file)
@@ -242,7 +242,7 @@ def get_character_ngrams() -> Dict[str, int]:
             _log_file_not_found(pickle_output_file)
             _log_file_not_found(ngram_output_file)
 
-            character_ngrams = create_dumps.create_corpus_char_stat_dump(DATA_FOLDER)
+            character_ngrams = dumps.create_corpus_char_stat_dump(DATA_FOLDER)
 
             write_txt(character_ngrams, ngram_output_file)
             _dump(character_ngrams, pickle_output_file)
