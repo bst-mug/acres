@@ -46,6 +46,6 @@ def test_analyze_file(capsys):
     dictionary.analyze_file("resources/acro_full_reference.txt")
 
     captured = capsys.readouterr()
-    expected = 57
+    expected = 109
     actual = len(captured.out.split("\n"))
     assert expected == actual
