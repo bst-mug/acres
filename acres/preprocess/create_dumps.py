@@ -16,11 +16,14 @@ logger = logging.getLogger(__name__)
 
 def create_corpus_char_stat_dump(corpus_path: str, ngramlength: int = 8) -> Dict[str, int]:
     """
-    - Takes a corpus consisting of text files in a single directory
-    - Substitutes digits and line breaks
-    - Generates a statistics of character ngrams including the digit and break substitutes
-    - Purpose: To substitute artificial breaks in a corpus
-    - returns counter (number of records)
+    Takes a corpus consisting of text files in a single directory, substitutes digits and line
+    breaks, and generates statistics of character ngrams including the digit and break substitutes.
+
+    Purpose: To substitute artificial breaks in a corpus.
+
+    :param corpus_path:
+    :param ngramlength:
+    :return:
     """
     texts = functions.robust_text_import_from_dir(corpus_path)
 

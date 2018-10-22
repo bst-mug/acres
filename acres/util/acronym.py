@@ -16,7 +16,8 @@ def extract_acronym_definition(str_probe: str, max_length: int,
     """
     Identifies potential acronym / definition pairs and extract acronym and definition candidates.
     A necessary criterion is that the initial characters are the same
-    TODO: Acronym/definition pairs normally use parentheses, but also quotes and dashes can be found
+
+    TODO Acronym/definition pairs normally use parentheses, but also quotes and dashes can be found
 
     @todo Add sibling function is_acronym_definition_pair
 
@@ -91,6 +92,7 @@ def is_proper_word(str_probe: str) -> bool:
     A proper word is more than a single letter.
     The first character may be capitalised or not, all other characters are lower case.
     It must not include digits or punctuation characters (only dashes are allowed).
+
     :param str_probe:
     :return:
     """
