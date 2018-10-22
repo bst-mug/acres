@@ -10,8 +10,8 @@ from typing import Dict, Tuple, List
 from acres.ngram import finder
 from acres.nn import test
 from acres.rater import rater
-from acres.util import text
 from acres.util import acronym as acro_util
+from acres.util import text
 
 logger = logging.getLogger(__name__)
 

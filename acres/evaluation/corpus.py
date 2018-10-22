@@ -8,11 +8,10 @@ import re
 from typing import Dict, List, Tuple
 
 from acres import constants
-from acres.util import acronym as acro_util
-from acres.rater import rater
 from acres.ngram import finder
 from acres.preprocess import resource_factory
-from acres.util import text
+from acres.rater import rater
+from acres.util import acronym as acro_util
 from acres.web import base
 
 logger = logging.getLogger(__name__)

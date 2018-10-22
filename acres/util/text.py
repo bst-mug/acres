@@ -1,13 +1,13 @@
 """
 Utility functions related to text processing.
 """
-import nltk
 import re
 import string
 
+import nltk
+
 from acres import constants
 from acres.preprocess import resource_factory
-
 
 nltk.download('punkt')
 

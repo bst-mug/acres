@@ -3,7 +3,6 @@ Stefan Schulz 12 Nov 2017
 """
 import collections
 import logging
-import re
 from typing import Dict, Set, List, Tuple, Optional
 
 from acres import constants

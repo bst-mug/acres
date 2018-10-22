@@ -11,7 +11,6 @@ from gensim.models import Word2Vec, Phrases
 from gensim.models.phrases import Phraser
 
 from acres.preprocess import resource_factory
-from acres.nn import base
 
 logger = logging.getLogger(__name__)
 
