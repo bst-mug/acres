@@ -82,16 +82,6 @@ def test_is_proper_word():
     assert False == acronym.is_proper_word("BEFUND")
 
 
-def test_find_acronym_expansion():
-    assert [] == acronym.find_acro_expansions([])
-
-    # FIXME explain reasoning and fix possible bugs
-    expected = ['Im normale EKG post50     Im normalen elektrokardiogramm post30']
-    actual = acronym.find_acro_expansions(["50\tIm normale EKG post",
-                                                      "30\tIm normalen elektrokardiogramm post"])
-    assert expected == actual
-
-
 def test_split_expansion():
     # Baseline
     expected = [('Elektro', 'kardio', 'gramm'),
