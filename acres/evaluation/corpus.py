@@ -126,7 +126,7 @@ def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str,
                 if score_corpus > 0:
                     log_score = str(round(score_corpus * math.log10(freq), 2))
                     score = str(round(score_corpus, 2))
-                    result = log_score + " " + exp + " " + score + " " + str(freq) + " " + "\t" + ngram
+                    result = log_score + " " + exp + " " + score + " " + str(freq) + " \t" + ngram
                     if acronym not in log:
                         log[acronym] = [result]
                     else:

@@ -209,8 +209,8 @@ def create_new_acro_dump() -> List[str]:
     new_acronym_ngrams = []
 
     ngram_stat = resource_factory.get_ngramstat()
-    for identifier, freq_ngram in ngram_stat.items():
-        (freq, ngram) = freq_ngram
+    for _, freq_ngram in ngram_stat.items():
+        (_, ngram) = freq_ngram
         if " " in ngram:
             tokens = ngram.split(" ")
             for token in tokens:
