@@ -5,7 +5,7 @@ Module with functions for corpus analysis.
 TODO move to proper function
 This function compares and acronym with a potential full form and returns a list of segmentations.
 """
-import configparser
+from configparser import ConfigParser
 import logging
 import os
 from random import randint
@@ -25,7 +25,7 @@ def import_conf(key: str) -> Optional[str]:
     :param key:
     :return:
     """
-    config = configparser.ConfigParser()
+    config = ConfigParser(os.environ)
     config.read("config.ini")
     if key not in config['DEFAULT']:
         logging.critical("'%s' was not found in the DEFAULT section of config.ini.", key)
@@ -44,7 +44,7 @@ def get_url(url: str, params: Optional[Dict] = None, headers: Optional[Dict] = N
     :param timeout: The timeout in seconds.
     :return: Object from requests.get()
     """
-    config = configparser.ConfigParser()
+    config = ConfigParser()
     config.read("config.ini")
     proxy_config = config["proxy"]
     proxy_dict = None
