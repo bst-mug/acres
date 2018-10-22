@@ -1,3 +1,6 @@
+"""
+Root package.
+"""
 __all__ = ['constants']
 
 import logging
