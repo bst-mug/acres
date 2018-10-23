@@ -5,8 +5,6 @@ import logging
 from typing import List
 
 from acres.preprocess import resource_factory
-from acres.nn import base
-from acres.rater import rater
 
 logger = logging.getLogger(__name__)
 

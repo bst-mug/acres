@@ -1,8 +1,8 @@
 """
 Rating submodule for expansion (acronym + full form) checks.
 """
-from acres.util import functions
 from acres.util import acronym as acro_util
+from acres.util import functions
 
 
 def _is_schwarzt_hearst_valid(acro: str, full: str) -> bool:

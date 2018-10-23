@@ -11,12 +11,11 @@ from gensim.models import Word2Vec, Phrases
 from gensim.models.phrases import Phraser
 
 from acres.preprocess import resource_factory
-from acres.nn import base
 
 logger = logging.getLogger(__name__)
 
 
-class FilteredNGramStat(object):
+class FilteredNGramStat:
     """Filtered NGramStat generator
 
     This generator generates ngrams of a given size out of a ngramstat.txt file, while respecting

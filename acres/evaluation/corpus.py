@@ -8,11 +8,10 @@ import re
 from typing import Dict, List, Tuple
 
 from acres import constants
-from acres.util import acronym as acro_util
-from acres.rater import rater
 from acres.ngram import finder
 from acres.preprocess import resource_factory
-from acres.util import text
+from acres.rater import rater
+from acres.util import acronym as acro_util
 from acres.web import base
 
 logger = logging.getLogger(__name__)
@@ -125,9 +124,9 @@ def _process_corpus(corpus: List[Tuple[int, str]], acronym: str, ngram: str,
                 # score_corpus = 0
                 (_, score_corpus) = rater.get_acro_def_pair_score(acronym, exp)
                 if score_corpus > 0:
-                    a = str(round(score_corpus * math.log10(freq), 2))
-                    b = str(round(score_corpus, 2))
-                    result = a + " " + exp + " " + b + " " + str(freq) + " " + "\t" + ngram
+                    log_score = str(round(score_corpus * math.log10(freq), 2))
+                    score = str(round(score_corpus, 2))
+                    result = log_score + " " + exp + " " + score + " " + str(freq) + " \t" + ngram
                     if acronym not in log:
                         log[acronym] = [result]
                     else:

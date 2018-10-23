@@ -1,7 +1,7 @@
 import os.path
 
 from acres.preprocess import resource_factory
-from acres.preprocess import create_dumps
+from acres.preprocess import dumps
 
 
 def test_fixture():
@@ -42,7 +42,7 @@ def test_get_ngramstat(monkeypatch, ngramstat):
     # Monkey patch create_indexed_ngrams so that it returns the fake ngramstat
     def mockreturn(word_ngrams):
         return ngramstat
-    monkeypatch.setattr(create_dumps, "create_indexed_ngrams", mockreturn)
+    monkeypatch.setattr(dumps, "create_indexed_ngrams", mockreturn)
 
     resource_factory.MIN_FREQ = 1
     
@@ -63,7 +63,7 @@ def test_get_acronym_ngrams(monkeypatch):
     # Monkey patch create_new_acro_dump so that tests do not depend on all acronyms
     def mockreturn():
         return ["EKG", "AP"]
-    monkeypatch.setattr(create_dumps, "create_new_acro_dump", mockreturn)
+    monkeypatch.setattr(dumps, "create_new_acro_dump", mockreturn)
 
     output_file = "tests/models/pickle/acronymNgrams.p"
 

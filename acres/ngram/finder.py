@@ -200,7 +200,7 @@ def _build_sel_rows(str_left: str, str_middle: str, str_right: str) -> List[Tupl
     str_complete = str_left.strip() + " " + str_middle.strip() + " " + str_right.strip()
     all_tokens = str_complete.split(" ")
     for token in all_tokens:
-        if token != "<VOID>" and token != "<SEL>":
+        if token not in ("<VOID>", "<SEL>"):
             all_sets.append(index[token])
     ngram_selection = set.intersection(*all_sets)
     for ngram_id in ngram_selection:

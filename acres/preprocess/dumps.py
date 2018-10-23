@@ -3,7 +3,6 @@ Stefan Schulz 12 Nov 2017
 """
 import collections
 import logging
-import re
 from typing import Dict, Set, List, Tuple, Optional
 
 from acres import constants
@@ -17,11 +16,14 @@ logger = logging.getLogger(__name__)
 
 def create_corpus_char_stat_dump(corpus_path: str, ngramlength: int = 8) -> Dict[str, int]:
     """
-    - Takes a corpus consisting of text files in a single directory
-    - Substitutes digits and line breaks
-    - Generates a statistics of character ngrams including the digit and break substitutes
-    - Purpose: To substitute artificial breaks in a corpus
-    - returns counter (number of records)
+    Takes a corpus consisting of text files in a single directory, substitutes digits and line
+    breaks, and generates statistics of character ngrams including the digit and break substitutes.
+
+    Purpose: To substitute artificial breaks in a corpus.
+
+    :param corpus_path:
+    :param ngramlength:
+    :return:
     """
     texts = functions.robust_text_import_from_dir(corpus_path)
 
@@ -207,9 +209,8 @@ def create_new_acro_dump() -> List[str]:
     new_acronym_ngrams = []
 
     ngram_stat = resource_factory.get_ngramstat()
-    for n in ngram_stat:
-        row = (ngram_stat[n])
-        (_, ngram) = row
+    for _, freq_ngram in ngram_stat.items():
+        (_, ngram) = freq_ngram
         if " " in ngram:
             tokens = ngram.split(" ")
             for token in tokens:
@@ -240,4 +241,3 @@ def create_morpho_dump(lexicon_file: str, append_to: Optional[Set] = None) -> Se
                 append_to.add(row)
 
     return append_to
-

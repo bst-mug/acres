@@ -1,4 +1,7 @@
-__all__ = ['text_cleanser']
+"""
+Root package.
+"""
+__all__ = ['constants']
 
 import logging
 import os

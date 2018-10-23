@@ -1,13 +1,13 @@
 """
 Utility functions related to text processing.
 """
-import nltk
 import re
 import string
 
+import nltk
+
 from acres import constants
 from acres.preprocess import resource_factory
-
 
 nltk.download('punkt')
 
@@ -15,10 +15,10 @@ nltk.download('punkt')
 def fix_line_endings(long_text: str, char_ngram_length: int = 8,
                      line_break_marker_position: int = 3) -> str:
     """
-    addresses the problem that many texts come with
-           artificial line breaks. These breaks are removed if
-           distributional data show that an unbroken continuation of
-           the text is more likely than the break
+    Addresses the problem that many texts come with artificial line breaks.
+
+    These breaks are removed if distributional data show that an unbroken continuation of the text
+    is more likely than the break.
 
     :param long_text:
     :param char_ngram_length:
