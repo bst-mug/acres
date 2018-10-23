@@ -3,6 +3,8 @@ Metrics from large German acronym / definition list
 """
 from typing import List, Tuple, Optional
 
+from acres.rater import rater
+from acres.rater import expansion
 from acres.util import acronym as acro_util
 from acres.util import functions
 
@@ -92,8 +94,6 @@ def analyze_file(filename: str) -> None:
     """
     Analyzes a given dictionary file for extreme cases.
 
-    @todo use rater.rater.get_acronym_score as well
-
     :param filename:
     :return:
     """
@@ -101,22 +101,32 @@ def analyze_file(filename: str) -> None:
     for (acro, full) in senses:
         if not acro_util.is_acronym(acro):
             print(acro + " is not an acronym according to our definition")
-        if full.count(" ") + 1 > len(acro) * 2:
-            print(acro + " contradicts Schwartz / Hearst rule")
-        if full.count(" ") + 1 > len(acro) + 5:
+        if not expansion._is_schwarzt_hearst_valid(acro, full):
             print(acro + " contradicts Schwartz / Hearst rule")
 
-    analyzed_senses = []  ## ratio acro / words
+    analyzed_senses = []  # ratio acro / words
     for (acro, full) in senses:
         analyzed_senses.append(ratio_acro_words(acro, full))
     show_extremes("Ratio acronym length / words in full form", analyzed_senses)
 
-    analyzed_senses = []  ## edit distance with generated acronym
+    analyzed_senses = []  # edit distance with generated acronym
     for (acro, full) in senses:
         distance = edit_distance_generated_acro(acro, full)
         if distance:
             analyzed_senses.append(distance)
     show_extremes("edit distance with generated acronym", analyzed_senses)
+
+    analyzed_senses = []  # get_acronym_score
+    for (acro, full) in senses:
+        score = (rater.get_acronym_score(acro, full), acro, full)
+        analyzed_senses.append(score)
+    show_extremes("get_acronym_score", analyzed_senses)
+
+    analyzed_senses = []  # _compute_expansion_valid
+    for (acro, full) in senses:
+        compute = (expansion._compute_expansion_valid(acro, full), acro, full)
+        analyzed_senses.append(compute)
+    show_extremes("_compute_expansion_valid", analyzed_senses)
 
 
 if __name__ == "__main__":
