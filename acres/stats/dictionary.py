@@ -104,25 +104,25 @@ def analyze_file(filename: str) -> None:
         if not expansion._is_schwarzt_hearst_valid(acro, full):
             print(acro + " contradicts Schwartz / Hearst rule")
 
-    analyzed_senses = []  ## ratio acro / words
+    analyzed_senses = []  # ratio acro / words
     for (acro, full) in senses:
         analyzed_senses.append(ratio_acro_words(acro, full))
     show_extremes("Ratio acronym length / words in full form", analyzed_senses)
 
-    analyzed_senses = []  ## edit distance with generated acronym
+    analyzed_senses = []  # edit distance with generated acronym
     for (acro, full) in senses:
         distance = edit_distance_generated_acro(acro, full)
         if distance:
             analyzed_senses.append(distance)
     show_extremes("edit distance with generated acronym", analyzed_senses)
 
-    analyzed_senses = []  ## get_acronym_score
+    analyzed_senses = []  # get_acronym_score
     for (acro, full) in senses:
         score = (rater.get_acronym_score(acro, full), acro, full)
         analyzed_senses.append(score)
     show_extremes("get_acronym_score", analyzed_senses)
 
-    analyzed_senses = []  ## _compute_expansion_valid
+    analyzed_senses = []  # _compute_expansion_valid
     for (acro, full) in senses:
         compute = (expansion._compute_expansion_valid(acro, full), acro, full)
         analyzed_senses.append(compute)
