@@ -1,12 +1,14 @@
-import configparser
+from configparser import ConfigParser
 import os
 
 
 def test_config():
-    default_config = configparser.ConfigParser()
+    # Default is not interpolated with environment variables, because we use only the keys
+    default_config = ConfigParser()
     default_config.read("config.ini.default")
 
-    my_config = configparser.ConfigParser()
+    # Real config should be interpolated, otherwise we get an InterpolationMissingOptionError
+    my_config = ConfigParser(os.environ)
     my_config.read("config.ini")
 
     # All default configs should be set

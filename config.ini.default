@@ -4,7 +4,7 @@ MORPH_ENG = tests/resources/lex.xml
 MORPH_GER = tests/resources/lex.xml
 
 # Free trial at https://azure.microsoft.com/en-us/try/cognitive-services/?api=bing-web-search-api
-BingSearchApiKey = secret
+BingSearchApiKey = %(BING_SEARCH_API_KEY)s
 
 [proxy]
 UseProxy = no

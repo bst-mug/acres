@@ -10,4 +10,4 @@ pytest-cov
 python-coveralls
 mypy
 sphinx
-sphinx-autodoc-typehints
+sphinx-autodoc-typehints<1.5
