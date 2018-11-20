@@ -3,6 +3,10 @@ requests
 html2text
 nltk
 
+# jupyter notebooks
+scikit-learn
+matplotlib
+
 # dev
 pylint
 pytest>=3.7.3   # https://github.com/pytest-dev/pytest/issues/3819
