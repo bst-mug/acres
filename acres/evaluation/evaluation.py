@@ -24,6 +24,14 @@ class Strategy(Enum):
     WORD2VEC = 2
 
 
+class Level(Enum):
+    """
+    Enum that holds acronym-solving levels.
+    """
+    TOKEN = 1
+    TYPE = 2
+
+
 NGRAM_CACHE = {}  # type: Dict[Tuple, List[str]]
 WORD2VEC_CACHE = {}  # type: Dict[Tuple, List[str]]
 
@@ -110,10 +118,11 @@ def test_input(true_expansions: List[str], possible_expansions: List[str],
     return False
 
 
-def analyze_row(input_row: str, strategy: Strategy) -> Dict[str, bool]:
+def analyze_row(input_row: str, strategy: Strategy, level: Level) -> Dict[str, bool]:
     """
     Analyze a given row of the gold standard.
 
+    :param level:
     :param input_row: A tab-separated string
     :param strategy:
     :return: A dictionary with three keys: 'found', 'correct', and 'ignored', each key pointing to \
@@ -147,6 +156,18 @@ def analyze_row(input_row: str, strategy: Strategy) -> Dict[str, bool]:
         ret['ignored'] = True
         return ret
 
+    if level == Level.TYPE:
+        left_context = ""
+        right_context = ""
+        key = (acronym, left_context, right_context)
+
+        # We currently do not support Level.TOKEN for Strategy.NGRAM.
+        # This is checked in `do_analysis`.
+        if key in WORD2VEC_CACHE:
+            ret['ignored'] = True
+            return ret
+
+
     possible_expansions = cached_resolve(acronym, left_context, right_context, strategy)
     logger.debug(possible_expansions)
 
@@ -156,11 +177,12 @@ def analyze_row(input_row: str, strategy: Strategy) -> Dict[str, bool]:
     return ret
 
 
-def analyze_file(filename: str, strategy: Strategy) -> Tuple[float, float]:
+def analyze_file(filename: str, strategy: Strategy, level: Level) -> Tuple[float, float]:
     """
     Analyzes a gold standard with text excerpts centered on an acronym, followed by n valid
     expansions.
 
+    :param level:
     :param filename: A tab-separated file that contains the records from the gold standard. \
     Syntax: \
     left context<TAB>acronym<TAB>right context<TAB>valid expansion 1<TAB>valid expansion 2<TAB>...
@@ -173,7 +195,7 @@ def analyze_file(filename: str, strategy: Strategy) -> Tuple[float, float]:
 
     for row in file:
         total_acronyms += 1
-        row_analysis = analyze_row(row, strategy)
+        row_analysis = analyze_row(row, strategy, level)
         if row_analysis['found']:
             total_found += 1
 
@@ -222,17 +244,21 @@ def calculate_f1(precision: float, recall: float) -> float:
     return (2 * precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
 
 
-def do_analysis(filename: str, strategy: Strategy) -> None:
+def do_analysis(filename: str, strategy: Strategy, level: Level) -> None:
     """
     Analyzes a given reference standard.
 
+    :param level:
     :param filename:
     :param strategy:
     :return:
     """
+    if strategy == Strategy.NGRAM and level == Level.TYPE:
+        logger.error("N-GRAM strategy does not support TYPE level.")
+        return
 
     start_time = time.time()
-    (final_precision, final_recall) = analyze_file(filename, strategy)
+    (final_precision, final_recall) = analyze_file(filename, strategy, level)
     end_time = time.time()
 
     print("Time: (s)", end_time - start_time)
@@ -246,4 +272,4 @@ def do_analysis(filename: str, strategy: Strategy) -> None:
 if __name__ == "__main__":
     # XXX Switch as desired
     # do_analysis("resources/gold_standard.tsv", Strategy.NGRAM)
-    do_analysis("resources/gold_standard.tsv", Strategy.WORD2VEC)
+    do_analysis("resources/gold_standard.tsv", Strategy.WORD2VEC, Level.TYPE)
