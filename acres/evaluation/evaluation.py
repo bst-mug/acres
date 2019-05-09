@@ -182,7 +182,6 @@ def analyze_row(input_row: str, strategy: Strategy, level: Level) -> Dict[str, b
             ret['ignored'] = True
             return ret
 
-
     possible_expansions = cached_resolve(acronym, left_context, right_context, strategy)
 
     if possible_expansions:
