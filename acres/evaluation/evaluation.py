@@ -141,9 +141,12 @@ def analyze_row(input_row: str, strategy: Strategy, level: Level) -> Dict[str, b
     left_context = text.context_ngram(splitted_row[0], 3, True)
     acronym = splitted_row[1]
     right_context = text.context_ngram(splitted_row[2], 3, False)
-    true_expansions = splitted_row[3:]
+    true_expansions = splitted_row[3:5]
+    category = splitted_row[6]
+    common = splitted_row[7]
 
-    logger.info("CURRENT: %s [%s] %s => %s", left_context, acronym, right_context, true_expansions)
+    logger.info("CURRENT: %s [%s] %s => %s (%s - %s)", left_context, acronym, right_context,
+                true_expansions, category, common)
 
     # Remove any symbols from the true expansion
     # TODO Might not be needed after new gold standard (#35)
@@ -153,6 +156,14 @@ def analyze_row(input_row: str, strategy: Strategy, level: Level) -> Dict[str, b
     # This is actually a required check, as some long and invalid acronyms
     # (e.g. "ACE-Hemmerunverträglichkeit") lead to performance issues.
     if not acro_util.is_acronym(acronym):
+        ret['ignored'] = True
+        return ret
+
+    if category != "acro":
+        ret['ignored'] = True
+        return ret
+
+    if common != "common":
         ret['ignored'] = True
         return ret
 
