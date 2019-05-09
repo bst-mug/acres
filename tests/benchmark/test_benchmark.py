@@ -160,13 +160,15 @@ def test_get_word_ngrams():
 def test_evaluation():
     # XXX word2vec is not deterministic, different models might lead to slighthly different metrics
     (precision, recall) = evaluation.analyze_file("resources/gold_standard.tsv",
-                                                  evaluation.Strategy.WORD2VEC, evaluation.Level.TOKEN)
+                                                  evaluation.Strategy.WORD2VEC,
+                                                  evaluation.Level.TYPE)
     absolute_tolerance = 0.02
-    assert pytest.approx(0.78, abs=absolute_tolerance) == precision
-    assert pytest.approx(0.26, abs=absolute_tolerance) == recall
+    assert precision == pytest.approx(0.63, abs=absolute_tolerance)
+    assert recall == pytest.approx(0.26, abs=absolute_tolerance)
 
     (precision, recall) = evaluation.analyze_file("resources/gold_standard.tsv",
-                                                  evaluation.Strategy.NGRAM, evaluation.Level.TOKEN)
+                                                  evaluation.Strategy.NGRAM,
+                                                  evaluation.Level.TOKEN)
     absolute_tolerance = 0.01
-    assert pytest.approx(0.62, abs=absolute_tolerance) == precision
-    assert pytest.approx(0.28, abs=absolute_tolerance) == recall
+    assert precision == pytest.approx(0.62, abs=absolute_tolerance)
+    assert recall == pytest.approx(0.28, abs=absolute_tolerance)

@@ -1,4 +1,4 @@
-Holter	EKG	AV-Block	Elektrokardiogramm
-Bilirubin	AP	besser	Alkalische Phosphatase
-keibe	AP	Symptomatik	Angina pectoris
-Long sentence used for	WORD	embeddings	WabcOabcRabcDabc
+Holter	EKG	AV-Block	Elektrokardiogramm			acro	common
+Bilirubin	AP	besser	Alkalische Phosphatase			acro	common
+keibe	AP	Symptomatik	Angina pectoris			acro	common
+Long sentence used for	WORD	embeddings	WabcOabcRabcDabc			acro	common
