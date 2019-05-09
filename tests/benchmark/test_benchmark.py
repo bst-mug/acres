@@ -1,5 +1,6 @@
 import pytest
 
+from acres import constants
 from acres.ngram import finder
 from acres.preprocess import resource_factory
 from acres.util import text
@@ -37,7 +38,14 @@ P iL bei < Compliance : VA
 Abd.palp. unauff, lieg. PEG
 """
 
-    actual = text.fix_line_endings(doc, "\n")
+    # Save and restore line_break
+    old_line_break = constants.LINE_BREAK
+    constants.LINE_BREAK = "\n"
+
+    actual = text.fix_line_endings(doc)
+
+    constants.LINE_BREAK = old_line_break
+
     assert expected == actual
 
 
