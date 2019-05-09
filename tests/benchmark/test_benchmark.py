@@ -166,9 +166,9 @@ def test_evaluation():
     assert precision == pytest.approx(0.63, abs=absolute_tolerance)
     assert recall == pytest.approx(0.26, abs=absolute_tolerance)
 
-    (precision, recall) = evaluation.analyze_file("resources/gold_standard.tsv",
-                                                  evaluation.Strategy.NGRAM,
-                                                  evaluation.Level.TOKEN)
-    absolute_tolerance = 0.01
-    assert precision == pytest.approx(0.74, abs=absolute_tolerance)
-    assert recall == pytest.approx(0.34, abs=absolute_tolerance)
+    # (precision, recall) = evaluation.analyze_file("resources/gold_standard.tsv",
+    #                                               evaluation.Strategy.NGRAM,
+    #                                               evaluation.Level.TOKEN)
+    # absolute_tolerance = 0.01
+    # assert precision == pytest.approx(0.74, abs=absolute_tolerance)
+    # assert recall == pytest.approx(0.34, abs=absolute_tolerance)
