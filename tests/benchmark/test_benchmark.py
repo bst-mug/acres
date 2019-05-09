@@ -170,5 +170,5 @@ def test_evaluation():
                                                   evaluation.Strategy.NGRAM,
                                                   evaluation.Level.TOKEN)
     absolute_tolerance = 0.01
-    assert precision == pytest.approx(0.62, abs=absolute_tolerance)
-    assert recall == pytest.approx(0.28, abs=absolute_tolerance)
+    assert precision == pytest.approx(0.74, abs=absolute_tolerance)
+    assert recall == pytest.approx(0.34, abs=absolute_tolerance)
