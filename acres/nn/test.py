@@ -29,7 +29,7 @@ def find_candidates(acronym: str, left_context: str = "", right_context: str = "
     # TODO evaluate use of context
     # TODO use context somehow
     # [('Kardiomyopathie', 0.772693395614624), ...]
-    similar = model.wv.most_similar(positive=acronym)
+    similar = model.wv.most_similar(positive=acronym, topn=1000)
 
     expansions = []
     for (expansion, _) in similar:
