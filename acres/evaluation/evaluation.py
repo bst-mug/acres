@@ -113,7 +113,7 @@ def test_input(true_expansions: List[str], possible_expansions: List[str],
         for true_expansion in true_expansions:
             # TODO normalize german chars in true_expansions
             if true_expansion.lower().startswith(possible_expansion.lower()):
-                logger.debug("FOUND: %s", possible_expansion)
+                logger.debug("CORRECT: %s", possible_expansion)
                 return True
     return False
 
@@ -145,7 +145,7 @@ def analyze_row(input_row: str, strategy: Strategy, level: Level) -> Dict[str, b
     category = splitted_row[6]
     common = splitted_row[7]
 
-    logger.info("CURRENT: %s [%s] %s => %s (%s - %s)", left_context, acronym, right_context,
+    logger.info("%s [%s] %s => %s (%s - %s)", left_context, acronym, right_context,
                 true_expansions, category, common)
 
     # Remove any symbols from the true expansion
@@ -156,14 +156,17 @@ def analyze_row(input_row: str, strategy: Strategy, level: Level) -> Dict[str, b
     # This is actually a required check, as some long and invalid acronyms
     # (e.g. "ACE-Hemmerunverträglichkeit") lead to performance issues.
     if not acro_util.is_acronym(acronym):
+        logger.debug("IGNORED: not is_acronym")
         ret['ignored'] = True
         return ret
 
     if category != "acro":
+        logger.debug("IGNORED: not 'acro'")
         ret['ignored'] = True
         return ret
 
     if common != "common":
+        logger.debug("IGNORED: not 'common'")
         ret['ignored'] = True
         return ret
 
@@ -175,14 +178,18 @@ def analyze_row(input_row: str, strategy: Strategy, level: Level) -> Dict[str, b
         # We currently do not support Level.TOKEN for Strategy.NGRAM.
         # This is checked in `do_analysis`.
         if key in WORD2VEC_CACHE:
+            logger.debug("IGNORED: repeated type")
             ret['ignored'] = True
             return ret
 
-
     possible_expansions = cached_resolve(acronym, left_context, right_context, strategy)
-    logger.debug(possible_expansions)
 
-    ret['found'] = True if possible_expansions else ret['found']
+    if possible_expansions:
+        logger.debug("FOUND: %s", possible_expansions)
+        ret['found'] = True
+    else:
+        logger.debug("NOT FOUND")
+
     ret['correct'] = test_input(true_expansions, possible_expansions)
 
     return ret
@@ -217,18 +224,20 @@ def analyze_file(filename: str, strategy: Strategy, level: Level) -> Tuple[float
             valid_acronyms += 1
 
         # Peeking into results
-        if logger.getEffectiveLevel() == logging.DEBUG:
-            precision = _calculate_precision(total_correct, total_found)
-            recall = _calculate_recall(total_correct, valid_acronyms)
-            f1 = calculate_f1(precision, recall)
-            logger.debug("P = %f, R = %f, F1 = %f", precision, recall, f1)
+        # if logger.getEffectiveLevel() == logging.DEBUG:
+        #     precision = _calculate_precision(total_correct, total_found)
+        #     recall = _calculate_recall(total_correct, valid_acronyms)
+        #     f1 = calculate_f1(precision, recall)
+        #     logger.debug("P = %f, R = %f, F1 = %f", precision, recall, f1)
 
     file.close()
 
     invalid_absolute = total_acronyms - valid_acronyms
-    invalid_relative = 100 * invalid_absolute / total_acronyms
-    logger.info("%d out of %d (%.2f%%) acronyms were ignored.", invalid_absolute, total_acronyms,
-                invalid_relative)
+    logger.info("Total: %s", total_acronyms)
+    logger.info("Ignored: %d", invalid_absolute)
+    logger.info("Valid: %d", valid_acronyms)
+    logger.info("Found: %d", total_found)
+    logger.info("Correct: %d", total_correct)
 
     precision = _calculate_precision(total_correct, total_found)
     recall = _calculate_recall(total_correct, valid_acronyms)
