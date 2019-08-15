@@ -5,7 +5,7 @@ Benchmark code.
 import logging
 import time
 from enum import Enum
-from typing import Dict, Tuple, List
+from typing import Dict, Tuple, List, Union
 
 from acres.ngram import finder
 from acres.nn import test
@@ -118,17 +118,17 @@ def test_input(true_expansions: List[str], possible_expansions: List[str],
     return False
 
 
-def analyze_row(input_row: str, strategy: Strategy, level: Level) -> Dict[str, bool]:
+def analyze_row(input_row: str, strategy: Strategy, level: Level) -> Dict[str, Union[bool, str]]:
     """
     Analyze a given row of the gold standard.
 
     :param level:
     :param input_row: A tab-separated string
     :param strategy:
-    :return: A dictionary with three keys: 'found', 'correct', and 'ignored', each key pointing to \
-    a boolean
+    :return: A dictionary with keys {'found', 'correct', and 'ignored'} pointing to boolean and a \
+    a key 'row' with the original row and the possible expansions.
     """
-    ret = {'found': False, 'correct': False, 'ignored': False}
+    ret = {'found': False, 'correct': False, 'ignored': False, 'row': input_row}
 
     if input_row == "":
         ret['ignored'] = True
@@ -192,6 +192,9 @@ def analyze_row(input_row: str, strategy: Strategy, level: Level) -> Dict[str, b
 
     ret['correct'] = test_input(true_expansions, possible_expansions)
 
+    splitted_row = splitted_row + [str(ret['found']), str(ret['correct'])] + possible_expansions
+    ret['row'] = "\t".join(splitted_row) + "\n"
+
     return ret
 
 
@@ -209,11 +212,12 @@ def analyze_file(filename: str, strategy: Strategy, level: Level) -> Tuple[float
     """
     total_acronyms = valid_acronyms = total_correct = total_found = 0
 
-    file = open(filename, "r", encoding="utf-8")
+    input_file = open(filename, "r", encoding="utf-8")
+    output_file = open(filename + "-analysis.tsv", "w+", encoding="utf-8")
 
-    for row in file:
+    for input_row in input_file:
         total_acronyms += 1
-        row_analysis = analyze_row(row, strategy, level)
+        row_analysis = analyze_row(input_row, strategy, level)
         if row_analysis['found']:
             total_found += 1
 
@@ -223,6 +227,8 @@ def analyze_file(filename: str, strategy: Strategy, level: Level) -> Tuple[float
         if not row_analysis['ignored']:
             valid_acronyms += 1
 
+        output_file.write(row_analysis['row'])
+
         # Peeking into results
         # if logger.getEffectiveLevel() == logging.DEBUG:
         #     precision = _calculate_precision(total_correct, total_found)
@@ -230,7 +236,8 @@ def analyze_file(filename: str, strategy: Strategy, level: Level) -> Tuple[float
         #     f1 = calculate_f1(precision, recall)
         #     logger.debug("P = %f, R = %f, F1 = %f", precision, recall, f1)
 
-    file.close()
+    input_file.close()
+    output_file.close()
 
     invalid_absolute = total_acronyms - valid_acronyms
     logger.info("Total: %s", total_acronyms)
