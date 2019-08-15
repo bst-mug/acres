@@ -9,6 +9,7 @@ import pickle
 from typing import Dict, Set, List, Tuple, Any
 
 from gensim.models import Word2Vec
+# from gensim.models import FastText
 
 from acres.nn import train
 from acres.preprocess import dumps
@@ -279,6 +280,7 @@ def get_nn_model(ngram_size: int = 3, min_count: int = 1, net_size: int = 100, a
             model = train.train(ngram_size, min_count, net_size, alpha, sg, hs, negative)
             model.save(model_path)
 
+        # NN_MODEL = FastText.load(model_path)
         NN_MODEL = Word2Vec.load(model_path)
 
     return NN_MODEL

@@ -8,6 +8,7 @@ import logging
 from typing import List, Generator
 
 from gensim.models import Word2Vec, Phrases
+# from gensim.models import FastText
 from gensim.models.phrases import Phraser
 
 from acres.preprocess import resource_factory
@@ -77,8 +78,16 @@ def train(ngram_size: int = 6, min_count: int = 1, net_size: int = 100, alpha: f
     bigram_transformer = Phraser(phrases)
     collocations = bigram_transformer[sentences]
 
-    return Word2Vec(collocations, size=net_size, alpha=alpha, window=ngram_size - 1,
-                    min_count=min_count, workers=4, sg=sg, hs=hs, negative=negative)
+    # model = FastText(size=net_size, window=ngram_size - 1, min_count=min_count)
+    # model.build_vocab(sentences=collocations)
+    # model.train(sentences=collocations, total_examples=model.corpus_count, epochs=5)
+
+    model = Word2Vec(size=net_size, alpha=alpha, window=ngram_size - 1,
+                     min_count=min_count, workers=4, sg=sg, hs=hs, negative=negative)
+    model.build_vocab(sentences=collocations)
+    model.train(sentences=collocations, total_examples=model.corpus_count, epochs=5)
+
+    return model
 
     # Hellrich
     # model = gensim.models.Word2Vec(size=200, window=4, min_count=5, workers=8, alpha=0.01,
