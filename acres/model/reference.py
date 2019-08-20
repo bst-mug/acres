@@ -18,8 +18,11 @@ class ReferenceRow:
         self.right_contect = fields[2].strip()
 
         self.first_expansion = fields[3].strip()
-        # self.second_expansion = fields[4].strip()
-        # self.third_expansion = fields[6].strip()
+        self.second_expansion = fields[4].strip()
+        self.third_expansion = fields[5].strip()
+
+        self.acronym_type = fields[6].strip()
+        self.expansion = fields[7].strip()
 
 
 def parse(filename: str) -> List[ReferenceRow]:
