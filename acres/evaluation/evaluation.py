@@ -4,94 +4,12 @@ Benchmark code.
 
 import logging
 import time
-from enum import Enum
 from typing import Dict, Tuple, List, Union
 
-from acres.ngram import finder
-from acres.nn import test
-from acres.rater import rater
-from acres.util import acronym as acro_util
-from acres.util import text
+from acres.resolution import resolver
+from acres.util import acronym as acro_util, text
 
 logger = logging.getLogger(__name__)
-
-
-class Strategy(Enum):
-    """
-    Enum that holds acronym-solving strategies.
-    """
-    NGRAM = 1
-    WORD2VEC = 2
-
-
-class Level(Enum):
-    """
-    Enum that holds acronym-solving levels.
-    """
-    TOKEN = 1
-    TYPE = 2
-
-
-NGRAM_CACHE = {}  # type: Dict[Tuple, List[str]]
-WORD2VEC_CACHE = {}  # type: Dict[Tuple, List[str]]
-
-
-def cached_resolve(acronym: str, left_context: str, right_context: str,
-                   strategy: Strategy) -> List[str]:
-    """
-    Resolve a given acronym + context using the provideed Strategy.
-    Leverages a cache of previous resolutions to speed up processing of long files.
-
-    @todo Shorten context by using _bbuild_search_ngrams so that cache is more used
-
-    :param acronym:
-    :param left_context:
-    :param right_context:
-    :param strategy:
-    :return:
-    """
-    switcher = {
-        Strategy.NGRAM: NGRAM_CACHE,
-        Strategy.WORD2VEC: WORD2VEC_CACHE
-    }
-
-    cache = switcher.get(strategy)
-    key = (acronym, left_context, right_context)
-
-    # Check cache entry
-    if key not in cache:
-        cache[key] = _resolve(acronym, left_context, right_context, strategy)
-
-    return cache[key]
-
-
-def _resolve(acronym: str, left_context: str, right_context: str, strategy: Strategy) -> List[str]:
-    """
-    Resolve a given acronym + context using the provideed Strategy.
-
-    :param acronym:
-    :param left_context:
-    :param right_context:
-    :param strategy:
-    :return:
-    """
-    switcher = {
-        Strategy.NGRAM: finder.robust_find_embeddings,
-        Strategy.WORD2VEC: test.find_candidates
-    }
-
-    func = switcher.get(strategy)
-
-    # TODO Might not be needed after new gold standard (#35)
-    # Get the first acronym of an eventual pair
-    acronym = text.clean(acronym).split()[0]
-
-    filtered_expansions = []
-    for expansion in func(acronym, left_context, right_context):
-        if rater.get_acronym_score(acronym, expansion) > 0:
-            filtered_expansions.append(expansion)
-
-    return filtered_expansions
 
 
 def test_input(true_expansions: List[str], possible_expansions: List[str],
@@ -118,7 +36,8 @@ def test_input(true_expansions: List[str], possible_expansions: List[str],
     return False
 
 
-def analyze_row(input_row: str, strategy: Strategy, level: Level) -> Dict[str, Union[bool, str]]:
+def analyze_row(input_row: str, strategy: resolver.Strategy, level: resolver.Level) -> Dict[
+    str, Union[bool, str]]:
     """
     Analyze a given row of the gold standard.
 
@@ -170,19 +89,19 @@ def analyze_row(input_row: str, strategy: Strategy, level: Level) -> Dict[str, U
         ret['ignored'] = True
         return ret
 
-    if level == Level.TYPE:
+    if level == resolver.Level.TYPE:
         left_context = ""
         right_context = ""
         key = (acronym, left_context, right_context)
 
         # We currently do not support Level.TOKEN for Strategy.NGRAM.
         # This is checked in `do_analysis`.
-        if key in WORD2VEC_CACHE:
+        if key in resolver.WORD2VEC_CACHE:
             logger.debug("IGNORED: repeated type")
             ret['ignored'] = True
             return ret
 
-    possible_expansions = cached_resolve(acronym, left_context, right_context, strategy)
+    possible_expansions = resolver.cached_resolve(acronym, left_context, right_context, strategy)
 
     if possible_expansions:
         logger.debug("FOUND: %s", possible_expansions)
@@ -198,7 +117,8 @@ def analyze_row(input_row: str, strategy: Strategy, level: Level) -> Dict[str, U
     return ret
 
 
-def analyze_file(filename: str, strategy: Strategy, level: Level) -> Tuple[float, float]:
+def analyze_file(filename: str, strategy: resolver.Strategy, level: resolver.Level) -> Tuple[
+    float, float]:
     """
     Analyzes a gold standard with text excerpts centered on an acronym, followed by n valid
     expansions.
@@ -271,7 +191,7 @@ def calculate_f1(precision: float, recall: float) -> float:
     return (2 * precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
 
 
-def do_analysis(filename: str, strategy: Strategy, level: Level) -> None:
+def do_analysis(filename: str, strategy: resolver.Strategy, level: resolver.Level) -> None:
     """
     Analyzes a given reference standard.
 
@@ -280,7 +200,7 @@ def do_analysis(filename: str, strategy: Strategy, level: Level) -> None:
     :param strategy:
     :return:
     """
-    if strategy == Strategy.NGRAM and level == Level.TYPE:
+    if strategy == resolver.Strategy.NGRAM and level == resolver.Level.TYPE:
         logger.error("N-GRAM strategy does not support TYPE level.")
         return
 
@@ -299,4 +219,4 @@ def do_analysis(filename: str, strategy: Strategy, level: Level) -> None:
 if __name__ == "__main__":
     # XXX Switch as desired
     # do_analysis("resources/gold_standard.tsv", Strategy.NGRAM)
-    do_analysis("resources/gold_standard.tsv", Strategy.WORD2VEC, Level.TYPE)
+    do_analysis("resources/gold_standard.tsv", resolver.Strategy.WORD2VEC, resolver.Level.TYPE)
