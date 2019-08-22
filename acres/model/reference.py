@@ -3,6 +3,8 @@ Model class that represents a reference standard.
 """
 from typing import List
 
+from acres.util import acronym as acro_util
+
 
 class ReferenceRow:
     """
@@ -40,3 +42,31 @@ def parse(filename: str) -> List[ReferenceRow]:
 
     file.close()
     return gold_standard
+
+
+def filter_valid(standard: List[ReferenceRow]) -> List[ReferenceRow]:
+    """
+    Filter out invalid entries from a gold standard. Invalid entries are not proper acronyms,
+    not common acronyms, or repeated types.
+
+    :param standard:
+    :return:
+    """
+    filtered_standard = []
+
+    types = set()
+
+    for row in standard:
+        if not acro_util.is_acronym(row.acronym):
+            continue
+        if row.acronym_type != "acro":
+            continue
+        if row.expansion != "common":
+            continue
+        if row.acronym in types:
+            continue
+
+        types.add(row.acronym)
+        filtered_standard.append(row)
+
+    return filtered_standard
