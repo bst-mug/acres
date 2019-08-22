@@ -33,7 +33,11 @@ def map_senses_acronym(standard: List[ReferenceRow]) -> Dict[str, Set[str]]:
     for row in standard:
         acronym = row.acronym
         senses.setdefault(acronym, set())
-        senses[acronym].add(row.first_expansion)  # TODO consider other expansions
+        senses[acronym].add(row.first_expansion)
+        if row.second_expansion:
+            senses[acronym].add(row.second_expansion)
+        if row.third_expansion:
+            senses[acronym].add(row.third_expansion)
     return senses
 
 

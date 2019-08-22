@@ -1,10 +1,11 @@
 import pytest
 
 from acres import constants
+from acres.evaluation import evaluation
 from acres.ngram import finder
 from acres.preprocess import resource_factory
+from acres.resolution import resolver
 from acres.util import text
-from acres.evaluation import evaluation
 
 
 def test_fixture():
@@ -160,8 +161,8 @@ def test_get_word_ngrams():
 def test_evaluation():
     # XXX word2vec is not deterministic, different models might lead to slighthly different metrics
     (precision, recall) = evaluation.analyze_file("resources/gold_standard.tsv",
-                                                  evaluation.Strategy.WORD2VEC,
-                                                  evaluation.Level.TYPE)
+                                                  resolver.Strategy.WORD2VEC,
+                                                  resolver.Level.TYPE)
     absolute_tolerance = 0.02
     assert precision == pytest.approx(0.57, abs=absolute_tolerance)
     assert recall == pytest.approx(0.49, abs=absolute_tolerance)
