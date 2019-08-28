@@ -15,14 +15,6 @@ class Strategy(Enum):
     WORD2VEC = 2
 
 
-class Level(Enum):
-    """
-    Enum that holds acronym-solving levels.
-    """
-    TOKEN = 1
-    TYPE = 2
-
-
 NGRAM_CACHE = {}  # type: Dict[Tuple, List[str]]
 WORD2VEC_CACHE = {}  # type: Dict[Tuple, List[str]]
 
