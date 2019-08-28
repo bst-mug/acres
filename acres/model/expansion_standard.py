@@ -1,6 +1,6 @@
 from typing import List, Dict, Set, TextIO
 
-from acres.model import reference
+from acres.model import detection_standard
 from acres.resolution import resolver
 from acres.stats import senses
 
@@ -13,8 +13,8 @@ def _from_old_gs(filename: str) -> Dict[str, Set[str]]:
     :param filename:
     :return: A dictionary of acronyms mapped to their senses.
     """
-    standard = reference.parse(filename)
-    filtered_standard = reference.filter_valid(standard)
+    standard = detection_standard.parse(filename)
+    filtered_standard = detection_standard.filter_valid(standard)
     return senses.map_senses_acronym(filtered_standard)
 
 

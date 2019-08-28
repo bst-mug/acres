@@ -3,8 +3,8 @@ Module to estimate acronym ambiguity.
 """
 from typing import Dict, List, Set
 
-from acres.model import reference
-from acres.model.reference import ReferenceRow
+from acres.model import detection_standard
+from acres.model.detection_standard import ReferenceRow
 
 
 def bucketize(acronyms: Dict[str, Set[str]]) -> Dict[int, int]:
@@ -48,7 +48,7 @@ def get_sense_buckets(filename: str) -> Dict[str, Set[str]]:
     :param filename:
     :return:
     """
-    standard = reference.parse(filename)
+    standard = detection_standard.parse(filename)
     return map_senses_acronym(standard)
 
 
