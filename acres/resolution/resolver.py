@@ -71,7 +71,7 @@ List[str]:
     # Get the first acronym of an eventual pair
     acronym = text.clean(acronym).split()[0]
 
-    expansions = _resolve(acronym, left_context, right_context, strategy)
+    expansions = resolve(acronym, left_context, right_context, strategy)
 
     filtered_expansions = []
     for expansion in expansions:
@@ -81,7 +81,7 @@ List[str]:
     return filtered_expansions
 
 
-def _resolve(acronym: str, left_context: str, right_context: str, strategy: Strategy) -> List[str]:
+def resolve(acronym: str, left_context: str, right_context: str, strategy: Strategy) -> List[str]:
     """
     Resolve a given acronym + context using the provided Strategy.
 
