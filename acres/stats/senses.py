@@ -1,10 +1,9 @@
 """
 Module to estimate acronym ambiguity.
 """
-from typing import Dict, List, Set
+from typing import Dict, Set
 
-from acres.model import detection_standard
-from acres.model.detection_standard import ReferenceRow
+from acres.model import expansion_standard
 
 
 def bucketize(acronyms: Dict[str, Set[str]]) -> Dict[int, int]:
@@ -22,22 +21,21 @@ def bucketize(acronyms: Dict[str, Set[str]]) -> Dict[int, int]:
     return buckets
 
 
-def map_senses_acronym(standard: List[ReferenceRow]) -> Dict[str, Set[str]]:
+def map_senses_acronym(standard: Dict[str, Dict[str, int]],
+                       lenient: bool = False) -> Dict[str, Set[str]]:
     """
     Map: collect senses for each acronym.
 
     :param standard:
+    :param lenient: Whether to consider partial matches (1) as a valid sense.
     :return:
     """
     senses = {}  # type: Dict[str, Set[str]]
-    for row in standard:
-        acronym = row.acronym
+    for acronym, expansions in standard.items():
         senses.setdefault(acronym, set())
-        senses[acronym].add(row.first_expansion)
-        if row.second_expansion:
-            senses[acronym].add(row.second_expansion)
-        if row.third_expansion:
-            senses[acronym].add(row.third_expansion)
+        for expansion, relevance in expansions.items():
+            if relevance == 2 or relevance == 1 and lenient:
+                senses[acronym].add(expansion)
     return senses
 
 
@@ -48,7 +46,7 @@ def get_sense_buckets(filename: str) -> Dict[str, Set[str]]:
     :param filename:
     :return:
     """
-    standard = detection_standard.parse(filename)
+    standard = expansion_standard.parse(filename)
     return map_senses_acronym(standard)
 
 
@@ -78,6 +76,6 @@ def print_senses(filename: str) -> None:
 
 
 if __name__ == "__main__":
-    WORKBENCH = "resources/gold_standard.tsv"
+    WORKBENCH = "resources/expansion_standard.tsv"
     print_senses(WORKBENCH)
     print_ambiguous(WORKBENCH)
