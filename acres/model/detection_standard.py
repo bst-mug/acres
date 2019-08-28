@@ -1,72 +1,65 @@
 """
-Model class that represents a reference standard.
+Model class that represents a detection standard.
 """
-from typing import List
+import logging
+from typing import Dict, Set
 
 from acres.util import acronym as acro_util
 
+logger = logging.getLogger(__name__)
 
-class ReferenceRow:
+
+def parse(filename: str) -> Dict[str, bool]:
     """
-    Class that helds data for each row in the reference standard.
-    """
-
-    def __init__(self, row: str):
-        fields = row.split("\t")
-
-        # TODO https://github.com/bst-mug/acres/issues/21
-        self.left_context = fields[0].strip()
-        self.acronym = fields[1].strip()
-        self.right_contect = fields[2].strip()
-
-        self.first_expansion = fields[3].strip()
-        self.second_expansion = fields[4].strip()
-        self.third_expansion = fields[5].strip()
-
-        self.acronym_type = fields[6].strip()
-        self.expansion = fields[7].strip()
-
-
-def parse(filename: str) -> List[ReferenceRow]:
-    """
-    Parses a .tsv-formatted reference file into a list of ReferenceRow's.
+    Parses a .tsv-formatted detection standard into a dictionary.
 
     :param filename:
     :return:
     """
     file = open(filename, "r", encoding="utf-8")
 
-    gold_standard = []  # type: List[ReferenceRow]
+    detection_standard = {}  # type: Dict[str, bool]
     for row in file:
-        gold_standard.append(ReferenceRow(row))
+        fields = row.split("\t")
+        acronym = fields[0].strip()
+        valid = fields[1].strip() == 'TRUE'
+        # Remaining fields are ignored, because they map into `valid`.
+
+        detection_standard[acronym] = valid
 
     file.close()
-    return gold_standard
+    return detection_standard
 
 
-def filter_valid(standard: List[ReferenceRow]) -> List[ReferenceRow]:
+def filter_valid(standard: Dict[str, bool]) -> Set[str]:
     """
-    Filter out invalid entries from a gold standard. Invalid entries are not proper acronyms,
-    not common acronyms, or repeated types.
+    Filter out invalid entries from a gold standard. Invalid entries are not proper acronyms
+    or repeated types.
 
     :param standard:
     :return:
     """
-    filtered_standard = []
+    types = set()  # type: Set[str]
 
-    types = set()
-
-    for row in standard:
-        if not acro_util.is_acronym(row.acronym):
-            continue
-        if row.acronym_type != "acro":
-            continue
-        if row.expansion != "common":
-            continue
-        if row.acronym in types:
+    for acronym, valid in standard.items():
+        if not valid:
             continue
 
-        types.add(row.acronym)
-        filtered_standard.append(row)
+        # A gold standard should not contain invalid acronyms
+        # This is actually a required check, as some long and invalid acronyms
+        # (e.g. "ACE-Hemmerunverträglichkeit") lead to performance issues.
+        if not acro_util.is_acronym(acronym):
+            logger.debug("{%s} does not pass acronym tests.", acronym)
+            continue
 
-    return filtered_standard
+        if acronym in types:
+            logger.debug("{%s} is repeated at least once.", acronym)
+            continue
+
+        types.add(acronym)
+
+    return types
+
+
+if __name__ == "__main__":
+    filter_valid(parse("resources/detection_standard.tsv"))
