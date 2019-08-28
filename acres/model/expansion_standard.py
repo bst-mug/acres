@@ -33,14 +33,8 @@ def parse(filename: str) -> Dict[str, Dict[str, int]]:
     return expansion_standard
 
 
-def _write_expansions(acronym: str, expansions: Dict[str, int], file: TextIO, k: int = 10) -> None:
-    i = 0
+def _write_expansions(acronym: str, expansions: Dict[str, int], file: TextIO) -> None:
     for expansion, relevance in expansions.items():
-        # Print only top-k results
-        i = i + 1
-        if i > k:
-            break
-
         row = [acronym, "Q0", expansion, str(relevance)]
         file.write("\t".join(row) + "\n")
 
@@ -61,18 +55,19 @@ def write_results(filename: str, acronyms: Dict[str, Dict[str, int]]) -> None:
         expansions = resolver.resolve(acronym, "", "", strategy)
 
         # Write all old expansions
-        _write_expansions(acronym, old_expansions, file, 1000)
+        _write_expansions(acronym, old_expansions, file)
 
-        # Write 5 filtered expansions not in old
-        # TODO we want actually only from the top-5, otherwise we keep growing the GS
-        filtered_expansions = [exp for exp in filtered_expansions if
+        k = 5
+
+        # Write up to k filtered expansions not in old
+        filtered_expansions = [exp for exp in filtered_expansions[:k] if
                                exp not in old_expansions.keys()]
-        _write_expansions(acronym, dict.fromkeys(filtered_expansions, -1), file, 5)
+        _write_expansions(acronym, dict.fromkeys(filtered_expansions, -1), file)
 
-        # Write 5 remaining expansions
-        expansions = [exp for exp in expansions if
-                      exp not in set(old_expansions) and exp not in set(filtered_expansions)]
-        _write_expansions(acronym, dict.fromkeys(expansions, -2), file, 5)
+        # Write up to k remaining expansions
+        expansions = [exp for exp in expansions[:k] if
+                      exp not in old_expansions.keys() and exp not in set(filtered_expansions)]
+        _write_expansions(acronym, dict.fromkeys(expansions, -2), file)
 
     file.close()
 
