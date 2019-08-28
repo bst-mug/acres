@@ -6,6 +6,7 @@ import logging
 import time
 from typing import Dict, Tuple, List, Union
 
+from acres.evaluation import metrics
 from acres.resolution import resolver
 from acres.util import acronym as acro_util, text
 
@@ -166,29 +167,10 @@ def analyze_file(filename: str, strategy: resolver.Strategy, level: resolver.Lev
     logger.info("Found: %d", total_found)
     logger.info("Correct: %d", total_correct)
 
-    precision = _calculate_precision(total_correct, total_found)
-    recall = _calculate_recall(total_correct, valid_acronyms)
+    precision = metrics.calculate_precision(total_correct, total_found)
+    recall = metrics.calculate_recall(total_correct, valid_acronyms)
 
     return precision, recall
-
-
-def _calculate_precision(total_correct: int, total_found: int) -> float:
-    return total_correct / total_found if total_found != 0 else 0
-
-
-def _calculate_recall(total_correct: int, total_acronyms: int) -> float:
-    return total_correct / total_acronyms if total_acronyms != 0 else 0
-
-
-def calculate_f1(precision: float, recall: float) -> float:
-    """
-    Calculates the F1-score.
-
-    :param precision:
-    :param recall:
-    :return:
-    """
-    return (2 * precision * recall) / (precision + recall) if (precision + recall) != 0 else 0
 
 
 def do_analysis(filename: str, strategy: resolver.Strategy, level: resolver.Level) -> None:
@@ -210,7 +192,7 @@ def do_analysis(filename: str, strategy: resolver.Strategy, level: resolver.Leve
 
     print("Time: (s)", end_time - start_time)
 
-    final_f1 = calculate_f1(final_precision, final_recall)
+    final_f1 = metrics.calculate_f1(final_precision, final_recall)
     print("Precision: ", final_precision)
     print("Recall: ", final_recall)
     print("F1: ", final_f1)
