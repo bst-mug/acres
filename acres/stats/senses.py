@@ -63,6 +63,19 @@ def print_ambiguous(filename: str) -> None:
             print(key, sorted(value), sep="\t")
 
 
+def print_undefined(filename: str) -> None:
+    """
+    Print undefined acronyms, the ones with no valid sense according to the reference standard.
+
+    :param filename:
+    :return:
+    """
+    acronyms = get_sense_buckets(filename)
+    for key, value in acronyms.items():
+        if not value:
+            print(key, sorted(value), sep="\t")
+
+
 def print_senses(filename: str) -> None:
     """
     Print the distribution of senses per acronym.
@@ -79,3 +92,4 @@ if __name__ == "__main__":
     WORKBENCH = "resources/expansion_standard.tsv"
     print_senses(WORKBENCH)
     print_ambiguous(WORKBENCH)
+    print_undefined(WORKBENCH)
