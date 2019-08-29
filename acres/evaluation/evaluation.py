@@ -71,8 +71,8 @@ def analyze(contextualized_acronym: topic_list.Acronym, true_expansions: Set[str
     # Normalize true expansions so that we can match them to the training data
     true_expansions = set(map(text.clean, true_expansions))
 
-    # XXX We currently do not support contextualized word2vec
-    if strategy == resolver.Strategy.WORD2VEC:
+    # XXX We currently support context only for n-grams
+    if strategy != resolver.Strategy.NGRAM:
         left_context = ""
         right_context = ""
 

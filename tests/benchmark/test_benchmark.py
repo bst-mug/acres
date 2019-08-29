@@ -168,3 +168,13 @@ def test_evaluation():
     absolute_tolerance = 0.02
     assert precision == pytest.approx(0.81, abs=absolute_tolerance)
     assert recall == pytest.approx(0.73, abs=absolute_tolerance)
+
+    (precision, recall) = evaluation.do_analysis("resources/topic_list.tsv",
+                                                 "resources/detection_standard.tsv",
+                                                 "resources/expansion_standard.tsv",
+                                                 resolver.Strategy.DICTIONARY,
+                                                 evaluation.Level.TYPE,
+                                                 10, True)
+    absolute_tolerance = 0.02
+    assert precision == pytest.approx(0.68, abs=absolute_tolerance)
+    assert recall == pytest.approx(0.42, abs=absolute_tolerance)

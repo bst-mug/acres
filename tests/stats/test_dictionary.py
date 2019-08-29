@@ -3,7 +3,7 @@ from acres.stats import dictionary
 
 def test_dump_sample():
     expected = [('AA', 'Alopecia areata'), ('γ-GT', 'γ-Glutamyltransferase')]
-    actual = dictionary.dump_sample("resources/acro_full_reference.txt")
+    actual = dictionary._dump_sample("resources/acro_full_reference.txt")
     assert set(expected).issubset(actual)
 
 

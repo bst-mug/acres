@@ -1,15 +1,57 @@
 """
 Metrics from large German acronym / definition list
 """
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, Dict
 
-from acres.rater import rater
+from acres.preprocess import resource_factory
 from acres.rater import expansion
+from acres.rater import rater
 from acres.util import acronym as acro_util
 from acres.util import functions
 
 
-def dump_sample(filename: str, max_len: int = 15, min_len: int = 1) -> List[Tuple[str, str]]:
+def expand(acronym: str, left_context: str = "", right_context: str = "") -> List[str]:
+    """
+
+    :param acronym:
+    :param left_context:
+    :param right_context:
+    :return:
+    """
+    dictionary = resource_factory.get_dictionary()
+    if acronym not in dictionary:
+        return []
+    return dictionary[acronym]
+
+
+def _tuple2dictionary(senses: List[Tuple[str, str]]) -> Dict[str, List[str]]:
+    """
+    Convert the sense inventory as a list of tuples to a Python dictionary for better search \
+    performance.
+
+    :param senses:
+    :return:
+    """
+    dictionary = {}  # type: Dict[str, List[str]]
+    for acro, full in senses:
+        # Initialize sub-list
+        if acro not in dictionary:
+            dictionary[acro] = []
+        dictionary[acro].append(full)
+    return dictionary
+
+
+def parse(filename: str) -> Dict[str, List[str]]:
+    """
+    Parse a tab-separated sense inventory as a Python dictionary.
+
+    :param filename:
+    :return:
+    """
+    return _tuple2dictionary(_dump_sample(filename))
+
+
+def _dump_sample(filename: str, max_len: int = 15, min_len: int = 1) -> List[Tuple[str, str]]:
     """
 
     :param filename:
@@ -97,7 +139,7 @@ def analyze_file(filename: str) -> None:
     :param filename:
     :return:
     """
-    senses = dump_sample(filename, 3, 3)
+    senses = _dump_sample(filename, 3, 3)
     for (acro, full) in senses:
         if not acro_util.is_acronym(acro):
             print(acro + " is not an acronym according to our definition")
