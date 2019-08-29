@@ -1,10 +1,8 @@
-import pytest
-
 from acres.stats import senses
 
 
 def test_print_senses(capsys):
-    senses.print_senses("tests/resources/workbench.tsv")
+    senses.print_senses("tests/resources/test_expansion.tsv")
 
     captured = capsys.readouterr()
 
@@ -14,7 +12,7 @@ def test_print_senses(capsys):
 
 
 def test_print_ambiguous(capsys):
-    senses.print_ambiguous("tests/resources/workbench.tsv")
+    senses.print_ambiguous("tests/resources/test_expansion.tsv")
 
     captured = capsys.readouterr()
 
