@@ -56,18 +56,25 @@ def write_results(filename: str, acronyms: Dict[str, Dict[str, int]]) -> None:
 
         # Write all old expansions
         _write_expansions(acronym, old_expansions, file)
+        previous_expansions = old_expansions.keys()
+
+        # Write all expansions in the dictionary
+        dictionary = resolver.resolve(acronym, "", "", resolver.Strategy.DICTIONARY)
+        dictionary = [exp for exp in dictionary if exp not in previous_expansions]
+        _write_expansions(acronym, dict.fromkeys(dictionary, -1), file)
+        previous_expansions |= set(dictionary)
 
         k = 5
 
         # Write up to k filtered expansions not in old
-        filtered_expansions = [exp for exp in filtered_expansions[:k] if
-                               exp not in old_expansions.keys()]
-        _write_expansions(acronym, dict.fromkeys(filtered_expansions, -1), file)
+        filtered_expansions = [exp for exp in filtered_expansions[:k]
+                               if exp not in previous_expansions]
+        _write_expansions(acronym, dict.fromkeys(filtered_expansions, -2), file)
+        previous_expansions |= set(filtered_expansions)
 
         # Write up to k remaining expansions
-        expansions = [exp for exp in expansions[:k] if
-                      exp not in old_expansions.keys() and exp not in set(filtered_expansions)]
-        _write_expansions(acronym, dict.fromkeys(expansions, -2), file)
+        expansions = [exp for exp in expansions[:k] if exp not in previous_expansions]
+        _write_expansions(acronym, dict.fromkeys(expansions, -3), file)
 
     file.close()
 

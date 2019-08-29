@@ -9,11 +9,13 @@ import pickle
 from typing import Dict, Set, List, Tuple, Any
 
 from gensim.models import Word2Vec
-# from gensim.models import FastText
 
 from acres.nn import train
 from acres.preprocess import dumps
+from acres.stats import dictionary
 from acres.util import functions
+
+# from gensim.models import FastText
 
 logger = logging.getLogger(__name__)
 
@@ -34,6 +36,7 @@ NN_MODEL = None  # type: Word2Vec
 NGRAMSTAT = {}  # type: Dict[int, Tuple[int,str]]
 CHARACTER_NGRAMS = {}  # type: Dict[str, int]
 WORD_NGRAMS = {}  # type: Dict[str, int]
+DICTIONARY = {}  # type: Dict[str, List[str]]
 
 
 def get_log_corpus_filename() -> str:
@@ -284,6 +287,20 @@ def get_nn_model(ngram_size: int = 3, min_count: int = 1, net_size: int = 100, a
         NN_MODEL = Word2Vec.load(model_path)
 
     return NN_MODEL
+
+
+def get_dictionary() -> Dict[str, List[str]]:
+    """
+    Lazy load the sense inventory.
+
+    :return:
+    """
+    global DICTIONARY
+
+    if not DICTIONARY:
+        DICTIONARY = dictionary.parse("resources/acro_full_reference.txt")
+
+    return DICTIONARY
 
 
 def reset() -> None:
