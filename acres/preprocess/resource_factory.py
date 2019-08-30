@@ -6,10 +6,12 @@ This module provides methods for lazily loading resources.
 import logging
 import os.path
 import pickle
+from collections import OrderedDict
 from typing import Dict, Set, List, Tuple, Any
 
 from gensim.models import Word2Vec
 
+from acres.fastngram import fastngram
 from acres.nn import train
 from acres.preprocess import dumps
 from acres.stats import dictionary
@@ -37,6 +39,7 @@ NGRAMSTAT = {}  # type: Dict[int, Tuple[int,str]]
 CHARACTER_NGRAMS = {}  # type: Dict[str, int]
 WORD_NGRAMS = {}  # type: Dict[str, int]
 DICTIONARY = {}  # type: Dict[str, List[str]]
+FAST_NGRAM = {}  # type: Dict[int, OrderedDict[int, Dict[str, Set[str]]]]
 
 
 def get_log_corpus_filename() -> str:
@@ -301,6 +304,22 @@ def get_dictionary() -> Dict[str, List[str]]:
         DICTIONARY = dictionary.parse("resources/acro_full_reference.txt")
 
     return DICTIONARY
+
+
+def get_fastngram() -> 'Dict[int, OrderedDict[int, fastngram.ContextMap]]':
+    """
+    Lazy load the fast n-gram model.
+
+    :return:
+    """
+    global FAST_NGRAM
+
+    if not FAST_NGRAM:
+        word_ngrams = get_word_ngrams()
+        logger.info("Optimizing ngrams...")
+        FAST_NGRAM = fastngram.optimizer(word_ngrams)
+
+    return FAST_NGRAM
 
 
 def reset() -> None:

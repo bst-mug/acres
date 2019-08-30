@@ -1,6 +1,7 @@
 from enum import Enum
 from typing import List, Dict, Tuple
 
+from acres.fastngram import fastngram
 from acres.ngram import finder
 from acres.nn import test
 from acres.rater import rater
@@ -15,11 +16,13 @@ class Strategy(Enum):
     NGRAM = 1
     WORD2VEC = 2
     DICTIONARY = 3
+    FASTNGRAM = 4
 
 
 NGRAM_CACHE = {}  # type: Dict[Tuple, List[str]]
 WORD2VEC_CACHE = {}  # type: Dict[Tuple, List[str]]
 DICTIONARY_CACHE = {}  # type: Dict[Tuple, List[str]]
+FASTNGRAM_CACHE = {}  # type: Dict[Tuple, List[str]]
 
 
 def cached_resolve(acronym: str, left_context: str, right_context: str,
@@ -39,7 +42,8 @@ def cached_resolve(acronym: str, left_context: str, right_context: str,
     switcher = {
         Strategy.NGRAM: NGRAM_CACHE,
         Strategy.WORD2VEC: WORD2VEC_CACHE,
-        Strategy.DICTIONARY: DICTIONARY_CACHE
+        Strategy.DICTIONARY: DICTIONARY_CACHE,
+        Strategy.FASTNGRAM: FASTNGRAM_CACHE
     }
 
     cache = switcher.get(strategy)
@@ -90,7 +94,8 @@ def resolve(acronym: str, left_context: str, right_context: str, strategy: Strat
     switcher = {
         Strategy.NGRAM: finder.robust_find_embeddings,
         Strategy.WORD2VEC: test.find_candidates,
-        Strategy.DICTIONARY: dictionary.expand
+        Strategy.DICTIONARY: dictionary.expand,
+        Strategy.FASTNGRAM: fastngram.expand,
     }
 
     func = switcher.get(strategy)
