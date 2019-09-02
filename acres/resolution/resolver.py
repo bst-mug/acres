@@ -17,12 +17,14 @@ class Strategy(Enum):
     WORD2VEC = 2
     DICTIONARY = 3
     FASTNGRAM = 4
+    BASELINE = 5
 
 
 NGRAM_CACHE = {}  # type: Dict[Tuple, List[str]]
 WORD2VEC_CACHE = {}  # type: Dict[Tuple, List[str]]
 DICTIONARY_CACHE = {}  # type: Dict[Tuple, List[str]]
 FASTNGRAM_CACHE = {}  # type: Dict[Tuple, List[str]]
+BASELINE_CACHE = {}  # type: Dict[Tuple, List[str]]
 
 
 def cached_resolve(acronym: str, left_context: str, right_context: str,
@@ -43,7 +45,8 @@ def cached_resolve(acronym: str, left_context: str, right_context: str,
         Strategy.NGRAM: NGRAM_CACHE,
         Strategy.WORD2VEC: WORD2VEC_CACHE,
         Strategy.DICTIONARY: DICTIONARY_CACHE,
-        Strategy.FASTNGRAM: FASTNGRAM_CACHE
+        Strategy.FASTNGRAM: FASTNGRAM_CACHE,
+        Strategy.BASELINE: BASELINE_CACHE
     }
 
     cache = switcher.get(strategy)
@@ -96,6 +99,7 @@ def resolve(acronym: str, left_context: str, right_context: str, strategy: Strat
         Strategy.WORD2VEC: test.find_candidates,
         Strategy.DICTIONARY: dictionary.expand,
         Strategy.FASTNGRAM: fastngram.expand,
+        Strategy.BASELINE: fastngram.baseline
     }
 
     func = switcher.get(strategy)

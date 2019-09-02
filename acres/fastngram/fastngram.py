@@ -2,10 +2,14 @@
 A faster version of n-gram matching that uses dictionaries for speed-up.
 """
 
+import logging
 from collections import OrderedDict
 from typing import List, Dict, Set, Tuple, Iterator
 
 from acres.preprocess import resource_factory
+from acres.util import text
+
+logger = logging.getLogger(__name__)
 
 
 class ContextMap:
@@ -14,6 +18,7 @@ class ContextMap:
     """
 
     def __init__(self) -> None:
+        # TODO Refactor as Dict[Tuple[str, str], Dict[int, Set[str]]], with int = freq
         self.map = {}  # type: Dict[Tuple[str, str], Set[str]]
 
     def add_context(self, center: str, left_context: str, right_context: str) -> None:
@@ -55,13 +60,24 @@ def expandn(acronym: str, left_context: str = "", right_context: str = "") -> It
     """
     model = resource_factory.get_fastngram()
 
-    # TODO support for n-grams (n > 1). May need an OrderedDict.
-    count_map = model[1]
-    for freq, context_map in count_map.items():
-        # TODO require a min_freq?
-        center_ngrams = context_map.centers(left_context, right_context)
-        for ngram in center_ngrams:
-            yield ngram
+    # Save previous expansions to avoid the same n-gram to be retrieve from different contexts.
+    previous_ngrams = set()
+
+    for size in range(7, 0, -2):
+        if size not in model:
+            continue
+
+        left = text.context_ngram(left_context, int(size / 2), True)
+        right = text.context_ngram(right_context, int(size / 2), False)
+
+        count_map = model[size]
+        for freq, context_map in count_map.items():
+            # TODO require a min_freq?
+            center_ngrams = context_map.centers(left, right)
+            for ngram in center_ngrams:
+                if ngram not in previous_ngrams:
+                    previous_ngrams.add(ngram)
+                    yield ngram
 
 
 def expand(acronym: str, left_context: str = "", right_context: str = "") -> List[str]:
@@ -74,9 +90,8 @@ def expand(acronym: str, left_context: str = "", right_context: str = "") -> Lis
     :return:
     """
     # Limit expansions while we don't use generators downstream
-    # TODO 1k may not be enough if we're not doing ANY filtering here (e.g. initial).
-    # https://github.com/bst-mug/acres/issues/28
-    limit = 1000
+    # TODO https://github.com/bst-mug/acres/issues/28
+    limit = 10000
     i = 0
     ret = []  # type: List[str]
     for ngram in expandn(acronym, left_context, right_context):
@@ -87,25 +102,53 @@ def expand(acronym: str, left_context: str = "", right_context: str = "") -> Lis
     return ret
 
 
+def baseline(acronym: str, left_context: str = "", right_context: str = "") -> List[str]:
+    """
+    A baseline method that expands only with unigrams.
+
+    :param acronym:
+    :param left_context:
+    :param right_context:
+    :return:
+    """
+    return expand(acronym, "", "")
+
+
 def optimizer(ngrams: Dict[str, int]) -> 'Dict[int, OrderedDict[int, ContextMap]]':
     """
     Create a search-optimized represenation of an ngram-list.
 
+    @todo Support assymetric n-grams.
+    @todo Support training contexts from the acronym.
+
     :param ngrams:
     :return:
     """
+    logger.info("Creating model for fastngram...")
+
     model = {}  # type: Dict[int, OrderedDict[int, ContextMap]]
 
     # Ensure ngrams are ordered by decreasing frequency.
     sorted_ngrams = sorted(ngrams.items(), key=lambda x: x[1], reverse=True)
 
     for ngram, freq in sorted_ngrams:
-        # Add n-gram "as-is" with empty context.
-        _update_model(model, 1, freq, ngram, "", "")
+        tokens = ngram.split(" ")
+        ngram_size = len(tokens)
 
-        # tokens = ngram.split(" ")
-        # size = len(tokens)
+        # Add n-grams with a decreasing central n-gram and increasing lateral context.
+        for i in range(ngram_size):
+            j = ngram_size - i
+            # Walk only until half.
+            if i >= j:
+                break
+            left = " ".join(tokens[0:i])
+            right = " ".join(tokens[j:ngram_size])
+            # TODO preserve list and intern strings
+            center = " ".join(tokens[i:j])
+            size = 1 + 2 * i  # n-gram size
+            _update_model(model, size, freq, center, left, right)
 
+    logger.info("Fastngram model created.")
     return model
 
 
@@ -126,6 +169,8 @@ def _update_model(model, size, freq, center, left_context, right_context):
         context = model[size][freq]
     else:
         context = ContextMap()
+
+    # TODO Remove size dict, which is redundant with the context length.
 
     context.add_context(center, left_context, right_context)
     model.setdefault(size, OrderedDict())  # initialize dictionary count -> ContextMap if needed

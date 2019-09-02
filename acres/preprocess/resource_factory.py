@@ -315,9 +315,16 @@ def get_fastngram() -> 'Dict[int, OrderedDict[int, fastngram.ContextMap]]':
     global FAST_NGRAM
 
     if not FAST_NGRAM:
-        word_ngrams = get_word_ngrams()
-        logger.info("Optimizing ngrams...")
-        FAST_NGRAM = fastngram.optimizer(word_ngrams)
+        pickle_output_file = PICKLE_FOLDER + "fastngram-V2.p"
+
+        if not os.path.isfile(pickle_output_file):
+            _log_file_not_found(pickle_output_file)
+
+            fastngram_model = fastngram.optimizer(get_word_ngrams())
+            _dump(fastngram_model, pickle_output_file)
+
+        _log_file_found(pickle_output_file)
+        FAST_NGRAM = _load(pickle_output_file)
 
     return FAST_NGRAM
 
