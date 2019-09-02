@@ -100,10 +100,33 @@ def optimizer(ngrams: Dict[str, int]) -> 'Dict[int, OrderedDict[int, ContextMap]
     sorted_ngrams = sorted(ngrams.items(), key=lambda x: x[1], reverse=True)
 
     for ngram, freq in sorted_ngrams:
-        # size = len(ngram.split(" "))
-        context = ContextMap()
-        context.add_context(ngram, "", "")
-        model.setdefault(1, OrderedDict())
-        model[1][freq] = context
+        # Add n-gram "as-is" with empty context.
+        _update_model(model, 1, freq, ngram, "", "")
+
+        # tokens = ngram.split(" ")
+        # size = len(tokens)
 
     return model
+
+
+def _update_model(model, size, freq, center, left_context, right_context):
+    """
+    Update the model with the given ngram.
+
+    :param model:
+    :param size:
+    :param freq:
+    :param center:
+    :param left_context:
+    :param right_context:
+    :return:
+    """
+    # Initialize context map if needed
+    if size in model and freq in model[size]:
+        context = model[size][freq]
+    else:
+        context = ContextMap()
+
+    context.add_context(center, left_context, right_context)
+    model.setdefault(size, OrderedDict())  # initialize dictionary count -> ContextMap if needed
+    model[size][freq] = context
