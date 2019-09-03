@@ -51,7 +51,7 @@ def write_results(filename: str, acronyms: Dict[str, Dict[str, int]]) -> None:
 
     for acronym, old_expansions in acronyms.items():
         strategy = resolver.Strategy.WORD2VEC
-        filtered_expansions = resolver.cached_resolve(acronym, "", "", strategy)
+        filtered_expansions = resolver.filtered_resolve(acronym, "", "", strategy)
         expansions = resolver.resolve(acronym, "", "", strategy)
 
         # Write all old expansions

@@ -78,7 +78,7 @@ def analyze(contextualized_acronym: topic_list.Acronym, true_expansions: Set[str
 
     logger.debug("%s [%s] %s => %s", left_context, acronym, right_context, true_expansions)
 
-    possible_expansions = resolver.cached_resolve(acronym, left_context, right_context, strategy)
+    possible_expansions = resolver.filtered_resolve(acronym, left_context, right_context, strategy)
 
     if possible_expansions:
         logger.debug("FOUND: %s => %s", acronym, possible_expansions)
