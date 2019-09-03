@@ -191,6 +191,8 @@ def context_ngram(words: str, size: int, reverse: bool = False) -> str:
     :param reverse:
     :return:
     """
+    if size == 0:
+        return ""
     tokens = words.split(" ")
     return " ".join(tokens[-size:]) if reverse else " ".join(tokens[:size])
 

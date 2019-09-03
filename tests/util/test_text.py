@@ -33,6 +33,17 @@ def test_transliterate_to_seven_bit():
     assert "AANGSTROEM" == acres.util.text.transliterate_to_seven_bit("ångström")
 
 
+def test_context_ngram():
+    ngram = "A B C D E F"
+    assert text.context_ngram(ngram, 3, True) == "D E F"
+    assert text.context_ngram(ngram, 1, True) == "F"
+    assert text.context_ngram(ngram, 0, True) == ""
+
+    assert text.context_ngram(ngram, 3, False) == "A B C"
+    assert text.context_ngram(ngram, 1, False) == "A"
+    assert text.context_ngram(ngram, 0, False) == ""
+
+
 def test_remove_duplicated_whitespaces():
     expected = "abc def ghi z"
     actual = acres.util.text.remove_duplicated_whitespaces("abc    def   ghi z")
