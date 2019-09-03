@@ -62,19 +62,21 @@ def analyze(contextualized_acronym: topic_list.Acronym, true_expansions: Set[str
     """
     ret = {'found': False, 'correct': False, 'ignored': False}
 
-    left_context = text.context_ngram(contextualized_acronym.left_context, 3, True)
+    # Normalize context so that we can match it to the training data
+    left_context = text.clean(contextualized_acronym.left_context)
     acronym = contextualized_acronym.acronym
-    right_context = text.context_ngram(contextualized_acronym.right_context, 3, False)
-
-    logger.debug("%s => %s", acronym, true_expansions)
+    right_context = text.clean(contextualized_acronym.right_context)
 
     # Normalize true expansions so that we can match them to the training data
     true_expansions = set(map(text.clean, true_expansions))
 
+    # Remove context to improve cache hit
     # XXX We currently support context only for n-grams
-    if strategy != resolver.Strategy.NGRAM:
+    if strategy not in [resolver.Strategy.NGRAM, resolver.Strategy.FASTNGRAM]:
         left_context = ""
         right_context = ""
+
+    logger.debug("%s [%s] %s => %s", left_context, acronym, right_context, true_expansions)
 
     possible_expansions = resolver.cached_resolve(acronym, left_context, right_context, strategy)
 

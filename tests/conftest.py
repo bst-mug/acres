@@ -1,4 +1,5 @@
 import os
+
 import pytest
 
 from acres.preprocess import resource_factory
@@ -56,8 +57,11 @@ def word_ngrams():
     old = resource_factory.WORD_NGRAMS
     resource_factory.WORD_NGRAMS = {"EKG": 500,
                                     "Elektrokardiogramm": 200,
-                                    "performed EKG yesterday": 50,
+                                    "performed EKG yesterday": 30,
                                     "performed Elektrokardiogramm yesterday": 20,
+                                    "performed Eakaga yesterday": 20,
+                                    "performed Echokardiogramm 1980": 20,
+                                    "scheduled Echokardiogramm yesterday": 20,
                                     "performed Elektro kardiogramm yesterday": 10,  # sic
                                     "performed Effusion yesterday": 5
                                     }
