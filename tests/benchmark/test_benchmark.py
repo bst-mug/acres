@@ -166,8 +166,8 @@ def test_evaluation():
                                                  resolver.Strategy.WORD2VEC, evaluation.Level.TYPE,
                                                  10, True)
     absolute_tolerance = 0.02
-    assert precision == pytest.approx(0.81, abs=absolute_tolerance)
-    assert recall == pytest.approx(0.73, abs=absolute_tolerance)
+    assert precision == pytest.approx(0.85, abs=absolute_tolerance)
+    assert recall == pytest.approx(0.72, abs=absolute_tolerance)
 
     (precision, recall) = evaluation.do_analysis("resources/topic_list.tsv",
                                                  "resources/detection_standard.tsv",
