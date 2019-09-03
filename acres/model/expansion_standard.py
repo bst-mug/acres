@@ -1,6 +1,7 @@
 """
 Model class that represents an expansion standard.
 """
+from itertools import islice
 from typing import Dict, TextIO
 
 from acres.resolution import resolver
@@ -67,7 +68,7 @@ def write_results(filename: str, acronyms: Dict[str, Dict[str, int]]) -> None:
         k = 5
 
         # Write up to k filtered expansions not in old
-        filtered_expansions = [exp for exp in filtered_expansions[:k]
+        filtered_expansions = [exp for exp in list(islice(filtered_expansions, k))
                                if exp not in previous_expansions]
         _write_expansions(acronym, dict.fromkeys(filtered_expansions, -2), file)
         previous_expansions |= set(filtered_expansions)

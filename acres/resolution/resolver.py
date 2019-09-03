@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List
+from typing import List, Iterator
 
 from acres.fastngram import fastngram
 from acres.ngram import finder
@@ -21,7 +21,7 @@ class Strategy(Enum):
 
 
 def filtered_resolve(acronym: str, left_context: str, right_context: str,
-                     strategy: Strategy) -> List[str]:
+                     strategy: Strategy) -> Iterator[str]:
     """
     Resolve a given acronym + context using the provided Strategy and filter out invalid expansions.
 
@@ -37,12 +37,9 @@ def filtered_resolve(acronym: str, left_context: str, right_context: str,
 
     expansions = resolve(acronym, left_context, right_context, strategy)
 
-    filtered_expansions = []
     for expansion in expansions:
         if rater.get_acronym_score(acronym, expansion) > 0:
-            filtered_expansions.append(expansion)
-
-    return filtered_expansions
+            yield expansion
 
 
 def resolve(acronym: str, left_context: str, right_context: str, strategy: Strategy) -> List[str]:
