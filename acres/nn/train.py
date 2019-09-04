@@ -15,6 +15,8 @@ from acres.preprocess import resource_factory
 
 logger = logging.getLogger(__name__)
 
+WORKERS = 4
+
 
 class FilteredNGramStat:
     """Filtered NGramStat generator
@@ -83,7 +85,7 @@ def train(ngram_size: int = 6, min_count: int = 1, net_size: int = 100, alpha: f
     # model.train(sentences=collocations, total_examples=model.corpus_count, epochs=5)
 
     model = Word2Vec(size=net_size, alpha=alpha, window=ngram_size - 1,
-                     min_count=min_count, workers=4, sg=sg, hs=hs, negative=negative)
+                     min_count=min_count, workers=WORKERS, sg=sg, hs=hs, negative=negative)
     model.build_vocab(sentences=collocations)
     model.train(sentences=collocations, total_examples=model.corpus_count, epochs=5)
 
