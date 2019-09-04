@@ -2,6 +2,7 @@ import os
 
 import pytest
 
+from acres.nn import train
 from acres.preprocess import resource_factory
 
 
@@ -30,6 +31,12 @@ def path_resource_factory():
     resource_factory.DATA_FOLDER = "tests/data"
     resource_factory.reset()
     print("INFO: Switched to test data.")
+
+
+@pytest.fixture(scope="module", autouse=True)
+def word2vec_workers():
+    train.WORKERS = 1
+    print("INFO: Trying to make word2vec deterministic. Set also PYTHONHASHSEED.")
 
 
 @pytest.fixture(scope="module")
