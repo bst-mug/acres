@@ -49,6 +49,20 @@ def test__is_acronym_tail_on_last_word():
     assert expansion._is_acronym_tail_on_last_word("HEPA", "Hepatitis A")
 
 
+def test__is_expansion_initial_acronym():
+    # Basic case
+    assert not expansion._is_expansion_initial_acronym("TIA", "Transmuraler Myokardinfarkt")
+
+    # Single word should still work
+    assert expansion._is_expansion_initial_acronym("EKG", "Elektrokardiogramm")
+
+    # Duplicate initials should also work
+    assert expansion._is_expansion_initial_acronym("EEKKG", "Elektrokardiogramm")
+
+    # Single last word should work
+    assert expansion._is_expansion_initial_acronym("HEPA", "Hepatitis A")
+
+
 def test__compute_expansion_valid():
     # Schwartz/Hearst criteria
     # FIXME Should be 1
@@ -62,7 +76,7 @@ def test__compute_expansion_valid():
     assert 2 == expansion._compute_expansion_valid("AC", "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNO")
 
     # Levenshtein distance too high
-    assert 4 == expansion._compute_expansion_valid("HEPA", "Ha Be Cp Dn Ean")
+    assert 4 == expansion._compute_expansion_valid("HEPA", "Ha Be Cp Dn Ean A")
 
     # Acronym within full form
     assert 8 == expansion._compute_expansion_valid("AM", "AMbulanz")
@@ -71,7 +85,10 @@ def test__compute_expansion_valid():
     assert 16 == expansion._compute_expansion_valid("ECG", "Egramm")
 
     # Acronym tail on last word
-    assert 32 == expansion._compute_expansion_valid("HEPC", "Hepacitis A")
+    assert 32 == expansion._compute_expansion_valid("HEPC", "Hepacitis PA")
+
+    # Acronym tail on last word
+    assert 64 == expansion._compute_expansion_valid("TIA", "Transmuraler Myokardinfarkt")
 
     # XXX Uncommon expansions fail
     assert 20 == expansion._compute_expansion_valid("RR", "Blutdruck")
