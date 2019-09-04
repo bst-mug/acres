@@ -3,11 +3,12 @@ Metrics from large German acronym / definition list
 """
 from typing import List, Tuple, Optional, Dict
 
+import Levenshtein
+
 from acres.preprocess import resource_factory
 from acres.rater import expansion
 from acres.rater import rater
 from acres.util import acronym as acro_util
-from acres.util import functions
 
 
 def expand(acronym: str, left_context: str = "", right_context: str = "") -> List[str]:
@@ -127,7 +128,7 @@ def edit_distance_generated_acro(acro: str, full: str) -> Optional[Tuple]:
     ret = None
     if abs(len(acro) - full.count(" ") - 1) <= 2:
         n_acro = acro_util.create_german_acronym(full)
-        lev = functions.levenshtein(acro.upper(), n_acro)
+        lev = Levenshtein.distance(acro.upper(), n_acro)
         ret = (lev, acro, full)
     return ret
 
