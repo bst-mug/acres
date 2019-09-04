@@ -5,9 +5,9 @@ Module with functions for corpus analysis.
 TODO move to proper function
 This function compares and acronym with a potential full form and returns a list of segmentations.
 """
-from configparser import ConfigParser
 import logging
 import os
+from configparser import ConfigParser
 from random import randint
 from typing import Dict, List, Optional, Tuple
 
@@ -199,29 +199,6 @@ def robust_text_import_from_dir(path: str) -> List[str]:
             continue
 
     return texts
-
-
-def levenshtein(source: str, target: str) -> int:
-    """
-    Calculates the Levenshtein distance between two strings.
-
-    :param source:
-    :param target:
-    :return:
-    """
-    if source == "":
-        return len(target)
-    if target == "":
-        return len(source)
-    if source[-1] == target[-1]:
-        cost = 0
-    else:
-        cost = 1
-
-    res = min([levenshtein(source[:-1], target) + 1,
-               levenshtein(source, target[:-1]) + 1,
-               levenshtein(source[:-1], target[:-1]) + cost])
-    return res
 
 
 def dict_to_sorted_list(ngrams_dict: Dict[str, int]) -> List[Tuple[int, str]]:

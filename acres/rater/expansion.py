@@ -1,8 +1,9 @@
 """
 Rating submodule for expansion (acronym + full form) checks.
 """
+import Levenshtein
+
 from acres.util import acronym as acro_util
-from acres.util import functions
 
 
 def _is_schwarzt_hearst_valid(acro: str, full: str) -> bool:
@@ -56,7 +57,7 @@ def _is_levenshtein_distance_too_high(acro: str, full: str) -> bool:
     :param full:
     :return:
     """
-    distance = functions.levenshtein(acro.upper(), acro_util.create_german_acronym(full))
+    distance = Levenshtein.distance(acro.upper(), acro_util.create_german_acronym(full))
     if distance < len(acro):
         return False
     return True

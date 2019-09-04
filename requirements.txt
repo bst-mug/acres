@@ -2,6 +2,7 @@ gensim
 requests
 html2text
 nltk
+python-Levenshtein
 
 # jupyter notebooks
 scikit-learn
