@@ -140,7 +140,7 @@ def is_stopword(str_in: str) -> bool:
     """
     ret = False
     if constants.LANGUAGE == "de":
-        stopwords = ['ab', 'aber', 'alle', 'allem', 'allen', 'aller', 'alles', 'als', 'also', 'am',
+        stopwords = {'ab', 'aber', 'alle', 'allem', 'allen', 'aller', 'alles', 'als', 'also', 'am',
                      'an', 'andere', 'anderem', 'anderem', 'anderen', 'anderer', 'anderer',
                      'anderes', 'andern', 'anders', 'auch', 'auf', 'aus', 'bei', 'bin', 'bis',
                      'bist', 'da', 'damit', 'dann', 'das', 'dass', 'daß', 'dasselbe', 'dazu',
@@ -166,7 +166,7 @@ def is_stopword(str_in: str) -> bool:
                      'viel', 'vom', 'von', 'vor', 'während', 'war', 'waren', 'warst', 'was', 'weg',
                      'weil', 'weiter', 'welche', 'welchem', 'welchen', 'welcher', 'welches', 'wenn',
                      'werde', 'werden', 'wie', 'wieder', 'will', 'wir', 'wird', 'wirst', 'wo',
-                     'wollen', 'wollte', 'würde', 'würden', 'zu', 'zum', 'zur', 'zwar', 'zwischen']
+                     'wollen', 'wollte', 'würde', 'würden', 'zu', 'zum', 'zur', 'zwar', 'zwischen'}
         if str_in.lower() in stopwords:
             ret = True
     return ret

@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import List, Dict, Tuple
+from typing import List, Iterator
 
 from acres.fastngram import fastngram
 from acres.ngram import finder
@@ -20,47 +20,8 @@ class Strategy(Enum):
     BASELINE = 5
 
 
-NGRAM_CACHE = {}  # type: Dict[Tuple, List[str]]
-WORD2VEC_CACHE = {}  # type: Dict[Tuple, List[str]]
-DICTIONARY_CACHE = {}  # type: Dict[Tuple, List[str]]
-FASTNGRAM_CACHE = {}  # type: Dict[Tuple, List[str]]
-BASELINE_CACHE = {}  # type: Dict[Tuple, List[str]]
-
-
-def cached_resolve(acronym: str, left_context: str, right_context: str,
-                   strategy: Strategy) -> List[str]:
-    """
-    Resolve a given acronym + context using the provideed Strategy.
-    Leverages a cache of previous resolutions to speed up processing of long files.
-
-    @todo Shorten context by using _bbuild_search_ngrams so that cache is more used
-
-    :param acronym:
-    :param left_context:
-    :param right_context:
-    :param strategy:
-    :return:
-    """
-    switcher = {
-        Strategy.NGRAM: NGRAM_CACHE,
-        Strategy.WORD2VEC: WORD2VEC_CACHE,
-        Strategy.DICTIONARY: DICTIONARY_CACHE,
-        Strategy.FASTNGRAM: FASTNGRAM_CACHE,
-        Strategy.BASELINE: BASELINE_CACHE
-    }
-
-    cache = switcher.get(strategy)
-    key = (acronym, left_context, right_context)
-
-    # Check cache entry
-    if key not in cache:
-        cache[key] = _filter_resolve(acronym, left_context, right_context, strategy)
-
-    return cache[key]
-
-
-def _filter_resolve(acronym: str, left_context: str, right_context: str, strategy: Strategy) -> \
-List[str]:
+def filtered_resolve(acronym: str, left_context: str, right_context: str,
+                     strategy: Strategy) -> Iterator[str]:
     """
     Resolve a given acronym + context using the provided Strategy and filter out invalid expansions.
 
@@ -76,12 +37,9 @@ List[str]:
 
     expansions = resolve(acronym, left_context, right_context, strategy)
 
-    filtered_expansions = []
     for expansion in expansions:
         if rater.get_acronym_score(acronym, expansion) > 0:
-            filtered_expansions.append(expansion)
-
-    return filtered_expansions
+            yield expansion
 
 
 def resolve(acronym: str, left_context: str, right_context: str, strategy: Strategy) -> List[str]:
@@ -98,7 +56,7 @@ def resolve(acronym: str, left_context: str, right_context: str, strategy: Strat
         Strategy.NGRAM: finder.robust_find_embeddings,
         Strategy.WORD2VEC: test.find_candidates,
         Strategy.DICTIONARY: dictionary.expand,
-        Strategy.FASTNGRAM: fastngram.expand,
+        Strategy.FASTNGRAM: fastngram.expandn,
         Strategy.BASELINE: fastngram.baseline
     }
 

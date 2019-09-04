@@ -4,7 +4,7 @@ A faster version of n-gram matching that uses dictionaries for speed-up.
 
 import logging
 from collections import OrderedDict
-from typing import List, Dict, Set, Tuple, Iterator
+from typing import Dict, Set, Tuple, Iterator
 
 from acres.preprocess import resource_factory
 from acres.util import text
@@ -48,7 +48,8 @@ class ContextMap:
         return self.map[context]
 
 
-def expandn(acronym: str, left_context: str = "", right_context: str = "") -> Iterator[str]:
+def expandn(acronym: str, left_context: str = "", right_context: str = "",
+            min_freq: int = 2, max_rank: int = 100000) -> Iterator[str]:
     """
     Find an unlimited set of expansion candidates for an acronym given its left and right context. \
     Note that no filtering is done here.
@@ -56,6 +57,8 @@ def expandn(acronym: str, left_context: str = "", right_context: str = "") -> It
     :param acronym: Not used.
     :param left_context:
     :param right_context:
+    :param min_freq:
+    :param max_rank:
     :return:
     """
     model = resource_factory.get_fastngram()
@@ -63,6 +66,7 @@ def expandn(acronym: str, left_context: str = "", right_context: str = "") -> It
     # Save previous expansions to avoid the same n-gram to be retrieve from different contexts.
     previous_ngrams = set()
 
+    rank = 0
     for size in range(7, 0, -2):
         if size not in model:
             continue
@@ -72,37 +76,20 @@ def expandn(acronym: str, left_context: str = "", right_context: str = "") -> It
 
         count_map = model[size]
         for freq, context_map in count_map.items():
-            # TODO require a min_freq?
+            if freq < min_freq:
+                break
             center_ngrams = context_map.centers(left, right)
             for ngram in center_ngrams:
+                if rank > max_rank:
+                    logger.debug("Exausthed generator for %s", acronym)
+                    return ""
                 if ngram not in previous_ngrams:
                     previous_ngrams.add(ngram)
+                    rank += 1
                     yield ngram
 
 
-def expand(acronym: str, left_context: str = "", right_context: str = "") -> List[str]:
-    """
-    Find a limited set of expansion candidates for an acronym given its left and right context.
-
-    :param acronym:
-    :param left_context:
-    :param right_context:
-    :return:
-    """
-    # Limit expansions while we don't use generators downstream
-    # TODO https://github.com/bst-mug/acres/issues/28
-    limit = 10000
-    i = 0
-    ret = []  # type: List[str]
-    for ngram in expandn(acronym, left_context, right_context):
-        ret.append(ngram)
-        i += 1
-        if i > limit:
-            break
-    return ret
-
-
-def baseline(acronym: str, left_context: str = "", right_context: str = "") -> List[str]:
+def baseline(acronym: str, left_context: str = "", right_context: str = "") -> Iterator[str]:
     """
     A baseline method that expands only with unigrams.
 
@@ -111,7 +98,7 @@ def baseline(acronym: str, left_context: str = "", right_context: str = "") -> L
     :param right_context:
     :return:
     """
-    return expand(acronym, "", "")
+    return expandn(acronym, "", "")
 
 
 def optimizer(ngrams: Dict[str, int]) -> 'Dict[int, OrderedDict[int, ContextMap]]':

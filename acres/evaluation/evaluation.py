@@ -5,6 +5,7 @@ Benchmark code.
 import logging
 import time
 from enum import Enum
+from itertools import islice
 from typing import Dict, Tuple, List, Set
 
 from acres.evaluation import metrics
@@ -78,7 +79,8 @@ def analyze(contextualized_acronym: topic_list.Acronym, true_expansions: Set[str
 
     logger.debug("%s [%s] %s => %s", left_context, acronym, right_context, true_expansions)
 
-    possible_expansions = resolver.cached_resolve(acronym, left_context, right_context, strategy)
+    fltered_expansions = resolver.filtered_resolve(acronym, left_context, right_context, strategy)
+    possible_expansions = list(islice(fltered_expansions, max_tries))
 
     if possible_expansions:
         logger.debug("FOUND: %s => %s", acronym, possible_expansions)
