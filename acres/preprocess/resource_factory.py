@@ -6,7 +6,6 @@ This module provides methods for lazily loading resources.
 import logging
 import os.path
 import pickle
-from collections import OrderedDict
 from typing import Dict, Set, List, Tuple, Any
 
 from gensim.models import Word2Vec
@@ -39,7 +38,7 @@ NGRAMSTAT = {}  # type: Dict[int, Tuple[int,str]]
 CHARACTER_NGRAMS = {}  # type: Dict[str, int]
 WORD_NGRAMS = {}  # type: Dict[str, int]
 DICTIONARY = {}  # type: Dict[str, List[str]]
-FAST_NGRAM = {}  # type: Dict[int, OrderedDict[int, Dict[str, Set[str]]]]
+FAST_NGRAM = None  # type: fastngram.ContextMap
 
 
 def get_log_corpus_filename() -> str:
@@ -306,7 +305,7 @@ def get_dictionary() -> Dict[str, List[str]]:
     return DICTIONARY
 
 
-def get_fastngram() -> 'Dict[int, OrderedDict[int, fastngram.ContextMap]]':
+def get_fastngram() -> 'fastngram.ContextMap':
     """
     Lazy load the fast n-gram model.
 
