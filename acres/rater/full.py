@@ -1,6 +1,7 @@
 """
 Rating submodule for full form checks.
 """
+from acres.util import acronym as acro_util
 from acres.util import functions
 
 
@@ -55,6 +56,19 @@ def _has_capitals(full: str) -> bool:
     return True
 
 
+def _contain_acronym(full: str) -> bool:
+    """
+
+    :param full:
+    :return:
+    """
+    words = full.split()
+    for word in words:
+        if acro_util.is_acronym(word):
+            return True
+    return False
+
+
 def _compute_full_valid(full: str) -> int:
     """
     [For internal use only] Compute all checks on full forms.
@@ -76,6 +90,9 @@ def _compute_full_valid(full: str) -> int:
     # A valid expansion of a german acronym would require at least one noun, which is capitalized.
     if not _has_capitals(full):
         ret += 8
+
+    if _contain_acronym(full):
+        ret += 16
 
     return ret
 
