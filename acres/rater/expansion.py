@@ -103,6 +103,8 @@ def _is_acronym_tail_on_last_word(acro: str, full: str) -> bool:
     Check whether the acronym last character is present on the last word of the full form,
     but not at the end, unless it is a single letter.
 
+    @todo FIX => Faktor IX fails, but it shouldn't
+
     :param acro:
     :param full:
     :return:
@@ -122,6 +124,32 @@ def _is_acronym_tail_on_last_word(acro: str, full: str) -> bool:
             return False
 
     return True
+
+
+def _is_expansion_initial_acronym(acro: str, full: str) -> bool:
+    """
+    Check whether the acronym-definition pair formed by the sub-acronym starting at the last \
+    occurence of the last word initial is possible.
+
+    I.e., check whether the initial of the last word is present in the acronym AND the remaining \
+    acronym characters have a match.
+
+    If the full form is a single word, it returns True to indicate it doesn't fail this specific \
+    test.
+
+    :param acro:
+    :param full:
+    :return:
+    """
+    words = full.split()
+    if len(words) == 1:
+        return True
+    last_word = words[-1]
+    initial = last_word[0]
+    pos = acro.lower().rfind(initial.lower())  # Last occurence of initial in the acronym.
+    if pos < 0:
+        return False
+    return _is_possible_expansion(acro[pos:-1], last_word)
 
 
 def _compute_expansion_valid(acro: str, full: str) -> int:
@@ -151,6 +179,9 @@ def _compute_expansion_valid(acro: str, full: str) -> int:
 
     if not _is_acronym_tail_on_last_word(acro, full):
         ret += 32
+
+    if not _is_expansion_initial_acronym(acro, full):
+        ret += 64
 
     return ret
 
