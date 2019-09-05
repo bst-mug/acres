@@ -74,7 +74,7 @@ def write_results(filename: str, acronyms: Dict[str, Dict[str, int]]) -> None:
         previous_expansions |= set(filtered_expansions)
 
         # Write up to k remaining expansions
-        expansions = [exp for exp in list(islice(filtered_expansions, k))
+        expansions = [exp for exp in list(islice(expansions, k))
                       if exp not in previous_expansions]
         _write_expansions(acronym, dict.fromkeys(expansions, -3), file)
 
