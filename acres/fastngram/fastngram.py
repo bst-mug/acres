@@ -3,6 +3,7 @@ A faster version of n-gram matching that uses dictionaries for speed-up.
 """
 
 import logging
+import sys
 from collections import OrderedDict
 from typing import Dict, Set, Tuple, Iterator
 
@@ -30,9 +31,9 @@ class ContextMap:
         :param right_context:
         :return:
         """
-        context = (left_context, right_context)
+        context = (sys.intern(left_context), sys.intern(right_context))
         self.map.setdefault(context, set())
-        self.map[context].add(center)
+        self.map[context].add(sys.intern(center))
 
     def centers(self, left_context: str, right_context: str) -> Set[str]:
         """
@@ -64,7 +65,7 @@ def expandn(acronym: str, left_context: str = "", right_context: str = "",
     model = resource_factory.get_fastngram()
 
     # Save previous expansions to avoid the same n-gram to be retrieve from different contexts.
-    previous_ngrams = set()
+    previous_ngrams = set()  # type: Set[str]
 
     rank = 0
     for size in range(7, 0, -2):
@@ -130,7 +131,6 @@ def optimizer(ngrams: Dict[str, int]) -> 'Dict[int, OrderedDict[int, ContextMap]
                 break
             left = " ".join(tokens[0:i])
             right = " ".join(tokens[j:ngram_size])
-            # TODO preserve list and intern strings
             center = " ".join(tokens[i:j])
             size = 1 + 2 * i  # n-gram size
             _update_model(model, size, freq, center, left, right)
