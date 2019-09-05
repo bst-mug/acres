@@ -9,9 +9,11 @@ from typing import Dict, Set, Tuple, Iterator, List
 
 from acres.model.topic_list import Acronym
 from acres.preprocess import resource_factory
-from acres.util import text
 
 logger = logging.getLogger(__name__)
+
+# Maximum difference in size between left and right context.
+MAX_DIFF = 1
 
 
 class ContextMap:
@@ -32,10 +34,10 @@ class ContextMap:
         :param freq:
         :return:
         """
-        context = (sys.intern(left_context), sys.intern(right_context))
+        context = (left_context, right_context)
         self.map.setdefault(context, OrderedDict())
         self.map[context].setdefault(freq, set())
-        self.map[context][freq].add(sys.intern(center))
+        self.map[context][freq].add(center)
 
     def centers(self, left_context: str, right_context: str) -> 'OrderedDict[int, Set[str]]':
         """
@@ -69,14 +71,12 @@ def expandn(acronym: str, left_context: str = "", right_context: str = "",
     # Save previous expansions to avoid the same n-gram to be retrieve from different contexts.
     previous_ngrams = set()  # type: Set[str]
 
-    # Largest given context.
-    context_size = max(len(left_context.split()), len(right_context.split()))
+    acronym = Acronym(acronym=acronym, left_context=left_context, right_context=right_context)
 
     rank = 0
-    for size in range(context_size, -1, -1):
-        left = text.context_ngram(left_context, size, True)
-        right = text.context_ngram(right_context, size, False)
-
+    for contextualized_acronym in _generate_acronym_contexts(acronym):
+        left = contextualized_acronym.left_context
+        right = contextualized_acronym.right_context
         count_map = model.centers(left, right)
         for freq, center_ngrams in count_map.items():
             if freq < min_freq:
@@ -107,7 +107,6 @@ def optimizer(ngrams: Dict[str, int]) -> ContextMap:
     """
     Create a search-optimized represenation of an ngram-list.
 
-    @todo Support assymetric n-grams.
     @todo Support training contexts from the acronym.
 
     :param ngrams:
@@ -140,11 +139,59 @@ def _generate_ngram_contexts(ngram: str) -> List[Acronym]:
     ngram_size = len(tokens)
 
     contexts = []
-    # Walk only until half.
-    for i in range(0, int((ngram_size + 1) / 2)):
-        j = ngram_size - i
-        left = " ".join(tokens[0:i])
-        right = " ".join(tokens[j:ngram_size])
-        center = " ".join(tokens[i:j])
-        contexts.append(Acronym(acronym=center, left_context=left, right_context=right))
+    # Walk only until half and `max_diff` more.
+    for i in range(0, int((ngram_size + 1 + MAX_DIFF) / 2)):
+        # Allow up to `max_diff` difference in size.
+        for j in range(ngram_size - i + MAX_DIFF, ngram_size - i - MAX_DIFF - 1, -1):
+            # Do not allow empty acronym.
+            if i >= j:
+                break
+            # Do not walk past the n-gram.
+            if j > ngram_size:
+                continue
+            left = sys.intern(" ".join(tokens[0:i]))
+            right = sys.intern(" ".join(tokens[j:ngram_size]))
+            center = sys.intern(" ".join(tokens[i:j]))
+            contexts.append(Acronym(acronym=center, left_context=left, right_context=right))
+    return contexts
+
+
+def _generate_acronym_contexts(contextualized_acronym: Acronym) -> List[Acronym]:
+    """
+    Generate a list of contextualized acronyms with decreasing lateral context.
+
+    Right context is deemed more important than left context, e.g. EF 00%, HF 000/min,
+    so we generate first longer right n-grams, e.g. (left_bigram, right_trigram).
+
+    @todo default parameter min_length = 0, so that we avoid empty contexts if we want.
+
+    :param contextualized_acronym:
+    :return:
+    """
+    left = contextualized_acronym.left_context.split()
+    right = contextualized_acronym.right_context.split()
+    left_length = len(left)
+    right_length = len(right)
+
+    # We allow up to MAX_DIFF difference in context size iff the right context is larger than left.
+    max_length = min(left_length, right_length)
+    if right_length > left_length:
+        max_length += min(MAX_DIFF, right_length - left_length)
+
+    contexts = []
+    for j in range(max_length, -1, -1):
+        # Left size > right size
+        if j > right_length:
+            continue
+        for i in range(left_length - j - MAX_DIFF, left_length - j + MAX_DIFF + 1):
+            # Prevents double empty context on last iteration
+            if i > left_length:
+                break
+            # Left size < right size
+            if i < 0:
+                continue
+            left_context = " ".join(left[i:left_length])
+            right_context = " ".join(right[0:j])
+            contexts.append(Acronym(acronym=contextualized_acronym.acronym,
+                                    left_context=left_context, right_context=right_context))
     return contexts
