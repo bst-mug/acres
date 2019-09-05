@@ -5,8 +5,9 @@ A faster version of n-gram matching that uses dictionaries for speed-up.
 import logging
 import sys
 from collections import OrderedDict
-from typing import Dict, Set, Tuple, Iterator
+from typing import Dict, Set, Tuple, Iterator, List
 
+from acres.model.topic_list import Acronym
 from acres.preprocess import resource_factory
 from acres.util import text
 
@@ -120,19 +121,30 @@ def optimizer(ngrams: Dict[str, int]) -> ContextMap:
     sorted_ngrams = sorted(ngrams.items(), key=lambda x: x[1], reverse=True)
 
     for ngram, freq in sorted_ngrams:
-        tokens = ngram.split(" ")
-        ngram_size = len(tokens)
-
-        # Add n-grams with a decreasing central n-gram and increasing lateral context.
-        for i in range(ngram_size):
-            j = ngram_size - i
-            # Walk only until half.
-            if i >= j:
-                break
-            left = " ".join(tokens[0:i])
-            right = " ".join(tokens[j:ngram_size])
-            center = " ".join(tokens[i:j])
-            model.add_context(center, left, right, freq)
+        for context in _generate_ngram_contexts(ngram):
+            model.add_context(context.acronym, context.left_context, context.right_context, freq)
 
     logger.info("Fastngram model created.")
     return model
+
+
+def _generate_ngram_contexts(ngram: str) -> List[Acronym]:
+    """
+    Generate a list of contextualized n-grams with a decreasing central n-gram and increasing \
+    lateral context.
+
+    :param ngram:
+    :return: 
+    """
+    tokens = ngram.split(" ")
+    ngram_size = len(tokens)
+
+    contexts = []
+    # Walk only until half.
+    for i in range(0, int((ngram_size + 1) / 2)):
+        j = ngram_size - i
+        left = " ".join(tokens[0:i])
+        right = " ".join(tokens[j:ngram_size])
+        center = " ".join(tokens[i:j])
+        contexts.append(Acronym(acronym=center, left_context=left, right_context=right))
+    return contexts
