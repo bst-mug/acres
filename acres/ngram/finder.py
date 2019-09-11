@@ -6,7 +6,7 @@ Finds synonyms using a n-gram frequency list from related corpus
 import logging
 import re
 from collections import namedtuple
-from typing import List, Tuple, Set, Pattern, AnyStr
+from typing import List, Tuple, Set, Pattern, AnyStr, Iterator
 
 from acres import constants
 from acres.preprocess import resource_factory
@@ -52,7 +52,7 @@ def _strip_frequencies(embeddings: List[Tuple[int, str]], min_freq: int = 0) -> 
     return ret
 
 
-def robust_find_embeddings(acronym: str, left_context: str, right_context: str) -> List[str]:
+def robust_find_embeddings(acronym: str, left_context: str, right_context: str) -> Iterator[str]:
     """
     Generates several search patterns and returns the first found embeddings.
 
@@ -87,13 +87,14 @@ def robust_find_embeddings(acronym: str, left_context: str, right_context: str) 
         # Quick optimization: don't search for patterns that happens to be the same as last one
         if left_pattern != previous_left_pattern or right_pattern != previous_right_pattern:
             embeddings = find_embeddings(left_pattern, acronym, right_pattern, finder_constraints)
-            if embeddings:
-                return _strip_frequencies(embeddings)
+            stripped_embeddings = _strip_frequencies(embeddings)
+            for emb in stripped_embeddings:
+                yield emb
 
             previous_left_pattern = left_pattern
             previous_right_pattern = right_pattern
 
-    return []
+    return ""
 
 
 def find_embeddings(str_left: str, str_middle: str, str_right: str,
