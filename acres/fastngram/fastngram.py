@@ -66,7 +66,7 @@ def expandn(acronym: str, left_context: str = "", right_context: str = "",
     :param max_rank:
     :return:
     """
-    model = resource_factory.get_fastngram()
+    model = resource_factory.get_context_map()
 
     # Save previous expansions to avoid the same n-gram to be retrieve from different contexts.
     previous_ngrams = set()  # type: Set[str]
@@ -103,7 +103,7 @@ def baseline(acronym: str, left_context: str = "", right_context: str = "") -> I
     return expandn(acronym, "", "")
 
 
-def optimizer(ngrams: Dict[str, int]) -> ContextMap:
+def create_context_map(ngrams: Dict[str, int]) -> ContextMap:
     """
     Create a search-optimized represenation of an ngram-list.
 

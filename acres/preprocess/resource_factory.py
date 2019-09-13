@@ -38,7 +38,7 @@ NGRAMSTAT = {}  # type: Dict[int, Tuple[int,str]]
 CHARACTER_NGRAMS = {}  # type: Dict[str, int]
 WORD_NGRAMS = {}  # type: Dict[str, int]
 DICTIONARY = {}  # type: Dict[str, List[str]]
-FAST_NGRAM = None  # type: fastngram.ContextMap
+CONTEXT_MAP = None  # type: fastngram.ContextMap
 
 
 def get_log_corpus_filename() -> str:
@@ -305,27 +305,27 @@ def get_dictionary() -> Dict[str, List[str]]:
     return DICTIONARY
 
 
-def get_fastngram() -> 'fastngram.ContextMap':
+def get_context_map() -> 'fastngram.ContextMap':
     """
-    Lazy load the fast n-gram model.
+    Lazy load the fast n-gram context map model.
 
     :return:
     """
-    global FAST_NGRAM
+    global CONTEXT_MAP
 
-    if not FAST_NGRAM:
-        pickle_output_file = PICKLE_FOLDER + "fastngram-V2.p"
+    if not CONTEXT_MAP:
+        pickle_output_file = PICKLE_FOLDER + "contextMap-V2.p"
 
         if not os.path.isfile(pickle_output_file):
             _log_file_not_found(pickle_output_file)
 
-            fastngram_model = fastngram.optimizer(get_word_ngrams())
-            _dump(fastngram_model, pickle_output_file)
+            context_map = fastngram.create_context_map(get_word_ngrams())
+            _dump(context_map, pickle_output_file)
 
         _log_file_found(pickle_output_file)
-        FAST_NGRAM = _load(pickle_output_file)
+        CONTEXT_MAP = _load(pickle_output_file)
 
-    return FAST_NGRAM
+    return CONTEXT_MAP
 
 
 def reset() -> None:
