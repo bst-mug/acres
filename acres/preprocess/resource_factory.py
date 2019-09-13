@@ -392,8 +392,10 @@ def _dump(data: Any, filename: str) -> None:
     :param filename:
     :return:
     """
+    logger.debug("Dumping %s...", filename)
     with open(filename, "wb") as file:
         pickle.dump(data, file, protocol=pickle.HIGHEST_PROTOCOL)
+    logger.debug("Dumped.")
 
 
 def _load(filename: str) -> Any:
