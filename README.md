@@ -1,5 +1,5 @@
 # acres
-Acronym resolution
+An acronym expansion module based on word embeddings and filtering rules.
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0622cdc830e149e2a58fe7e96742800a)](https://app.codacy.com/app/michelole/acres?utm_source=github.com&utm_medium=referral&utm_content=bst-mug/acres&utm_campaign=badger)
 [![Documentation Status](https://readthedocs.org/projects/acres/badge/?version=latest)](http://acres.readthedocs.io/en/latest/?badge=latest)
