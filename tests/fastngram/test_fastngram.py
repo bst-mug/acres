@@ -16,6 +16,13 @@ def test_expand(word_ngrams):
     assert expansions[0] == "EKG"
 
 
+def test_expand_type(word_ngrams):
+    expansions = list(islice(fastngram.fasttype("EKG", min_freq=2), 100))
+    assert len(expansions) == 5
+    assert "Effusion" in expansions
+    assert expansions[0] == "EKG"
+
+
 def test_baseline(word_ngrams):
     expansions = list(islice(fastngram.baseline("EKG"), 100))
     assert len(expansions) == 9
