@@ -48,6 +48,7 @@ def get_log_corpus_filename() -> str:
 
     :return:
     """
+    os.makedirs(os.path.dirname(LOG_FOLDER), exist_ok=True)
     return LOG_FOLDER + "logCorpus.txt"
 
 
@@ -57,6 +58,7 @@ def get_log_web_filename() -> str:
 
     :return:
     """
+    os.makedirs(os.path.dirname(LOG_FOLDER), exist_ok=True)
     return LOG_FOLDER + "logWebs.txt"
 
 
@@ -284,6 +286,7 @@ def get_nn_model(ngram_size: int = 3, min_count: int = 1, net_size: int = 100, a
         if not os.path.isfile(model_path):
             logger.warning("Retraining the model...")
             model = train.train(ngram_size, min_count, net_size, alpha, sg, hs, negative)
+            os.makedirs(os.path.dirname(model_path), exist_ok=True)
             model.save(model_path)
 
         # NN_MODEL = FastText.load(model_path)
@@ -410,6 +413,7 @@ def write_txt(resource: Dict[str, int], filename: str) -> int:
 
     output.sort(reverse=True)
 
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
     file = open(filename, 'w', encoding="UTF-8")
     for line in output:
         file.write(line + "\n")
@@ -427,6 +431,7 @@ def _dump(data: Any, filename: str) -> None:
     :return:
     """
     logger.debug("Dumping %s...", filename)
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, "wb") as file:
         pickle.dump(data, file, protocol=pickle.HIGHEST_PROTOCOL)
     logger.debug("Dumped.")

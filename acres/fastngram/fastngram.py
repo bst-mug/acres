@@ -133,7 +133,7 @@ def _extract_contexts(acronym: str, min_freq: int) -> List[Acronym]:
     :param min_freq:
     :return:
     """
-    model = resource_factory.get_center_map()
+    model = resource_factory.get_center_map(acronym[0].lower())
 
     all_contexts = []  # type: List[Acronym]
     for out_freq, contexts in model.contexts(acronym).items():
@@ -162,15 +162,14 @@ def _center_generator(contexts: List[Acronym], min_freq: int,
     :param max_rank:
     :return:
     """
-    model = resource_factory.get_context_map()
-
     # Save previous expansions to avoid the same n-gram to be retrieve from different contexts.
     previous_ngrams = set()  # type: Set[str]
 
     rank = 0
-    for acronym in contexts:
-        left = acronym.left_context
-        right = acronym.right_context
+    for contextualized_acronym in contexts:
+        model = resource_factory.get_context_map(contextualized_acronym.acronym[0].lower())
+        left = contextualized_acronym.left_context
+        right = contextualized_acronym.right_context
         count_map = model.centers(left, right)
         for freq, center_ngrams in count_map.items():
             if freq < min_freq:
@@ -196,13 +195,14 @@ def baseline(acronym: str, left_context: str = "", right_context: str = "") -> I
     return expandn(acronym, "", "")
 
 
-def create_map(ngrams: Dict[str, int],
-               model: Union[ContextMap, CenterMap]) -> Union[ContextMap, CenterMap]:
+def create_map(ngrams: Dict[str, int], model: Union[ContextMap, CenterMap],
+               initial: str = '') -> Union[ContextMap, CenterMap]:
     """
     Create a search-optimized represenation of an ngram-list.
 
     :param ngrams:
     :param model:
+    :param initial:
     :return:
     """
     logger.info("Creating model for fastngram...")
@@ -212,7 +212,8 @@ def create_map(ngrams: Dict[str, int],
 
     for ngram, freq in sorted_ngrams:
         for context in _generate_ngram_contexts(ngram):
-            model.add(context.acronym, context.left_context, context.right_context, freq)
+            if context.acronym.lower().startswith(initial):
+                model.add(context.acronym, context.left_context, context.right_context, freq)
 
     logger.info("Fastngram model created.")
     return model
