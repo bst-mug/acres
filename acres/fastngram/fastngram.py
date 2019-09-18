@@ -5,10 +5,11 @@ A faster version of n-gram matching that uses dictionaries for speed-up.
 import logging
 import sys
 from collections import OrderedDict
-from typing import Dict, Set, Tuple, Iterator, List
+from typing import Dict, Set, Tuple, Iterator, List, Union
 
 from acres.model.topic_list import Acronym
 from acres.preprocess import resource_factory
+from acres.util import functions
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +25,7 @@ class ContextMap:
     def __init__(self) -> None:
         self.map = {}  # type: Dict[Tuple[str, str], OrderedDict[int, Set[str]]]
 
-    def add_context(self, center: str, left_context: str, right_context: str, freq: int) -> None:
+    def add(self, center: str, left_context: str, right_context: str, freq: int) -> None:
         """
         Add a center n-gram with a context.
 
@@ -53,42 +54,39 @@ class ContextMap:
         return self.map[context]
 
 
-def expandn(acronym: str, left_context: str = "", right_context: str = "",
-            min_freq: int = 2, max_rank: int = 100000) -> Iterator[str]:
+class CenterMap:
     """
-    Find an unlimited set of expansion candidates for an acronym given its left and right context. \
-    Note that no filtering is done here.
-
-    :param acronym: Not used.
-    :param left_context:
-    :param right_context:
-    :param min_freq:
-    :param max_rank:
-    :return:
+    A map of center words to contexts.
     """
-    model = resource_factory.get_fastngram()
 
-    # Save previous expansions to avoid the same n-gram to be retrieve from different contexts.
-    previous_ngrams = set()  # type: Set[str]
+    def __init__(self) -> None:
+        self.map = {}  # type: Dict[str, OrderedDict[int, Set[Tuple[str, str]]]]
 
-    acronym = Acronym(acronym=acronym, left_context=left_context, right_context=right_context)
+    def add(self, center: str, left_context: str, right_context: str, freq: int) -> None:
+        """
+        Add a center n-gram with a context.
 
-    rank = 0
-    for contextualized_acronym in _generate_acronym_contexts(acronym):
-        left = contextualized_acronym.left_context
-        right = contextualized_acronym.right_context
-        count_map = model.centers(left, right)
-        for freq, center_ngrams in count_map.items():
-            if freq < min_freq:
-                break
-            for ngram in center_ngrams:
-                if rank > max_rank:
-                    logger.debug("Exausthed generator for %s", acronym)
-                    return ""
-                if ngram not in previous_ngrams:
-                    previous_ngrams.add(ngram)
-                    rank += 1
-                    yield ngram
+        :param center:
+        :param left_context:
+        :param right_context:
+        :param freq:
+        :return:
+        """
+        context = (left_context, right_context)
+        self.map.setdefault(center, OrderedDict())
+        self.map[center].setdefault(freq, set())
+        self.map[center][freq].add(context)
+
+    def contexts(self, center: str) -> 'OrderedDict[int, Set[Tuple[str, str]]]':
+        """
+        Find contexts for a given center word.
+
+        :param center:
+        :return:
+        """
+        if center not in self.map:
+            return OrderedDict()
+        return self.map[center]
 
 
 def baseline(acronym: str, left_context: str = "", right_context: str = "") -> Iterator[str]:
@@ -100,28 +98,126 @@ def baseline(acronym: str, left_context: str = "", right_context: str = "") -> I
     :param right_context:
     :return:
     """
-    return expandn(acronym, "", "")
+    return fastngram(acronym, "", "")
 
 
-def optimizer(ngrams: Dict[str, int]) -> ContextMap:
+def fastngram(acronym: str, left_context: str = "", right_context: str = "",
+              min_freq: int = 2, max_rank: int = 100000) -> Iterator[str]:
+    """
+    Find an unlimited set of expansion candidates for an acronym given its left and right context. \
+    Note that no filtering is done here, except from the acronym initial partioning.
+
+    :param acronym:
+    :param left_context:
+    :param right_context:
+    :param min_freq:
+    :param max_rank:
+    :return:
+    """
+    contextualized_acronym = Acronym(acronym=acronym, left_context=left_context,
+                                     right_context=right_context)
+    contexts = _generate_acronym_contexts(contextualized_acronym)
+
+    for ngram in _center_provider(contexts, min_freq, max_rank):
+        yield ngram
+
+
+def fasttype(acronym: str, left_context: str = "", right_context: str = "",
+             min_freq: int = 2, max_rank: int = 100000) -> Iterator[str]:
+    """
+    Find an unlimited set of expansion candidates given the training contexts of the acronym. \
+    Note that no filtering is done here, except from the acronym initial partioning.
+
+    :param acronym:
+    :param left_context: Not used.
+    :param right_context: Not used.
+    :param min_freq:
+    :param max_rank:
+    :return:
+    """
+    contexts = _find_contexts(acronym, min_freq)
+
+    for ngram in _center_provider(contexts, min_freq, max_rank):
+        yield ngram
+
+
+def _find_contexts(acronym: str, min_freq: int) -> List[Acronym]:
+    """
+    Find contexts in the training data where this acronym appears.
+
+    :param acronym:
+    :param min_freq:
+    :return:
+    """
+    model = resource_factory.get_center_map(functions.partition(acronym))
+
+    all_contexts = []  # type: List[Acronym]
+    for out_freq, contexts in model.contexts(acronym).items():
+        for left, right in contexts:
+            # Do not allow empty contexts.
+            if left == '' and right == '':
+                continue
+            if out_freq < min_freq:
+                break
+            contextualized_acronym = Acronym(acronym=acronym, left_context=left,
+                                             right_context=right)
+            all_contexts.append(contextualized_acronym)
+
+    return all_contexts
+
+
+def _center_provider(contexts: List[Acronym], min_freq: int,
+                     max_rank: int) -> Iterator[str]:
+    """
+    Provide unlimited center words for a given list of contexts.
+
+    :param contexts:
+    :param min_freq:
+    :param max_rank:
+    :return:
+    """
+    # Save previous expansions to avoid the same n-gram to be retrieve from different contexts.
+    previous_ngrams = set()  # type: Set[str]
+
+    rank = 0
+    for contextualized_acronym in contexts:
+        partition = functions.partition(contextualized_acronym.acronym)
+        model = resource_factory.get_context_map(partition)
+
+        left = contextualized_acronym.left_context
+        right = contextualized_acronym.right_context
+        count_map = model.centers(left, right)
+        for freq, center_ngrams in count_map.items():
+            if freq < min_freq:
+                break
+            for ngram in center_ngrams:
+                if rank > max_rank:
+                    return ""
+                if ngram not in previous_ngrams:
+                    previous_ngrams.add(ngram)
+                    rank += 1
+                    yield ngram
+
+
+def create_map(ngrams: Dict[str, int], model: Union[ContextMap, CenterMap],
+               partition: int = 0) -> Union[ContextMap, CenterMap]:
     """
     Create a search-optimized represenation of an ngram-list.
 
-    @todo Support training contexts from the acronym.
-
     :param ngrams:
+    :param model:
+    :param partition:
     :return:
     """
-    logger.info("Creating model for fastngram...")
-
-    model = ContextMap()
+    logger.info("Creating model for fastngram with partition = %d...", partition)
 
     # Ensure ngrams are ordered by decreasing frequency.
     sorted_ngrams = sorted(ngrams.items(), key=lambda x: x[1], reverse=True)
 
     for ngram, freq in sorted_ngrams:
         for context in _generate_ngram_contexts(ngram):
-            model.add_context(context.acronym, context.left_context, context.right_context, freq)
+            if functions.partition(context.acronym) == partition:
+                model.add(context.acronym, context.left_context, context.right_context, freq)
 
     logger.info("Fastngram model created.")
     return model
@@ -178,7 +274,7 @@ def _generate_acronym_contexts(contextualized_acronym: Acronym) -> List[Acronym]
     if right_length > left_length:
         max_length += min(MAX_DIFF, right_length - left_length)
 
-    contexts = []
+    contexts = []  # type: List[Acronym]
     for j in range(max_length, -1, -1):
         # Left size > right size
         if j > right_length:

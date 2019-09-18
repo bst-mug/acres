@@ -38,7 +38,8 @@ NGRAMSTAT = {}  # type: Dict[int, Tuple[int,str]]
 CHARACTER_NGRAMS = {}  # type: Dict[str, int]
 WORD_NGRAMS = {}  # type: Dict[str, int]
 DICTIONARY = {}  # type: Dict[str, List[str]]
-FAST_NGRAM = None  # type: fastngram.ContextMap
+CONTEXT_MAP = {}  # type: Dict[int, fastngram.ContextMap]
+CENTER_MAP = {}  # type: Dict[int, fastngram.CenterMap]
 
 
 def get_log_corpus_filename() -> str:
@@ -47,6 +48,7 @@ def get_log_corpus_filename() -> str:
 
     :return:
     """
+    os.makedirs(os.path.dirname(LOG_FOLDER), exist_ok=True)
     return LOG_FOLDER + "logCorpus.txt"
 
 
@@ -56,6 +58,7 @@ def get_log_web_filename() -> str:
 
     :return:
     """
+    os.makedirs(os.path.dirname(LOG_FOLDER), exist_ok=True)
     return LOG_FOLDER + "logWebs.txt"
 
 
@@ -283,6 +286,7 @@ def get_nn_model(ngram_size: int = 3, min_count: int = 1, net_size: int = 100, a
         if not os.path.isfile(model_path):
             logger.warning("Retraining the model...")
             model = train.train(ngram_size, min_count, net_size, alpha, sg, hs, negative)
+            os.makedirs(os.path.dirname(model_path), exist_ok=True)
             model.save(model_path)
 
         # NN_MODEL = FastText.load(model_path)
@@ -305,27 +309,56 @@ def get_dictionary() -> Dict[str, List[str]]:
     return DICTIONARY
 
 
-def get_fastngram() -> 'fastngram.ContextMap':
+def get_context_map(partition: int = 0) -> 'fastngram.ContextMap':
     """
-    Lazy load the fast n-gram model.
+    Lazy load the fast n-gram context map model.
 
     :return:
     """
-    global FAST_NGRAM
+    global CONTEXT_MAP
 
-    if not FAST_NGRAM:
-        pickle_output_file = PICKLE_FOLDER + "fastngram-V2.p"
+    if partition not in CONTEXT_MAP:
+        # Reset the context map to reduce memory consumption
+        CONTEXT_MAP = {}
+
+        pickle_output_file = PICKLE_FOLDER + "fastngram-V3/contextMap-" + str(partition) + ".p"
 
         if not os.path.isfile(pickle_output_file):
             _log_file_not_found(pickle_output_file)
 
-            fastngram_model = fastngram.optimizer(get_word_ngrams())
-            _dump(fastngram_model, pickle_output_file)
+            context_map = fastngram.create_map(get_word_ngrams(), fastngram.ContextMap(), partition)
+            _dump(context_map, pickle_output_file)
 
         _log_file_found(pickle_output_file)
-        FAST_NGRAM = _load(pickle_output_file)
+        CONTEXT_MAP[partition] = _load(pickle_output_file)
 
-    return FAST_NGRAM
+    return CONTEXT_MAP[partition]
+
+
+def get_center_map(partition: int = 0) -> 'fastngram.CenterMap':
+    """
+    Lazy load the fast n-gram center map model.
+
+    :return:
+    """
+    global CENTER_MAP
+
+    if partition not in CENTER_MAP:
+        # Reset the center map to reduce memory consumption
+        CENTER_MAP = {}
+
+        pickle_output_file = PICKLE_FOLDER + "fastngram-V3/centerMap-" + str(partition) + ".p"
+
+        if not os.path.isfile(pickle_output_file):
+            _log_file_not_found(pickle_output_file)
+
+            center_map = fastngram.create_map(get_word_ngrams(), fastngram.CenterMap(), partition)
+            _dump(center_map, pickle_output_file)
+
+        _log_file_found(pickle_output_file)
+        CENTER_MAP[partition] = _load(pickle_output_file)
+
+    return CENTER_MAP[partition]
 
 
 def reset() -> None:
@@ -376,6 +409,7 @@ def write_txt(resource: Dict[str, int], filename: str) -> int:
 
     output.sort(reverse=True)
 
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
     file = open(filename, 'w', encoding="UTF-8")
     for line in output:
         file.write(line + "\n")
@@ -392,8 +426,11 @@ def _dump(data: Any, filename: str) -> None:
     :param filename:
     :return:
     """
+    logger.debug("Dumping %s...", filename)
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, "wb") as file:
         pickle.dump(data, file, protocol=pickle.HIGHEST_PROTOCOL)
+    logger.debug("Dumped.")
 
 
 def _load(filename: str) -> Any:

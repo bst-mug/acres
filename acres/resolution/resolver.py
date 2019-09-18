@@ -18,6 +18,7 @@ class Strategy(Enum):
     DICTIONARY = 3
     FASTNGRAM = 4
     BASELINE = 5
+    FASTTYPE = 6
 
 
 def filtered_resolve(acronym: str, left_context: str, right_context: str,
@@ -56,8 +57,9 @@ def resolve(acronym: str, left_context: str, right_context: str, strategy: Strat
         Strategy.NGRAM: finder.robust_find_embeddings,
         Strategy.WORD2VEC: test.find_candidates,
         Strategy.DICTIONARY: dictionary.expand,
-        Strategy.FASTNGRAM: fastngram.expandn,
-        Strategy.BASELINE: fastngram.baseline
+        Strategy.FASTNGRAM: fastngram.fastngram,
+        Strategy.BASELINE: fastngram.baseline,
+        Strategy.FASTTYPE: fastngram.fasttype
     }
 
     func = switcher.get(strategy)

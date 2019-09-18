@@ -63,3 +63,17 @@ def test_robust_text_import_from_dir():
     actual = functions.robust_text_import_from_dir("tests/data")
     print(str(len(actual)))
     assert len(actual) == 20
+
+
+def test__partition():
+    assert functions.partition('a') == 0
+    assert functions.partition('g') == 0
+    assert functions.partition('h') == 1
+    assert functions.partition('m') == 1
+    assert functions.partition('n') == 2
+    assert functions.partition('t') == 2
+    assert functions.partition('u') == 3
+    assert functions.partition('z') == 3
+    assert functions.partition('0') == 99
+    assert functions.partition('9') == 99
+    assert functions.partition('ö') == 99
