@@ -7,9 +7,9 @@ This function compares and acronym with a potential full form and returns a list
 """
 import logging
 import os
+import random
 from configparser import ConfigParser
-from random import randint
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Iterable
 
 import requests
 from requests import Response
@@ -120,7 +120,7 @@ def random_sub_list(in_list: list, max_num: int) -> list:
     counter = 0
     rnumbers = []   # type: List[int]
     while counter < max_num:
-        rnumber = (randint(0, length - 1))
+        rnumber = (random.randint(0, length - 1))
         if rnumber not in rnumbers:
             rnumbers.append(rnumber)
             counter = len(rnumbers)
@@ -250,3 +250,19 @@ def partition(word: str, partitions: int = 4) -> int:
 
     # Catch-all for numbers, symbols and diacritics.
     return 99
+
+
+def sample(iterable: Iterable, chance: float) -> Iterable:
+    """
+    Randomly sample items from an iterable with a given chance.
+
+    :param iterable:
+    :param chance:
+    :return:
+    """
+    # Keep lists deterministic
+    random.seed(42)
+
+    for item in iterable:
+        if random.random() < chance:
+            yield item
