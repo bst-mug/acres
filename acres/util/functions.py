@@ -231,3 +231,22 @@ def corpus_to_ngram_list(corpus: str, min_num_tokens: int,
     """
     stats = create_ngram_statistics(corpus, min_num_tokens, max_num_tokens)
     return dict_to_sorted_list(stats)
+
+
+def partition(word: str, partitions: int = 4) -> int:
+    """
+    Find a bucket for a given word.
+
+    :param word:
+    :param partitions:
+    :return:
+    """
+    a = ord('a')
+    z = ord('z')
+    value = ord(word[0].lower())
+    if a <= value <= z:
+        pos = value - a
+        return int(pos * partitions / (z - a + 1))
+
+    # Catch-all for numbers, symbols and diacritics.
+    return 99

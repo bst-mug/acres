@@ -38,8 +38,8 @@ NGRAMSTAT = {}  # type: Dict[int, Tuple[int,str]]
 CHARACTER_NGRAMS = {}  # type: Dict[str, int]
 WORD_NGRAMS = {}  # type: Dict[str, int]
 DICTIONARY = {}  # type: Dict[str, List[str]]
-CONTEXT_MAP = None  # type: fastngram.ContextMap
-CENTER_MAP = None  # type: fastngram.CenterMap
+CONTEXT_MAP = {}  # type: Dict[int, fastngram.ContextMap]
+CENTER_MAP = {}  # type: Dict[int, fastngram.CenterMap]
 
 
 def get_log_corpus_filename() -> str:
@@ -309,7 +309,7 @@ def get_dictionary() -> Dict[str, List[str]]:
     return DICTIONARY
 
 
-def get_context_map() -> 'fastngram.ContextMap':
+def get_context_map(partition: int = 0) -> 'fastngram.ContextMap':
     """
     Lazy load the fast n-gram context map model.
 
@@ -317,22 +317,25 @@ def get_context_map() -> 'fastngram.ContextMap':
     """
     global CONTEXT_MAP
 
-    if not CONTEXT_MAP:
-        pickle_output_file = PICKLE_FOLDER + "contextMap-V3.p"
+    if partition not in CONTEXT_MAP:
+        # Reset the context map to reduce memory consumption
+        CONTEXT_MAP = {}
+
+        pickle_output_file = PICKLE_FOLDER + "fastngram-V3/contextMap-" + str(partition) + ".p"
 
         if not os.path.isfile(pickle_output_file):
             _log_file_not_found(pickle_output_file)
 
-            context_map = fastngram.create_map(get_word_ngrams(), fastngram.ContextMap())
+            context_map = fastngram.create_map(get_word_ngrams(), fastngram.ContextMap(), partition)
             _dump(context_map, pickle_output_file)
 
         _log_file_found(pickle_output_file)
-        CONTEXT_MAP = _load(pickle_output_file)
+        CONTEXT_MAP[partition] = _load(pickle_output_file)
 
-    return CONTEXT_MAP
+    return CONTEXT_MAP[partition]
 
 
-def get_center_map() -> 'fastngram.CenterMap':
+def get_center_map(partition: int = 0) -> 'fastngram.CenterMap':
     """
     Lazy load the fast n-gram center map model.
 
@@ -340,29 +343,22 @@ def get_center_map() -> 'fastngram.CenterMap':
     """
     global CENTER_MAP
 
-    if not CENTER_MAP:
-        pickle_output_file = PICKLE_FOLDER + "centerMap-V3.p"
+    if partition not in CENTER_MAP:
+        # Reset the center map to reduce memory consumption
+        CENTER_MAP = {}
+
+        pickle_output_file = PICKLE_FOLDER + "fastngram-V3/centerMap-" + str(partition) + ".p"
 
         if not os.path.isfile(pickle_output_file):
             _log_file_not_found(pickle_output_file)
 
-            center_map = fastngram.create_map(get_word_ngrams(), fastngram.CenterMap())
+            center_map = fastngram.create_map(get_word_ngrams(), fastngram.CenterMap(), partition)
             _dump(center_map, pickle_output_file)
 
         _log_file_found(pickle_output_file)
-        CENTER_MAP = _load(pickle_output_file)
+        CENTER_MAP[partition] = _load(pickle_output_file)
 
-    return CENTER_MAP
-
-
-def unset_center_map() -> None:
-    """
-    Release the memory used by fastNgram center map.
-
-    :return:
-    """
-    global CENTER_MAP
-    CENTER_MAP = None
+    return CENTER_MAP[partition]
 
 
 def reset() -> None:

@@ -6,12 +6,12 @@ from acres.model.topic_list import Acronym
 
 def test_expand(word_ngrams):
     expansions = list(islice(fastngram.expandn("EKG"), 100))
-    assert len(expansions) == 9
+    assert len(expansions) == 2
     assert "Elektrokardiogramm" in expansions
     assert expansions[0] == "EKG"
 
     expansions = list(islice(fastngram.expandn("EKG", "performed", "yesterday"), 100))
-    assert len(expansions) == 24
+    assert len(expansions) == 11
     assert "Elektro kardiogramm" in expansions
     assert expansions[0] == "EKG"
 
@@ -25,7 +25,7 @@ def test_expand_type(word_ngrams):
 
 def test_baseline(word_ngrams):
     expansions = list(islice(fastngram.baseline("EKG"), 100))
-    assert len(expansions) == 9
+    assert len(expansions) == 2
 
 
 def test__generate_ngram_contexts():

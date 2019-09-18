@@ -9,6 +9,7 @@ from typing import Dict, Set, Tuple, Iterator, List, Union
 
 from acres.model.topic_list import Acronym
 from acres.preprocess import resource_factory
+from acres.util import functions
 
 logger = logging.getLogger(__name__)
 
@@ -133,7 +134,7 @@ def _extract_contexts(acronym: str, min_freq: int) -> List[Acronym]:
     :param min_freq:
     :return:
     """
-    model = resource_factory.get_center_map(acronym[0].lower())
+    model = resource_factory.get_center_map(functions.partition(acronym))
 
     all_contexts = []  # type: List[Acronym]
     for out_freq, contexts in model.contexts(acronym).items():
@@ -146,9 +147,6 @@ def _extract_contexts(acronym: str, min_freq: int) -> List[Acronym]:
             contextualized_acronym = Acronym(acronym=acronym, left_context=left,
                                              right_context=right)
             all_contexts.append(contextualized_acronym)
-
-    # Release memory
-    # resource_factory.unset_center_map()
 
     return all_contexts
 
@@ -167,7 +165,9 @@ def _center_generator(contexts: List[Acronym], min_freq: int,
 
     rank = 0
     for contextualized_acronym in contexts:
-        model = resource_factory.get_context_map(contextualized_acronym.acronym[0].lower())
+        partition = functions.partition(contextualized_acronym.acronym)
+        model = resource_factory.get_context_map(partition)
+
         left = contextualized_acronym.left_context
         right = contextualized_acronym.right_context
         count_map = model.centers(left, right)
@@ -196,23 +196,23 @@ def baseline(acronym: str, left_context: str = "", right_context: str = "") -> I
 
 
 def create_map(ngrams: Dict[str, int], model: Union[ContextMap, CenterMap],
-               initial: str = '') -> Union[ContextMap, CenterMap]:
+               partition: int = 0) -> Union[ContextMap, CenterMap]:
     """
     Create a search-optimized represenation of an ngram-list.
 
     :param ngrams:
     :param model:
-    :param initial:
+    :param partition:
     :return:
     """
-    logger.info("Creating model for fastngram...")
+    logger.info("Creating model for fastngram with partition = %d...", partition)
 
     # Ensure ngrams are ordered by decreasing frequency.
     sorted_ngrams = sorted(ngrams.items(), key=lambda x: x[1], reverse=True)
 
     for ngram, freq in sorted_ngrams:
         for context in _generate_ngram_contexts(ngram):
-            if context.acronym.lower().startswith(initial):
+            if functions.partition(context.acronym) == partition:
                 model.add(context.acronym, context.left_context, context.right_context, freq)
 
     logger.info("Fastngram model created.")
