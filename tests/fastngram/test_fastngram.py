@@ -5,12 +5,12 @@ from acres.model.topic_list import Acronym
 
 
 def test_expand(word_ngrams):
-    expansions = list(islice(fastngram.expandn("EKG"), 100))
+    expansions = list(islice(fastngram.fastngram("EKG"), 100))
     assert len(expansions) == 2
     assert "Elektrokardiogramm" in expansions
     assert expansions[0] == "EKG"
 
-    expansions = list(islice(fastngram.expandn("EKG", "performed", "yesterday"), 100))
+    expansions = list(islice(fastngram.fastngram("EKG", "performed", "yesterday"), 100))
     assert len(expansions) == 11
     assert "Elektro kardiogramm" in expansions
     assert expansions[0] == "EKG"

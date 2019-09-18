@@ -89,13 +89,25 @@ class CenterMap:
         return self.map[center]
 
 
-def expandn(acronym: str, left_context: str = "", right_context: str = "",
-            min_freq: int = 2, max_rank: int = 100000) -> Iterator[str]:
+def baseline(acronym: str, left_context: str = "", right_context: str = "") -> Iterator[str]:
+    """
+    A baseline method that expands only with unigrams.
+
+    :param acronym:
+    :param left_context:
+    :param right_context:
+    :return:
+    """
+    return fastngram(acronym, "", "")
+
+
+def fastngram(acronym: str, left_context: str = "", right_context: str = "",
+              min_freq: int = 2, max_rank: int = 100000) -> Iterator[str]:
     """
     Find an unlimited set of expansion candidates for an acronym given its left and right context. \
-    Note that no filtering is done here.
+    Note that no filtering is done here, except from the acronym initial partioning.
 
-    :param acronym: Not used.
+    :param acronym:
     :param left_context:
     :param right_context:
     :param min_freq:
@@ -106,29 +118,32 @@ def expandn(acronym: str, left_context: str = "", right_context: str = "",
                                      right_context=right_context)
     contexts = _generate_acronym_contexts(contextualized_acronym)
 
-    for ngram in _center_generator(contexts, min_freq, max_rank):
+    for ngram in _center_provider(contexts, min_freq, max_rank):
         yield ngram
 
 
 def fasttype(acronym: str, left_context: str = "", right_context: str = "",
              min_freq: int = 2, max_rank: int = 100000) -> Iterator[str]:
     """
+    Find an unlimited set of expansion candidates given the training contexts of the acronym. \
+    Note that no filtering is done here, except from the acronym initial partioning.
 
-    :param acronym: Not used.
-    :param left_context:
-    :param right_context:
+    :param acronym:
+    :param left_context: Not used.
+    :param right_context: Not used.
     :param min_freq:
     :param max_rank:
     :return:
     """
-    contexts = _extract_contexts(acronym, min_freq)
+    contexts = _find_contexts(acronym, min_freq)
 
-    for ngram in _center_generator(contexts, min_freq, max_rank):
+    for ngram in _center_provider(contexts, min_freq, max_rank):
         yield ngram
 
 
-def _extract_contexts(acronym: str, min_freq: int) -> List[Acronym]:
+def _find_contexts(acronym: str, min_freq: int) -> List[Acronym]:
     """
+    Find contexts in the training data where this acronym appears.
 
     :param acronym:
     :param min_freq:
@@ -151,9 +166,10 @@ def _extract_contexts(acronym: str, min_freq: int) -> List[Acronym]:
     return all_contexts
 
 
-def _center_generator(contexts: List[Acronym], min_freq: int,
-                      max_rank: int) -> Iterator[str]:
+def _center_provider(contexts: List[Acronym], min_freq: int,
+                     max_rank: int) -> Iterator[str]:
     """
+    Provide unlimited center words for a given list of contexts.
 
     :param contexts:
     :param min_freq:
@@ -181,18 +197,6 @@ def _center_generator(contexts: List[Acronym], min_freq: int,
                     previous_ngrams.add(ngram)
                     rank += 1
                     yield ngram
-
-
-def baseline(acronym: str, left_context: str = "", right_context: str = "") -> Iterator[str]:
-    """
-    A baseline method that expands only with unigrams.
-
-    :param acronym:
-    :param left_context:
-    :param right_context:
-    :return:
-    """
-    return expandn(acronym, "", "")
 
 
 def create_map(ngrams: Dict[str, int], model: Union[ContextMap, CenterMap],
