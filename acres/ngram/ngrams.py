@@ -2,9 +2,11 @@
 Module to handle n-gram lists.
 """
 import logging
-from typing import Generator, List
+from typing import Generator, List, Iterator
 
+from acres.model import topic_list
 from acres.preprocess import resource_factory
+from acres.util import acronym
 
 logger = logging.getLogger(__name__)
 
@@ -46,3 +48,20 @@ class FilteredNGramStat:
                 # Repeat ngram freq times
                 for _ in range(int(freq)):
                     yield tokens
+
+
+def filter_acronym_contexts(ngrams: Iterator[List[str]]) -> 'Iterator[topic_list.Acronym]':
+    """
+    Filter an iterable of tokens by the ones containing an acronym in the middle and convert them \
+    to Acronym tuples.
+
+    :param ngrams:
+    :return:
+    """
+    for tokens in ngrams:
+        ngram_size = len(tokens)
+        middle = int(len(tokens) / 2)
+        if acronym.is_acronym(tokens[middle]):
+            yield topic_list.Acronym(acronym=tokens[middle],
+                                     left_context=' '.join(tokens[0:middle]),
+                                     right_context=' '.join(tokens[middle + 1:ngram_size]))
