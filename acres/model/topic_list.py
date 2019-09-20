@@ -1,17 +1,15 @@
 """
 Model class that represents a topic list.
 """
-from collections import namedtuple
 from operator import attrgetter
 from typing import List, Set
 
 from acres.ngram import ngrams
+from acres.util import acronym as acro_util
 from acres.util import functions
 
-Acronym = namedtuple('Acronym', ['acronym', 'left_context', 'right_context'])
 
-
-def parse(filename: str) -> List[Acronym]:
+def parse(filename: str) -> 'List[acro_util.Acronym]':
     """
     Parses a TSV-formatted topic list into a list of acronyms (with context).
 
@@ -20,21 +18,21 @@ def parse(filename: str) -> List[Acronym]:
     """
     file = open(filename, "r", encoding="utf-8")
 
-    topic_list = [] # type: List[Acronym]
+    topic_list = []  # type: List[acro_util.Acronym]
     for row in file:
         fields = row.split("\t")
         left_context = fields[0].strip()
         acronym = fields[1].strip()
         right_context = fields[2].strip()
 
-        contextualized_acronym = Acronym(acronym=acronym, left_context=left_context,
-                                         right_context=right_context)
+        contextualized_acronym = acro_util.Acronym(acronym=acronym, left_context=left_context,
+                                                   right_context=right_context)
         topic_list.append(contextualized_acronym)
 
     return topic_list
 
 
-def unique_types(topics: List[Acronym]) -> Set[str]:
+def unique_types(topics: 'List[acro_util.Acronym]') -> Set[str]:
     """
     Extract types from a topic list.
 

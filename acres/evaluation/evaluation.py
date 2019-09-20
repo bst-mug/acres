@@ -8,12 +8,13 @@ from enum import Enum
 from itertools import islice
 from typing import Dict, Tuple, List, Set
 
+import acres.util.acronym
 from acres.evaluation import metrics
 from acres.model import expansion_standard, detection_standard, topic_list
-from acres.model.topic_list import Acronym
 from acres.resolution import resolver
 from acres.stats import senses
 from acres.util import text
+from acres.util.acronym import Acronym
 
 logger = logging.getLogger(__name__)
 
@@ -50,7 +51,7 @@ def test_input(true_expansions: Set[str], possible_expansions: List[str],
     return False
 
 
-def analyze(contextualized_acronym: topic_list.Acronym, true_expansions: Set[str],
+def analyze(contextualized_acronym: acres.util.acronym.Acronym, true_expansions: Set[str],
             strategy: resolver.Strategy, max_tries: int) -> Dict[str, bool]:
     """
     Analyze a given row of the gold standard.

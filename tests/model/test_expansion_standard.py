@@ -1,7 +1,7 @@
 import os
 
 from acres.model import expansion_standard
-from acres.model.topic_list import Acronym
+from acres.util.acronym import Acronym
 
 
 def test_write_results(ngramstat):

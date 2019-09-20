@@ -1,7 +1,7 @@
 from itertools import islice
 
-from acres.model.topic_list import Acronym
 from acres.ngram import ngrams
+from acres.util.acronym import Acronym
 
 
 def test_filter_acronym_contexts():

@@ -6,8 +6,8 @@ from itertools import islice
 from typing import Dict, TextIO, Set, List
 
 from acres.model import detection_standard, topic_list
-from acres.model.topic_list import Acronym
 from acres.resolution import resolver
+from acres.util import acronym as acro_util
 
 logger = logging.getLogger(__name__)
 
@@ -47,7 +47,7 @@ def _write_expansions(acronym: str, expansions: Dict[str, int], file: TextIO) ->
 
 
 def write(filename: str, previous: Dict[str, Dict[str, int]], valid: Set[str],
-          topics: List[Acronym]) -> None:
+          topics: List[acro_util.Acronym]) -> None:
     """
     Write results in the TREC format, one candidate expansion per line.
 
