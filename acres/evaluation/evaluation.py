@@ -171,7 +171,7 @@ def do_analysis(topics_file: str, detection_file: str, expansion_file: str,
     :return:
     """
     topics = topic_list.parse(topics_file)
-    valid = detection_standard.filter_valid(detection_standard.parse(detection_file))
+    valid = detection_standard.parse_valid(detection_file)
     standard = expansion_standard.parse(expansion_file)
 
     start_time = time.time()

@@ -10,9 +10,8 @@ def test_parse():
     assert not standard['III']
 
 
-def test_filter_valid():
-    standard = detection_standard.parse("tests/resources/test_detection.tsv")
-    filtered = detection_standard.filter_valid(standard)
+def test_parse_valid():
+    filtered = detection_standard.parse_valid("tests/resources/test_detection.tsv")
     assert 'EKG' in filtered
     assert 'III' not in filtered
     assert 'NOTACRONYM' not in filtered

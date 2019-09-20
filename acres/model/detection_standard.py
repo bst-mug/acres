@@ -63,6 +63,16 @@ def filter_valid(standard: Dict[str, bool]) -> Set[str]:
     return types
 
 
+def parse_valid(filename: str) -> Set[str]:
+    """
+    Wrapper method for both `parse` and `filter_valid`.
+
+    :param filename:
+    :return:
+    """
+    return filter_valid(parse(filename))
+
+
 def update(previous: Dict[str, bool], acronyms: List[Acronym]) -> Dict[str, bool]:
     """
     Update a previous detection standard with new acronyms from a topic list, preserving order.
