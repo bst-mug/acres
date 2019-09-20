@@ -2,8 +2,10 @@
 Model class that represents a detection standard.
 """
 import logging
-from typing import Dict, Set
+from typing import Dict, Set, List
 
+from acres.model import topic_list
+from acres.model.topic_list import Acronym
 from acres.util import acronym as acro_util
 
 logger = logging.getLogger(__name__)
@@ -61,5 +63,39 @@ def filter_valid(standard: Dict[str, bool]) -> Set[str]:
     return types
 
 
+def update(previous: Dict[str, bool], acronyms: List[Acronym]) -> Dict[str, bool]:
+    """
+    Update a previous detection standard with new acronyms from a topic list, preserving order.
+
+    :param previous:
+    :param acronyms:
+    :return:
+    """
+    ret = previous
+    for acronym in acronyms:
+        if acronym.acronym not in ret:
+            ret[acronym.acronym] = True
+    return ret
+
+
+def write(filename: str, standard: Dict[str, bool]) -> None:
+    """
+    Write a detection standard into a file.
+
+    :param filename:
+    :param standard:
+    :return:
+    """
+    file = open(filename, "w+", encoding="utf-8")
+    for acronym, valid in standard.items():
+        file.write(acronym)
+        file.write("\t")
+        file.write(str(valid).upper())
+        file.write("\n")
+    file.close()
+
+
 if __name__ == "__main__":
-    filter_valid(parse("resources/detection_standard.tsv"))
+    detection_standard = "resources/detection_standard.tsv"
+    write(detection_standard,
+          update(parse(detection_standard), topic_list.parse("resources/topic_list.tsv")))
