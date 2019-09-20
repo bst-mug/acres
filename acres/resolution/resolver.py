@@ -1,4 +1,4 @@
-from enum import Enum
+from enum import IntEnum
 from typing import List, Iterator
 
 from acres.fastngram import fastngram
@@ -9,7 +9,7 @@ from acres.stats import dictionary
 from acres.util import text
 
 
-class Strategy(Enum):
+class Strategy(IntEnum):
     """
     Enum that holds acronym-solving strategies.
     """
