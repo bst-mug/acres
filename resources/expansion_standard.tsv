@@ -1,1135 +1,4544 @@
 ACC	Q0	Arteria carotic communis	2
+ACC	Q0	Arteria carotis communis	2
+ACC	Q0	abgeschwächtes Atemgeräusch	0
+ACC	Q0	ACC ACE	0
+ACC	Q0	ACC ACI	0
+ACC	Q0	ACC IMD	0
+ACC	Q0	ACC vereinzelte	0
+ACC	Q0	ACCACI	0
+ACC	Q0	Accupaque	0
+ACC	Q0	ACE atherosklerotische	0
+ACC	Q0	ACI atherosklerotische	0
+ACC	Q0	ACI und ACE	0
+ACC	Q0	ACI und ACE reichend	0
+ACC	Q0	ACi und ECR reichend	0
 ACC	Q0	ACI Zahlreiche	0
 ACC	Q0	AFC triphasisches	0
-ACC	Q0	ACE atherosklerotische	0
-ACC	Q0	abgeschwächtes Atemgeräusch	0
-ACC	Q0	ACI atherosklerotische	0
-ACC	Q0	Rechts ACC	0
-ACC	Q0	Hardplaques	0
+ACC	Q0	Arteriosklerotische Wandverdickungen	0
+ACC	Q0	Halo ACC	0
 ACC	Q0	Halsgefäße ACC	0
-ACC	Q0	ACC vereinzelte	0
-ACC	Q0	ACC ACI	0
+ACC	Q0	Hardplaques	0
+ACC	Q0	Rechts ACC	0
+ACC	Q0	Acetylcystein	-1
+ACC	Q0	Anteriorer cingulärer Cortex	-1
+ACC	Q0	Aplasia cutis congenita	-1
+ACS	Q0	akutem Koronarsyndrom	2
+ACS	Q0	Akutes Coronarsyndrom	2
 ACS	Q0	Akutes Koronarsyndrom	2
+ACS	Q0	akutes Koronarsyndrom	2
+ACS	Q0	Akutes	1
+ACS	Q0	ACB	0
+ACS	Q0	ACM	0
 ACS	Q0	aktueller Verabreichung	0
-ACS	Q0	Asthma bronchiale	0
-ACS	Q0	AV Knotenreentrytachykardie	0
-ACS	Q0	Arthritis urica	0
+ACS	Q0	akutes Geschehen	0
 ACS	Q0	Allergisches	0
-ACS	Q0	Hyperkaliämie	0
-ACS	Q0	WPW Syndrom	0
-ACS	Q0	NSTEMI	0
-ACS	Q0	Lungenödem	0
+ACS	Q0	Anämie hypochrom	0
+ACS	Q0	Angina pectoris	0
+ACS	Q0	Angioseal Verschlusssystem	0
+ACS	Q0	Angiosealverschlusssystem	0
+ACS	Q0	angrenzendem Weichteilhämatom	0
+ACS	Q0	Arthritis urica	0
+ACS	Q0	Asthma bronchiale	0
+ACS	Q0	Aszitespunktion	0
+ACS	Q0	Auschluss	0
+ACS	Q0	ausgenommen rheumatisch	0
+ACS	Q0	AV Knotenreentrytachykardie	0
 ACS	Q0	Fürstenfeld	0
-AE	Q0	unerwünschten Ereignisse	1
+ACS	Q0	Hyperkaliämie	0
+ACS	Q0	Lungenödem	0
+ACS	Q0	NSTEMI	0
+ACS	Q0	WPW Syndrom	0
+ACS	Q0	American Cancer Society	-1
+ACS	Q0	American College of Surgeons	-1
+ACS	Q0	arteria coronaria sinistra	-1
+ACS	Q0	arterielle Verschlusskrankheit	-1
 AE	Q0	Adverse events	2
-AE	Q0	aufgetretenen Konsolidierungen	0
+AE	Q0	unerwünschten Ereignisse	1
+AE	Q0	Abd Bauchdecke	0
+AE	Q0	AE SAE	0
+AE	Q0	AEs	0
+AE	Q0	Allergien	0
+AE	Q0	anhaltenden tachyarrhythmischen	0
 AE	Q0	Arrhythmieepisoden	0
 AE	Q0	Arrythmien	0
-AE	Q0	Abd Bauchdecke	0
+AE	Q0	aufgetretenen Konsolidierungen	0
+AE	Q0	auskultierbare Geräusche	0
+AE	Q0	auskultierbaren Geräusche	0
+AE	Q0	auskultierbares Geräusch	0
 AE	Q0	axillären Lymphknoten	0
-AE	Q0	SAE	0
+AE	Q0	CFAE	0
+AE	Q0	DAE	0
 AE	Q0	feuchten RG	0
-AE	Q0	Path RG	0
-AE	Q0	AEs	0
 AE	Q0	merklichen Rhythmusereignisse	0
+AE	Q0	Path RG	0
+AE	Q0	SAE	0
+AE	Q0	SAEs	0
+AE	Q0	Alkoholembryopathie	-1
+AE	Q0	Antitoxin-Einheit	-1
+AE	Q0	Appendektomie	-1
+AE	Q0	Atopisches Ekzem	-1
 AFC	Q0	Arteria femoralis communis	2
+AFC	Q0	AFc	0
+AFC	Q0	AFC AFS	0
+AFC	Q0	AFCS	0
+AFC	Q0	AFS	0
+AFC	Q0	AFS Lokales	0
+AFC	Q0	Angiografie intracerebral	0
+AFC	Q0	Angiografie intracraniell	0
+AFC	Q0	Arteriosklerotischer Gefäßschaden	0
 AFC	Q0	Aufsuchen	0
-AFC	Q0	Links AFC	0
 AFC	Q0	Einstichstelle	0
 AFC	Q0	Fistel Links	0
-AFC	Q0	Rechts AFC	0
 AFC	Q0	iB	0
+AFC	Q0	Links AFC	0
+AFC	Q0	Rechts AFC	0
+AFC	Q0	VFC	0
 AINS	Q0	Aorteninsuffizienz	2
-AINS	Q0	Aorteninsuff	1
 AINS	Q0	Aortenklappeninsuffizienz	2
+AINS	Q0	Aorteninsuff	1
+AINS	Q0	Aortenklappeninsuffizenz	1
+AINS	Q0	Ains	0
+AINS	Q0	AINSI	0
 AINS	Q0	Aortenklappensklerosierung	0
-AINS	Q0	Aortenregurgitation	0
 AINS	Q0	Aortenklappensklerosierung ohne	0
-AINS	Q0	MST	0
+AINS	Q0	Aortenregurgitation	0
 AINS	Q0	MINS	0
-AINS	Q0	PUINS	0
 AINS	Q0	Mins	0
+AINS	Q0	MINSÐ	0
 AINS	Q0	Mitralinsuff	0
+AINS	Q0	MST	0
+AINS	Q0	PINS	0
+AINS	Q0	PUINS	0
 AK	Q0	Aortenklappe	2
 AK	Q0	Akinesie	1
-AK	Q0	apikale Akinesie	0
-AK	Q0	Akinesie Restmyokard	0
-AK	Q0	Aortenklappenfluß	0
-AK	Q0	Aortenklappenfluss	0
-AK	Q0	Ðm	0
+AK	Q0	Aortennklappe	1
 AK	Q0	Ak	0
+AK	Q0	AKE ATS	0
+AK	Q0	Akinesie Restmyokard	0
+AK	Q0	AKÖ	0
+AK	Q0	Aortenklappe trikuspid	0
+AK	Q0	Aortenklappenfluss	0
+AK	Q0	Aortenklappenfluß	0
+AK	Q0	apikale Akinesie	0
+AK	Q0	apikolateralen	0
+AK	Q0	Apikoseptal	0
+AK	Q0	apikoseptalen	0
+AK	Q0	BAK	0
+AK	Q0	Ðm	0
+AK	Q0	JAK	0
 AK	Q0	Klappenstatus	0
-AK	Q0	Spitzendyskinesie	0
 AK	Q0	Spitzena	0
+AK	Q0	Spitzendyskinesie	0
+AK	Q0	TRAK	0
+AK	Q0	Akinesie apikosept	-1
+AK	Q0	Alzheimer-Krankheit	-1
 AKE	Q0	Aortenklappenersatz	2
-AKE	Q0	Aortenklappen	0
 AKE	Q0	Aortenklappenersatzoperation	2
+AKE	Q0	Aortenklappe	1
+AKE	Q0	Aortenklappen	1
+AKE	Q0	Aortenklapppenersatz	1
+AKE	Q0	AKE ATS	0
 AKE	Q0	Aneurysmektomie	0
-AKE	Q0	Aortenklappe	0
+AKE	Q0	Aortenklappenersatz Anästhesie	0
+AKE	Q0	Aortenklappenersatzinfekt	0
 AKE	Q0	Aortenklappenrekonstruktion	0
-AKE	Q0	MKE	0
+AKE	Q0	Aortenklappensklerose	0
+AKE	Q0	aortokoronaren	0
 AKE	Q0	CABG	0
 AKE	Q0	Mitral Repair	0
+AKE	Q0	MKE	0
 AKE	Q0	MKR	0
+AKE	Q0	MKR MKE	0
+AKE	Q0	PKE	0
 AKE	Q0	Repair	0
+AKE	Q0	TKE	0
 ALT	Q0	Alanin-Aminotransferase	2
 ALT	Q0	Allostad	0
 ALT	Q0	Allostat	0
-ALT	Q0	LDH	0
-ALT	Q0	MB	0
+ALT	Q0	ALT ÐÐU	0
+ALT	Q0	altblutig	0
+ALT	Q0	Alzheimertyp	0
+ALT	Q0	Amulett	0
+ALT	Q0	atrialer Stimulationsanteil	0
 ALT	Q0	CKMB	0
-ALT	Q0	GT	0
 ALT	Q0	GGT	0
-AÖF	Q0	Aortenöffnungsfläche	2
+ALT	Q0	GT	0
+ALT	Q0	LDH	0
+ALT	Q0	MALT	0
+ALT	Q0	MB	0
 AÖF	Q0	Aortenklappenöffnungsfläche	2
+AÖF	Q0	Aortenöffnungsfläche	2
 AÖF	Q0	Aortenklappenöffungsfläche	1
+AÖF	Q0	Aortenöffnung	1
+AÖF	Q0	AKÖ	0
+AÖF	Q0	AÖFÐ	0
 AÖF	Q0	Aortenöffnungsstelle	0
+AÖF	Q0	Klappenöffnungsfläche	0
 AÖF	Q0	KÖF	0
 AÖF	Q0	MÖF	0
-AÖF	Q0	Klappenöffnungsfläche	0
-AÖF	Q0	AKÖ	0
+AÖF	Q0	ÖF	0
 AÖF	Q0	Öffnungsfläche	0
+AÖF	Q0	TRÖF	0
+AP	Q0	Alkalische Phosphatase	2
 AP	Q0	Angina pectoris	2
 AP	Q0	Angina Pectoris	2
 AP	Q0	allg Erschöpfung	0
 AP	Q0	allgemeiner Erschöpfung	0
-AP	Q0	ausmachbare P	0
-AP	Q0	Arrhythmieepisoden	0
-AP	Q0	Ap	0
-AP	Q0	pectanginösen	0
-AP	Q0	Atemnot	0
-AP	Q0	Stenokardien	0
 AP	Q0	Angina	0
+AP	Q0	aortenstenosespezifische	0
+AP	Q0	Ap	0
+AP	Q0	APC	0
+AP	Q0	APOP	0
+AP	Q0	APPT	0
+AP	Q0	Arrhythmieepisoden	0
+AP	Q0	Atemnot	0
+AP	Q0	ausmachbare P	0
+AP	Q0	Ausschöpfung	0
+AP	Q0	IAP	0
+AP	Q0	MAP	0
+AP	Q0	pectanginösen	0
+AP	Q0	Stenokardien	0
+AP	Q0	aggressive Parodontitis	-1
+AP	Q0	Aktionspotential	-1
+AP	Q0	auftretende Palpitationen	-1
 ASS	Q0	Acetylsalicylsäure	2
-ASS	Q0	AssÐÐÐmg	0
-ASS	Q0	Anschlussheilverfahren	0
-ASS	Q0	Aristocor	0
-ASS	Q0	Allostad	0
+ASS	Q0	Aspirin	1
 ASS	Q0	Aldostad	0
+ASS	Q0	Allostad	0
+ASS	Q0	Anschlussheilverfahren	0
+ASS	Q0	anstelle	0
+ASS	Q0	Aristocor	0
+ASS	Q0	Aspisol	0
 ASS	Q0	Ass	0
-ASS	Q0	TASS	0
+ASS	Q0	ass	0
+ASS	Q0	Ass lebenslang	0
+ASS	Q0	Ass lebenslang sowie	0
+ASS	Q0	Ass soll	0
+ASS	Q0	Ass soll lebenslang	0
+ASS	Q0	Assasantin	0
 ASS	Q0	ASSÐÐÐ	0
-ASS	Q0	Cholesterinarme Diät	0
+ASS	Q0	AssÐÐÐmg	0
+ASS	Q0	Assura	0
+ASS	Q0	BLOPRESS	0
 ASS	Q0	Certralin	0
-AST	Q0	Aortenstenose	2
+ASS	Q0	Cholesterinarme Diät	0
+ASS	Q0	CSS	0
+ASS	Q0	FESS	0
+ASS	Q0	HSS	0
+ASS	Q0	POSS	0
+ASS	Q0	TASS	0
 AST	Q0	Aortenklappenstenose	2
+AST	Q0	Aortenstenose	2
+AST	Q0	Aortenklappenstenoe	1
+AST	Q0	Aortenklappestenose	1
 AST	Q0	ACD Abgangsstenose	0
-AST	Q0	Aortenisthmusstenose	0
 AST	Q0	Adipositas	0
+AST	Q0	Aortenisthmusstenose	0
 AST	Q0	Aszitespunktion	0
+AST	Q0	dil CMP	0
+AST	Q0	EUCAST	0
+AST	Q0	IAST	0
 AST	Q0	ischäm CMP	0
 AST	Q0	MINS	0
-AST	Q0	dil CMP	0
-AST	Q0	Trikuspidalklappeninsuffizienz	0
 AST	Q0	Mitralklappeninsuffizienz	0
-AV	Q0	atrioventrikulärer	2
-AV	Q0	A vert	0
-AV	Q0	A vertebralis	1
-AV	Q0	Aortenklappen Vermessung	0
-AV	Q0	antiarrhythmischen Rezidivprophylaxe	0
+AST	Q0	Mitralklappenstenose MÖF	0
+AST	Q0	NAST	0
+AST	Q0	Trikuspidalklappeninsuffizienz	0
+AST	Q0	Aortenprothesenstenose	-1
+AST	Q0	Aspartat-Aminotransferase	-1
+AST	Q0	Mitralklappenstenose	-1
 AV	Q0	Atrioventrikular	2
+AV	Q0	Atrioventrikulär	2
+AV	Q0	atrioventrikulärer	2
+AV	Q0	Atrioventrikulärer	2
+AV	Q0	A vertebralis	1
+AV	Q0	A vert	0
+AV	Q0	aktive	0
+AV	Q0	aktiven	0
+AV	Q0	aktiver	0
+AV	Q0	antiarrhythmischen Rezidivprophylaxe	0
+AV	Q0	Aortenklappen Vermessung	0
+AV	Q0	Arrhyhtmogene rechtsventrikulärer	0
 AV	Q0	AV Block	0
 AV	Q0	AV Knoten	0
-AV	Q0	vert regelrecht	0
+AV	Q0	AVb	0
+AV	Q0	AVBI	0
+AV	Q0	AVBl	0
+AV	Q0	AVM	0
+AV	Q0	AVN	0
 AV	Q0	duplexsonographisch	0
 AV	Q0	vert kaliberkräftig	0
+AV	Q0	vert regelrecht	0
+AV	Q0	Allgemeinveränderungen	-1
+AV	Q0	Art vert	-1
+AV	Q0	Attachmentverlust	-1
 AVK	Q0	arterielle Verschlusskrankheit	2
+AVK	Q0	Arterielle Verschlusskrankheit	2
 AVK	Q0	Antiarr Unverträglichkeit	0
 AVK	Q0	Atrioventrikulärer	0
-AVK	Q0	diabet AVK	0
+AVK	Q0	AV Blockierungen	0
+AVK	Q0	AV Knotenreentrytachykardie	0
+AVK	Q0	AV Knotens	0
+AVK	Q0	AVB IIb	0
+AVK	Q0	AVK IIb	0
+AVK	Q0	AVK IV	0
 AVK	Q0	diab AVK	0
+AVK	Q0	diabet AVK	0
 AVK	Q0	HUK	0
-AVK	Q0	Verschlusskrankheit	0
 AVK	Q0	Insulinpflichtiger	0
+AVK	Q0	vAVK	0
+AVK	Q0	Verschlusskrankheit	0
+AVK	Q0	zAVK	0
 AZ	Q0	Allgemeinzustand	2
+AZ	Q0	Allgemeinzustandes	2
 AZ	Q0	Ablationsversuch Herzbeuteltamponade	0
+AZ	Q0	AEZ C	0
+AZ	Q0	Allgemeinmediziner	0
+AZ	Q0	Angstzustand	0
+AZ	Q0	aufzunehmen	0
+AZ	Q0	ausgezeichnet	0
+AZ	Q0	ausgezeichneten Allgemeinzustand	0
 AZ	Q0	Az	0
-AZ	Q0	Wundverhältnissen	0
-AZ	Q0	Langzeitergebnis	0
+AZ	Q0	GRAZ	0
 AZ	Q0	Inspiration	0
 AZ	Q0	junktionalem Ersatzrhythmus	0
-BD	Q0	Bauchdecken	2
+AZ	Q0	Langzeitergebnis	0
+AZ	Q0	Wundverhältnissen	0
 BD	Q0	Bauchdecke	2
-BD	Q0	Blutdruckverhalten Weder	0
-BD	Q0	Belastungsbedingungen	0
-BD	Q0	Beinödem	0
-BD	Q0	Belastungsdyspnoen	0
-BD	Q0	weich	0
+BD	Q0	Bauchdecken	2
+BD	Q0	AGs	0
 BD	Q0	apikal hörbar	0
-BD	Q0	gebläht	0
+BD	Q0	Bauchdeckenabszessspaltung	0
+BD	Q0	Bd	0
+BD	Q0	bd Karotiden	0
+BD	Q0	BDU	0
+BD	Q0	Beinödem	0
+BD	Q0	Belastungsbedingungen	0
+BD	Q0	Belastungsdyspnoen	0
+BD	Q0	blande mediane	0
 BD	Q0	blande Narben	0
+BD	Q0	Blutdruckverhalten Weder	0
+BD	Q0	BURGDORFERI	0
 BD	Q0	exspiratorisches	0
+BD	Q0	gebläht	0
+BD	Q0	üThN	0
+BD	Q0	weich	0
+BD	Q0	ZBD	0
+BD	Q0	beids	-1
+BD	Q0	bicuspiden	-1
+BD	Q0	Blutdruck	-1
 BHB	Q0	Barmherzigen Brüder	2
 BHB	Q0	Barmherzigen Brüdern	2
-BHB	Q0	Bauchbereich	0
-BHB	Q0	BHBs	0
-BHB	Q0	Elisabethinen	0
+BHB	Q0	Barmh Brüder	1
 BHB	Q0	Barmherzigen	1
-BHB	Q0	BHB Eggenberg	0
+BHB	Q0	Barmh	0
+BHB	Q0	Bauchbereich	0
 BHB	Q0	Beschluss	0
+BHB	Q0	BHB Eggenberg	0
+BHB	Q0	BHB Marschallgasse	0
+BHB	Q0	BHBs	0
+BHB	Q0	BHBs Eggenberg	0
+BHB	Q0	Elisabethinen	0
 BMS	Q0	Bare Metal Stent	2
-BMS	Q0	Biomatrix	0
-BMS	Q0	Bradyarrhythmie	0
-BMS	Q0	Burst terminiert	0
-BMS	Q0	Bronchopneumonie	0
-BMS	Q0	Bare Metal	0
-BMS	Q0	DES	0
+BMS	Q0	bare metal	1
+BMS	Q0	Baremetalstent	1
+BMS	Q0	Baremetalstents	1
 BMS	Q0	BM Stents	1
 BMS	Q0	AKS	0
-BMS	Q0	Stents	0
+BMS	Q0	Ballonpumpe	0
+BMS	Q0	Balloonpumpe	0
+BMS	Q0	Bare Metal	0
+BMS	Q0	Biomatrix	0
+BMS	Q0	BMs	0
+BMS	Q0	BMSs	0
+BMS	Q0	Bradyarrhythmie	0
+BMS	Q0	Bronchopneumonie	0
+BMS	Q0	Burst terminiert	0
+BMS	Q0	ÐBMS	0
 BMS	Q0	DE	0
+BMS	Q0	DES	0
+BMS	Q0	Stents	0
+BMS	Q0	TMS	0
+BMS	Q0	Batch Monitoring System	-1
 BZ	Q0	Blutzucker	2
 BZ	Q0	Blutzuckers	2
-BZ	Q0	behandelnden Arztes	0
-BZ	Q0	Batteriekapazität	0
 BZ	Q0	Blutzuckerwerte	2
-BZ	Q0	Blutzuckerkontrollen	0
+BZ	Q0	Blutzuckerwerten	1
+BZ	Q0	Batteriekapazität	0
+BZ	Q0	behandelnden Arztes	0
 BZ	Q0	Blutdruckes	0
+BZ	Q0	Blutzucker Langzeitwert	0
+BZ	Q0	Blutzuckerkontrollen	0
+BZ	Q0	Bz	0
+BZ	Q0	BZ SK	0
+BZ	Q0	BZ TP	0
+BZ	Q0	BZTP	0
 BZ	Q0	Gewichts	0
 BZ	Q0	HbaÐc	0
 BZ	Q0	INR	0
-BZ	Q0	Bz	0
-CA	Q0	Koronarangiographie	2
+BZ	Q0	NBZ	0
+BZ	Q0	Broca-Zentrum	-1
 CA	Q0	Coronarangiographie	2
-CA	Q0	Chemotherapie	0
-CA	Q0	Coronarangiogarphie	1
+CA	Q0	Koronarangiografie	2
+CA	Q0	Koronarangiographie	2
 CA	Q0	Cataract	1
+CA	Q0	Cornarangiographie	1
+CA	Q0	Coronarangiogarphie	1
+CA	Q0	Coronarangiografie	1
+CA	Q0	Coronarangiograhpie	1
+CA	Q0	CAD	0
+CA	Q0	CAG	0
+CA	Q0	CALL	0
+CA	Q0	CAPG	0
 CA	Q0	card Dekompensation	0
 CA	Q0	Carotissonographie	0
-CA	Q0	Herzkatheteruntersuchung	0
-CA	Q0	Koronarangiografie	2
-CA	Q0	Herzkatheter	0
+CA	Q0	Chemotherapie	0
 CA	Q0	EPU	0
+CA	Q0	Herzkatheter	0
+CA	Q0	Herzkatheteruntersuchung	0
+CA	Q0	Koronarangiographieuntersuchung	0
+CA	Q0	PCA	0
 CA	Q0	PTCA	0
+CA	Q0	Carboanhydrase	-1
+CA	Q0	Cornu Ammonis	-1
 CHE	Q0	Cholezystektomie	2
-CHE	Q0	Cholezystolithiasis	0
+CHE	Q0	Chemotherapie	1
+CHE	Q0	Cholecystektomie	1
+CHE	Q0	Borrelieninfektion	0
+CHE	Q0	CHEE	0
 CHE	Q0	Chemother	0
 CHE	Q0	Chlamydieninfektion	0
-CHE	Q0	Chemotherapie	1
 CHE	Q0	Cholelithiasis	0
+CHE	Q0	Cholezystolithiasis	0
+CHE	Q0	CMV Infektion	0
+CHE	Q0	Corticoid Therapie	0
 CHE	Q0	HE	0
-CHE	Q0	TE	0
-CHE	Q0	Strumektomie	0
-CHE	Q0	Borrelieninfektion	0
+CHE	Q0	Knocheninfarkt	0
 CHE	Q0	Strumaresektion	0
+CHE	Q0	Strumektomie	0
+CHE	Q0	TBC	0
+CHE	Q0	TE	0
+CHE	Q0	TIA	0
+CHE	Q0	Zehenamputation	0
+CHE	Q0	Zn CHE	0
+CHE	Q0	Chemo	-1
+CHE	Q0	Cholezystitis	-1
+CK	Q0	Creatin-Kinase	2
 CK	Q0	Creatinkinase	2
 CK	Q0	CK MB	0
-CK	Q0	LDH	0
-CK	Q0	y GT	0
+CK	Q0	CKMB	0
+CK	Q0	CKMB LDH	0
 CK	Q0	GGT	0
+CK	Q0	LDH	0
+CK	Q0	MB	0
 CK	Q0	Myoglobin	0
+CK	Q0	y GT	0
+CK	Q0	Kombikalz	-1
 CMP	Q0	Cardiomyopathie	2
 CMP	Q0	Kardiomyopathie	2
-CMP	Q0	cardialer Dekompensation	0
-CMP	Q0	Chemotherapie	0
+CMP	Q0	Kardiomoypathie	1
+CMP	Q0	Kardiomypathie	1
 CMP	Q0	card Dekompensation	0
 CMP	Q0	cardiale Dekompensation	0
-CMP	Q0	Kardiomoypathie	1
+CMP	Q0	cardialer Dekompensation	0
+CMP	Q0	cerebralen Mikroangiopathie	0
+CMP	Q0	Chemotherapie	0
+CMP	Q0	CMÐ	0
+CMP	Q0	CML	0
 CMP	Q0	dil CMP	0
-CMP	Q0	ischäm CMP	0
+CMP	Q0	HCMP	0
 CMP	Q0	Herzinsuffizienz	0
+CMP	Q0	HOCMP	0
 CMP	Q0	ICMP	0
-COPD	Q0	Chronisch-obstruktive Lungenerkrankung	1
+CMP	Q0	ischäm CMP	0
+CMP	Q0	MP	0
+CMP	Q0	Komponente	-1
 COPD	Q0	Chronic obstructive pulmonal disease	2
-COPD	Q0	COLD	0
-COPD	Q0	NINS	0
-COPD	Q0	Niereninsuffizienz	0
-COPD	Q0	Hypercholesterinämie	0
+COPD	Q0	Chronisch obstruktive Lungenerkrankung	1
+COPD	Q0	Chronisch-obstruktive Lungenerkrankung	1
 COPD	Q0	Asthma	0
-CV	Q0	Kardioversion	2
+COPD	Q0	COD	0
+COPD	Q0	COLD	0
+COPD	Q0	COPP	0
+COPD	Q0	COr	0
+COPD	Q0	DPD	0
+COPD	Q0	Hypercholesterinämie	0
+COPD	Q0	Kardiale Dekompensationsepisoden	0
+COPD	Q0	kombinierte Hyperlipidämie	0
+COPD	Q0	Kombinierte Hyperlipidämie	0
+COPD	Q0	Niereninsuffizienz	0
+COPD	Q0	NINS	0
+COPD	Q0	RPD	0
 CV	Q0	Cardioversion	2
-CV	Q0	Corvert	0
+CV	Q0	Kardioversion	2
 CV	Q0	Cardio Version	1
-CV	Q0	elektr CV	0
-CV	Q0	elektrischer Kardioversion	0
+CV	Q0	Cardioversionsversuch	0
+CV	Q0	Corvert	0
+CV	Q0	cranial verfließend	0
+CV	Q0	CVID	0
+CV	Q0	ÐCV	0
+CV	Q0	eCV	0
 CV	Q0	elektr	0
-CV	Q0	Pulmonalvenenisolation	0
+CV	Q0	elektr CV	0
 CV	Q0	elektr Kardioversion	0
+CV	Q0	elektrischer Kardioversion	0
+CV	Q0	HCV	0
+CV	Q0	MCV	0
+CV	Q0	Pulmonalvenenisolation	0
+CV	Q0	Cardioverte	-1
+CV	Q0	Conversion	-1
+CV	Q0	Konversion	-1
+CX	Q0	Circumflexus	2
 CX	Q0	Ramus circumflexus	2
-CX	Q0	RCA	0
-CX	Q0	LAD	0
-CX	Q0	PLA	0
-CX	Q0	OM	0
 CX	Q0	ALA	0
+CX	Q0	ÐCX	0
+CX	Q0	LAD	0
+CX	Q0	OM	0
+CX	Q0	PLA	0
+CX	Q0	RCA	0
+CX	Q0	RCAÐ	0
+CX	Q0	RCX	0
+CX	Q0	Arteria circumflexa	-1
 DD	Q0	Differentialdiagnose	2
-DD	Q0	Degenerative Skelettveränderungen	0
-DD	Q0	verbreitert Pulmonalvenöse	0
+DD	Q0	Differenzialdiagnose	2
 DD	Q0	DD Lymphadenopathie	0
-DD	Q0	vasculär bedingt	0
+DD	Q0	DDD CLS	0
+DD	Q0	DDx	0
+DD	Q0	DDX	0
+DD	Q0	Defibrillatorsonde	0
+DD	Q0	Degenerative Skelettveränderungen	0
+DD	Q0	descendens entzündlich	0
 DD	Q0	Diskret	0
+DD	Q0	Doctor of Dentistry	0
+DD	Q0	dorsale Randwinkelergüsse	0
+DD	Q0	dort diagnostiziertem	0
+DD	Q0	dringend verdächtig	0
 DD	Q0	Hilus reaktiv	0
+DD	Q0	vasculär bedingt	0
+DD	Q0	vDD	0
+DD	Q0	VDD	0
+DD	Q0	verbreitert Pulmonalvenöse	0
+DD	Q0	dependent diabetes	-1
+DD	Q0	Diab Diät	-1
+DD	Q0	Diabetes Diät	-1
+DD	Q0	Diabetesdiät	-1
 DES	Q0	Drug Eluting Stent	2
-DES	Q0	Drug eluting	1
-DES	Q0	Direktstenting	0
+DES	Q0	Drug eluting Stent	2
+DES	Q0	Drug Eluting Stents	2
 DES	Q0	Drug Elutingstent	2
 DES	Q0	Drug Elutingstents	2
-DES	Q0	distalen Drittel	0
-DES	Q0	BMS	0
-DES	Q0	BM Stents	0
-DES	Q0	Stents	0
+DES	Q0	Drug eluting	1
+DES	Q0	Drug Eluting	1
 DES	Q0	AKS	0
+DES	Q0	BM Stents	0
+DES	Q0	BMS	0
+DES	Q0	BMs	0
+DES	Q0	BMSs	0
+DES	Q0	ÐDES	0
 DES	Q0	DE	0
+DES	Q0	Direktstenting	0
+DES	Q0	distalen Drittel	0
+DES	Q0	ÐLAD DES	0
+DES	Q0	Drittel	0
+DES	Q0	Stents	0
 DG	Q0	Darmgeräusche	2
-DG	Q0	Druckschmerz Darmgeräusche	0
-DG	Q0	Ds rege	0
+DG	Q0	DGKPS	0
+DG	Q0	DGKS	0
+DG	Q0	DGs	0
+DG	Q0	DGS	0
 DG	Q0	Digitoxinspiegel	0
 DG	Q0	dorsale Alignement	0
+DG	Q0	Dr Gergana	0
+DG	Q0	Druckschmerz Darmgeräusche	0
+DG	Q0	Ds rege	0
 DG	Q0	Dünndarmschlingen	0
+DG	Q0	FDG	0
 DG	Q0	lebhafte DG	0
-DG	Q0	DGs	0
+DG	Q0	lebhafte DGs	0
 DG	Q0	Res	0
 DG	Q0	Untere	0
-DG	Q0	lebhafte DGs	0
+DG	Q0	Diastole geräuschfrei	-1
 DM	Q0	Diabetes mellitus	2
+DM	Q0	Diabetes Mellitus	2
 DM	Q0	Durchmesser	2
-DM	Q0	Diabetes Mellitus	1
 DM	Q0	Diab mell	1
+DM	Q0	Diab Mell	1
 DM	Q0	Diabetes Melltius	1
+DM	Q0	Diabetesmellitus	1
 DM	Q0	Decomp	0
-DM	Q0	rhythisch	0
+DM	Q0	Dermatomyositis	0
 DM	Q0	diät	0
+DM	Q0	DMÐ	0
 DM	Q0	HT metallisch	0
 DM	Q0	IDDM	0
+DM	Q0	LDM	0
+DM	Q0	NIDDM	0
+DM	Q0	rhythisch	0
 DM	Q0	sekundär insulinpflichtig	0
+DM	Q0	TÐDM	0
 DS	Q0	Druckschmerz	2
-DS	Q0	Druckschmerz Darmgeräusche	0
+DS	Q0	Druckschm	1
 DS	Q0	Drukschmerz	1
-DS	Q0	Defense	0
-DS	Q0	Darmgeräusche	0
-DS	Q0	DLCO Messung	0
-DS	Q0	tastbaren Resistenzen	0
-DS	Q0	Ds	0
 DS	Q0	Abwehrspannung	0
-DS	Q0	regelrecht Extrem	0
 DS	Q0	Bauchdecke weich	0
+DS	Q0	Darmgeräusche	0
+DS	Q0	Defense	0
+DS	Q0	DLCO Messung	0
+DS	Q0	Druckschmerz auskultat	0
+DS	Q0	Druckschmerz Darmgeräusche	0
+DS	Q0	Ds	0
+DS	Q0	ERDS	0
+DS	Q0	MDS	0
+DS	Q0	regelrecht Extrem	0
+DS	Q0	tastbaren Resistenzen	0
+DS	Q0	TDS	0
+DS	Q0	WDS	0
 EBA	Q0	Erstversorgung, Beobachtung, Aufnahme	2
-EBA	Q0	Eventrecorderabfrage	0
-EBA	Q0	einsehbaren Lungenabschnitte	0
-EBA	Q0	CCU	0
 EBA	Q0	Notaufnahme	1
-EBA	Q0	Normalstation	0
-EBA	Q0	Intensivstation	0
 EBA	Q0	Abteilung	0
-EF	Q0	Auswurffraktion	1
+EBA	Q0	BA	0
+EBA	Q0	CCU	0
+EBA	Q0	EBV	0
+EBA	Q0	eingebrachter Subclaviakatheter	0
+EBA	Q0	einsehbaren Lungenabschnitte	0
+EBA	Q0	Elisabethinen transferiert	0
+EBA	Q0	Endomyokardbiopsien übersandt	0
+EBA	Q0	Entzugsbehandlung	0
+EBA	Q0	Enzenbach	0
+EBA	Q0	Eventrecorderabfrage	0
+EBA	Q0	Intensivstation	0
+EBA	Q0	Normalstation	0
+EBA	Q0	POBA	0
+EBA	Q0	hiesigen Notaufnahme	-1
 EF	Q0	Ejection Fraction	2
-EF	Q0	Episodenfrequenz	1
-EF	Q0	eingeschränkter LVFunktion	0
-EF	Q0	Ehefrau	0
+EF	Q0	Ejektionsfraktion	2
+EF	Q0	Auswurffraktion	1
 EF	Q0	epikardiales Fett	1
-EF	Q0	Erfolgschance	0
-EF	Q0	LVEF	0
+EF	Q0	Episodenfrequenz	1
 EF	Q0	diastolische	0
-EF	Q0	Simpson	0
-EF	Q0	linksventrikulären volumetrischen	0
 EF	Q0	EDP	0
+EF	Q0	Ehefrau	0
+EF	Q0	eingeschränkter LVFunktion	0
+EF	Q0	Endsystolischer Tiefendurchmesser	0
+EF	Q0	Erfolgschance	0
+EF	Q0	HFPEF	0
+EF	Q0	HFpEF	0
+EF	Q0	linksventrikulären volumetrischen	0
+EF	Q0	LVEF	0
+EF	Q0	MEF	0
+EF	Q0	Öffnungsfl	0
+EF	Q0	Öffnungsfläche	0
+EF	Q0	PEF	0
+EF	Q0	Simpson	0
+EF	Q0	Eigenfrequenz	-1
+EF	Q0	Erkennungsfrequenz	-1
 EKG	Q0	Elektrokardiogramm	2
-EKG	Q0	Echokardiographie	0
-EKG	Q0	Echokardiogramm	0
-EKG	Q0	Echokardiographiekontrolle	0
-EKG	Q0	Endokrinologie	0
-EKG	Q0	Echkardiographie	0
 EKG	Q0	Durchgehend	0
+EKG	Q0	Echkardiographie	0
+EKG	Q0	Echokardiogramm	0
+EKG	Q0	Echokardiographie	0
+EKG	Q0	Echokardiographiekontrolle	0
+EKG	Q0	Echokardiographisch	0
+EKG	Q0	echokardiographischen	0
+EKG	Q0	Echokaridographie	0
+EKG	Q0	EK	0
+EKG	Q0	EKFG	0
 EKG	Q0	EKGs	0
+EKG	Q0	EKs	0
+EKG	Q0	EKZ	0
+EKG	Q0	Endokrinologie	0
 EKG	Q0	Holter	0
-EKG	Q0	Schrittmacheraktivität	0
 EKG	Q0	Mitgebrachte Befunde	0
+EKG	Q0	Schrittmacheraktivität	0
 EKG's	Q0	Elektrokardiogramms	2
-EKG's	Q0	Echokardiographie	0
-EKG's	Q0	Echokardiogramm	0
-EKG's	Q0	Echokardiographiekontrolle	0
-EKG's	Q0	Endokrinologie	0
 EKG's	Q0	Echkardiographie	0
+EKG's	Q0	Echokardiogramm	0
+EKG's	Q0	Echokardiographie	0
+EKG's	Q0	Echokardiographiekontrolle	0
+EKG's	Q0	Echokardiographisch	0
+EKG's	Q0	echokardiographischen	0
+EKG's	Q0	Echokaridographie	0
+EKG's	Q0	Endokrinologie	0
 EST	Q0	Extrasystolen	2
-EST	Q0	Endstr	0
 EST	Q0	Endstrecken	1
+EST	Q0	bifaszik Block	0
+EST	Q0	Endstr	0
+EST	Q0	Endstr konkor	0
+EST	Q0	Endstrdcken	0
 EST	Q0	Enstrecken	0
 EST	Q0	Erregungsleitungszeiten	0
-EST	Q0	Endstrdcken	0
-EST	Q0	Endstr konkor	0
-EST	Q0	bifaszik Block	0
+EST	Q0	ESK	0
+EST	Q0	ESST	0
 EST	Q0	EST konk	0
+EST	Q0	ESTo	0
+EST	Q0	ESTR	0
+EST	Q0	ESTRST	0
 EST	Q0	PNV rSr	0
 EST	Q0	RSR	0
+EST	Q0	Endstrec	-1
+EST	Q0	Endstrecke	-1
 EZ	Q0	Ernährungszustand	2
-EZ	Q0	Elektrodenbezogene	0
-EZ	Q0	Embolisationszeichen	0
-EZ	Q0	klar orientiert	0
-EZ	Q0	wach orientiert	0
-EZ	Q0	voll orientiert	0
 EZ	Q0	adip	0
+EZ	Q0	adipös	0
+EZ	Q0	adipösem	0
+EZ	Q0	AEZ	0
+EZ	Q0	AEZ C	0
+EZ	Q0	Elektrodenbezogene	0
+EZ	Q0	elektrodenbezogene	0
+EZ	Q0	Embolisationszeichen	0
+EZ	Q0	exzentrisch	0
+EZ	Q0	Exzibial	0
+EZ	Q0	klar orientiert	0
 EZ	Q0	orientiert	0
+EZ	Q0	voll orientiert	0
+EZ	Q0	wach orientiert	0
+EZ	Q0	eineiige Zwillinge	-1
 FA	Q0	Facharzt	2
+FA	Q0	Fachärztin	2
+FA	Q0	Fachärzten	1
+FA	Q0	Facharztkontrollen	1
+FA	Q0	fachärztliche	1
 FA	Q0	Flimmerarrhythmie	1
-FA	Q0	Fußballspiel	0
-FA	Q0	Folgejahren	0
-FA	Q0	Flimmerarrh	0
-FA	Q0	Fachärzten	0
-FA	Q0	Lungenfacharzt	0
-FA	Q0	niedergelassenen Facharzt	0
 FA	Q0	Dermatologen	0
+FA	Q0	Fachinfo	0
+FA	Q0	FACS	0
+FA	Q0	Flimmerarrh	0
+FA	Q0	Folgejahren	0
+FA	Q0	fortan	0
+FA	Q0	Fußballspiel	0
 FA	Q0	Innere	0
 FA	Q0	Internistin	0
-FCDS	Q0	farbkodierte Duplexsonografie	2
+FA	Q0	LFA	0
+FA	Q0	Lungenfacharzt	0
+FA	Q0	niedergelassenen Facharzt	0
+FA	Q0	tcFA	0
+FA	Q0	VFA	0
+FA	Q0	Familienanamnese	-1
+FA	Q0	Fasciculus arcuatus	-1
 FCDS	Q0	farbcodierte Duplexsonografie	2
-FCDS	Q0	Halsgefäße	0
-FCDS	Q0	Sonographie	0
+FCDS	Q0	farbkodierte Duplexsonografie	2
+FCDS	Q0	FC	0
+FCDS	Q0	FCDS MORPHOLOGIE	0
 FCDS	Q0	FCDS Rechts	0
-FCDS	Q0	MRA	0
+FCDS	Q0	FCDS RI	0
+FCDS	Q0	FCDS venös	0
+FCDS	Q0	Halsgefäße	0
 FCDS	Q0	Leiste	0
+FCDS	Q0	MRA	0
+FCDS	Q0	Sonographie	0
+FL	Q0	fortgeleitet	2
+FL	Q0	fortgeleitetes	2
 FL	Q0	Fortleitung	2
-FL	Q0	Fleckförmige	0
-FL	Q0	Fettstoffwechselkontrolle	0
-FL	Q0	Flüssigkeitsansammlung	0
-FL	Q0	Fleckförmige Marklagerhypodensitäten	0
 FL	Q0	Fehllage	1
-FL	Q0	weiches	0
-FL	Q0	cresendo decresendo	0
-FL	Q0	normocard raues	0
-FL	Q0	metallischem Beiklang	0
 FL	Q0	bud	0
+FL	Q0	cresendo decresendo	0
+FL	Q0	Fettstoffwechselkontrolle	0
+FL	Q0	Fleckförmig	0
+FL	Q0	Fleckförmige	0
+FL	Q0	Fleckförmige Marklagerhypodensitäten	0
+FL	Q0	Fleckförmiges	0
+FL	Q0	Flüssigkeitsansammlung	0
+FL	Q0	LQTS	0
+FL	Q0	MCL	0
+FL	Q0	metallischem Beiklang	0
+FL	Q0	ML	0
+FL	Q0	NHL	0
+FL	Q0	normocard raues	0
+FL	Q0	SPIRIVA	0
+FL	Q0	weiches	0
+FL	Q0	Figulla	-1
+FL	Q0	Figulla Flex	-1
+FL	Q0	FigullaFlex	-1
 GERD	Q0	gastroesophageal reflux disease	2
+GERD	Q0	Gastroesophageal Reflux Disease	2
 GERD	Q0	gastroösophageale Refluxerkrankung	1
-GERD	Q0	Gemischte Hyperlipidämie	0
-GERD	Q0	Glucoseintoleranz Hypertriglyceridämie	0
-GERD	Q0	Leberparenchymschaden	0
-GERD	Q0	Kolondivertikel	0
-GERD	Q0	Hämorrhoiden	0
+GERD	Q0	Gastroösophageale Refluxkrankheit	1
 GERD	Q0	Cholelithiasis	0
 GERD	Q0	Divertikulose	0
+GERD	Q0	Gemischte Hyperlipidämie	0
+GERD	Q0	Glucoseintoleranz Hypertriglyceridämie	0
+GERD	Q0	Hämorrhoiden	0
+GERD	Q0	Kolondivertikel	0
+GERD	Q0	Leberparenchymschaden	0
+GERD	Q0	LPS	0
+GERD	Q0	pAVK IIb	0
+GERD	Q0	uninodosa dext	0
+GERD	Q0	zAVK	0
+GERD	Q0	zAVKI	0
 GGT	Q0	Gamma-Glutamyl-Transferase	2
-GGT	Q0	Gamma-GT	2
 GGT	Q0	Gamma-Glutamyltransferase	2
+GGT	Q0	Gamma-GT	2
+GGT	Q0	ALT	0
+GGT	Q0	Gefäß Erkrankung mit Hauptstammbeteiligung	0
+GGT	Q0	Gesamttageswert	0
+GGT	Q0	GGZ	0
 GGT	Q0	GT	0
 GGT	Q0	LDH	0
-GGT	Q0	y GT	0
+GGT	Q0	MB	0
 GGT	Q0	Myoglobin	0
-GGT	Q0	ALT	0
+GGT	Q0	y GT	0
+GGT	Q0	γ-Glutamyltransferase	0
 GOT	Q0	Glutamat-Oxalacetat-Transaminase	2
-GOT	Q0	geschlossen Uterus	0
-GOT	Q0	Ges Cholesterin	0
-GOT	Q0	Gliose epiretinal	0
+GOT	Q0	Glutamat-Oxalat-Transaminase	2
 GOT	Q0	CKMBÐÐ	0
-GOT	Q0	QUICK	0
-GOT	Q0	Transferrin	0
-GOT	Q0	kapillär pOÐ	0
+GOT	Q0	EOT	0
+GOT	Q0	Gefäß Erkrankung die interventionsbedürftige	0
+GOT	Q0	Ges Cholesterin	0
+GOT	Q0	geschlossen Uterus	0
+GOT	Q0	Gliose epiretinal	0
+GOT	Q0	Glomerulonephritis	0
 GOT	Q0	Harnst	0
-HA	Q0	Herzaktion	2
+GOT	Q0	IOT	0
+GOT	Q0	kapillär pOÐ	0
+GOT	Q0	OT	0
+GOT	Q0	POT	0
+GOT	Q0	QUICK	0
+GOT	Q0	RVOT	0
+GOT	Q0	Transferrin	0
 HA	Q0	Hausarzt	2
-HA	Q0	Hometrainerfahren	0
+HA	Q0	HAusarzt	2
+HA	Q0	Hausarztes	2
+HA	Q0	Hausärztin	2
+HA	Q0	Herzaktion	2
+HA	Q0	AHA	0
+HA	Q0	behandelnden Arzt	0
+HA	Q0	Harnkontrolle	0
 HA	Q0	Harnlassen	0
 HA	Q0	Harnstreifen	0
-HA	Q0	Harnkontrolle	0
+HA	Q0	Hausarzt regelmässige	0
+HA	Q0	Hometrainerfahren	0
 HA	Q0	niedergel FA	0
-HA	Q0	Urologen	0
 HA	Q0	niedergelassenen Kardiologen	0
-HA	Q0	behandelnden Arzt	0
 HA	Q0	niedergelassenen Orthopäden	0
+HA	Q0	NXHA	0
+HA	Q0	Urologen	0
+HA	Q0	VFHA	0
+HA	Q0	Hämagglutinin	-1
+HA	Q0	Hauszahnarzt	-1
+HA	Q0	Hautfacharzt	-1
+HA	Q0	Hepatitis A	-1
+HA	Q0	Herzarbeit	-1
+HA	Q0	Humanalbumin	-1
 HCT	Q0	Hydrochlorothiazid	2
+HCT	Q0	Amilostad HCT	0
+HCT	Q0	Diovan	0
+HCT	Q0	Exforge HCT	0
+HCT	Q0	Furohexal	0
 HCT	Q0	HDL Cholesterin	0
-HCT	Q0	Hydrocortone	0
 HCT	Q0	HerzschutzASS	0
+HCT	Q0	Hydrocortone	0
 HCT	Q0	Losartan	0
 HCT	Q0	Metohexal	0
-HCT	Q0	Diovan	0
-HCT	Q0	Furohexal	0
+HCT	Q0	Rasilez HCT	0
+HCT	Q0	Sevicar HCT	0
+HCT	Q0	Sevikar HCT	0
 HCT	Q0	Spirobene	0
 HDL	Q0	High Density Lipoprotein	2
-HDL	Q0	Handelsname	0
-HDL	Q0	Trigl	0
-HDL	Q0	Chol	0
-HDL	Q0	VLDL	0
+HDL	Q0	High-density Lipoprotein	2
+HDL	Q0	Chol	1
 HDL	Q0	Cholesterin	0
+HDL	Q0	DL	0
+HDL	Q0	Haldol	0
+HDL	Q0	Handelsname	0
+HDL	Q0	HD	0
+HDL	Q0	LDh	0
+HDL	Q0	LDL	0
 HDL	Q0	LDL Chol	0
+HDL	Q0	Trigl	0
+HDL	Q0	VLDL	0
 HF	Q0	Herzfrequenz	2
-HF	Q0	Herzfrequenzanstieg	0
 HF	Q0	Herzfrequenzen	2
-HF	Q0	Häufung	0
-HF	Q0	Herzfrequenzspektrum	0
-HF	Q0	Harnstoff	0
-HF	Q0	Frequenz	0
+HF	Q0	Herzschlagfrequenz	2
+HF	Q0	Puls	1
 HF	Q0	Ausbelastung	0
-HF	Q0	Hf	0
 HF	Q0	Blutdruckanstieg	0
-HF	Q0	Puls	0
-HG	Q0	Herzgeräusche	2
+HF	Q0	ÐHF	0
+HF	Q0	Frequenz	0
+HF	Q0	Harnstoff	0
+HF	Q0	Häufung	0
+HF	Q0	Herzfrequenzanstieg	0
+HF	Q0	Herzfrequenzanstieges	0
+HF	Q0	Herzfrequenzspektrum	0
+HF	Q0	Hf	0
+HF	Q0	HFPEF	0
+HF	Q0	HFT	0
+HF	Q0	nfVHF	0
+HF	Q0	tcVHF	0
+HF	Q0	Hämofiltration	-1
+HF	Q0	Herzfrequenzspectrum	-1
 HG	Q0	Herzgeräusch	2
-HG	Q0	Hirnarterien sonografisch	0
+HG	Q0	Herzgeräusche	2
 HG	Q0	Hörgeräte	1
+HG	Q0	AGs	0
+HG	Q0	arrh tc	0
+HG	Q0	DLCOcVA	0
+HG	Q0	Geräusch	0
+HG	Q0	Halsregion	0
+HG	Q0	HGs	0
+HG	Q0	Hirnarterien sonografisch	0
 HG	Q0	Hirnarterien sonographisch	0
 HG	Q0	höhergradigen Rhythmusstörungen	0
-HG	Q0	HGs	0
-HG	Q0	Pericardreiben	0
-HG	Q0	Geräusch	0
 HG	Q0	path Herzgeräusche	0
-HG	Q0	arrh tc	0
-HLP	Q0	Hyperlipidämie	1
+HG	Q0	Pericardreiben	0
+HG	Q0	pHG	0
+HG	Q0	RGs	0
+HG	Q0	Herzgröße	-1
+HG	Q0	Hirnorgan	-1
 HLP	Q0	Hyperlipoproteinämie	2
-HLP	Q0	Hyperlipidämien	1
-HLP	Q0	Hypolipoproteinämie	2
-HLP	Q0	Hochgr Aortenklappenstenose	0
-HLP	Q0	Hyperlpipidämie	2
+HLP	Q0	Hyperlipidämie	1
+HLP	Q0	Hyperlpipidämie	1
 HLP	Q0	Depressio	0
-HLP	Q0	Metabolisches Syndrom	0
-HLP	Q0	kombinierte Hyperlipidämie	0
+HLP	Q0	et nodosa	0
+HLP	Q0	HLO	0
+HLP	Q0	Hochgr Aortenklappenstenose	0
+HLP	Q0	Hyperlipidämie Hyperbetalipoproteinämie	0
+HLP	Q0	Hyperlipidämien	0
 HLP	Q0	Hyperuricämie	0
+HLP	Q0	Hypolipoproteinämie	0
 HLP	Q0	IDDM	0
+HLP	Q0	kombinierte Hyperlipidämie	0
+HLP	Q0	Metabolisches Syndrom	0
+HLP	Q0	NIDDM	0
+HLP	Q0	Struma uninodosa	0
+HLP	Q0	Hyperbetalipoproteinämie	-1
 HNAP	Q0	Hirnnervenaustrittspunkte	2
-HNAP	Q0	Harn makroskopisch	0
+HNAP	Q0	Collum	0
 HNAP	Q0	Halslymphknoten Trigeminusaustrittspunkte	0
-HNAP	Q0	Pupillen	0
+HNAP	Q0	Halsvenen Karotispuls	0
+HNAP	Q0	Halsvenen Karotispulse	0
+HNAP	Q0	Harn makroskopisch	0
+HNAP	Q0	HNAB	0
+HNAP	Q0	HNAP frei	0
+HNAP	Q0	Meningismus HNAP	0
 HNAP	Q0	Pup	0
-HNAP	Q0	Skleren	0
+HNAP	Q0	Pupillen	0
 HNAP	Q0	SD palpabel	0
+HNAP	Q0	Skleren	0
 HNAP	Q0	Zunge	0
 HPT	Q0	Hyperparathyreoidismus	2
 HPT	Q0	Hyperparathyreodismus	1
-HPT	Q0	Hepatozelluläres	0
-HPT	Q0	Hypoplastisches	0
-HPT	Q0	Hypertension portal	0
-HPT	Q0	Hepatitismarker	0
+HPT	Q0	ACC Hardplaques	0
+HPT	Q0	ACI Hardplaques	0
+HPT	Q0	diabetische PNP	0
 HPT	Q0	enzymatisch	0
+HPT	Q0	hämorrh Pangastritis	0
+HPT	Q0	Hardplaquebildung regelrechtes	0
+HPT	Q0	Hepatitismarker	0
+HPT	Q0	Hepatozelluläres	0
+HPT	Q0	Herzkrankheit operata	0
+HPT	Q0	hiläres lymphatisches	0
+HPT	Q0	HP	0
+HPT	Q0	HP regelrechts	0
+HPT	Q0	HPL	0
+HPT	Q0	Hypertension portal	0
+HPT	Q0	Hypertrophie des li Ventrikel	0
+HPT	Q0	Hypoplastisches	0
+HPT	Q0	Hypothyreose latent	0
+HPT	Q0	IIIa	0
+HPT	Q0	PHP	0
 HPT	Q0	Quervain	0
 HPT	Q0	senilis	0
-HPT	Q0	diabetische PNP	0
-HPT	Q0	IIIa	0
-HT	Q0	Hypertonie	1
-HT	Q0	Herztöne	2
+HPT	Q0	Hypertonie Pulm Hypertonus	-1
+HPT	Q0	Hypertonikum	-1
 HT	Q0	Herzton	2
+HT	Q0	Herztöne	2
+HT	Q0	Hypertonie	1
+HT	Q0	ganz leises	0
 HT	Q0	Herz auskultatorisch	0
 HT	Q0	Herzaktion arhythmisch	0
 HT	Q0	Herzaktion rhythm	0
+HT	Q0	Holosystolikum	0
 HT	Q0	Ht	0
+HT	Q0	HTC	0
+HT	Q0	HTN	0
+HT	Q0	HTN HLP	0
 HT	Q0	leises	0
 HT	Q0	rhy	0
-HT	Q0	ganz leises	0
 HT	Q0	rhy nc	0
+HT	Q0	SHT	0
+HT	Q0	Hyperparathyreoithismus	-1
+HT	Q0	Hypertonicum	-1
+HT	Q0	hypertonicum	-1
+HT	Q0	Hypertonikum	-1
+HT	Q0	Hypertonus	-1
 HWS	Q0	Halswirbelsäule	2
+HWS	Q0	BWS	0
+HWS	Q0	BWS LWS	0
+HWS	Q0	CT Gehirnschädel	0
+HWS	Q0	ÐÐÐÐÐÐÐÐÐ	0
+HWS	Q0	Halsweichteile	0
+HWS	Q0	Hände	0
+HWS	Q0	Harnblasenwand	0
 HWS	Q0	Herzauswertung	0
 HWS	Q0	Herzschrittmachers Zweikammersystem	0
+HWS	Q0	Hiatushernie Downhill	0
+HWS	Q0	hierfür notwendigen	0
+HWS	Q0	Hirnbasisarterien Ausweitung	0
+HWS	Q0	HWS CÐ	0
 HWS	Q0	LWS	0
 HWS	Q0	Spondylose	0
-HWS	Q0	ÐÐÐÐÐÐÐÐÐ	0
-HWS	Q0	CT Gehirnschädel	0
-HWS	Q0	Hände	0
+HWS	Q0	WS	0
 ICD	Q0	Implantierbarer Kardioverter-Defibrillator	2
-ICD	Q0	SM	0
-ICD	Q0	Schrittmacher	0
+ICD	Q0	International Statistical Classification of Diseases	1
+ICD	Q0	AICD	0
 ICD	Q0	CCM	0
 ICD	Q0	CRT	0
+ICD	Q0	FSCD	0
+ICD	Q0	ICB	0
+ICD	Q0	iCD	0
+ICD	Q0	ICDs	0
+ICD	Q0	induzierb Kammertachykardien	0
+ICD	Q0	induzierbaren Kammertachykardien	0
 ICD	Q0	Reveal	0
-IDDM	Q0	Insulinabhängiger Diabetes Mellitus	1
+ICD	Q0	Schrittmacher	0
+ICD	Q0	SM	0
+IDDM	Q0	Insulin Dependant Diabetes Mellitus	2
 IDDM	Q0	Insulin-dependent diabetes mellitus	2
-IDDM	Q0	NIDDM	0
-IDDM	Q0	Hyperlipidämien	0
 IDDM	Q0	Diabetische	1
+IDDM	Q0	Insulinabhängiger Diabetes Mellitus	1
 IDDM	Q0	Gemischte	0
+IDDM	Q0	HLP	0
+IDDM	Q0	Hyperlipidämien	0
 IDDM	Q0	NÐÐ Prostatahyperplasie	0
+IDDM	Q0	NID	0
+IDDM	Q0	NIDDM	0
+IDDM	Q0	NIDDM non	0
+IDDM	Q0	TÐDM	0
 IE	Q0	Internationale Einheiten	2
-IE	Q0	Iterium	0
-IE	Q0	Imurec	0
-IE	Q0	Incresync	0
-IE	Q0	Imurek	0
-IE	Q0	Isuprel	0
 IE	Q0	Einheiten	1
-IE	Q0	ÐIE	0
-IE	Q0	Novomix	0
+IE	Q0	International Unit	1
 IE	Q0	ÐÐIE	0
+IE	Q0	ÐIE	0
+IE	Q0	ÐIE ÐIE	0
+IE	Q0	dl ÐIE	0
+IE	Q0	iger Stenosierung	0
+IE	Q0	Imurec	0
+IE	Q0	Imurek	0
+IE	Q0	Incresync	0
+IE	Q0	Inegy	0
+IE	Q0	inhalationem	0
+IE	Q0	Iohexol	0
+IE	Q0	Iomeprol	0
+IE	Q0	Irenat Tropfen	0
+IE	Q0	Isoprotarenol	0
+IE	Q0	Isuprel	0
+IE	Q0	Iterium	0
+IE	Q0	Ixel	0
 IE	Q0	Kalz	0
+IE	Q0	Novomix	0
+IE	Q0	NovoMix	0
 INR	Q0	International Normalized Ratio	2
-INR	Q0	Insulatard	0
-INR	Q0	Inspra	0
+INR	Q0	IE Novorapid	0
+INR	Q0	INEGY	0
 INR	Q0	Infektfreiheit	0
-INR	Q0	Internisten strenge	0
+INR	Q0	INH	0
+INR	Q0	INRs	0
 INR	Q0	Insora	0
-INR	Q0	Paß	0
-INR	Q0	Pass	0
-INR	Q0	Ziel INR	0
-INR	Q0	PZ INR	0
+INR	Q0	Inspra	0
+INR	Q0	Insulartad	0
+INR	Q0	Insulatard	0
 INR	Q0	Insulin	0
+INR	Q0	Insulin Mixtard	0
+INR	Q0	Insulinbedarf	0
+INR	Q0	Intensiviertes Risikofaktorenmanagement insbesondere regelm	0
+INR	Q0	Internisten strenge	0
+INR	Q0	Intervention	0
+INR	Q0	Pass	0
+INR	Q0	Paß	0
+INR	Q0	PZ INR	0
+INR	Q0	Ziel INR	0
+KHK	Q0	koronare Herzerkrankung	2
+KHK	Q0	Koronare Herzkrankheit	2
+KHK	Q0	koronare Herzkrankheit	2
 KHK	Q0	koronaren Herzerkrankung	2
 KHK	Q0	koronaren Herzkrankheit	2
 KHK	Q0	koronarer Herzerkrankung	2
-KHK	Q0	Kammertachykardie	0
-KHK	Q0	Kammertachykardien	0
-KHK	Q0	Krankheit Sklerose	0
-KHK	Q0	Knotenreentrytachykardie	0
-KHK	Q0	koronare Dreistammerkrankung	0
-KHK	Q0	koronare	0
-KHK	Q0	ischäm CMP	0
+KHK	Q0	koronare	1
 KHK	Q0	ARVD	0
 KHK	Q0	AST	0
-KHKIII	Q0	Koronare Herzkrankheit dritten Grades	0
-KHKIII	Q0	Koronare Herzkrankheit drei	0
+KHK	Q0	ischäm CMP	0
+KHK	Q0	Kammertachykardie	0
+KHK	Q0	Kammertachykardien	0
+KHK	Q0	kHK	0
+KHK	Q0	KHk	0
+KHK	Q0	KHKÐ	0
+KHK	Q0	KHKI	0
+KHK	Q0	KHKII	0
+KHK	Q0	Knotenreentrytachykardie	0
+KHK	Q0	koronare Dreistammerkrankung	0
+KHK	Q0	koronarem Übersichtskalk	0
+KHK	Q0	koronarer Übersichtskalk	0
+KHK	Q0	koronarerer Übersichtskalk	0
+KHK	Q0	Krankheit Sklerose	0
+KHK	Q0	koronare Dreigefäßerkrankung	-1
+KHK	Q0	koronare Eingefäßerkrankung	-1
+KHK	Q0	koronare Zweigefäßerkrankung	-1
+KHKIII	Q0	AVIII	0
+KHKIII	Q0	Herzdekompensation	0
 KHKIII	Q0	HNOCM	0
+KHKIII	Q0	KHK	0
+KHKIII	Q0	KHKÐ	0
+KHKIII	Q0	KHKI	0
+KHKIII	Q0	KHKII	0
+KHKIII	Q0	Koronare Herzkrankheit drei	0
+KHKIII	Q0	Koronare Herzkrankheit dritten Grades	0
 KHKIII	Q0	nichttransmuraler Myokardinfarkt	0
 KHKIII	Q0	ovale offen	0
 KHKIII	Q0	Transmuraler Myokardinfarkt	0
-KHKIII	Q0	Herzdekompensation	0
 KM	Q0	Kontrastmittel	2
 KM	Q0	Knoten Modulation	1
-KM	Q0	Kontrastmittelstudie	1
-KM	Q0	Kompressionsverband	0
-KM	Q0	koronarer Einstammerkrankung	0
 KM	Q0	Kontrastmittelenhancement	1
-KM	Q0	Ruheperfusionsdefektes	0
-KM	Q0	Inferoseptalwand	0
-KM	Q0	regionaler Wandbewegungsstörungen	0
-KM	Q0	fieberhaftem Infekt	0
+KM	Q0	Kontrastmittelstudie	1
 KM	Q0	ÐÐh hier	0
-LAD	Q0	Ramus interventricularis anterior	1
+KM	Q0	fieberhaftem Infekt	0
+KM	Q0	Inferoseptalwand	0
+KM	Q0	Insuspekter inguinaler	0
+KM	Q0	Keilförmiger subsegmentaler	0
+KM	Q0	Kompressionsverband	0
+KM	Q0	Kontrastmittelabfluss	0
+KM	Q0	Kontrastmittelrückstau	0
+KM	Q0	koronarer Einstammerkrankung	0
+KM	Q0	Nachweis diffusionspositiver	0
+KM	Q0	Nachweis größerer	0
+KM	Q0	Nachweis rezenter	0
+KM	Q0	plötzlicher Herztod	0
+KM	Q0	regionaler Wandbewegungsstörungen	0
+KM	Q0	Ruheperfusionsdefektes	0
+KM	Q0	kombiniertem	-1
+KM	Q0	Konkrementnachweis	-1
 LAD	Q0	Left anterior descending	2
-LAD	Q0	lebenslange Dauertherapie	0
-LAD	Q0	RCA	0
-LAD	Q0	CX	0
-LAD	Q0	PLA	0
-LAD	Q0	OM	0
+LAD	Q0	Ramus interventricularis anterior	1
+LAD	Q0	AD	0
 LAD	Q0	ALA	0
-LCA	Q0	linke Koronararterie	2
+LAD	Q0	CX	0
+LAD	Q0	ÐLAD	0
+LAD	Q0	LADÐ	0
+LAD	Q0	LADÐx	0
+LAD	Q0	langstreckig diffus	0
+LAD	Q0	lebenslange Dauertherapie	0
+LAD	Q0	lebenslängliche Dauertherapie	0
+LAD	Q0	left anterior descending	0
+LAD	Q0	Loading	0
+LAD	Q0	mLAD	0
+LAD	Q0	OM	0
+LAD	Q0	PLA	0
+LAD	Q0	RCA	0
+LAD	Q0	Längsausdehnung	-1
+LAD	Q0	Lymphadenektomie	-1
 LCA	Q0	left coronary artery	2
+LCA	Q0	linke Koronararterie	2
 LCA	Q0	dominantes Gefäß	0
-LCA	Q0	Iliacalgefäße	0
-LCA	Q0	langstreckig	0
+LCA	Q0	ÐxPTCA	0
 LCA	Q0	füllt	0
+LCA	Q0	Iliacalgefäße	0
 LCA	Q0	Kollateralen	0
+LCA	Q0	LADPCI	0
+LCA	Q0	langstreckig	0
+LCA	Q0	Looprecorderimplantation	0
+LCA	Q0	PCA	0
+LCA	Q0	PTCA	0
+LCA	Q0	RCA	0
 LDL	Q0	Low Density Lipoprotein	2
-LDL	Q0	Ludiomil	0
-LDL	Q0	Lipidkontrollen	0
+LDL	Q0	Chol	1
 LDL	Q0	Cholesterin	1
+LDL	Q0	DL	0
 LDL	Q0	HDL	0
+LDL	Q0	LDh	0
+LDL	Q0	LDL Zielwert	0
+LDL	Q0	Lipidkontrollen	0
+LDL	Q0	Ludiomil	0
+LDL	Q0	VLDL	0
 LDL	Q0	Ziel LDL	0
 LDL	Q0	Zielwert	0
-LDL	Q0	Chol	0
 LKH	Q0	Landeskrankenhaus	2
-LKH	Q0	Lokalanästhesie	0
-LKH	Q0	KH	0
 LKH	Q0	Eggenberg	0
+LKH	Q0	Graz Süd	0
+LKH	Q0	KH	0
+LKH	Q0	lakunäre Defekte	0
+LKH	Q0	lakunärer Defekt	0
+LKH	Q0	LKh	0
 LKH	Q0	LKH Hartberg	0
 LKH	Q0	LKH Hörgas	0
-LKH	Q0	Graz Süd	0
+LKH	Q0	LKN	0
+LKH	Q0	LKs	0
+LKH	Q0	LKW	0
+LKH	Q0	Lokalanästhesie	0
+LKH	Q0	UKH	0
 LSB	Q0	Linksschenkelblock	2
-LSB	Q0	linksanteriorer Hemiblock	0
 LSB	Q0	Linksschenkelblockbild	1
-LSB	Q0	Linksbelastung	0
-LSB	Q0	Limitierte Schallbedingungen	0
-LSB	Q0	Linksbelastungszeichen	0
-LSB	Q0	RSB	0
-LSB	Q0	LSB Bild	0
+LSB	Q0	Schenkelblockbild	1
 LSB	Q0	inkompl LSB	0
-LSB	Q0	Schenkelblockbild	0
+LSB	Q0	Limitierte Schallbedingungen	0
+LSB	Q0	linksant Hemiblock	0
+LSB	Q0	linksanteriorer Hemiblock	0
+LSB	Q0	Linksanteriorer Hemiblock	0
+LSB	Q0	Linksbelastung	0
+LSB	Q0	Linksbelastungszeichen	0
+LSB	Q0	LSA	0
+LSB	Q0	LSB Bild	0
+LSB	Q0	LSB Left	0
+LSB	Q0	LSL	0
+LSB	Q0	LSPV	0
 LSB	Q0	neg Konkordanz	0
+LSB	Q0	RSB	0
+LV	Q0	linker Ventrikel	2
 LV	Q0	linker Ventrikel -	2
+LV	Q0	Linksventrikulär	2
 LV	Q0	linksventrikuläre	2
-LV	Q0	Linksventrikelfunktion	1
 LV	Q0	Linksventrikuläre	2
-LV	Q0	Linksventr	1
-LV	Q0	Linksventrikelhypertrophie	0
-LV	Q0	LInksventrikelfunktion	1
-LV	Q0	RV	0
 LV	Q0	linksventrikulärer	2
-LV	Q0	TAPSE	0
+LV	Q0	Linksventrikuläres	2
+LV	Q0	li Ventrikel	1
+LV	Q0	Linksventr	1
+LV	Q0	linksventr	1
+LV	Q0	linksventrik	1
+LV	Q0	Linksventrikelfunktion	1
+LV	Q0	LInksventrikelfunktion	1
 LV	Q0	diast	0
 LV	Q0	konz	0
-LVEF	Q0	linksventrikuläre Auswurffraktion	0
+LV	Q0	Linksventrikelhypertrophie	0
+LV	Q0	linksventrikulären Volumina	0
+LV	Q0	LVD	0
+LV	Q0	LVMI	0
+LV	Q0	LVMM	0
+LV	Q0	LVPW	0
+LV	Q0	PLV	0
+LV	Q0	RV	0
+LV	Q0	TAPSE	0
 LVEF	Q0	linksventrikuläre Ejection Fraction	2
-LVEF	Q0	Linksventrikelfunktion	0
-LVEF	Q0	LInksventrikelfunktion	0
-LVEF	Q0	Linskventrikelfunktion	0
-LVEF	Q0	linksventrikuläre Pumpfunktion	0
+LVEF	Q0	li ventrikuläre Auswurffraktion	1
+LVEF	Q0	Linksventrikelfunktion	1
+LVEF	Q0	LInksventrikelfunktion	1
+LVEF	Q0	linksventrikuläre Auswurffraktion	1
 LVEF	Q0	Auswurffraktion	0
 LVEF	Q0	EF	0
-LVEF	Q0	LVF	0
+LVEF	Q0	linksventrikuläre Pumpfunktion	0
+LVEF	Q0	Linskventrikelfunktion	0
+LVEF	Q0	LVE	0
+LVEF	Q0	LVED	0
 LVEF	Q0	LVEDD	0
+LVEF	Q0	LVEF knapp	0
+LVEF	Q0	LVESD	0
+LVEF	Q0	LVF	0
 LVEF	Q0	Simpson	0
 LVH	Q0	linker ventrikel - Hypertrophie	2
-LVH	Q0	linksventrikuläre Hypertrophie	2
 LVH	Q0	Linksventrikelhypertrophie	2
-LVH	Q0	Linksventrikulographie	0
-LVH	Q0	linksventrikulären Herzwände	0
+LVH	Q0	linksventrikuläre Hypertrophie	2
+LVH	Q0	Linksventrikuläre Hypertrophie	2
 LVH	Q0	linksventrikulärer Herzhypertrophie	2
+LVH	Q0	LV Hypertrophie	1
 LVH	Q0	diastolischer Relaxationsstörung	0
-LVH	Q0	HK apikoseptal	0
-LVH	Q0	paradoxe Septumbewegung	0
-LVH	Q0	HK apikoseptale	0
 LVH	Q0	erhalt	0
-MF	Q0	Mittelfeldes	2
+LVH	Q0	HK apikoseptal	0
+LVH	Q0	HK apikoseptale	0
+LVH	Q0	Linksventriculographie	0
+LVH	Q0	Linksventrikelfunktion	0
+LVH	Q0	Linksventrikolographie	0
+LVH	Q0	linksventrikuläre Pumpfunktion	0
+LVH	Q0	linksventrikulären Herzwände	0
+LVH	Q0	Linksventrikulographie	0
+LVH	Q0	LVAD	0
+LVH	Q0	LVD	0
+LVH	Q0	LVFunktion	0
+LVH	Q0	LVPW	0
+LVH	Q0	NVH	0
+LVH	Q0	paradoxe Septumbewegung	0
 MF	Q0	Mittelfeld	2
-MF	Q0	mittels Cathofix	0
+MF	Q0	Mittelfeldes	2
 MF	Q0	Mittelfelds	2
-MF	Q0	Minderbelüftungsareale	0
-MF	Q0	Minderbelüftung	0
-MF	Q0	UF	0
-MF	Q0	Lungenunterfeld	0
-MF	Q0	OF	0
 MF	Q0	frontal	0
+MF	Q0	Lungenunterfeld	0
+MF	Q0	Mediainfarkt	0
+MF	Q0	Mediainfarktes	0
+MF	Q0	Minderbelüftung	0
+MF	Q0	Minderbelüftungsareale	0
+MF	Q0	mittels Cathofix	0
+MF	Q0	Mycosis fungoides	0
+MF	Q0	OF	0
+MF	Q0	OSG	0
+MF	Q0	UA	0
+MF	Q0	UF	0
+MF	Q0	UFH	0
+MF	Q0	UL	0
 MF	Q0	Unterfeld	0
-MINS	Q0	Mitralklappeninsuffizienz	2
-MINS	Q0	Mitralinsuffizienz	2
+MF	Q0	Multiple fleckförmig	-1
 MINS	Q0	Mitralinsuff	2
-MINS	Q0	Mitralringverkalkung	0
-MINS	Q0	Mitralstenose	0
-MINS	Q0	Mitralklappensklerose	0
-MINS	Q0	Mitralsegel minimal	0
+MINS	Q0	Mitralinsuffizienz	2
+MINS	Q0	Mitralklappeninsuffizienz	2
+MINS	Q0	Mitralinsuffienz	1
+MINS	Q0	Mitralinsuffizeinz	1
+MINS	Q0	Mitralinsuffzienz	1
 MINS	Q0	AINS	0
-MINS	Q0	TRINS	0
-MINS	Q0	PUINS	0
+MINS	Q0	MIN	0
 MINS	Q0	Mins	0
+MINS	Q0	MINs	0
+MINS	Q0	MINSÐ	0
+MINS	Q0	Mitralklappensklerose	0
+MINS	Q0	Mitralringverkalkung	0
+MINS	Q0	Mitralsegel minimal	0
+MINS	Q0	Mitralstenose	0
+MINS	Q0	PINS	0
+MINS	Q0	PUINS	0
 MINS	Q0	Trikuspidalklappeninsuffizienz	0
-NINS	Q0	Niereninsuffizienz	2
-NINS	Q0	Nierenversagen	0
+MINS	Q0	TRINS	0
 NINS	Q0	Niereninsuff	2
-NINS	Q0	Niereninsuffizienz kompensiert	0
-NINS	Q0	Niereninsuffzienz	1
+NINS	Q0	Niereninsuffizienz	2
 NINS	Q0	NIereninsuff	1
-NINS	Q0	COLD	0
+NINS	Q0	Niereninsuffizenz	1
+NINS	Q0	Niereninsuffzienz	1
 NINS	Q0	Chronische Niereninsuffizienz	0
+NINS	Q0	COLD	0
 NINS	Q0	COPD	0
+NINS	Q0	dialysepfl NINS	0
 NINS	Q0	Niereninsuffizienz CKD	0
+NINS	Q0	Niereninsuffizienz kompensiert	0
+NINS	Q0	Nierenversagen	0
+NINS	Q0	Nikotinabusus	0
+NINS	Q0	NINS CKD	0
 NINS	Q0	Polyneuropathie	0
+NSTEMI	Q0	Non ST-Elevated Myocardial Infarction	2
 NSTEMI	Q0	non-ST-elevation-infarction	2
-NSTEMI	Q0	Nicht-ST-Hebungs-Myokardinfarkt	1
-NSTEMI	Q0	STEMI	0
-NSTEMI	Q0	ACS	0
 NSTEMI	Q0	Myokardinfarkt	1
-NSTEMI	Q0	ST Hebungsinfarkt	0
+NSTEMI	Q0	Nicht-ST-Hebungs-Myokardinfarkt	1
+NSTEMI	Q0	ACS	0
+NSTEMI	Q0	EMI	0
 NSTEMI	Q0	hypertensiver Entgleisung	0
-NSVT	Q0	nichtanhaltende ventrikuläre Tachykardie	0
+NSTEMI	Q0	NSETEMI	0
+NSTEMI	Q0	NSTEMINSTEMI	0
+NSTEMI	Q0	NSTEMIs	0
+NSTEMI	Q0	ST Hebungsinfarkt	0
+NSTEMI	Q0	STEMI	0
 NSVT	Q0	non-sustained ventricular tachycardia	2
+NSVT	Q0	nichtanhaltende ventrikuläre Tachykardie	1
+NSVT	Q0	ÐNSVT	0
+NSVT	Q0	ÐxNSVT	0
 NSVT	Q0	nsVT	0
-NSVT	Q0	VT	0
-NSVT	Q0	SVT	0
-NSVT	Q0	run	0
 NSVT	Q0	nsVt	0
+NSVT	Q0	NSVTs	0
+NSVT	Q0	nsVTs	0
+NSVT	Q0	pSVT	0
+NSVT	Q0	PSVT	0
+NSVT	Q0	run	0
+NSVT	Q0	SVT	0
+NSVT	Q0	VT	0
 NTX	Q0	Nierentransplantation	2
+NTX	Q0	Hämatomausräumung	0
+NTX	Q0	LTX	0
+NTX	Q0	Mitraclip	0
+NTX	Q0	MTX	0
 NTX	Q0	N recti	0
+NTX	Q0	Nebenhodenentzündung	0
+NTX	Q0	Nekrektomie	0
+NTX	Q0	Neo recti	0
 NTX	Q0	Neo testis	0
-NTX	Q0	NSETEMI	0
 NTX	Q0	Nephrektomie	0
 NTX	Q0	Nephrolithiasis	0
-NTX	Q0	LTX	0
-NTX	Q0	TURP	0
-NTX	Q0	Hämatomausräumung	0
-NTX	Q0	Mitraclip	0
+NTX	Q0	Nephrostoma	0
+NTX	Q0	NSETEMI	0
+NTX	Q0	NSTEMI	0
 NTX	Q0	PTSMA	0
+NTX	Q0	RTX	0
+NTX	Q0	TURP	0
+NTX	Q0	TX	0
 NYHA	Q0	New York Heart Association	2
+NYHA	Q0	AHA	0
 NYHA	Q0	CCS	0
 NYHA	Q0	EHRA	0
-NYHA	Q0	NXHA	0
-NYHA	Q0	stabiles Zustandsbild	0
 NYHA	Q0	HYHA	0
+NYHA	Q0	NXHA	0
+NYHA	Q0	NYHAIII	0
+NYHA	Q0	stabiles Zustandsbild	0
 OA	Q0	Oberarzt	2
-OA	Q0	Ordination	0
 OA	Q0	oraler Antikoagulation	1
-OA	Q0	Oberbauchsono	0
-OA	Q0	Prof	0
 OA	Q0	Doz	0
-OA	Q0	OA Dr	0
+OA	Q0	Doz Dr	0
 OA	Q0	Dr	0
 OA	Q0	Elisabeth	0
-OAK	Q0	oraler Antikoagulation	2
-OAK	Q0	oralen Antikoagulation	2
+OA	Q0	OA Dr	0
+OA	Q0	Oberbauchsono	0
+OA	Q0	Olaf	0
+OA	Q0	Olbetam	0
+OA	Q0	Optionen ausführlich	0
+OA	Q0	Ordination	0
+OA	Q0	ordination	0
+OA	Q0	PD Dr	0
+OA	Q0	Prof	0
+OA	Q0	Oberarm	-1
+OA	Q0	occipito-anterior	-1
+OA	Q0	Osteoarthritis	-1
+OAK	Q0	orale Antikoagulanzien	2
 OAK	Q0	orale Antikoagulation	2
+OAK	Q0	Orale Antikoagulation	2
 OAK	Q0	orale Antikoagulationstherapie	2
+OAK	Q0	oralen Antikoagulation	2
 OAK	Q0	oralen Antikoagulationstherapie	2
-OAK	Q0	OP Tauglichkeit	0
+OAK	Q0	oraler Antikoagulation	2
+OAK	Q0	orale Antikougulation	1
 OAK	Q0	Antikoagulation	0
-OAK	Q0	NMH	0
-OAK	Q0	Sedacorontherapie	0
-OAK	Q0	Marcoumartherapie	0
+OAK	Q0	DOAK	0
 OAK	Q0	Kardioversion	0
+OAK	Q0	Marcoumartherapie	0
+OAK	Q0	NMH	0
+OAK	Q0	NOAK	0
+OAK	Q0	OP Tauglichkeit	0
+OAK	Q0	Sedacorontherapie	0
 ÖF	Q0	Öffnungsfläche	2
+ÖF	Q0	Öffnung	1
+ÖF	Q0	Öffnungs	1
 ÖF	Q0	Öffnungsfl	1
-ÖF	Q0	Klappenöffnungsfläche	0
+ÖF	Q0	AÖF	0
+ÖF	Q0	AÖFÐ	0
 ÖF	Q0	Aortenöffnungsfläche	0
-ÖF	Q0	einmalige Episode	0
-ÖF	Q0	MI FR	0
 ÖF	Q0	É	0
-OM	Q0	abnorme Arterie	0
+ÖF	Q0	einmalige Episode	0
+ÖF	Q0	Klappenöffnungsfläche	0
+ÖF	Q0	KÖF	0
+ÖF	Q0	MI FR	0
+ÖF	Q0	MÖF	0
+ÖF	Q0	Öffnungsbewegung	0
+ÖF	Q0	TRÖF	0
 OM	Q0	obtuse marginal branch	2
-OM	Q0	Ostiumstenose	0
-OM	Q0	Okkludierender Thrombus	0
-OM	Q0	Oberarmmanschette	0
-OM	Q0	Ostiums	0
-OM	Q0	Osteosynthesemetall	0
-OM	Q0	PLA	0
-OM	Q0	CX	0
+OM	Q0	abnorme Arterie	0
 OM	Q0	ALA	0
-OM	Q0	RCA	0
+OM	Q0	CX	0
 OM	Q0	Cx	0
+OM	Q0	ÐCX	0
+OM	Q0	Oberarmmanschette	0
+OM	Q0	Okkludierender Thrombus	0
+OM	Q0	OMF	0
+OM	Q0	Osteosynthesemetall	0
+OM	Q0	Ostiums	0
+OM	Q0	Ostiumstenose	0
+OM	Q0	PLA	0
+OM	Q0	RCA	0
+OM	Q0	RCX	0
 OP	Q0	Operation	2
-OP	Q0	Operationstermin	0
-OP	Q0	OS Amputation	0
+OP	Q0	operative	2
+OP	Q0	operativen	2
+OP	Q0	operativer	2
+OP	Q0	Bypassoperation	0
+OP	Q0	femorocruraler	0
+OP	Q0	LOOP	0
 OP	Q0	offene Bypässe	0
 OP	Q0	Op	0
-OP	Q0	Bypassoperation	0
+OP	Q0	OPAv	0
+OP	Q0	Operationstermin	0
+OP	Q0	operativer Klappenersatz	0
+OP	Q0	OPS	0
+OP	Q0	OPSI	0
+OP	Q0	OS Amputation	0
 OP	Q0	Risiko op	0
-OP	Q0	femorocruraler	0
 OP	Q0	Sanierung	0
+OP	Q0	ZOP	0
+OP	Q0	Operata	-1
+OP	Q0	Operationsnarbe	-1
+OP	Q0	Operationsrisiko	-1
+OP	Q0	Operationssaal	-1
+OP	Q0	Originalpackung	-1
 PAE	Q0	Pulmonalarterienembolie	2
-PAE	Q0	Prostataektomie	0
+PAE	Q0	Pulmonalarterien	1
+PAE	Q0	Aortendissektion	0
+PAE	Q0	CFAE	0
+PAE	Q0	intrazerebrale Blutung	0
+PAE	Q0	PAEs	0
 PAE	Q0	Pankreatitis	0
-PAE	Q0	Prostatektomie	0
+PAE	Q0	Peritonealdialyse	0
+PAE	Q0	Peroneusparese	0
+PAE	Q0	Plantarvenenthrombose	0
+PAE	Q0	Pleuraerguss Kein	0
+PAE	Q0	Pleuraergüsse	0
 PAE	Q0	pleuralen Ergüsse	0
+PAE	Q0	Pleuropericardiale Adhäsionen	0
+PAE	Q0	postmykarditis CMP bekannt	0
+PAE	Q0	Prostataektomie	0
+PAE	Q0	Prostatektomie	0
 PAE	Q0	psychovegetative Entgleisung	0
+PAE	Q0	Schädelfraktur	0
+PAE	Q0	segmentale PAE	0
+PAE	Q0	TE	0
 PAE	Q0	TVT	0
 PAE	Q0	zentrale	0
-PAE	Q0	TE	0
-PAE	Q0	Aortendissektion	0
-PAE	Q0	segmentale PAE	0
+PAP	Q0	Pulmonary Artery Pressure	2
+PAP	Q0	pulmonalart Druck	1
 PAP	Q0	Pulmonalarteriendruck	1
-PAP	Q0	Pulmonalklappensklerose	0
-PAP	Q0	planimetrischund PHT	0
-PAP	Q0	PUlmonalklappe	0
+PAP	Q0	Pulmonaldruck	1
+PAP	Q0	Pulmonalisdruck	1
+PAP	Q0	Pulmonalsidruck	1
+PAP	Q0	Abstrich nach Papanicolaou	0
+PAP	Q0	CPAP	0
+PAP	Q0	Farbdoppelechokardiographie	0
+PAP	Q0	Farbdopplerechokardiographie	0
+PAP	Q0	OSAS CPAP	0
+PAP	Q0	Pap	0
+PAP	Q0	PAP sys	0
 PAP	Q0	PaPsys	0
+PAP	Q0	PAPsyst	0
+PAP	Q0	planimetrischund PHT	0
+PAP	Q0	pulm art Hypertonie	0
+PAP	Q0	Pulmonalishauptäste	0
 PAP	Q0	Pulmonalklapp	0
+PAP	Q0	PUlmonalklappe	0
+PAP	Q0	Pulmonalklappe	0
+PAP	Q0	Pulmonalklappeninsuffizienz	0
+PAP	Q0	Pulmonalklappensklerose	0
 PAP	Q0	sPAP	0
 PAP	Q0	SPAP	0
-PAP	Q0	pulmonalart Druck	0
-PAP	Q0	Pulmonalisdruck	0
-PAP	Q0	PAPsyst	0
 PAVK	Q0	Periphere arterielle Verschlusskrankheit	2
-PAVK	Q0	paVK	0
+PAVK	Q0	periphere arterielle Verschlusskrankheit	2
+PAVK	Q0	CAVK	0
+PAVK	Q0	cAVK	0
 PAVK	Q0	Chron NINS	0
-PAVK	Q0	HWI Harnwegsinfekt	0
-PAVK	Q0	Prostatahypertrophie	0
+PAVK	Q0	coel pAVK	0
 PAVK	Q0	dialysepflichtige NINS	0
-PCI	Q0	Perkutane koronare Intervention	2
+PAVK	Q0	HWI Harnwegsinfekt	0
+PAVK	Q0	paVK	0
+PAVK	Q0	PAVK IIb	0
+PAVK	Q0	Prostatahypertrophie	0
+PAVK	Q0	vAVK	0
 PCI	Q0	Percutaneous coronary intervention	2
+PCI	Q0	Perkutane koronare Intervention	2
+PCI	Q0	Perkutane Koronarintervention	2
+PCI	Q0	forcierte Diurese	0
+PCI	Q0	Fortschreitens	0
+PCI	Q0	LAA occlusion	0
 PCI	Q0	passageren Schrittmachers	0
+PCI	Q0	PC	0
+PCI	Q0	PCG	0
+PCI	Q0	PCO	0
+PCI	Q0	PCP	0
+PCI	Q0	PCSK	0
 PCI	Q0	Pericarditis	0
 PCI	Q0	Pericarditis constrictiva	0
+PCI	Q0	Plaque culprit	0
+PCI	Q0	Plättchentherapie	0
+PCI	Q0	Plattenepithelcarcinoms	0
+PCI	Q0	präop Coronarangio	0
 PCI	Q0	PTCA	0
-PCI	Q0	Stentimplantation	0
+PCI	Q0	PTCA mit	0
+PCI	Q0	Pulmonalklappenvalvulotomie	0
 PCI	Q0	Redilatation	0
+PCI	Q0	Stentimplantation	0
 PCI	Q0	Stenting	0
-PCI	Q0	LAA occlusion	0
 PNP	Q0	Polyneuropathie	2
-PNP	Q0	Panzytopenie	0
-PNP	Q0	Pyelonephritis	0
 PNP	Q0	Polyneuropathiesyndrom	2
+PNP	Q0	AVK IIb	0
+PNP	Q0	Fieberhafter Infekt	0
+PNP	Q0	GERD	0
+PNP	Q0	kombinierte Hyperlipidämie	0
+PNP	Q0	Laktoseintoleranz	0
+PNP	Q0	mellitus insulinpflichtig	0
+PNP	Q0	NINS komp	0
+PNP	Q0	Panzytopenie	0
+PNP	Q0	Präbetalipoproteinämie Hypercholesterinämie	0
+PNP	Q0	primär systemisch	0
 PNP	Q0	Pulmonale Hypertension	0
 PNP	Q0	Pulmonalklappenstenose	0
-PNP	Q0	kombinierte Hyperlipidämie	0
-PNP	Q0	mellitus insulinpflichtig	0
+PNP	Q0	Pyelonephritis	0
+PNP	Q0	Reflux	0
+PNP	Q0	uninodosa dext	0
 PNP	Q0	Verschlusskrankheit	0
-PNP	Q0	primär systemisch	0
-PNP	Q0	Laktoseintoleranz	0
 PRIND	Q0	prolongiertem reversiblem ischämischem neurologischen Defizit	2
+PRIND	Q0	Prolongiertes reversibles ischämisches neurologisches Defizit	2
+PRIND	Q0	apoplekt	0
+PRIND	Q0	Cataract Op	0
+PRIND	Q0	Forest	0
+PRIND	Q0	IND	0
+PRIND	Q0	INDIKATION EN	0
+PRIND	Q0	Mehrfachstenting	0
+PRIND	Q0	OBEREN	0
+PRIND	Q0	ODER	0
 PRIND	Q0	Perikardtamponade	0
 PRIND	Q0	Peritonealdialyse	0
-PRIND	Q0	apoplekt	0
-PRIND	Q0	Mehrfachstenting	0
-PRIND	Q0	Forest	0
 PRIND	Q0	Polymyelitis	0
-PRIND	Q0	Cataract Op	0
+PRIND	Q0	PRAXITEN	0
+PTA	Q0	Perkutane transluminale Angioplastie	2
 PTA	Q0	Perkutaner transluminaler Angioplastie	2
-PTA	Q0	Prostataektomie	0
-PTA	Q0	Port a	0
-PTA	Q0	Polytrauma	0
-PTA	Q0	Prostatakarzinom	0
-PTA	Q0	Posterolateralinfarkt	0
-PTA	Q0	Embolektomie	0
-PTA	Q0	PCTA	0
-PTA	Q0	TEA	0
 PTA	Q0	ACM	0
+PTA	Q0	Embolektomie	0
 PTA	Q0	Hernia ing	0
+PTA	Q0	PCI Zustand nach Thrombendarteriektomie	0
+PTA	Q0	PCTA	0
+PTA	Q0	Plantarvenenthrombose	0
+PTA	Q0	Polytrauma	0
+PTA	Q0	Port a	0
+PTA	Q0	Posteriorinfarkt	0
+PTA	Q0	Posterolateralinfarkt	0
+PTA	Q0	Prostataektomie	0
+PTA	Q0	Prostatakarzinom	0
+PTA	Q0	Prostataresektion	0
+PTA	Q0	Prostatektomie	0
+PTA	Q0	PT	0
+PTA	Q0	PTCA LAD	0
+PTA	Q0	PTH	0
+PTA	Q0	PTPV	0
+PTA	Q0	TEA	0
+PTCA	Q0	perkutane transluminale coronare Angioplastie	2
 PTCA	Q0	Perkutane Transluminale Koronare Angioplastie	2
-PTCA	Q0	Stentimplantation	0
+PTCA	Q0	Bz	0
+PTCA	Q0	ÐxPTCA	0
+PTCA	Q0	Passagere Schrittmacherimplantantion	0
 PTCA	Q0	PCI	0
+PTCA	Q0	perkutanen Aortenklappenersatz	0
+PTCA	Q0	Porth a Cath	0
+PTCA	Q0	positiver Thaliummyokardszintigraphie	0
+PTCA	Q0	primär erfolgreicher elektrischer Kardioversion	0
+PTCA	Q0	primär erfolgreicher elektrischer Kardioversion am	0
+PTCA	Q0	Privatklinik Ragnitz	0
+PTCA	Q0	prophylaktischer ICD Implantation	0
+PTCA	Q0	propter CABG	0
+PTCA	Q0	PT	0
+PTCA	Q0	PTCAs	0
+PTCA	Q0	PTCI	0
 PTCA	Q0	Redilatation	0
 PTCA	Q0	Rekanalisation	0
 PTCA	Q0	Stentimplant	0
-PUINS	Q0	Pulmonalisinsuffizienz	2
-PUINS	Q0	Pulmonalinsuffizienz	2
-PUINS	Q0	Pulmonalklappeninsuffizienz	2
+PTCA	Q0	Stentimplantation	0
 PUINS	Q0	Pulmonalinsuff	2
-PUINS	Q0	paravalvuläre Insuff	0
-PUINS	Q0	Pulmonalisinsuff	2
+PUINS	Q0	Pulmonalinsuffizienz	2
 PUINS	Q0	Pulmonalinsuffizikienz	2
-PUINS	Q0	paravalvuläre Insuffizienz	0
+PUINS	Q0	Pulmonalisinsuff	2
+PUINS	Q0	Pulmonalisinsuffizienz	2
+PUINS	Q0	Pulmonalklappeninsuffizienz	2
+PUINS	Q0	Pulmonalinsuffzienz	1
+PUINS	Q0	AINS	0
+PUINS	Q0	AINSI	0
+PUINS	Q0	Funktionsstörung	0
 PUINS	Q0	Mins	0
+PUINS	Q0	paravalvuläre Insuff	0
+PUINS	Q0	paravalvuläre Insuffizienz	0
+PUINS	Q0	phys PUINS	0
+PUINS	Q0	physiolog PUINS	0
 PUINS	Q0	PINS	0
 PUINS	Q0	Trins	0
-PUINS	Q0	physiolog PUINS	0
-PUINS	Q0	AINS	0
+PUINS	Q0	TRINS	0
+PUINS	Q0	physiolog Pulmonalinsuff	-1
 RA	Q0	Rechtes Atrium	2
-RA	Q0	Rechter Vorhof	0
 RA	Q0	rechtes Atrium	2
-RA	Q0	Rechts Linksherzkatheter	0
-RA	Q0	restriktive Ventilationsstörung	0
-RA	Q0	Radiatio	0
-RA	Q0	Rechtsventrikelfunktion TAPSE	0
+RA	Q0	Rechter Vorhof	1
 RA	Q0	Alle Herzhöhlen	0
+RA	Q0	EHRA	0
 RA	Q0	konz	0
 RA	Q0	LA	0
 RA	Q0	RA LA	0
+RA	Q0	Radiatio	0
+RA	Q0	RAH	0
+RA	Q0	RAMIPRIL	0
+RA	Q0	Randsinus	0
+RA	Q0	RAO	0
+RA	Q0	Rechts Linksherzkatheter	0
+RA	Q0	rechtsventr Volumenbelastung	0
+RA	Q0	Rechtsventrikelfunktion TAPSE	0
+RA	Q0	Rektal	0
+RA	Q0	Restkontraktilität	0
+RA	Q0	Restmyokard mäßig	0
+RA	Q0	restriktive Ventilationsstörung	0
+RA	Q0	rhythmusstabil	0
+RA	Q0	RV dilatiert	0
 RA	Q0	Vorhof	0
+RA	Q0	refraktäre Anämie	-1
 RCA	Q0	Rechte Coronararterie	2
 RCA	Q0	Rechte Koronararterie	2
-RCA	Q0	rechtsatrialem Vorhofflattern	0
-RCA	Q0	rechtsatriale Isthmusablation	0
+RCA	Q0	rechte Koronararterie	2
+RCA	Q0	Rechtskoronararterienverschluss	1
+RCA	Q0	ALA	0
 RCA	Q0	CX	0
 RCA	Q0	LAD	0
-RCA	Q0	PLA	0
+RCA	Q0	mLAD	0
 RCA	Q0	OM	0
-RCA	Q0	ALA	0
+RCA	Q0	PLA	0
+RCA	Q0	Rachenanästhesie	0
+RCA	Q0	RCAÐ	0
+RCA	Q0	RCX	0
+RCA	Q0	rechtsatriale Isthmusablation	0
+RCA	Q0	rechtsatrialem Vorhofflattern	0
+RCA	Q0	Reizschwelle A	0
+RCA	Q0	Rekanalisation	0
+RCA	Q0	Rekanalisation Thrombusaspiration	0
+RCA	Q0	Rekanalisationsversuch	0
+RCA	Q0	Rhythmus Amb nach Bedarf	0
 RG?s	Q0	Rasselgeräusche	2
+RG?s	Q0	Raumforderungszeichen	0
+RG?s	Q0	rege	0
 RG?s	Q0	rege DGs	0
 RG?s	Q0	regelrechte DGs	0
 RG?s	Q0	regelrechte DGS	0
+RG?s	Q0	Resistenz Vaginal	0
+RG?s	Q0	Resistenzkategorie	0
 RG?s	Q0	Rhyhtmusereginisse	0
-RG?s	Q0	Raumforderungszeichen	0
+RG?s	Q0	RW Ergüsse	0
 RGs	Q0	Rasselgeräusche	2
+RGs	Q0	AGs	0
+RGs	Q0	EEGs	0
+RGs	Q0	feuchte RGs	0
+RGs	Q0	fRGs	0
+RGs	Q0	HGs	0
+RGs	Q0	pathol AGs	0
+RGs	Q0	patholog Geräusche	0
+RGs	Q0	pathologischen Geräusche	0
 RGs	Q0	rege DGs	0
 RGs	Q0	regelrechte DGs	0
 RGs	Q0	regelrechte DGS	0
 RGs	Q0	region Wandbewegungsstörungen	0
+RGs	Q0	Resistenz Vaginal	0
+RGs	Q0	Resistenzkategorie	0
+RGs	Q0	RGS	0
+RGs	Q0	Rgs	0
 RGs	Q0	Rhyhtmusereginisse	0
-RGs	Q0	pathologischen Geräusche	0
+RGs	Q0	RW Ergüsse	0
 RGs	Q0	sonorer KS	0
-RGs	Q0	pathol AGs	0
-RGs	Q0	feuchte RGs	0
-RGs	Q0	patholog Geräusche	0
 RÖ	Q0	Röntgen	2
-RÖ	Q0	Repolarisationsstörung	0
 RÖ	Q0	Röntgenkontrolle	2
+RÖ	Q0	röntg	1
+RÖ	Q0	é	0
 RÖ	Q0	Gerüstzeichnung beider	0
+RÖ	Q0	Hd	0
+RÖ	Q0	iBd	0
 RÖ	Q0	Magenröntgen Lungenfunktionstest	0
 RÖ	Q0	Maschine	0
-RÖ	Q0	unkl	0
+RÖ	Q0	PNOMxRO	0
 RÖ	Q0	Praeoperatives	0
-RR	Q0	Blutdruck	1
+RÖ	Q0	Repolarisationsstörung	0
+RÖ	Q0	SEHSCHÄRFE	0
+RÖ	Q0	unkl	0
+RR	Q0	Riva-Rocci	2
 RR	Q0	Arterieller Blutdruck	1
-RR	Q0	regelmäßiger Blutdruckkontrolle	0
-RR	Q0	Rhytmonorma	0
-RR	Q0	Retrograde	0
-RR	Q0	Reizschwellenatrium	0
-RR	Q0	Risikofaktoreneinstellung	0
-RR	Q0	LDL	0
+RR	Q0	Blutdruck	1
+RR	Q0	blutdruck	1
+RR	Q0	Caput	0
 RR	Q0	Certralin	0
 RR	Q0	ÐÐÐmmHg	0
-RR	Q0	Caput	0
+RR	Q0	ÐÐRR	0
 RR	Q0	Gas	0
-RS	Q0	RS-Umschlag	0
-RS	Q0	Rechtsverspätung	0
-RS	Q0	Rücktransfer	0
-RS	Q0	Reizschwellen	0
-RS	Q0	rundliche Transparenzminderung	0
-RS	Q0	Restpneumothoraxanteil	0
-RS	Q0	RSU	0
+RR	Q0	LDL	0
+RR	Q0	regelmäßiger Blutdruckkontrolle	0
+RR	Q0	Regelrechter Blutdruckanstieg	0
+RR	Q0	regelrechter Blutdruckanstieg	0
+RR	Q0	Reisedauer	0
+RR	Q0	Reizschwellenatrium	0
+RR	Q0	Retrograde	0
+RR	Q0	Rhytmonorma	0
+RR	Q0	Risikofaktoreneinstellung	0
+RR	Q0	Risikoprofiles Zielblutdruck	0
+RR	Q0	RRÐ	0
+RR	Q0	RRT	0
+RR	Q0	Ruheblutdruck	0
+RS	Q0	HRS	0
+RS	Q0	IRS	0
 RS	Q0	kleines Q	0
-RS	Q0	QRSschmal RSU	0
+RS	Q0	ORS	0
 RS	Q0	Q	0
+RS	Q0	QRSschmal RSU	0
+RS	Q0	R S Umschlag	0
+RS	Q0	R Verlust	0
+RS	Q0	Rechtstyp	0
+RS	Q0	Rechtsverspätung	0
+RS	Q0	Reizschwellen	0
+RS	Q0	Restpneumothoraxanteil	0
+RS	Q0	RS-Umschlag	0
+RS	Q0	RSPV	0
+RS	Q0	rSr	0
+RS	Q0	rsR	0
+RS	Q0	RsR	0
+RS	Q0	rSR	0
+RS	Q0	RSU	0
+RS	Q0	Rücktransfer	0
+RS	Q0	Ruhephase	0
+RS	Q0	Ruhepulses	0
+RS	Q0	rundliche Transparenzminderung	0
+RS	Q0	Rverlust	0
 RS	Q0	S	0
+RS	Q0	Raynaud-Syndrom	-1
+RS	Q0	Rettungssanitäter	-1
+RS	Q0	Rhombencephalosynapsis	-1
+RS	Q0	Rhythmusstörungen	-1
 RSB	Q0	Rechtsschenkelblock	2
-RSB	Q0	respiratorischer Kaliberschwankung	0
-RSB	Q0	Rhythmusambulannz	0
-RSB	Q0	respirat Kaliberschwankung	0
-RSB	Q0	Rechtsherzbeurteilung	0
-RSB	Q0	LSB	0
-RSB	Q0	LSB Bild	0
+RSB	Q0	Rechtsschenkelblockbild	1
+RSB	Q0	ERSB	0
 RSB	Q0	inkompl LSB	0
 RSB	Q0	inkompl RSB	0
 RSB	Q0	kompl LSB	0
+RSB	Q0	LSB	0
+RSB	Q0	LSB Bild	0
+RSB	Q0	Rechtsbelastung	0
+RSB	Q0	Rechtsherzbeurteilung	0
+RSB	Q0	respirat Kaliberschwankung	0
+RSB	Q0	respiratorischer Kaliberschwankung	0
+RSB	Q0	Rhythmusambulannz	0
+RSB	Q0	RSB LAH	0
+RSB	Q0	RSB RAH	0
+RSB	Q0	ÜLTÐRSB	0
 RV	Q0	Rechter Ventrikel	2
+RV	Q0	rechter Ventrikel	2
+RV	Q0	rechtsventrikulär	2
+RV	Q0	Rechtsventrikuläre	2
+RV	Q0	rechtsventrikuläre	2
+RV	Q0	Rechtsventrikulärer	2
+RV	Q0	rechtsventrikulärer	2
+RV	Q0	re Ventrikel	1
+RV	Q0	Rechtsventr	1
+RV	Q0	rechtsventr	1
+RV	Q0	Rechtsventrikelfkt	1
 RV	Q0	Rechtsventrikelfunktion	1
 RV	Q0	Rechtventrikelfunktion	1
-RV	Q0	Rivacor	0
-RV	Q0	LV	0
-RV	Q0	Atrium	0
 RV	Q0	atrial	0
+RV	Q0	Atrium	0
 RV	Q0	Impedanz	0
+RV	Q0	LV	0
 RV	Q0	P Welle	0
+RV	Q0	PRV	0
+RV	Q0	re und li Ventrikel	0
+RV	Q0	Reizschwelle ventrikulär	0
+RV	Q0	Rivacor	0
+RV	Q0	Rivotril	0
+RV	Q0	RVED	0
+RV	Q0	RVH	0
+RV	Q0	RVO	0
+RV	Q0	RVS	0
+RV	Q0	Restvolumen der Lunge	-1
 RW	Q0	Randwinkel	2
-RW	Q0	Randwinkelergüsse	0
-RW	Q0	Randwinkelerguss	0
-RW	Q0	Randwinkelerguß	0
-RW	Q0	Randwinkelschwielen	0
-RW	Q0	Randwinkelergüssen	0
-RW	Q0	Recessus	0
-RW	Q0	Rezessus	0
-RW	Q0	Recessus laterales	0
+RW	Q0	Randwinkels	2
 RW	Q0	basalen Zisternen	0
 RW	Q0	Neuroforamina	0
-SAE	Q0	schweren unerwünschten Ereignisse	0
+RW	Q0	Randwinkeladhärenz	0
+RW	Q0	Randwinkelerguss	0
+RW	Q0	Randwinkelerguß	0
+RW	Q0	Randwinkelergüsse	0
+RW	Q0	Randwinkelergüße	0
+RW	Q0	Randwinkelergüssen	0
+RW	Q0	Randwinkelschwielen	0
+RW	Q0	Recessus	0
+RW	Q0	Recessus laterales	0
+RW	Q0	Rezessus	0
+RW	Q0	Mundwinkel	-1
+SAE	Q0	Serious Adverse Event	2
 SAE	Q0	Severe Adverse events	2
-SAE	Q0	Straßenverkehr	0
-SAE	Q0	signifikante Ischämiezeichen	0
-SAE	Q0	symptomatische Hypotension	0
-SAE	Q0	Salazopyrintherapie	0
-SAE	Q0	Schrittmacher assoziierten	0
 SAE	Q0	AE	0
-SAE	Q0	SAEs	0
+SAE	Q0	AE SAE	0
 SAE	Q0	AEs	0
-SAE	Q0	Krankenhausaufenthalte	-1
+SAE	Q0	CFAE	0
+SAE	Q0	SAEs	0
+SAE	Q0	Salazopyrintherapie	0
+SAE	Q0	SAM	0
+SAE	Q0	Schrittmacher assoziierten	0
+SAE	Q0	schweren unerwünschten Ereignisse	0
+SAE	Q0	signifikante Ischämiezeichen	0
+SAE	Q0	Straßenverkehr	0
+SAE	Q0	Studienvisite aufgetreten	0
+SAE	Q0	subsegmental PAEs	0
+SAE	Q0	symptomatische Hypotension	0
+SAE	Q0	synkopale Ereignisse	0
+SAE	Q0	synkopalen Ereignisse	0
+SAE	Q0	synkopales Ereignis	0
+SAE	Q0	synovitische Hyperplasie	0
 SAE	Q0	Hospitalisierungen	-1
+SAE	Q0	Krankenhausaufenthalte	-1
+SAE	Q0	Subkortikale arteriosklerotische Enzephalopathie	-1
 SM	Q0	Schrittmacher	2
-SM	Q0	Schrittmacherkontrolle	0
-SM	Q0	Schmalkomplextachykardie	0
-SM	Q0	Schrittmacherrhythmus	0
-SM	Q0	Schrittmacherimplantation	0
-SM	Q0	Schrittmachers	0
-SM	Q0	ICD	0
-SM	Q0	Reveal	0
-SM	Q0	CRT	0
+SM	Q0	SChrittmachers	1
+SM	Q0	Shcrittmacher	1
+SM	Q0	BSM	0
 SM	Q0	CCM	0
+SM	Q0	CRT	0
+SM	Q0	HSM	0
+SM	Q0	ICD	0
+SM	Q0	iCD	0
+SM	Q0	Reveal	0
 SM	Q0	Revealrecorder	0
+SM	Q0	Schmalkomplextachykardie	0
+SM	Q0	Schrittmacherimpl	0
+SM	Q0	Schrittmacherimplantation	0
+SM	Q0	Schrittmacherkontrolle	0
+SM	Q0	Schrittmacherrhythmus	0
+SM	Q0	Schrittmachers	0
+SM	Q0	SMI	0
+SM	Q0	SMZ	0
 SR	Q0	Sinusrhythmus	2
-SR	Q0	Sinusbradykardie	0
-SR	Q0	Sinusarrhythmie	0
+SR	Q0	Sinusrhyhtmus	1
+SR	Q0	Atriale Stimulation	0
+SR	Q0	bcSR	0
+SR	Q0	BSR	0
+SR	Q0	min	0
+SR	Q0	MSR	0
+SR	Q0	Normocarde VHFA	0
+SR	Q0	PSR	0
 SR	Q0	Schrittmacherrhythmus	0
+SR	Q0	Sinusarrhthmie	0
+SR	Q0	Sinusarrhythmie	0
+SR	Q0	Sinusbrady	0
+SR	Q0	Sinusbradycardie	0
+SR	Q0	Sinusbradykardie	0
 SR	Q0	Sinustachykardie	0
 SR	Q0	SM stimulierte	0
-SR	Q0	min	0
 SR	Q0	Sr	0
-SR	Q0	Normocarde VHFA	0
+SR	Q0	TSR	0
 SR	Q0	VHFA	0
-SR	Q0	Atriale Stimulation	0
-TASS	Q0	Thrombo-ASS	1
-TASS	Q0	ThromboASS	1
+SR	Q0	Senkungsreaktion	-1
+SR	Q0	Spontanremission	-1
+TASS	Q0	Thrombo Acetylsalicylsäure	2
+TASS	Q0	Thrombo ASS	2
+TASS	Q0	Thrombo-ASS	2
 TASS	Q0	Thormbo Ass	1
-TASS	Q0	ThromboAss	1
 TASS	Q0	ThrmoboASS	1
-TASS	Q0	Torasemid	0
-TASS	Q0	Pradaxa	0
-TASS	Q0	Klacid	0
-TASS	Q0	Glucophage	0
-TASS	Q0	Urosin	0
+TASS	Q0	Thrombo Ass	1
+TASS	Q0	ThromboASS	1
+TASS	Q0	ThromboAss	1
+TASS	Q0	CSS	0
 TASS	Q0	Exforge	0
+TASS	Q0	FESS	0
+TASS	Q0	Glucophage	0
+TASS	Q0	Klacid	0
+TASS	Q0	POSS	0
+TASS	Q0	Pradaxa	0
+TASS	Q0	TASs	0
+TASS	Q0	ThromboASSÐÐÐmg	0
+TASS	Q0	Torasemid	0
+TASS	Q0	TorasemidÐÐmg	0
+TASS	Q0	Urosin	0
 TEP	Q0	Totalendoprothese	2
-TEP	Q0	Transparenzminderung perihilär	0
-TEP	Q0	Timolol Augentropfen	0
-TEP	Q0	Tumorexstirpation	0
-TEP	Q0	Tracheobronchialsystemes Pleuraspitzenschwielen	0
-TEP	Q0	Tumornephrektomie	0
-TEP	Q0	Knie TEP	0
-TEP	Q0	Kleinhirninsult	0
-TEP	Q0	Mediainfarkt	0
 TEP	Q0	H TEP	0
 TEP	Q0	Hüft TEP	0
+TEP	Q0	Kleinhirninsult	0
+TEP	Q0	Knie TEP	0
+TEP	Q0	KTEP	0
+TEP	Q0	Mediainfarkt	0
+TEP	Q0	SSEP	0
+TEP	Q0	Teilentfernung	0
+TEP	Q0	temporal	0
+TEP	Q0	TEP cox	0
+TEP	Q0	tibiales posteriores	0
+TEP	Q0	Timolol Augentropfen	0
+TEP	Q0	Tracheobronchialsystemes Pleuraspitzenschwielen	0
+TEP	Q0	Transparenzminderung perihilär	0
+TEP	Q0	Tumorexstirpation	0
+TEP	Q0	Tumornephrektomie	0
 TIA	Q0	transitorische ischämische Attacke	2
-TIA	Q0	Thalamusinfarkt	0
-TIA	Q0	Trikuspidalklappenraffung	0
-TIA	Q0	Teilamputation	0
-TIA	Q0	Transmuraler Myokardinfarkt	0
-TIA	Q0	Tricuspidalraffung	0
+TIA	Q0	Transitorische ischämische Attacke	2
+TIA	Q0	ACP Insult	0
+TIA	Q0	apoplekt Insult	0
 TIA	Q0	cerebralem Insult	0
-TIA	Q0	Insult	0
+TIA	Q0	CHE	0
+TIA	Q0	HWI	0
 TIA	Q0	Hysterektomie	0
+TIA	Q0	Insult	0
 TIA	Q0	Strumaresektion	0
 TIA	Q0	Strumektomie	0
-TRINS	Q0	Trikuspidalinsuffizienz	2
-TRINS	Q0	Trikuspidalklappeninsuffizienz	2
+TIA	Q0	tachykarder Vorhofflimmerarrhythmie	0
+TIA	Q0	Teilamputation	0
+TIA	Q0	Thalamusinfarkt	0
+TIA	Q0	Thyreoidektomie total	0
+TIA	Q0	TIAÐ	0
+TIA	Q0	transfemoraler TAVI am	0
+TIA	Q0	Transmuraler Myokardinfarkt	0
+TIA	Q0	Tricuspidalraffung	0
+TIA	Q0	Trikuspidalklappenraffung	0
+TIA	Q0	Teilinfarkt	-1
+TIA	Q0	transmuralem Hinterwandinfarkt	-1
+TIA	Q0	transmuraler Myokardinfarkt	-1
+TRINS	Q0	Tricuspidainsuffizienz	2
 TRINS	Q0	Tricuspidalinsuffizienz	2
 TRINS	Q0	Trikuspidalinsuff	2
+TRINS	Q0	Trikuspidalinsuffizienz	2
+TRINS	Q0	Trikuspidalklappeninsuffizienz	2
 TRINS	Q0	Triskuspidalinsuffizienz	2
-TRINS	Q0	Tricuspidainsuffizienz	2
-TRINS	Q0	Trins	0
-TRINS	Q0	MINS	0
-TRINS	Q0	PUINS	0
+TRINS	Q0	Trikuspidalinsuffizeinz	1
+TRINS	Q0	Trikuspidalinsuffizinez	1
 TRINS	Q0	AINS	0
+TRINS	Q0	MINS	0
 TRINS	Q0	Mins	0
+TRINS	Q0	PINS	0
+TRINS	Q0	PUINS	0
+TRINS	Q0	TR	0
+TRINS	Q0	Trins	0
+TRINS	Q0	TRINSI	0
+TRINS	Q0	TRIS	0
+TX	Q0	Transplant	2
 TX	Q0	Transplantation	2
-TX	Q0	Thoraxchirurgie	0
+TX	Q0	transplantchir	1
 TX	Q0	angiologischen	0
 TX	Q0	Endokrinologischen	0
-TX	Q0	Rhytmus	0
-TX	Q0	Herzchirurgischen	0
+TX	Q0	GÐ RTX	0
 TX	Q0	hämatologischen	0
+TX	Q0	Herzchirurgischen	0
+TX	Q0	MTX	0
+TX	Q0	NTX	0
+TX	Q0	Rhytmus	0
+TX	Q0	RTX	0
+TX	Q0	Textur	0
+TX	Q0	Thoraxchir	0
+TX	Q0	Thoraxchirurgie	0
+TX	Q0	thoraxchirurgischen	0
+TX	Q0	Toxoplasma	0
 US	Q0	Unterschenkel	2
-US	Q0	Unterschenkelödeme	0
-US	Q0	Unterschenkelamputation	0
 US	Q0	Unterschenkeln	2
-US	Q0	praetibiale	0
-US	Q0	peripheren	0
-US	Q0	Diastolicum	0
-US	Q0	orthostatisch kaum	0
 US	Q0	auftretender peripherer	0
+US	Q0	AUS	0
+US	Q0	Diastolicum	0
+US	Q0	MGUS	0
+US	Q0	orthostatisch kaum	0
+US	Q0	peripheren	0
+US	Q0	praetibiale	0
+US	Q0	Ulcusnarbe	0
+US	Q0	Unterschenkelamputation	0
+US	Q0	Unterschenkelkompressionsstrümpfen	0
+US	Q0	Unterschenkelödeme	0
+US	Q0	Untersuchung ausführliche	0
+US	Q0	Urethrastriktur	0
+US	Q0	USCH	0
+US	Q0	Usch	0
+US	Q0	USG	0
+US	Q0	USkG	0
+US	Q0	Ultraschall	-1
+US	Q0	unkonditionierter Stimulus	-1
 USKG	Q0	Ultraschallkardiogramm	2
-USKG	Q0	TTE	0
-USKG	Q0	Transthorakale Echokardiographie	0
 USKG	Q0	Echokardiographie	0
+USKG	Q0	KG	0
 USKG	Q0	TEE	0
 USKG	Q0	Thorax Rö	0
-VA	Q0	vesikuläres Atemgeräusch	2
+USKG	Q0	Transthorak Echokardiographie	0
+USKG	Q0	Transthorakale Echokardiographie	0
+USKG	Q0	TTE	0
+USKG	Q0	UKG	0
+USKG	Q0	Untersuchungen Elektrophysiologische	0
+USKG	Q0	USKGs	0
 VA	Q0	Vesikuläratmen	2
-VA	Q0	verschärftes AG	0
-VA	Q0	Varikositas	0
-VA	Q0	Varicosis	0
-VA	Q0	Varikosis	0
-VA	Q0	Varicositas	0
-VA	Q0	VAG	0
+VA	Q0	vesikuläres Atemgeräusch	2
+VA	Q0	AGs	0
+VA	Q0	BVA	0
 VA	Q0	Geräusche	0
 VA	Q0	path Herzgeräusche	0
-VA	Q0	AGs	0
 VA	Q0	patholog Geräusche	0
-VB	Q0	Vorbefund	2
+VA	Q0	SPIRIVA	0
+VA	Q0	VAC	0
+VA	Q0	VAG	0
+VA	Q0	Varicosis	0
+VA	Q0	Varicositas	0
+VA	Q0	Varikosis	0
+VA	Q0	Varikositas	0
+VA	Q0	verschärftes AG	0
+VA	Q0	VIVA	0
+VA	Q0	alveoläre Ventilation	-1
+VA	Q0	Varicose	-1
+VA	Q0	Varizella	-1
+VA	Q0	Vegetativumanamnese	-1
+VA	Q0	ves Atmung	-1
+VA	Q0	vitientyp Geräusche	-1
+VA	Q0	vitientypischen Geräusche	-1
+VA	Q0	vordere Augenabschnitte	-1
 VB	Q0	Venenbypass	2
+VB	Q0	Venenbypässe	2
 VB	Q0	Venenbypässen	2
-VB	Q0	VSM Bypass	0
-VB	Q0	Venen Bypasses	0
-VB	Q0	VSM Bypasses	0
+VB	Q0	Venenbypasses	2
+VB	Q0	Vorbefund	2
+VB	Q0	Aufladen	0
+VB	Q0	Bypässe LIMA	0
+VB	Q0	Bypässe Lima	0
+VB	Q0	Bypässe SVG	0
+VB	Q0	Bypasses	0
 VB	Q0	Echobefund idem	0
 VB	Q0	LIMA Bypass	0
+VB	Q0	RIMA	0
+VB	Q0	Venen Bypasses	0
 VB	Q0	Vorröntgen	0
-VB	Q0	Bypasses	0
-VB	Q0	Aufladen	0
+VB	Q0	VSM Bypass	0
+VB	Q0	VSM Bypasses	0
 VCI	Q0	Vena cava inferior	2
-VCI	Q0	verschmälert Sinus	0
-VCI	Q0	Minimaler	0
+VCI	Q0	Cava	1
+VCI	Q0	V cava inf	1
+VCI	Q0	Vena cava	1
+VCI	Q0	vena cava	1
+VCI	Q0	Vena Cava	1
+VCI	Q0	Vena cava inf	1
 VCI	Q0	Kleiner	0
-VCI	Q0	wirksamer	0
-VCI	Q0	Minim	0
 VCI	Q0	kleiner	0
+VCI	Q0	Minim	0
+VCI	Q0	Minimaler	0
+VCI	Q0	VC	0
+VCI	Q0	Vena cephalica	0
+VCI	Q0	Vena subclavia	0
+VCI	Q0	verdickt Mitralringsklerose	0
+VCI	Q0	verschieben	0
+VCI	Q0	verschmälert Sinus	0
+VCI	Q0	wirksamer	0
+VES	Q0	ventrikuläre Extrasystole	2
 VES	Q0	ventrikuläre Extrasystolen	2
-VES	Q0	vereinzelt Couplets	0
 VES	Q0	Ventrikuläre Extrasystolen	2
+VES	Q0	ventrikuläre Extrasystolie	2
+VES	Q0	ventr Extrasystole	1
+VES	Q0	ventriculäre ES	1
 VES	Q0	ventrik Extrasystolen	1
-VES	Q0	Vorbelastung	0
-VES	Q0	Ventrikuläre	0
-VES	Q0	SVES	0
+VES	Q0	Ventrikuläre	1
+VES	Q0	AGES	0
 VES	Q0	Couplets	0
+VES	Q0	ÐVES	0
 VES	Q0	monomorphe VES	0
-VES	Q0	polymorphe VES	0
+VES	Q0	monotope VES	0
 VES	Q0	Morphologien	0
+VES	Q0	polymorphe VES	0
+VES	Q0	SVES	0
+VES	Q0	ventrik Arrhythmien	0
+VES	Q0	vereinzelt Couplets	0
+VES	Q0	viralen Kopien	0
+VES	Q0	Vorbelastung	0
+VES	Q0	VT Episoden	0
+VES	Q0	Vzlt SVES	0
 VHFA	Q0	Vorhofflimmerarrhythmie	2
-VHFA	Q0	Vorhofflattern	0
+VHFA	Q0	Vorhofflimmerarhythmie	1
+VHFA	Q0	Vorhofflimmerarrhythmi	1
+VHFA	Q0	Vorhofflimmerarrythmie	1
+VHFA	Q0	Vorhofflimmeraryhthmie	1
+VHFA	Q0	Vorhofflimmeraryhtmie	1
+VHFA	Q0	Normocarde VHFA	0
+VHFA	Q0	tcVHFA	0
 VHFA	Q0	VH Flattern	0
-VHFA	Q0	Vorhoftachykardie	0
 VHFA	Q0	VH flattern	0
-VHFA	Q0	Vorhofflatter Vorhofflimmerarrhythmie	0
-VHFA	Q0	Vorhofflimmern	0
 VHFA	Q0	VH flimmern	0
 VHFA	Q0	VHF	0
-VHFA	Q0	Normocarde VHFA	0
+VHFA	Q0	VHFa	0
 VHFA	Q0	VHFL	0
+VHFA	Q0	VHFla	0
+VHFA	Q0	Vorhofflatter Vorhofflimmerarrhythmie	0
+VHFA	Q0	Vorhofflattern	0
+VHFA	Q0	Vorhofflimmern	0
+VHFA	Q0	Vorhoftachykardie	0
 VHT	Q0	Vorhoftachykardie	2
-VT	Q0	Vorhoftachykardie	0
-VT	Q0	Vorhofflatterarrhythmie	0
+VHT	Q0	vereinbar mit gewöhnlichem Vorhofflattern	0
+VHT	Q0	vergrößert Hinterwandakinesie	0
+VHT	Q0	Vorhofseptumdefekt Multiple	0
+VT	Q0	ventriculäre Tachycardie	2
 VT	Q0	ventriculäre Tachycardien	2
+VT	Q0	ventriculärer Tachycardie	2
+VT	Q0	Ventrikuläre Tachykardie	2
+VT	Q0	ventrikuläre Tachykardie	2
 VT	Q0	ventrikulären Tachykardien	2
-VT	Q0	ventrikuläre Extrasystolen	0
-VT	Q0	VP Anteil	0
-VT	Q0	SVT	0
+VT	Q0	ventr Tachykardie	1
+VT	Q0	ventrik	1
+VT	Q0	ventrik Tachykardien	1
+VT	Q0	AT	0
+VT	Q0	ÐVT	0
+VT	Q0	FVT	0
 VT	Q0	nsVT	0
 VT	Q0	NSVT	0
+VT	Q0	pSVT	0
+VT	Q0	PSVT	0
+VT	Q0	Ruheatemzugvolumen	0
+VT	Q0	SVT	0
+VT	Q0	ventrikuläre Extrasystolen	0
 VT	Q0	VF	0
-VT	Q0	AT	0
-VVI	Q0	VVI-Modus	0
-VVI	Q0	Vv iliacae	0
-VVI	Q0	DDD	0
+VT	Q0	Vorderwand neg T	0
+VT	Q0	Vorhofflatterarrhythmie	0
+VT	Q0	Vorhoftachykardie	0
+VT	Q0	VP Anteil	0
+VT	Q0	Venenthrombose	-1
+VT	Q0	Verhaltenstherapie	-1
+VT	Q0	Verotoxin	-1
+VVI	Q0	Ventricle Ventricle Inhibition	2
 VVI	Q0	AAI	0
-VVI	Q0	VVIR	0
+VVI	Q0	AAi DDD	0
+VVI	Q0	DDD	0
 VVI	Q0	DDDR	0
 VVI	Q0	DDI	0
+VVI	Q0	Herzschrittmachermodus	0
+VVI	Q0	VV	0
+VVI	Q0	Vv iliacae	0
+VVI	Q0	VVI-Modus	0
+VVI	Q0	VVIR	0
+VVI	Q0	VVTR	0
+VVI	Q0	VV Intervalle	-1
 ZAVK	Q0	zerebrale arterielle Verschlusskrankheit	2
-ZAVK	Q0	zAVK	0
+ZAVK	Q0	CAVK	0
+ZAVK	Q0	cAVK	0
 ZAVK	Q0	Fontaine Stadium	0
-ZAVK	Q0	Pulmonalklappeninsuffizienz	0
-ZAVK	Q0	ped dext	0
 ZAVK	Q0	Grav	0
-CX	Q0	Circumflexus	2
-AP	Q0	Alkalische Phosphatase	2
-PAP	Q0	Pulmonary Artery Pressure	2
-VVI	Q0	Ventricle Ventricle Inhibition	2
-TASS	Q0	Thrombo Acetylsalicylsäure	2
-RR	Q0	Riva-Rocci	2
+ZAVK	Q0	pAVK	0
+ZAVK	Q0	ped dext	0
+ZAVK	Q0	Pulmonalklappeninsuffizienz	0
+ZAVK	Q0	vAVK	0
+ZAVK	Q0	zAVK	0
+AAI	Q0	Anamnestisch	-4
+AAI	Q0	Ablation	-4
+AAI	Q0	Aggregatfunktion	-4
+AAI	Q0	Anamnese Anamnestisch	-4
+AAI	Q0	Amb Anamnestisch	-4
+AAI	Q0	Anamnestisch ist	-4
+AAI	Q0	Aortographie	-4
+AAI	Q0	Aquaphoril	-4
+AAI	Q0	Ambulanz Anamnese Anamnestisch	-4
+AAI	Q0	Antikoagulation	-4
+AAI	Q0	Abgangsbereich	-6
+AAI	Q0	Ambulatorium	-6
+AAI	Q0	Anfall ist	-6
+AAI	Q0	apexnahen Drittel inferolateral	-6
+AAI	Q0	apexnahen Anteil	-6
+AAI	Q0	Atlasschlingenbereich	-6
+AAI	Q0	Abgang und im	-6
+AAI	Q0	Apex apikoanterior anterior	-6
+AAI	Q0	Abgangsbereich in	-6
+AAI	Q0	Aggregatbereich	-6
+ACE	Q0	Angiotensin Converting Enzyme	-3
+ACE	Q0	Arteria carotis externa	-3
+ACE	Q0	Vitamin A, C und E	-3
+ACE	Q0	Abschnitten	-1
+ACE	Q0	Aortenklappentaschen	-2
+ACE	Q0	Absicherung	-2
+ACE	Q0	Acemin	-4
+ACE	Q0	Aorta ascendens	-4
+ACE	Q0	Abfrage findet sich eine	-4
+ACE	Q0	Aggregatwechsel	-4
+ACE	Q0	Ausschluss einer	-4
+ACE	Q0	Ausschluß einer	-4
+ACE	Q0	Acecomb	-4
+ACE	Q0	Aggregatfunktion Therapeutisch empf	-4
+ACE	Q0	Aortographie der Aorta ascendens	-4
+ACE	Q0	Achsenskelettveränderungen	-4
+ACE	Q0	Aortenelongation der Aorta ascendens	-6
+ACE	Q0	Abgeschlagenheit	-6
+ACE	Q0	Atemstillstand mit erfolgreicher	-6
+ACE	Q0	Aorta ascendens Ersatz	-6
+ACE	Q0	Ascendensersatz	-6
+ACVB	Q0	Aortokoronarer Venenbypass	-3
+ACVB	Q0	ausführliche Vorgeschichte darf als bekannt	-4
+ACVB	Q0	ausführlichen Vorgeschichte besteht	-4
+ACVB	Q0	ausführlichen Vorgeschichte besteht bei	-4
+ACVB	Q0	Angina pectoris positiver Ergometrie Befund	-4
+ACVB	Q0	Aldosteron Rezeptor Blocker versus Placebo bei	-4
+ACVB	Q0	ausführlichen Vorgeschichte ist bei	-4
+ACVB	Q0	Allergien bekannt Laboruntersuchungen Kumulativbefund beiliegend	-4
+ACVB	Q0	anikterisch Konjunktiven bland	-4
+ACVB	Q0	aufgenommen Nach entsprechender Vorbereitung	-4
+ACVB	Q0	ausführlichen Vorgeschichte wurde bei	-4
+ACVB	Q0	Ablation des cavotrikuspiden Isthmus bei	-6
+ACVB	Q0	Anbetracht einer vorliegenden kardiovaskulären Grunderkrankung bei	-6
+ACVB	Q0	Anbetracht der vorliegenden Befunde	-6
+ACVB	Q0	Abschneiden der vorbestehenden	-6
+ACVB	Q0	aorto coronarer Vena saphena magna Bypass	-6
+ACVB	Q0	Abteilung für Herzchirurgie vorgestellt siehe Befund	-6
+ACVB	Q0	Abteilung für Herzchirurgie vereinbart	-6
+ACVB	Q0	ambulanten kardiologischen Vorstellung Ihres Pat berichtet	-6
+AEZ	Q0	Aorteninsuffizienz	-4
+AEZ	Q0	Aktuell zufriedenstellende	-4
+AEZ	Q0	Absetzen	-4
+AEZ	Q0	Aufnahme zur	-4
+AEZ	Q0	Anamnese Aktuell zufriedenstellende	-4
+AEZ	Q0	Allgemeinzustand	-4
+AEZ	Q0	Abteilung zur	-4
+AEZ	Q0	Aufnahme des Pat erfolgte zur	-4
+AEZ	Q0	Amb Die Zuweisung	-4
+AEZ	Q0	Amb Die Zuweisung erfolgt zur	-4
+AFSD	Q0	ausführliche Vorgeschichte darf	-4
+AFSD	Q0	ARTZTBRIEF Anamnese und klin Symptomatik Die	-4
+AFSD	Q0	Aggregatfunktion Therapeutisch empf sich kardialerseits die	-4
+AFSD	Q0	ARTZTBRIEF Anamnese und klinische Symptomatik Die	-4
+AFSD	Q0	ARTZTBRIEF Anamnese und klinische Symptomatik Der	-4
+AFSD	Q0	Arteria femoralis rechts mittels Cathofix Druckverband	-4
+AFSD	Q0	Aktuell zufriedenstellende Belastbarkeit Seit der	-4
+AFSD	Q0	ARTZTBRIEF Anamnese und klin Symptomatik Der	-4
+AFSD	Q0	Aufenthalt gestaltete sich komplikationslos sodass	-4
+AFSD	Q0	Aufnahme ist der	-4
+AFSD	Q0	Aufnahme ist die	-6
+AFSD	Q0	Abteilung für Herzchirurgie Herzchirurgischer Ersatz der	-6
+AFSD	Q0	Abteilung für Herzchirurgie Verschluß der	-6
+AFSD	Q0	Anfallshäufigkeit und Dauer	-6
+AFSD	Q0	ausführlichen Anamnese verweise ich auf den	-6
+AFSD	Q0	Aufrüstung des	-6
+AFSD	Q0	ausführlichen Anamnese verweise ich auf die	-6
+AFSD	Q0	Abteilung für Herzchirurgie Vorstellung in der	-6
+AFSD	Q0	Aufnahme beschreibt der	-6
+AINS	Q0	Angiotensin	-2
+AINS	Q0	Asasantin	-2
+AINS	Q0	Aggregatfunktion	-4
+AINS	Q0	Abteilung	-4
+AINS	Q0	Angina	-4
+AINS	Q0	Antikoagulation	-4
+AINS	Q0	Aggregatfunktion keine therapiebedürftigen neuen	-4
+AINS	Q0	Allopurinol	-4
+AINS	Q0	Adaptierung	-4
+AINS	Q0	Akinesie	-4
+AINS	Q0	Aortenelongation	-4
+AINS	Q0	Ableitung	-6
+AINS	Q0	Ableitungen	-6
+AINS	Q0	Aortenklappe morphologisch und funktionell normal	-6
+AINS	Q0	Aortenklappe morphol und funktionell normal	-6
+AINS	Q0	Arterielle Hypertonie NÐÐ	-6
+AINS	Q0	Aortenklappe morpholog und funktionell normal	-6
+AINS	Q0	Augmentin	-6
+AINS	Q0	Aglandin	-6
+AKE	Q0	ausgeprägte Aortenklappensklerose	-1
+AKE	Q0	Aortenklappensprengung	-2
+AKE	Q0	Apendektomie	-2
+AKE	Q0	Aortenklappenersatzes	-2
+AKE	Q0	Aorteklappensklerose	-2
+AKE	Q0	Aortenklappenstenose	-4
+AKE	Q0	Aortensklerose	-4
+AKE	Q0	Aktuell	-4
+AKE	Q0	Aortenklappenstenose mit einer	-4
+AKE	Q0	Aggregatfunktion keine	-4
+AKE	Q0	Anamnese Aktuell	-4
+AKE	Q0	Aggregatfunktion keine therapiebedürftigen neuen Episoden	-4
+AKE	Q0	Aortenklappenersatz mit einer	-6
+AKE	Q0	Appendektomie	-6
+AKE	Q0	Akuter	-6
+AKE	Q0	Aortenklappenendokarditis	-6
+AKE	Q0	aortocoronarer Bypassoperation und Aneurysmektomie	-6
+ALA	Q0	Aortenelongation	-1
+ALA	Q0	Anmeldung ab	-1
+ALA	Q0	Aortenklappenendokarditis Staph aureus	-1
+ALA	Q0	Ambulanz mit Verdacht auf	-1
+ALA	Q0	Ambulanz	-1
+ALA	Q0	Axilladissektion	-2
+ALA	Q0	Aortenklappenprothese Leak	-2
+ALA	Q0	Aortenklappe	-4
+ALA	Q0	Ablation	-4
+ALA	Q0	ausführliche Vorgeschichte darf als	-4
+ALA	Q0	Aortenklappenstenose	-4
+ALA	Q0	Aortenklappensklerose	-4
+ALA	Q0	Ambulanz Anamnese	-4
+ALA	Q0	Aortenklappenersatz	-4
+ALA	Q0	Ambulanz am	-4
+ALA	Q0	Ambulanz Anamnese Anamnestisch	-4
+ALA	Q0	Ablation am	-6
+ALA	Q0	Aglandin	-6
+ALA	Q0	Aortenstenose liegt nicht vor keine Aorteninsuffizienz	-6
+ALA	Q0	Aortenstenose liegt nicht vor minimale Aorteninsuffizienz	-6
+ALA	Q0	Aortenstenose liegt nicht vor leichte Aorteninsuffizienz	-6
+ALA	Q0	Ablationsbehandlung	-6
+ASD	Q0	Atriumseptumdefekt	-3
+ASD	Q0	Acute Stress Disorder	-3
+ASD	Q0	Akut-Schmerz-Dienst	-3
+ASD	Q0	Atrioseptaldefekt	-1
+ASD	Q0	Aorta aszendens	-1
+ASD	Q0	Achsenskelettveränderungen	-1
+ASD	Q0	Atrium Septumdefekt	-2
+ASD	Q0	Ascendensteilersatz	-2
+ASD	Q0	Ascendens	-2
+ASD	Q0	ausführliche Vorgeschichte darf	-4
+ASD	Q0	Anamnese und klin Symptomatik Die	-4
+ASD	Q0	ARTZTBRIEF Anamnese und klin Symptomatik Die	-4
+ASD	Q0	Anstieg über der	-4
+ASD	Q0	Aorta ascendens	-4
+ASD	Q0	Anamnese Die	-4
+ASD	Q0	Anamnestisch gibt der	-4
+ASD	Q0	Anamnese Der	-4
+ASD	Q0	Anamnestisch ist der	-4
+ASD	Q0	Anamnestisch gibt die	-4
+ASD	Q0	Arrhythmien Echokardiographie Normale Dimension der	-6
+ASD	Q0	Arrhythmien Echokardiographie normale Dimension der	-6
+ASD	Q0	akinetische Bezirke des	-6
+ASD	Q0	Arrhythmien ausgeschlossen werden Die	-6
+ASD	Q0	Aneurysma spurium diffuses	-6
+ASD	Q0	Antiarrhythmika einzunehmen Seitens der	-6
+ASD	Q0	Anstieg der	-6
+ASD	Q0	akinetische Bezirke im Bereich des	-6
+ASD	Q0	Anamnese Dyspnoe	-6
+ASS	Q0	Aprednisolon	-1
+ASS	Q0	Alostad	-1
+ASS	Q0	Atorvastatin	-2
+ASS	Q0	Anamnese	-4
+ASS	Q0	ARTZTBRIEF Anamnese	-4
+ASS	Q0	Anamnese und klin Symptomatik	-4
+ASS	Q0	Anamnestisch	-4
+ASS	Q0	Anstieg	-4
+ASS	Q0	Aortenklappenstenose	-4
+ASS	Q0	Adipositas	-4
+ASS	Q0	Aortenstenose	-4
+ASS	Q0	Aortenklappensklerose	-4
+ASS	Q0	Aorteninsuffizienz	-4
+ASS	Q0	Ass sowie	-6
+ASS	Q0	Ass sollte	-6
+ASS	Q0	Ass Plavix und Sintrom	-6
+ASS	Q0	Ass ÐÐÐmg sowie	-6
+ASS	Q0	Ass lebenslänglich sowie	-6
+ASS	Q0	Ass ÐÐÐmg soll	-6
+ASS	Q0	Ass und Sintrom	-6
+AST	Q0	Asthma	-2
+AST	Q0	Anamnese und klin Symptomatik	-4
+AST	Q0	Anamnestisch	-4
+AST	Q0	Anstieg	-4
+AST	Q0	Anamnese Anamnestisch	-4
+AST	Q0	Anamnese und klinische Symptomatik	-4
+AST	Q0	antihypertensiven und lipidsenkenden Therapie	-4
+AST	Q0	Amb Anamnestisch	-4
+AST	Q0	Aorteninsuffizienz Tricuspidalinsuffizienz	-6
+AST	Q0	art Hypertonie Aortenstenose	-6
+AST	Q0	Aorteninsuffizienz I Tricuspidalinsuffizienz	-6
+AST	Q0	a Brugadasyndrom Typ	-6
+AST	Q0	Aufenthalt in Station	-6
+AST	Q0	Aortenposition	-6
+AT	Q0	Applanationstonometrie	-3
+AT	Q0	Augentropfen	-1
+AT	Q0	anhaltende Tachykardie	-1
+AT	Q0	anhaltende Arrhythmie	-1
+AT	Q0	Arrhythmie	-1
+AT	Q0	Asystolie	-2
+AT	Q0	Arrhyhtmien	-2
+AT	Q0	Arrhythmieneigung	-2
+AT	Q0	Antieg	-2
+AT	Q0	Aortentubing	-2
+AT	Q0	Auffassungsstörung	-2
+AT	Q0	Antegrade	-2
+AT	Q0	Aspiration	-2
+AT	Q0	Aortenwurzelanatomie	-2
+AT	Q0	ARTZTBRIEF	-4
+AT	Q0	Anamnestisch	-4
+AT	Q0	Aortenklappe	-4
+AT	Q0	Ablation	-4
+AT	Q0	Anstieg	-4
+AT	Q0	Aggregatfunktion	-4
+AT	Q0	Arterielle	-4
+AT	Q0	Aortenklappenstenose	-4
+AT	Q0	Abteilung	-4
+AT	Q0	Adipositas	-4
+AT	Q0	Aorteninsuffizienz	-6
+AT	Q0	Atacand	-6
+AT	Q0	Acetan	-6
+AT	Q0	Atrium	-6
+AT	Q0	Augmentin	-6
+AT	Q0	Amplitude	-6
+AT	Q0	Aggregatwechsel	-6
+AV	Q0	ausführliche Vorgeschichte	-4
+AV	Q0	Anstieg über der Vorderwand	-4
+AV	Q0	Anstieg von	-4
+AV	Q0	Aktivität	-4
+AV	Q0	Auftreten von	-4
+AV	Q0	Aufnahme von	-4
+AV	Q0	Absetzen von	-4
+AV	Q0	Achsenskelettveränderungen	-4
+AV	Q0	atrial ÐÐÐ ventrikulär	-4
+AV	Q0	Anpassung der antihypertensiven	-4
+AV	Q0	Aortenklappe stark verkalkt	-6
+AV	Q0	Atorvastatin	-6
+AV	Q0	Aortenklappe leicht verdickt	-6
+AV	Q0	Aortenklappe gering verkalkt	-6
+AV	Q0	Aortenklappe mittelgradig verkalkt	-6
+AV	Q0	Adjuvin	-6
+AV	Q0	Aortenklappe stark verdickt	-6
+AV	Q0	Avelox	-6
+AVB	Q0	Av Block	-1
+AVB	Q0	Ablation aufgrund von reduziertem biventrik	-1
+AVB	Q0	A V Block	-1
+AVB	Q0	ausführliche Vorgeschichte darf als bekannt	-4
+AVB	Q0	Auftreten von Beschwerden	-4
+AVB	Q0	Aufgrund der vorliegenden Befunde	-4
+AVB	Q0	abhängig von diesem Befund	-4
+AVB	Q0	Ambulanz vereinbart	-4
+AVB	Q0	A vertebralis	-4
+AVB	Q0	ausführlichen Vorgeschichte besteht	-4
+AVB	Q0	abhängig von diesem Befund Bei	-4
+AVB	Q0	ausführlichen Vorgeschichte besteht bei	-4
+AVB	Q0	Alveolarvolumen liegt bei	-4
+AVB	Q0	aktueller Verabreichung	-6
+AVB	Q0	ausbleibender Verbesserung	-6
+AVB	Q0	Auftreten von Beinödemen	-6
+AVB	Q0	Aufnahme subjektiv beschwerdefrei	-6
+AVB	Q0	auftreten von Beschwerden	-6
+AVB	Q0	Antikörper gegen Viren Coxsackie A B	-6
+AVF	Q0	antihypertensiven Therapie Für	-4
+AVF	Q0	Anpassung der antihypertensiven Therapie Für	-4
+AVF	Q0	Anschlussheilverfahren	-4
+AVF	Q0	Aufnahme von Frau	-4
+AVF	Q0	ausführliche Vorgeschichte dürfen wir freundlicherweise	-4
+AVF	Q0	Ablation Vorhofflimmern	-4
+AVF	Q0	Aufnahme von Fr	-4
+AVF	Q0	Arrhythmie bei Vorhofflimmern	-4
+AVF	Q0	arterielle Verschlusskrankheit Fontaine	-4
+AVF	Q0	Ablation Vorhofflattern	-4
+AVF	Q0	Ablation bei Vorhofflattern	-6
+AVF	Q0	anterolaterale T Negativierung f	-6
+AVF	Q0	apikal diastolische Ventrikelfunktionsstörung	-6
+AVF	Q0	Aktivierung der autocapture Funktion	-6
+AVF	Q0	anterolateral diastol Ventrikelfunktion	-6
+AVF	Q0	Ablation bei paroxysmaler Vorhofflimmerarrhythmie	-6
+AVF	Q0	atypisches Vorhofflattern	-6
+AVF	Q0	Ablation des Vorhofflatterns	-6
+AVF	Q0	Anschlußheilverfahren	-6
+AVI	Q0	Aortenvitium	-2
+AVI	Q0	arterielle Verschlusskrankheit	-2
+AVI	Q0	ausführliche Vorgeschichte	-4
+AVI	Q0	Aktivität	-4
+AVI	Q0	Aktivität im	-4
+AVI	Q0	atrial ÐÐÐ ventrikulär	-4
+AVI	Q0	Aufgrund der vorliegenden	-4
+AVI	Q0	Abteilung zur kardiovaskulären Durchuntersuchung im	-4
+AVI	Q0	Aortenklappe leicht verdickt	-4
+AVI	Q0	Atorvastatin	-4
+AVI	Q0	ausführlichen Vorgeschichte	-4
+AVI	Q0	Ambulanz vereinbart	-6
+AVI	Q0	Amb wie vereinbart	-6
+AVI	Q0	Ambulanz wie vereinbart	-6
+AVI	Q0	arterielle Hypertonie Vorhofflimmern	-6
+AVI	Q0	Amb vereinbart	-6
+AVI	Q0	April ÐÐÐÐ vereinbart	-6
+AVI	Q0	August ÐÐÐÐ vereinbart	-6
+AVI	Q0	ambulante Kontrolle vereinbart	-6
+AVI	Q0	Ambulanz nach Vereinbarung	-6
+AVN	Q0	Aortenklappen Vermessung	-2
+AVN	Q0	Anstieg über der Vorderwand	-4
+AVN	Q0	Achsenskelettveränderungen	-4
+AVN	Q0	atrial ÐÐÐ ventrikulär	-4
+AVN	Q0	Anpassung der antihypertensiven	-4
+AVN	Q0	Aufgrund der vorliegenden	-4
+AVN	Q0	Anschlussheilverfahren	-4
+AVN	Q0	Ausgeglichener Versorgungstyp	-4
+AVN	Q0	arterielle Verschlusskrankheit	-4
+AVN	Q0	Anamnese Die Vorstellung	-4
+AVN	Q0	Adaptierung der antihypertensiven	-4
+AVN	Q0	atrial ÐÐÐ ventr	-6
+AVN	Q0	atrial ÐÐÐ ventriculär	-6
+AVN	Q0	atrial ÐÐÐ ventrikuär	-6
+AVN	Q0	atrial ÐÐÐ ventrikuläre	-6
+AVN	Q0	atrial ÐÐÐÐ ventrikulär	-6
+AVN	Q0	atrial ÐÐÐÐ ventr	-6
+AVN	Q0	atiral ÐÐÐ ventr	-6
+AVN	Q0	akutes Nierenversagen	-6
+AVN	Q0	Anlegen von Venenbypässen	-6
+AVNRT	Q0	antihypertensiv antianginöse Therapie siehe Therapieempfehlung	-1
+AVNRT	Q0	Auftreten von Beschwerden Rötung	-4
+AVNRT	Q0	anhaltenden ventrikulären Tachykardien	-4
+AVNRT	Q0	Ablation Mapping System konventionell Carto Technik	-4
+AVNRT	Q0	Ablation Vorhofflimmern zirkumferentielle Pulmonalvenenisolation elektrisch komplett Therapie	-4
+AVNRT	Q0	atherosklerot Veränderungen keine relevante	-4
+AVNRT	Q0	Auftreten von Entzündungszeichen Fieber Rötung	-4
+AVNRT	Q0	Aorteninsuffizienz Ð Mitralklappe gering verdickt nicht rheumatisch	-4
+AVNRT	Q0	Auswertung Im Vergleich zum Normkollektiv	-4
+AVNRT	Q0	aktuellen Medikamentenliste zum vereinbarten	-4
+AVNRT	Q0	aktuellen Medikamentenliste zum vereinbarten Termin	-4
+AVNRT	Q0	antihypertensiven und lipidsenkenden Therapie nächster	-6
+AVNRT	Q0	antihypertensiven und lipidsenkenden Therapie nächster Termin	-6
+AVNRT	Q0	antihypertensiven und lipidsenkenden Therapie Nikotinkarenz	-6
+AVNRT	Q0	atrialen Sondenrevision Abstand genommen Therapeutisch	-6
+AVNRT	Q0	antihypertensiven und lipidsenkenden Therapie Thrombo	-6
+AVNRT	Q0	antihypertensiven und lipidsenkenden Therapie Termin	-6
+AVNRT	Q0	anhaltenden ventrikulären Tachykardie	-6
+AVNRT	Q0	antihypertensiven Therapie DIAGNOSEN RELEVANTE	-6
+AVNRT	Q0	aktiven Myokarditis kann trotz	-6
+AVNRT	Q0	antihypertensiven und lipidsenkenden Therapie absolute Nikotinkarenz	-6
+AZ	Q0	ARTZTBRIEF	-4
+AZ	Q0	Aorteninsuffizienz	-4
+AZ	Q0	Aktuell zufriedenstellende	-4
+AZ	Q0	Absetzen	-4
+AZ	Q0	Aufnahme zur	-4
+AZ	Q0	Anamnese Aktuell zufriedenstellende	-4
+AZ	Q0	Arztbrief	-4
+AZ	Q0	Ambulanz zur	-4
+AZ	Q0	Abteilung zur	-4
+AZ	Q0	Aszites	-6
+AZ	Q0	Akzeleration	-6
+AZ	Q0	Ausschluss einer zentralen	-6
+AZ	Q0	Aortenklappeninsuffizienz	-6
+AZ	Q0	Aussetzern	-6
+AZ	Q0	Aortenklappenersatzes	-6
+AÖF	Q0	Aortenklappenstenose mit einer Öffnungsfläche	-4
+AÖF	Q0	Ausschöpfung	-4
+AÖF	Q0	adipös Caput Collum frei	-4
+AÖF	Q0	auslösbar Grund für	-4
+AÖF	Q0	Aortenklappenstenose mit einer Aortenöffnungsfläche	-6
+AÖF	Q0	Aortenstenose mit einer Aortenöffnungsfläche	-6
+AÖF	Q0	Aortenstenose mit einer Öffnungsfläche	-6
+AÖF	Q0	Aortenklappe eine Öffnungsfläche	-6
+AÖF	Q0	Aortenklappenstenose mit einer Aortenöffnungsstelle	-6
+AÖF	Q0	Aortenstenose mit einer Aortenklappenöffnungsfläche	-6
+BD	Q0	Beschwerden	-4
+BD	Q0	Beurteilung u durchgef	-4
+BD	Q0	Belastungsdyspnoe	-4
+BD	Q0	Beinödeme	-4
+BD	Q0	BEURTEILUNG DIAGNOSEN	-4
+BD	Q0	Bedarf	-4
+BD	Q0	Befunde	-4
+BD	Q0	Beugen in der	-4
+BD	Q0	Beibehaltung der	-4
+BD	Q0	Becken durchgeführt	-6
+BD	Q0	Blutdruckes	-6
+BD	Q0	Blutdruckwerten	-6
+BD	Q0	Blutdruckkontrollen	-6
+BD	Q0	Blutfette und des Blutdruckes	-6
+BD	Q0	Blutdruckmessung	-6
+BMI	Q0	Body-Mass-Index	-3
+BMI	Q0	BMSErfolgreiche	-2
+BMI	Q0	Beibehaltung der eingeleiteten Medikation	-4
+BMI	Q0	beim niedergelassenen Internisten	-4
+BMI	Q0	Beschwerdesymptomatik	-4
+BMI	Q0	Belastungsmaximum	-4
+BMI	Q0	Bigeminus	-4
+BMI	Q0	Beinödeme Laboruntersuchungen In	-4
+BMI	Q0	Bluthochdruckes informiert	-4
+BMI	Q0	Breitkomplextachykardie	-4
+BMI	Q0	Begleitmedikation	-4
+BMI	Q0	Besserung der Beschwerdesymptomatik	-4
+BMI	Q0	Blutdruckmessung Mittlerer	-6
+BMI	Q0	biventrikuläre Stimulation mit	-6
+BMI	Q0	biventr Stimulation mit	-6
+BMI	Q0	Belastung mit	-6
+BMI	Q0	Blutdruckmonitoring	-6
+BMI	Q0	Breite mit	-6
+BMI	Q0	Bicalutamid	-6
+BMI	Q0	Blutdruckmessung mittlerer	-6
+BOL	Q0	Bisoprolol	-4
+BOL	Q0	blander Leistenpunktionsstelle	-4
+BOL	Q0	Blutdrucks sowie der Lipide	-4
+BOL	Q0	Blutzuckers des Blutdrucks sowie der Lipide	-4
+BOL	Q0	Blutdruckkontrollen	-4
+BOL	Q0	Breitkomplextachykardie	-4
+BOL	Q0	Befolgung	-4
+BOL	Q0	Blutdruckkontrolle	-4
+BOL	Q0	Biotronik Lumax	-4
+BOL	Q0	Bodyplethysmografie	-4
+BOL	Q0	Bioflorin	-6
+BOL	Q0	Bisprolol	-6
+BOL	Q0	Batterie o k Ladezeit	-6
+BOL	Q0	beider Vorhöfe li	-6
+BOL	Q0	beider Vorhöfe der li	-6
+BOL	Q0	Batterie ok Ladezeit	-6
+BOL	Q0	Befunde Echokardiographie Dr LN_ÐÐÐÐÐ	-6
+BOL	Q0	B mit Lisinopril	-6
+BOL	Q0	B Bisoprolol	-6
+BRS	Q0	Biomatrix	-2
+BRS	Q0	Begleitpankreatitis	-2
+BRS	Q0	Baremetal	-2
+BRS	Q0	Begleitpericarditis	-2
+BRS	Q0	BioMatrix	-2
+BRS	Q0	Bissverletzungen	-2
+BRS	Q0	Buiotronik	-2
+BRS	Q0	BEURTEILUNG	-4
+BRS	Q0	Beurteilung	-4
+BRS	Q0	Beschwerden	-4
+BRS	Q0	Blutdruck	-4
+BRS	Q0	Bereich	-4
+BRS	Q0	beiliegend Beurteilung	-4
+BRS	Q0	Belastbarkeit	-4
+BRS	Q0	Bedarf	-4
+BRS	Q0	Batteriestatus	-4
+BRS	Q0	Batteriespannung	-4
+BRS	Q0	Blopress	-6
+BRS	Q0	Bisoprolol	-6
+BRS	Q0	Berodual	-6
+BRS	Q0	Brilique	-6
+BRS	Q0	Buronil	-6
+BRS	Q0	Bioprothese	-6
+BRS	Q0	Betaserc	-6
+BRS	Q0	Batterieerschöpfung	-6
+BRS	Q0	Bioflorin	-6
+BWA	Q0	Brustwandableitung	-3
+BWA	Q0	Brustwandableitungen	-1
+BWA	Q0	Beschwerdesymptomatik	-4
+BWA	Q0	Blutdruckselbstmessung und wurde über allgemeine	-4
+BWA	Q0	Besserung der Beschwerdesymptomatik	-4
+BWA	Q0	belastbar Die weitere ausführliche	-4
+BWA	Q0	Bewegungsapparat	-4
+BWA	Q0	Beschwerden am	-4
+BWA	Q0	Beschwerden an	-4
+BWA	Q0	Beschwerden am Bewegungsapparat	-4
+BWA	Q0	Beschwerdesymptomatik an	-4
+BWA	Q0	Besserung der Beschwerdesymptomatik an	-4
+BWA	Q0	Brustwandableitungen regelrechter Anstieg	-6
+BWA	Q0	Brustwand	-6
+BWA	Q0	Blutdruckselbstmessungen waren	-6
+BWA	Q0	bds abgeschwächt Abdomen	-6
+BWA	Q0	basal abgeschwächt Abdomen	-6
+BWA	Q0	Befund war	-6
+BWA	Q0	Beschwerden im Sinne von Angina	-6
+BZ	Q0	BEURTEILUNG Zusammenfassend	-4
+BZ	Q0	Bezüglich	-4
+BZ	Q0	Bewegung Nikotin zur	-4
+BZ	Q0	Bypass zu	-4
+BZ	Q0	besteht ein Zustand	-4
+BZ	Q0	Blutdruckselbstmessungen zeigen	-4
+BZ	Q0	besteht ein Z	-4
+BZ	Q0	Bypasses zu	-4
+BZ	Q0	Befundes zur	-6
+BZ	Q0	Befundes zu	-6
+BZ	Q0	Befundes zum	-6
+BZ	Q0	Betablockers auf eine Zieldosis	-6
+BZ	Q0	Blutdruckes zu	-6
+BZ	Q0	Betablockers zur	-6
+BZ	Q0	Betablockers zunächst	-6
+BZ	Q0	beherdeten Zahnes	-6
+BZ	Q0	Beckens zum	-6
+CA	Q0	Carpentierring	-2
+CA	Q0	Cathofix	-4
+CA	Q0	Carvedilol	-4
+CA	Q0	Cipralex	-4
+CA	Q0	Carotiden	-4
+CA	Q0	Coronar	-4
+CA	Q0	Coronarangiographie am	-4
+CA	Q0	Cardiac	-4
+CA	Q0	Carotis	-4
+CA	Q0	Coro Aortographie	-4
+CA	Q0	Cardioversion	-6
+CA	Q0	CoreValve	-6
+CA	Q0	chirurg Ambulanz	-6
+CA	Q0	chir Ambulanz	-6
+CA	Q0	Compactainsel	-6
+CA	Q0	Clavus	-6
+CABG	Q0	Coronary Artery Bypass Graft	-3
+CABG	Q0	cholesterin und salzarme Ernährung Bewegung	-4
+CABG	Q0	C unauff frei bewegl	-4
+CABG	Q0	Concor abgesetzt	-4
+CABG	Q0	cm dilatiert die übrigen Herzhöhlen größenmäßig	-4
+CABG	Q0	coronaren Bypassanlagen	-6
+CABG	Q0	Chronischer Nikotinabusus GÐÐ	-6
+CABG	Q0	chron depressives Zustandsbild GÐÐ	-6
+CABG	Q0	Chads vasc Score beträgt	-6
+CABG	Q0	cm infracarinal bis Ð cm Größe	-6
+CABG	Q0	ca Ð Monaten bestehender Belastungsdyspnoe	-6
+CABG	Q0	ca Ð Jahren bestehender Belastungsdyspnoe	-6
+CABG	Q0	Crescendo Symptomatik sowie Belastungsdyspnoe	-6
+CCT	Q0	Craniale Computertomographie	-3
+CCT	Q0	Carto Technik ThermoCool	-4
+CCT	Q0	Claudicatio	-4
+CCT	Q0	Cataract	-4
+CCT	Q0	Cathofix Druckverband MEDIKATION Thrombo	-4
+CCT	Q0	Calciumantagonisten	-4
+CCT	Q0	Compaction	-4
+CCT	Q0	Cataracta	-4
+CCT	Q0	Cholecystolithiasis	-4
+CCT	Q0	Calciumacetat	-4
+CCT	Q0	couterclockwise Therapie	-4
+CCT	Q0	cm haltende Cystenbildung	-6
+CCT	Q0	ca Ð Ð cm Transthorakale	-6
+CCT	Q0	Competact	-6
+CCT	Q0	Concor Ð ÐxÐ Torasemid	-6
+CCT	Q0	Cardiac Contracility	-6
+CCT	Q0	Cor rein rhythmisch tachykard	-6
+CCT	Q0	Cor rein arhythmisch tachykard	-6
+CCT	Q0	Cathofix Druckverband Thorax	-6
+CK	Q0	Cathofix Druckverband KOMPLIKATION	-4
+CK	Q0	cm ÐÐ kg	-4
+CK	Q0	cholesterinarme ausgewogene Kost	-4
+CK	Q0	Coloskopie	-4
+CK	Q0	ch PROZEDERE Konservative	-4
+CK	Q0	ch Geschlängelte Koronargefäße	-4
+CK	Q0	Cathofix Druckverband Komplikationen	-4
+CK	Q0	Cholezystektomie	-4
+CK	Q0	Cerebokan	-4
+CK	Q0	Carelinksystem	-4
+CK	Q0	cm Körpergewicht	-6
+CK	Q0	Caput Collum keine	-6
+CK	Q0	cm² Keine	-6
+CK	Q0	cm² Koronare	-6
+CK	Q0	cm² Aortenklappenkalk Keine	-6
+CK	Q0	cm² Aortenklappenkalk Koronare	-6
+CK	Q0	cm² Beginnende Koronare	-6
+CK	Q0	cmÐ Koronarien	-6
+CK	Q0	cm Kleine	-6
+CK	Q0	cm² Hypertensive Kardiomyopathie	-6
+CKMB	Q0	cm Blutdruck ÐÐÐ ÐÐ mmHg BEURTEILUNG	-4
+CKMB	Q0	cm Blutdruck Ambulanter Blutdruck	-6
+CKMB	Q0	cm ÐÐ kg Laboruntersuchungen Kumulativbefund	-6
+CKMB	Q0	Chlorid i v Ruheszintigraphie medikamentöse Belastung	-6
+CKMB	Q0	cm ÐÐ kg Caput Collum blasses	-6
+CKMB	Q0	cm ÐÐ kg Caput Collum blau	-6
+CKMB	Q0	Crestor Klinisch physikalische Symptomatik BEURTEILUNG	-6
+CKMB	Q0	Combivent Klinisch physikalische Symptomatik BEURTEILUNG	-6
+CMP	Q0	cm großer Polyp	-1
+CMP	Q0	ca ÐÐ mmHg Ð Pulmonalklappe	-4
+CMP	Q0	ca ÐÐmmHg Ð Pulmonalklappe	-4
+CMP	Q0	Collum Pupillen	-4
+CMP	Q0	Caput Collum Pupillen	-4
+CMP	Q0	Cosmoporewechsel	-4
+CMP	Q0	Compliance	-4
+CMP	Q0	ca ÐÐ mmHg ÐÐ Pulmonalklappe	-4
+CMP	Q0	Cor Systolikum mit p	-4
+CMP	Q0	Carina Liegende Magensonde in orthotoper Projektion	-6
+CMP	Q0	Carina tracheae Magensonde Projektion	-6
+CMP	Q0	Cardiomyopathie St p	-6
+CMP	Q0	cmÐ Mitralklappensklerose	-6
+CMP	Q0	chromosomalen degenerativen Myopathie	-6
+CMP	Q0	circumferenzieller Perikarderguß	-6
+CPR	Q0	Cardiopulmonale Reanimation	-3
+CPR	Q0	cardiopulmonaler Reanimation	-1
+CPR	Q0	Cardiopulmonaler Reanimation	-1
+CPR	Q0	Cystoprostatektomie	-2
+CPR	Q0	Cipralex	-4
+CPR	Q0	Clopidogrel	-4
+CPR	Q0	Citalopram	-4
+CPR	Q0	ch PROZEDERE	-4
+CPR	Q0	Ciproxin	-4
+CPR	Q0	Cosmoporewechsel	-4
+CPR	Q0	Collum Pupillen rund	-4
+CPR	Q0	Caput Collum Pupillen rund	-4
+CPR	Q0	Cholesterinparameter	-4
+CPR	Q0	Cognis Permanenter	-4
+CPR	Q0	Carpentierring	-6
+CPR	Q0	card Dekompensation RELEVANTE	-6
+CPR	Q0	Carpentier	-6
+CPR	Q0	chron Nikotinabusus ÐÐpy RELEVANTE	-6
+CPR	Q0	Chemotherapie und Rituximab	-6
+CPR	Q0	Carpentier Ringimplantation	-6
+CPR	Q0	Coronarangiographie ÐÐ ÐÐÐÐ RELEVANTE	-6
+CPR	Q0	Craniopharyngeom	-6
+CRP	Q0	C-reaktives Protein	-3
+CRP	Q0	cm großer Polyp	-1
+CRP	Q0	Coronarangiographie	-4
+CRP	Q0	Cor rein rh nc Pulmo	-4
+CRP	Q0	Concor plus	-4
+CRP	Q0	Cor Pulmo	-4
+CRP	Q0	Cathofix Druckverband Verschluß der Punktionsstelle	-4
+CRP	Q0	Chemotherapie	-4
+CRP	Q0	Cor rh nc rein Pulmo	-4
+CRP	Q0	Corpus	-4
+CRP	Q0	Carotiden Pulmo	-4
+CRP	Q0	Cardiomyopathie	-4
+CRP	Q0	Cosaar plus	-6
+CRP	Q0	Crestor ÐÐ ÐxÐ Pantoloc	-6
+CRP	Q0	Concor Ð ÐxÐ Pantoprazol	-6
+CRP	Q0	Concor Ð ÐxÐ Pantoloc	-6
+CRP	Q0	Carpentierring	-6
+CRP	Q0	chron Prostatitis	-6
+CRP	Q0	Chol arme Diät Plavix	-6
+CRP	Q0	Cholesterinarme Diät Plavix	-6
+CRT	Q0	Cardiac Resynchronization Therapy	-3
+CRT	Q0	Crestor	-4
+CRT	Q0	Cor normokard rhythmisch	-4
+CRT	Q0	Carotiden	-4
+CRT	Q0	Cor rhythmisch	-4
+CRT	Q0	Carotis	-4
+CRT	Q0	Candesartan	-4
+CRT	Q0	Chirurgie unter der Tel	-4
+CRT	Q0	Cor rhythm	-4
+CRT	Q0	Cardiomyopathie	-4
+CRT	Q0	ch PROZEDERE Konservative Therapie	-4
+CRT	Q0	chron Nikotinabusus RELEVANTE	-6
+CRT	Q0	Cataract	-6
+CRT	Q0	Carotisstent	-6
+CRT	Q0	Chemotherapie bei Neo testis	-6
+CRT	Q0	Carpentierring	-6
+CRT	Q0	CÐ Abusus RELEVANTE	-6
+CRT	Q0	Colonteilresektion	-6
+CRT	Q0	card Dekompensation RELEVANTE	-6
+CRT	Q0	Carpentier	-6
+CT	Q0	Computertomographie	-3
+CT	Q0	Covertest	-3
+CT	Q0	Carotissonographie	-2
+CT	Q0	Catofix	-2
+CT	Q0	Carotisdruckversuch	-2
+CT	Q0	Cholangiopankreatikografie	-2
+CT	Q0	Crestor	-4
+CT	Q0	Cathofix	-4
+CT	Q0	Carotiden	-4
+CT	Q0	Couplets	-4
+CT	Q0	Carotis	-4
+CT	Q0	Candesartan	-4
+CT	Q0	Citalopram	-4
+CT	Q0	Cholesterin	-4
+CT	Q0	Cymbalta	-4
+CT	Q0	Cholezystolithiasis	-4
+CT	Q0	Cranialisation	-6
+CT	Q0	chirurgischer Therapie	-6
+CT	Q0	Computerthomographie	-6
+CT	Q0	Chirurgie transferiert	-6
+CT	Q0	chirurgischen Therapie	-6
+CT	Q0	chirurgische Therapie	-6
+CT	Q0	Cholestase	-6
+CT	Q0	Carpentierring	-6
+CV	Q0	Carvedilol	-4
+CV	Q0	chron Vorhofflimmerarrhythmie	-4
+CV	Q0	Cal D Vita	-4
+CV	Q0	CoreValve	-4
+CV	Q0	Cathofix Druckverband Verschluß	-4
+CV	Q0	Combivent	-4
+CV	Q0	Chronisches Vorhofflimmern	-4
+CV	Q0	ch Linker Ventrikel	-4
+CV	Q0	Chads vasc	-4
+CV	Q0	Cor allseits vergrößert	-6
+CV	Q0	cm der re Ventrikel	-6
+CV	Q0	chron Vorhofflimmern	-6
+CV	Q0	Cor linksventrikulär vergrößert	-6
+CV	Q0	cm Li Vorhof	-6
+CV	Q0	cm dilatiert der Vorhof	-6
+DE	Q0	Drug Eluting	-1
+DE	Q0	Drug eluting	-1
+DE	Q0	Dreistammerkrankung	-2
+DE	Q0	Drug Elutingstents	-2
+DE	Q0	Drug Elutingstent	-2
+DE	Q0	Demetrin	-2
+DE	Q0	distalen Drittel	-2
+DE	Q0	Dialysepfl	-2
+DE	Q0	Dreigefäßerkrankungen	-2
+DE	Q0	Dopplerechokardiographie	-2
+DE	Q0	DIAGNOSEN	-4
+DE	Q0	Drittel	-4
+DE	Q0	Durchführung einer	-4
+DE	Q0	Diabetes	-4
+DE	Q0	Dauertherapie	-4
+DE	Q0	Dekompensation	-4
+DE	Q0	Dilatrend	-4
+DE	Q0	Digimerck	-4
+DE	Q0	Dilatation des	-4
+DE	Q0	Dimension	-4
+DE	Q0	Depression	-6
+DE	Q0	Dauertherapie Efient	-6
+DE	Q0	Depressio	-6
+DG	Q0	DIAGNOSEN	-4
+DG	Q0	Diagnose	-4
+DG	Q0	Digimerck	-4
+DG	Q0	Druckgefühl	-4
+DG	Q0	Diagnosen	-4
+DG	Q0	Diesbezüglich	-4
+DG	Q0	Degenerative	-4
+DG	Q0	Diagnostik	-4
+DG	Q0	Dimension der Herzhöhlen gute	-4
+DG	Q0	Diesbzgl	-4
+DG	Q0	Druckgradient	-6
+DG	Q0	Druckgradienten	-6
+DG	Q0	Doppler max Geschwindigkeit	-6
+DG	Q0	Druckausgleich	-6
+DG	Q0	Darstellung des apikalen Gefäßanteils	-6
+DG	Q0	Druckschmerzhaftigkeit	-6
+DM	Q0	Dysthymie	-2
+DM	Q0	D Mangel	-2
+DM	Q0	Demenz	-2
+DM	Q0	Dekompensation	-4
+DM	Q0	Digimerck	-4
+DM	Q0	Dimension	-4
+DM	Q0	Dekomp	-4
+DM	Q0	Druckschmerz	-4
+DM	Q0	Diamicron	-4
+DM	Q0	Dokumentation	-4
+DM	Q0	Diab mellitus	-6
+DM	Q0	Diabets Mellitus	-6
+DM	Q0	Diabet Mellitus	-6
+DM	Q0	Dancor ÐÐ mg	-6
+DS	Q0	deutliches Systolicum	-2
+DS	Q0	Deutsch	-2
+DS	Q0	Drehschwindel	-2
+DS	Q0	dargestellten Skelettsystem	-2
+DS	Q0	DIAGNOSEN	-4
+DS	Q0	Dyspnoe	-4
+DS	Q0	Diagnose	-4
+DS	Q0	Dekompensation	-4
+DS	Q0	Dimension	-4
+DS	Q0	Diagnosen	-4
+DS	Q0	DIAGNOSEN St	-4
+DS	Q0	Diesbezüglich	-4
+DS	Q0	Dysfunktion	-4
+DS	Q0	Druckschmerz keine Strömungsgeräusche	-6
+DS	Q0	Duschen	-6
+DS	Q0	Dyspnoe kein Schwindel	-6
+DS	Q0	Defibrillatoreinsatz	-6
+EBA	Q0	eingeschränkter Beurteilbarkeit	-1
+EBA	Q0	Ergometrie Belastbarkeit	-4
+EBA	Q0	erfolgreiche Ablation	-4
+EBA	Q0	Ergometrie Belastung	-4
+EBA	Q0	erfolgreicher Ablation	-4
+EBA	Q0	Ergometrie Gestufte Belastung	-4
+EBA	Q0	einwandfreies Ablationsergebnis	-4
+EBA	Q0	einstweilen die Beibehaltung	-4
+EBA	Q0	Endstrecken Ergometrie Belastbarkeit	-4
+EBA	Q0	Endokrinologie Ambulanz	-4
+EBA	Q0	Ebrantil	-4
+EBA	Q0	Einnahme von Thrombo Ass	-6
+EBA	Q0	Einleitung eines Betablockers	-6
+EBA	Q0	Erstellung eines Antrages für ambulante	-6
+EBA	Q0	Einleitung einer Betablockertherapie	-6
+EBA	Q0	Einleitung einer Betablocker	-6
+EBA	Q0	Entlassung nach Hause Thrombotest am	-6
+EBA	Q0	eingeleitete Betablockertherapie	-6
+EBA	Q0	Einleitung von Thrombo Ass	-6
+EBA	Q0	eingeschränkte Belastbarkeit	-6
+EDP	Q0	Einzeldosispipette	-3
+EDP	Q0	Echokardiographie	-4
+EDP	Q0	entlassen werden Prozedere	-4
+EDP	Q0	Episodenspeicher	-4
+EDP	Q0	erlernte der Pat	-4
+EDP	Q0	Entzündungsparameter	-4
+EDP	Q0	entlassen werden konnte Prozedere	-4
+EDP	Q0	Endstrecken Echokardiographie	-4
+EDP	Q0	Echokardiographisch	-4
+EDP	Q0	ECHOKARDIOGRAPHIE	-4
+EDP	Q0	ECHOKARDIOGRAPHIE Gute linksventrikuläre Pumpfunktion	-4
+EDP	Q0	erfolgreiche Ablation Procedere Pantoloc	-6
+EDP	Q0	Endstrecken konkordant MEDIKATION Plavix	-6
+EDP	Q0	empfohlenen Therapie Micardis plus	-6
+EDP	Q0	Erguss MEDIKATION Pantoloc	-6
+EDP	Q0	erhöhter Körpertemperatur der Patientin	-6
+EDP	Q0	Echokardiographie Das li Atrium von parasternal	-6
+EDP	Q0	Elektrodenneuimplantationsversuch	-6
+EKG	Q0	Endstrecken Echokardiographie	-4
+EKG	Q0	Echokardiographie Befund gute	-4
+EKG	Q0	Elektrophysiologische	-4
+EKG	Q0	Erregungsrückbildungsstörungen	-4
+EKG	Q0	erfolgte zur geplanten Koronarangiographie	-4
+EKG	Q0	ECHOKARDIOGRAPHIE	-4
+EKG	Q0	ECHOKARDIOGRAPHIE Gute	-4
+EKG	Q0	Echokardiographie Normal großer	-6
+EKG	Q0	Echokardiographie Geringgr	-6
+EKG	Q0	Echokardiographie Ð Normal großer	-6
+EKG	Q0	Echokardiographie Gute	-6
+EKG	Q0	Echokardiographie Herzhöhlen normal groß	-6
+EKG	Q0	Erkrankungen	-6
+EKG	Q0	Echokardiografische	-6
+EN	Q0	Einstammerkrankung	-2
+EN	Q0	Essentielle	-2
+EN	Q0	Essenzielle	-2
+EN	Q0	en Nasivin	-2
+EN	Q0	Endometriumkarzinom	-2
+EN	Q0	Elektrodenlage	-2
+EN	Q0	Erkrankung	-4
+EN	Q0	Endstrecken	-4
+EN	Q0	Empfehlungen	-4
+EN	Q0	Eventrecorder	-4
+EN	Q0	Einleitung	-4
+EN	Q0	Evaluierung	-4
+EN	Q0	Eingefäß	-4
+EN	Q0	Entlassung	-4
+EN	Q0	Episodenspeicher	-4
+EN	Q0	Empfehlung	-4
+EN	Q0	Erosionen	-6
+EN	Q0	Erregungsrückbildungsstörung	-6
+EN	Q0	Eingriff nach	-6
+EN	Q0	Ergometriebefund	-6
+EN	Q0	Erschöpfung	-6
+EN	Q0	Engegefühl	-6
+EN	Q0	Ermüdung	-6
+EPATH	Q0	entsprechend pulm art Hypertonie	-4
+EPATH	Q0	Episodenspeicher Keine neuerliche anhaltende oder therapiebedürftige	-4
+EPATH	Q0	erfolgte eine Anpassung der antihypertensiven Therapie	-4
+EPATH	Q0	erfolgte eine Anpassung der antihypertensiven	-4
+EPATH	Q0	Episoden Die Herzinsuffizienzmedikation sollte langfristig hinsichtlich	-4
+EPATH	Q0	empfehle die Fortsetzung der bestehenden medikamentösen Therapie	-4
+EPATH	Q0	empf die Fortsetzung der bestehenden medikamentösen Therapie	-4
+EPATH	Q0	empfehlen die Fortsetzung der bestehenden medikamentösen Therapie	-4
+EPATH	Q0	Evaluierung bei paroxysmalen Tachykardien	-4
+EPATH	Q0	erfolgt zur weiterführenden Evaluierung bei paroxysmalen Tachykardien	-4
+EPATH	Q0	Erholungsphase keine signifikanten Arrhythmien	-6
+EPATH	Q0	Erholungsphase keine Arrhythmien	-6
+EPATH	Q0	Erhohlungsphase keine Arrhythmien	-6
+EPATH	Q0	Episoden verspürt der Pat Herzrasen	-6
+EPATH	Q0	Erhohlungsphase keine signifikanten Arrhythmien	-6
+EPATH	Q0	eingeleiteten Therapie bestehend aus Thrombo	-6
+EPATH	Q0	Entzündungsparameter Der weitere stat Aufenthalt	-6
+EPATH	Q0	Ergometrie keine sicher patholog	-6
+EPATH	Q0	Entzündungsparameter beim Hausarzt	-6
+EPATH	Q0	Elektrolyte und Nierenparameter beim Hausarzt	-6
+EPU	Q0	Elektrophysiologische Untersuchung	-3
+EPU	Q0	elektrophysiologischen Untersuchung	-1
+EPU	Q0	elektrophysiologische Untersuchung	-1
+EPU	Q0	elektrophys Untersuchung	-1
+EPU	Q0	elektrophysiolog Untersuchung	-1
+EPU	Q0	elektrophysiologischer Untersuchung	-1
+EPU	Q0	elektrophysiologischen Untersuchung und	-1
+EPU	Q0	Empfehlungen	-4
+EPU	Q0	Empfehlung	-4
+EPU	Q0	entlassen werden Prozedere Empfehlungen	-4
+EPU	Q0	Erschöpfung	-4
+EPU	Q0	erlernte der Pat die Blutdruckselbstmessung und	-4
+EPU	Q0	Echokardiographie Befund gute Untersuchungsqualität	-4
+EPU	Q0	Eingriffstages bei blander Punktionsstelle	-6
+EPU	Q0	Erb schen Punkt	-6
+EPU	Q0	Erbschen Punkt	-6
+ERST	Q0	Erregungsrückbildungsstörungen	-1
+ERST	Q0	Erregungsrückbildungsstörung	-1
+ERST	Q0	Endstr flaches T	-1
+ERST	Q0	Extrasystolen	-1
+ERST	Q0	Extrasystole	-2
+ERST	Q0	Extrasystol	-2
+ERST	Q0	entspr Repolarisationsstörungen	-2
+ERST	Q0	Ertsimplantation	-2
+ERST	Q0	Extrasystolie	-4
+ERST	Q0	Empfehlungen körperl Schonung für ÐÐ Tage	-4
+ERST	Q0	eindrückbar keine Resistenzen	-4
+ERST	Q0	eindrückbar keine Resistenzen tastbar	-4
+ERST	Q0	erfolgte eine Anpassung der antihypertensiven Therapie	-4
+ERST	Q0	einberufen Klinisch physikalische Symptomatik	-4
+ERST	Q0	empfehlen Körperliche Schonung für ÐÐ Tage	-4
+ERST	Q0	Episoden Die Herzinsuffizienzmedikation sollte	-4
+ERST	Q0	Erstimplantation	-6
+ERST	Q0	Extrasystolen s o Sekundärprophylaktische	-6
+ERST	Q0	Endstrecken Transthorakale	-6
+ERST	Q0	Endstr konk Transthorakale	-6
+ERST	Q0	Emboliequelle Transthorakale	-6
+ES	Q0	Extrasystole	-3
+ES	Q0	Endstrecken	-1
+ES	Q0	Extrasystolie	-1
+ES	Q0	Endstr	-1
+ES	Q0	Extrasystolen	-2
+ES	Q0	Erregungsrückbildungsstörung	-2
+ES	Q0	Enstrecken	-2
+ES	Q0	Erregungsrückbildungsstörungen	-2
+ES	Q0	Extrosystolie	-2
+ES	Q0	Erhohlungsphase	-2
+ES	Q0	Erregungsrückbildung	-2
+ES	Q0	Episoden	-4
+ES	Q0	Eventrecorder seit	-4
+ES	Q0	Entlassung	-4
+ES	Q0	empfehlen körperliche Schonung	-4
+ES	Q0	Episodenspeicher	-4
+ES	Q0	Episode	-4
+ES	Q0	Erschöpfung	-4
+ES	Q0	Ersatz	-4
+ES	Q0	Echokardiographie Siehe	-6
+ES	Q0	Endstrecken konkordant Schädel	-6
+ES	Q0	Echobefund Befund schlechte	-6
+ES	Q0	Endtsrecken	-6
+ES	Q0	Elektrophysiologische	-6
+ES	Q0	Endstreckenrückbildungsstörung	-6
+EST	Q0	Erregungsausbreitung	-2
+EST	Q0	Erregungsrückbildungsstörung	-2
+EST	Q0	Erregungsrückbildungsstörungen	-2
+EST	Q0	Extrasystolie	-4
+EST	Q0	Ersatz	-4
+EST	Q0	Einstellung	-4
+EST	Q0	Eingefäß Stentimplantation	-4
+EST	Q0	Entzündungsparameter	-4
+EST	Q0	Episoden Stimulationsanteil	-4
+EST	Q0	Empfehlungen körperl Schonung für ÐÐ Tage	-4
+EST	Q0	einschließlich Herzohr frei von Thromben	-4
+EST	Q0	Endstrecken konkordant Thorax	-6
+EST	Q0	Endstrecken neg T	-6
+EST	Q0	erhöhtes T	-6
+EST	Q0	Endstrecken unauff Thorax	-6
+EST	Q0	Endstr flaches T	-6
+EST	Q0	Endstr T	-6
+EST	Q0	Endstrecken konkor Thorax	-6
+EZ	Q0	Entzündungsparameter	-4
+EZ	Q0	Entzündungswerte	-4
+EZ	Q0	Ergänzend	-4
+EZ	Q0	Echokardiographie zeigte	-4
+EZ	Q0	Einsekundenkapazität	-4
+EZ	Q0	Ezetrol	-4
+EZ	Q0	Einzelne	-4
+EZ	Q0	Entzündungszeichen	-4
+EZ	Q0	Ergänzung	-4
+EZ	Q0	Entzündungsparametern	-4
+EZ	Q0	ersuchen die Pat zu	-6
+EZ	Q0	ersuchen die Patientin zu	-6
+EZ	Q0	erhöhten Entzündungsparametern	-6
+EZ	Q0	Enalapril im Vergleich zur	-6
+EZ	Q0	Entzündungswerten	-6
+FA	Q0	Feldbach	-4
+FA	Q0	Fragestellung	-4
+FA	Q0	Foramen	-4
+FA	Q0	Farbdoppler	-4
+FA	Q0	Fachbefund	-4
+FA	Q0	Flattern	-4
+FA	Q0	Ferretab	-4
+FA	Q0	fehlender R Anstieg	-4
+FA	Q0	Frequenzanstieg	-6
+FA	Q0	Forlax	-6
+FA	Q0	Fahrzeugs	-6
+FA	Q0	Furohexal	-6
+FA	Q0	Füllungstherapie	-6
+FK	Q0	Fremdkörper	-3
+FK	Q0	Fotodoku	-1
+FK	Q0	Fiberkruve	-2
+FK	Q0	Funktion	-4
+FK	Q0	Funktion keine	-4
+FK	Q0	Funktionskontrolle	-4
+FK	Q0	fachärztl Kontrolluntersuchungen	-4
+FK	Q0	fortzusetzen Klinisch	-4
+FK	Q0	Farbdopplerechokardiographie	-4
+FK	Q0	Fraktur	-4
+FK	Q0	fachärztliche Kontrollen	-4
+FK	Q0	frei Extremitäten keine	-4
+FK	Q0	Funktionsstörung	-4
+FK	Q0	Fieberkurve	-6
+FK	Q0	Fieberkruve	-6
+FK	Q0	fachärztl Kontrollen	-6
+FK	Q0	fachärztliche Kontrolluntersuchungen	-6
+FK	Q0	Flüssigkeitszufuhr	-6
+FK	Q0	Facharzt für Kardiologie	-6
+HA	Q0	Hauptmahlzeiten	-2
+HA	Q0	Hörgerätakkustiker	-2
+HA	Q0	Hiatus	-2
+HA	Q0	Heparinperfusor	-2
+HA	Q0	Hinweis auf	-4
+HA	Q0	Herzkatheter	-4
+HA	Q0	Herzkrankheit	-4
+HA	Q0	Herzkatheteruntersuchung	-4
+HA	Q0	Herzerkrankung	-4
+HA	Q0	Herzrasen	-4
+HA	Q0	Herzschatten	-4
+HA	Q0	Hämatom	-4
+HA	Q0	Hochgradige	-4
+HA	Q0	Hausarzt am	-6
+HA	Q0	Hausarzt und Adaptierung	-6
+HA	Q0	Hausarzt Bei Auftreten	-6
+HA	Q0	Hausarzt Aufgrund	-6
+HA	Q0	Hausarzt Auf	-6
+HA	Q0	heutigen Ambulanzbesuch	-6
+HCT	Q0	Hausarzt Hydrochlorothiazid	-1
+HCT	Q0	Herzschatten	-4
+HCT	Q0	Hypercholesterinämie	-4
+HCT	Q0	Hinsichtlich	-4
+HCT	Q0	Herzschrittmacher	-4
+HCT	Q0	Herzschutz	-4
+HCT	Q0	Hypertonie Hypercholesterinämie	-4
+HCT	Q0	Herzschattenverbreiterung	-4
+HCT	Q0	Herzschrittmachers	-4
+HCT	Q0	Herzchirurgie transferiert	-4
+HCT	Q0	Helicobacter	-4
+HCT	Q0	Hemicolektomie	-6
+HCT	Q0	heute Vancomycin und Tazonam tag	-6
+HCT	Q0	Hypercholesterinämie TÐÐ	-6
+HCT	Q0	Herzschlag teilw	-6
+HCT	Q0	Hämatologie unauffällig Creatinin	-6
+HF	Q0	Heparinperfusor	-2
+HF	Q0	Hüfte für	-4
+HF	Q0	Herzinsuffizienz	-4
+HF	Q0	Hinweis für	-4
+HF	Q0	Hebungsinfarkt	-4
+HF	Q0	Herzinsuffizienzmedikation	-4
+HF	Q0	Herzklappenkonferenz	-4
+HF	Q0	Herzfermente	-4
+HF	Q0	Herzkatheterbefund	-4
+HF	Q0	Hinterwandinfarkt	-6
+HF	Q0	Hüftumfang	-6
+HF	Q0	Herzchirurgie für	-6
+HF	Q0	Herdbefund	-6
+HF	Q0	Herzkatheter für	-6
+HFT	Q0	Herzinsuffizienzmedikation	-4
+HFT	Q0	Herzfermente	-4
+HFT	Q0	Hüfte für weitere ÐÐ Tage	-4
+HFT	Q0	Herzohr frei von Thromben	-4
+HFT	Q0	Herzinsuffizienztherapie	-4
+HFT	Q0	Hüfte für ÐÐ Tage	-4
+HFT	Q0	Hinterwandinfarkt	-4
+HFT	Q0	Hüfte für ebenso ÐÐ Tage	-4
+HFT	Q0	Herzfermenten	-4
+HFT	Q0	Hypren plus forte	-4
+HFT	Q0	Herzinfarkt transmural	-6
+HFT	Q0	Harmomed forte	-6
+HFT	Q0	Hinterwandinfarkt transmural	-6
+HFT	Q0	homöopathische Globuli Foster	-6
+HFT	Q0	Hypertonie pulmonal Sildenafil Therapie	-6
+HFT	Q0	Hüftgelenkarthrose	-6
+HFT	Q0	Hypercholesterinämie Hüftkopfnekrose	-6
+HK	Q0	Herzkathether	-3
+HK	Q0	Hypokinesie	-1
+HK	Q0	Herzkatheter	-2
+HK	Q0	Herzkatheterbefund	-2
+HK	Q0	heimatnahen Krankenhaus	-2
+HK	Q0	Herzkatheterlabor	-2
+HK	Q0	Herzkatheterkontrolle	-2
+HK	Q0	Hypokinesien	-2
+HK	Q0	Herzkatheteruntersuchung	-2
+HK	Q0	Herzventrikelthrombus	-2
+HK	Q0	Herkatheter	-2
+HK	Q0	Herzkrankheit	-4
+HK	Q0	heutigen Kontrolle	-4
+HK	Q0	Herzerkrankung	-4
+HK	Q0	Hypertrophie konzentrisch	-4
+HK	Q0	Hebungsinfarkt	-4
+HK	Q0	Herzinsuffizienzmedikation	-4
+HK	Q0	Herzklappenkonferenz	-4
+HK	Q0	hypertensive Kardiomyopathie	-6
+HK	Q0	Hyperkinesie	-6
+HK	Q0	Hinterwandhypokinesie	-6
+HK	Q0	hypertensive Herzerkrankung	-6
+HK	Q0	Herzspitzenhypokinesie	-6
+HK	Q0	Hypertensive Kardiomyopathie	-6
+HK	Q0	Herzfermentausklenkung	-6
+HK	Q0	Häufigkeit	-6
+HN	Q0	Hirnnerven	-3
+HN	Q0	Harnstoff	-1
+HN	Q0	Harnsäure	-1
+HN	Q0	Hb Nitrolingual	-2
+HN	Q0	Harnst	-2
+HN	Q0	Hypovitaminose	-2
+HN	Q0	Herzkreislaufinstitut	-2
+HN	Q0	Hypertonie	-4
+HN	Q0	Hinweis	-4
+HN	Q0	Herzkrankheit	-4
+HN	Q0	Hypokinesie	-4
+HN	Q0	Herzkatheteruntersuchung	-4
+HN	Q0	Herzinsuffizienz	-4
+HN	Q0	Hypertonus	-4
+HN	Q0	Herzerkrankung	-4
+HN	Q0	Hinterwand	-4
+HN	Q0	Hebungsinfarkt	-4
+HN	Q0	Hauptstammbeteiligung	-6
+HN	Q0	Hypertensive	-6
+HN	Q0	Hinterwanddicke	-6
+HN	Q0	Hauptstammstenose	-6
+HN	Q0	Hypercholesterinämie	-6
+HN	Q0	Hyperlipoproteinämie	-6
+HNO	Q0	Hals-Nasen-Ohren-Heilkunde	-3
+HNO	Q0	Homemonitoring	-2
+HNO	Q0	hiesigen Notaufnahme	-2
+HNO	Q0	Herzklappenkonferenz	-2
+HNO	Q0	Herzinsuffizienzmedikation	-4
+HNO	Q0	Hypertrophie konzentrisch und normaler	-4
+HNO	Q0	Harnstoff	-4
+HNO	Q0	Herzhöhlen normal	-4
+HNO	Q0	Herz normocard	-4
+HNO	Q0	Hinweis für ein offenes	-4
+HNO	Q0	Hypertrophie und normaler	-4
+HNO	Q0	Hili und das obere	-4
+HNO	Q0	Hypertrophie konzentr und normaler	-4
+HNO	Q0	Hyperlipidämie DIAGNOSEN Koronarien ohne	-6
+HNO	Q0	Herzerkrankung Koronarien ohne	-6
+HNO	Q0	Hypertonie DIAGNOSEN Koronarien ohne	-6
+HNO	Q0	Herzkrankheit DIAGNOSEN Koronarien ohne	-6
+HNO	Q0	Hypertensive Herzkrankheit Koronarien ohne	-6
+HNO	Q0	Herzkatheterbefund DIAGNOSEN Koronarien ohne	-6
+HNO	Q0	Herzkatheter DIAGNOSEN Koronarien ohne	-6
+HNO	Q0	Herzkrankheit Koronarien ohne	-6
+HNO	Q0	Herzkatheter Koronarien ohne	-6
+HNO	Q0	Herzkatheter Diagnosen Koronarien ohne	-6
+HP	Q0	Hardplaques	-1
+HP	Q0	Hardplaquebildung	-2
+HP	Q0	Hardplaque	-2
+HP	Q0	Hartplaques	-2
+HP	Q0	Hardplauebildung	-2
+HP	Q0	Hardlplaques	-2
+HP	Q0	Hadplaques	-2
+HP	Q0	Herzpalpitationen	-2
+HP	Q0	Hardplaque Hardplaque	-2
+HP	Q0	Hypoglykämien	-2
+HP	Q0	Hypertonie	-4
+HP	Q0	Hypertrophie	-4
+HP	Q0	Hyperlipidämie	-4
+HP	Q0	Hypokinesie	-4
+HP	Q0	Hypertonus	-4
+HP	Q0	Hypren	-4
+HP	Q0	Hypercholesterinämie	-4
+HP	Q0	Hauptstammbeteiligung	-4
+HP	Q0	Hypertonie Hyperlipidämie	-4
+HP	Q0	Herzklappenkonferenz	-4
+HP	Q0	Halsgefäße Hardplaques	-6
+HP	Q0	Hämatom an der Punktionsstelle	-6
+HT	Q0	Hypertension	-2
+HT	Q0	Herzaktion	-2
+HT	Q0	Hashimoto	-2
+HT	Q0	Hyertonus	-2
+HT	Q0	Herzaktionen	-2
+HT	Q0	Hypertrophie	-4
+HT	Q0	Herzkatheter	-4
+HT	Q0	Herzkatheteruntersuchung	-4
+HT	Q0	Herzschatten	-4
+HT	Q0	Hämatom	-4
+HT	Q0	Holter	-4
+HT	Q0	Hinterwand	-4
+HT	Q0	Hypercholesterinämie	-4
+HT	Q0	Ht arrh tc	-6
+HT	Q0	Ht rh tc	-6
+HT	Q0	Ht rein tc	-6
+HT	Q0	Ht tachykard	-6
+HT	Q0	Herz rh tc	-6
+HV	Q0	Hypertensive	-4
+HV	Q0	Hypertrophie des linken Ventrikels	-4
+HV	Q0	Herzohr frei von	-4
+HV	Q0	heute zur Visite	-4
+HV	Q0	Hypertrophie des li Ventrikels	-4
+HV	Q0	Herz Leben von	-4
+HV	Q0	Halsvenen	-4
+HV	Q0	halten Verbandswechsel	-4
+HV	Q0	Herzfrequenz von	-4
+HV	Q0	Herzchirurgie vorgestellt	-4
+HV	Q0	Herzkatheter vom	-6
+HV	Q0	Herz Leben vom	-6
+HV	Q0	Hauptstammbeteiligung von	-6
+HV	Q0	Herzkatheteruntersuchung vom	-6
+HV	Q0	Herzfrequenzanstieg von	-6
+HV	Q0	Herzfrequenzspektrum von	-6
+HV	Q0	HbAÐc von	-6
+HW	Q0	Hinterwand	-3
+HW	Q0	Hinweis	-1
+HW	Q0	Hinterwandbereich	-2
+HW	Q0	Hinweiß	-2
+HW	Q0	HInweis	-2
+HW	Q0	Hinterwandaneurysma	-2
+HW	Q0	Hinterwanddicke	-2
+HW	Q0	Hinterwandakinesie	-2
+HW	Q0	Hinterwandinfarkt	-2
+HW	Q0	Hinterwandhypokinesie	-2
+HW	Q0	Hause entlassen werden	-4
+HW	Q0	Hüfte für Ð Wochen	-4
+HW	Q0	Hüfte für weitere	-4
+HW	Q0	Herzhöhlen normal weit	-4
+HW	Q0	Herr LN_ÐÐÐÐÐ wurde	-4
+HW	Q0	Harnwegsinfekt	-4
+HW	Q0	Herr LN_ÐÐÐÐÐ wird	-4
+HW	Q0	Hinterwandmyokardinfarkt	-6
+HW	Q0	Hinweise	-6
+HW	Q0	Hinweisen	-6
+ICD	Q0	Impedanzen Sämtlich in der	-4
+ICD	Q0	Ischämienachweis in der	-4
+ICD	Q0	inkl Echokardiographie wurde mit dem	-4
+ICD	Q0	inkl Echokardiographie wurde mit der	-4
+ICD	Q0	Intensiviertes Risikofaktorenmanagement Verschluß der	-4
+ICD	Q0	Indikation Schmalkomplextachykardie Diagnose	-4
+ICD	Q0	insulinpflichtiger Diab	-4
+ICD	Q0	Ischämiediagnostik	-4
+ICD	Q0	Insgesamt gestaltete sich der	-4
+ICD	Q0	insulinpflichtig DIAGNOSEN	-4
+ICD	Q0	Implantation Nach der	-6
+ICD	Q0	Insult möglich Seit der	-6
+ICD	Q0	Insult mit embolischem Verschluß d	-6
+ICD	Q0	Insult rechts mit Dysphagie	-6
+ICD	Q0	internistischen Durchuntersuchung	-6
+ICD	Q0	Intervalluntersuchung in unserer Ambulanz für den	-6
+ICD	Q0	Implantation eines Eventrecorders Die	-6
+ICD	Q0	Intermediate Care Station der	-6
+ICD	Q0	Intensivstation durchgeführt und der	-6
+ICR	Q0	Intercostalraum	-3
+ICR	Q0	Implantation nach kardiopulmonaler Reanimation	-4
+ICR	Q0	intensiviertes Risikofaktorenmanagement mit cholesterin	-4
+ICR	Q0	IÐÐ Chronisches	-4
+ICR	Q0	Impedanzen im Normbereich Reizschwelle	-4
+ICR	Q0	Implantation chron	-4
+ICR	Q0	Implantation Medtronic RELEVANTE	-4
+ICR	Q0	Indiff Typ Rechtsverspätung	-4
+ICR	Q0	I PROZEDERE Curocef	-4
+ICR	Q0	ischämische Kardiomyopathie chron	-4
+ICR	Q0	Implantation Boston Scientific RELEVANTE	-4
+ICR	Q0	Ischämische Kardiomyopathie RELEVANTE	-6
+ICR	Q0	Ischämische Kardiomyopathie mit rez	-6
+ICR	Q0	Idiopathische rechtsventrikuläre	-6
+ICR	Q0	I Verschluß der Punktionsstelle der rechten	-6
+ICR	Q0	Instabile Angina pectoris RÐÐ	-6
+ICR	Q0	Innenohrschwerhörigkeit	-6
+ICR	Q0	Ischämische Kardiomyopathie mit rez Card	-6
+ICR	Q0	Idiopath rechtsventrikuläre	-6
+ICR	Q0	Intraatriale Reentrytachykardie	-6
+IIIII	Q0	intensiv kardiovaskuläres Risikofaktorenmanagement im	-4
+IIIII	Q0	Intensiviertes Risikofaktorenmanagement insbesondere	-4
+IIIII	Q0	intensiv Risikofaktorenmanagement insbesondere	-4
+IIIII	Q0	informiert Auffälligkeiten im	-4
+IIIII	Q0	Ischämische Kardiomyopathie IÐÐ	-4
+IIIII	Q0	IÐÐ Ð Ischämische Kardiomyopathie IÐÐ	-4
+IIIII	Q0	IÐÐ Ð Dilatative Kardiomyopathie IÐÐ	-4
+IIIII	Q0	inkl Echokardiographie wurde mit dem Pat in	-4
+IIIII	Q0	Insuffizienzen Die Pat hat prinzipiell Interesse	-4
+IIIII	Q0	IÐÐ Ð Mitralklappeninsuffizienz I	-4
+IPF	Q0	Idiopathische pulmonale Fibrose	-3
+IPF	Q0	Inspirationstiefe	-4
+IPF	Q0	Indikationsprüfung	-4
+IPF	Q0	IÐÐ Arterielle Hypertonie FÐÐ	-4
+IPF	Q0	Intensiviertes Risikofaktorenmanagement Plavix für	-4
+IPF	Q0	Internisten körperliche Schonung für	-4
+IPF	Q0	Indiff Typ flaches	-4
+IPF	Q0	Implantation Verschluß der Punktionsstelle Arteria femoralis	-4
+IPF	Q0	IÐÐ art Hypertonie FÐÐ	-4
+IPF	Q0	i v Perfusionsszintigraphie	-4
+IPF	Q0	Integrilintherapie eingeleitet PROZEDERE Integrilin für	-4
+IPF	Q0	Indikationsprüfung für	-6
+IPF	Q0	Integrilintherapie für	-6
+IPF	Q0	Integrelin Therapie für	-6
+IPF	Q0	ischämische Kardiomoypathie Einwandfreie Funktion	-6
+IPF	Q0	Integrilin Therapie für	-6
+IT	Q0	Indifferenztyp	-3
+IT	Q0	Indiff Typ	-1
+IT	Q0	Indtyp	-1
+IT	Q0	Indifferentialtyp	-2
+IT	Q0	Intermediärtyp	-2
+IT	Q0	Indiffereztyp	-2
+IT	Q0	Indiferenztyp	-2
+IT	Q0	Itraconazol	-2
+IT	Q0	Implantation	-4
+IT	Q0	INDIKATION	-4
+IT	Q0	Indikation	-4
+IT	Q0	Internisten	-4
+IT	Q0	Intensiviertes	-4
+IT	Q0	Infiltrate	-4
+IT	Q0	Intensivstation	-4
+IT	Q0	Infiltrat	-4
+IT	Q0	Indifferenztyp träger	-6
+IT	Q0	Indiff Typ träger	-6
+IT	Q0	Intermittierend	-6
+IT	Q0	I Typ inkompletter	-6
+IT	Q0	Indiff typ	-6
+KHK	Q0	Komplikationen während der Untersuchung Keine	-4
+KHK	Q0	kardiologische Kontrolluntersuchungen	-4
+KHK	Q0	Koronarangiographie Untersuchungen Koronarangiographie	-4
+KHK	Q0	Kaliberschwankung	-4
+KHK	Q0	kardiologische Kontroll	-4
+KHK	Q0	Koronarangiographie Diagnose Operierte koronare	-6
+KHK	Q0	Koronarangiographie Diagnosen Operierte koronare	-6
+KHK	Q0	komplikationslos durchgeführten Koronarangiographie	-6
+KHK	Q0	Koronarangiographie DIAGNOSEN Koronare	-6
+KHK	Q0	Körperliche Schonung und kein	-6
+KHK	Q0	Koronarangiographie Diagnose koronare	-6
+KM	Q0	Kardiomyopathie	-4
+KM	Q0	Komplikationen	-4
+KM	Q0	Kumulativbefund	-4
+KM	Q0	Kardiomyopathie mit	-4
+KM	Q0	Kontrolltermin	-4
+KM	Q0	Koronarangiographie mit	-4
+KM	Q0	Koronarien m	-4
+KM	Q0	KOMPLIKATION	-4
+KM	Q0	Komplex	-4
+KM	Q0	Kammerflimmern	-4
+KM	Q0	Kammerfrequenz	-6
+KM	Q0	Kopfschmerzen	-6
+KM	Q0	Krampfanfall	-6
+KM	Q0	Kalium und Magnesium	-6
+KM	Q0	Kompressionsstrümpfen	-6
+KM	Q0	Kraniotomie	-6
+KM	Q0	Kalziumantagonisten	-6
+LA	Q0	Lokalanästhesie	-3
+LA	Q0	Lichen aureus	-3
+LA	Q0	linkes Atrium	-3
+LA	Q0	linkes Auge	-3
+LA	Q0	li Atrium	-1
+LA	Q0	linken Hemithorax ausstrahlend	-1
+LA	Q0	Linksherzkatheter	-1
+LA	Q0	linksventrikuläre Auswurffraktion	-2
+LA	Q0	Linksventrikulographie	-2
+LA	Q0	Laboruntersuchungen	-4
+LA	Q0	Lasten	-4
+LA	Q0	Ladezeit	-4
+LA	Q0	Lanitop	-4
+LA	Q0	Langzeit	-4
+LA	Q0	LN_ÐÐÐÐÐ am	-4
+LA	Q0	liventr T Abfl	-4
+LA	Q0	Laborparameter	-4
+LA	Q0	linken Armes	-6
+LA	Q0	li Vorhofs auf	-6
+LA	Q0	li Vorhofes auf	-6
+LA	Q0	li Atriums	-6
+LA	Q0	li Armes	-6
+LA	Q0	Lipidstatus	-6
+LA	Q0	linken Arms	-6
+LA	Q0	li Ventrikels auf	-6
+LA	Q0	Lungenkreislaufs	-6
+LDH	Q0	Lactatdehydrogenase	-3
+LDH	Q0	Lasten und Beugen in der Hüfte	-4
+LDH	Q0	Lipide über den Hausarzt	-4
+LDH	Q0	Leistenpunktionsstelle wieder nach Hause	-4
+LDH	Q0	linker Ventrikel mit mittelgradiger Hypertrophie	-4
+LDH	Q0	leicht bis mittelgradiger Hypertrophie	-4
+LDH	Q0	Lasten sowie das Heben	-4
+LDH	Q0	li Ventrikel mit mittelgrad Hypertrophie	-4
+LDH	Q0	linker Ventrikel mit höhergradiger Hypertrophie	-4
+LDH	Q0	li Ventrikel mit höhergrad Hypertrophie	-4
+LDH	Q0	leicht bis mittelgrad Hypertrophie	-4
+LDH	Q0	li ventrikuläre Hypertrophie diastolische	-6
+LDH	Q0	linksventrikuläre Hypertrophie diastolische	-6
+LDH	Q0	Linker Ventrikel deutlich vergrößert mit hochgradig	-6
+LDH	Q0	Leichte diastolische	-6
+LDH	Q0	Lebensjahr intermittierend auftretendes Herzrasen	-6
+LDH	Q0	leichte Hypokinesie der Hinterwand	-6
+LDH	Q0	lateralen Drittel der diaphragmalen	-6
+LDH	Q0	lateralen Drittel der diaphragmalen Hinterwand	-6
+LDH	Q0	leichtem retrosternalem Druckgefühl	-6
+LDH	Q0	Linksherzkatheter durchgeführt	-6
+LDHÐÐÐ	Q0	Lipide über den Hausarzt DIAGNOSEN IÐÐ Ð	-4
+LDHÐÐÐ	Q0	lebenslange Dauertherapie mit Thrombo Ass ÐÐÐmg	-4
+LDHÐÐÐ	Q0	lebenslange Dauertherapie mit Thrombo Ass ÐÐÐmg ÐxÐ	-4
+LDHÐÐÐ	Q0	lebenslänglich MEDIKATION Thrombo Ass ÐÐÐmg	-4
+LDHÐÐÐ	Q0	lebenslänglich MEDIKATION Thrombo Ass ÐÐÐmg Ð Ð	-4
+LDHÐÐÐ	Q0	lebenslänglich MEDIKATION Thrombo Ass ÐÐÐmg Ð	-4
+LDHÐÐÐ	Q0	lebenslängliche Dauertherapie mit Thrombo Ass ÐÐÐmg	-4
+LDHÐÐÐ	Q0	lebenslängliche Dauertherapie mit Thrombo Ass ÐÐÐmg ÐxÐ	-4
+LDHÐÐÐ	Q0	laufenden Therapie Concor Ð mg Ð Ð	-4
+LDHÐÐÐ	Q0	Ladezeit ÐÐ Ð Reizschwelle atrial Ð ÐÐ	-4
+LIMA	Q0	Lima auf	-1
+LIMA	Q0	leichte Mitralinsuffizienz	-4
+LIMA	Q0	linker Ventrikel mit mittelgradiger	-4
+LIMA	Q0	Ladezeit Ð Ð Impedanz	-4
+LIMA	Q0	Ladezeit ÐÐ Ð Impedanz	-4
+LIMA	Q0	Ladezeit Ð Ð Impedanz atrial	-4
+LIMA	Q0	lebenslänglich Plavix für ÐÐ Monat	-4
+LIMA	Q0	Linker Vorhof mittelgradig	-4
+LIMA	Q0	lebenslänglich Efient für ÐÐ Monat	-4
+LIMA	Q0	lebenslänglich Brilique für ÐÐ Monat	-4
+LIMA	Q0	leicht bis mittelgradig vergrößert Ð Aortenklappe	-4
+LIMA	Q0	Lima ad	-6
+LIMA	Q0	Leichte Mitralinsuffizienz	-6
+LIMA	Q0	Leichte bis mittelgradige	-6
+LIMA	Q0	Leichte bis mittelgradige Aortenklappeninsuffizienz	-6
+LIMA	Q0	Levosimendan	-6
+LIMA	Q0	leichter Hypertrophie konzentrisch und mittelgradig	-6
+LIMA	Q0	Linksventrikulographie Aortographie der Aorta abdominalis	-6
+LIMA	Q0	leichter Hypertrophie und mittelgradig	-6
+LIMA	Q0	leicht bis mittelgradiger Hypertrophie und mittelgradig	-6
+LKH	Q0	Linksventrikulographie	-4
+LKH	Q0	Linksherzkatheter	-4
+LKH	Q0	Leistenpunktionsstelle wieder nach Hause	-4
+LKH	Q0	Linksschenkelblock	-4
+LKH	Q0	linker Ventrikel mit leichter Hypertrophie	-4
+LKH	Q0	linker Ventrikel mit mittelgradiger Hypertrophie	-4
+LKH	Q0	li Ventrikel mit leichter Hypertrophie	-4
+LKH	Q0	Linker Vorhof einschließlich Herzohr	-4
+LKH	Q0	linksventrikuläre Hypertrophie	-4
+LKH	Q0	li ventrikuläre Hypertrophie	-4
+LKH	Q0	Liegen beurteilbar kein Hinweis	-6
+LKH	Q0	linken Herzohr	-6
+LKH	Q0	Liegen beurteilbar kein sicherer Hinweis	-6
+LKH	Q0	linken Hemithorax	-6
+LKH	Q0	Liegen beurteilbar übersichtsradiologisch kein Hinweis	-6
+LKH	Q0	Lungenröntgen kein Hinweis	-6
+LKH	Q0	linken Vorhof und Herzohr	-6
+LKH	Q0	linken Herz	-6
+LKH	Q0	LN_ÐÐÐÐÐ wird vom Krankenhaus	-6
+LM	Q0	Larynxmaske	-3
+LM	Q0	Lumenobstruktion	-2
+LM	Q0	Langsamer	-2
+LM	Q0	li Ventrikel mit	-4
+LM	Q0	linker Ventrikel mit	-4
+LM	Q0	Laborparameter	-4
+LM	Q0	leichte Mitralinsuffizienz	-4
+LM	Q0	Linksventrikelfunktion mit	-4
+LM	Q0	Lasix ÐÐ mg	-4
+LM	Q0	Lovenox ÐÐ mg	-4
+LM	Q0	Lymphknoten	-4
+LM	Q0	linker Ventrikel mit mittelgradiger	-4
+LM	Q0	Lungenemphysem	-4
+LM	Q0	Lungenemphysems	-6
+LM	Q0	Leistungsminderung	-6
+LM	Q0	Lungenödems	-6
+LM	Q0	Lymphadenopathie	-6
+LM	Q0	Lymphom	-6
+LM	Q0	linksventrikulären Myocards	-6
+LM	Q0	leichte Mitralstenose	-6
+LSB	Q0	Laboruntersuchungen In Kopie beiliegend	-4
+LSB	Q0	Lasten und Beugen	-4
+LSB	Q0	Laboruntersuchungen In Kopie Beurteilung	-4
+LSB	Q0	Laboruntersuchungen Kumulativbefund beiliegend	-4
+LSB	Q0	Laboruntersuchungen Kumulativbefund beiliegend Beurteilung	-4
+LSB	Q0	Lasten sowie starkem Beugen	-4
+LSB	Q0	Laboruntersuchungen beiliegend	-4
+LSB	Q0	Laboruntersuchungen beiliegend Beurteilung	-4
+LSB	Q0	Laboruntersuchungen Beurteilung	-4
+LSB	Q0	Leistungsbreite	-6
+LSB	Q0	Leitungsbahn	-6
+LSB	Q0	Linie vaskulär betont	-6
+LSB	Q0	Linie vasculär betont	-6
+LSB	Q0	Leistungsbreite hypertensives Blutdruckverhalten	-6
+LSB	Q0	li sowie A vertebralis bds	-6
+LSB	Q0	li thorakales Brennen	-6
+LT	Q0	Linkstyp	-3
+LT	Q0	Larynxtubus	-3
+LT	Q0	Linksty	-2
+LT	Q0	Linsktyp	-2
+LT	Q0	Linlstyp	-2
+LT	Q0	Lagetyp	-2
+LT	Q0	Linksverspätung	-2
+LT	Q0	Linklstyp	-2
+LT	Q0	Leitungszeiten	-2
+LT	Q0	Laktat	-2
+LT	Q0	Laboruntersuchungen	-4
+LT	Q0	Lasten	-4
+LT	Q0	Linksventrikelfunktion	-4
+LT	Q0	lipidsenkenden Therapie	-4
+LT	Q0	Leichte	-4
+LT	Q0	Lanitop	-4
+LT	Q0	Leistenpunktionsstelle	-4
+LT	Q0	Linksventrikulographie	-4
+LT	Q0	Linksherzkatheter	-4
+LT	Q0	Linkstyp träger	-6
+LT	Q0	Linksventrikuläre	-6
+LT	Q0	Linkstyp neg T	-6
+LT	Q0	Linkstyp T	-6
+LT	Q0	L Typ träger	-6
+LT	Q0	Lagetyp Linkstyp	-6
+LV	Q0	Linker und rechter Ventrikel	-1
+LV	Q0	li Ventrikels	-1
+LV	Q0	Lebervenen	-2
+LV	Q0	Linskventrikelfunktion	-2
+LV	Q0	Lovenox	-4
+LV	Q0	Linker Vorhof	-4
+LV	Q0	Linker Ventrikel	-4
+LV	Q0	li Vorhof	-4
+LV	Q0	Linksventrikulographie	-4
+LV	Q0	li Vorhofes	-4
+LV	Q0	Li ventr	-6
+LV	Q0	Li ventrikuläre	-6
+LV	Q0	linker Vorhof	-6
+LV	Q0	Li Ventrikel	-6
+LVF	Q0	Linksventrikelfunktion	-1
+LVF	Q0	Linskventrikelfunktion	-2
+LVF	Q0	LInksventrikelfunktion	-2
+LVF	Q0	li Vorhofes	-4
+LVF	Q0	lebenslänglich Plavix für	-4
+LVF	Q0	Linker Vorhof einschließlich Herzohr frei	-4
+LVF	Q0	Linkstyp normale Vorhoferregung	-4
+LVF	Q0	li Vorhofs	-4
+LVF	Q0	li ventr Funktion	-4
+LVF	Q0	linken Vorhofes	-4
+LVF	Q0	linksventrikuläre Funktion	-4
+LVF	Q0	li ventrikuläre Funktion	-4
+LVF	Q0	linksventrik Funktion	-6
+LVF	Q0	linksventr Funktion	-6
+LVF	Q0	li ventriculäre Funktion	-6
+LVF	Q0	leicht eingeschränkte Linksventrikelfunktion	-6
+LVF	Q0	linksventrikulärer Funktion	-6
+LVH	Q0	linksventr Hypertrophie	-1
+LVH	Q0	li Vorhofes	-1
+LVH	Q0	Linker Vorhof	-4
+LVH	Q0	li Vorhof	-4
+LVH	Q0	linker Vorhof	-4
+LVH	Q0	Li Vorhof	-4
+LVH	Q0	linker Ventrikel mit leichter Hypertrophie	-4
+LVH	Q0	linker Ventrikel mit mittelgradiger Hypertrophie	-4
+LVH	Q0	li Ventrikel mit leichter Hypertrophie	-4
+LVH	Q0	leicht vergrößert rechter Vorhof	-4
+LVH	Q0	li Ventrikel grenzwertig weit Hypokinesie	-6
+LVH	Q0	li ventrikuläre Hypertrophie	-6
+LVH	Q0	li Ventrikel grenzwertig weit Hypo	-6
+LVH	Q0	li ventr Hypertrophie	-6
+MBq	Q0	Minute Belastungsfrequenz	-2
+MBq	Q0	MEDIKATION Brilique	-4
+MBq	Q0	Minuten Belastungsfrequenz	-6
+MBq	Q0	Monat Brilique	-6
+MBq	Q0	ms belassen darunter nach Quickopt	-6
+MBq	Q0	monatige Therapie mit Brilique	-6
+MBq	Q0	Monat e Brilique	-6
+MEL	Q0	Meulengracht	-2
+MEL	Q0	Mitralsegel	-4
+MEL	Q0	Mitralringverkalkung	-4
+MEL	Q0	Mittelgradige	-4
+MEL	Q0	Mellitus	-4
+MEL	Q0	minimale Mitralinsuffizienz	-4
+MEL	Q0	min überdrehter Linkstyp	-4
+MEL	Q0	Mitralklappe morphologisch unauffällig leichte	-4
+MEL	Q0	mittelgradige Mitralinsuffizienz	-4
+MEL	Q0	morphologisch unauffällig leichte Mitralinsuffizienz	-4
+MEL	Q0	ms Im Eventrecorder seit der letzten	-4
+MEL	Q0	Monate empfohlen	-6
+MEL	Q0	min stieg auf einen Maximalwert	-6
+MEL	Q0	min Eigenüberleitung	-6
+MEL	Q0	Monat e Elektiv	-6
+MEL	Q0	min überdrehter L	-6
+MEL	Q0	min Echokardiographie Der li	-6
+MEL	Q0	mmHg Hypertrophie des linken	-6
+MEL	Q0	min stimulierter Lagetyp	-6
+MET	Q0	Methotrexat	-1
+MET	Q0	Monatskontorlletermin	-2
+MET	Q0	Mitabgebildete	-2
+MET	Q0	Millimetern	-2
+MET	Q0	Mediainfarktes	-2
+MET	Q0	MEDIKATION	-4
+MET	Q0	Medikation	-4
+MET	Q0	MEDIKATION Thrombo	-4
+MET	Q0	medikamentösen Therapie	-4
+MET	Q0	Medtronic	-4
+MET	Q0	Mitralinsuffizienz Ð Trikuspidalklappe	-4
+MET	Q0	mmHg entsprechend	-4
+MET	Q0	Mediastinum	-4
+MET	Q0	mellitus Typ	-4
+MET	Q0	Monat e Thrombo	-4
+MET	Q0	minimale Mitralinsuffizienz	-6
+MET	Q0	mittelgradige Mitralinsuffizienz	-6
+MET	Q0	Mitralringverkalkung leichte Mitralinsuffizienz	-6
+MET	Q0	mg Tabletten	-6
+MET	Q0	Mitralringverkalkung minimale Mitralinsuffizienz	-6
+MET	Q0	mittelgradige Trikuspidalinsuffizienz	-6
+MET	Q0	Mitralringverkalkung mittelgradige Mitralinsuffizienz	-6
+MET	Q0	Mittelgradige Mitralinsuffizienz	-6
+MET	Q0	Medikation Tritace	-6
+MI	Q0	Myokardinfarkt	-3
+MI	Q0	Mitralklappeninsuffizienz	-3
+MI	Q0	Mitralinsuffizienz	-1
+MI	Q0	Mitralinsuff	-2
+MI	Q0	Mitralringverkalkung	-2
+MI	Q0	Mittelgradige Mitralringverkalkung	-2
+MI	Q0	Mitralstenose	-2
+MI	Q0	Mitralverkalkung	-2
+MI	Q0	Mitral	-2
+MI	Q0	Mitralsegels	-2
+MI	Q0	Minutenfrequenz	-2
+MI	Q0	MEDIKATION	-4
+MI	Q0	Medikation	-4
+MI	Q0	Mitralklappe	-4
+MI	Q0	möglich DIAGNOSEN IÐÐ	-4
+MI	Q0	min Indiff	-4
+MI	Q0	Medtronic	-4
+MI	Q0	Mitralklappe morphologisch	-4
+MI	Q0	Myokardszintigraphie	-4
+MI	Q0	Mode mit	-4
+MI	Q0	minimale Mitralinsuffizienz	-6
+MI	Q0	mittelgradige Mitralinsuffizienz	-6
+MI	Q0	Moxonibene	-6
+MI	Q0	Mitralklappeninsuffizienz IÐÐ	-6
+MI	Q0	Medizin DIAGNOSEN IÐÐ	-6
+MI	Q0	Mediastinum in	-6
+MI	Q0	Myokardinfarkt IÐÐ	-6
+MI	Q0	Mitralklappeninsuffizienz I IÐÐ	-6
+MINS	Q0	Mitralring	-2
+MINS	Q0	Mitralringsklerose	-2
+MINS	Q0	Mittelgradige Mitralringverkalkung	-2
+MINS	Q0	min Indiff	-4
+MINS	Q0	Myokardszintigraphie	-4
+MINS	Q0	Medikation Eine neuerliche	-4
+MINS	Q0	Mediastinum	-4
+MINS	Q0	min Indifferenztyp	-4
+MINS	Q0	Myokardinfarkt	-4
+MINS	Q0	Minuten	-4
+MINS	Q0	Mitralsegel verdickt Mitralinsuffizienz	-6
+MINS	Q0	mmHg Mins	-6
+MINS	Q0	minimale Mins	-6
+MINS	Q0	MItralinsuffizienz	-6
+MINS	Q0	min T Negativierung	-6
+MPR	Q0	Mitralklappe morphologisch	-4
+MPR	Q0	min Linkstyp R	-4
+MPR	Q0	Mitralklappe morpholog	-4
+MPR	Q0	Mitralklappe morphol	-4
+MPR	Q0	min Indifferenztyp R	-4
+MPR	Q0	Mitralklappenrekonstruktion	-4
+MPR	Q0	Mitralklappenersatz	-4
+MPR	Q0	m ch PROZEDERE	-4
+MPR	Q0	mmHg kein Perikarderguss	-4
+MPR	Q0	Metoprolol	-4
+NINS	Q0	Nikotinmissbrauch	-2
+NINS	Q0	Niikotinabusus	-2
+NINS	Q0	Nikotinabhängigkeit	-2
+NINS	Q0	Nierenzyste	-2
+NINS	Q0	Nebennierenadenom	-2
+NINS	Q0	niedergelassenen Internisten	-4
+NINS	Q0	Nikotin	-4
+NINS	Q0	Normalstation	-4
+NINS	Q0	Nieren	-4
+NINS	Q0	Novalgin	-4
+NINS	Q0	Negativierung	-4
+NINS	Q0	NÐÐ Ð Niereninsuffizienz	-4
+NINS	Q0	Nierenfunktion	-4
+NINS	Q0	Nikotinkonsum	-6
+NINS	Q0	Nikotinabusus Z n	-6
+NINS	Q0	Nikotinabusus NÐÐ	-6
+OAK	Q0	Organomegalie tastbar Extremitäten keine	-4
+OAK	Q0	oben genannter Anamnese zur geplanten Koronarangiographie	-4
+OAK	Q0	oberen Größennormbereich Keine akuten	-4
+OAK	Q0	Optionen aufgeklärt	-4
+OAK	Q0	oralen Kontrazeption	-6
+OAK	Q0	oben angeführten Anamnese Die Koronarangiographie	-6
+OAK	Q0	Operation deutliche Besserung des klinischen	-6
+OAK	Q0	oralen Antikougulation	-6
+OAK	Q0	Outputwerte und Aktivierung	-6
+OAK	Q0	operativen Korrektur	-6
+OAK	Q0	oben angeführten Anamnese In der Koronarangiographie	-6
+OAK	Q0	Operation aufgeklärt	-6
+OP	Q0	Optionen	-4
+OP	Q0	Optimierung	-4
+OP	Q0	Osteoporose	-4
+OP	Q0	Operierte	-4
+OP	Q0	Omeprazol	-4
+OP	Q0	off Phänomen	-4
+OP	Q0	Off Phänomen	-4
+OP	Q0	On Off Phänomen	-4
+OP	Q0	on off Phänomen	-4
+OP	Q0	Op St p	-6
+OP	Q0	Operation Präoperative	-6
+OP	Q0	Okklusion mit positiv	-6
+OP	Q0	Ospexin	-6
+OP	Q0	Orthopädie	-6
+OP	Q0	Operationsvorbereitung	-6
+OP	Q0	Operabilität	-6
+PFO	Q0	persistierendes Foramen ovale	-3
+PFO	Q0	Persistierendes Foramen Ovale	-1
+PFO	Q0	Persistierendes Foramen ovale	-1
+PFO	Q0	persisitierenden Foramen ovale	-1
+PFO	Q0	Pumpfunktion	-4
+PFO	Q0	Punktionsstelle Arteria femoralis	-4
+PFO	Q0	Punktionsstelle Vena femoralis	-4
+PFO	Q0	Prothesenfunktion	-4
+PFO	Q0	primär die Fortführung	-4
+PFO	Q0	Pfortader	-4
+PFO	Q0	Persistierendes Foramen	-4
+PFO	Q0	Propafenon	-4
+PFO	Q0	Perfusion	-4
+PFO	Q0	Perfusor	-4
+PFO	Q0	poplitea unauffällig Offenbar	-6
+PFO	Q0	Patienten erfolgte aufgrund oben	-6
+PFO	Q0	Patienten erfolgte aufgrund von oben	-6
+PFO	Q0	Pat erfolgte aufgrund oben	-6
+PFO	Q0	Pat erfolgte aufgrund von oben	-6
+PFO	Q0	Patienten aufgrund der bereits oben	-6
+PFO	Q0	Patienten erfolgt aufgrund oben	-6
+PFO	Q0	Pat aufgrund der bereits oben	-6
+PFO	Q0	Patienten erfolgt aufgrund von oben	-6
+PFO	Q0	Patienten erfolgte bei oben	-6
+PNV	Q0	periphere Niedervoltage	-1
+PNV	Q0	periphere und zentrale Niedervoltage	-1
+PNV	Q0	Postinterventionell	-4
+PNV	Q0	pectoris Beschwerden werden verneint	-4
+PNV	Q0	postinterventionelle Verlauf	-4
+PNV	Q0	physikalische Symptomatik BEURTEILUNG Von	-4
+PNV	Q0	Projektes Herz Leben von	-4
+PNV	Q0	Pat in Ð Mon vereinbart	-4
+PNV	Q0	Pat in Ð Monaten vereinbart	-4
+PNV	Q0	Punktionsstelle Vena	-4
+PNV	Q0	Präventionsprogrammes Hypertonie und Prävention	-4
+PNV	Q0	Präventionsprogramm Vor	-4
+PNV	Q0	Persistenz bis VÐ	-6
+PNV	Q0	Progression über der Vorderwand	-6
+PNV	Q0	pos Vektor in VÐ	-6
+PNV	Q0	pos Vektor in V	-6
+PNV	Q0	pos Vektor in VÐ VÐ	-6
+PNV	Q0	pos Vektor in VÐ und VÐ	-6
+PNV	Q0	pos Amplitude in VÐ	-6
+PNV	Q0	positiver Vektor in VÐ	-6
+PNV	Q0	pos Amplituden in VÐ und VÐ	-6
+PTBV	Q0	pectoris Beschwerden werden verneint	-4
+PTBV	Q0	Präsynkopen Angina pectoris Beschwerden werden verneint	-4
+PTBV	Q0	physikalische Symptomatik BEURTEILUNG Von	-4
+PTBV	Q0	Projektes Herz Leben von	-4
+PTBV	Q0	Pat und berichten von	-4
+PTBV	Q0	Persistenz bis VÐ	-4
+PTBV	Q0	physikalische Symptomatik BEURTEILUNG Patient von	-4
+PTBV	Q0	physikalische Symptomatik BEURTEILUNG Verdacht	-4
+PTBV	Q0	Projektes Herz Leben vom	-4
+PTBV	Q0	Pat berichtet von	-4
+PTBV	Q0	Pat intermittierend ein unabhängig von	-6
+PTBV	Q0	Pat intermittierend unabhängig von	-6
+PTBV	Q0	Pat über intermittierend unabhängig von	-6
+PTBV	Q0	Pat erfolgte als Übernahme von	-6
+PTBV	Q0	Phänomen Die Tachyarrhythmien treten unabhängig von	-6
+PTBV	Q0	perkutane transluminale Ballonvalvuloplastie	-6
+PTBV	Q0	Patienten erfolgte als Übernahme von	-6
+PTBV	Q0	Patienten und berichten von	-6
+PTBV	Q0	Pat kommt überwiesen von	-6
+PTCA	Q0	Pat die Blutdruckselbstmessung und wurde über allgemeine	-4
+PTCA	Q0	physiologische Trikuspidalinsuffizienz Pulmonalisdruck mangels adäquaten	-4
+PTCA	Q0	positiver Coronar	-4
+PTCA	Q0	paroxysmalen Tachykardien	-4
+PTCA	Q0	PROZEDERE Konservative Therapie Verschluß der Punktionsstelle Arteria	-4
+PTCA	Q0	Pat wurde diesbezüglich ausführlich	-4
+PTCA	Q0	physikalische Symptomatik Cor normokard arrhythmisch	-4
+PTCA	Q0	Physikalischer Status Caput	-4
+PTCA	Q0	PROZEDERE Intensiviertes Risikofaktorenmanagement Anschlussheilverfahren	-4
+PTCA	Q0	Plättchenhemmertherapie	-4
+PTCA	Q0	paroxysmalen atrialen Tachykardien	-6
+PTCA	Q0	Port a cath	-6
+PTCA	Q0	Port a Cath	-6
+PTCA	Q0	persist ventrikuläre Tachykardie	-6
+PTCA	Q0	persist ventrikuläre Tachykardie med Cardioversion am	-6
+PTCA	Q0	periop Tachykardie	-6
+PTCA	Q0	persist ventrikuläre Tachykardie med Cardioversion	-6
+PTCA	Q0	Pulmonalvenenisolation Therapievorschlag	-6
+PZ	Q0	Pantoprazol	-2
+PZ	Q0	Paß Ziel	-2
+PZ	Q0	Papillenkarzinom	-2
+PZ	Q0	PROZEDERE	-4
+PZ	Q0	Prozedere	-4
+PZ	Q0	Pat erfolgte zur	-4
+PZ	Q0	Pulmonalinsuffizienz	-4
+PZ	Q0	Postinterventionell zeigte	-4
+PZ	Q0	Pat kommt zur	-4
+PZ	Q0	physiologische Pulmonalinsuffizienz	-4
+PZ	Q0	Patienten erfolgte zur	-4
+PZ	Q0	Pat zur	-4
+PZ	Q0	Pass Ziel	-6
+PZ	Q0	Plavix und Sintrom Ziel	-6
+PZ	Q0	Plavix und Marcoumar Ziel	-6
+PZ	Q0	Pass mit einem Ziel	-6
+PZ	Q0	pausiert Ziel	-6
+QRSs	Q0	Querdurchmesser	-4
+QRSs	Q0	Qtc unter Stimulation	-6
+QTc	Q0	Qualitäten orientiert Caput Collum	-4
+QTc	Q0	Qualitäten orientiert Caput	-6
+QTc	Q0	Querfinger oberhalb der Carina tracheae	-6
+RA	Q0	re Ventrikel auf	-1
+RA	Q0	Relaxationsstörung	-1
+RA	Q0	RELEVANTE	-4
+RA	Q0	Rahmen	-4
+RA	Q0	Risikofaktorenmanagement	-4
+RA	Q0	R Anstieg	-4
+RA	Q0	Reizschwelle atrial	-4
+RA	Q0	Ramipril	-4
+RA	Q0	Rhythmus Ambulanz	-4
+RA	Q0	Rhythmusambulanz	-4
+RA	Q0	Rücksprache	-4
+RA	Q0	Relaxation	-6
+RA	Q0	Ringdilatation	-6
+RA	Q0	Relevante	-6
+RA	Q0	re Atrium	-6
+RA	Q0	regelm Ausdauertraining	-6
+RA	Q0	Reanimation	-6
+RA	Q0	Rekompensation	-6
+RCA	Q0	Reentrytachykardie am	-1
+RCA	Q0	Reentrytachykardie	-1
+RCA	Q0	Reentry Tachykardie am	-1
+RCA	Q0	Reizschwelle atrial	-4
+RCA	Q0	rechts mittels Cathofix	-4
+RCA	Q0	Rücksprache	-4
+RCA	Q0	regelrechter R Anstieg	-4
+RCA	Q0	Rechts Linksherzkatheter plus Coro Aortographie	-4
+RCA	Q0	Rückgang	-4
+RCA	Q0	Reizschwelle atr	-4
+RCA	Q0	Regelmäßige Blutdruck Selbstkontrollen Auf	-4
+RCA	Q0	Rückfragen	-4
+RCA	Q0	Rechtsherzbelastung	-4
+RCA	Q0	reduziert leichte Aortenstenose	-6
+RCA	Q0	Rö Cardiomegalie	-6
+RCA	Q0	Rechtsherzkatheter	-6
+RCA	Q0	Retention DIAGNOSEN Hochgradige Aortenklappenstenose	-6
+RCA	Q0	rechtsventrikulären Ausflusstrakt	-6
+RCA	Q0	Röntgen Cardiomegalie	-6
+RG	Q0	Rasselgeräusche	-3
+RG	Q0	Rhyhtmusereginisse	-2
+RG	Q0	Raumforderungszeichen	-2
+RG	Q0	Risikofaktorenmanagement	-4
+RG	Q0	Röntgen	-4
+RG	Q0	Rhythmusereignisse	-4
+RG	Q0	Regelmäßige	-4
+RG	Q0	Regelm	-4
+RG	Q0	Rhythmusstörungen	-4
+RG	Q0	Radegund	-4
+RG	Q0	Regelrechte	-4
+RG	Q0	Rückgang	-4
+RG	Q0	re Ventrikel grenzwertig	-4
+RG	Q0	Regurgitation	-6
+RG	Q0	Regurgitation geringgr	-6
+RG	Q0	Resistenzen rege	-6
+RG	Q0	Rechtsherzbelastungszeichen	-6
+RG	Q0	relevanten Rhythmusstörungen	-6
+RG	Q0	Regurgitation geringgradige	-6
+RGs	Q0	Regurgitation	-2
+RGs	Q0	Risikofaktorenmanagement	-4
+RGs	Q0	Röntgen	-4
+RGs	Q0	Rhythmusereignisse	-4
+RGs	Q0	Regelmäßige	-4
+RGs	Q0	Regelm	-4
+RGs	Q0	Rhythmusstörungen	-4
+RGs	Q0	Radegund	-4
+RGs	Q0	Regelrechte	-4
+RGs	Q0	Rückgang	-4
+RGs	Q0	re Ventrikel grenzwertig	-4
+RGs	Q0	Raumforderungszeichen	-6
+RGs	Q0	Regurgitation geringgr	-6
+RGs	Q0	Resistenzen rege	-6
+RGs	Q0	Rechtsherzbelastungszeichen	-6
+RGs	Q0	relevanten Rhythmusstörungen	-6
+RGs	Q0	Regurgitation geringgradige	-6
+RIM	Q0	Ramus intermedius	-1
+RIM	Q0	Risikofaktorenmanagement	-4
+RIM	Q0	Reanimation	-4
+RIM	Q0	Risikofaktorenmanagement insbesondere regelmäßige	-4
+RIM	Q0	reduzierte Linksventrikelfunktion mit	-4
+RIM	Q0	Rehab Kontrolle in Ð Monaten	-4
+RIM	Q0	Risikofaktorenmanagement mit	-4
+RIM	Q0	Relaxationsstörung Mitralsegel	-4
+RIM	Q0	Rahmen der improve	-4
+RIM	Q0	Ramipril Ð mg	-4
+RIM	Q0	re Ventrikel mit	-4
+RIM	Q0	R intermedius	-6
+RIM	Q0	rheumatische Mitralstenose	-6
+RIM	Q0	Rektumkarzinom	-6
+RIM	Q0	rechtsatriale Isthmusablation	-6
+RIM	Q0	Residualvolumen	-6
+RIM	Q0	Regime	-6
+RIM	Q0	relevante Infektion des Myokardgewebes	-6
+RSB	Q0	Rhythmusambulanz	-4
+RSB	Q0	regelmäßige Kontrolle des Blutzuckers	-4
+RSB	Q0	regelmäßige Kontrolle des Blutzuckers des Blutdrucks	-4
+RSB	Q0	Radkersburg	-4
+RSB	Q0	R Anstieg bis	-4
+RSB	Q0	Regelmäßige Blutdruck Selbstkontrollen	-4
+RSB	Q0	regelm Blutdruckselbstmessungen	-4
+RSB	Q0	Rechtsherzbelastung	-4
+RSB	Q0	regelmäßige Blutdruck Selbstmessungen	-4
+RSB	Q0	regelm kardiologische Kontrolluntersuchungen beim	-4
+RSB	Q0	rechts B	-6
+RSB	Q0	regelm Blutdruckkontrolle Selbstmessungen	-6
+RSB	Q0	regelm Blutdruckkontrollen Selbstmessungen	-6
+RSB	Q0	Regelm Blutdruckkontrollen Selbstmessungen	-6
+RSB	Q0	regelmäßiger Blutdruckkontrolle Selbstmessungen	-6
+RSB	Q0	Randwinkelergüsse bds	-6
+RSB	Q0	reduzierte Belastbarkeit	-6
+RSB	Q0	regelm Blutdruckkontrolle Selbstmessung	-6
+RSU	Q0	R S Umschlag	-1
+RSU	Q0	Rechtsverspätung	-2
+RSU	Q0	Repolarisationsveränderungen	-2
+RSU	Q0	Repolarisationsstörungen	-2
+RSU	Q0	Relaxationsstörung	-4
+RSU	Q0	Rechtsventrikelfunktion	-4
+RSU	Q0	Rhythmusambulanz	-4
+RSU	Q0	Rhythmusstörungen	-4
+RSU	Q0	rein leises Systolicum	-4
+RSU	Q0	Regelmäßige kardiologische Kontroll Untersuchungen	-4
+RSU	Q0	Rhythmusstörung	-4
+RSU	Q0	Rahmen der Schulung	-4
+RSU	Q0	Rechtstyp R Umschlag	-6
+RSU	Q0	Radkersburg	-6
+RSU	Q0	rSr VÐ R Umschlag	-6
+RSU	Q0	R Anstieg R S Umschlag	-6
+RSU	Q0	Residuen	-6
+RSU	Q0	R Progression R S Umschlag	-6
+RSU	Q0	randständige Schleimhautschwellung	-6
+RV	Q0	re VEntrikel	-1
+RV	Q0	RELEVANTE	-4
+RV	Q0	R Umschlag in VÐ	-4
+RV	Q0	re Vorhof	-4
+RV	Q0	rechter Vorhof	-4
+RV	Q0	R S in VÐ	-4
+RV	Q0	Re Ventrikel	-4
+RV	Q0	R Verlust	-4
+RV	Q0	R Umschlag in V	-6
+RV	Q0	R Anstieg V	-6
+RV	Q0	reduzierte Rechtsventrikelfunktion	-6
+RV	Q0	Reizschwelle Ð V	-6
+RV	Q0	rSr VÐ	-6
+RV	Q0	R Verlust V	-6
+RVF	Q0	Rechtsventrikelfunktion	-1
+RVF	Q0	Rechtventrikelfunktion	-2
+RVF	Q0	Rechtsventrikelfuntkion	-2
+RVF	Q0	Rechstventrikelfunktion	-2
+RVF	Q0	Rechtsventrikelfkt	-2
+RVF	Q0	reduzierte Rechtsventrikelfunktion	-4
+RVF	Q0	Risikofaktorenmanagement Plavix für	-4
+RVF	Q0	re Vorhofes	-4
+RVF	Q0	rechtsatriales Vorhofflattern	-4
+RVF	Q0	restriktives Muster Füllungsdruck	-4
+RVF	Q0	rhythmologische Verlaufskontrolle	-4
+RVF	Q0	reversibles restriktives Muster Füllungsdruck	-4
+RVF	Q0	re Vorhofs	-4
+RVF	Q0	R Anstieg über der Vorderwand flaches	-4
+RVF	Q0	re ventr Funktion	-6
+RVF	Q0	re Ventrikelfunktion	-6
+RVF	Q0	rechtsventrikuläre Funktion	-6
+RVF	Q0	re ventrikuläre Funktion	-6
+RVF	Q0	re ventrikuläre Funktion Vorhöfe	-6
+RVF	Q0	Rechtsventr Funktion	-6
+SB	Q0	Sinusbradykardie	-1
+SB	Q0	Sinusbradycardie	-2
+SB	Q0	Sinsubradykardie	-2
+SB	Q0	sontiges Blutbild	-2
+SB	Q0	Schrittmacherabhängigkeit	-2
+SB	Q0	Septumbewegungen	-2
+SB	Q0	Symptomatik BEURTEILUNG	-4
+SB	Q0	Symptomatik BEURTEILUNG Bei	-4
+SB	Q0	schwerer Lasten und Beugen	-4
+SB	Q0	starkem Beugen	-4
+SB	Q0	sowie starkem Beugen	-4
+SB	Q0	stabiles Zustandsbild Bei	-4
+SB	Q0	stabile Belastungsdyspnoe	-4
+SB	Q0	Selbstmessungen	-4
+SB	Q0	Spirobene	-4
+SB	Q0	Symptomatik Blutdruck	-4
+SB	Q0	Sinus Bradykardie	-6
+SB	Q0	s im niedergelassenen Bereich	-6
+SB	Q0	siehe Beilage	-6
+SB	Q0	s zur Beurteilung	-6
+SB	Q0	s Beilage	-6
+SB	Q0	Stufenweise Ergometerbelastung bis	-6
+SB	Q0	Stufenweise Belastung	-6
+SM	Q0	Stimulation	-1
+SM	Q0	Schrittmacheraktivität	-2
+SM	Q0	Sinusarrhythmie	-2
+SM	Q0	Schritmacher	-2
+SM	Q0	Sinusrythmus	-2
+SM	Q0	Symptomatik	-4
+SM	Q0	Simvastatin	-4
+SM	Q0	Stentimplantation	-4
+SM	Q0	Schockimpedanz	-4
+SM	Q0	Schmerzen	-4
+SM	Q0	Stenose im mittleren	-4
+SM	Q0	Sinusrhythmus	-4
+SM	Q0	Stimulationsanteil	-4
+SM	Q0	Stentimplantation mehrfach	-6
+SM	Q0	Stentimplantation Mehrgefäß	-6
+SM	Q0	Stenose mittels	-6
+SM	Q0	Sitzung mit	-6
+SM	Q0	Stenting Stentimplantation Mehrgefäß	-6
+SM	Q0	Sondenrevision mit	-6
+SM	Q0	Stenose mit	-6
+SM	Q0	Stenting Stentimplantation mehrfach	-6
+SM	Q0	Stenose konnte mittels	-6
+SR	Q0	Schrittmacherstimulation	-2
+SR	Q0	Sinsubradykardie	-2
+SR	Q0	Sinusrythmus	-2
+SR	Q0	Strecke	-2
+SR	Q0	Spironocomp	-2
+SR	Q0	Spirono	-4
+SR	Q0	Sortis	-4
+SR	Q0	Sedacoron	-4
+SR	Q0	Steigerung	-4
+SR	Q0	Schmerzen	-4
+SR	Q0	Sintrom	-4
+SR	Q0	Syndrom	-4
+SR	Q0	Spiriva	-4
+SR	Q0	Schrittmacher	-4
+SR	Q0	Schrittmacheraktivität	-6
+SR	Q0	s DIAGNOSEN RELEVANTE	-6
+SR	Q0	Schmalkomplextachykardie	-6
+SVT	Q0	Supraventrikuläre Tachykardie	-3
+SVT	Q0	Sinusvenenthrombose	-3
+SVT	Q0	supraventrikuläre Tachykardie	-1
+SVT	Q0	supraventrikuläre Tachykardien	-1
+SVT	Q0	supraventriculäre Tachycardie	-1
+SVT	Q0	supraventrik Tachykardie	-2
+SVT	Q0	supraventr Tachykardien	-2
+SVT	Q0	supraventr Tachykardie	-2
+SVT	Q0	supraventrikulärer Tachykardie	-2
+SVT	Q0	supraventrikulären Tachykardien	-2
+SVT	Q0	Schrittmacheraktivität	-2
+SVT	Q0	Simvastatin	-4
+SVT	Q0	seit der letzten Visite	-4
+SVT	Q0	Sigmadivertikulose	-4
+SVT	Q0	Supraventrikuläre	-4
+SVT	Q0	Seit der letzten Visite	-4
+SVT	Q0	stark verdickt Taschenbewegung	-4
+SVT	Q0	sofortige Vorstellung	-4
+SVT	Q0	supraventr Tachycardie	-6
+SVT	Q0	symptomatische Vorhofflimmerarrhythmie	-6
+SVT	Q0	supraventrikuläre TAchykardie	-6
+SVT	Q0	supraventriculäre Tachycardien	-6
+SVT	Q0	supraventrikuläre Tachykardie mit typischen	-6
+SVT	Q0	Stark vergrößerter linker Ventrikel	-6
+TASS	Q0	Therapeutisch	-4
+TASS	Q0	Therapie Die stat	-4
+TASS	Q0	Trikuspidalinsuffizienz	-4
+TASS	Q0	träger R Anstieg	-4
+TASS	Q0	Therapeutisch empf sich	-4
+TASS	Q0	Therapie Die stationäre	-4
+TASS	Q0	Trikuspidalinsuffizienz systolischer	-4
+TASS	Q0	Therapeutisch empfiehlt sich	-4
+TASS	Q0	Tage Thrombo Ass	-6
+TASS	Q0	Therapie mit Thrombo Ass	-6
+TASS	Q0	Therapie Thrombo Ass	-6
+TASS	Q0	Tage T Ass	-6
+TASS	Q0	Therapie mit Sedacoron	-6
+TASS	Q0	Therapievorschlag Thrombo Ass	-6
+TASS	Q0	Therapie ThromboASS	-6
+TEE	Q0	Transösophageale Echokardiografie	-3
+TEE	Q0	Transthorakale Echokardiographie	-1
+TEE	Q0	Transthorak Echokardiographie	-1
+TEE	Q0	transösophagiale Echokardiographie	-1
+TEE	Q0	transösophag Echokardiographie	-1
+TEE	Q0	Transösophageale Echokardiographie	-2
+TEE	Q0	Transösophagiale Echokardiographie	-2
+TEE	Q0	transösophagealen Echokardiographie	-2
+TEE	Q0	transösophageale Echokardiographie	-2
+TEE	Q0	transthorak Echokardiographie	-2
+TEE	Q0	Therapiekontrolle	-2
+TEE	Q0	Therapie	-4
+TEE	Q0	Therapeutisch	-4
+TEE	Q0	THERAPIE	-4
+TEE	Q0	Therapeutisch empf	-4
+TEE	Q0	THERAPIE Erfolgreiche	-4
+TEE	Q0	therapiebedürftigen neuen Episoden	-4
+TEE	Q0	therapiebedürftige Episoden	-4
+TEE	Q0	Therapeutisch empfiehlt	-4
+TEE	Q0	Thorax zwei Ebenen	-4
+TEE	Q0	Thorax eine	-4
+TEE	Q0	Thalliummyokardszintigraphie positiver Ergometrie	-6
+TEE	Q0	Transthorakale und transösophageale Echokardiographie	-6
+TEE	Q0	Transthorakale und transösophagiale Echokardiographie	-6
+THN	Q0	Thoraxniveau	-1
+THN	Q0	Th Niveau	-2
+THN	Q0	Thoraxkompressionsschmerz	-2
+THN	Q0	Thalliummyokardszinti	-2
+THN	Q0	Thoraxröntgen	-4
+THN	Q0	Therapieempfehlung	-4
+THN	Q0	Therapieeinleitung	-4
+THN	Q0	Thalliummyokardszintigraphie	-4
+THN	Q0	Taschenbewegung	-4
+THN	Q0	telemedizinische Nachsorge	-4
+THN	Q0	Therapieanpassung	-4
+THN	Q0	Therapie Nach	-4
+THN	Q0	Typ normale Vorhoferregung normale	-4
+THN	Q0	Thorax Niveau	-6
+THN	Q0	Tachykardien allesamt nichtanhaltend	-6
+THN	Q0	Thorax kein Thoraxkompressionsschmerz	-6
+THN	Q0	Thailand	-6
+THN	Q0	therap Dosierung Nach	-6
+TRINS	Q0	Trikuspidalinsuffizienzsignales	-2
+TRINS	Q0	Tage Intensiviertes Risikofaktorenmanagement	-4
+TRINS	Q0	Trikuspidalklappe unauffällig physiologische Trikuspidalinsuffizienz	-4
+TRINS	Q0	Terminierung	-4
+TRINS	Q0	Tage Intensiviertes Risikofaktorenmanagement insbesondere	-4
+TRINS	Q0	Terminvereinbarung	-4
+TRINS	Q0	Therapieempfehlung	-4
+TRINS	Q0	THERAPIE Implantation	-4
+TRINS	Q0	Therapieeinleitung	-4
+TRINS	Q0	Trikuspidalinsuffizienzsignals nicht	-4
+TRINS	Q0	Troponin	-6
+TRINS	Q0	Trikuspidalstenose	-6
+TRINS	Q0	tablettenpflichtig FÐÐ Ð Chronischer Nikotinabusus	-6
+TRINS	Q0	Typ Wenckebach dabei intermittierend	-6
+UE	Q0	Untere Extremität	-1
+UE	Q0	Untere Extr	-1
+UE	Q0	U Extr	-1
+UE	Q0	u Extr	-1
+UE	Q0	untere Extremität	-2
+UE	Q0	Untere	-2
+UE	Q0	Unterschenkelödeme	-2
+UE	Q0	Untere Extremtität	-2
+UE	Q0	Unterschenkelamputation	-2
+UE	Q0	Untersuchung	-4
+UE	Q0	Untersuchungen	-4
+UE	Q0	Untersuchungsqualität	-4
+UE	Q0	UNTERSUCHUNGEN	-4
+UE	Q0	Umstellung	-4
+UE	Q0	Umschlag in VÐ Endstrecken	-4
+UE	Q0	Untersuchung in unserer	-4
+UE	Q0	Unverträglichkeit	-4
+UE	Q0	Umprogrammierung	-4
+UE	Q0	unauff Extremitäten	-4
+UE	Q0	unauff Extr	-6
+UE	Q0	unauff Erregungsbildung	-6
+UE	Q0	Untere Extremitäten	-6
+UE	Q0	Unterbauch	-6
+UE	Q0	unauff Erregungsausbreitung	-6
+US	Q0	Untersuchung	-1
+US	Q0	Umschlag	-4
+US	Q0	Untersuchungen	-4
+US	Q0	Urosin	-4
+US	Q0	Untersuchungsqualität	-4
+US	Q0	UNTERSUCHUNGEN	-4
+US	Q0	Umstellung	-4
+US	Q0	Untersuchung in unserer	-4
+US	Q0	Ursache	-4
+US	Q0	Unasyn	-4
+US	Q0	unserer Seite	-6
+US	Q0	unserer Station	-6
+US	Q0	Unwohlsein	-6
+US	Q0	unserer Sozialarbeiterin	-6
+USKG	Q0	Untersuchungen Koronarangiographie	-4
+USKG	Q0	unserer Kardiolog Amb Anamnestisch gibt	-4
+USKG	Q0	UNTERSUCHUNGEN Koronarangiographie	-4
+USKG	Q0	Untersuchung an der kardiologischen	-4
+USKG	Q0	unserer Kardiologie	-4
+USKG	Q0	Untersuchung in der Kardiologischen	-4
+USKG	Q0	Untersuchungen konnte eine signifikante	-4
+USKG	Q0	unauff Herzkatheter Untersuchungen Koronarangiographie	-4
+USKG	Q0	Untersuchung in unserer Kardiolog Amb Anamnestisch gibt	-4
+USKG	Q0	unserer Kardiologischen	-4
+USKG	Q0	Untersuchungsqualität Ð Diastolische Ventrikelfunktionsstörung Grad	-6
+USKG	Q0	Untersuchungsqualität diastolische Ventrikelfunktionsstörung Grad	-6
+USKG	Q0	unserer Abt f Kardiologie	-6
+USKG	Q0	unauff Repolarisation Koronarangiographie	-6
+USKG	Q0	Ulcus ventriculi KÐÐ Ð Gastritis	-6
+USKG	Q0	unauff Repolarisation Koronarangiographie Untersuchungen Koronarangiographie	-6
+USKG	Q0	Unterschenkelgefäße	-6
+USKG	Q0	Uhr im Diagnostikzentrum Graz	-6
+USKG	Q0	u VÐ Koronarangiographie Untersuchungen Koronarangiographie	-6
+VA	Q0	Varizen	-1
+VA	Q0	Vertebralarterien	-2
+VA	Q0	Verdacht	-4
+VA	Q0	Verdacht auf	-4
+VA	Q0	Verlauf	-4
+VA	Q0	Vorgeschichte darf als	-4
+VA	Q0	Vorhofflimmerarrhythmie	-4
+VA	Q0	Vorderwand	-4
+VA	Q0	Vorhofflattern	-4
+VA	Q0	Verlaufskontrolle	-4
+VA	Q0	Verschluß der Punktionsstelle Arteria	-4
+VA	Q0	Varikose	-6
+VA	Q0	Verschluss der A vertebralis	-6
+VA	Q0	Varizenoperation	-6
+VAT	Q0	Vorhofersatzrhythmus	-2
+VAT	Q0	Vorhofflimmeraryhtmie	-2
+VAT	Q0	Vorhofflattern typisches	-2
+VAT	Q0	Vorhofflimmerarrhythmie	-4
+VAT	Q0	Vorhofflattern	-4
+VAT	Q0	Verlaufskontrolle	-4
+VAT	Q0	Verschluß der Punktionsstelle Arteria	-4
+VAT	Q0	vergrößert Ð Aortenklappe	-4
+VAT	Q0	Vorstellungsgrund Verlaufskontrolle	-4
+VAT	Q0	Verbandswechsel jeden Ð Tag	-4
+VAT	Q0	Vegetationen	-4
+VAT	Q0	Vorstellung an der Abteilung	-4
+VAT	Q0	Varikositas	-4
+VAT	Q0	Verlauf des stat Aufenthaltes	-6
+VAT	Q0	Ventrikel keine tachyarrhythmischen	-6
+VAT	Q0	Verlauf abgesetzt	-6
+VAT	Q0	Ventrikel Keine tachyarrhythmischen	-6
+VAT	Q0	Ventrikel Keine anhaltenden tachyarrhythmischen	-6
+VAT	Q0	Ventrikel Keine anhaltenden	-6
+VAT	Q0	Vergleich zu der Aorta	-6
+VAT	Q0	Verlauf des stationären Aufenthaltes	-6
+VAT	Q0	Vergleich zur letzten Kontrolle Therapeutisch	-6
+VB	Q0	Vorbilder	-2
+VB	Q0	verschlossene Bypässe	-2
+VB	Q0	Versorgungsgebietes	-2
+VB	Q0	verschlossener Bypass	-2
+VB	Q0	Verbandswechsel	-4
+VB	Q0	Vorhof leicht bis	-4
+VB	Q0	Verbesserung	-4
+VB	Q0	Ventrikel mit leicht bis	-4
+VB	Q0	Vorbereitung	-4
+VB	Q0	vorliegenden Befunde	-4
+VB	Q0	Vorhof mittel bis	-4
+VB	Q0	Vorstellung beim	-4
+VB	Q0	Vitienambulanz	-4
+VB	Q0	Vorbefund Befund	-6
+VB	Q0	Vorbefund Echokardiographie Befund	-6
+VB	Q0	Vorliegen aller Befunde	-6
+VB	Q0	Vorbefung	-6
+VB	Q0	Vorbefund Beurteilung	-6
+VB	Q0	Vorbefunden	-6
+VB	Q0	vermeiden f Beurteilung	-6
+VB	Q0	vermeiden Bei	-6
+VES	Q0	Vorderwand	-1
+VES	Q0	ventr Extrasystolen	-1
+VES	Q0	Vorhofflimmern	-1
+VES	Q0	Vorhofflimmerarrhythmie	-1
+VES	Q0	Vorerkrankungen	-1
+VES	Q0	Vorbefund	-1
+VES	Q0	Verschluss	-1
+VES	Q0	vorhandenen Erregungsrückbildungsstörung	-2
+VES	Q0	Ventrikelkomplexe	-2
+VES	Q0	Vorkommen	-2
+VES	Q0	Verlust	-2
+VES	Q0	Ventrikel	-4
+VES	Q0	Vorgeschichte	-4
+VES	Q0	Vorstellung	-4
+VES	Q0	Verdacht	-4
+VES	Q0	Verlauf	-4
+VES	Q0	Vermeiden	-4
+VES	Q0	Ventrikels	-4
+VES	Q0	Verschluß	-4
+VES	Q0	V Ð Endstrecken	-6
+VES	Q0	Vorhofflattern	-6
+VES	Q0	V Ð Echokardiographie	-6
+VES	Q0	Venosin	-6
+VES	Q0	Voltaren	-6
+VES	Q0	Venlafaxin	-6
+VH	Q0	Vorhof	-1
+VH	Q0	Vorhofflimmern	-2
+VH	Q0	Vorhofflattern	-2
+VH	Q0	Vorhofe	-2
+VH	Q0	Vorhofes	-2
+VH	Q0	Vorhofs	-2
+VH	Q0	Vorhofflimmer	-2
+VH	Q0	Vorhofgröße	-2
+VH	Q0	ventrikulären Herzwände	-2
+VH	Q0	Vorhofstimulation	-2
+VH	Q0	Vorgeschichte	-4
+VH	Q0	Verdacht	-4
+VH	Q0	Vorhofflimmerarrhythmie	-4
+VH	Q0	Vermeiden von Heben	-4
+VH	Q0	Verschluß	-4
+VH	Q0	Verschluss	-4
+VH	Q0	Vorhöfe	-4
+VH	Q0	Ventrikel Der Herzschatten	-6
+VH	Q0	Ventrikel Das Herz	-6
+VH	Q0	Ventrikel Kein Hinweis	-6
+VH	Q0	Ventrikels Kein Hinweis	-6
+VH	Q0	Ventrikel und die Vorhöfe	-6
+VH	Q0	Vorhof Hämoklips	-6
+VHFA	Q0	Vorhofflatterarrhythmie	-1
+VHFA	Q0	Vorhoftachycardie	-2
+VHFA	Q0	Vorhofflimmer Arrhythmie	-2
+VHFA	Q0	Vorhofstimulation	-2
+VHFA	Q0	Vorhofpacing	-2
+VHFA	Q0	Vorgeschichte darf als	-4
+VHFA	Q0	Verschluß der Punktionsstelle Arteria femoralis	-4
+VHFA	Q0	Vorhof normal groß Ð Aortenklappe	-4
+VHFA	Q0	Vorhof leicht vergrößert Ð Aortenklappe	-4
+VHFA	Q0	Verschluß der Punktionsstelle Vena femoralis	-4
+VHFA	Q0	Vorhofflimmerablation	-4
+VHFA	Q0	Vorhofflattern mit einer atrialen	-6
+VHFA	Q0	Vorhofflatterarrhythmie mit einer atrialen	-6
+VHFA	Q0	Vorhofflimmern Ablation	-6
+VHFA	Q0	Vorhofflatter	-6
+VHFA	Q0	Vorhofflattern mit atrialer	-6
+VVI	Q0	vergrößerter linker Ventrikel	-4
+VVI	Q0	Vena cava inferior	-4
+VVI	Q0	vergr li Ventrikel	-4
+VVI	Q0	VÐ VÐ neg T in	-4
+VVI	Q0	vergrößerter li Ventrikel	-4
+VVI	Q0	Vena cava inf	-4
+VVI	Q0	Ventrikels Linker Ventrikel	-4
+VVI	Q0	Ventrikels Linksventrikelfunktion im	-4
+VVI	Q0	Vorhofflatter Vorhofflimmerarrhythmie	-4
+VVI	Q0	Vorhof und rechten Ventrikel	-4
+VVI	Q0	vereinbart DIAGNOSEN Visite	-6
+VVI	Q0	Vorhofflatterarrhythmie Zustand nach Vorhofflatterablation	-6
+VVI	Q0	Vorhofsondenrevision	-6
+VVI	Q0	Vorhofflatterarrhythmie Ventrikelfrequenz	-6
+VVI	Q0	Vorhof Ð mV im	-6
+VVI	Q0	Vergleich zur Voruntersuchung im	-6
+VVI	Q0	Ventrikel ÐÐ mV Impedanzen	-6
+VVI	Q0	Ventrikel ÐÐ mV Impedanzen im	-6
+VVI	Q0	Vergleich zur Voruntersuchung in	-6
+VVI	Q0	Ventrikel ÐÐmV Impedanzen	-6
+VW	Q0	Verbandwechsel	-3
+VW	Q0	Vorderwand	-1
+VW	Q0	Verbandswechsel	-4
+VW	Q0	Ventrikel mit normaler Wanddicke	-4
+VW	Q0	Ventrikel normal weit	-4
+VW	Q0	Vorderwandinfarkt	-4
+VW	Q0	Ventrikel mit grenzwertiger Wanddicke	-4
+VW	Q0	vereinbart Wir	-4
+VW	Q0	Vorgeschichte dürfen wir	-4
+VW	Q0	Vorgeschichte war	-4
+VW	Q0	Verlauf war	-4
+VW	Q0	Vitienambulanz wurde	-6
+VW	Q0	Vorgeschichte verweisen	-6
+VW	Q0	vorliegenden Befunde wurde	-6
+VW	Q0	Vorgeschichte verweisen wir	-6
+VW	Q0	Vorwoche	-6
+VW	Q0	Vorderwand T Wellenabflachung	-6
+VW	Q0	Vorgeschichte verweise	-6
+VW	Q0	Vorgeschichte wurde	-6
+VW	Q0	vorliegenden Befunde wird	-6
+WBST	Q0	Wandbewegungsstörungen	-1
+WBST	Q0	Wandbewegungsstörung	-1
+WBST	Q0	Wandbew störungen	-1
+WBST	Q0	Wandbewegunsstörungen	-2
+WBST	Q0	Wandbewgungsstörungen	-2
+WBST	Q0	Wanbewegungsstörungen	-2
+WBST	Q0	Wandbewegungstörungen	-2
+WBST	Q0	Wandbewegungstörung	-2
+WBST	Q0	Wandbewegunggstörungen	-2
+WBST	Q0	Weder in der Belastung	-4
+WBST	Q0	Werte in der Selbstmessung	-4
+WBST	Q0	Weiters besteht	-4
+WBST	Q0	weiterführenden Evaluierung bei paroxysmalen Tachykardien	-4
+WBST	Q0	wurde ein Belastungsniveau	-4
+WBST	Q0	Wunde bland Trockener Pflasterverband Thoraxröntgen	-4
+WBST	Q0	weich eindrückbar keine Resistenzen tastbar	-4
+WBST	Q0	weiteren ausführlichen Vorgeschichte besteht	-4
+WBST	Q0	Wandbeweg störungen	-6
+WBST	Q0	Wandbewegungsstörungen Ergometrie Belastung	-6
+WBST	Q0	Woche Bonviva alle Ð Monate Temesta	-6
+WBST	Q0	Wanddicke keine regionalen Wandbewegungsstörungen	-6
+WPW	Q0	Wolff-Parkinson-White-Syndrom	-3
+WPW	Q0	Wolff Parkinson White	-1
+WPW	Q0	Wolf Parkinson White	-1
+WPW	Q0	Weiters empfehlen wir	-4
+WPW	Q0	weiteres Prozedere wird	-4
+WPW	Q0	Weiters empf wir	-4
+WPW	Q0	Wiedervorstellung des Pat wie	-4
+WPW	Q0	weitere häusliche Pflege entlassen werden	-4
+WPW	Q0	weiteres Procedere wird	-4
+WPW	Q0	weitere Procedere wird	-4
+WPW	Q0	Wiedervorstellung der Pat wie	-4
+WPW	Q0	weiteres Procedere wurde	-4
+WPW	Q0	White Coat Phänomen Wir	-6
+WPW	Q0	weitere mögliche Procedere Mitraclip wurde	-6
+WPW	Q0	weiterem Procedere Vorgehen wurde	-6
+WPW	Q0	weiteren Prozederes wird	-6
+WPW	Q0	weiteren Procedere wurde	-6
+WPW	Q0	weiteren Prozederes Der weitere	-6
+WPW	Q0	weiteren Procedere Wir	-6
+ÜLT	Q0	überdrehter Linkstyp	-3
+ÜLT	Q0	überdrehter L Typ	-1
+ÜLT	Q0	Überleitungeszeit	-2
+ÜLT	Q0	Überleitungszeit	-2
+ÜLT	Q0	Überleitung	-2
+ÜLT	Q0	Übersichtskalk THERAPIE	-4
+ÜLT	Q0	Überstimulation	-4
+ÜLT	Q0	Übersichtskalk Therapie	-4
+ÜLT	Q0	überdrehter Linkstyp träger	-4
+ÜLT	Q0	Überleitung Indiff Typ	-4
+ÜLT	Q0	Übersichtskalk PROZEDERE Konservative Therapie	-4
+ÜLT	Q0	überdrehter Linkstyp linksanteriorer	-6
+ÜLT	Q0	überdrehter Linkstyp neg T	-6
+ÜLT	Q0	überdrehter Linkstyp Linksverspätung	-6
+ÜLT	Q0	überdrehter Linkstyp träge	-6
+ÜLT	Q0	überdrehter L Typ linksanteriorer	-6
+ÜZ	Q0	Überleitungszeit	-1
+ÜZ	Q0	Überleitungeszeit	-2
+ÜZ	Q0	Übergang zum	-4
+ÜZ	Q0	Übernahme zur	-4
+ÜZ	Q0	Übernahmezeitpunkt	-4
+ÜZ	Q0	übernommen Zum	-4
+ÜZ	Q0	Übrigen idem zur	-4
+ÜZ	Q0	übernommen Zum Zeitpunkt	-4
+ÜZ	Q0	Übrigen unverändert zur	-4
+ÜZ	Q0	Übernahme zeigte	-4
+ÜZ	Q0	Überleitung bis zu	-4
+ÜZ	Q0	Überleitungszeit zugunsten	-6
+ÜZ	Q0	überkronten Zähne	-6
+ÜZ	Q0	Überleitungszeiten	-6
+üLT	Q0	überdrehter Linkstyp	-1
+üLT	Q0	Überleitungeszeit	-2
+üLT	Q0	Überleitungszeit	-2
+üLT	Q0	Überleitung	-2
+üLT	Q0	ÜLTÐLAHB	-2
+üLT	Q0	überdrehter L Typ	-4
+üLT	Q0	Übersichtskalk THERAPIE	-4
+üLT	Q0	Überstimulation	-4
+üLT	Q0	Übersichtskalk Therapie	-4
+üLT	Q0	überdrehter Linkstyp träger	-4
+üLT	Q0	Überleitung Indiff Typ	-4
+üLT	Q0	Übersichtskalk PROZEDERE Konservative Therapie	-4
+üLT	Q0	überdrehter Linkstyp linksanteriorer	-6
+üLT	Q0	überdrehter Linkstyp neg T	-6
+üLT	Q0	überdrehter Linkstyp Linksverspätung	-6
+üLT	Q0	überdrehter Linkstyp träge	-6
+üLT	Q0	überdrehter L Typ linksanteriorer	-6

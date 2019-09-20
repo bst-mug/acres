@@ -1,7 +1,7 @@
 from itertools import islice
 
 from acres.fastngram import fastngram
-from acres.model.topic_list import Acronym
+from acres.util.acronym import Acronym
 
 
 def test_expand(word_ngrams):

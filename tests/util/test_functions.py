@@ -1,3 +1,5 @@
+from itertools import islice
+
 from acres.util import functions
 
 
@@ -77,3 +79,9 @@ def test__partition():
     assert functions.partition('0') == 99
     assert functions.partition('9') == 99
     assert functions.partition('ö') == 99
+
+
+def test_sample():
+    iterable = ['a', 'b', 'c']
+    assert list(islice(functions.sample(iterable, 1.0), 100)) == iterable
+    assert list(islice(functions.sample(iterable, 0.0), 100)) == []

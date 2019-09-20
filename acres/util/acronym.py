@@ -3,12 +3,15 @@ Utility functions related to acronyms.
 """
 import logging
 import re
+from collections import namedtuple
 from typing import Tuple, List, Optional
 
 from acres import constants
 from acres.util import text
 
 logger = logging.getLogger(__name__)
+
+Acronym = namedtuple('Acronym', ['acronym', 'left_context', 'right_context'])
 
 
 def extract_acronym_definition(str_probe: str, max_length: int,
