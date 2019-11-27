@@ -650,15 +650,6 @@ EKG	Q0	Endokrinologie	0
 EKG	Q0	Holter	0
 EKG	Q0	Mitgebrachte Befunde	0
 EKG	Q0	Schrittmacheraktivität	0
-EKG's	Q0	Elektrokardiogramms	2
-EKG's	Q0	Echkardiographie	0
-EKG's	Q0	Echokardiogramm	0
-EKG's	Q0	Echokardiographie	0
-EKG's	Q0	Echokardiographiekontrolle	0
-EKG's	Q0	Echokardiographisch	0
-EKG's	Q0	echokardiographischen	0
-EKG's	Q0	Echokaridographie	0
-EKG's	Q0	Endokrinologie	0
 EST	Q0	Extrasystolen	2
 EST	Q0	Endstrecken	1
 EST	Q0	bifaszik Block	0
@@ -1656,16 +1647,6 @@ RCA	Q0	Rekanalisation	0
 RCA	Q0	Rekanalisation Thrombusaspiration	0
 RCA	Q0	Rekanalisationsversuch	0
 RCA	Q0	Rhythmus Amb nach Bedarf	0
-RG?s	Q0	Rasselgeräusche	2
-RG?s	Q0	Raumforderungszeichen	0
-RG?s	Q0	rege	0
-RG?s	Q0	rege DGs	0
-RG?s	Q0	regelrechte DGs	0
-RG?s	Q0	regelrechte DGS	0
-RG?s	Q0	Resistenz Vaginal	0
-RG?s	Q0	Resistenzkategorie	0
-RG?s	Q0	Rhyhtmusereginisse	0
-RG?s	Q0	RW Ergüsse	0
 RGs	Q0	Rasselgeräusche	2
 RGs	Q0	AGs	0
 RGs	Q0	EEGs	0
