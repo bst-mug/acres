@@ -68,3 +68,7 @@ def test_clean():
     # Unicode characters should not be cleaned
     assert "herztöne" == text.clean("herztöne")
     assert "heißen" == text.clean("heißen")
+
+    # This should also be cleaned
+    assert "RG s" == text.clean("RG?s")
+    assert "EKG s" == text.clean("EKG's")
