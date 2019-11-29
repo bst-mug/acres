@@ -183,6 +183,9 @@ def do_analysis(topics_file: str, detection_file: str, expansion_file: str,
     print("Time: (s)", end_time - start_time)
 
     final_f1 = metrics.calculate_f1(final_precision, final_recall)
+    print("Strategy: ", strategy)
+    print("Rank: ", max_tries)
+    print("Lenient: ", lenient)
     print("Precision: ", final_precision)
     print("Recall: ", final_recall)
     print("F1: ", final_f1)

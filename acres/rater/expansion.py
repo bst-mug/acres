@@ -149,7 +149,7 @@ def _is_expansion_initial_acronym(acro: str, full: str) -> bool:
     pos = acro.lower().rfind(initial.lower())  # Last occurence of initial in the acronym.
     if pos < 0:
         return False
-    return _is_possible_expansion(acro[pos:-1], last_word)
+    return _is_possible_expansion(acro[pos:], last_word)
 
 
 def _compute_expansion_valid(acro: str, full: str) -> int:
@@ -162,24 +162,31 @@ def _compute_expansion_valid(acro: str, full: str) -> int:
     """
     ret = 0
 
-    if not _is_schwarzt_hearst_valid(acro, full):
-        ret += 1
+    # If disabled, metrics do not change
+    # if not _is_schwarzt_hearst_valid(acro, full):
+    #     ret += 1
 
+    # If disabled, baseline metrics fall 2%
     if not _is_relative_length_valid(acro, full):
         ret += 2
 
+    # If disabled, fastType metrics fall up to 4%
     if _is_levenshtein_distance_too_high(acro, full):
         ret += 4
 
-    if acro in full:
-        ret += 8
+    # If disabled, metrics do not change
+    # if acro in full:
+    #     ret += 8
 
+    # If disabled, metrics fall a lot
     if not _is_possible_expansion(acro, full):
         ret += 16
 
+    # If disabled, metrics fall 7-8%
     if not _is_acronym_tail_on_last_word(acro, full):
         ret += 32
 
+    # If disabled, metrics fall 5%
     if not _is_expansion_initial_acronym(acro, full):
         ret += 64
 
