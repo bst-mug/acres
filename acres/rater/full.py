@@ -77,14 +77,14 @@ def _compute_full_valid(full: str) -> int:
     :return: An integer which binary forms indicates the failing test.
     """
     ret = 0
-    if _has_parenthesis(full):
-        ret += 1
+    # if _has_parenthesis(full):
+    #     ret += 1
 
     if _is_full_too_short(full):
         ret += 2
 
-    if _starts_with_stopword(full):
-        ret += 4
+    # if _starts_with_stopword(full):
+    #     ret += 4
 
     # XXX german-only
     # A valid expansion of a german acronym would require at least one noun, which is capitalized.
