@@ -167,8 +167,8 @@ def _compute_expansion_valid(acro: str, full: str) -> int:
     #     ret += 1
 
     # If disabled, baseline metrics fall 2%
-    # if not _is_relative_length_valid(acro, full):
-    #     ret += 2
+    if not _is_relative_length_valid(acro, full):
+        ret += 2
 
     # If disabled, fastType metrics fall up to 4%
     if _is_levenshtein_distance_too_high(acro, full):

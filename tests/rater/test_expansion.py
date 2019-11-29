@@ -72,11 +72,11 @@ def test__compute_expansion_valid():
 
     # RELATIVE LENGTH RESTRICTIONS
     # Acronym has to be at most 60% of the full form
-    # assert 2 == expansion._compute_expansion_valid("ABCE", "ABCDEF")
-    # # Full form can be up to 20 times longer than acronym
-    # assert 2 == expansion._compute_expansion_valid("AC", "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNO")
-    #
-    # assert 2 == expansion._compute_expansion_valid("RR", "Risikofaktorenmanagement insbesondere regelmäßige");
+    assert 2 == expansion._compute_expansion_valid("ABCE", "ABCDEF")
+    # Full form can be up to 20 times longer than acronym
+    assert 2 == expansion._compute_expansion_valid("AC", "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNO")
+
+    assert 2 == expansion._compute_expansion_valid("RR", "Risikofaktorenmanagement insbesondere regelmäßige");
 
     # Levenshtein distance too high
     assert 4 == expansion._compute_expansion_valid("VB", "Vorgeschichte darf als bekannt")

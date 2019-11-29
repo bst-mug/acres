@@ -92,8 +92,8 @@ def _compute_full_valid(full: str) -> int:
     # XXX german-only
     # A valid expansion of a german acronym would require at least one noun, which is capitalized.
     # If disabled, precision fall 2% for word2vec
-    # if not _has_capitals(full):
-    #     ret += 8
+    if not _has_capitals(full):
+        ret += 8
 
     # If disabled, metrics fall 3% for fastType
     if _contain_acronym(full):
