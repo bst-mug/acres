@@ -66,24 +66,23 @@ def test__is_expansion_initial_acronym():
 def test__compute_expansion_valid():
     # Schwartz/Hearst criteria
     # FIXME Should be 1
-    assert 5 == expansion._compute_expansion_valid("AE", "A b c d e")  # Short acronym
-    assert 5 == expansion._compute_expansion_valid("ABCDEL", "A b c d e f g h i j k ll")  # Long acronym
-
-    assert 1 == expansion._compute_expansion_valid("AK", "auf die Substitution von Kalium")
+    # assert 5 == expansion._compute_expansion_valid("AE", "A b c d e")  # Short acronym
+    # assert 5 == expansion._compute_expansion_valid("ABCDEL", "A b c d e f g h i j k ll")  # Long acronym
+    # assert 1 == expansion._compute_expansion_valid("AK", "auf die Substitution von Kalium")
 
     # RELATIVE LENGTH RESTRICTIONS
     # Acronym has to be at most 60% of the full form
-    assert 2 == expansion._compute_expansion_valid("ABCE", "ABCDEF")
-    # Full form can be up to 20 times longer than acronym
-    assert 2 == expansion._compute_expansion_valid("AC", "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNO")
-
-    assert 2 == expansion._compute_expansion_valid("RR", "Risikofaktorenmanagement insbesondere regelmäßige");
+    # assert 2 == expansion._compute_expansion_valid("ABCE", "ABCDEF")
+    # # Full form can be up to 20 times longer than acronym
+    # assert 2 == expansion._compute_expansion_valid("AC", "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNO")
+    #
+    # assert 2 == expansion._compute_expansion_valid("RR", "Risikofaktorenmanagement insbesondere regelmäßige");
 
     # Levenshtein distance too high
     assert 4 == expansion._compute_expansion_valid("VB", "Vorgeschichte darf als bekannt")
 
     # Acronym within full form
-    assert 8 == expansion._compute_expansion_valid("AV", "AVBlock")
+    # assert 8 == expansion._compute_expansion_valid("AV", "AVBlock")
 
     # Acronym characters not found in full form
     assert 16 == expansion._compute_expansion_valid("MIN", "Implantation")

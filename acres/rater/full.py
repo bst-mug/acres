@@ -77,6 +77,7 @@ def _compute_full_valid(full: str) -> int:
     :return: An integer which binary forms indicates the failing test.
     """
     ret = 0
+    # The new cleaning routines remove all parentheses already.
     # if _has_parenthesis(full):
     #     ret += 1
 
@@ -84,14 +85,17 @@ def _compute_full_valid(full: str) -> int:
     # if _is_full_too_short(full):
     #     ret += 2
 
+    # If disabled, baseline F1 fall 1%
     # if _starts_with_stopword(full):
     #     ret += 4
 
     # XXX german-only
     # A valid expansion of a german acronym would require at least one noun, which is capitalized.
-    if not _has_capitals(full):
-        ret += 8
+    # If disabled, precision fall 2% for word2vec
+    # if not _has_capitals(full):
+    #     ret += 8
 
+    # If disabled, metrics fall 3% for fastType
     if _contain_acronym(full):
         ret += 16
 

@@ -22,7 +22,7 @@ def test__compute_full_valid():
     # assert 4 == full._compute_full_valid("Auf das")
 
     # Full form has no capitals
-    assert 8 == full._compute_full_valid("ambulanz")
+    # assert 8 == full._compute_full_valid("ambulanz")
 
     # Full form has no capitals
     assert 16 == full._compute_full_valid("VSM Bypass")
