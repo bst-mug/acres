@@ -80,8 +80,9 @@ def _compute_full_valid(full: str) -> int:
     # if _has_parenthesis(full):
     #     ret += 1
 
-    if _is_full_too_short(full):
-        ret += 2
+    # If disabled, F1 fall 0.4% for word2vec
+    # if _is_full_too_short(full):
+    #     ret += 2
 
     # if _starts_with_stopword(full):
     #     ret += 4
