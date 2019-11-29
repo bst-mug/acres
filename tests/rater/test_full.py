@@ -16,7 +16,7 @@ def test__compute_full_valid():
     # assert 1 == full._compute_full_valid("Abcde(fghi")
 
     # Full form too short
-    assert 2 == full._compute_full_valid("As")
+    assert 2 == full._compute_full_valid("Lasix")
 
     # Full form starts with stopword
     # assert 4 == full._compute_full_valid("Auf das")
@@ -26,3 +26,4 @@ def test__compute_full_valid():
 
     # Full form has no capitals
     assert 16 == full._compute_full_valid("VSM Bypass")
+    assert 16 == full._compute_full_valid("Thrombo ASS")
