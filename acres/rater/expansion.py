@@ -149,7 +149,7 @@ def _is_expansion_initial_acronym(acro: str, full: str) -> bool:
     pos = acro.lower().rfind(initial.lower())  # Last occurence of initial in the acronym.
     if pos < 0:
         return False
-    return _is_possible_expansion(acro[pos:-1], last_word)
+    return _is_possible_expansion(acro[pos:], last_word)
 
 
 def _compute_expansion_valid(acro: str, full: str) -> int:

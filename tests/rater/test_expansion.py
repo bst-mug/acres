@@ -85,7 +85,7 @@ def test__compute_expansion_valid():
     assert 16 == expansion._compute_expansion_valid("ECG", "Egramm")
 
     # Acronym tail on last word
-    assert 32 == expansion._compute_expansion_valid("HEPC", "Hepacitis PA")
+    assert 32 == expansion._compute_expansion_valid("AIN", "Ablation")
 
     # Acronym tail on last word
     assert 64 == expansion._compute_expansion_valid("TIA", "Transmuraler Myokardinfarkt")
