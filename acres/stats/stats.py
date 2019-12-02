@@ -3,8 +3,10 @@ Module for calculating corpus statistics.
 """
 from typing import List
 
+from acres import constants
 from acres.util import acronym
 from acres.util import functions
+from acres.util import text as text_util
 
 
 class Stats:
@@ -12,7 +14,7 @@ class Stats:
     Class that generates and holds stats about a given text.
     """
 
-    line_separator = "\n"
+    source_line_separator = "\n"
 
     def __init__(self) -> None:
         self.chars = 0
@@ -21,6 +23,7 @@ class Stats:
         self.acronym_types = 0
         self.acronyms = 0
         self.sentences = 0
+        self.normalized_sentences = 0
 
     def calc_stats(self, text: str) -> None:
         """
@@ -35,6 +38,7 @@ class Stats:
         self.acronym_types = Stats.count_acronyms_types(text)
         self.acronyms = Stats.count_acronyms(text)
         self.sentences = Stats.count_sentences(text)
+        self.normalized_sentences = Stats.count_normalized_sentences(text)
 
     @staticmethod
     def count_chars(text: str) -> int:
@@ -104,7 +108,23 @@ class Stats:
         :return:
         """
         count = 0
-        for _ in text.split(Stats.line_separator):
+        for _ in text.split(Stats.source_line_separator):
+            count += 1
+        return count
+
+    @staticmethod
+    def count_normalized_sentences(text: str) -> int:
+        """
+        Count the number of normalized sentences in a string.
+
+        Normalized sentences had their line endings fixed by a character n-gram model.
+
+        :param text:
+        :return:
+        """
+        count = 0
+        normalized_text = text_util.fix_line_endings(text)
+        for _ in normalized_text.split(constants.LINE_BREAK):
             count += 1
         return count
 
@@ -123,7 +143,8 @@ class Stats:
         ret.append("Tokens: " + str(self.tokens) + "\n")
         ret.append("Acronym Types: " + str(self.acronym_types) + "\n")
         ret.append("Acronyms: " + str(self.acronyms) + "\n")
-        ret.append("Sentences: " + str(self.sentences) + "\n")
+        ret.append("Sentences (raw): " + str(self.sentences) + "\n")
+        ret.append("Sentences (normalized): " + str(self.normalized_sentences) + "\n")
         return ''.join(ret)
 
     def __add__(self, other: 'Stats') -> 'Stats':
@@ -133,6 +154,7 @@ class Stats:
         self.acronym_types += other.acronym_types
         self.acronyms += other.acronyms
         self.sentences += other.sentences
+        self.normalized_sentences += other.normalized_sentences
         return self
 
     def __radd__(self, other: 'Stats') -> 'Stats':
@@ -143,12 +165,14 @@ def get_stats(corpus_path: str) -> List[Stats]:
     """
     Generates all statistics from a given corpus directory.
 
-    :param corpus_path: A list of statistics objects, one for each file found in the corpus dir.
-    :return:
+    :param corpus_path:
+    :return: A list of statistics objects, one for each file found in the corpus dir, plus an \
+    extra one for the full corpus.
     """
     texts = functions.robust_text_import_from_dir(corpus_path)
 
-    full_text = Stats.line_separator.join(texts)
+    # Append the full corpus as a last doc so that we get global statistics.
+    full_text = Stats.source_line_separator.join(texts)
     texts.append(full_text)
 
     ret = []
@@ -161,7 +185,7 @@ def get_stats(corpus_path: str) -> List[Stats]:
 
 def print_stats() -> None:
     """
-    Generates and print statistics from the default corpus set in confi.
+    Generates and print statistics from the default corpus set in config.
 
     :return: None
     """
