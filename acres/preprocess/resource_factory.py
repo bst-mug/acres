@@ -279,9 +279,8 @@ def get_nn_model(ngram_size: int = 3, min_count: int = 1, net_size: int = 100, a
     global NN_MODEL
 
     if not NN_MODEL:
-        model_path = NN_MODELS_FOLDER + "{}-{}-{}-{}-{}-{}-{}.model".format(ngram_size, min_count,
-                                                                            net_size,
-                                                                            alpha, sg, hs, negative)
+        model_path = NN_MODELS_FOLDER + "{}-{}-{}-{}-{}-{}-{}-{}.model".\
+            format(ngram_size, min_count, net_size, alpha, sg, hs, negative, VERSION)
 
         if not os.path.isfile(model_path):
             logger.warning("Retraining the model...")
@@ -321,7 +320,7 @@ def get_context_map(partition: int = 0) -> 'fastngram.ContextMap':
         # Reset the context map to reduce memory consumption
         CONTEXT_MAP = {}
 
-        pickle_output_file = PICKLE_FOLDER + "fastngram-V3/contextMap-" + str(partition) + ".p"
+        pickle_output_file = PICKLE_FOLDER + "fastngram-" + VERSION + "/contextMap-" + str(partition) + ".p"
 
         if not os.path.isfile(pickle_output_file):
             _log_file_not_found(pickle_output_file)
@@ -347,7 +346,7 @@ def get_center_map(partition: int = 0) -> 'fastngram.CenterMap':
         # Reset the center map to reduce memory consumption
         CENTER_MAP = {}
 
-        pickle_output_file = PICKLE_FOLDER + "fastngram-V3/centerMap-" + str(partition) + ".p"
+        pickle_output_file = PICKLE_FOLDER + "fastngram-" + VERSION + "/centerMap-" + str(partition) + ".p"
 
         if not os.path.isfile(pickle_output_file):
             _log_file_not_found(pickle_output_file)

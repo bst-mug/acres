@@ -88,6 +88,7 @@ def create_ngram_statistics(input_string: str, n_min: int, n_max: int) -> Dict[s
     for line in lines:
         if line == '':
             continue
+        # TODO does it ever happen? splitlines should have taken care already...
         line = line.replace('\r', ' ')
         line = line.replace('\n', ' ')
         line = line.replace('  ', ' ')
