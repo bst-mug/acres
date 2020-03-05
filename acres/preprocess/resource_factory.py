@@ -26,7 +26,7 @@ LOG_FOLDER = "models/log/"
 NN_MODELS_FOLDER = "models/nn/"
 DATA_FOLDER = functions.import_conf("CORPUS_PATH")
 
-VERSION = "V8"
+VERSION = "V10"
 
 #  minimal number of occurrences of a word ngram in the corpus
 MIN_FREQ = 2
@@ -145,7 +145,7 @@ def get_word_ngrams() -> Dict[str, int]:
             _log_file_not_found(pickle_output_file)
             _log_file_not_found(ngram_output_file)
 
-            word_ngrams = dumps.create_corpus_ngramstat_dump(DATA_FOLDER, MIN_FREQ)
+            word_ngrams = dumps.create_corpus_ngramstat_dump(DATA_FOLDER, MIN_FREQ, fix_lines=False)
 
             write_txt(word_ngrams, ngram_output_file)
             _dump(word_ngrams, pickle_output_file)
