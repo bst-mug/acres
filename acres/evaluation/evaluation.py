@@ -192,6 +192,32 @@ def do_analysis(topics_file: str, detection_file: str, expansion_file: str,
     return final_precision, final_recall
 
 
+def plot_data(topics_file: str, detection_file: str, expansion_file: str):
+    """
+    Run all strategies using different ranks and lenient approaches and generate a TSV file to be \
+    used as input for the plots.R script.
+
+    :param topics_file:
+    :param detection_file:
+    :param expansion_file:
+    :return:
+    """
+    output = open("stats.tsv", "w+", encoding="utf-8")
+    output.write("k\tMajority\tSI\tfastType\tword2vec\n")
+    for lenient in [True, False]:
+        for rank in range(1, 21):
+            output.write(str(rank) + "\t")
+            for strategy in [resolver.Strategy.BASELINE, resolver.Strategy.DICTIONARY,
+                             resolver.Strategy.FASTTYPE, resolver.Strategy.WORD2VEC]:
+                precision, recall = do_analysis(topics_file, detection_file, expansion_file,
+                                                strategy, Level.TYPE, rank, lenient)
+                fone = metrics.calculate_f1(precision, recall)
+                output.write(str(fone) + "\t")
+            output.write("\n")
+            output.flush()
+    output.close()
+
+
 if __name__ == "__main__":
     do_analysis("resources/topic_list.tsv",
                 "resources/detection_standard.tsv",
