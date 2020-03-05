@@ -92,7 +92,7 @@ def create_corpus_ngramstat_dump(corpus_path: str, min_freq: int, min_length: in
         # ("Belastungs-Dyspnoe" = "Belastungs Dyspnoe" = "Belastungsdyspnoe")
 
         # doc = text.tokenize(doc)
-        doc = text.clean(doc)
+        doc = text.clean(doc, fix_lines)
 
         doc = text.clear_digits(doc, constants.DIGIT_MARKER)
 

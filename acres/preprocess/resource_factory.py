@@ -26,7 +26,7 @@ LOG_FOLDER = "models/log/"
 NN_MODELS_FOLDER = "models/nn/"
 DATA_FOLDER = functions.import_conf("CORPUS_PATH")
 
-VERSION = "V8"
+VERSION = "V10"
 
 #  minimal number of occurrences of a word ngram in the corpus
 MIN_FREQ = 2
@@ -145,7 +145,7 @@ def get_word_ngrams() -> Dict[str, int]:
             _log_file_not_found(pickle_output_file)
             _log_file_not_found(ngram_output_file)
 
-            word_ngrams = dumps.create_corpus_ngramstat_dump(DATA_FOLDER, MIN_FREQ)
+            word_ngrams = dumps.create_corpus_ngramstat_dump(DATA_FOLDER, MIN_FREQ, fix_lines=False)
 
             write_txt(word_ngrams, ngram_output_file)
             _dump(word_ngrams, pickle_output_file)
@@ -279,9 +279,8 @@ def get_nn_model(ngram_size: int = 3, min_count: int = 1, net_size: int = 100, a
     global NN_MODEL
 
     if not NN_MODEL:
-        model_path = NN_MODELS_FOLDER + "{}-{}-{}-{}-{}-{}-{}.model".format(ngram_size, min_count,
-                                                                            net_size,
-                                                                            alpha, sg, hs, negative)
+        model_path = NN_MODELS_FOLDER + "{}-{}-{}-{}-{}-{}-{}-{}.model"\
+            .format(ngram_size, min_count, net_size, alpha, sg, hs, negative, VERSION)
 
         if not os.path.isfile(model_path):
             logger.warning("Retraining the model...")
@@ -321,7 +320,8 @@ def get_context_map(partition: int = 0) -> 'fastngram.ContextMap':
         # Reset the context map to reduce memory consumption
         CONTEXT_MAP = {}
 
-        pickle_output_file = PICKLE_FOLDER + "fastngram-V3/contextMap-" + str(partition) + ".p"
+        pickle_output_file = "{}fastngram-{}/contextMap-{}.p"\
+            .format(PICKLE_FOLDER, VERSION, str(partition))
 
         if not os.path.isfile(pickle_output_file):
             _log_file_not_found(pickle_output_file)
@@ -347,7 +347,8 @@ def get_center_map(partition: int = 0) -> 'fastngram.CenterMap':
         # Reset the center map to reduce memory consumption
         CENTER_MAP = {}
 
-        pickle_output_file = PICKLE_FOLDER + "fastngram-V3/centerMap-" + str(partition) + ".p"
+        pickle_output_file = "{}fastngram-{}/centerMap-{}.p"\
+            .format(PICKLE_FOLDER, VERSION, str(partition))
 
         if not os.path.isfile(pickle_output_file):
             _log_file_not_found(pickle_output_file)
