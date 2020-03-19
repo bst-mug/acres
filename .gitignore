@@ -122,3 +122,4 @@ out
 
 # Sphinx-apidoc stuff
 .doctrees
+.Rproj.user
