@@ -99,7 +99,7 @@ def analyze(contextualized_acronym: acres.util.acronym.Acronym, true_expansions:
 
 def evaluate(topics: List[Acronym], valid: Set[str], standard: Dict[str, Dict[str, int]],
              strategy: resolver.Strategy, level: Level, max_tries: int,
-             lenient: bool) -> Tuple[float, float]:
+             lenient: bool) -> Tuple[int, int, int]:
     """
     Analyzes a gold standard with text excerpts centered on an acronym, followed by n valid
     expansions.
@@ -111,7 +111,7 @@ def evaluate(topics: List[Acronym], valid: Set[str], standard: Dict[str, Dict[st
     :param level:
     :param max_tries:
     :param lenient: Whether to consider partial matches (1) as a valid sense.
-    :return: A tuple with final_precision and final_recall
+    :return: A tuple with total_correct, total_found, and valid_acronyms
     """
     total_acronyms = valid_acronyms = total_correct = total_found = 0
 
@@ -150,15 +150,12 @@ def evaluate(topics: List[Acronym], valid: Set[str], standard: Dict[str, Dict[st
     logger.info("Found: %d", total_found)
     logger.info("Correct: %d", total_correct)
 
-    precision = metrics.calculate_precision(total_correct, total_found)
-    recall = metrics.calculate_recall(total_correct, valid_acronyms)
-
-    return precision, recall
+    return total_correct, total_found, valid_acronyms
 
 
 def do_analysis(topics_file: str, detection_file: str, expansion_file: str,
                 strategy: resolver.Strategy, level: Level,
-                max_tries: int, lenient: bool) -> Tuple[float, float]:
+                max_tries: int, lenient: bool) -> Tuple[int, int, int]:
     """
     Analyzes a given expansion standard
 
@@ -176,20 +173,23 @@ def do_analysis(topics_file: str, detection_file: str, expansion_file: str,
     standard = expansion_standard.parse(expansion_file)
 
     start_time = time.time()
-    (final_precision, final_recall) = evaluate(topics, valid, standard, strategy, level, max_tries,
-                                               lenient)
+    (total_correct, total_found, valid_acronyms) = evaluate(topics, valid, standard, strategy,
+                                                            level, max_tries, lenient)
     end_time = time.time()
 
     print("Time: (s)", end_time - start_time)
 
+    final_precision = metrics.calculate_precision(total_correct, total_found)
+    final_recall = metrics.calculate_recall(total_correct, valid_acronyms)
     final_f1 = metrics.calculate_f1(final_precision, final_recall)
+
     print("Strategy: ", strategy)
     print("Rank: ", max_tries)
     print("Lenient: ", lenient)
     print("Precision: ", final_precision)
     print("Recall: ", final_recall)
     print("F1: ", final_f1)
-    return final_precision, final_recall
+    return total_correct, total_found, valid_acronyms
 
 
 def plot_data(topics_file: str, detection_file: str, expansion_file: str):
@@ -209,8 +209,11 @@ def plot_data(topics_file: str, detection_file: str, expansion_file: str):
             output.write(str(rank) + "\t")
             for strategy in [resolver.Strategy.BASELINE, resolver.Strategy.DICTIONARY,
                              resolver.Strategy.FASTTYPE, resolver.Strategy.WORD2VEC]:
-                precision, recall = do_analysis(topics_file, detection_file, expansion_file,
-                                                strategy, Level.TYPE, rank, lenient)
+                total_correct, total_found, valid_acronyms = \
+                    do_analysis(topics_file, detection_file, expansion_file, strategy, Level.TYPE,
+                                rank, lenient)
+                precision = metrics.calculate_precision(total_correct, total_found)
+                recall = metrics.calculate_recall(total_correct, valid_acronyms)
                 fone = metrics.calculate_f1(precision, recall)
                 output.write(str(fone) + "\t")
             output.write("\n")
