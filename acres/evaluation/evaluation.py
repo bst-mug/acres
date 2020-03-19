@@ -97,29 +97,18 @@ def analyze(contextualized_acronym: acres.util.acronym.Acronym, true_expansions:
     return ret
 
 
-def evaluate(topics: List[Acronym], valid: Set[str], standard: Dict[str, Dict[str, int]],
-             strategy: resolver.Strategy, level: Level, max_tries: int,
-             lenient: bool) -> Tuple[int, int, int]:
+def _valid(topics: List[Acronym], valid_standard: Set[str], level: Level) -> List[Acronym]:
     """
-    Analyzes a gold standard with text excerpts centered on an acronym, followed by n valid
-    expansions.
 
     :param topics:
-    :param valid:
-    :param standard:
-    :param strategy:
+    :param valid_standard:
     :param level:
-    :param max_tries:
-    :param lenient: Whether to consider partial matches (1) as a valid sense.
-    :return: A tuple with total_correct, total_found, and valid_acronyms
+    :return:
     """
-    total_acronyms = valid_acronyms = total_correct = total_found = 0
-
-    acronym_senses = senses.map_senses_acronym(standard, lenient)
-
+    valid = []  # type: List[Acronym]
     types = set()  # type: Set[str]
+
     for contextualized_acronym in topics:
-        total_acronyms += 1
         acronym = contextualized_acronym.acronym
 
         # Ignore repeated types
@@ -128,34 +117,63 @@ def evaluate(topics: List[Acronym], valid: Set[str], standard: Dict[str, Dict[st
             continue
         types.add(acronym)
 
-        if acronym not in valid:
+        if acronym not in valid_standard:
             logger.debug("IGNORED {%s}: invalid acronym.", acronym)
             continue
 
-        valid_acronyms += 1
+        valid.append(contextualized_acronym)
+
+    return valid
+
+
+def evaluate(topics: List[Acronym], valid_standard: Set[str], standard: Dict[str, Dict[str, int]],
+             strategy: resolver.Strategy, level: Level, max_tries: int,
+             lenient: bool) -> Tuple[List[Acronym], List[Acronym], List[Acronym]]:
+    """
+    Analyzes a gold standard with text excerpts centered on an acronym, followed by n valid
+    expansions.
+
+    :param topics:
+    :param valid_standard:
+    :param standard:
+    :param strategy:
+    :param level:
+    :param max_tries:
+    :param lenient: Whether to consider partial matches (1) as a valid sense.
+    :return: A tuple with lists containing correct, found, and valid contextualized acronyms
+    """
+    found = []   # type: List[Acronym]
+    correct = []    # type: List[Acronym]
+
+    acronym_senses = senses.map_senses_acronym(standard, lenient)
+
+    valid = _valid(topics, valid_standard, level)
+
+    for contextualized_acronym in valid:
+        acronym = contextualized_acronym.acronym
 
         true_expansions = acronym_senses[acronym]
         row_analysis = analyze(contextualized_acronym, true_expansions, strategy, max_tries)
 
         if row_analysis['found']:
-            total_found += 1
+            found.append(contextualized_acronym)
 
         if row_analysis['correct']:
-            total_correct += 1
+            correct.append(contextualized_acronym)
 
-    invalid_absolute = total_acronyms - valid_acronyms
-    logger.info("Total: %s", total_acronyms)
+    invalid_absolute = len(topics) - len(valid)
+    logger.info("Total: %s", len(topics))
     logger.info("Ignored: %d", invalid_absolute)
-    logger.info("Valid: %d", valid_acronyms)
-    logger.info("Found: %d", total_found)
-    logger.info("Correct: %d", total_correct)
+    logger.info("Valid: %d", len(valid))
+    logger.info("Found: %d", len(found))
+    logger.info("Correct: %d", len(correct))
 
-    return total_correct, total_found, valid_acronyms
+    return correct, found, valid
 
 
 def do_analysis(topics_file: str, detection_file: str, expansion_file: str,
                 strategy: resolver.Strategy, level: Level,
-                max_tries: int, lenient: bool) -> Tuple[int, int, int]:
+                max_tries: int, lenient: bool) -> Tuple[List[Acronym], List[Acronym], List[Acronym]]:
     """
     Analyzes a given expansion standard
 
@@ -166,21 +184,21 @@ def do_analysis(topics_file: str, detection_file: str, expansion_file: str,
     :param level:
     :param max_tries:
     :param lenient:
-    :return:
+    :return: A tuple with lists containing correct, found, and valid contextualized acronyms
     """
     topics = topic_list.parse(topics_file)
-    valid = detection_standard.parse_valid(detection_file)
+    valid_standard = detection_standard.parse_valid(detection_file)
     standard = expansion_standard.parse(expansion_file)
 
     start_time = time.time()
-    (total_correct, total_found, valid_acronyms) = evaluate(topics, valid, standard, strategy,
-                                                            level, max_tries, lenient)
+    (correct, found, valid) = evaluate(topics, valid_standard, standard, strategy, level, max_tries,
+                                       lenient)
     end_time = time.time()
 
     print("Time: (s)", end_time - start_time)
 
-    final_precision = metrics.calculate_precision(total_correct, total_found)
-    final_recall = metrics.calculate_recall(total_correct, valid_acronyms)
+    final_precision = metrics.calculate_precision(len(correct), len(found))
+    final_recall = metrics.calculate_recall(len(correct), len(valid))
     final_f1 = metrics.calculate_f1(final_precision, final_recall)
 
     print("Strategy: ", strategy)
@@ -189,7 +207,7 @@ def do_analysis(topics_file: str, detection_file: str, expansion_file: str,
     print("Precision: ", final_precision)
     print("Recall: ", final_recall)
     print("F1: ", final_f1)
-    return total_correct, total_found, valid_acronyms
+    return correct, found, valid
 
 
 def plot_data(topics_file: str, detection_file: str, expansion_file: str):
@@ -209,15 +227,58 @@ def plot_data(topics_file: str, detection_file: str, expansion_file: str):
             output.write(str(rank) + "\t")
             for strategy in [resolver.Strategy.BASELINE, resolver.Strategy.DICTIONARY,
                              resolver.Strategy.FASTTYPE, resolver.Strategy.WORD2VEC]:
-                total_correct, total_found, valid_acronyms = \
-                    do_analysis(topics_file, detection_file, expansion_file, strategy, Level.TYPE,
-                                rank, lenient)
-                precision = metrics.calculate_precision(total_correct, total_found)
-                recall = metrics.calculate_recall(total_correct, valid_acronyms)
+                correct, found, valid = do_analysis(topics_file, detection_file, expansion_file,
+                                                    strategy, Level.TYPE, rank, lenient)
+                precision = metrics.calculate_precision(len(correct), len(found))
+                recall = metrics.calculate_recall(len(correct), len(valid))
                 fone = metrics.calculate_f1(precision, recall)
                 output.write(str(fone) + "\t")
             output.write("\n")
             output.flush()
+    output.close()
+
+
+def summary(topics_file: str, detection_file: str, expansion_file: str, level: Level,
+            max_tries: int, lenient: bool):
+    """
+    Save a summary table in TSV format that can be used to run statistical tests (e.g. McNemar Test)
+
+    :param topics_file:
+    :param detection_file:
+    :param expansion_file:
+    :param level:
+    :param max_tries:
+    :param lenient:
+    :return:
+    """
+    strategies = [resolver.Strategy.BASELINE, resolver.Strategy.DICTIONARY,
+                  resolver.Strategy.FASTTYPE, resolver.Strategy.WORD2VEC]
+
+    topics = topic_list.parse(topics_file)
+    valid_standard = detection_standard.parse_valid(detection_file)
+    valid = _valid(topics, valid_standard, level)
+
+    # Most methods are optimized to run in alphabetic order by storing a large chunk in memory.
+    # Therefore, it's more efficient to run first each method so that results can be transposed.
+    results = {}    # type: Dict[resolver.Strategy, Set[Acronym]]
+    for strategy in strategies:
+        logger.info("Strategy: %s", strategy)
+        correct, _, _ = do_analysis(topics_file, detection_file, expansion_file,strategy,
+                                    level, max_tries, lenient)
+        results[strategy] = set(correct)
+
+    output = open("summary.tsv", "w+", encoding="utf-8")
+    output.write("instance\tMajority\tSI\tfastType\tword2vec\n")
+
+    for contextualized_acronym in valid:
+        output.write(contextualized_acronym.acronym + "\t")
+        assessments = []
+        for strategy in strategies:
+            assessment = "T" if contextualized_acronym in results[strategy] else "F"
+            assessments.append(assessment)
+        output.write("\t".join(assessments))
+        output.write("\n")
+
     output.close()
 
 
