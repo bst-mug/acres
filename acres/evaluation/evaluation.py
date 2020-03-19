@@ -222,4 +222,4 @@ if __name__ == "__main__":
     do_analysis("resources/topic_list.tsv",
                 "resources/detection_standard.tsv",
                 "resources/expansion_standard.tsv",
-                resolver.Strategy.WORD2VEC, Level.TYPE, 10, True)
+                resolver.Strategy.WORD2VEC, Level.TYPE, 1, True)
