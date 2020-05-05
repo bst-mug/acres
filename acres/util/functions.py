@@ -234,7 +234,7 @@ def corpus_to_ngram_list(corpus: str, min_num_tokens: int,
     return dict_to_sorted_list(stats)
 
 
-def partition(word: str, partitions: int = 4) -> int:
+def partition(word: str, partitions: int) -> int:
     """
     Find a bucket for a given word.
 
@@ -245,12 +245,12 @@ def partition(word: str, partitions: int = 4) -> int:
     a = ord('a')
     z = ord('z')
     value = ord(word[0].lower())
-    if a <= value <= z:
+    if partitions > 1 and a <= value <= z:
         pos = value - a
-        return int(pos * partitions / (z - a + 1))
+        return int(pos * (partitions - 1) / (z - a + 1)) + 1
 
     # Catch-all for numbers, symbols and diacritics.
-    return 99
+    return 0
 
 
 def sample(iterable: Iterable, chance: float) -> Iterable:
