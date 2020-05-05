@@ -50,12 +50,6 @@ def test_remove_duplicated_whitespaces():
     assert expected == actual
 
 
-def test_tokenize():
-    expected = "SB und LAHB , ¶ QRS-Verbreiterung auf ÐÐÐmsec. , QTC ÐÐÐmsec. ,"
-    input_text = "SB und LAHB, ¶ QRS-Verbreiterung auf ÐÐÐmsec., QTC ÐÐÐmsec.,"
-    assert expected == text.tokenize(input_text)
-
-
 def test_clean():
     input_text = "SB und LAHB, ¶ QRS-Verbreiterung auf ÐÐÐmsec., QTC ÐÐÐmsec.,"
 

@@ -4,12 +4,8 @@ Utility functions related to text processing.
 import re
 import string
 
-import nltk
-
 from acres import constants
 from acres.preprocess import resource_factory
-
-nltk.download('punkt')
 
 
 def fix_line_endings(long_text: str, char_ngram_length: int = 8,
@@ -216,17 +212,6 @@ def clean_whitespaces(whitespaced: str) -> str:
     :return:
     """
     return remove_duplicated_whitespaces(whitespaced).strip()
-
-
-def tokenize(text: str) -> str:
-    """
-    Tokenizes a given text.
-
-    :param text:
-    :return:
-    """
-    # XXX german-only
-    return " ".join(nltk.word_tokenize(text, "german"))
 
 
 def clean(text: str, preserve_linebreaks: bool = False) -> str:
