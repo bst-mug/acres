@@ -234,7 +234,7 @@ def corpus_to_ngram_list(corpus: str, min_num_tokens: int,
     return dict_to_sorted_list(stats)
 
 
-def partition(word: str, partitions: int = 5) -> int:
+def partition(word: str, partitions: int) -> int:
     """
     Find a bucket for a given word.
 

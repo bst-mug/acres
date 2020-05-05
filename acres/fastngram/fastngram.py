@@ -11,11 +11,14 @@ import acres.util.acronym
 from acres.model import topic_list
 from acres.preprocess import resource_factory
 from acres.util import functions
+from acres.util.functions import import_conf
 
 logger = logging.getLogger(__name__)
 
 # Maximum difference in size between left and right context.
 MAX_DIFF = 1
+
+PARTITIONS = int(import_conf("FastNgramPartitions"))
 
 
 class ContextMap:
@@ -150,7 +153,7 @@ def _find_contexts(acronym: str, min_freq: int) -> 'List[topic_list.Acronym]':
     :param min_freq:
     :return:
     """
-    model = resource_factory.get_center_map(functions.partition(acronym))
+    model = resource_factory.get_center_map(functions.partition(acronym, PARTITIONS))
 
     all_contexts = []  # type: List[topic_list.Acronym]
     for out_freq, contexts in model.contexts(acronym).items():
@@ -182,7 +185,7 @@ def _center_provider(contexts: 'List[topic_list.Acronym]', min_freq: int,
 
     rank = 0
     for contextualized_acronym in contexts:
-        partition = functions.partition(contextualized_acronym.acronym)
+        partition = functions.partition(contextualized_acronym.acronym, PARTITIONS)
         model = resource_factory.get_context_map(partition)
 
         left = contextualized_acronym.left_context
@@ -217,7 +220,7 @@ def create_map(ngrams: Dict[str, int], model: Union[ContextMap, CenterMap],
 
     for ngram, freq in sorted_ngrams:
         for context in _generate_ngram_contexts(ngram):
-            if functions.partition(context.acronym) == partition:
+            if functions.partition(context.acronym, PARTITIONS) == partition:
                 model.add(context.acronym, context.left_context, context.right_context, freq)
 
     logger.info("Fastngram model created.")
