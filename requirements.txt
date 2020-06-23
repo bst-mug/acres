@@ -9,7 +9,7 @@ matplotlib
 
 # dev
 pylint
-pytest>=3.7.3   # https://github.com/pytest-dev/pytest/issues/3819
+pytest>=4.6   # Required by newer versions of pytest-cov
 pytest-cov
 python-coveralls
 mypy
