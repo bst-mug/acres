@@ -9,9 +9,9 @@ matplotlib
 
 # dev
 pylint
-pytest>=4.6   # Required by newer versions of pytest-cov
+pytest>=4.6   # Required by pytest-cov>=2.10.0
 pytest-cov
 python-coveralls
 mypy
-sphinx
+sphinx>=3.0   # Required by sphinx-autodoc-typehints>=1.11.0
 sphinx-autodoc-typehints
