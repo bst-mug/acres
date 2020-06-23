@@ -9,8 +9,8 @@ matplotlib
 
 # dev
 pylint
-pytest>=3.7.3   # https://github.com/pytest-dev/pytest/issues/3819
 pytest-cov
+pytest>=3.7.3   # https://github.com/pytest-dev/pytest/issues/3819
 python-coveralls
 mypy
 sphinx
