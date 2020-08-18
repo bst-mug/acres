@@ -1,4 +1,6 @@
 """
 Package grouping modules related to the n-gram expansion strategy.
 """
-__all__ = ['finder']
+from acres.ngram import finder, ngrams
+
+__all__ = ['finder', 'ngrams']
