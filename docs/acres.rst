@@ -1,36 +1,35 @@
 acres package
 =============
 
+.. automodule:: acres
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Subpackages
 -----------
 
 .. toctree::
 
-    acres.evaluation
-    acres.ngram
-    acres.nn
-    acres.preprocess
-    acres.rater
-    acres.stats
-    acres.util
-    acres.web
+   acres.evaluation
+   acres.model
+   acres.ngram
+   acres.nn
+   acres.preprocess
+   acres.rater
+   acres.resolution
+   acres.stats
+   acres.util
+   acres.web
 
 Submodules
 ----------
 
-acres.text\_cleanser module
----------------------------
+acres.constants module
+----------------------
 
-.. automodule:: acres.text_cleanser
-    :members:
-    :undoc-members:
-    :show-inheritance:
+.. automodule:: acres.constants
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
-
-Module contents
----------------
-
-.. automodule:: acres
-    :members:
-    :undoc-members:
-    :show-inheritance:

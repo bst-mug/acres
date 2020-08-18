@@ -1,30 +1,27 @@
 acres.preprocess package
 ========================
 
+.. automodule:: acres.preprocess
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 Submodules
 ----------
 
-acres.preprocess.create\_dumps module
--------------------------------------
+acres.preprocess.dumps module
+-----------------------------
 
-.. automodule:: acres.preprocess.create_dumps
-    :members:
-    :undoc-members:
-    :show-inheritance:
+.. automodule:: acres.preprocess.dumps
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 acres.preprocess.resource\_factory module
 -----------------------------------------
 
 .. automodule:: acres.preprocess.resource_factory
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
-
-Module contents
----------------
-
-.. automodule:: acres.preprocess
-    :members:
-    :undoc-members:
-    :show-inheritance:
