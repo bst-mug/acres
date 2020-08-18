@@ -1,3 +1,8 @@
+"""
+Helper functions to calculate evaluation metrics.
+"""
+
+
 def calculate_precision(total_correct: int, total_found: int) -> float:
     """
     Calculate precision as the ratio of correct acronyms to the found acronyms.

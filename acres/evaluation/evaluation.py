@@ -1,5 +1,6 @@
 """
-Benchmark code.
+Benchmark code. It's the main entry point for comparing strategies using
+evaluation metrics such as precision, recall, and F1-score.
 """
 
 import logging

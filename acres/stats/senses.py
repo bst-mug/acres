@@ -1,5 +1,6 @@
 """
-Module to estimate acronym ambiguity.
+Module to estimate acronym ambiguity. It can be used to collect common acronym statistics, such as
+senses/acronym.
 """
 from typing import Dict, Set
 

@@ -1,5 +1,8 @@
 """
 Module to generate string variants.
+
+.. deprecated:: 0.1
+   Variants have not been used recently (e.g. not used in Michel's PhD Thesis).
 """
 from typing import List, Union, Tuple
 

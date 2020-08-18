@@ -1,5 +1,7 @@
 """
-Stefan Schulz 12 Nov 2017
+Module to process the corpus training data and create data structures for speed-up retrieval.
+
+.. codeauthor:: Stefan Schulz
 """
 import collections
 import logging

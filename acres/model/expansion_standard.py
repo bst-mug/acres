@@ -1,5 +1,10 @@
 """
-Model class that represents an expansion standard.
+Model class that represents an expansion standard. An expansion standard is the main reference
+standard containing acronyms-expansion pairs and their evaluation following the TREC standard
+(2/1/0).
+
+It is designed as an append-only list (i.e., entries do not need to be updated with variable
+inputs).
 """
 import logging
 from itertools import islice

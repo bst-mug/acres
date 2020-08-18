@@ -1,5 +1,10 @@
 """
-Stefan Schulz 03 Dec 2017
+Module to debug expansion candidates on a corpus (typically the training set).
+
+.. deprecated:: 0.1
+   Corpus-based evaluation has not been used recently (e.g. not used in Michel's PhD Thesis).
+
+.. codeauthor:: Stefan Schulz
 """
 
 import logging

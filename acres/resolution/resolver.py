@@ -1,3 +1,8 @@
+"""
+Facade to the several expansion strategies.
+
+.. codeauthor:: Michel Oleynik
+"""
 from enum import IntEnum
 from typing import List, Iterator
 

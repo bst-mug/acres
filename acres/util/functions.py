@@ -1,9 +1,5 @@
-# Stefan Schulz, 18 Mar 2017
 """
-Module with functions for corpus analysis.
-
-TODO move to proper function
-This function compares and acronym with a potential full form and returns a list of segmentations.
+Module with general functions.
 """
 import logging
 import os

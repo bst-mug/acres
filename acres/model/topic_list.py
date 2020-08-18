@@ -1,5 +1,8 @@
 """
-Model class that represents a topic list.
+Model class that represents a topic list. A topic list is used as main input (a la TREC) and thus
+can control which acronyms (together with their contexts) are to be considered for evaluation. A
+topic list can be used, e.g., to quickly switch between different evaluation scenarios such as
+acronyms collected from either the training or test dataset.
 """
 from operator import attrgetter
 from typing import List, Set
