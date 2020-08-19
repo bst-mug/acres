@@ -1,6 +1,8 @@
 """
 Root package.
 """
+from acres import constants
+
 __all__ = ['constants']
 
 import logging

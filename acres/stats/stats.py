@@ -1,5 +1,6 @@
 """
-Module for calculating corpus statistics.
+Module for calculating corpus statistics. It is used to measure the training/test dataset according
+to, e.g., number of tokens.
 """
 from typing import List
 

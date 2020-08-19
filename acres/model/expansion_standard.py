@@ -1,5 +1,10 @@
 """
-Model class that represents an expansion standard.
+Model class that represents an expansion standard. An expansion standard is the main reference
+standard containing acronyms-expansion pairs and their evaluation following the TREC standard
+(2/1/0).
+
+It is designed as an append-only list (i.e., entries do not need to be updated with variable
+inputs).
 """
 import logging
 from itertools import islice
@@ -55,7 +60,7 @@ def write(filename: str, previous: Dict[str, Dict[str, int]], valid: Set[str],
     :param previous: A dictionary of acronyms mapped to their senses and assesments (if any).
     :param valid: A set of valid acronyms, normally parsed from a detection standard.
     :param topics: A topic list.
-    :return:Ø
+    :return:
     """
     file = open(filename, "w+", encoding="utf-8")
 

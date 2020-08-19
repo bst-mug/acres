@@ -3,12 +3,16 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to acres's documentation!
+acres
 =================================
+
+acres is an acronym expansion module based on word embeddings and filtering rules.
+
+We provided here auto-generated  module by module documentation only.
 
 .. toctree::
    :maxdepth: 3
-   :caption: Contents:
+   :caption: Contents
 
    modules
 

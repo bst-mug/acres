@@ -122,6 +122,9 @@ def get_acronym_score_variants(acro: str, full: str) -> float:
 
     Return the score of the best variant.
 
+    .. deprecated:: 0.1
+       Variants have not been used recently (e.g. not used in Michel's PhD Thesis).
+
     :param acro:
     :param full:
     :return:

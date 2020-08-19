@@ -1,7 +1,7 @@
-"""Resource factory
+"""
+Resource factory. This module provides methods for lazily loading resources.
 
-This module provides methods for lazily loading resources.
-
+.. codeauthor:: Michel Oleynik
 """
 import logging
 import os.path

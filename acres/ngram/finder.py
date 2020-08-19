@@ -1,6 +1,7 @@
-# Stefan Schulz 21 August 2017
 """
-Finds synonyms using a n-gram frequency list from related corpus
+Finds synonyms using a n-gram frequency list from related corpus.
+
+.. codeauthor:: Stefan Schulz
 """
 
 import logging

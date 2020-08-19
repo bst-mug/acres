@@ -1,5 +1,7 @@
 """
-Metrics from large German acronym / definition list
+Module to collect metrics from a sense inventory. This module can be used to debug the sense
+inventory e.g. by detecting extreme expansions. It can also be used to debug methods that relies on
+real data.
 """
 from typing import List, Tuple, Optional, Dict
 

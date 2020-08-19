@@ -100,6 +100,7 @@ def transliterate_to_seven_bit(str_in: str) -> str:
     Considering in-built capitalization rules such as "ß" -> "SS"
     TODO: completing transliteration rules when non-Western languages are used
     consider using unidecode
+    
     :param str_in:
     :return:
     """

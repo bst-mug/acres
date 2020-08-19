@@ -1,4 +1,6 @@
 """
 Package containing evaluation modules.
 """
-__all__ = ['corpus', 'evaluation']
+from acres.evaluation import corpus, evaluation, metrics
+
+__all__ = ['corpus', 'evaluation', 'metrics']

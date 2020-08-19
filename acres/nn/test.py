@@ -1,5 +1,5 @@
-"""Apply a given word2vec model
-
+"""
+Module to apply/`test` a given word2vec model.
 """
 import logging
 from typing import Iterator, Tuple

@@ -1,5 +1,10 @@
 """
-Model class that represents a detection standard.
+Model class that represents a detection standard. A detection standard works like a allow/block list
+to filter out inputs from the topic list that are not proper acronyms (e.g. `BEFUND`, `III`). Such
+inputs are then not considered for evaluation purposes.
+
+It is designed as an append-only list (i.e., entries do not need to be updated with variable
+inputs).
 """
 import logging
 from typing import Dict, Set, List

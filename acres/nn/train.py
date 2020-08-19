@@ -1,7 +1,8 @@
-"""Trainer for word2vec embeddings
+"""
+Trainer for word2vec embeddings based on an idea originally proposed by Johannes Hellrich
+(https://github.com/JULIELab/hellrich_dh2016).
 
-@author Michel Oleynik
-@thanks Johannes Hellrich (https://github.com/JULIELab/hellrich_dh2016)
+.. codeauthor:: Michel Oleynik
 """
 
 import logging
