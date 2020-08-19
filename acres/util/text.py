@@ -93,56 +93,6 @@ def clear_digits(str_in: str, substitute_char: str) -> str:
     return out
 
 
-def transliterate_to_seven_bit(str_in: str) -> str:
-    """
-    Converts string to 7-bit ASCII, considering language - specific rules,
-    such as in German "Ä" -> "AE", in English "Ä" -> "A"
-    Considering in-built capitalization rules such as "ß" -> "SS"
-    TODO: completing transliteration rules when non-Western languages are used
-    consider using unidecode
-    
-    :param str_in:
-    :return:
-    """
-    substitutions = {
-        "À": "A",
-        "Á": "A",
-        "Â": "A",
-        "Ã": "A",
-        "Ä": "A",
-        "Å": "A",
-        "Æ": "AE",
-        "Ç": "C",
-        "È": "E",
-        "É": "E",
-        "Ê": "E",
-        "Ë": "E",
-        "Ì": "I",
-        "Í": "I",
-        "Î": "I",
-        "Ï": "I",
-        "Ñ": "N",
-        "Ò": "O",
-        "Ó": "O",
-        "Ô": "O",
-        "Õ": "O",
-        "Ö": "O",
-        "Ø": "O",
-        "Ù": "U",
-        "Ú": "U",
-        "Û": "U",
-        "Ü": "U"}
-
-    if constants.LANGUAGE == "de":
-        substitutions["Ä"] = "AE"
-        substitutions["Å"] = "AA"
-        substitutions["Ö"] = "OE"
-        substitutions["Ø"] = "OE"
-        substitutions["Ü"] = "UE"
-
-    return "".join([substitutions.get(c, c) for c in str_in.upper()])
-
-
 def reduce_repeated_chars(str_in: str, char: str, remaining_chars: int) -> str:
     """
     :param str_in: text to be cleaned
@@ -162,36 +112,6 @@ def reduce_repeated_chars(str_in: str, char: str, remaining_chars: int) -> str:
             cnt = 0
             out = out + k
     return out
-
-
-def replace_punctuation(punctuated: str) -> str:
-    """
-    Replaces punctuation marks (as defined by pyhton string collection) by a whitespace.
-
-    :param punctuated: Punctuated string.
-    :return: A non-punctuated string.
-    """
-    _punctuation = set(string.punctuation)
-    for punct in set(punctuated).intersection(_punctuation):
-        punctuated = punctuated.replace(punct, ' ')
-    return ' '.join(punctuated.split())
-
-
-def context_ngram(words: str, size: int, reverse: bool = False) -> str:
-    """
-    Reduces a given sentence to `size` words, to be used as a context n-gram.
-
-    If `reverse` is `True`, the last `size` words are used, commonly employed as a left context.
-
-    :param words:
-    :param size:
-    :param reverse:
-    :return:
-    """
-    if size == 0:
-        return ""
-    tokens = words.split(" ")
-    return " ".join(tokens[-size:]) if reverse else " ".join(tokens[:size])
 
 
 def remove_duplicated_whitespaces(whitespaced: str) -> str:

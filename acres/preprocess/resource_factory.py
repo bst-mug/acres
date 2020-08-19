@@ -41,26 +41,6 @@ CONTEXT_MAP = {}  # type: Dict[int, fastngram.ContextMap]
 CENTER_MAP = {}  # type: Dict[int, fastngram.CenterMap]
 
 
-def get_log_corpus_filename() -> str:
-    """
-    Get the full path to the `logCorpus.txt` file.
-
-    :return:
-    """
-    os.makedirs(os.path.dirname(LOG_FOLDER), exist_ok=True)
-    return LOG_FOLDER + "logCorpus.txt"
-
-
-def get_log_web_filename() -> str:
-    """
-    Get the full path to the `logWebs.txt` file.
-
-    :return:
-    """
-    os.makedirs(os.path.dirname(LOG_FOLDER), exist_ok=True)
-    return LOG_FOLDER + "logWebs.txt"
-
-
 def get_morphemes() -> Set[str]:
     """
     Lazy load the set of morphemes.

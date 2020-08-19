@@ -18,7 +18,6 @@ class FilteredNGramStat:
 
     @todo ngramstat itself should be a generator
     """
-    NGRAM_SEPARATOR = "\t"
     TOKEN_SEPARATOR = " "
     PRINT_INTERVAL = 1000000
 
