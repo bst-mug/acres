@@ -7,7 +7,7 @@ acronyms collected from either the training or test dataset.
 from operator import attrgetter
 from typing import List, Set
 
-from acres.ngram import ngrams
+from acres.model import ngrams
 from acres.util import acronym as acro_util
 from acres.util import functions
 

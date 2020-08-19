@@ -1,6 +1,6 @@
 from itertools import islice
 
-from acres.ngram import ngrams
+from acres.model import ngrams
 from acres.util.acronym import Acronym
 
 

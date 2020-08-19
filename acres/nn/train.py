@@ -11,7 +11,7 @@ from gensim.models import Word2Vec, Phrases
 # from gensim.models import FastText
 from gensim.models.phrases import Phraser
 
-from acres.ngram import ngrams
+from acres.model import ngrams
 
 logger = logging.getLogger(__name__)
 
