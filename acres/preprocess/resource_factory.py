@@ -22,7 +22,6 @@ logger = logging.getLogger(__name__)
 
 PICKLE_FOLDER = "models/pickle/"
 NGRAMS_FOLDER = "models/ngrams/"
-LOG_FOLDER = "models/log/"
 NN_MODELS_FOLDER = "models/nn/"
 DATA_FOLDER = functions.import_conf("CORPUS_PATH")
 
