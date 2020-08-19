@@ -6,6 +6,6 @@ Package grouping modules related to the n-gram expansion strategy as originally 
 Prof. Stefan Schulz. Since this implementation relies on regular expressions, it typically runs
 slower than `fastngram`.
 """
-from acres.ngram import finder, ngrams
+from acres.ngram import ngrams
 
-__all__ = ['finder', 'ngrams']
+__all__ = ['ngrams']

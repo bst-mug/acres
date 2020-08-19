@@ -75,7 +75,7 @@ def analyze(contextualized_acronym: acres.util.acronym.Acronym, true_expansions:
 
     # Remove context to improve cache hit
     # XXX We currently support context only for n-grams
-    if strategy not in [resolver.Strategy.NGRAM, resolver.Strategy.FASTNGRAM]:
+    if strategy != resolver.Strategy.FASTNGRAM:
         left_context = ""
         right_context = ""
 

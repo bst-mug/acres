@@ -7,7 +7,6 @@ from enum import IntEnum
 from typing import List, Iterator
 
 from acres.fastngram import fastngram
-from acres.ngram import finder
 from acres.nn import test
 from acres.rater import rater
 from acres.stats import dictionary
@@ -18,7 +17,6 @@ class Strategy(IntEnum):
     """
     Enum that holds acronym-solving strategies.
     """
-    NGRAM = 1
     WORD2VEC = 2
     DICTIONARY = 3
     FASTNGRAM = 4
@@ -59,7 +57,6 @@ def resolve(acronym: str, left_context: str, right_context: str, strategy: Strat
     :return:
     """
     switcher = {
-        Strategy.NGRAM: finder.robust_find_embeddings,
         Strategy.WORD2VEC: test.find_candidates,
         Strategy.DICTIONARY: dictionary.expand,
         Strategy.FASTNGRAM: fastngram.fastngram,
