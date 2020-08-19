@@ -60,7 +60,7 @@ def write(filename: str, previous: Dict[str, Dict[str, int]], valid: Set[str],
     :param previous: A dictionary of acronyms mapped to their senses and assesments (if any).
     :param valid: A set of valid acronyms, normally parsed from a detection standard.
     :param topics: A topic list.
-    :return:Ø
+    :return:
     """
     file = open(filename, "w+", encoding="utf-8")
 

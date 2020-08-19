@@ -31,7 +31,7 @@ class Level(Enum):
 def test_input(true_expansions: Set[str], possible_expansions: List[str],
                max_tries: int = 10) -> bool:
     """
-    Tests an acronym + context strings against the ngram model
+    Test an acronym + context strings against the model.
 
     :param true_expansions:
     :param possible_expansions: An ordered list of possible expansions.
@@ -131,7 +131,7 @@ def evaluate(topics: List[Acronym], valid_standard: Set[str], standard: Dict[str
              strategy: resolver.Strategy, level: Level, max_tries: int,
              lenient: bool) -> Tuple[List[Acronym], List[Acronym], List[Acronym]]:
     """
-    Analyzes a gold standard with text excerpts centered on an acronym, followed by n valid
+    Analyze a gold standard with text excerpts centered on an acronym, followed by `n` valid
     expansions.
 
     :param topics:
@@ -176,7 +176,7 @@ def do_analysis(topics_file: str, detection_file: str, expansion_file: str,
                 strategy: resolver.Strategy, level: Level,
                 max_tries: int, lenient: bool) -> Tuple[List[Acronym], List[Acronym], List[Acronym]]:
     """
-    Analyzes a given expansion standard
+    Analyze a given expansion standard.
 
     :param topics_file:
     :param detection_file:
@@ -214,7 +214,7 @@ def do_analysis(topics_file: str, detection_file: str, expansion_file: str,
 def plot_data(topics_file: str, detection_file: str, expansion_file: str):
     """
     Run all strategies using different ranks and lenient approaches and generate a TSV file to be \
-    used as input for the plots.R script.
+    used as input for the `plots.R` script.
 
     :param topics_file:
     :param detection_file:

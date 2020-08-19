@@ -17,6 +17,7 @@ def calculate_precision(total_correct: int, total_found: int) -> float:
 def calculate_recall(total_correct: int, total_acronyms: int) -> float:
     """
     Calculate reall as the ratio of correct acronyms to all acronyms.
+
     :param total_correct:
     :param total_acronyms:
     :return:
