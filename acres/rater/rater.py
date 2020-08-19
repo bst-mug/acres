@@ -8,7 +8,6 @@ from typing import Tuple
 from acres.rater import expansion
 from acres.rater import full as full_rater
 from acres.util import acronym as acro_util
-from acres.util import variants as varianter
 
 logger = logging.getLogger(__name__)
 
@@ -107,68 +106,3 @@ def get_acronym_score(acro: str, full: str) -> float:
         return 0
 
     return _calc_score(acro, full)
-
-
-def get_acronym_score_variants(acro: str, full: str) -> float:
-    """
-    Wrapper for `get_acronym_score` that takes variants into consideration.
-
-    For checking for valid German expansions it is important to consider variants,
-    therefore invoke spelling variant generator from `varianter.generate_all_variants_by_rules`.
-    At this place more rules can be added.
-
-    Typical substitutions, mostly concerning the inconsistent use of k, c, and z in clinical texts
-    can be enhanced by frequent translations in `varianter.generate_all_variants_by_rules`.
-
-    Return the score of the best variant.
-
-    .. deprecated:: 0.1
-       Variants have not been used recently (e.g. not used in Michel's PhD Thesis).
-
-    :param acro:
-    :param full:
-    :return:
-    """
-    max_score = 0.0
-    variants = varianter.generate_all_variants_by_rules(full)
-    for variant in variants:
-        max_score = max(max_score, get_acronym_score(acro, variant))
-    return max_score
-
-
-def get_acro_def_pair_score(acro: str, full: str) -> Tuple[str, float]:
-    """
-    Wrapper function for `get_acronym_score` that takes possible acronym-definition pairs into
-    account.
-
-    The scoring function should work both for acronyms extracted from a corpus (for which strict
-    matching criteria should be applied) and for acronyms harvested from the Web for which the
-    criteria may be relaxed once strong evidence from acronym - definition patterns exist, e.g.
-    "ARDS (akutes Atemnotsyndrom)".
-    There might be acronym - definition patterns in well-written clinical documents.
-
-    In the latter case, full would take this form, i.e. a string that contains both the acronym and
-    the expansion.
-
-    :param acro:
-    :param full:
-    :return:
-    """
-    is_acronym_definition_pair = False
-    definition = full
-
-    # full form contains an acronym definition pattern (normally only yielded
-    # from Web scraping, unlikely in clinical texts)
-    # acronym is included; is then removed from full form
-    acro_def_pattern = acro_util.extract_acronym_definition(full, 7)
-    if acro_def_pattern is not None:
-        is_acronym_definition_pair = True
-        if acro_def_pattern[0] == acro:
-            definition = acro_def_pattern[1]
-            # high score, but also might be something else
-
-    # XXX Maybe we shouldn't consider variants in case it's an acronym-definition pair
-    score = get_acronym_score_variants(acro, definition)
-    if is_acronym_definition_pair:
-        score *= 10
-    return definition, score
