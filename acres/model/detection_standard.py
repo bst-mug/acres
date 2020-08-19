@@ -11,6 +11,7 @@ from typing import Dict, Set, List
 
 from acres.model import topic_list
 from acres.util import acronym as acro_util
+from acres.util.acronym import Acronym
 
 logger = logging.getLogger(__name__)
 
@@ -77,7 +78,7 @@ def parse_valid(filename: str) -> Set[str]:
     return filter_valid(parse(filename))
 
 
-def update(previous: Dict[str, bool], acronyms: List[acro_util.Acronym]) -> Dict[str, bool]:
+def update(previous: Dict[str, bool], acronyms: List[Acronym]) -> Dict[str, bool]:
     """
     Update a previous detection standard with new acronyms from a topic list, preserving order.
 

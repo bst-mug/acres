@@ -1,5 +1,4 @@
 import acres.util
-from acres import constants
 from acres.util import text
 
 

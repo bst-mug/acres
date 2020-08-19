@@ -3,7 +3,6 @@ Rating main module.
 """
 
 import logging
-from typing import Tuple
 
 from acres.rater import expansion
 from acres.rater import full as full_rater

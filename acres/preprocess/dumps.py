@@ -3,13 +3,10 @@ Module to process the corpus training data and create data structures for speed-
 
 .. codeauthor:: Stefan Schulz
 """
-import collections
 import logging
-from typing import Dict, Set, List, Tuple, Optional
+from typing import Dict, Tuple
 
 from acres import constants
-from acres.preprocess import resource_factory
-from acres.util import acronym
 from acres.util import functions
 from acres.util import text
 

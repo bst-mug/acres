@@ -1,4 +1,4 @@
-from acres.preprocess import dumps, resource_factory
+from acres.preprocess import dumps
 
 
 def test_create_corpus_ngramstat_dump():

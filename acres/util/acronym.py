@@ -2,9 +2,7 @@
 Utility functions related to acronyms.
 """
 import logging
-import re
 from collections import namedtuple
-from typing import Tuple, List, Optional
 
 from acres import constants
 from acres.util import text

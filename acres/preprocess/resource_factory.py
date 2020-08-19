@@ -6,7 +6,7 @@ Resource factory. This module provides methods for lazily loading resources.
 import logging
 import os.path
 import pickle
-from typing import Dict, Set, List, Tuple, Any
+from typing import Dict, List, Tuple, Any
 
 from gensim.models import Word2Vec
 
