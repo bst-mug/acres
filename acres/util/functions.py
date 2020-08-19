@@ -7,9 +7,6 @@ import random
 from configparser import ConfigParser
 from typing import Dict, List, Optional, Tuple, Iterable
 
-import requests
-from requests import Response
-
 from acres import constants
 
 logger = logging.getLogger(__name__)

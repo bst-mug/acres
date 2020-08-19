@@ -7,7 +7,6 @@ matrix:
     - python: "3.8"
 before_install:
   - export BOTO_CONFIG=/dev/null  # See https://github.com/travis-ci/travis-ci/issues/7940
-  - export BING_SEARCH_API_KEY=${BING_SEARCH_API_KEY:=secret} # Fallback to 'secret' to avoid empty value
   - export PYTHONHASHSEED=500  # Make word2vec deterministic
 script:
   - pylint -E acres && py.test --cov=acres
