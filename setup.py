@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='acres',
-    version='0.1',
+    version='1.0',
     description='Acronym resolution',
     url='https://github.com/bst-mug/acres',
     author='Stefan Schulz',
