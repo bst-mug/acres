@@ -11,7 +11,7 @@ from typing import Dict, Set, List, Tuple, Any
 from gensim.models import Word2Vec
 
 from acres.fastngram import fastngram
-from acres.nn import train
+from acres.word2vec import train
 from acres.preprocess import dumps
 from acres.stats import dictionary
 from acres.util import functions
@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 PICKLE_FOLDER = "models/pickle/"
 NGRAMS_FOLDER = "models/ngrams/"
-NN_MODELS_FOLDER = "models/nn/"
+NN_MODELS_FOLDER = "models/word2vec/"
 DATA_FOLDER = functions.import_conf("CORPUS_PATH")
 
 VERSION = "V10"

@@ -2,14 +2,14 @@ import shutil
 
 import pytest
 
-from acres.nn import train
+from acres.word2vec import train
 from acres.preprocess import resource_factory
 
 
 @pytest.fixture(scope="module", autouse=True)
 def delete_models():
     _delete_contents("tests/models/ngrams")
-    _delete_contents("tests/models/nn")
+    _delete_contents("tests/models/word2vec")
     _delete_contents("tests/models/pickle")
 
 
@@ -21,7 +21,7 @@ def _delete_contents(folder):
 def path_resource_factory():
     resource_factory.PICKLE_FOLDER = "tests/models/pickle/"
     resource_factory.NGRAMS_FOLDER = "tests/models/ngrams/"
-    resource_factory.NN_MODELS_FOLDER = "tests/models/nn/"
+    resource_factory.NN_MODELS_FOLDER = "tests/models/word2vec/"
     resource_factory.DATA_FOLDER = "tests/data"
     resource_factory.reset()
     print("INFO: Switched to test data.")
