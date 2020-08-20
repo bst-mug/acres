@@ -70,25 +70,3 @@ def word_ngrams():
 
     # Teardown: revert back to old
     resource_factory.WORD_NGRAMS = old
-
-
-@pytest.fixture(scope="module")
-def index():
-    # Setup: save current one and assign a fake one
-    old = resource_factory.INDEX
-    resource_factory.INDEX = {"¶": {1, 4, 6},
-                              "der": {2},
-                              "EKG": {3, 4, 5},
-                              "*": {4, 6},
-                              "Im": {5},
-                              "Physikalischer": {6},
-                              "Status": {6},
-                              "for": {7, 8},
-                              "WORD": {7},
-                              "embeddings": {7, 8},
-                              "WabcOabcRabcDabc": {8}
-                              }
-    yield resource_factory.INDEX
-
-    # Teardown: revert back to old
-    resource_factory.INDEX = old

@@ -3,20 +3,6 @@ from acres import constants
 from acres.util import text
 
 
-def test_fix_line_endings():
-    expected = "This is a short text¶"
-    actual = acres.util.text.fix_line_endings("This is a short text")
-    assert expected == actual
-
-    expected = "der Patientin¶"
-    actual = acres.util.text.fix_line_endings("der\nPatientin")
-    assert expected == actual
-
-    expected = "DIAGNOSEN¶---------¶"
-    actual = acres.util.text.fix_line_endings("DIAGNOSEN\n---------")
-    assert expected == actual
-
-
 def test_remove_duplicated_whitespaces():
     expected = "abc def ghi z"
     actual = acres.util.text.remove_duplicated_whitespaces("abc    def   ghi z")

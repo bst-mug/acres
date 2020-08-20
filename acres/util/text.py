@@ -2,75 +2,8 @@
 Utility functions related to text processing.
 """
 import re
-import string
 
 from acres import constants
-from acres.preprocess import resource_factory
-
-
-def fix_line_endings(long_text: str, char_ngram_length: int = 8,
-                     line_break_marker_position: int = 3) -> str:
-    """
-    Addresses the problem that many texts come with artificial line breaks.
-
-    These breaks are removed if distributional data show that an unbroken continuation of the text
-    is more likely than the break.
-
-    :param long_text:
-    :param char_ngram_length:
-    :param line_break_marker_position:
-    :return:
-    """
-    char_ngram_dict = resource_factory.get_character_ngrams()
-
-    line_break_marker = constants.LINE_BREAK
-
-    out = ""
-    long_text = long_text.strip().replace("\n", line_break_marker)
-    i = 0
-    while i + char_ngram_length < len(long_text):
-        char = long_text[i]
-        ngr = long_text[i:i + char_ngram_length]
-
-        # line break marker at nth position
-        if ngr[line_break_marker_position] == line_break_marker:
-            ngr_clean = clear_digits(ngr, constants.DIGIT_MARKER)
-            ngr_clean_space = ngr_clean.replace(line_break_marker, " ")
-            if ngr_clean in char_ngram_dict:
-                n_breaks = char_ngram_dict[ngr_clean]
-            else:
-                n_breaks = 0
-            if ngr_clean_space in char_ngram_dict:
-                n_spaces = char_ngram_dict[ngr_clean_space]
-            else:
-                n_spaces = 0
-            # logger.debug("----")
-            # logger.debug(ngr)
-            # logger.debug("With new line: %s", n_breaks)
-            # logger.debug("With space: %s", n_spaces)
-            if n_spaces > n_breaks:
-                # TODO: line_break_marker as delimiter
-                # What happens if the break marker symbol also occurs in the original text
-                # probably safe: using the "¶" character for line breaks
-                # Check for whole code how delimiters are handled and how this
-                # might interfere with text processing
-                out = out + ngr.replace(line_break_marker, " ")
-                i = i + char_ngram_length
-                if i >= len(long_text):
-                    break
-            else:
-                out = out + char
-                i = i + 1
-                if i == len(long_text):
-                    break
-        else:
-            out = out + char
-            i = i + 1
-            if i == len(long_text):
-                break
-
-    out = out + long_text[i:] + line_break_marker
-    return out
 
 
 def clear_digits(str_in: str, substitute_char: str) -> str:

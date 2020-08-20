@@ -16,57 +16,18 @@ from acres.util import text
 logger = logging.getLogger(__name__)
 
 
-def create_corpus_char_stat_dump(corpus_path: str, ngramlength: int = 8) -> Dict[str, int]:
-    """
-    Takes a corpus consisting of text files in a single directory, substitutes digits and line
-    breaks, and generates statistics of character ngrams including the digit and break substitutes.
-
-    Purpose: To substitute artificial breaks in a corpus.
-
-    :param corpus_path:
-    :param ngramlength:
-    :return:
-    """
-    texts = functions.robust_text_import_from_dir(corpus_path)
-
-    logger.info("Creating character ngrams from %d documents...", len(texts))
-
-    dict_char_ngrams = {}   # type: Dict[str, int]
-
-    for doc in texts:
-        str_doc = ""
-        lines = doc.split("\n")
-        for line in lines:
-            line = text.clear_digits(line, constants.DIGIT_MARKER)
-            str_doc = str_doc + line.strip() + constants.LINE_BREAK
-        for i in range(0, len(str_doc) - (ngramlength - 1)):
-            ngram = str_doc[0 + i: ngramlength + i]
-            if len(ngram) == ngramlength:
-                if ngram not in dict_char_ngrams:
-                    dict_char_ngrams[ngram] = 1
-                else:
-                    dict_char_ngrams[ngram] += 1
-
-    return dict_char_ngrams
-
-
 def create_corpus_ngramstat_dump(corpus_path: str, min_freq: int, min_length: int = 1,
-                                 max_length: int = 7, fix_lines: bool = True) -> Dict[str, int]:
+                                 max_length: int = 7) -> Dict[str, int]:
     """
     Takes a corpus consisting of text files in a single directory
     Substitutes digits and line breaks
     It requires that all documents are in UTF-8 text.
-    It can perform line break cleansing (removes artificial line breaks)
-    and substitutions of digits.
-    For fixing the lines, a character ngram stat dictionary,
-    CREATED FROM THE SAME OR A SIMILAR
-    CORPUS, character_ngrams.p  must be in place.
+    It can perform substitutions of digits.
 
     :param corpus_path:
     :param min_freq:
     :param min_length:
     :param max_length:
-    :param fix_lines:
     :return:
     """
 
@@ -84,9 +45,6 @@ def create_corpus_ngramstat_dump(corpus_path: str, min_freq: int, min_length: in
         if counter % 1000 == 0:
             logger.debug("%d/%d", counter, length)
 
-        if fix_lines:
-            doc = text.fix_line_endings(doc)
-
         # TODO normalize case if not acronym?
         # TODO normalize german characters: ä => ae
         # TODO normalize c = k (soundex?)
@@ -94,7 +52,7 @@ def create_corpus_ngramstat_dump(corpus_path: str, min_freq: int, min_length: in
         # ("Belastungs-Dyspnoe" = "Belastungs Dyspnoe" = "Belastungsdyspnoe")
 
         # doc = text.tokenize(doc)
-        doc = text.clean(doc, fix_lines)
+        doc = text.clean(doc)
 
         doc = text.clear_digits(doc, constants.DIGIT_MARKER)
 
@@ -152,94 +110,3 @@ def create_indexed_ngrams(ngrams: Dict[str, int]) -> Dict[int, Tuple[int, str]]:
         output[identifier] = (freq, ngram)
         identifier += 1
     return output
-
-
-def create_index(ngramstat: Dict[int, Tuple[int, str]]) -> Dict[str, Set[int]]:
-    """
-    Create an inverted index for performance issue when retrieving ngram records.
-
-    :param ngramstat:
-    :return:
-    """
-    index = collections.defaultdict(set)    # type: Dict[str, Set[int]]
-    for identifier in ngramstat:
-        # XXX Think about trie data structure
-        # logger.debug(ngramstat[ID])
-        (_, ngram) = ngramstat[identifier]
-        words = ngram.split(" ")
-        for word in words:
-            index[word].add(identifier)
-            if len(word) > 1 and not word[-1].isalpha():
-                index[word[0:-1]].add(identifier)
-
-    return index
-
-
-def create_acro_dump() -> List[str]:
-    """
-    Creates and dumps set of acronyms from ngram statistics.
-
-    :return:
-    """
-    # acronym_ngrams = resource_factory.get_acronym_ngrams()
-    # for i in acronym_ngrams:
-    #   logger.debug(i)
-    counter = 0
-    acronyms = []   # type: List[str]
-
-    ngram_stat = resource_factory.get_ngramstat()
-    for entry in ngram_stat:
-        row = (ngram_stat[entry])
-        (_, ngram) = row
-        if ngram.isalnum() and constants.DIGIT_MARKER not in ngram:
-            if acronym.is_acronym(ngram, 7):
-                # plausible max length for German medical language
-                if ngram not in acronyms:
-                    acronyms.append(ngram)
-                    counter += 1
-
-    return acronyms
-
-
-def create_new_acro_dump() -> List[str]:
-    """
-
-    :return:
-    """
-
-    counter = 0
-    new_acronym_ngrams = []
-
-    ngram_stat = resource_factory.get_ngramstat()
-    for _, freq_ngram in ngram_stat.items():
-        (_, ngram) = freq_ngram
-        if " " in ngram:
-            tokens = ngram.split(" ")
-            for token in tokens:
-                if acronym.is_acronym(token, 7):
-                    new_acronym_ngrams.append(ngram)
-                    counter += 1
-                    break
-
-    return new_acronym_ngrams
-
-
-def create_morpho_dump(lexicon_file: str, append_to: Optional[Set] = None) -> Set[str]:
-    """
-    Creates and dumps set of plausible English and German morphemes
-    from morphosaurus dictionary.
-    TODO: created rather quick & dirty, only for scoring acronym resolutions
-
-    :return:
-    """
-    append_to = append_to or set()
-
-    with open(lexicon_file) as file:
-        for row in file:
-            if "<str>" in row:
-                row = row.strip()[5:-6]
-                row = row.replace("z", "c").replace("k", "c")
-                # logger.debug(row)
-                append_to.add(row)
-
-    return append_to
