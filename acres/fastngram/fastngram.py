@@ -7,11 +7,10 @@ import sys
 from collections import OrderedDict
 from typing import Dict, Set, Tuple, Iterator, List, Union
 
-import acres.util.acronym
-from acres.model import topic_list
 from acres.preprocess import resource_factory
 from acres.util import functions
 from acres.util.functions import import_conf
+from acres.util.acronym import Acronym
 
 logger = logging.getLogger(__name__)
 
@@ -118,7 +117,7 @@ def fastngram(acronym: str, left_context: str = "", right_context: str = "",
     :param max_rank:
     :return:
     """
-    contextualized_acronym = acres.util.acronym.Acronym(acronym=acronym, left_context=left_context,
+    contextualized_acronym = Acronym(acronym=acronym, left_context=left_context,
                                                         right_context=right_context)
     contexts = _generate_acronym_contexts(contextualized_acronym)
 
@@ -145,7 +144,7 @@ def fasttype(acronym: str, left_context: str = "", right_context: str = "",
         yield ngram
 
 
-def _find_contexts(acronym: str, min_freq: int) -> 'List[topic_list.Acronym]':
+def _find_contexts(acronym: str, min_freq: int) -> 'List[Acronym]':
     """
     Find contexts in the training data where this acronym appears.
 
@@ -155,7 +154,7 @@ def _find_contexts(acronym: str, min_freq: int) -> 'List[topic_list.Acronym]':
     """
     model = resource_factory.get_center_map(functions.partition(acronym, PARTITIONS))
 
-    all_contexts = []  # type: List[topic_list.Acronym]
+    all_contexts = []  # type: List[Acronym]
     for out_freq, contexts in model.contexts(acronym).items():
         for left, right in contexts:
             # Do not allow empty contexts.
@@ -163,14 +162,14 @@ def _find_contexts(acronym: str, min_freq: int) -> 'List[topic_list.Acronym]':
                 continue
             if out_freq < min_freq:
                 break
-            contextualized_acronym = acres.util.acronym.Acronym(acronym=acronym, left_context=left,
+            contextualized_acronym = Acronym(acronym=acronym, left_context=left,
                                                                 right_context=right)
             all_contexts.append(contextualized_acronym)
 
     return all_contexts
 
 
-def _center_provider(contexts: 'List[topic_list.Acronym]', min_freq: int,
+def _center_provider(contexts: 'List[Acronym]', min_freq: int,
                      max_rank: int) -> Iterator[str]:
     """
     Provide unlimited center words for a given list of contexts.
@@ -227,7 +226,7 @@ def create_map(ngrams: Dict[str, int], model: Union[ContextMap, CenterMap],
     return model
 
 
-def _generate_ngram_contexts(ngram: str) -> 'List[topic_list.Acronym]':
+def _generate_ngram_contexts(ngram: str) -> 'List[Acronym]':
     """
     Generate a list of contextualized n-grams with a decreasing central n-gram and increasing \
     lateral context.
@@ -252,12 +251,12 @@ def _generate_ngram_contexts(ngram: str) -> 'List[topic_list.Acronym]':
             left = sys.intern(" ".join(tokens[0:i]))
             right = sys.intern(" ".join(tokens[j:ngram_size]))
             center = sys.intern(" ".join(tokens[i:j]))
-            contexts.append(acres.util.acronym.Acronym(acronym=center, left_context=left,
+            contexts.append(Acronym(acronym=center, left_context=left,
                                                        right_context=right))
     return contexts
 
 
-def _generate_acronym_contexts(contextualized_acronym: 'topic_list.Acronym') -> 'List[topic_list.Acronym]':
+def _generate_acronym_contexts(contextualized_acronym: 'Acronym') -> 'List[Acronym]':
     """
     Generate a list of contextualized acronyms with decreasing lateral context.
 
@@ -279,7 +278,7 @@ def _generate_acronym_contexts(contextualized_acronym: 'topic_list.Acronym') -> 
     if right_length > left_length:
         max_length += min(MAX_DIFF, right_length - left_length)
 
-    contexts = []  # type: List[topic_list.Acronym]
+    contexts = []  # type: List[Acronym]
     for j in range(max_length, -1, -1):
         # Left size > right size
         if j > right_length:
@@ -293,7 +292,7 @@ def _generate_acronym_contexts(contextualized_acronym: 'topic_list.Acronym') -> 
                 continue
             left_context = " ".join(left[i:left_length])
             right_context = " ".join(right[0:j])
-            contexts.append(acres.util.acronym.Acronym(acronym=contextualized_acronym.acronym,
+            contexts.append(Acronym(acronym=contextualized_acronym.acronym,
                                                        left_context=left_context,
                                                        right_context=right_context))
     return contexts

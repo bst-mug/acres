@@ -1,18 +1,6 @@
 [DEFAULT]
 CORPUS_PATH = tests/data
-MORPH_ENG = tests/resources/lex.xml
-MORPH_GER = tests/resources/lex.xml
-
-# Free trial at https://azure.microsoft.com/en-us/try/cognitive-services/?api=bing-web-search-api
-BingSearchApiKey = %(BING_SEARCH_API_KEY)s
 
 # Number of partitions to split the fastNgram maps into.
 # A higher number of partitions is recommended for low-memory scenarios (e.g. 5 for 8 GB RAM).
 FastNgramPartitions = 5
-
-[proxy]
-UseProxy = no
-ProxyUser = DOMAIN\username
-ProxyPass = secret
-ProxyDomain = example.com
-ProxyPort = 8080

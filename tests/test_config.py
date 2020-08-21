@@ -16,7 +16,3 @@ def test_config():
         assert my_config[section]
         for option in default_config.options(section):
             assert my_config.get(section, option)
-
-    # Addtional checks
-    assert os.path.isfile(my_config["DEFAULT"]["MORPH_ENG"])
-    assert os.path.isfile(my_config["DEFAULT"]["MORPH_GER"])

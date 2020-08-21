@@ -9,14 +9,6 @@ acres.evaluation package
 Submodules
 ----------
 
-acres.evaluation.corpus module
-------------------------------
-
-.. automodule:: acres.evaluation.corpus
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 acres.evaluation.evaluation module
 ----------------------------------
 

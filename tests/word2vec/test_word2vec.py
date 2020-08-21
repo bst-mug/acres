@@ -1,6 +1,6 @@
 from itertools import islice
 
-from acres.nn import test
+from acres.word2vec import test
 
 
 def test_nn(ngramstat):

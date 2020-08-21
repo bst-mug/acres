@@ -12,15 +12,14 @@ Subpackages
 .. toctree::
 
    acres.evaluation
+   acres.fastngram
    acres.model
-   acres.ngram
-   acres.nn
    acres.preprocess
    acres.rater
    acres.resolution
    acres.stats
    acres.util
-   acres.web
+   acres.word2vec
 
 Submodules
 ----------

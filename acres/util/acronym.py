@@ -2,9 +2,7 @@
 Utility functions related to acronyms.
 """
 import logging
-import re
 from collections import namedtuple
-from typing import Tuple, List, Optional
 
 from acres import constants
 from acres.util import text
@@ -12,38 +10,6 @@ from acres.util import text
 logger = logging.getLogger(__name__)
 
 Acronym = namedtuple('Acronym', ['acronym', 'left_context', 'right_context'])
-
-
-def extract_acronym_definition(str_probe: str, max_length: int,
-                               strict: bool = False) -> Optional[Tuple[str, str]]:
-    """
-    Identifies potential acronym / definition pairs and extract acronym and definition candidates.
-    A necessary criterion is that the initial characters are the same
-
-    TODO Acronym/definition pairs normally use parentheses, but also quotes and dashes can be found
-
-    @todo Add sibling function is_acronym_definition_pair
-
-    :param str_probe:
-    :param max_length:
-    :param strict:
-    :return:
-    """
-    str_probe = str_probe.strip()
-
-    if len(str_probe) > 6:
-        if str_probe[-1] == ")" and str_probe.count("(") == 1:
-            left = str_probe.split("(")[0].strip()  # potential definition
-            right = str_probe.split("(")[1][0:-1].strip()  # potential acronym
-            if strict:
-                if left[0].lower() != right[0].lower():
-                    return None
-            if is_acronym(left, max_length) and not is_acronym(right, max_length):
-                return left, right
-            if is_acronym(right, max_length) and not is_acronym(left, max_length):
-                return right, left
-
-    return None
 
 
 def is_acronym(str_probe: str, max_length: int = 7) -> bool:
@@ -87,129 +53,6 @@ def create_german_acronym(full: str) -> str:
     for word in full.split():
         if word not in neg_list:
             out = out + word[0].upper()
-    return out
-
-
-def is_proper_word(str_probe: str) -> bool:
-    """
-    A proper word is more than a single letter.
-    The first character may be capitalised or not, all other characters are lower case.
-    It must not include digits or punctuation characters (only dashes are allowed).
-
-    :param str_probe:
-    :return:
-    """
-    str_new = str_probe.replace("-", "").replace(constants.DIGIT_MARKER, "1")
-    if len(str_new) < 2:
-        return False
-    if not (str_probe[0].isalpha() and str_probe[-1].isalpha() and str_new.isalpha()):
-        return False
-    if not str_new[1:].islower():
-        return False
-    return True
-
-
-def split_expansion(acro: str, full: str) -> List[Tuple[str, ...]]:
-    """
-
-    :param acro:
-    :param full:
-    :return:
-    """
-    if len(acro) > 7:
-        logger.warning("The current code is very slow for long acronyms, this may take a while...")
-
-    bina = []
-    cleaned_full = _acronym_aware_clean_expansion(acro, full)
-
-    # TODO recursive function instead of Regex
-
-    # TODO obvious morpheme-based scoring does not work well with this unorthodox building patterns
-
-    # List of binary combinations of alternative regex patterns (greedy vs. non-greedy)
-    regs = []
-
-    # Iterate over the binary representations of `i`, with "0" being replaced by the greedy
-    # regex "*|", and "1" by the non-greedy regex "*?|". The pipe | character is just a separator,
-    # later used as a split character.
-    for i in range(0, (2 ** (len(acro) - 1))):
-        # Takes the binary value of i and fills it with zeroes up to the length of acronym -1
-        str_bin = str(bin(i))[2:].zfill(len(acro) - 1)
-
-        # zfill will not drop characters. In the corner case of a single letter acronym, we should
-        # generate an empty string.
-        if len(acro) == 1:
-            str_bin = ""
-
-        bina.append(str_bin.replace("0", "*|").replace("1", "*?|"))
-
-    # Iterate over the built list of expressions, each matching the initial characters in a
-    # different way. Then build a list of regular expressions, e.g. for "EKG":
-    # ^(E.*)(K.*)(G[A-Za-z0-9 ]*$)
-    # ^(E.*)(K.*?)(G[A-Za-z0-9 ]*$)
-    # ^(E.*?)(K.*)(G[A-Za-z0-9 ]*$)
-    # ^(E.*?)(K.*?)(G[A-Za-z0-9 ]*$)
-    for expr in bina:
-        lst_exp = expr.split("|")
-        i = 0
-
-        # Build capturing groups over each acronym character
-        out = "^("
-        for ex in lst_exp:
-            out = out + re.escape(acro[i]) + "." + ex + ")("
-            i += 1
-
-        # TODO Use Unicode matching instead of diacritics
-        # TODO Merge greedy and non-greedy in a single non-capturing group?
-        # Remove the last 3 remaining characters --- always ".)(" (because last `ex` is empty) ---
-        # and replace them with a group matching valid characters (alphanumeric + whitespace +
-        # diacritics).
-        regs.append(out[0:-3] + r"[\w\s]*$)")
-
-    result = []  # type: List[Tuple[str, ...]]
-    for reg in regs:
-        if re.search(reg, cleaned_full, re.IGNORECASE) is not None:
-            found = re.findall(reg, cleaned_full, re.IGNORECASE)[0]
-
-            # Avoid duplicates
-            if found not in result:
-                result.append(found)
-    return result
-
-
-def _acronym_aware_clean_expansion(acronym: str, expansion: str) -> str:
-    """
-    Remove any symbol from the expanded form, preserving hyphens, spaces and chars from the acronym.
-
-    :param acronym:
-    :param expansion:
-    :return:
-    """
-    ret = ""
-    for char in expansion:
-        if char.isalnum() or char in " -" or char in acronym:
-            ret = ret + char
-        else:
-            ret = ret + " "
-    return ret.strip()
-
-
-def split_ngram(ngram: str) -> List[Tuple[str, str, str]]:
-    """
-    Splits a token ngram with acronym(s) into all combinations of left - acro - token.
-
-    :param ngram:
-    :return:
-    """
-    out = []
-    tokens = ngram.split(" ")
-    counter = 0
-    for token in tokens:
-        if is_acronym(token, 7):
-            acronym_context = (" ".join(tokens[0:counter]),
-                               tokens[counter], " ".join(tokens[counter + 1:]))
-            out.append(acronym_context)
-        counter += 1
     return out
 
 

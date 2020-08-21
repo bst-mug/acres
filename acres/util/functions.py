@@ -7,9 +7,6 @@ import random
 from configparser import ConfigParser
 from typing import Dict, List, Optional, Tuple, Iterable
 
-import requests
-from requests import Response
-
 from acres import constants
 
 logger = logging.getLogger(__name__)
@@ -27,41 +24,6 @@ def import_conf(key: str) -> Optional[str]:
         logging.critical("'%s' was not found in the DEFAULT section of config.ini.", key)
         return None
     return config['DEFAULT'][key]
-
-
-def get_url(url: str, params: Optional[Dict] = None, headers: Optional[Dict] = None,
-            timeout: int = 2) -> Optional[Response]:
-    """
-    Make a GET request to a given URL using proxy if necessary.
-
-    :param url: The URL to make the request to.
-    :param params: GET parameters
-    :param headers: GET headers
-    :param timeout: The timeout in seconds.
-    :return: Object from requests.get()
-    """
-    config = ConfigParser()
-    config.read("config.ini")
-    proxy_config = config["proxy"]
-    proxy_dict = None
-    if proxy_config["UseProxy"] == "yes":
-        http_proxy = proxy_config["ProxyUser"] + ":" + proxy_config["ProxyPass"] + \
-                     "@" + proxy_config["ProxyDomain"] + ":" + proxy_config["ProxyPort"]
-        https_proxy = http_proxy
-        ftp_proxy = http_proxy
-        proxy_dict = {
-            "http": http_proxy,
-            "https": https_proxy,
-            "ftp": ftp_proxy}
-
-    response = None
-    try:
-        response = requests.get(url, params=params, headers=headers, timeout=timeout,
-                                proxies=proxy_dict)
-        response.raise_for_status()
-    except requests.exceptions.RequestException as ex:
-        logger.critical(ex)
-    return response
 
 
 def create_ngram_statistics(input_string: str, n_min: int, n_max: int) -> Dict[str, int]:
@@ -100,30 +62,6 @@ def create_ngram_statistics(input_string: str, n_min: int, n_max: int) -> Dict[s
     #    for w in sorted(output, key=output.get, reverse = True):
     #       print ('{:>8}'.format(output[w]) + '\t' + w)
     return output
-
-
-def random_sub_list(in_list: list, max_num: int) -> list:
-    """
-    Generates random sublist.
-
-    :param in_list:
-    :param max_num:
-    :return:
-    """
-    lst_out = []
-    length = len(in_list)
-    if length <= max_num:
-        return in_list
-    counter = 0
-    rnumbers = []   # type: List[int]
-    while counter < max_num:
-        rnumber = (random.randint(0, length - 1))
-        if rnumber not in rnumbers:
-            rnumbers.append(rnumber)
-            counter = len(rnumbers)
-    for rnumber in rnumbers:
-        lst_out.append(in_list[rnumber])
-    return lst_out
 
 
 def is_stopword(str_in: str) -> bool:
@@ -196,38 +134,6 @@ def robust_text_import_from_dir(path: str) -> List[str]:
             continue
 
     return texts
-
-
-def dict_to_sorted_list(ngrams_dict: Dict[str, int]) -> List[Tuple[int, str]]:
-    """
-    Converts a ngram dictionary to a list of tuples, ordered by decreasing frequency.
-
-    :param ngrams_dict:
-    :return:
-    """
-    output = []
-    for ngram in ngrams_dict:
-        output.append((ngrams_dict[ngram], ngram))
-    output.sort(reverse=True)
-    return output
-
-
-def corpus_to_ngram_list(corpus: str, min_num_tokens: int,
-                         max_num_tokens: int) -> List[Tuple[int, str]]:
-    """
-    Generates a ngram list, sorted by frequency, out of a corpus.
-
-    Upper bound of ngram length may be set according to acronym length
-    Rule of thumb: acronym length + 4, in order to safely retrieve acronym / definition
-    pairs. Not that also quotes, dashes and parentheses count as single tokens
-
-    :param corpus:
-    :param min_num_tokens:
-    :param max_num_tokens:
-    :return:
-    """
-    stats = create_ngram_statistics(corpus, min_num_tokens, max_num_tokens)
-    return dict_to_sorted_list(stats)
 
 
 def partition(word: str, partitions: int) -> int:

@@ -6,12 +6,12 @@ Resource factory. This module provides methods for lazily loading resources.
 import logging
 import os.path
 import pickle
-from typing import Dict, Set, List, Tuple, Any
+from typing import Dict, List, Tuple, Any
 
 from gensim.models import Word2Vec
 
 from acres.fastngram import fastngram
-from acres.nn import train
+from acres.word2vec import train
 from acres.preprocess import dumps
 from acres.stats import dictionary
 from acres.util import functions
@@ -22,8 +22,7 @@ logger = logging.getLogger(__name__)
 
 PICKLE_FOLDER = "models/pickle/"
 NGRAMS_FOLDER = "models/ngrams/"
-LOG_FOLDER = "models/log/"
-NN_MODELS_FOLDER = "models/nn/"
+NN_MODELS_FOLDER = "models/word2vec/"
 DATA_FOLDER = functions.import_conf("CORPUS_PATH")
 
 VERSION = "V10"
@@ -31,97 +30,12 @@ VERSION = "V10"
 #  minimal number of occurrences of a word ngram in the corpus
 MIN_FREQ = 2
 
-MORPHEMES = set()  # type: Set[str]
-INDEX = {}  # type: Dict[str, Set[int]]
 NN_MODEL = None  # type: Word2Vec
 NGRAMSTAT = {}  # type: Dict[int, Tuple[int,str]]
-CHARACTER_NGRAMS = {}  # type: Dict[str, int]
 WORD_NGRAMS = {}  # type: Dict[str, int]
 DICTIONARY = {}  # type: Dict[str, List[str]]
 CONTEXT_MAP = {}  # type: Dict[int, fastngram.ContextMap]
 CENTER_MAP = {}  # type: Dict[int, fastngram.CenterMap]
-
-
-def get_log_corpus_filename() -> str:
-    """
-    Get the full path to the `logCorpus.txt` file.
-
-    :return:
-    """
-    os.makedirs(os.path.dirname(LOG_FOLDER), exist_ok=True)
-    return LOG_FOLDER + "logCorpus.txt"
-
-
-def get_log_web_filename() -> str:
-    """
-    Get the full path to the `logWebs.txt` file.
-
-    :return:
-    """
-    os.makedirs(os.path.dirname(LOG_FOLDER), exist_ok=True)
-    return LOG_FOLDER + "logWebs.txt"
-
-
-def get_morphemes() -> Set[str]:
-    """
-    Lazy load the set of morphemes.
-
-    Loading order is as follows:
-    1. Variable;
-    2. Pickle file;
-    3. Generation.
-
-    :return:
-    """
-    global MORPHEMES
-
-    if not MORPHEMES:
-        output_file = PICKLE_FOLDER + "morphemes.p"
-
-        if not os.path.isfile(output_file):
-            _log_file_not_found(output_file)
-
-            morph_eng = functions.import_conf("MORPH_ENG")
-            morph_ger = functions.import_conf("MORPH_GER")
-
-            morphemes = dumps.create_morpho_dump(morph_eng)
-            morphemes = dumps.create_morpho_dump(morph_ger, morphemes)
-
-            _dump(morphemes, output_file)
-
-        _log_file_found(output_file)
-        MORPHEMES = _load(output_file)
-
-    return MORPHEMES
-
-
-def get_index() -> Dict[str, Set[int]]:
-    """
-    Lazy load the inverted index of ngrams.
-
-    Loading order is as follows:
-    1. Variable;
-    2. Pickle file;
-    3. Generation.
-
-    :return:
-    """
-    global INDEX
-
-    if not INDEX:
-        output_file = PICKLE_FOLDER + "index-" + str(MIN_FREQ) + "-" + VERSION + ".p"
-
-        if not os.path.isfile(output_file):
-            _log_file_not_found(output_file)
-
-            ngramstat = get_ngramstat()
-            index = dumps.create_index(ngramstat)
-            _dump(index, output_file)
-
-        _log_file_found(output_file)
-        INDEX = _load(output_file)
-
-    return INDEX
 
 
 def get_word_ngrams() -> Dict[str, int]:
@@ -145,7 +59,7 @@ def get_word_ngrams() -> Dict[str, int]:
             _log_file_not_found(pickle_output_file)
             _log_file_not_found(ngram_output_file)
 
-            word_ngrams = dumps.create_corpus_ngramstat_dump(DATA_FOLDER, MIN_FREQ, fix_lines=False)
+            word_ngrams = dumps.create_corpus_ngramstat_dump(DATA_FOLDER, MIN_FREQ)
 
             write_txt(word_ngrams, ngram_output_file)
             _dump(word_ngrams, pickle_output_file)
@@ -184,82 +98,6 @@ def get_ngramstat() -> Dict[int, Tuple[int, str]]:
         NGRAMSTAT = _load(output_file)
 
     return NGRAMSTAT
-
-
-def get_acronym_ngrams() -> List[str]:
-    """
-    Lazy load a list of ngrams containing acronyms.
-
-    Loading order is as follows:
-    1. Pickle file;
-    2. Generation.
-
-    :return:
-    """
-    output_file = PICKLE_FOLDER + "acronymNgrams.p"
-
-    if not os.path.isfile(output_file):
-        _log_file_not_found(output_file)
-
-        acronym_ngrams = dumps.create_new_acro_dump()
-        _dump(acronym_ngrams, output_file)
-
-    _log_file_found(output_file)
-    return _load(output_file)
-
-
-def get_acronyms() -> List[str]:
-    """
-    Lazy load a list of acronyms.
-
-    Loading order is as follows:
-    1. Pickle file;
-    2. Generation.
-
-    :return:
-    """
-    output_file = PICKLE_FOLDER + "acronyms.p"
-
-    if not os.path.isfile(output_file):
-        _log_file_not_found(output_file)
-
-        acronyms = dumps.create_acro_dump()
-        _dump(acronyms, output_file)
-
-    _log_file_found(output_file)
-    return _load(output_file)
-
-
-def get_character_ngrams() -> Dict[str, int]:
-    """
-    Lazy load character ngrams.
-
-    Loading order is as follows:
-    1. Variable;
-    2. Pickle file;
-    3. Generation.
-
-    :return:
-    """
-    global CHARACTER_NGRAMS
-
-    if not CHARACTER_NGRAMS:
-        pickle_output_file = PICKLE_FOLDER + "character_ngrams.p"
-        ngram_output_file = NGRAMS_FOLDER + "character_ngrams.txt"
-
-        if not os.path.isfile(pickle_output_file):
-            _log_file_not_found(pickle_output_file)
-            _log_file_not_found(ngram_output_file)
-
-            character_ngrams = dumps.create_corpus_char_stat_dump(DATA_FOLDER)
-
-            write_txt(character_ngrams, ngram_output_file)
-            _dump(character_ngrams, pickle_output_file)
-
-        _log_file_found(pickle_output_file)
-        CHARACTER_NGRAMS = _load(pickle_output_file)
-
-    return CHARACTER_NGRAMS
 
 
 def get_nn_model(ngram_size: int = 3, min_count: int = 1, net_size: int = 100, alpha: float = 0.025,
@@ -368,13 +206,10 @@ def reset() -> None:
 
     :return:
     """
-    global MORPHEMES, INDEX, NN_MODEL, NGRAMSTAT, CHARACTER_NGRAMS
+    global NN_MODEL, NGRAMSTAT
 
-    MORPHEMES = set()
-    INDEX = {}
     NN_MODEL = None
     NGRAMSTAT = {}
-    CHARACTER_NGRAMS = {}
 
 
 def warmup_cache() -> None:
@@ -383,13 +218,8 @@ def warmup_cache() -> None:
 
     :return:
     """
-    #get_morphemes()
     get_word_ngrams()
     get_ngramstat()
-    get_acronym_ngrams()
-    get_acronyms()
-    get_index()
-    get_character_ngrams()
     get_nn_model()
 
 

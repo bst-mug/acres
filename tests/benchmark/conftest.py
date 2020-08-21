@@ -8,8 +8,7 @@ from acres.util import functions
 def path_resource_factory():
     resource_factory.PICKLE_FOLDER = "models/pickle/"
     resource_factory.NGRAMS_FOLDER = "models/ngrams/"
-    resource_factory.LOG_FOLDER = "models/log/"
-    resource_factory.NN_MODELS_FOLDER = "models/nn/"
+    resource_factory.NN_MODELS_FOLDER = "models/word2vec/"
     resource_factory.DATA_FOLDER = functions.import_conf("CORPUS_PATH")
     resource_factory.reset()
     print("WARNING: Switched to real data.")
