@@ -4,6 +4,7 @@ matrix:
     - python: "3.6"
     - python: "3.7"
     - python: "3.8"
+    - python: "3.9"
 before_install:
   - export BOTO_CONFIG=/dev/null  # See https://github.com/travis-ci/travis-ci/issues/7940
   - export PYTHONHASHSEED=500  # Make word2vec deterministic
